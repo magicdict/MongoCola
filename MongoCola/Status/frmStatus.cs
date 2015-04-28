@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
+using Common;
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
+using ResourceLib.Method;
 using ResourceLib.Properties;
-using ResourceLib;
-using Common.Logic;
-
 
 namespace MongoCola.Status
 {
-    public partial class frmStatus : Form
+    public partial class FrmStatus : Form
     {
-        public frmStatus()
+        public FrmStatus()
         {
             InitializeComponent();
         }
@@ -24,30 +22,30 @@ namespace MongoCola.Status
         private void frmStatus_Load(object sender, EventArgs e)
         {
             Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
-            var strType = RuntimeMongoDBContext.SelectTagType;
-            var DocStatus = new BsonDocument();
+            var strType = RuntimeMongoDbContext.SelectTagType;
+            var docStatus = new BsonDocument();
             cmbChartField.Visible = false;
             chartResult.Visible = false;
             btnOpCnt.Visible = false;
             switch (strType)
             {
-                case ConstMgr.SERVER_TAG:
-                case ConstMgr.SINGLE_DB_SERVER_TAG:
-                    if (RuntimeMongoDBContext.GetCurrentServerConfig().LoginAsAdmin)
+                case ConstMgr.ServerTag:
+                case ConstMgr.SingleDbServerTag:
+                    if (RuntimeMongoDbContext.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        DocStatus =
-                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
-                                RuntimeMongoDBContext.GetCurrentServer()).Response;
+                        docStatus =
+                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
+                                RuntimeMongoDbContext.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height*2;
                     }
-                    if (strType == ConstMgr.SERVER_TAG)
+                    if (strType == ConstMgr.ServerTag)
                     {
                         btnOpCnt.Visible = true;
                     }
                     break;
-                case ConstMgr.DATABASE_TAG:
-                case ConstMgr.SINGLE_DATABASE_TAG:
-                    DocStatus = RuntimeMongoDBContext.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
+                case ConstMgr.DatabaseTag:
+                case ConstMgr.SingleDatabaseTag:
+                    docStatus = RuntimeMongoDbContext.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
                     cmbChartField.Visible = true;
                     chartResult.Visible = true;
 
@@ -64,151 +62,151 @@ namespace MongoCola.Status
                     cmbChartField.SelectedIndex = 0;
                     try
                     {
-                        RefreshDBStatusChart("StorageSize");
+                        RefreshDbStatusChart("StorageSize");
                     }
                     catch (Exception ex)
                     {
                         Utility.ExceptionDeal(ex);
                     }
                     break;
-                case ConstMgr.COLLECTION_TAG:
-                    DocStatus = RuntimeMongoDBContext.GetCurrentCollection().GetStats().Response.ToBsonDocument();
+                case ConstMgr.CollectionTag:
+                    docStatus = RuntimeMongoDbContext.GetCurrentCollection().GetStats().Response.ToBsonDocument();
                     //图形化初始化
                     chartResult.Visible = true;
 
                     chartResult.Series.Clear();
                     chartResult.Titles.Clear();
-                    var SeriesResult = new Series("Usage");
-                    var dpDataSize = new DataPoint(0, RuntimeMongoDBContext.GetCurrentCollection().GetStats().DataSize)
+                    var seriesResult = new Series("Usage");
+                    var dpDataSize = new DataPoint(0, RuntimeMongoDbContext.GetCurrentCollection().GetStats().DataSize)
                     {
                         LegendText = "DataSize",
                         LegendToolTip = "DataSize",
                         ToolTip = "DataSize"
                     };
-                    SeriesResult.Points.Add(dpDataSize);
+                    seriesResult.Points.Add(dpDataSize);
 
                     var dpTotalIndexSize = new DataPoint(0,
-                        RuntimeMongoDBContext.GetCurrentCollection().GetStats().TotalIndexSize)
+                        RuntimeMongoDbContext.GetCurrentCollection().GetStats().TotalIndexSize)
                     {
                         LegendText = "TotalIndexSize",
                         LegendToolTip = "TotalIndexSize",
                         ToolTip = "TotalIndexSize"
                     };
-                    SeriesResult.Points.Add(dpTotalIndexSize);
+                    seriesResult.Points.Add(dpTotalIndexSize);
 
                     var dpFreeSize = new DataPoint(0,
-                        RuntimeMongoDBContext.GetCurrentCollection().GetStats().StorageSize -
-                        RuntimeMongoDBContext.GetCurrentCollection().GetStats().TotalIndexSize -
-                        RuntimeMongoDBContext.GetCurrentCollection().GetStats().DataSize)
+                        RuntimeMongoDbContext.GetCurrentCollection().GetStats().StorageSize -
+                        RuntimeMongoDbContext.GetCurrentCollection().GetStats().TotalIndexSize -
+                        RuntimeMongoDbContext.GetCurrentCollection().GetStats().DataSize)
                     {
                         LegendText = "FreeSize",
                         LegendToolTip = "FreeSize",
                         ToolTip = "FreeSize"
                     };
-                    SeriesResult.Points.Add(dpFreeSize);
+                    seriesResult.Points.Add(dpFreeSize);
 
-                    SeriesResult.ChartType = SeriesChartType.Pie;
-                    chartResult.Series.Add(SeriesResult);
+                    seriesResult.ChartType = SeriesChartType.Pie;
+                    chartResult.Series.Add(seriesResult);
                     chartResult.Titles.Add("Usage");
 
                     break;
                 default:
-                    if (RuntimeMongoDBContext.GetCurrentServerConfig().LoginAsAdmin)
+                    if (RuntimeMongoDbContext.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        DocStatus =
-                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
-                                RuntimeMongoDBContext.GetCurrentServer()).Response;
+                        docStatus =
+                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
+                                RuntimeMongoDbContext.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height*2;
                     }
                     break;
             }
-            GUIConfig.Translateform(this);
-            UIHelper.FillDataToTreeView(strType, trvStatus, DocStatus);
+            GuiConfig.Translateform(this);
+            UiHelper.FillDataToTreeView(strType, trvStatus, docStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
 
         private void btnOpCnt_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new frmServerMonitor(), true, true);
+            Utility.OpenForm(new FrmServerMonitor(), true, true);
         }
 
-        private void RefreshDBStatusChart(string strField)
+        private void RefreshDbStatusChart(string strField)
         {
             //图形化初始化
             chartResult.Series.Clear();
             chartResult.Titles.Clear();
-            var SeriesResult = new Series(strField);
-            foreach (var colName in RuntimeMongoDBContext.GetCurrentDataBase().GetCollectionNames())
+            var seriesResult = new Series(strField);
+            foreach (var colName in RuntimeMongoDbContext.GetCurrentDataBase().GetCollectionNames())
             {
-                DataPoint ColPoint;
+                DataPoint colPoint;
                 switch (strField)
                 {
                     case "AverageObjectSize":
                         try
                         {
                             //如果没有任何对象的时候，平均值无法取得
-                            ColPoint = new DataPoint(0,
-                                RuntimeMongoDBContext.GetCurrentDataBase()
+                            colPoint = new DataPoint(0,
+                                RuntimeMongoDbContext.GetCurrentDataBase()
                                     .GetCollection(colName)
                                     .GetStats()
                                     .AverageObjectSize);
                         }
                         catch (Exception ex)
                         {
-                            ColPoint = new DataPoint(0, 0);
+                            colPoint = new DataPoint(0, 0);
                             Utility.ExceptionDeal(ex);
                         }
                         break;
                     case "DataSize":
-                        ColPoint = new DataPoint(0,
-                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().DataSize);
+                        colPoint = new DataPoint(0,
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().DataSize);
                         break;
                     case "ExtentCount":
-                        ColPoint = new DataPoint(0,
-                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().ExtentCount);
+                        colPoint = new DataPoint(0,
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().ExtentCount);
                         break;
                     //case "Flags":
-                    //    ColPoint = new DataPoint(0, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().Flags);
+                    //    ColPoint = new DataPoint(0, MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().Flags);
                     //    break;
                     case "IndexCount":
-                        ColPoint = new DataPoint(0,
-                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().IndexCount);
+                        colPoint = new DataPoint(0,
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().IndexCount);
                         break;
                     case "LastExtentSize":
-                        ColPoint = new DataPoint(0,
-                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
+                        colPoint = new DataPoint(0,
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
                         break;
                     //case "MaxDocuments":
                     //    仅在CappedCollection时候有效 
-                    //    ColPoint = new DataPoint(0, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
+                    //    ColPoint = new DataPoint(0, MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
                     //    break;
                     case "ObjectCount":
-                        ColPoint = new DataPoint(0,
-                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().ObjectCount);
+                        colPoint = new DataPoint(0,
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().ObjectCount);
                         break;
                     case "PaddingFactor":
-                        ColPoint = new DataPoint(0,
-                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().PaddingFactor);
+                        colPoint = new DataPoint(0,
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().PaddingFactor);
                         break;
                     case "StorageSize":
-                        ColPoint = new DataPoint(0,
-                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
+                        colPoint = new DataPoint(0,
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
                         break;
                     default:
-                        ColPoint = new DataPoint(0,
-                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
+                        colPoint = new DataPoint(0,
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
                         break;
                 }
 
-                ColPoint.LegendText = colName;
-                ColPoint.LabelToolTip = colName;
-                ColPoint.ToolTip = colName;
-                SeriesResult.Points.Add(ColPoint);
+                colPoint.LegendText = colName;
+                colPoint.LabelToolTip = colName;
+                colPoint.ToolTip = colName;
+                seriesResult.Points.Add(colPoint);
             }
             //图形化加载
 
-            SeriesResult.ChartType = SeriesChartType.Pie;
-            chartResult.Series.Add(SeriesResult);
+            seriesResult.ChartType = SeriesChartType.Pie;
+            chartResult.Series.Add(seriesResult);
             chartResult.Titles.Add(strField);
         }
 
@@ -219,14 +217,14 @@ namespace MongoCola.Status
 
         private void cmbChartField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var strType = RuntimeMongoDBContext.SelectTagType;
+            var strType = RuntimeMongoDbContext.SelectTagType;
             switch (strType)
             {
-                case ConstMgr.DATABASE_TAG:
-                case ConstMgr.SINGLE_DATABASE_TAG:
+                case ConstMgr.DatabaseTag:
+                case ConstMgr.SingleDatabaseTag:
                     try
                     {
-                        RefreshDBStatusChart(cmbChartField.Text);
+                        RefreshDbStatusChart(cmbChartField.Text);
                     }
                     catch (Exception ex)
                     {

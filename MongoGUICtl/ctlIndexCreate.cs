@@ -1,24 +1,27 @@
 ﻿using System.Windows.Forms;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
-    public partial class ctlIndexCreate : UserControl
+    public partial class CtlIndexCreate : UserControl
     {
         /// <summary>
         ///     构造器
         /// </summary>
-        public ctlIndexCreate()
+        public CtlIndexCreate()
         {
             InitializeComponent();
-            GUIConfig.Translateform(Controls);
-            if (RuntimeMongoDBContext.GetCurrentCollection() != null)
+            GuiConfig.Translateform(Controls);
+            if (RuntimeMongoDbContext.GetCurrentCollection() != null)
             {
-                foreach (var FieldName in MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (
+                    var fieldName in
+                        MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection())
+                    )
                 {
-                    cmbKeyName.Items.Add(FieldName);
+                    cmbKeyName.Items.Add(fieldName);
                 }
             }
         }

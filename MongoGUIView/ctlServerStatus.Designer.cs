@@ -1,12 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
+
 namespace MongoGUIView
 {
-    partial class ctlServerStatus
+    partial class CtlServerStatus
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -29,10 +32,10 @@ namespace MongoGUIView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlServerStatus));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlServerStatus));
             this.tabSvrStatus = new System.Windows.Forms.TabControl();
             this.tabSvrBasicInfo = new System.Windows.Forms.TabPage();
-            this.trvSvrStatus = new MongoGUICtl.ctlTreeViewColumns();
+            this.trvSvrStatus = new MongoGUICtl.CtlTreeViewColumns();
             this.tabDBBasicInfo = new System.Windows.Forms.TabPage();
             this.lstDBStatus = new System.Windows.Forms.ListView();
             this.tabCollectionInfo = new System.Windows.Forms.TabPage();
@@ -233,7 +236,7 @@ namespace MongoGUIView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabSvrStatus);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "ctlServerStatus";
+            this.Name = "CtlServerStatus";
             this.Size = new System.Drawing.Size(887, 422);
             this.Tag = "ServiceStatus_Title";
             this.Load += new System.EventHandler(this.ctlServerStatus_Load);
@@ -251,21 +254,21 @@ namespace MongoGUIView
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabSvrStatus;
-        private System.Windows.Forms.TabPage tabSvrBasicInfo;
-        private System.Windows.Forms.TabPage tabDBBasicInfo;
-        private System.Windows.Forms.ListView lstDBStatus;
-        private System.Windows.Forms.TabPage tabCollectionInfo;
-        private System.Windows.Forms.ListView lstCollectionStatus;
-        private System.Windows.Forms.TabPage tabCurrentOprInfo;
-        private System.Windows.Forms.ListView lstSrvOpr;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton RefreshStripButton;
-        private System.Windows.Forms.ToolStripButton btnSwitch;
-        private System.Windows.Forms.ToolStripButton CloseStripButton;
-        private ctlTreeViewColumns trvSvrStatus;
-        private System.Windows.Forms.ToolStripButton CollapseAllStripButton;
-        private System.Windows.Forms.ToolStripButton ExpandAllStripButton;
+        private TabControl tabSvrStatus;
+        private TabPage tabSvrBasicInfo;
+        private TabPage tabDBBasicInfo;
+        private ListView lstDBStatus;
+        private TabPage tabCollectionInfo;
+        private ListView lstCollectionStatus;
+        private TabPage tabCurrentOprInfo;
+        private ListView lstSrvOpr;
+        private ToolStrip toolStrip1;
+        private ToolStripButton RefreshStripButton;
+        private ToolStripButton btnSwitch;
+        private ToolStripButton CloseStripButton;
+        private CtlTreeViewColumns trvSvrStatus;
+        private ToolStripButton CollapseAllStripButton;
+        private ToolStripButton ExpandAllStripButton;
 
     }
 }

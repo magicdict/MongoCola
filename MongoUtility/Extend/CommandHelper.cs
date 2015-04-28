@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.EventArgs;
-using Common.Logic;
-
 
 namespace MongoUtility.Extend
 {
@@ -29,7 +28,7 @@ namespace MongoUtility.Extend
         ///     修复数据库
         ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
         /// </summary>
-        public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", EnumMgr.PathLv.DatabaseLv);
+        public static MongoCommand RepairDatabaseCommand = new MongoCommand("repairDatabase", EnumMgr.PathLv.DatabaseLv);
 
         #endregion
 
@@ -54,7 +53,7 @@ namespace MongoUtility.Extend
         /// <returns></returns>
         public static CommandResult ExecuteMongoCommand(MongoCommand mMongoCommand)
         {
-            var ResultCommandList = new List<CommandResult>();
+            var resultCommandList = new List<CommandResult>();
 
             var mCommandResult = new CommandResult(new BsonDocument());
             try
@@ -64,27 +63,27 @@ namespace MongoUtility.Extend
                     case EnumMgr.PathLv.CollectionLv:
                         if (string.IsNullOrEmpty(mMongoCommand.CommandString))
                         {
-                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.cmdDocument,
-                                RuntimeMongoDBContext.GetCurrentCollection());
+                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.CmdDocument,
+                                RuntimeMongoDbContext.GetCurrentCollection());
                         }
                         else
                         {
                             mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString,
-                                RuntimeMongoDBContext.GetCurrentCollection());
+                                RuntimeMongoDbContext.GetCurrentCollection());
                         }
                         break;
                     case EnumMgr.PathLv.DatabaseLv:
-                        mCommandResult = ExecuteMongoDBCommand(mMongoCommand.cmdDocument,
-                            RuntimeMongoDBContext.GetCurrentDataBase());
+                        mCommandResult = ExecuteMongoDBCommand(mMongoCommand.CmdDocument,
+                            RuntimeMongoDbContext.GetCurrentDataBase());
                         break;
                     case EnumMgr.PathLv.InstanceLv:
-                        mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.cmdDocument,
-                            RuntimeMongoDBContext.GetCurrentServer());
+                        mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.CmdDocument,
+                            RuntimeMongoDbContext.GetCurrentServer());
                         break;
                     default:
                         break;
                 }
-                ResultCommandList.Add(mCommandResult);
+                resultCommandList.Add(mCommandResult);
             }
             catch (IOException ex)
             {
@@ -102,15 +101,15 @@ namespace MongoUtility.Extend
         /// <summary>
         ///     执行数据集命令
         /// </summary>
-        /// <param name="CommandString"></param>
+        /// <param name="commandString"></param>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoColCommand(string CommandString, MongoCollection mongoCol)
+        public static CommandResult ExecuteMongoColCommand(string commandString, MongoCollection mongoCol)
         {
             CommandResult mCommandResult;
-            var BaseCommand = new BsonDocument {{CommandString, mongoCol.Name}};
+            var baseCommand = new BsonDocument {{commandString, mongoCol.Name}};
             var mongoCmd = new CommandDocument();
-            mongoCmd.AddRange(BaseCommand);
+            mongoCmd.AddRange(baseCommand);
             try
             {
                 mCommandResult = mongoCol.Database.RunCommand(mongoCmd);
@@ -121,7 +120,7 @@ namespace MongoUtility.Extend
             }
             var e = new RunCommandEventArgs
             {
-                CommandString = CommandString,
+                CommandString = commandString,
                 RunLevel = EnumMgr.PathLv.CollectionLv,
                 Result = mCommandResult
             };
@@ -132,25 +131,25 @@ namespace MongoUtility.Extend
         /// <summary>
         ///     数据集命令
         /// </summary>
-        /// <param name="Command">命令关键字</param>
+        /// <param name="command">命令关键字</param>
         /// <param name="mongoCol">数据集</param>
-        /// <param name="ExtendInfo">命令参数</param>
+        /// <param name="extendInfo">命令参数</param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoColCommand(string Command, MongoCollection mongoCol,
-            BsonDocument ExtendInfo)
+        public static CommandResult ExecuteMongoColCommand(string command, MongoCollection mongoCol,
+            BsonDocument extendInfo)
         {
-            var ExecuteCommand = new CommandDocument
+            var executeCommand = new CommandDocument
             {
-                {Command, mongoCol.Name}
+                {command, mongoCol.Name}
             };
-            foreach (var item in ExtendInfo.Elements)
+            foreach (var item in extendInfo.Elements)
             {
-                ExecuteCommand.Add(item);
+                executeCommand.Add(item);
             }
-            var mCommandResult = mongoCol.Database.RunCommand(ExecuteCommand);
+            var mCommandResult = mongoCol.Database.RunCommand(executeCommand);
             var e = new RunCommandEventArgs
             {
-                CommandString = ExecuteCommand.ToString(),
+                CommandString = executeCommand.ToString(),
                 RunLevel = EnumMgr.PathLv.CollectionLv,
                 Result = mCommandResult
             };
@@ -161,15 +160,15 @@ namespace MongoUtility.Extend
         /// <summary>
         ///     执行数据集命令
         /// </summary>
-        /// <param name="CmdDoc"></param>
+        /// <param name="cmdDoc"></param>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoColCommand(CommandDocument CmdDoc, MongoCollection mongoCol)
+        public static CommandResult ExecuteMongoColCommand(CommandDocument cmdDoc, MongoCollection mongoCol)
         {
             CommandResult mCommandResult;
             try
             {
-                mCommandResult = mongoCol.Database.RunCommand(CmdDoc);
+                mCommandResult = mongoCol.Database.RunCommand(cmdDoc);
             }
             catch (MongoCommandException ex)
             {
@@ -177,7 +176,7 @@ namespace MongoUtility.Extend
             }
             var e = new RunCommandEventArgs
             {
-                CommandString = CmdDoc.GetElement(0).Value.ToString(),
+                CommandString = cmdDoc.GetElement(0).Value.ToString(),
                 RunLevel = EnumMgr.PathLv.DatabaseLv,
                 Result = mCommandResult
             };
@@ -189,14 +188,14 @@ namespace MongoUtility.Extend
         ///     执行数据库命令
         /// </summary>
         /// <param name="mongoCmd"></param>
-        /// <param name="mongoDB"></param>
+        /// <param name="mongoDb"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(string mongoCmd, MongoDatabase mongoDB)
+        public static CommandResult ExecuteMongoDBCommand(string mongoCmd, MongoDatabase mongoDb)
         {
             CommandResult mCommandResult;
             try
             {
-                mCommandResult = mongoDB.RunCommand(mongoCmd);
+                mCommandResult = mongoDb.RunCommand(mongoCmd);
             }
             catch (MongoCommandException ex)
             {
@@ -216,14 +215,14 @@ namespace MongoUtility.Extend
         ///     执行数据库命令
         /// </summary>
         /// <param name="mongoCmd"></param>
-        /// <param name="mongoDB"></param>
+        /// <param name="mongoDb"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(CommandDocument mongoCmd, MongoDatabase mongoDB)
+        public static CommandResult ExecuteMongoDBCommand(CommandDocument mongoCmd, MongoDatabase mongoDb)
         {
             CommandResult mCommandResult;
             try
             {
-                mCommandResult = mongoDB.RunCommand(mongoCmd);
+                mCommandResult = mongoDb.RunCommand(mongoCmd);
             }
             catch (MongoCommandException ex)
             {
@@ -243,14 +242,14 @@ namespace MongoUtility.Extend
         ///     在指定数据库执行指定命令
         /// </summary>
         /// <param name="mMongoCommand"></param>
-        /// <param name="mongoDB"></param>
+        /// <param name="mongoDb"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(MongoCommand mMongoCommand, MongoDatabase mongoDB)
+        public static CommandResult ExecuteMongoDBCommand(MongoCommand mMongoCommand, MongoDatabase mongoDb)
         {
-            var Command = new CommandDocument {{mMongoCommand.CommandString, 1}};
+            var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
             if (mMongoCommand.RunLevel == EnumMgr.PathLv.DatabaseLv)
             {
-                return ExecuteMongoDBCommand(Command, mongoDB);
+                return ExecuteMongoDBCommand(command, mongoDb);
             }
             throw new Exception();
         }
@@ -266,7 +265,7 @@ namespace MongoUtility.Extend
             CommandResult mCommandResult;
             try
             {
-                mCommandResult = mongoSvr.GetDatabase(ConstMgr.DATABASE_NAME_ADMIN).RunCommand(mongoCmd);
+                mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mongoCmd);
             }
             catch (MongoCommandException ex)
             {
@@ -293,7 +292,7 @@ namespace MongoUtility.Extend
             CommandResult mCommandResult;
             try
             {
-                mCommandResult = mongoSvr.GetDatabase(ConstMgr.DATABASE_NAME_ADMIN).RunCommand(mCommandDocument);
+                mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mCommandDocument);
             }
             catch (MongoCommandException ex)
             {
@@ -317,12 +316,12 @@ namespace MongoUtility.Extend
         /// <returns></returns>
         public static CommandResult ExecuteMongoSvrCommand(MongoCommand mMongoCommand, MongoServer mongosrv)
         {
-            var Command = new CommandDocument {{mMongoCommand.CommandString, 1}};
+            var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
             if (mMongoCommand.RunLevel == EnumMgr.PathLv.DatabaseLv)
             {
                 throw new Exception();
             }
-            return ExecuteMongoSvrCommand(Command, mongosrv);
+            return ExecuteMongoSvrCommand(command, mongosrv);
         }
 
         /// <summary>
@@ -332,7 +331,7 @@ namespace MongoUtility.Extend
         {
             /// <summary>
             /// </summary>
-            public CommandDocument cmdDocument;
+            public CommandDocument CmdDocument;
 
             /// <summary>
             ///     命令文
@@ -347,24 +346,24 @@ namespace MongoUtility.Extend
             /// <summary>
             ///     初始化
             /// </summary>
-            /// <param name="_CommandString"></param>
-            /// <param name="_RunLevel"></param>
-            public MongoCommand(string _CommandString, EnumMgr.PathLv _RunLevel)
+            /// <param name="commandString"></param>
+            /// <param name="runLevel"></param>
+            public MongoCommand(string commandString, EnumMgr.PathLv runLevel)
             {
-                CommandString = _CommandString;
-                RunLevel = _RunLevel;
-                cmdDocument = new CommandDocument {{_CommandString, 1}};
+                CommandString = commandString;
+                RunLevel = runLevel;
+                CmdDocument = new CommandDocument {{commandString, 1}};
             }
 
             /// <summary>
             ///     初始化
             /// </summary>
-            /// <param name="_CommandDocument"></param>
-            /// <param name="_RunLevel"></param>
-            public MongoCommand(CommandDocument _CommandDocument, EnumMgr.PathLv _RunLevel)
+            /// <param name="commandDocument"></param>
+            /// <param name="runLevel"></param>
+            public MongoCommand(CommandDocument commandDocument, EnumMgr.PathLv runLevel)
             {
-                cmdDocument = _CommandDocument;
-                RunLevel = _RunLevel;
+                CmdDocument = commandDocument;
+                RunLevel = runLevel;
                 CommandString = string.Empty;
             }
         }
@@ -375,16 +374,16 @@ namespace MongoUtility.Extend
         /// <summary>
         ///     使用Shell Helper命令
         /// </summary>
-        /// <param name="JsShell"></param>
+        /// <param name="jsShell"></param>
         /// <param name="mongoSvr"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteJsShell(string JsShell, MongoServer mongoSvr)
+        public static CommandResult ExecuteJsShell(string jsShell, MongoServer mongoSvr)
         {
-            var ShellCmd = new BsonDocument
+            var shellCmd = new BsonDocument
             {
                 {
                     "$eval",
-                    new BsonJavaScript(JsShell)
+                    new BsonJavaScript(jsShell)
                 },
                 {
                     "nolock",
@@ -393,23 +392,23 @@ namespace MongoUtility.Extend
             };
             //必须nolock
             var mongoCmd = new CommandDocument();
-            mongoCmd.AddRange(ShellCmd);
+            mongoCmd.AddRange(shellCmd);
             return ExecuteMongoSvrCommand(mongoCmd, mongoSvr);
         }
 
         /// <summary>
         ///     Js Shell 的结果判定
         /// </summary>
-        /// <param name="Result"></param>
+        /// <param name="result"></param>
         /// <returns></returns>
-        public static bool IsShellOK(CommandResult Result)
+        public static bool IsShellOk(CommandResult result)
         {
-            if (!Result.Response.ToBsonDocument().GetElement("retval").Value.IsBsonDocument)
+            if (!result.Response.ToBsonDocument().GetElement("retval").Value.IsBsonDocument)
             {
                 return true;
             }
             return
-                Result.Response.ToBsonDocument()
+                result.Response.ToBsonDocument()
                     .GetElement("retval")
                     .Value.AsBsonDocument.GetElement("ok")
                     .Value.ToString() == "1";
@@ -423,26 +422,26 @@ namespace MongoUtility.Extend
         ///     Compact
         /// </summary>
         /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command" />
-        public static MongoCommand Compact_Command = new MongoCommand("compact", EnumMgr.PathLv.CollectionLv);
+        public static MongoCommand CompactCommand = new MongoCommand("compact", EnumMgr.PathLv.CollectionLv);
 
         /// <summary>
         ///     执行聚合
         /// </summary>
-        /// <param name="AggregateDoc"></param>
+        /// <param name="aggregateDoc"></param>
         /// <returns></returns>
-        /// <param name="CollectionName"></param>
-        public static CommandResult Aggregate(BsonArray AggregateDoc, string CollectionName)
+        /// <param name="collectionName"></param>
+        public static CommandResult Aggregate(BsonArray aggregateDoc, string collectionName)
         {
             //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
             try
             {
                 var agg = new CommandDocument
                 {
-                    new BsonElement("aggregate", new BsonString(CollectionName)),
-                    new BsonElement("pipeline", AggregateDoc)
+                    new BsonElement("aggregate", new BsonString(collectionName)),
+                    new BsonElement("pipeline", aggregateDoc)
                 };
-                var Aggregate_Command = new MongoCommand(agg, EnumMgr.PathLv.DatabaseLv);
-                return ExecuteMongoCommand(Aggregate_Command);
+                var aggregateCommand = new MongoCommand(agg, EnumMgr.PathLv.DatabaseLv);
+                return ExecuteMongoCommand(aggregateCommand);
             }
             catch (Exception ex)
             {
@@ -473,45 +472,45 @@ namespace MongoUtility.Extend
         ///     服务器状态
         ///     http://www.mongodb.org/display/DOCS/serverStatus+Command
         /// </summary>
-        public static MongoCommand serverStatus_Command = new MongoCommand("serverStatus", EnumMgr.PathLv.InstanceLv);
+        public static MongoCommand ServerStatusCommand = new MongoCommand("serverStatus", EnumMgr.PathLv.InstanceLv);
 
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// <summary>
         ///     副本状态
         /// </summary>
-        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus",
+        public static MongoCommand ReplSetGetStatusCommand = new MongoCommand("replSetGetStatus",
             EnumMgr.PathLv.InstanceLv);
 
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// <summary>
         ///     Slave强制同步
         /// </summary>
-        public static MongoCommand resync_Command = new MongoCommand("resync", EnumMgr.PathLv.InstanceLv);
+        public static MongoCommand ResyncCommand = new MongoCommand("resync", EnumMgr.PathLv.InstanceLv);
 
         /// <summary>
         ///     增加服务器
         /// </summary>
         /// <param name="mongoSvr">副本组主服务器</param>
-        /// <param name="HostPort">服务器信息</param>
-        /// <param name="IsArb">是否为仲裁服务器</param>
+        /// <param name="hostPort">服务器信息</param>
+        /// <param name="isArb">是否为仲裁服务器</param>
         /// <returns></returns>
-        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, string HostPort, int priority,
-            bool IsArb)
+        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, string hostPort, int priority,
+            bool isArb)
         {
             var mCommandResult = new CommandResult(new BsonDocument());
             try
             {
-                if (!IsArb)
+                if (!isArb)
                 {
                     mCommandResult =
                         ExecuteJsShell(
-                            "rs.add({_id:" + mongoSvr.Instances.Length + 1 + ",host:'" + HostPort + "',priority:" +
+                            "rs.add({_id:" + mongoSvr.Instances.Length + 1 + ",host:'" + hostPort + "',priority:" +
                             priority + "});", mongoSvr);
                 }
                 else
                 {
                     //其实addArb最后也只是调用了add方法
-                    mCommandResult = ExecuteJsShell("rs.addArb('" + HostPort + "');", mongoSvr);
+                    mCommandResult = ExecuteJsShell("rs.addArb('" + hostPort + "');", mongoSvr);
                 }
             }
             catch (EndOfStreamException)
@@ -524,15 +523,15 @@ namespace MongoUtility.Extend
         ///     删除服务器
         /// </summary>
         /// <param name="mongoSvr">副本组主服务器</param>
-        /// <param name="HostPort">服务器信息</param>
+        /// <param name="hostPort">服务器信息</param>
         /// <remarks>这个命令C#无法正确执行</remarks>
         /// <returns></returns>
-        public static CommandResult RemoveFromReplsetServer(MongoServer mongoSvr, string HostPort)
+        public static CommandResult RemoveFromReplsetServer(MongoServer mongoSvr, string hostPort)
         {
             var mCommandResult = new CommandResult(new BsonDocument());
             try
             {
-                ExecuteJsShell("rs.remove('" + HostPort + "');", mongoSvr);
+                ExecuteJsShell("rs.remove('" + hostPort + "');", mongoSvr);
             }
             catch (EndOfStreamException)
             {
@@ -543,16 +542,16 @@ namespace MongoUtility.Extend
         /// <summary>
         ///     重新启动
         /// </summary>
-        /// <param name="PrimarySvr">副本组主服务器</param>
+        /// <param name="primarySvr">副本组主服务器</param>
         /// <param name="config">服务器信息</param>
         /// <remarks>这个命令C#无法正确执行</remarks>
         /// <returns></returns>
-        public static CommandResult ReconfigReplsetServer(MongoServer PrimarySvr, BsonDocument config)
+        public static CommandResult ReconfigReplsetServer(MongoServer primarySvr, BsonDocument config)
         {
             var cmdRtn = new CommandResult(new BsonDocument());
             try
             {
-                return ExecuteJsShell("rs.reconfig(" + config + ",{force : true})", PrimarySvr);
+                return ExecuteJsShell("rs.reconfig(" + config + ",{force : true})", primarySvr);
             }
             catch (EndOfStreamException)
             {
@@ -569,7 +568,7 @@ namespace MongoUtility.Extend
         /// <remarks>注意：有个命令可能只能用在mongos上面</remarks>
         /// <returns></returns>
         public static CommandResult AddSharding(MongoServer routeSvr, string replicaSetName, List<string> lstAddress,
-            string Name, Decimal MaxSize)
+            string name, Decimal maxSize)
         {
             // replset/host:port,host:port
             var cmdPara = replicaSetName == string.Empty ? string.Empty : (replicaSetName + "/");
@@ -579,13 +578,13 @@ namespace MongoUtility.Extend
             }
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
             var mongoCmd = new CommandDocument {{"addshard", cmdPara}};
-            if (MaxSize != 0)
+            if (maxSize != 0)
             {
-                mongoCmd.Add("maxSize", (BsonValue) MaxSize);
+                mongoCmd.Add("maxSize", (BsonValue) maxSize);
             }
-            if (Name != string.Empty)
+            if (name != string.Empty)
             {
-                mongoCmd.Add("name", Name);
+                mongoCmd.Add("name", name);
             }
 
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
@@ -595,10 +594,10 @@ namespace MongoUtility.Extend
         ///     增加分片Tag
         /// </summary>
         /// <param name="routeSvr">服务器</param>
-        /// <param name="ShardName">Shard名称</param>
-        /// <param name="TagName">Tag名称</param>
+        /// <param name="shardName">Shard名称</param>
+        /// <param name="tagName">Tag名称</param>
         /// <returns></returns>
-        public static CommandResult AddShardTag(MongoServer routeSvr, string ShardName, string TagName)
+        public static CommandResult AddShardTag(MongoServer routeSvr, string shardName, string tagName)
         {
             //mongos> sh.addShardTag
             //function (shard, tag) {
@@ -609,20 +608,20 @@ namespace MongoUtility.Extend
             //    config.shards.update({_id:shard}, {$addToSet:{tags:tag}});
             //    sh._checkLastError(config);
             //}
-            return ExecuteJsShell("sh.addShardTag('" + ShardName + "', '" + TagName + "')", routeSvr);
+            return ExecuteJsShell("sh.addShardTag('" + shardName + "', '" + tagName + "')", routeSvr);
         }
 
         /// <summary>
         ///     AddTagRange
         /// </summary>
         /// <param name="routeSvr">路由服务器</param>
-        /// <param name="NameSpace">名字空间</param>
-        /// <param name="Min">最小值</param>
-        /// <param name="Max">最大值</param>
-        /// <param name="Tag">标签</param>
+        /// <param name="nameSpace">名字空间</param>
+        /// <param name="min">最小值</param>
+        /// <param name="max">最大值</param>
+        /// <param name="tag">标签</param>
         /// <returns></returns>
-        public static CommandResult AddTagRange(MongoServer routeSvr, string NameSpace, BsonValue Min, BsonValue Max,
-            string Tag)
+        public static CommandResult AddTagRange(MongoServer routeSvr, string nameSpace, BsonValue min, BsonValue max,
+            string tag)
         {
             //mongos> sh.addTagRange
             //function (ns, min, max, tag) {
@@ -642,36 +641,36 @@ namespace MongoUtility.Extend
             //}
             var maxValue = string.Empty;
             var minValue = string.Empty;
-            if (Min.IsString)
+            if (min.IsString)
             {
-                minValue = "'" + Min + "'";
+                minValue = "'" + min + "'";
             }
-            if (Max.IsString)
+            if (max.IsString)
             {
-                maxValue = "'" + Max + "'";
+                maxValue = "'" + max + "'";
             }
 
-            if (Min.IsNumeric)
+            if (min.IsNumeric)
             {
-                minValue = Min.ToString();
+                minValue = min.ToString();
             }
-            if (Max.IsNumeric)
+            if (max.IsNumeric)
             {
-                maxValue = Max.ToString();
+                maxValue = max.ToString();
             }
             return ExecuteJsShell(
-                "sh.addTagRange('" + NameSpace + "'," + minValue + "," + maxValue + ",'" + Tag + "')", routeSvr);
+                "sh.addTagRange('" + nameSpace + "'," + minValue + "," + maxValue + ",'" + tag + "')", routeSvr);
         }
 
         /// <summary>
         ///     移除Shard
         /// </summary>
         /// <param name="routeSvr"></param>
-        /// <param name="ShardName">Shard名称</param>
+        /// <param name="shardName">Shard名称</param>
         /// <returns></returns>
-        public static CommandResult RemoveSharding(MongoServer routeSvr, string ShardName)
+        public static CommandResult RemoveSharding(MongoServer routeSvr, string shardName)
         {
-            var mongoCmd = new CommandDocument {{"removeshard", ShardName}};
+            var mongoCmd = new CommandDocument {{"removeshard", shardName}};
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -679,12 +678,12 @@ namespace MongoUtility.Extend
         ///     数据库分片
         /// </summary>
         /// <param name="routeSvr"></param>
-        /// <param name="shardingDB"></param>
+        /// <param name="shardingDb"></param>
         /// <returns></returns>
-        public static CommandResult EnableSharding(MongoServer routeSvr, string shardingDB)
+        public static CommandResult EnableSharding(MongoServer routeSvr, string shardingDb)
         {
             var mongoCmd = new CommandDocument();
-            mongoCmd = new CommandDocument {{"enablesharding", shardingDB}};
+            mongoCmd = new CommandDocument {{"enablesharding", shardingDb}};
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -707,20 +706,20 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="replicaSetName">副本名称</param>
         /// <param name="hostList">从属服务器列表</param>
-        /// <param name="Configs"></param>
+        /// <param name="configs"></param>
         public static CommandResult InitReplicaSet(string replicaSetName, string hostList,
-            Dictionary<string, MongoConnectionConfig> Configs)
+            Dictionary<string, MongoConnectionConfig> configs)
         {
             //第一台服务器作为Primary服务器
-            var PrimarySetting = new MongoClientSettings
+            var primarySetting = new MongoClientSettings
             {
-                Server = new MongoServerAddress(Configs[hostList].Host,
-                    Configs[hostList].Port),
+                Server = new MongoServerAddress(configs[hostList].Host,
+                    configs[hostList].Port),
                 ReadPreference = ReadPreference.PrimaryPreferred
             };
             //如果不设置的话，会有错误：不是Primary服务器，SlaveOK 是 False
 
-            var PrimarySvr = new MongoClient(PrimarySetting).GetServer();
+            var primarySvr = new MongoClient(primarySetting).GetServer();
             var config = new BsonDocument();
             var hosts = new BsonArray();
             var replSetInitiateCmd = new BsonDocument();
@@ -728,19 +727,19 @@ namespace MongoUtility.Extend
             //生成命令
             host = new BsonDocument
             {
-                {ConstMgr.KEY_ID, 1},
+                {ConstMgr.KeyId, 1},
                 {
-                    "host", Configs[hostList].Host + ":" + Configs[hostList].Port
+                    "host", configs[hostList].Host + ":" + configs[hostList].Port
                 }
             };
             hosts.Add(host);
-            config.Add(ConstMgr.KEY_ID, replicaSetName);
+            config.Add(ConstMgr.KeyId, replicaSetName);
             config.Add("members", hosts);
             replSetInitiateCmd.Add("replSetInitiate", config);
 
             var mongoCmd = new CommandDocument();
             mongoCmd.AddRange(replSetInitiateCmd);
-            return ExecuteMongoSvrCommand(mongoCmd, PrimarySvr);
+            return ExecuteMongoSvrCommand(mongoCmd, primarySvr);
         }
 
         #endregion

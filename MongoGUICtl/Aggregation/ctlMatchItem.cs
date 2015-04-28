@@ -7,9 +7,9 @@ using MongoUtility.Core;
 
 namespace MongoGUICtl.Aggregation
 {
-    public partial class ctlMatchItem : UserControl
+    public partial class CtlMatchItem : UserControl
     {
-        public ctlMatchItem()
+        public CtlMatchItem()
         {
             InitializeComponent();
         }
@@ -18,12 +18,12 @@ namespace MongoGUICtl.Aggregation
         ///     获取MatchItem
         /// </summary>
         /// <returns></returns>
-        public BsonDocument getMatchItem()
+        public BsonDocument GetMatchItem()
         {
             if (!string.IsNullOrEmpty(cmbField.Text))
             {
                 return new BsonDocument(cmbField.Text,
-                    new BsonDocument(cmbComparisonfunction.Text, MatchValue.getValue()));
+                    new BsonDocument(cmbComparisonfunction.Text, MatchValue.GetValue()));
             }
             return null;
         }
@@ -34,9 +34,12 @@ namespace MongoGUICtl.Aggregation
             {
                 cmbComparisonfunction.Items.Add(item);
             }
-            if (RuntimeMongoDBContext.GetCurrentCollection() != null)
+            if (RuntimeMongoDbContext.GetCurrentCollection() != null)
             {
-                foreach (var item in MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (
+                    var item in
+                        MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection())
+                    )
                 {
                     cmbField.Items.Add(item);
                 }

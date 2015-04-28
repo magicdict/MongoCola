@@ -1,11 +1,14 @@
-﻿namespace MongoGUICtl
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoGUICtl
 {
-    partial class ctllogLv
+    partial class CtllogLv
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -58,7 +61,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.cmbLogLevel);
             this.Controls.Add(this.lblLogLv);
-            this.Name = "ctllogLv";
+            this.Name = "CtllogLv";
             this.Size = new System.Drawing.Size(187, 21);
             this.Load += new System.EventHandler(this.ctllogLv_Load);
             this.ResumeLayout(false);
@@ -68,7 +71,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblLogLv;
-        private System.Windows.Forms.ComboBox cmbLogLevel;
+        private Label lblLogLv;
+        private ComboBox cmbLogLevel;
     }
 }

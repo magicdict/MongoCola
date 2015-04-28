@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
-    partial class ctlIndexCreate
+    partial class CtlIndexCreate
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -114,7 +115,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.lblKeyName);
             this.Controls.Add(this.radDescendingKey);
             this.Controls.Add(this.radAscendingKey);
-            this.Name = "ctlIndexCreate";
+            this.Name = "CtlIndexCreate";
             this.Size = new System.Drawing.Size(524, 28);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -123,9 +124,9 @@ namespace MongoGUICtl
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radAscendingKey;
-        private System.Windows.Forms.RadioButton radDescendingKey;
-        private System.Windows.Forms.Label lblKeyName;
+        private RadioButton radAscendingKey;
+        private RadioButton radDescendingKey;
+        private Label lblKeyName;
         private RadioButton radGeoSpatial;
         private ComboBox cmbKeyName;
         private RadioButton radText;

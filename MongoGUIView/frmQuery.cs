@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Common.Logic;
+using Common;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoGUIView
 {
-    public partial class frmQuery : Form
+    public partial class FrmQuery : Form
     {
         /// <summary>
         ///     当前DataViewInfo
         /// </summary>
-        private readonly DataViewInfo CurrentDataViewInfo;
+        private readonly DataViewInfo _currentDataViewInfo;
 
         /// <summary>
         ///     初始化
         /// </summary>
         /// <param name="mDataViewInfo">Filter也是DataViewInfo的一个属性，所以这里加上参数</param>
-        public frmQuery(DataViewInfo mDataViewInfo)
+        public FrmQuery(DataViewInfo mDataViewInfo)
         {
             InitializeComponent();
-            CurrentDataViewInfo = mDataViewInfo;
-            RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
+            _currentDataViewInfo = mDataViewInfo;
+            RuntimeMongoDbContext.SelectObjectTag = mDataViewInfo.StrDbTag;
         }
 
         /// <summary>
@@ -32,17 +32,17 @@ namespace MongoGUIView
         private void frmQuery_Load(object sender, EventArgs e)
         {
             Icon = GetSystemIcon.ConvertImgToIcon(GetResource.GetImage(ImageType.Query));
-            var FieldList = new List<DataFilter.QueryFieldItem>();
-            FieldList = CurrentDataViewInfo.mDataFilter.QueryFieldList;
+            var fieldList = new List<DataFilter.QueryFieldItem>();
+            fieldList = _currentDataViewInfo.MDataFilter.QueryFieldList;
             //增加第一个条件
             ConditionPan.AddCondition();
-            if (CurrentDataViewInfo.IsUseFilter)
+            if (_currentDataViewInfo.IsUseFilter)
             {
                 //使用过滤：字段和条件的设定
-                QueryFieldPicker.setQueryFieldList(FieldList);
-                if (CurrentDataViewInfo.mDataFilter.QueryConditionList.Count > 0)
+                QueryFieldPicker.SetQueryFieldList(fieldList);
+                if (_currentDataViewInfo.MDataFilter.QueryConditionList.Count > 0)
                 {
-                    ConditionPan.PutQueryToUI(CurrentDataViewInfo.mDataFilter);
+                    ConditionPan.PutQueryToUi(_currentDataViewInfo.MDataFilter);
                 }
             }
             else
@@ -50,17 +50,17 @@ namespace MongoGUIView
                 //不使用过滤：字段初始化
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
-            if (GUIConfig.IsUseDefaultLanguage) return;
-            Text = GUIConfig.MStringResource.GetText(TextType.Query_Title);
-            tabFieldInfo.Text = GUIConfig.MStringResource.GetText(TextType.Query_FieldInfo);
-            tabCondition.Text = GUIConfig.MStringResource.GetText(TextType.Query_Filter);
-            tabSql.Text = GUIConfig.MStringResource.GetText(TextType.ConvertSql_Title);
+            if (GuiConfig.IsUseDefaultLanguage) return;
+            Text = GuiConfig.MStringResource.GetText(TextType.QueryTitle);
+            tabFieldInfo.Text = GuiConfig.MStringResource.GetText(TextType.QueryFieldInfo);
+            tabCondition.Text = GuiConfig.MStringResource.GetText(TextType.QueryFilter);
+            tabSql.Text = GuiConfig.MStringResource.GetText(TextType.ConvertSqlTitle);
             cmdAddCondition.Text =
-                GUIConfig.MStringResource.GetText(TextType.Query_Filter_AddCondition);
-            cmdLoad.Text = GUIConfig.MStringResource.GetText(TextType.Query_Action_Load);
-            cmdSave.Text = GUIConfig.MStringResource.GetText(TextType.Common_Save);
-            cmdOK.Text = GUIConfig.MStringResource.GetText(TextType.Common_OK);
-            cmdCancel.Text = GUIConfig.MStringResource.GetText(TextType.Common_Cancel);
+                GuiConfig.MStringResource.GetText(TextType.QueryFilterAddCondition);
+            cmdLoad.Text = GuiConfig.MStringResource.GetText(TextType.QueryActionLoad);
+            cmdSave.Text = GuiConfig.MStringResource.GetText(TextType.CommonSave);
+            cmdOK.Text = GuiConfig.MStringResource.GetText(TextType.CommonOk);
+            cmdCancel.Text = GuiConfig.MStringResource.GetText(TextType.CommonCancel);
         }
 
         /// <summary>
@@ -97,11 +97,11 @@ namespace MongoGUIView
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text,
-                    RuntimeMongoDBContext.GetCurrentCollection());
+                _currentDataViewInfo.MDataFilter = SqlHelper.ConvertQuerySql(txtSql.Text,
+                    RuntimeMongoDbContext.GetCurrentCollection());
             }
             //按下OK，不论是否做更改都认为True
-            CurrentDataViewInfo.IsUseFilter = true;
+            _currentDataViewInfo.IsUseFilter = true;
             Close();
         }
 
@@ -132,10 +132,10 @@ namespace MongoGUIView
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text,
-                    RuntimeMongoDBContext.GetCurrentCollection());
+                _currentDataViewInfo.MDataFilter = SqlHelper.ConvertQuerySql(txtSql.Text,
+                    RuntimeMongoDbContext.GetCurrentCollection());
             }
-            CurrentDataViewInfo.mDataFilter.SaveFilter(savefile.FileName);
+            _currentDataViewInfo.MDataFilter.SaveFilter(savefile.FileName);
         }
 
         /// <summary>
@@ -144,11 +144,11 @@ namespace MongoGUIView
         private void SetCurrDataFilter()
         {
             //清除以前的结果和内部变量，重要！
-            CurrentDataViewInfo.mDataFilter.Clear();
-            CurrentDataViewInfo.mDataFilter.DBName = RuntimeMongoDBContext.GetCurrentDataBase().Name;
-            CurrentDataViewInfo.mDataFilter.CollectionName = RuntimeMongoDBContext.GetCurrentCollection().Name;
-            CurrentDataViewInfo.mDataFilter.QueryFieldList = QueryFieldPicker.getQueryFieldList();
-            ConditionPan.SetCurrDataFilter(CurrentDataViewInfo);
+            _currentDataViewInfo.MDataFilter.Clear();
+            _currentDataViewInfo.MDataFilter.DbName = RuntimeMongoDbContext.GetCurrentDataBase().Name;
+            _currentDataViewInfo.MDataFilter.CollectionName = RuntimeMongoDbContext.GetCurrentCollection().Name;
+            _currentDataViewInfo.MDataFilter.QueryFieldList = QueryFieldPicker.GetQueryFieldList();
+            ConditionPan.SetCurrDataFilter(_currentDataViewInfo);
         }
 
         /// <summary>
@@ -160,8 +160,8 @@ namespace MongoGUIView
         {
             var openFile = new OpenFileDialog {Filter = Utility.XmlFilter};
             if (openFile.ShowDialog() != DialogResult.OK) return;
-            var NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
-            CurrentDataViewInfo.mDataFilter = NewDataFilter;
+            var newDataFilter = DataFilter.LoadFilter(openFile.FileName);
+            _currentDataViewInfo.MDataFilter = newDataFilter;
         }
     }
 }

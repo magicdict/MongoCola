@@ -1,13 +1,15 @@
-﻿using Common.UI;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using ResourceLib.UI;
 
 namespace PlugInPackage.ImportAccessDB
 {
-    partial class frmSelectTable
+    partial class FrmSelectTable
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,7 +32,7 @@ namespace PlugInPackage.ImportAccessDB
         /// </summary>
         private void InitializeComponent()
         {
-        	this.AccessPicker = new ctlFilePicker();
+        	this.AccessPicker = new CtlFilePicker();
         	this.btnGetTabelList = new System.Windows.Forms.Button();
         	this.chkTable = new System.Windows.Forms.CheckedListBox();
         	this.btnImport = new System.Windows.Forms.Button();
@@ -43,7 +45,7 @@ namespace PlugInPackage.ImportAccessDB
         	this.AccessPicker.FileName = "";
         	this.AccessPicker.Location = new System.Drawing.Point(35, 20);
         	this.AccessPicker.Name = "AccessPicker";
-        	this.AccessPicker.PickerType = ctlFilePicker.DialogType.OpenFile;
+        	this.AccessPicker.PickerType = CtlFilePicker.DialogType.OpenFile;
         	this.AccessPicker.SelectedPathOrFileName = "";
         	this.AccessPicker.Size = new System.Drawing.Size(640, 29);
         	this.AccessPicker.TabIndex = 0;
@@ -96,9 +98,9 @@ namespace PlugInPackage.ImportAccessDB
 
         #endregion
 
-        private ctlFilePicker AccessPicker;
-        private System.Windows.Forms.Button btnGetTabelList;
-        private System.Windows.Forms.CheckedListBox chkTable;
-        private System.Windows.Forms.Button btnImport;
+        private CtlFilePicker AccessPicker;
+        private Button btnGetTabelList;
+        private CheckedListBox chkTable;
+        private Button btnImport;
     }
 }

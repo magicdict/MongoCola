@@ -1,14 +1,15 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 using MongoGUICtl;
 
 namespace MongoGUIView
 {
-    partial class ctlDataView
+    partial class CtlDataView
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -32,10 +33,10 @@ namespace MongoGUIView
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlDataView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlDataView));
             this.tabDataShower = new System.Windows.Forms.TabControl();
             this.tabTreeView = new System.Windows.Forms.TabPage();
-            this.trvData = new MongoGUICtl.ctlTreeViewColumns();
+            this.trvData = new MongoGUICtl.CtlTreeViewColumns();
             this.tabTableView = new System.Windows.Forms.TabPage();
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
@@ -403,7 +404,7 @@ namespace MongoGUIView
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStripContainer1);
-            this.Name = "ctlDataView";
+            this.Name = "CtlDataView";
             this.Size = new System.Drawing.Size(917, 441);
             this.Load += new System.EventHandler(this.ctlDataView_Load);
             this.tabDataShower.ResumeLayout(false);
@@ -427,14 +428,14 @@ namespace MongoGUIView
         #endregion
 
 
-        protected System.Windows.Forms.TabControl tabDataShower;
-        protected System.Windows.Forms.TabPage tabTreeView;
-        protected System.Windows.Forms.TabPage tabTableView;
-        protected ctlTreeViewColumns trvData;
-        protected System.Windows.Forms.ListView lstData;
-        protected System.Windows.Forms.TabPage tabTextView;
-        protected System.Windows.Forms.TextBox txtData;
-        protected System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
+        protected TabControl tabDataShower;
+        protected TabPage tabTreeView;
+        protected TabPage tabTableView;
+        protected CtlTreeViewColumns trvData;
+        protected ListView lstData;
+        protected TabPage tabTextView;
+        protected TextBox txtData;
+        protected ContextMenuStrip contextMenuStripMain;
 
         protected ToolStrip ViewtoolStrip;
         private ToolStripButton PrePageStripButton;

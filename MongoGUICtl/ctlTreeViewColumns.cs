@@ -5,20 +5,20 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using MongoDB.Bson;
 using MongoUtility.Basic;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
     /// <summary>
     ///     BsonDoc 展示控件
     /// </summary>
-    public partial class ctlTreeViewColumns : UserControl
+    public partial class CtlTreeViewColumns : UserControl
     {
         /// <summary>
         ///     初始化
         /// </summary>
         /// <param name="GUIConfig">UIPackage</param>
-        public ctlTreeViewColumns()
+        public CtlTreeViewColumns()
         {
             InitializeComponent();
             BackColor = VisualStyleInformation.TextControlBorder;
@@ -100,30 +100,30 @@ namespace MongoGUICtl
             {
                 e.Graphics.FillRectangle(Brushes.White, rect);
             }
-            var IndentWidth = DatatreeView.Indent*e.Node.Level + 25;
+            var indentWidth = DatatreeView.Indent*e.Node.Level + 25;
             e.Graphics.DrawRectangle(SystemPens.Control, rect);
-            var StringRect = new Rectangle(e.Bounds.X + IndentWidth, e.Bounds.Y, colName.Width - IndentWidth,
+            var stringRect = new Rectangle(e.Bounds.X + indentWidth, e.Bounds.Y, colName.Width - indentWidth,
                 e.Bounds.Height);
 
-            var TreeNameString = e.Node.Text;
-            if (TreeNameString.EndsWith(ConstMgr.Array_Mark))
+            var treeNameString = e.Node.Text;
+            if (treeNameString.EndsWith(ConstMgr.ArrayMark))
             {
                 //Array_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
-                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - ConstMgr.Array_Mark.Length);
+                treeNameString = treeNameString.Substring(0, treeNameString.Length - ConstMgr.ArrayMark.Length);
             }
-            if (TreeNameString.EndsWith(ConstMgr.Document_Mark))
+            if (treeNameString.EndsWith(ConstMgr.DocumentMark))
             {
                 //Document_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
-                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - ConstMgr.Document_Mark.Length);
+                treeNameString = treeNameString.Substring(0, treeNameString.Length - ConstMgr.DocumentMark.Length);
             }
             //感谢cyrus的建议，选中节点的文字表示，底色变更
             if ((e.State & TreeNodeStates.Selected) != 0 && (e.State & TreeNodeStates.Focused) != 0)
             {
-                e.Graphics.DrawString(TreeNameString, Font, new SolidBrush(SystemColors.HighlightText), StringRect);
+                e.Graphics.DrawString(treeNameString, Font, new SolidBrush(SystemColors.HighlightText), stringRect);
             }
             else
             {
-                e.Graphics.DrawString(TreeNameString, Font, new SolidBrush(Color.Black), StringRect);
+                e.Graphics.DrawString(treeNameString, Font, new SolidBrush(Color.Black), stringRect);
             }
             //CSHARP-1066: Change BsonElement from a class to a struct. 
             BsonElement mElement;
@@ -146,27 +146,27 @@ namespace MongoGUICtl
                 //感谢Cyrus测试出来的问题：RenderWithVisualStyles应该加上去的。
                 if (VisualStyleRenderer.IsSupported && Application.RenderWithVisualStyles)
                 {
-                    var LeftPoint = e.Bounds.X + IndentWidth - 20;
+                    var leftPoint = e.Bounds.X + indentWidth - 20;
                     //感谢 Shadower http://home.cnblogs.com/u/14697/ 贡献的代码
                     var thisNode = e.Node;
                     var glyph = thisNode.IsExpanded
                         ? VisualStyleElement.TreeView.Glyph.Opened
                         : VisualStyleElement.TreeView.Glyph.Closed;
                     var vsr = new VisualStyleRenderer(glyph);
-                    vsr.DrawBackground(e.Graphics, new Rectangle(LeftPoint, e.Bounds.Y + 4, 16, 16));
+                    vsr.DrawBackground(e.Graphics, new Rectangle(leftPoint, e.Bounds.Y + 4, 16, 16));
                 }
                 else
                 {
-                    var LeftPoint = e.Bounds.X + IndentWidth - 20;
-                    e.Graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(LeftPoint, e.Bounds.Y + 4, 12, 12));
-                    var LeftMid = new Point(LeftPoint + 2, e.Bounds.Y + 10);
-                    var RightMid = new Point(LeftPoint + 10, e.Bounds.Y + 10);
-                    var TopMid = new Point(LeftPoint + 6, e.Bounds.Y + 6);
-                    var BottomMid = new Point(LeftPoint + 6, e.Bounds.Y + 14);
-                    e.Graphics.DrawLine(new Pen(Color.Black), LeftMid, RightMid);
+                    var leftPoint = e.Bounds.X + indentWidth - 20;
+                    e.Graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(leftPoint, e.Bounds.Y + 4, 12, 12));
+                    var leftMid = new Point(leftPoint + 2, e.Bounds.Y + 10);
+                    var rightMid = new Point(leftPoint + 10, e.Bounds.Y + 10);
+                    var topMid = new Point(leftPoint + 6, e.Bounds.Y + 6);
+                    var bottomMid = new Point(leftPoint + 6, e.Bounds.Y + 14);
+                    e.Graphics.DrawLine(new Pen(Color.Black), leftMid, rightMid);
                     if (!e.Node.IsExpanded)
                     {
-                        e.Graphics.DrawLine(new Pen(Color.Black), TopMid, BottomMid);
+                        e.Graphics.DrawLine(new Pen(Color.Black), topMid, bottomMid);
                     }
                 }
             }
@@ -251,13 +251,13 @@ namespace MongoGUICtl
             colType.Width = Convert.ToInt32(Width*0.2);
         }
 
-        private void ctlTreeViewColumnsLoad(object sender, EventArgs e)
+        private void CtlTreeViewColumnsLoad(object sender, EventArgs e)
         {
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                colName.Text = GUIConfig.MStringResource.GetText(TextType.Common_Name);
-                colValue.Text = GUIConfig.MStringResource.GetText(TextType.Common_Value);
-                colType.Text = GUIConfig.MStringResource.GetText(TextType.Common_Type);
+                colName.Text = GuiConfig.MStringResource.GetText(TextType.CommonName);
+                colValue.Text = GuiConfig.MStringResource.GetText(TextType.CommonValue);
+                colType.Text = GuiConfig.MStringResource.GetText(TextType.CommonType);
             }
         }
     }

@@ -1,13 +1,15 @@
-﻿using Common.UI;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using ResourceLib.UI;
 
 namespace MongoGUICtl
 {
-    partial class ctlMongoImportExport
+    partial class CtlMongoImportExport
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -43,8 +45,8 @@ namespace MongoGUICtl
             this.grpDirect = new System.Windows.Forms.GroupBox();
             this.radExport = new System.Windows.Forms.RadioButton();
             this.radImport = new System.Windows.Forms.RadioButton();
-            this.ctlFilePickerOutput = new ctlFilePicker();
-            this.ctllogLvT = new ctllogLv();
+            this.ctlFilePickerOutput = new CtlFilePicker();
+            this.ctllogLvT = new CtllogLv();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.grpDirect.SuspendLayout();
             this.SuspendLayout();
@@ -191,7 +193,7 @@ namespace MongoGUICtl
             this.ctlFilePickerOutput.FileFilter = "";
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 107);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
-            this.ctlFilePickerOutput.PickerType = ctlFilePicker.DialogType.SaveFile;
+            this.ctlFilePickerOutput.PickerType = CtlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerOutput.SelectedPathOrFileName = "";
             this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 33);
             this.ctlFilePickerOutput.TabIndex = 1;
@@ -223,7 +225,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.lblHost);
             this.Controls.Add(this.ctlFilePickerOutput);
             this.Controls.Add(this.ctllogLvT);
-            this.Name = "ctlMongoImportExport";
+            this.Name = "CtlMongoImportExport";
             this.Size = new System.Drawing.Size(800, 195);
             this.Load += new System.EventHandler(this.ctlMongodump_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
@@ -236,20 +238,20 @@ namespace MongoGUICtl
 
         #endregion
 
-        private ctllogLv ctllogLvT;
-        private ctlFilePicker ctlFilePickerOutput;
-        private System.Windows.Forms.Label lblHost;
-        private System.Windows.Forms.TextBox txtHostAddr;
-        private System.Windows.Forms.Label lblPort;
-        private System.Windows.Forms.NumericUpDown numPort;
-        private System.Windows.Forms.Label lblDBName;
-        private System.Windows.Forms.TextBox txtDBName;
-        private System.Windows.Forms.Label lblCollectionName;
-        private System.Windows.Forms.TextBox txtCollectionName;
-        private System.Windows.Forms.Label lblFieldList;
-        private System.Windows.Forms.TextBox txtFieldList;
-        private System.Windows.Forms.GroupBox grpDirect;
-        private System.Windows.Forms.RadioButton radExport;
-        private System.Windows.Forms.RadioButton radImport;
+        private CtllogLv ctllogLvT;
+        private CtlFilePicker ctlFilePickerOutput;
+        private Label lblHost;
+        private TextBox txtHostAddr;
+        private Label lblPort;
+        private NumericUpDown numPort;
+        private Label lblDBName;
+        private TextBox txtDBName;
+        private Label lblCollectionName;
+        private TextBox txtCollectionName;
+        private Label lblFieldList;
+        private TextBox txtFieldList;
+        private GroupBox grpDirect;
+        private RadioButton radExport;
+        private RadioButton radImport;
     }
 }

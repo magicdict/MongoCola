@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
 using MongoDB.Bson;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoCola.Operation
 {
-    public partial class frmArrayCreator : Form
+    public partial class FrmArrayCreator : Form
     {
         /// <summary>
         ///     BsonArray
         /// </summary>
-        public BsonArray mBsonArray;
+        public BsonArray MBsonArray;
 
-        public frmArrayCreator()
+        public FrmArrayCreator()
         {
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
             InitializeComponent();
         }
 
@@ -45,7 +45,7 @@ namespace MongoCola.Operation
         /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
-            mBsonArray = ArrayPanel.GetBsonArray();
+            MBsonArray = ArrayPanel.GetBsonArray();
             Close();
         }
     }

@@ -46,20 +46,20 @@
         /// <returns></returns>
         public string GetJsCode()
         {
-            var Result = string.Empty;
+            var result = string.Empty;
             switch (Type)
             {
                 case ResourceType.DataBase:
-                    Result = " resource: {  db: '" + DataBaseName + "', collection: '" + CollectionName + "' } ";
+                    result = " resource: {  db: '" + DataBaseName + "', collection: '" + CollectionName + "' } ";
                     break;
                 case ResourceType.Cluster:
-                    Result = " resource: { cluster : true } ";
+                    result = " resource: { cluster : true } ";
                     break;
                 case ResourceType.Any:
-                    Result = " resource: { anyResource: true } ";
+                    result = " resource: { anyResource: true } ";
                     break;
             }
-            return Result;
+            return result;
         }
     }
 }

@@ -1,11 +1,16 @@
-﻿namespace MongoGUICtl.Aggregation
+﻿using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MongoGUICtl.Aggregation
 {
     partial class GroupItem
     {
         /// <summary> 
         /// 必需的设计器变量。
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// 清理所有正在使用的资源。
@@ -28,46 +33,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbGroupFunction = new System.Windows.Forms.ComboBox();
-            this.txtProject = new System.Windows.Forms.TextBox();
-            this.cmbGroupValue = new System.Windows.Forms.ComboBox();
+            this.cmbGroupFunction = new ComboBox();
+            this.txtProject = new TextBox();
+            this.cmbGroupValue = new ComboBox();
             this.SuspendLayout();
             // 
             // cmbGroupFunction
             // 
-            this.cmbGroupFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupFunction.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbGroupFunction.FormattingEnabled = true;
-            this.cmbGroupFunction.Location = new System.Drawing.Point(152, 5);
+            this.cmbGroupFunction.Location = new Point(152, 5);
             this.cmbGroupFunction.Name = "cmbGroupFunction";
-            this.cmbGroupFunction.Size = new System.Drawing.Size(121, 21);
+            this.cmbGroupFunction.Size = new Size(121, 21);
             this.cmbGroupFunction.TabIndex = 0;
             // 
             // txtProject
             // 
-            this.txtProject.Location = new System.Drawing.Point(17, 5);
+            this.txtProject.Location = new Point(17, 5);
             this.txtProject.Name = "txtProject";
-            this.txtProject.Size = new System.Drawing.Size(129, 20);
+            this.txtProject.Size = new Size(129, 20);
             this.txtProject.TabIndex = 1;
             // 
             // cmbGroupValue
             // 
-            this.cmbGroupValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupValue.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbGroupValue.FormattingEnabled = true;
-            this.cmbGroupValue.Location = new System.Drawing.Point(290, 5);
+            this.cmbGroupValue.Location = new Point(290, 5);
             this.cmbGroupValue.Name = "cmbGroupValue";
-            this.cmbGroupValue.Size = new System.Drawing.Size(121, 21);
+            this.cmbGroupValue.Size = new Size(121, 21);
             this.cmbGroupValue.TabIndex = 2;
             // 
             // GroupItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new SizeF(6F, 13F);
+            this.AutoScaleMode = AutoScaleMode.Font;
             this.Controls.Add(this.cmbGroupValue);
             this.Controls.Add(this.txtProject);
             this.Controls.Add(this.cmbGroupFunction);
             this.Name = "GroupItem";
-            this.Size = new System.Drawing.Size(439, 29);
-            this.Load += new System.EventHandler(this.GroupItem_Load);
+            this.Size = new Size(439, 29);
+            this.Load += new EventHandler(this.GroupItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -75,8 +80,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbGroupFunction;
-        private System.Windows.Forms.TextBox txtProject;
-        private System.Windows.Forms.ComboBox cmbGroupValue;
+        private ComboBox cmbGroupFunction;
+        private TextBox txtProject;
+        private ComboBox cmbGroupValue;
     }
 }

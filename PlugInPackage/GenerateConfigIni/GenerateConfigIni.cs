@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using Common.Logic;
+using Common;
 
 namespace PlugInPackage.GenerateConfigIni
 {
@@ -27,7 +27,7 @@ namespace PlugInPackage.GenerateConfigIni
 
         public override int Run()
         {
-            Utility.OpenForm(new frmGenerateConfigIni(), true, true);
+            Utility.OpenForm(new FrmGenerateConfigIni(), true, true);
             return 0;
         }
 

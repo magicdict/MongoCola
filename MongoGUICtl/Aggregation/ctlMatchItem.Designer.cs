@@ -1,11 +1,16 @@
-﻿namespace MongoGUICtl.Aggregation
+﻿using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MongoGUICtl.Aggregation
 {
-    partial class ctlMatchItem
+    partial class CtlMatchItem
     {
         /// <summary> 
         /// 必需的设计器变量。
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// 清理所有正在使用的资源。
@@ -28,54 +33,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MatchValue = new ctlBsonValue();
-            this.cmbComparisonfunction = new System.Windows.Forms.ComboBox();
-            this.cmbField = new System.Windows.Forms.ComboBox();
+            this.MatchValue = new CtlBsonValue();
+            this.cmbComparisonfunction = new ComboBox();
+            this.cmbField = new ComboBox();
             this.SuspendLayout();
             // 
             // ctlBsonValue1
             // 
-            this.MatchValue.Location = new System.Drawing.Point(281, 3);
+            this.MatchValue.Location = new Point(281, 3);
             this.MatchValue.Name = "ctlBsonValue1";
-            this.MatchValue.Size = new System.Drawing.Size(211, 28);
+            this.MatchValue.Size = new Size(211, 28);
             this.MatchValue.TabIndex = 0;
             // 
             // cmbGroupfunction
             // 
-            this.cmbComparisonfunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbComparisonfunction.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbComparisonfunction.FormattingEnabled = true;
-            this.cmbComparisonfunction.Location = new System.Drawing.Point(154, 6);
+            this.cmbComparisonfunction.Location = new Point(154, 6);
             this.cmbComparisonfunction.Name = "cmbGroupfunction";
-            this.cmbComparisonfunction.Size = new System.Drawing.Size(121, 21);
+            this.cmbComparisonfunction.Size = new Size(121, 21);
             this.cmbComparisonfunction.TabIndex = 1;
             // 
             // cmbField
             // 
-            this.cmbField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbField.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbField.FormattingEnabled = true;
-            this.cmbField.Location = new System.Drawing.Point(17, 6);
+            this.cmbField.Location = new Point(17, 6);
             this.cmbField.Name = "cmbField";
-            this.cmbField.Size = new System.Drawing.Size(121, 21);
+            this.cmbField.Size = new Size(121, 21);
             this.cmbField.TabIndex = 2;
             // 
             // ctlMatchItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new SizeF(6F, 13F);
+            this.AutoScaleMode = AutoScaleMode.Font;
             this.Controls.Add(this.cmbField);
             this.Controls.Add(this.cmbComparisonfunction);
             this.Controls.Add(this.MatchValue);
-            this.Name = "ctlMatchItem";
-            this.Size = new System.Drawing.Size(496, 31);
-            this.Load += new System.EventHandler(this.ctlMatchItem_Load);
+            this.Name = "CtlMatchItem";
+            this.Size = new Size(496, 31);
+            this.Load += new EventHandler(this.ctlMatchItem_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private ctlBsonValue MatchValue;
-        private System.Windows.Forms.ComboBox cmbComparisonfunction;
-        private System.Windows.Forms.ComboBox cmbField;
+        private CtlBsonValue MatchValue;
+        private ComboBox cmbComparisonfunction;
+        private ComboBox cmbField;
     }
 }

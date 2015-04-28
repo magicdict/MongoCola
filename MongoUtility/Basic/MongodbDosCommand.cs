@@ -56,22 +56,22 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     Verb * 2
             /// </summary>
-            VV,
+            Vv,
 
             /// <summary>
             ///     Verb * 3
             /// </summary>
-            VVV,
+            Vvv,
 
             /// <summary>
             ///     Verb * 4
             /// </summary>
-            VVVV,
+            Vvvv,
 
             /// <summary>
             ///     Verb * 5
             /// </summary>
-            VVVVV
+            Vvvvv
         };
 
         /// <summary>
@@ -82,12 +82,12 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     标准输出
         /// </summary>
-        public static string strOutPut = string.Empty;
+        public static string StrOutPut = string.Empty;
 
         /// <summary>
         ///     标准错误
         /// </summary>
-        public static string strErrorPut = string.Empty;
+        public static string StrErrorPut = string.Empty;
 
         /// <summary>
         /// </summary>
@@ -102,10 +102,10 @@ namespace MongoUtility.Basic
 
             strIni = "#Basic database configuration" + Environment.NewLine;
 
-            if (mongod.DBPath != string.Empty)
+            if (mongod.DbPath != string.Empty)
             {
                 strIni += "#Location of the database files   " + Environment.NewLine;
-                strIni += "dbpath = " + mongod.DBPath + Environment.NewLine;
+                strIni += "dbpath = " + mongod.DbPath + Environment.NewLine;
             }
 
             if (mongod.Port != 0)
@@ -115,9 +115,9 @@ namespace MongoUtility.Basic
             }
 
             strIni += "#Specific IP address that mongod will listen on  " + Environment.NewLine;
-            if (mongod.bind_ip != string.Empty)
+            if (mongod.BindIp != string.Empty)
             {
-                strIni += "bind_ip  = " + mongod.bind_ip + Environment.NewLine;
+                strIni += "bind_ip  = " + mongod.BindIp + Environment.NewLine;
             }
             else
             {
@@ -151,14 +151,14 @@ namespace MongoUtility.Basic
             //mongo.exe 客户端程序
             var dosCommand = @"mongod --dbpath @dbpath --port @port ";
             //数据库路径
-            dosCommand = dosCommand.Replace("@dbpath", "\"" + mongod.DBPath + "\"");
+            dosCommand = dosCommand.Replace("@dbpath", "\"" + mongod.DbPath + "\"");
             //端口号
             dosCommand = dosCommand.Replace("@port", mongod.Port.ToString());
             //日志文件
             if (mongod.LogPath != string.Empty)
             {
                 dosCommand += " --logpath \"" + mongod.LogPath + "\"";
-                switch (mongod.LogLV)
+                switch (mongod.LogLv)
                 {
                     case MongologLevel.Quiet:
                         dosCommand += " --quiet ";
@@ -166,16 +166,16 @@ namespace MongoUtility.Basic
                     case MongologLevel.V:
                         dosCommand += " --verbose ";
                         break;
-                    case MongologLevel.VV:
+                    case MongologLevel.Vv:
                         dosCommand += " --vv ";
                         break;
-                    case MongologLevel.VVV:
+                    case MongologLevel.Vvv:
                         dosCommand += " --vvv ";
                         break;
-                    case MongologLevel.VVVV:
+                    case MongologLevel.Vvvv:
                         dosCommand += " --vvvv ";
                         break;
-                    case MongologLevel.VVVVV:
+                    case MongologLevel.Vvvvv:
                         dosCommand += " --vvvvv ";
                         break;
                     default:
@@ -188,16 +188,16 @@ namespace MongoUtility.Basic
                 }
             }
             //是否为Master
-            if (mongod.master)
+            if (mongod.Master)
             {
                 dosCommand += " --master";
             }
-            if (mongod.slave)
+            if (mongod.Slave)
             {
                 dosCommand += " --slave";
-                if (mongod.source != string.Empty)
+                if (mongod.Source != string.Empty)
                 {
-                    dosCommand += " --source " + mongod.source;
+                    dosCommand += " --source " + mongod.Source;
                 }
             }
             //是否作为Windows服务
@@ -224,7 +224,7 @@ namespace MongoUtility.Basic
             var dosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
             dosCommand = dosCommand.Replace("@hostaddr", mongoDump.HostAddr);
             dosCommand = dosCommand.Replace("@port", mongoDump.Port.ToString());
-            dosCommand = dosCommand.Replace("@dbname", mongoDump.DBName);
+            dosCommand = dosCommand.Replace("@dbname", mongoDump.DbName);
             if (mongoDump.CollectionName != string.Empty)
             {
                 //-c CollectionName Or --collection CollectionName
@@ -244,15 +244,15 @@ namespace MongoUtility.Basic
         ///     和恢复数据库是相同的操作，只是根据目录结构不同进行不同恢复操作
         ///     目录名称表示数据库名称，BSON文件表示数据集
         /// </summary>
-        /// <param name="MongoRestore"></param>
+        /// <param name="mongoRestore"></param>
         /// <returns></returns>
-        public static string GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
+        public static string GetMongoRestoreCommandLine(StruMongoRestore mongoRestore)
         {
             //mongorestore.exe 恢复程序
             var dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
-            dosCommand = dosCommand.Replace("@hostaddr", MongoRestore.HostAddr);
-            dosCommand = dosCommand.Replace("@port", MongoRestore.Port.ToString());
-            dosCommand = dosCommand.Replace("@dbname", MongoRestore.DirectoryPerDB);
+            dosCommand = dosCommand.Replace("@hostaddr", mongoRestore.HostAddr);
+            dosCommand = dosCommand.Replace("@port", mongoRestore.Port.ToString());
+            dosCommand = dosCommand.Replace("@dbname", mongoRestore.DirectoryPerDb);
             return dosCommand;
         }
 
@@ -287,7 +287,7 @@ namespace MongoUtility.Basic
             }
             dosCommand = dosCommand.Replace("@hostaddr", mongoImprotExport.HostAddr);
             dosCommand = dosCommand.Replace("@port", mongoImprotExport.Port.ToString());
-            dosCommand = dosCommand.Replace("@dbname", mongoImprotExport.DBName);
+            dosCommand = dosCommand.Replace("@dbname", mongoImprotExport.DbName);
             if (mongoImprotExport.CollectionName != string.Empty)
             {
                 //-c CollectionName Or --collection CollectionName
@@ -300,12 +300,12 @@ namespace MongoUtility.Basic
         ///     执行Dos下的命令
         /// </summary>
         /// <remarks>Only For Windows Platform</remarks>
-        /// <param name="DosCommand"></param>
+        /// <param name="dosCommand"></param>
         /// <param name="sb"></param>
-        public static void RunDosCommand(string DosCommand, StringBuilder sb)
+        public static void RunDosCommand(string dosCommand, StringBuilder sb)
         {
-            strOutPut = string.Empty;
-            strErrorPut = string.Empty;
+            StrOutPut = string.Empty;
+            StrErrorPut = string.Empty;
             var myProcess = new Process();
             myProcess.StartInfo.FileName = "cmd";
             myProcess.StartInfo.UseShellExecute = false;
@@ -326,11 +326,11 @@ namespace MongoUtility.Basic
             stringWriter.Write(MongoBinPath.Substring(0, 1) + ":" + Environment.NewLine);
             stringWriter.Write("cd " + MongoBinPath + Environment.NewLine);
             //DOS控制平台上的命令
-            stringWriter.Write(DosCommand + Environment.NewLine);
+            stringWriter.Write(dosCommand + Environment.NewLine);
             stringWriter.Write("exit" + Environment.NewLine);
             myProcess.WaitForExit();
-            sb.AppendLine(strOutPut);
-            sb.AppendLine(strErrorPut);
+            sb.AppendLine(StrOutPut);
+            sb.AppendLine(StrErrorPut);
             if (myProcess.HasExited == false)
             {
                 myProcess.Kill();
@@ -343,14 +343,14 @@ namespace MongoUtility.Basic
         {
             if (errLine.Data == null)
                 return;
-            strErrorPut = strErrorPut + errLine.Data + Environment.NewLine;
+            StrErrorPut = StrErrorPut + errLine.Data + Environment.NewLine;
         }
 
         private static void OutputDataHandler(object sendingProcess, DataReceivedEventArgs outputLine)
         {
             if (outputLine.Data == null)
                 return;
-            strOutPut = strOutPut + outputLine.Data + Environment.NewLine;
+            StrOutPut = StrOutPut + outputLine.Data + Environment.NewLine;
         }
 
         /// <summary>
@@ -361,28 +361,28 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     # 如果从库与主库同步数据差得多，自动重新同步，
             /// </summary>
-            public bool autoresync = false;
+            public bool Autoresync = false;
 
             /// <summary>
             ///     # 绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP
             /// </summary>
-            public string bind_ip = string.Empty;
+            public string BindIp = string.Empty;
 
             /// <summary>
             ///     # 声明这是一个集群的config服务,默认端口27019，默认目录/data/configdb
             /// </summary>
-            public string configsvr = string.Empty;
+            public string Configsvr = string.Empty;
 
             /// <summary>
             ///     # 指定数据库路径
             /// </summary>
-            public string DBPath = string.Empty;
+            public string DbPath = string.Empty;
 
             /// Replicaton 参数
             /// <summary>
             ///     # 从一个dbpath里启用从库复制服务，该dbpath的数据库是主库的快照，可用于快速启用同步
             /// </summary>
-            public bool fastsync = false;
+            public bool Fastsync = false;
 
             /// <summary>
             ///     是否采用认证模式
@@ -402,7 +402,7 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     日志等级
             /// </summary>
-            public MongologLevel LogLV = MongologLevel.Quiet;
+            public MongologLevel LogLv = MongologLevel.Quiet;
 
             /// <summary>
             ///     日志文件
@@ -413,53 +413,53 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     # 主库模式
             /// </summary>
-            public bool master = false;
+            public bool Master = false;
 
             /// <summary>
             ///     # 关闭偏执为moveChunk数据保存??
             /// </summary>
-            public bool moveParanoia = false;
+            public bool MoveParanoia = false;
 
             /// <summary>
             ///     # 指定单一的数据库复制
             /// </summary>
-            public string only = string.Empty;
+            public string Only = string.Empty;
 
             /// <summary>
             ///     # 设置oplog的大小(MB)
             /// </summary>
-            public int oplogSize = 0;
+            public int OplogSize = 0;
 
             /// <summary>
             ///     # 指定服务端口号，默认端口27017
             /// </summary>
-            public int Port = ConstMgr.MONGOD_DEFAULT_PORT;
+            public int Port = ConstMgr.MongodDefaultPort;
 
             /// Replica set(副本集)选项
             /// <summary>
             ///     # 设置副本集名称
             /// </summary>
-            public string replSet = string.Empty;
+            public string ReplSet = string.Empty;
 
             /// <summary>
             ///     # 声明这是一个集群的分片,默认端口27018
             /// </summary>
-            public string shardsvr = string.Empty;
+            public string Shardsvr = string.Empty;
 
             /// <summary>
             ///     # 从库模式
             /// </summary>
-            public bool slave = false;
+            public bool Slave = false;
 
             /// <summary>
             ///     # 设置从库同步主库的延迟时间
             /// </summary>
-            public int slavedelay = 0;
+            public int Slavedelay = 0;
 
             /// <summary>
             ///     # 从库 端口号
             /// </summary>
-            public string source = string.Empty;
+            public string Source = string.Empty;
         }
 
         /// <summary>
@@ -475,7 +475,7 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     数据库名称
             /// </summary>
-            public string DBName = string.Empty;
+            public string DbName = string.Empty;
 
             /// <summary>
             ///     导入导出标志
@@ -500,12 +500,12 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     日志等级
             /// </summary>
-            public MongologLevel LogLV = MongologLevel.Quiet;
+            public MongologLevel LogLv = MongologLevel.Quiet;
 
             /// <summary>
             ///     主机端口
             /// </summary>
-            public Int32 Port = ConstMgr.MONGOD_DEFAULT_PORT;
+            public Int32 Port = ConstMgr.MongodDefaultPort;
         }
 
         /// <summary>
@@ -521,7 +521,7 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     数据库名称
             /// </summary>
-            public string DBName = string.Empty;
+            public string DbName = string.Empty;
 
             /// <summary>
             ///     主机地址
@@ -531,7 +531,7 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     日志等级
             /// </summary>
-            public MongologLevel LogLV = MongologLevel.Quiet;
+            public MongologLevel LogLv = MongologLevel.Quiet;
 
             /// <summary>
             ///     输出路径
@@ -541,7 +541,7 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     主机端口
             /// </summary>
-            public Int32 Port = ConstMgr.MONGOD_DEFAULT_PORT;
+            public Int32 Port = ConstMgr.MongodDefaultPort;
         }
 
         /// <summary>
@@ -552,7 +552,7 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     备份数据库路径
             /// </summary>
-            public string DirectoryPerDB = string.Empty;
+            public string DirectoryPerDb = string.Empty;
 
             /// <summary>
             ///     主机地址
@@ -562,7 +562,7 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     主机端口
             /// </summary>
-            public Int32 Port = ConstMgr.MONGOD_DEFAULT_PORT;
+            public Int32 Port = ConstMgr.MongodDefaultPort;
         }
     }
 }

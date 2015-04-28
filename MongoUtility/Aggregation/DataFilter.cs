@@ -20,32 +20,32 @@ namespace MongoUtility.Aggregation
             /// <summary>
             ///     等于
             /// </summary>
-            EQ,
+            Eq,
 
             /// <summary>
             ///     大于
             /// </summary>
-            GT,
+            Gt,
 
             /// <summary>
             ///     大于等于
             /// </summary>
-            GTE,
+            Gte,
 
             /// <summary>
             ///     小于
             /// </summary>
-            LT,
+            Lt,
 
             /// <summary>
             ///     小于等于
             /// </summary>
-            LTE,
+            Lte,
 
             /// <summary>
             ///     不等于
             /// </summary>
-            NE
+            Ne
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     数据库名称
         /// </summary>
-        public string DBName = string.Empty;
+        public string DbName = string.Empty;
 
         /// <summary>
         ///     输出条件配置
@@ -92,12 +92,12 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     保存数据过滤器
         /// </summary>
-        /// <param name="FileName"></param>
-        public void SaveFilter(string FileName)
+        /// <param name="fileName"></param>
+        public void SaveFilter(string fileName)
         {
             FileStream fs = null;
             var xs = new XmlSerializer(typeof (DataFilter));
-            fs = new FileStream(FileName, FileMode.Create, FileAccess.Write);
+            fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             xs.Serialize(fs, this);
             fs.Close();
         }
@@ -105,13 +105,13 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     载入数据过滤器
         /// </summary>
-        /// <param name="FileName"></param>
+        /// <param name="fileName"></param>
         /// <returns></returns>
-        public static DataFilter LoadFilter(string FileName)
+        public static DataFilter LoadFilter(string fileName)
         {
             FileStream fs = null;
             var xs = new XmlSerializer(typeof (DataFilter));
-            fs = new FileStream(FileName, FileMode.Open, FileAccess.Read);
+            fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             var t = (DataFilter) xs.Deserialize(fs);
             fs.Close();
             return t;
@@ -180,7 +180,7 @@ namespace MongoUtility.Aggregation
             /// <summary>
             ///     排序类型
             /// </summary>
-            public SortType sortType;
+            public SortType SortType;
 
             /// <summary>
             ///     构造器
@@ -191,7 +191,7 @@ namespace MongoUtility.Aggregation
                 ProjectName = string.Empty;
                 ColName = mColName;
                 IsShow = false;
-                sortType = SortType.NoSort;
+                SortType = SortType.NoSort;
             }
         }
     }

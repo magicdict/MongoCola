@@ -1,10 +1,10 @@
-﻿using ResourceLib;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using ResourceLib.Method;
 
-namespace Common.UI
+namespace ResourceLib.UI
 {
-    public partial class frmConfirm : Form
+    public partial class FrmConfirm : Form
     {
         /// <summary>
         ///     Return Result
@@ -14,10 +14,10 @@ namespace Common.UI
         /// <summary>
         ///     Init Form
         /// </summary>
-        public frmConfirm()
+        public FrmConfirm()
         {
             InitializeComponent();
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>

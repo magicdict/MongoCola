@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using Common.Logic;
+using Common;
 
 namespace PlugInPackage.DosCommand
 {
@@ -27,7 +27,7 @@ namespace PlugInPackage.DosCommand
 
         public override int Run()
         {
-            Utility.OpenForm(new frmDosCommand(), true, true);
+            Utility.OpenForm(new FrmDosCommand(), true, true);
             return 0;
         }
 

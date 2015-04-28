@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
-
-using Common.Logic;
+using Common;
 using MongoDB.Bson;
 using MongoGUICtl;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoCola.Operation
 {
-    public partial class frmNewDocument : Form
+    public partial class FrmNewDocument : Form
     {
-        public BsonDocument mBsonDocument;
+        public BsonDocument MBsonDocument;
 
-        public frmNewDocument()
+        public FrmNewDocument()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace MongoCola.Operation
                 try
                 {
                     newBsonDocument = BsonDocument.Parse(txtDocument.Text);
-                    mBsonDocument = newBsonDocument;
+                    MBsonDocument = newBsonDocument;
                     Close();
                 }
                 catch (Exception ex)
@@ -44,7 +44,7 @@ namespace MongoCola.Operation
             {
                 try
                 {
-                    OperationHelper.InsertEmptyDocument(RuntimeMongoDBContext.GetCurrentCollection(), true);
+                    OperationHelper.InsertEmptyDocument(RuntimeMongoDbContext.GetCurrentCollection(), true);
                     Close();
                 }
                 catch (Exception ex)
@@ -75,9 +75,9 @@ namespace MongoCola.Operation
             {
                 BsonDocument newdoc;
                 newdoc = BsonDocument.Parse(txtDocument.Text);
-                UIHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
+                UiHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
-                txtDocument.Text = newdoc.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings);
+                txtDocument.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
             }
             catch (Exception ex)
             {
@@ -105,7 +105,7 @@ namespace MongoCola.Operation
         /// <param name="e"></param>
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
         }
     }
 }

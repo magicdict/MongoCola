@@ -1,13 +1,16 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using MongoGUICtl;
 
 namespace MongoCola.Aggregation
 {
-    partial class frmGroup
+    partial class FrmGroup
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -49,8 +52,8 @@ namespace MongoCola.Aggregation
             this.tabResult = new System.Windows.Forms.TabPage();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmdQuery = new System.Windows.Forms.Button();
-            this.ctlReduce = new ctlTextMgr();
-            this.ctlFinalize = new ctlTextMgr();
+            this.ctlReduce = new CtlTextMgr();
+            this.ctlFinalize = new CtlTextMgr();
             this.tabGroup.SuspendLayout();
             this.tabReduce.SuspendLayout();
             this.tabFinalize.SuspendLayout();
@@ -273,7 +276,7 @@ namespace MongoCola.Aggregation
             this.Controls.Add(this.cmdQuery);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "frmGroup";
+            this.Name = "FrmGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Group";
             this.Load += new System.EventHandler(this.frmGroup_Load);
@@ -293,23 +296,23 @@ namespace MongoCola.Aggregation
 
         #endregion
 
-        private System.Windows.Forms.Button cmdRun;
-        private System.Windows.Forms.Label lblSelectGroupField;
-        private System.Windows.Forms.Panel panColumn;
-        private System.Windows.Forms.TextBox txtResult;
-        private System.Windows.Forms.Label lblAddInitField;
-        private System.Windows.Forms.Panel panBsonEl;
-        private System.Windows.Forms.Button cmdAddInitField;
-        private System.Windows.Forms.Label lblResult;
-        private System.Windows.Forms.TabControl tabGroup;
-        private System.Windows.Forms.TabPage tabReduce;
-        private System.Windows.Forms.TabPage tabFinalize;
-        private System.Windows.Forms.TabPage tabGroupField;
-        private System.Windows.Forms.TabPage tabInitialize;
-        private System.Windows.Forms.TabPage tabResult;
-        private System.Windows.Forms.Button cmdQuery;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
-        private ctlTextMgr ctlReduce;
-        private ctlTextMgr ctlFinalize;
+        private Button cmdRun;
+        private Label lblSelectGroupField;
+        private Panel panColumn;
+        private TextBox txtResult;
+        private Label lblAddInitField;
+        private Panel panBsonEl;
+        private Button cmdAddInitField;
+        private Label lblResult;
+        private TabControl tabGroup;
+        private TabPage tabReduce;
+        private TabPage tabFinalize;
+        private TabPage tabGroupField;
+        private TabPage tabInitialize;
+        private TabPage tabResult;
+        private Button cmdQuery;
+        private Chart chartResult;
+        private CtlTextMgr ctlReduce;
+        private CtlTextMgr ctlFinalize;
     }
 }

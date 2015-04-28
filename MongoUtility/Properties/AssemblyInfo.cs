@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 
-[assembly: AssemblyTitle("MongoUtility")]
+[assembly: AssemblyTitle("MongoHelper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("IBM")]
-[assembly: AssemblyProduct("MongoUtility")]
+[assembly: AssemblyProduct("MongoHelper")]
 [assembly: AssemblyCopyright("Copyright © IBM 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

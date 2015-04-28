@@ -64,7 +64,7 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     数据过滤器
         /// </summary>
-        public DataFilter mDataFilter;
+        public DataFilter MDataFilter;
 
         /// <summary>
         ///     查询
@@ -79,18 +79,18 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     数据库
         /// </summary>
-        public string strDBTag;
+        public string StrDbTag;
 
         /// <summary>
         ///     是否为Admin数据库
         /// </summary>
-        public bool IsAdminDB
+        public bool IsAdminDb
         {
             get
             {
-                var strNodeData = strDBTag.Split(":".ToCharArray())[1];
-                var DataList = strNodeData.Split("/".ToCharArray());
-                if (DataList[(int) EnumMgr.PathLv.DatabaseLv] == ConstMgr.DATABASE_NAME_ADMIN)
+                var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
+                var dataList = strNodeData.Split("/".ToCharArray());
+                if (dataList[(int) EnumMgr.PathLv.DatabaseLv] == ConstMgr.DatabaseNameAdmin)
                 {
                     return true;
                 }
@@ -105,20 +105,20 @@ namespace MongoUtility.Aggregation
         {
             get
             {
-                var strNodeData = strDBTag.Split(":".ToCharArray())[1];
-                var DataList = strNodeData.Split("/".ToCharArray());
-                return OperationHelper.IsSystemCollection(DataList[(int) EnumMgr.PathLv.DatabaseLv],
-                    DataList[(int) EnumMgr.PathLv.CollectionLv]);
+                var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
+                var dataList = strNodeData.Split("/".ToCharArray());
+                return OperationHelper.IsSystemCollection(dataList[(int) EnumMgr.PathLv.DatabaseLv],
+                    dataList[(int) EnumMgr.PathLv.CollectionLv]);
             }
         }
 
         /// <summary>
         ///     获得展示数据
         /// </summary>
-        /// <param name="CurrentDataViewInfo"></param>
-        public static List<BsonDocument> GetDataList(ref DataViewInfo CurrentDataViewInfo, MongoServer mServer)
+        /// <param name="currentDataViewInfo"></param>
+        public static List<BsonDocument> GetDataList(ref DataViewInfo currentDataViewInfo, MongoServer mServer)
         {
-            var collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
+            var collectionPath = currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[1];
             var cp = collectionPath.Split("/".ToCharArray());
             MongoCollection mongoCol =
                 mServer.GetDatabase(cp[(int) EnumMgr.PathLv.DatabaseLv])
@@ -127,40 +127,40 @@ namespace MongoUtility.Aggregation
 
             MongoCursor<BsonDocument> cursor;
             //Query condition:
-            if (CurrentDataViewInfo.IsUseFilter)
+            if (currentDataViewInfo.IsUseFilter)
             {
                 cursor = mongoCol.FindAs<BsonDocument>(
-                    QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
-                    .SetSkip(CurrentDataViewInfo.SkipCnt)
-                    .SetFields(QueryHelper.GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                    .SetSortOrder(QueryHelper.GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                    .SetLimit(CurrentDataViewInfo.LimitCnt);
+                    QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList))
+                    .SetSkip(currentDataViewInfo.SkipCnt)
+                    .SetFields(QueryHelper.GetOutputFields(currentDataViewInfo.MDataFilter.QueryFieldList))
+                    .SetSortOrder(QueryHelper.GetSort(currentDataViewInfo.MDataFilter.QueryFieldList))
+                    .SetLimit(currentDataViewInfo.LimitCnt);
             }
             else
             {
                 cursor = mongoCol.FindAllAs<BsonDocument>()
-                    .SetSkip(CurrentDataViewInfo.SkipCnt)
-                    .SetLimit(CurrentDataViewInfo.LimitCnt);
+                    .SetSkip(currentDataViewInfo.SkipCnt)
+                    .SetLimit(currentDataViewInfo.LimitCnt);
             }
-            CurrentDataViewInfo.Query = cursor.Query != null
-                ? cursor.Query.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings)
+            currentDataViewInfo.Query = cursor.Query != null
+                ? cursor.Query.ToJson(MongoHelper.JsonWriterSettings)
                 : string.Empty;
-            CurrentDataViewInfo.Explain = cursor.Explain().ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings);
+            currentDataViewInfo.Explain = cursor.Explain().ToJson(MongoHelper.JsonWriterSettings);
             var dataList = cursor.ToList();
-            if (CurrentDataViewInfo.SkipCnt == 0)
+            if (currentDataViewInfo.SkipCnt == 0)
             {
-                if (CurrentDataViewInfo.IsUseFilter)
+                if (currentDataViewInfo.IsUseFilter)
                 {
                     //感谢cnblogs.com 网友Shadower
-                    CurrentDataViewInfo.CurrentCollectionTotalCnt =
-                        (int) mongoCol.Count(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList));
+                    currentDataViewInfo.CurrentCollectionTotalCnt =
+                        (int) mongoCol.Count(QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList));
                 }
                 else
                 {
-                    CurrentDataViewInfo.CurrentCollectionTotalCnt = (int) mongoCol.Count();
+                    currentDataViewInfo.CurrentCollectionTotalCnt = (int) mongoCol.Count();
                 }
             }
-            SetPageEnable(ref CurrentDataViewInfo);
+            SetPageEnable(ref currentDataViewInfo);
             return dataList;
         }
 

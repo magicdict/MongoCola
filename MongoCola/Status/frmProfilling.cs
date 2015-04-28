@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
-
 using MongoDB.Driver;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoCola.Status
 {
-    public partial class frmProfilling : Form
+    public partial class FrmProfilling : Form
     {
         /// <summary>
         /// </summary>
-        public frmProfilling()
+        public FrmProfilling()
         {
             InitializeComponent();
         }
@@ -23,17 +22,17 @@ namespace MongoCola.Status
         /// <param name="e"></param>
         private void frmProfilling_Load(object sender, EventArgs e)
         {
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
             cmbProfillingLv.Items.Add("0-No Logging");
             cmbProfillingLv.Items.Add("1-Log Slow Operations");
             cmbProfillingLv.Items.Add("2-Log All Operations");
-            cmbProfillingLv.SelectedIndex = (int) RuntimeMongoDBContext.GetCurrentDataBase().GetProfilingLevel().Level;
+            cmbProfillingLv.SelectedIndex = (int) RuntimeMongoDbContext.GetCurrentDataBase().GetProfilingLevel().Level;
             switch (cmbProfillingLv.SelectedIndex)
             {
                 case 1:
                     NumTime.Enabled = true;
                     NumTime.Value =
-                        (decimal) RuntimeMongoDBContext.GetCurrentDataBase().GetProfilingLevel().Slow.TotalSeconds*
+                        (decimal) RuntimeMongoDbContext.GetCurrentDataBase().GetProfilingLevel().Slow.TotalSeconds*
                         1000;
                     break;
                 default:
@@ -67,12 +66,12 @@ namespace MongoCola.Status
             }
             if (mProfillingLv == ProfilingLevel.Slow)
             {
-                RuntimeMongoDBContext.GetCurrentDataBase()
+                RuntimeMongoDbContext.GetCurrentDataBase()
                     .SetProfilingLevel(mProfillingLv, new TimeSpan(0, 0, 0, 0, (int) NumTime.Value));
             }
             else
             {
-                RuntimeMongoDBContext.GetCurrentDataBase().SetProfilingLevel(mProfillingLv);
+                RuntimeMongoDbContext.GetCurrentDataBase().SetProfilingLevel(mProfillingLv);
             }
             Close();
         }

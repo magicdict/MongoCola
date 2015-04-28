@@ -1,14 +1,15 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 using MongoGUICtl;
 
 namespace MongoCola
 {
-    partial class frmUser
+    partial class FrmUser
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -33,7 +34,7 @@ namespace MongoCola
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUser));
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -50,7 +51,7 @@ namespace MongoCola
             this.lstOtherRoles = new System.Windows.Forms.ListView();
             this.colDataBase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colRoles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.userRoles = new ctlUserRolesPanel();
+            this.userRoles = new CtlUserRolesPanel();
             this.cmdDelRole = new System.Windows.Forms.Button();
             this.cmdModifyRole = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -255,7 +256,7 @@ namespace MongoCola
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmUser";
+            this.Name = "FrmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add User";
             this.Load += new System.EventHandler(this.frmUser_Load);
@@ -266,15 +267,15 @@ namespace MongoCola
 
         #endregion
 
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.Button cmdCancel;
+        private Button cmdOK;
+        private Label lblPassword;
+        private Label lblUserName;
+        private Button cmdCancel;
         private TextBox txtPassword;
         private TextBox txtUserName;
         private Label lblConfirmPsw;
         private TextBox txtConfirmPsw;
-        private ctlUserRolesPanel userRoles;
+        private CtlUserRolesPanel userRoles;
         private Label lbluserSource;
         private TextBox txtuserSource;
         private Label lblotherDBRoles;

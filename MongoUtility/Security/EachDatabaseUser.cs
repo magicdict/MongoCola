@@ -15,18 +15,18 @@ namespace MongoUtility.Security
         /// <summary>
         ///     获得数据库角色
         /// </summary>
-        /// <param name="DatabaseName"></param>
+        /// <param name="databaseName"></param>
         /// <returns></returns>
-        public BsonArray GetRolesByDBName(string DatabaseName)
+        public BsonArray GetRolesByDbName(string databaseName)
         {
             var roles = new BsonArray();
             //当前DB的System.user的角色
-            if (UserList.ContainsKey(DatabaseName))
+            if (UserList.ContainsKey(databaseName))
             {
-                roles = UserList[DatabaseName].roles;
+                roles = UserList[databaseName].Roles;
             }
             //Admin的OtherDBRoles和当前数据库角色合并
-            var adminRoles = GetOtherDBRoles(DatabaseName);
+            var adminRoles = GetOtherDbRoles(databaseName);
             foreach (string item in adminRoles)
             {
                 if (!roles.Contains(item))
@@ -35,27 +35,27 @@ namespace MongoUtility.Security
                 }
             }
             //ADMIN的ANY系角色的追加
-            if (UserList.ContainsKey(ConstMgr.DATABASE_NAME_ADMIN))
+            if (UserList.ContainsKey(ConstMgr.DatabaseNameAdmin))
             {
-                if (UserList[ConstMgr.DATABASE_NAME_ADMIN].roles.Contains(Role.UserRole_dbAdminAnyDatabase))
+                if (UserList[ConstMgr.DatabaseNameAdmin].Roles.Contains(Role.UserRoleDbAdminAnyDatabase))
                 {
-                    roles.Add(Role.UserRole_dbAdminAnyDatabase);
+                    roles.Add(Role.UserRoleDbAdminAnyDatabase);
                 }
-                if (UserList[ConstMgr.DATABASE_NAME_ADMIN].roles.Contains(Role.UserRole_readAnyDatabase))
+                if (UserList[ConstMgr.DatabaseNameAdmin].Roles.Contains(Role.UserRoleReadAnyDatabase))
                 {
-                    roles.Add(Role.UserRole_readAnyDatabase);
-                }
-                if (
-                    UserList[ConstMgr.DATABASE_NAME_ADMIN].roles.Contains(
-                        Role.UserRole_readWriteAnyDatabase))
-                {
-                    roles.Add(Role.UserRole_readWriteAnyDatabase);
+                    roles.Add(Role.UserRoleReadAnyDatabase);
                 }
                 if (
-                    UserList[ConstMgr.DATABASE_NAME_ADMIN].roles.Contains(
-                        Role.UserRole_userAdminAnyDatabase))
+                    UserList[ConstMgr.DatabaseNameAdmin].Roles.Contains(
+                        Role.UserRoleReadWriteAnyDatabase))
                 {
-                    roles.Add(Role.UserRole_userAdminAnyDatabase);
+                    roles.Add(Role.UserRoleReadWriteAnyDatabase);
+                }
+                if (
+                    UserList[ConstMgr.DatabaseNameAdmin].Roles.Contains(
+                        Role.UserRoleUserAdminAnyDatabase))
+                {
+                    roles.Add(Role.UserRoleUserAdminAnyDatabase);
                 }
             }
             return roles;
@@ -65,16 +65,16 @@ namespace MongoUtility.Security
         ///     获得Admin的otherDBRoles
         /// </summary>
         /// <returns></returns>
-        public BsonArray GetOtherDBRoles(string DataBaseName)
+        public BsonArray GetOtherDbRoles(string dataBaseName)
         {
             var roles = new BsonArray();
-            var OtherDBRoles = new BsonDocument();
-            if (UserList.ContainsKey(ConstMgr.DATABASE_NAME_ADMIN))
+            var otherDbRoles = new BsonDocument();
+            if (UserList.ContainsKey(ConstMgr.DatabaseNameAdmin))
             {
-                OtherDBRoles = UserList[ConstMgr.DATABASE_NAME_ADMIN].otherDBRoles;
-                if (OtherDBRoles != null && OtherDBRoles.Contains(DataBaseName))
+                otherDbRoles = UserList[ConstMgr.DatabaseNameAdmin].OtherDbRoles;
+                if (otherDbRoles != null && otherDbRoles.Contains(dataBaseName))
                 {
-                    roles = OtherDBRoles[DataBaseName].AsBsonArray;
+                    roles = otherDbRoles[dataBaseName].AsBsonArray;
                 }
             }
             return roles;
@@ -83,18 +83,18 @@ namespace MongoUtility.Security
         /// <summary>
         /// </summary>
         /// <param name="db"></param>
-        /// <param name="Username"></param>
-        public void AddUser(MongoDatabase db, string Username)
+        /// <param name="username"></param>
+        public void AddUser(MongoDatabase db, string username)
         {
             var userInfo =
-                db.GetCollection(ConstMgr.COLLECTION_NAME_USER).FindOneAs<BsonDocument>(Query.EQ("user", Username));
+                db.GetCollection(ConstMgr.CollectionNameUser).FindOneAs<BsonDocument>(Query.EQ("user", username));
             if (userInfo != null)
             {
                 var user = new User();
-                user.roles = userInfo["roles"].AsBsonArray;
+                user.Roles = userInfo["roles"].AsBsonArray;
                 if (userInfo.Contains("otherDBRoles"))
                 {
-                    user.otherDBRoles = userInfo["otherDBRoles"].AsBsonDocument;
+                    user.OtherDbRoles = userInfo["otherDBRoles"].AsBsonDocument;
                 }
                 UserList.Add(db.Name, user);
             }
@@ -106,21 +106,21 @@ namespace MongoUtility.Security
         /// <returns></returns>
         public override string ToString()
         {
-            var UserInfo = string.Empty;
+            var userInfo = string.Empty;
             foreach (var item in UserList.Keys)
             {
-                UserInfo += "DataBase:" + item + Environment.NewLine;
-                if (UserList[item].roles != null)
+                userInfo += "DataBase:" + item + Environment.NewLine;
+                if (UserList[item].Roles != null)
                 {
-                    UserInfo += "Roles:" + UserList[item].roles + Environment.NewLine;
+                    userInfo += "Roles:" + UserList[item].Roles + Environment.NewLine;
                 }
-                if (UserList[item].otherDBRoles != null)
+                if (UserList[item].OtherDbRoles != null)
                 {
-                    UserInfo += "otherDBRoles:" + UserList[item].otherDBRoles + Environment.NewLine;
+                    userInfo += "otherDBRoles:" + UserList[item].OtherDbRoles + Environment.NewLine;
                 }
-                UserInfo += Environment.NewLine;
+                userInfo += Environment.NewLine;
             }
-            return UserInfo;
+            return userInfo;
         }
     }
 }

@@ -1,47 +1,46 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using Common.Logic;
-using Common.UI;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class ctlGFSView : ctlDataView
+    public partial class CtlGfsView : CtlDataView
     {
-        public ctlGFSView(DataViewInfo _DataViewInfo)
+        public CtlGfsView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             InitTool();
-            mDataViewInfo = _DataViewInfo;
-            _dataShower.Add(lstData);
-            if (!GUIConfig.IsUseDefaultLanguage)
+            MDataViewInfo = dataViewInfo;
+            DataShower.Add(lstData);
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
                 DeleteFileToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
+                    GuiConfig.MStringResource.GetText(
                         "Main_Menu_Operation_FileSystem_DelFile");
                 DeleteFileStripButton.Text = DeleteFileToolStripMenuItem.Text;
 
                 UploadFileToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
+                    GuiConfig.MStringResource.GetText(
                         "Main_Menu_Operation_FileSystem_UploadFile");
                 UploadFileStripButton.Text = UploadFileToolStripMenuItem.Text;
 
                 UploadFolderToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
+                    GuiConfig.MStringResource.GetText(
                         "Main_Menu_Operation_FileSystem_UploadFolder");
                 UpLoadFolderStripButton.Text = UploadFolderToolStripMenuItem.Text;
 
                 DownloadFileToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
+                    GuiConfig.MStringResource.GetText(
                         "Main_Menu_Operation_FileSystem_Download");
                 DownloadFileStripButton.Text = DownloadFileToolStripMenuItem.Text;
 
                 OpenFileToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
+                    GuiConfig.MStringResource.GetText(
                         "Main_Menu_Operation_FileSystem_OpenFile");
                 OpenFileStripButton.Text = OpenFileToolStripMenuItem.Text;
             }
@@ -95,7 +94,7 @@ namespace MongoGUIView
                     OpenFileToolStripMenuItem.Enabled = true;
                     DownloadFileToolStripMenuItem.Enabled = true;
                     DownloadFileStripButton.Enabled = true;
-                    if (!mDataViewInfo.IsReadOnly)
+                    if (!MDataViewInfo.IsReadOnly)
                     {
                         DeleteFileStripButton.Enabled = true;
                         DeleteFileToolStripMenuItem.Enabled = true;
@@ -108,7 +107,7 @@ namespace MongoGUIView
 
                     DownloadFileToolStripMenuItem.Enabled = false;
                     DownloadFileStripButton.Enabled = false;
-                    if (!mDataViewInfo.IsReadOnly)
+                    if (!MDataViewInfo.IsReadOnly)
                     {
                         DeleteFileStripButton.Enabled = true;
                         DeleteFileToolStripMenuItem.Enabled = true;
@@ -124,7 +123,7 @@ namespace MongoGUIView
 
         protected void lstData_MouseClick(object sender, MouseEventArgs e)
         {
-            RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
             if (lstData.SelectedItems.Count > 0)
             {
                 if (e.Button == MouseButtons.Right)
@@ -150,15 +149,15 @@ namespace MongoGUIView
             var upfile = new OpenFileDialog();
             if (upfile.ShowDialog() == DialogResult.OK)
             {
-                var opt = new GFS.UpLoadFileOption();
-                var frm = new frmGFSOption();
+                var opt = new Gfs.UpLoadFileOption();
+                var frm = new FrmGfsOption();
                 frm.ShowDialog();
-                opt.AlreadyOpt = frm.option;
+                opt.AlreadyOpt = frm.Option;
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
-                opt.FileNameOpt = frm.filename;
-                opt.IgnoreSubFolder = frm.ignoreSubFolder;
-                GFS.UpLoadFile(upfile.FileName, opt, null);
-                RefreshGUI();
+                opt.FileNameOpt = frm.Filename;
+                opt.IgnoreSubFolder = frm.IgnoreSubFolder;
+                Gfs.UpLoadFile(upfile.FileName, opt, null);
+                RefreshGui();
             }
         }
 
@@ -172,18 +171,18 @@ namespace MongoGUIView
             var upfolder = new FolderBrowserDialog();
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
-                var opt = new GFS.UpLoadFileOption();
-                var frm = new frmGFSOption();
+                var opt = new Gfs.UpLoadFileOption();
+                var frm = new FrmGfsOption();
                 frm.ShowDialog();
-                opt.AlreadyOpt = frm.option;
+                opt.AlreadyOpt = frm.Option;
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
-                opt.FileNameOpt = frm.filename;
-                opt.IgnoreSubFolder = frm.ignoreSubFolder;
+                opt.FileNameOpt = frm.Filename;
+                opt.IgnoreSubFolder = frm.IgnoreSubFolder;
                 var uploadDir = new DirectoryInfo(upfolder.SelectedPath);
                 var count = 0;
                 UploadFolder(uploadDir, ref count, opt);
                 MyMessageBox.ShowMessage("Upload", "Upload Completed! Upload Files Count: " + count);
-                RefreshGUI();
+                RefreshGui();
             }
         }
 
@@ -193,24 +192,24 @@ namespace MongoGUIView
         /// <param name="fileCount"></param>
         /// <param name="opt"></param>
         /// <returns>是否继续执行后续的所有操作</returns>
-        private bool UploadFolder(DirectoryInfo uploadDir, ref int fileCount, GFS.UpLoadFileOption opt)
+        private bool UploadFolder(DirectoryInfo uploadDir, ref int fileCount, Gfs.UpLoadFileOption opt)
         {
             foreach (var file in uploadDir.GetFiles())
             {
-                var rtn = GFS.UpLoadFile(file.FullName, opt, RuntimeMongoDBContext.GetCurrentDataBase());
+                var rtn = Gfs.UpLoadFile(file.FullName, opt, RuntimeMongoDbContext.GetCurrentDataBase());
                 switch (rtn)
                 {
-                    case GFS.UploadResult.Complete:
+                    case Gfs.UploadResult.Complete:
                         fileCount++;
                         break;
-                    case GFS.UploadResult.Skip:
-                        if (opt.AlreadyOpt == GFS.enumGFSAlready.Stop)
+                    case Gfs.UploadResult.Skip:
+                        if (opt.AlreadyOpt == Gfs.EnumGfsAlready.Stop)
                         {
                             //这个操作返回为False，停止包括父亲过程在内的所有操作
                             return false;
                         }
                         break;
-                    case GFS.UploadResult.Exception:
+                    case Gfs.UploadResult.Exception:
                         return MyMessageBox.ShowConfirm("Upload Exception", "Is Continue?");
                 }
             }
@@ -219,8 +218,8 @@ namespace MongoGUIView
                 foreach (var dir in uploadDir.GetDirectories())
                 {
                     //递归文件夹操作，如果下层有任何停止的意愿，则立刻停止，并且使上层也立刻停止
-                    var IsContinue = UploadFolder(dir, ref fileCount, opt);
-                    if (!IsContinue)
+                    var isContinue = UploadFolder(dir, ref fileCount, opt);
+                    if (!isContinue)
                     {
                         return false;
                     }
@@ -242,9 +241,9 @@ namespace MongoGUIView
                     ];
             if (downfile.ShowDialog() == DialogResult.OK)
             {
-                GFS.DownloadFile(downfile.FileName, strFileName, null);
+                Gfs.DownloadFile(downfile.FileName, strFileName, null);
             }
-            RefreshGUI();
+            RefreshGui();
         }
 
         /// <summary>
@@ -255,7 +254,7 @@ namespace MongoGUIView
             if (lstData.SelectedItems.Count == 1)
             {
                 var strFileName = lstData.SelectedItems[0].Text;
-                GFS.OpenFile(strFileName, null);
+                Gfs.OpenFile(strFileName, null);
             }
         }
 
@@ -266,18 +265,18 @@ namespace MongoGUIView
         {
             var strTitle = "Delete Files";
             var strMessage = "Are you sure to delete selected File(s)?";
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GUIConfig.MStringResource.GetText(TextType.Drop_Data);
-                strMessage = GUIConfig.MStringResource.GetText(TextType.Drop_Data_Confirm);
+                strTitle = GuiConfig.MStringResource.GetText(TextType.DropData);
+                strMessage = GuiConfig.MStringResource.GetText(TextType.DropDataConfirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 foreach (ListViewItem item in lstData.SelectedItems)
                 {
-                    GFS.DelFile(item.Text, null);
+                    Gfs.DelFile(item.Text, null);
                 }
-                RefreshGUI();
+                RefreshGui();
             }
         }
 

@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using Common.Logic;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.EventArgs;
 
 namespace PlugInPackage.ImportAccessDB
 {
-    public class ImportAccessDB : PlugInBase
+    public class ImportAccessDb : PlugInBase
     {
         /// <summary>
         ///     数据连接字符串
         /// </summary>
-        private const string ACCESS_CONNECTION_STRING =
+        private const string AccessConnectionString =
             @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
 
         /// <summary>
@@ -24,9 +24,9 @@ namespace PlugInPackage.ImportAccessDB
 
         /// <summary>
         /// </summary>
-        public ImportAccessDB()
+        public ImportAccessDb()
         {
-            RunLv = PathLv.ConnectionLV;
+            RunLv = PathLv.ConnectionLv;
             PlugName = "从Access导入";
             PlugFunction = "将数据从Access导入";
         }
@@ -36,7 +36,7 @@ namespace PlugInPackage.ImportAccessDB
         /// <returns></returns>
         public override int Run()
         {
-            Utility.OpenForm(new frmSelectTable(), true, true);
+            Utility.OpenForm(new FrmSelectTable(), true, true);
             return 0;
         }
 
@@ -148,8 +148,8 @@ namespace PlugInPackage.ImportAccessDB
 
         public static List<string> GetTableList(string accessFileName)
         {
-            var conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
-            var TableList = new List<string>();
+            var conn = new OleDbConnection(AccessConnectionString.Replace("@AccessPath", accessFileName));
+            var tableList = new List<string>();
             try
             {
                 conn.Open();
@@ -158,7 +158,7 @@ namespace PlugInPackage.ImportAccessDB
                 var strCreateTableInfo = string.Empty;
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
-                    TableList.Add(recTable[2].ToString());
+                    tableList.Add(recTable[2].ToString());
                 }
             }
             catch (Exception)
@@ -169,22 +169,22 @@ namespace PlugInPackage.ImportAccessDB
             {
                 conn.Close();
             }
-            return TableList;
+            return tableList;
         }
 
         /// <summary>
         ///     导入数据
         /// </summary>
         /// <param name="accessFileName"></param>
-        /// <param name="Table"></param>
+        /// <param name="table"></param>
         /// <returns></returns>
-        public static void ImportAccessDataBase(string accessFileName, List<string> Table, MongoServer mongoSvr)
+        public static void ImportAccessDataBase(string accessFileName, List<string> table, MongoServer mongoSvr)
         {
             var fileName = accessFileName.Split(@"\".ToCharArray());
             var fileMain = fileName[fileName.Length - 1];
-            var insertDBName = fileMain.Split(".".ToCharArray())[0];
-            var mongoDB = mongoSvr.GetDatabase(insertDBName);
-            var conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
+            var insertDbName = fileMain.Split(".".ToCharArray())[0];
+            var mongoDb = mongoSvr.GetDatabase(insertDbName);
+            var conn = new OleDbConnection(AccessConnectionString.Replace("@AccessPath", accessFileName));
             try
             {
                 conn.Open();
@@ -195,14 +195,14 @@ namespace PlugInPackage.ImportAccessDB
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
                     var strTableName = recTable[2].ToString();
-                    if (!Table.Contains(strTableName))
+                    if (!table.Contains(strTableName))
                         continue;
                     try
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
-                        string ErrMsg;
-                        mongoDB.IsCollectionNameValid(strTableName, out ErrMsg);
-                        if (ErrMsg != null)
+                        string errMsg;
+                        mongoDb.IsCollectionNameValid(strTableName, out errMsg);
+                        if (errMsg != null)
                         {
                             strCreateTableInfo = strTableName + " Create Error " + Environment.NewLine +
                                                  strCreateTableInfo;
@@ -210,22 +210,22 @@ namespace PlugInPackage.ImportAccessDB
                             err++;
                             continue;
                         }
-                        mongoDB.CreateCollection(strTableName);
+                        mongoDb.CreateCollection(strTableName);
                         strCreateTableInfo = strTableName + " Creating " + Environment.NewLine + strCreateTableInfo;
                         OnActionDone(new ActionDoneEventArgs(strTableName + " Creating "));
                     }
                     catch (Exception)
                     {
-                        if (mongoDB.CollectionExists(strTableName))
+                        if (mongoDb.CollectionExists(strTableName))
                         {
-                            mongoDB.DropCollection(strTableName);
+                            mongoDb.DropCollection(strTableName);
                         }
                         strCreateTableInfo = strTableName + " Create Error " + Environment.NewLine + strCreateTableInfo;
                         OnActionDone(new ActionDoneEventArgs(strTableName + " Creating Error "));
                         err++;
                         continue;
                     }
-                    MongoCollection mongoCollection = mongoDB.GetCollection(strTableName);
+                    MongoCollection mongoCollection = mongoDb.GetCollection(strTableName);
                     var tblSchema = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns,
                         new object[] {null, null, strTableName, null});
                     var colPro = new Dictionary<string, string>();
@@ -321,34 +321,34 @@ namespace PlugInPackage.ImportAccessDB
         /// </summary>
         internal enum ColumnInfo
         {
-            TABLE_CATALOG,
-            TABLE_SCHEMA,
-            TABLE_NAME,
-            COLUMN_NAME,
-            COLUMN_GUID,
-            COLUMN_PROPID,
-            ORDINAL_POSITION,
-            COLUMN_HASDEFAULT,
-            COLUMN_DEFAULT,
-            COLUMN_FLAGS,
-            IS_NULLABLE,
-            DATA_TYPE,
-            TYPE_GUID,
-            CHARACTER_MAXIMUM_LENGTH,
-            CHARACTER_OCTET_LENGTH,
-            NUMERIC_PRECISION,
-            NUMERIC_SCALE,
-            DATETIME_PRECISION,
-            CHARACTER_SET_CATALOG,
-            CHARACTER_SET_SCHEMA,
-            CHARACTER_SET_NAME,
-            COLLATION_CATALOG,
-            COLLATION_SCHEMA,
-            COLLATION_NAME,
-            DOMAIN_CATALOG,
-            DOMAIN_SCHEMA,
-            DOMAIN_NAME,
-            DESCRIPTION
+            TableCatalog,
+            TableSchema,
+            TableName,
+            ColumnName,
+            ColumnGuid,
+            ColumnPropid,
+            OrdinalPosition,
+            ColumnHasdefault,
+            ColumnDefault,
+            ColumnFlags,
+            IsNullable,
+            DataType,
+            TypeGuid,
+            CharacterMaximumLength,
+            CharacterOctetLength,
+            NumericPrecision,
+            NumericScale,
+            DatetimePrecision,
+            CharacterSetCatalog,
+            CharacterSetSchema,
+            CharacterSetName,
+            CollationCatalog,
+            CollationSchema,
+            CollationName,
+            DomainCatalog,
+            DomainSchema,
+            DomainName,
+            Description
         }
     }
 }

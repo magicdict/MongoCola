@@ -1,40 +1,40 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.Logic;
+using Common;
 using MongoGUICtl;
 using MongoUtility.Core;
+using ResourceLib.Method;
 using ResourceLib.Properties;
-using ResourceLib;
 
 namespace MongoGUIView
 {
-    public partial class ctlServerStatus : UserControl
+    public partial class CtlServerStatus : UserControl
     {
         /// <summary>
         /// </summary>
-        private readonly FillMongoDB.lvwColumnSorter _lvwCollectionStatusColumnSorter =
-            new FillMongoDB.lvwColumnSorter();
+        private readonly FillMongoDb.LvwColumnSorter _lvwCollectionStatusColumnSorter =
+            new FillMongoDb.LvwColumnSorter();
 
         /// <summary>
         /// </summary>
-        private readonly FillMongoDB.lvwColumnSorter _lvwDBStatusColumnSorter = new FillMongoDB.lvwColumnSorter();
+        private readonly FillMongoDb.LvwColumnSorter _lvwDbStatusColumnSorter = new FillMongoDb.LvwColumnSorter();
 
         /// <summary>
         ///     常规刷新
         /// </summary>
-        private readonly Timer refreshTimer = new Timer();
+        private readonly Timer _refreshTimer = new Timer();
 
         /// <summary>
         ///     短时间刷新
         /// </summary>
-        private readonly Timer ShortTimer = new Timer();
+        private readonly Timer _shortTimer = new Timer();
 
         /// <summary>
         ///     Auto Refresh Flag
         /// </summary>
-        private bool AutoRefresh = true;
+        private bool _autoRefresh = true;
 
-        public ctlServerStatus()
+        public CtlServerStatus()
         {
             InitializeComponent();
         }
@@ -47,28 +47,28 @@ namespace MongoGUIView
         /// <summary>
         ///     刷新状态，不包含当前操作状态
         /// </summary>
-        /// <param name="IsAuto">是否自动刷新</param>
-        public void RefreshStatus(bool IsAuto)
+        /// <param name="isAuto">是否自动刷新</param>
+        public void RefreshStatus(bool isAuto)
         {
             try
             {
-                if (!IsAuto)
+                if (!isAuto)
                 {
                     //手动刷新
                     //Lagacy
-                    FillMongoDB.FillSrvStatusToList(trvSvrStatus, RuntimeMongoDBContext._mongoConnSvrLst);
+                    FillMongoDb.FillSrvStatusToList(trvSvrStatus, RuntimeMongoDbContext.MongoConnSvrLst);
                     //FillMongoDB.FillClientStatusToList(trvSvrStatus, RuntimeMongoDBContext._mongoConnClientLst);
                 }
-                FillMongoDB.FillDataBaseStatusToList(lstDBStatus, RuntimeMongoDBContext._mongoConnSvrLst);
-                FillMongoDB.FillCollectionStatusToList(lstCollectionStatus, RuntimeMongoDBContext._mongoConnSvrLst);
+                FillMongoDb.FillDataBaseStatusToList(lstDBStatus, RuntimeMongoDbContext.MongoConnSvrLst);
+                FillMongoDb.FillCollectionStatusToList(lstCollectionStatus, RuntimeMongoDbContext.MongoConnSvrLst);
             }
             catch (Exception ex)
             {
-                refreshTimer.Stop();
-                ShortTimer.Stop();
-                btnSwitch.Text = !GUIConfig.IsUseDefaultLanguage
-                    ? GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Resume_AutoRefresh)
+                _refreshTimer.Stop();
+                _shortTimer.Stop();
+                btnSwitch.Text = !GuiConfig.IsUseDefaultLanguage
+                    ? GuiConfig.MStringResource.GetText(
+                        TextType.CollectionResumeAutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
@@ -90,11 +90,11 @@ namespace MongoGUIView
             }
             catch (Exception ex)
             {
-                refreshTimer.Stop();
-                ShortTimer.Stop();
-                btnSwitch.Text = !GUIConfig.IsUseDefaultLanguage
-                    ? GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Resume_AutoRefresh)
+                _refreshTimer.Stop();
+                _shortTimer.Stop();
+                btnSwitch.Text = !GuiConfig.IsUseDefaultLanguage
+                    ? GuiConfig.MStringResource.GetText(
+                        TextType.CollectionResumeAutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
@@ -111,20 +111,20 @@ namespace MongoGUIView
         private void ctlServerStatus_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
-            GUIConfig.Translateform(this.Controls);
+            GuiConfig.Translateform(Controls);
             SetEnable(false);
-            AutoRefresh = false;
+            _autoRefresh = false;
             // 用新的排序方法对ListView排序
-            lstDBStatus.ListViewItemSorter = _lvwDBStatusColumnSorter;
+            lstDBStatus.ListViewItemSorter = _lvwDbStatusColumnSorter;
             lstDBStatus.ColumnClick += lstDBStatus_ColumnClick;
             lstCollectionStatus.ListViewItemSorter = _lvwCollectionStatusColumnSorter;
             lstCollectionStatus.ColumnClick += lstCollectionStatus_ColumnClick;
         }
 
-        public void SetEnable(bool Enable)
+        public void SetEnable(bool enable)
         {
-            refreshTimer.Enabled = Enable;
-            ShortTimer.Enabled = Enable;
+            _refreshTimer.Enabled = enable;
+            _shortTimer.Enabled = enable;
         }
 
         //Collection Status用排序器
@@ -136,7 +136,7 @@ namespace MongoGUIView
                 case 0:
                 case 6:
                     _lvwCollectionStatusColumnSorter.CompareMethod =
-                        FillMongoDB.lvwColumnSorter.SortMethod.StringCompare;
+                        FillMongoDb.LvwColumnSorter.SortMethod.StringCompare;
                     break;
                 case 2:
                 case 3:
@@ -144,11 +144,11 @@ namespace MongoGUIView
                 case 5:
                 case 8:
                     _lvwCollectionStatusColumnSorter.CompareMethod =
-                        FillMongoDB.lvwColumnSorter.SortMethod.SizeCompare;
+                        FillMongoDb.LvwColumnSorter.SortMethod.SizeCompare;
                     break;
                 default:
                     _lvwCollectionStatusColumnSorter.CompareMethod =
-                        FillMongoDB.lvwColumnSorter.SortMethod.NumberCompare;
+                        FillMongoDb.LvwColumnSorter.SortMethod.NumberCompare;
                     break;
             }
             // 检查点击的列是不是现在的排序列.
@@ -175,32 +175,32 @@ namespace MongoGUIView
             switch (e.Column)
             {
                 case 0:
-                    _lvwDBStatusColumnSorter.CompareMethod = FillMongoDB.lvwColumnSorter.SortMethod.StringCompare;
+                    _lvwDbStatusColumnSorter.CompareMethod = FillMongoDb.LvwColumnSorter.SortMethod.StringCompare;
                     break;
                 case 2:
                 case 3:
                 case 5:
                 case 7:
-                    _lvwDBStatusColumnSorter.CompareMethod = FillMongoDB.lvwColumnSorter.SortMethod.SizeCompare;
+                    _lvwDbStatusColumnSorter.CompareMethod = FillMongoDb.LvwColumnSorter.SortMethod.SizeCompare;
                     break;
                 default:
-                    _lvwDBStatusColumnSorter.CompareMethod = FillMongoDB.lvwColumnSorter.SortMethod.NumberCompare;
+                    _lvwDbStatusColumnSorter.CompareMethod = FillMongoDb.LvwColumnSorter.SortMethod.NumberCompare;
                     break;
             }
 
             // 检查点击的列是不是现在的排序列.
-            if (e.Column == _lvwDBStatusColumnSorter.SortColumn)
+            if (e.Column == _lvwDbStatusColumnSorter.SortColumn)
             {
                 // 重新设置此列的排序方法.
-                _lvwDBStatusColumnSorter.Order = _lvwDBStatusColumnSorter.Order == SortOrder.Ascending
+                _lvwDbStatusColumnSorter.Order = _lvwDbStatusColumnSorter.Order == SortOrder.Ascending
                     ? SortOrder.Descending
                     : SortOrder.Ascending;
             }
             else
             {
                 // 设置排序列，默认为正向排序
-                _lvwDBStatusColumnSorter.SortColumn = e.Column;
-                _lvwDBStatusColumnSorter.Order = SortOrder.Ascending;
+                _lvwDbStatusColumnSorter.SortColumn = e.Column;
+                _lvwDbStatusColumnSorter.Order = SortOrder.Ascending;
             }
             lstDBStatus.Sort();
         }
@@ -223,24 +223,24 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            AutoRefresh = !AutoRefresh;
-            if (AutoRefresh)
+            _autoRefresh = !_autoRefresh;
+            if (_autoRefresh)
             {
-                refreshTimer.Start();
-                ShortTimer.Start();
-                btnSwitch.Text = !GUIConfig.IsUseDefaultLanguage
-                    ? GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Stop_AutoRefresh)
+                _refreshTimer.Start();
+                _shortTimer.Start();
+                btnSwitch.Text = !GuiConfig.IsUseDefaultLanguage
+                    ? GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStopAutoRefresh)
                     : "Stop Auto Refresh";
                 btnSwitch.Image = Resources.Pause;
             }
             else
             {
-                refreshTimer.Stop();
-                ShortTimer.Stop();
-                btnSwitch.Text = !GUIConfig.IsUseDefaultLanguage
-                    ? GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Resume_AutoRefresh)
+                _refreshTimer.Stop();
+                _shortTimer.Stop();
+                btnSwitch.Text = !GuiConfig.IsUseDefaultLanguage
+                    ? GuiConfig.MStringResource.GetText(
+                        TextType.CollectionResumeAutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
             }
@@ -248,8 +248,8 @@ namespace MongoGUIView
 
         public void ResetCtl()
         {
-            refreshTimer.Enabled = true;
-            ShortTimer.Enabled = true;
+            _refreshTimer.Enabled = true;
+            _shortTimer.Enabled = true;
             btnSwitch.Enabled = true;
             RefreshStripButton.Enabled = true;
             btnSwitch.Image = Resources.Run;
@@ -261,8 +261,8 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void CloseStripButton_Click(object sender, EventArgs e)
         {
-            refreshTimer.Stop();
-            ShortTimer.Stop();
+            _refreshTimer.Stop();
+            _shortTimer.Stop();
             if (CloseTab != null)
             {
                 CloseTab(sender, e);

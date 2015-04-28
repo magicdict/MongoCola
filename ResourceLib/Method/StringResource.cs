@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
 
-namespace ResourceLib
+namespace ResourceLib.Method
 {
     /// <summary>
     ///     String Resource
@@ -25,12 +25,12 @@ namespace ResourceLib
         /// <summary>
         ///     字符资源
         /// </summary>
-        /// <param name="LanguageFileName">当前语言文件</param>
-        public void InitLanguage(string LanguageFileName)
+        /// <param name="languageFileName">当前语言文件</param>
+        public void InitLanguage(string languageFileName)
         {
             var tag = string.Empty;
             var text = string.Empty;
-            var reader = new XmlTextReader(LanguageFileName);
+            var reader = new XmlTextReader(languageFileName);
             _stringDic.Clear();
             while (reader.Read())
             {

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Common.Logic
+namespace ResourceLib.UI
 {
     public static class NumberTextBox
     {

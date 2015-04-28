@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.UI;
+using Common;
 using MongoUtility.Basic;
 using MongoUtility.Extend;
-using ResourceLib;
-using Common.Logic;
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoGUICtl
 {
-    public partial class ctlTextMgr : UserControl
+    public partial class CtlTextMgr : UserControl
     {
-        public ctlTextMgr()
+        public CtlTextMgr()
         {
             InitializeComponent();
-            Load += (x, y) => init();
+            Load += (x, y) => Init();
         }
 
         /// <summary>
@@ -34,23 +34,23 @@ namespace MongoGUICtl
             get { return txtContext.Text; }
         }
 
-        public void init()
+        public void Init()
         {
             if (!DesignMode)
             {
-                foreach (var item in MongoUtility.Basic.MongoUtility.GetJsNameList())
+                foreach (var item in MongoHelper.GetJsNameList())
                 {
                     cmbJsList.Items.Add(item);
                 }
                 cmbJsList.SelectedIndexChanged +=
                     (x, y) => { txtContext.Text = OperationHelper.LoadJavascript(cmbJsList.Text, null); };
-                if (!GUIConfig.IsUseDefaultLanguage)
+                if (!GuiConfig.IsUseDefaultLanguage)
                 {
-                    cmdSave.Text = GUIConfig.MStringResource.GetText(TextType.Common_Save);
+                    cmdSave.Text = GuiConfig.MStringResource.GetText(TextType.CommonSave);
                     cmdSaveLocal.Text =
-                        GUIConfig.MStringResource.GetText(TextType.Common_Save_Local);
+                        GuiConfig.MStringResource.GetText(TextType.CommonSaveLocal);
                     cmdLoadLocal.Text =
-                        GUIConfig.MStringResource.GetText(TextType.Query_Action_Load);
+                        GuiConfig.MStringResource.GetText(TextType.QueryActionLoad);
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdSaveLocal_Click(object sender, EventArgs e)
         {
-            Common.Logic.Utility.SaveJavascriptFile(txtContext.Text);
+            Utility.SaveJavascriptFile(txtContext.Text);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdLoadLocal_Click(object sender, EventArgs e)
         {
-            txtContext.Text = Common.Logic.Utility.LoadFile();
+            txtContext.Text = Utility.LoadFile();
         }
     }
 }

@@ -1,43 +1,42 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-
-
+using MongoCola.Config;
 using MongoDB.Driver;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoCola
 {
-    public partial class frmOption : Form
+    public partial class FrmOption : Form
     {
-        public frmOption()
+        public FrmOption()
         {
             InitializeComponent();
         }
 
         private void frmOption_Load(object sender, EventArgs e)
         {
-            ctlFilePickerMongoBinPath.SelectedPathOrFileName = SystemConfig.config.MongoBinPath;
+            ctlFilePickerMongoBinPath.SelectedPathOrFileName = SystemConfig.Config.MongoBinPath;
             //this.numLimitCnt.Value = SystemConfig.config.LimitCnt;
-            numRefreshForStatus.Value = SystemConfig.config.RefreshStatusTimer;
+            numRefreshForStatus.Value = SystemConfig.Config.RefreshStatusTimer;
             cmbLanguage.Items.Add("English");
             if (Directory.Exists("Language"))
             {
-                foreach (var FileName in Directory.GetFiles("Language"))
+                foreach (var fileName in Directory.GetFiles("Language"))
                 {
-                    cmbLanguage.Items.Add(new FileInfo(FileName).Name.Substring(0,
-                        new FileInfo(FileName).Name.Length - 4));
+                    cmbLanguage.Items.Add(new FileInfo(fileName).Name.Substring(0,
+                        new FileInfo(fileName).Name.Length - 4));
                 }
             }
 
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
                 if (
                     File.Exists("Language" + Path.DirectorySeparatorChar +
-                                SystemConfig.config.LanguageFileName))
+                                SystemConfig.Config.LanguageFileName))
                 {
-                    cmbLanguage.Text = SystemConfig.config.LanguageFileName.Substring(0,
-                        SystemConfig.config.LanguageFileName.Length - 4);
+                    cmbLanguage.Text = SystemConfig.Config.LanguageFileName.Substring(0,
+                        SystemConfig.Config.LanguageFileName.Length - 4);
                 }
                 else
                 {
@@ -77,28 +76,28 @@ namespace MongoCola
 
             //ReadPreference和WriteConern不是Connection的属性,
             //而是读写策略
-            if (SystemConfig.config.ReadPreference != string.Empty)
+            if (SystemConfig.Config.ReadPreference != string.Empty)
             {
-                cmbReadPreference.Text = SystemConfig.config.ReadPreference;
+                cmbReadPreference.Text = SystemConfig.Config.ReadPreference;
             }
-            if (SystemConfig.config.WriteConcern != string.Empty)
+            if (SystemConfig.Config.WriteConcern != string.Empty)
             {
-                cmbWriteConcern.Text = SystemConfig.config.WriteConcern;
+                cmbWriteConcern.Text = SystemConfig.Config.WriteConcern;
             }
-            NumWTimeoutMS.Value = (decimal) SystemConfig.config.wtimeoutMS;
-            NumWaitQueueSize.Value = SystemConfig.config.WaitQueueSize;
+            NumWTimeoutMS.Value = (decimal) SystemConfig.Config.WtimeoutMs;
+            NumWaitQueueSize.Value = SystemConfig.Config.WaitQueueSize;
 
 
-            if (GUIConfig.IsUseDefaultLanguage) return;
+            if (GuiConfig.IsUseDefaultLanguage) return;
             //国际化
-            Text = GUIConfig.GetText(TextType.Option_Title);
-            cmdOK.Text = GUIConfig.GetText(TextType.Common_OK);
-            cmdCancel.Text = GUIConfig.GetText(TextType.Common_Cancel);
+            Text = GuiConfig.GetText(TextType.OptionTitle);
+            cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
+            cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             ctlFilePickerMongoBinPath.Title =
-                GUIConfig.GetText(TextType.Option_BinPath);
-            lblLanguage.Text = GUIConfig.GetText(TextType.Option_Language);
+                GuiConfig.GetText(TextType.OptionBinPath);
+            lblLanguage.Text = GuiConfig.GetText(TextType.OptionLanguage);
             lblRefreshIntervalForStatus.Text =
-                GUIConfig.GetText(TextType.Option_RefreshInterval);
+                GuiConfig.GetText(TextType.OptionRefreshInterval);
         }
 
         /// <summary>
@@ -108,15 +107,15 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            SystemConfig.config.wtimeoutMS = (double) NumWTimeoutMS.Value;
-            SystemConfig.config.WaitQueueSize = (int) NumWaitQueueSize.Value;
-            SystemConfig.config.WriteConcern = cmbWriteConcern.Text;
-            SystemConfig.config.ReadPreference = cmbReadPreference.Text;
+            SystemConfig.Config.WtimeoutMs = (double) NumWTimeoutMS.Value;
+            SystemConfig.Config.WaitQueueSize = (int) NumWaitQueueSize.Value;
+            SystemConfig.Config.WriteConcern = cmbWriteConcern.Text;
+            SystemConfig.Config.ReadPreference = cmbReadPreference.Text;
 
-            SystemConfig.config.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPathOrFileName;
+            SystemConfig.Config.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPathOrFileName;
 
-            SystemConfig.config.RefreshStatusTimer = (int) numRefreshForStatus.Value;
-            SystemConfig.config.LanguageFileName = cmbLanguage.Text + ".xml";
+            SystemConfig.Config.RefreshStatusTimer = (int) numRefreshForStatus.Value;
+            SystemConfig.Config.LanguageFileName = cmbLanguage.Text + ".xml";
 
             ConfigHelper.SaveToConfigFile();
             Close();

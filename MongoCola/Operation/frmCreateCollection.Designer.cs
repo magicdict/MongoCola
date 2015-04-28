@@ -1,11 +1,14 @@
-﻿namespace MongoCola.Operation
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoCola.Operation
 {
-    partial class frmCreateCollection
+    partial class FrmCreateCollection
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -201,7 +204,7 @@
             this.Controls.Add(this.grpAdvanced);
             this.Controls.Add(this.chkAdvance);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "frmCreateCollection";
+            this.Name = "FrmCreateCollection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create Collection";
             this.Load += new System.EventHandler(this.frmCreateCollection_Load);
@@ -216,18 +219,18 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.TextBox txtCollectionName;
-        private System.Windows.Forms.Label lblCollectionName;
-        private System.Windows.Forms.CheckBox chkIsCapped;
-        private System.Windows.Forms.CheckBox chkIsAutoIndexId;
-        private System.Windows.Forms.NumericUpDown numMaxSize;
-        private System.Windows.Forms.NumericUpDown numMaxDocument;
-        private System.Windows.Forms.Label lblMaxSize;
-        private System.Windows.Forms.Label lblMaxDocument;
-        private System.Windows.Forms.GroupBox grpAdvanced;
-        private System.Windows.Forms.CheckBox chkAdvance;
-        private System.Windows.Forms.LinkLabel lnkCappedCollections;
+        private Button cmdOK;
+        private Button cmdCancel;
+        private TextBox txtCollectionName;
+        private Label lblCollectionName;
+        private CheckBox chkIsCapped;
+        private CheckBox chkIsAutoIndexId;
+        private NumericUpDown numMaxSize;
+        private NumericUpDown numMaxDocument;
+        private Label lblMaxSize;
+        private Label lblMaxDocument;
+        private GroupBox grpAdvanced;
+        private CheckBox chkAdvance;
+        private LinkLabel lnkCappedCollections;
     }
 }

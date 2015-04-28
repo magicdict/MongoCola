@@ -7,17 +7,17 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using MongoUtility.EventArgs;
-using PlugInPackage;
 using System;
 using System.Windows.Forms;
+using MongoUtility.EventArgs;
+using PlugInPackage;
 
 namespace MongoCola
 {
     /// <summary>
     ///     Description of frmMain_Helper.
     /// </summary>
-    public partial class frmMain : Form
+    public partial class FrmMain : Form
     {
         /// <summary>
         ///     禁止所有操作
@@ -83,9 +83,9 @@ namespace MongoCola
         /// <summary>
         ///     CommandLog
         /// </summary>
-        /// <param name="Sender"></param>
+        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CommandLog(object Sender, RunCommandEventArgs e)
+        private void CommandLog(object sender, RunCommandEventArgs e)
         {
             ctlShellCommandEditor.AppendLine("========================================================");
             ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  Response:" + e.Result.Response);

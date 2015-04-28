@@ -1,11 +1,14 @@
-﻿namespace MongoCola.Connection
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoCola.Connection
 {
-    partial class frmConnect
+    partial class FrmConnect
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -28,7 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConnect));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConnect));
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.lstConnection = new System.Windows.Forms.ListView();
@@ -170,7 +173,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmConnect";
+            this.Name = "FrmConnect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "Connect_Title";
             this.Text = "Server Connection";
@@ -183,17 +186,17 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button cmdClose;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.ListView lstConnection;
-        private System.Windows.Forms.ColumnHeader colName;
-        private System.Windows.Forms.ColumnHeader colHost;
-        private System.Windows.Forms.ColumnHeader colPort;
-        private System.Windows.Forms.ColumnHeader colUser;
-        private System.Windows.Forms.ColumnHeader colReplsetMember;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton cmdAddCon;
-        private System.Windows.Forms.ToolStripButton cmdModifyCon;
-        private System.Windows.Forms.ToolStripButton cmdDelCon;
+        private Button cmdClose;
+        private Button cmdOK;
+        private ListView lstConnection;
+        private ColumnHeader colName;
+        private ColumnHeader colHost;
+        private ColumnHeader colPort;
+        private ColumnHeader colUser;
+        private ColumnHeader colReplsetMember;
+        private ToolStrip toolStrip1;
+        private ToolStripButton cmdAddCon;
+        private ToolStripButton cmdModifyCon;
+        private ToolStripButton cmdDelCon;
     }
 }

@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoCola
 {
-    partial class frmShardingConfig
+    partial class FrmShardingConfig
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -74,8 +76,8 @@ namespace MongoCola
             this.txtShardName = new System.Windows.Forms.TextBox();
             this.lblTagShard = new System.Windows.Forms.Label();
             this.lblShardName = new System.Windows.Forms.Label();
-            this.ctlBsonValueShardKeyTo = new MongoGUICtl.ctlBsonValue();
-            this.ctlBsonValueShardKeyFrom = new MongoGUICtl.ctlBsonValue();
+            this.ctlBsonValueShardKeyTo = new MongoGUICtl.CtlBsonValue();
+            this.ctlBsonValueShardKeyFrom = new MongoGUICtl.CtlBsonValue();
             this.tabRemoveSharding = new System.Windows.Forms.TabPage();
             this.lstSharding = new System.Windows.Forms.ListBox();
             this.cmdRemoveSharding = new System.Windows.Forms.Button();
@@ -641,7 +643,7 @@ namespace MongoCola
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmShardingConfig";
+            this.Name = "FrmShardingConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "ShardingConfig_Title";
             this.Text = "Sharding Config";
@@ -664,55 +666,55 @@ namespace MongoCola
 
         #endregion
 
-        private System.Windows.Forms.Button cmdAddSharding;
-        private System.Windows.Forms.Label lblIndexName;
-        private System.Windows.Forms.ComboBox cmbIndexList;
-        private System.Windows.Forms.Button cmdEnableCollectionSharding;
-        private System.Windows.Forms.Button cmdEnableDBSharding;
-        private System.Windows.Forms.ComboBox cmbCollection;
-        private System.Windows.Forms.ComboBox cmbDataBase;
-        private System.Windows.Forms.Label lblCollection;
-        private System.Windows.Forms.Label lblDBName;
-        private System.Windows.Forms.TabControl tabSharding;
-        private System.Windows.Forms.TabPage tabAddSharding;
-        private System.Windows.Forms.TabPage tabShardingConfig;
-        private System.Windows.Forms.NumericUpDown NumReplPort;
-        private System.Windows.Forms.Label lblReplPort;
-        private System.Windows.Forms.TextBox txtReplHost;
-        private System.Windows.Forms.Label lblReplHost;
-        private System.Windows.Forms.Label lblMainReplsetName;
-        private System.Windows.Forms.TextBox txtReplsetName;
-        private System.Windows.Forms.ListBox lstHost;
-        private System.Windows.Forms.Button cmdAddHost;
-        private System.Windows.Forms.Button cmdRemoveHost;
-        private System.Windows.Forms.Button cmdClose;
-        private System.Windows.Forms.GroupBox grpAdvanced;
-        private System.Windows.Forms.CheckBox chkAdvance;
-        private System.Windows.Forms.NumericUpDown NumMaxSize;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label lblShardingName;
-        private System.Windows.Forms.Label lblMaxSize;
-        private System.Windows.Forms.TabPage tabRemoveSharding;
-        private System.Windows.Forms.ListBox lstSharding;
-        private System.Windows.Forms.Button cmdRemoveSharding;
-        private System.Windows.Forms.TabPage tabAddShardTag;
-        private System.Windows.Forms.Label lblTagShard;
-        private System.Windows.Forms.Label lblShardName;
-        private System.Windows.Forms.TextBox txtTagShard;
-        private System.Windows.Forms.TextBox txtShardName;
-        private System.Windows.Forms.Button btnAddShardTag;
-        private System.Windows.Forms.Label lblExistShardTag;
-        private System.Windows.Forms.ListView lstExistShardTag;
-        private System.Windows.Forms.Label lblShardTag;
-        private System.Windows.Forms.ComboBox cmbTagList;
-        private ctlBsonValue ctlBsonValueShardKeyTo;
-        private ctlBsonValue ctlBsonValueShardKeyFrom;
-        private System.Windows.Forms.Label lblShardKeyTo;
-        private System.Windows.Forms.Label lblShardKeyFrom;
-        private System.Windows.Forms.Button cmdaddTagRange;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbShardKeyDB;
-        private System.Windows.Forms.ComboBox cmbShardKeyCol;
+        private Button cmdAddSharding;
+        private Label lblIndexName;
+        private ComboBox cmbIndexList;
+        private Button cmdEnableCollectionSharding;
+        private Button cmdEnableDBSharding;
+        private ComboBox cmbCollection;
+        private ComboBox cmbDataBase;
+        private Label lblCollection;
+        private Label lblDBName;
+        private TabControl tabSharding;
+        private TabPage tabAddSharding;
+        private TabPage tabShardingConfig;
+        private NumericUpDown NumReplPort;
+        private Label lblReplPort;
+        private TextBox txtReplHost;
+        private Label lblReplHost;
+        private Label lblMainReplsetName;
+        private TextBox txtReplsetName;
+        private ListBox lstHost;
+        private Button cmdAddHost;
+        private Button cmdRemoveHost;
+        private Button cmdClose;
+        private GroupBox grpAdvanced;
+        private CheckBox chkAdvance;
+        private NumericUpDown NumMaxSize;
+        private TextBox txtName;
+        private Label lblShardingName;
+        private Label lblMaxSize;
+        private TabPage tabRemoveSharding;
+        private ListBox lstSharding;
+        private Button cmdRemoveSharding;
+        private TabPage tabAddShardTag;
+        private Label lblTagShard;
+        private Label lblShardName;
+        private TextBox txtTagShard;
+        private TextBox txtShardName;
+        private Button btnAddShardTag;
+        private Label lblExistShardTag;
+        private ListView lstExistShardTag;
+        private Label lblShardTag;
+        private ComboBox cmbTagList;
+        private CtlBsonValue ctlBsonValueShardKeyTo;
+        private CtlBsonValue ctlBsonValueShardKeyFrom;
+        private Label lblShardKeyTo;
+        private Label lblShardKeyFrom;
+        private Button cmdaddTagRange;
+        private Label label1;
+        private Label label2;
+        private ComboBox cmbShardKeyDB;
+        private ComboBox cmbShardKeyCol;
     }
 }

@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace MongoGUIView
 {
-    partial class ctlGFSView
+    partial class CtlGfsView
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -30,7 +31,7 @@ namespace MongoGUIView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlGFSView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlGfsView));
             this.cmbListViewStyle = new System.Windows.Forms.ToolStripComboBox();
             this.OpenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,7 +195,7 @@ namespace MongoGUIView
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.IsDocumentView = false;
-            this.Name = "ctlGFSView";
+            this.Name = "CtlGfsView";
             this.Load += new System.EventHandler(this.ctlGFSView_Load);
             this.Controls.SetChildIndex(this.toolStripContainer1, 0);
             this.tabDataShower.ResumeLayout(false);

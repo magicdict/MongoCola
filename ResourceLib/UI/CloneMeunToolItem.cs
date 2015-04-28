@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace Common.Logic
+namespace ResourceLib.UI
 {
     public static class CloneMeunToolItem
     {
@@ -36,19 +36,19 @@ namespace Common.Logic
             //!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
             //感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             //坑爹啊。。。。。。。。
-            var _List = GetObjectEventList(orgMenuItem, "EventClick", typeof (ToolStripItem));
+            var list = GetObjectEventList(orgMenuItem, "EventClick", typeof (ToolStripItem));
 //            if (!SystemConfig.MonoMode)
 //            {
             //悲催MONO不支持
-            if (_List != null && _List[0] != null)
+            if (list != null && list[0] != null)
             {
                 try
                 {
-                    cloneMenuItem.Click += (x, y) => _List[0].DynamicInvoke(x, y);
+                    cloneMenuItem.Click += (x, y) => list[0].DynamicInvoke(x, y);
                 }
                 catch (Exception ex)
                 {
-                    Utility.ExceptionDeal(ex, cloneMenuItem.Text);
+                    //Utility.ExceptionDeal(ex, cloneMenuItem.Text);
                 }
             }
 //            }
@@ -75,19 +75,19 @@ namespace Common.Logic
             //!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
             //感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             //坑爹啊。。。。。。。。
-            var _List = GetObjectEventList(orgMenuItem, "EventClick", typeof (ToolStripItem));
+            var list = GetObjectEventList(orgMenuItem, "EventClick", typeof (ToolStripItem));
 //            if (!SystemConfig.MonoMode)
 //            {
             //悲催MONO不支持
-            if (_List != null && _List[0] != null)
+            if (list != null && list[0] != null)
             {
                 try
                 {
-                    cloneButton.Click += (x, y) => _List[0].DynamicInvoke(x, y);
+                    cloneButton.Click += (x, y) => list[0].DynamicInvoke(x, y);
                 }
                 catch (Exception ex)
                 {
-                    Utility.ExceptionDeal(ex);
+                    //Utility.ExceptionDeal(ex);
                 }
             }
             //          }

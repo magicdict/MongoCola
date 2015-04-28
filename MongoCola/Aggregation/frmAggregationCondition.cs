@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.Logic;
 using MongoDB.Bson;
+using ResourceLib.UI;
 
 namespace MongoCola.Aggregation
 {
-    public partial class frmAggregationCondition : Form
+    public partial class FrmAggregationCondition : Form
     {
         /// <summary>
         ///     聚合数组
         /// </summary>
         public BsonArray Aggregation = new BsonArray();
 
-        public frmAggregationCondition()
+        public FrmAggregationCondition()
         {
             InitializeComponent();
             txtLimit.Enabled = chkLimit.Checked;
@@ -65,7 +65,7 @@ namespace MongoCola.Aggregation
                 Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
             }
             //Group
-            var groupDetail = GroupFieldPicker.getGroupID();
+            var groupDetail = GroupFieldPicker.GetGroupId();
             if (groupDetail.GetElement(0).Value.AsBsonDocument.ElementCount != 0)
             {
                 foreach (var item in groupPanelCreator.GetGroup())

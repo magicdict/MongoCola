@@ -1,15 +1,14 @@
-﻿using System;
-using Common.Logic;
+﻿using Common;
 using MongoUtility.Core;
 
-namespace MongoCola
+namespace MongoCola.Config
 {
     public static class ConfigHelper
     {
         /// <summary>
         ///     配置文件名称
         /// </summary>
-        public static string _configFilename = "config.xml";
+        public static string ConfigFilename = "config.xml";
 
         /// <summary>
         ///     添加链接
@@ -18,21 +17,21 @@ namespace MongoCola
         /// <returns></returns>
         public static bool AddConnection(MongoConnectionConfig con)
         {
-            SystemConfig.config.ConnectionList.Add(con.ConnectionName, con);
+            SystemConfig.Config.ConnectionList.Add(con.ConnectionName, con);
             return true;
         }
 
         /// <summary>
         ///     通过Host信息获得连接名称
         /// </summary>
-        /// <param name="Addr"></param>
+        /// <param name="addr"></param>
         /// <param name="port"></param>
         /// <returns></returns>
-        public static string GetConnectionNameByHost(string Addr, int port)
+        public static string GetConnectionNameByHost(string addr, int port)
         {
-            foreach (var item in SystemConfig.config.ConnectionList.Values)
+            foreach (var item in SystemConfig.Config.ConnectionList.Values)
             {
-                if (item.Host == Addr && item.Port == port)
+                if (item.Host == addr && item.Port == port)
                 {
                     return item.ConnectionName;
                 }
@@ -47,7 +46,7 @@ namespace MongoCola
         /// </summary>
         public static void SaveToConfigFile()
         {
-            SaveToConfigFile(_configFilename);
+            SaveToConfigFile(ConfigFilename);
         }
 
         /// <summary>
@@ -56,12 +55,12 @@ namespace MongoCola
         /// <param name="configFileName"></param>
         public static void SaveToConfigFile(string configFileName)
         {
-            SystemConfig.config.SerializableConnectionList.Clear();
-            foreach (var item in SystemConfig.config.ConnectionList.Values)
+            SystemConfig.Config.SerializableConnectionList.Clear();
+            foreach (var item in SystemConfig.Config.ConnectionList.Values)
             {
-                SystemConfig.config.SerializableConnectionList.Add(item);
+                SystemConfig.Config.SerializableConnectionList.Add(item);
             }
-            Utility.SaveObjAsXml(configFileName, SystemConfig.config);
+            Utility.SaveObjAsXml(configFileName, SystemConfig.Config);
         }
 
         /// <summary>
@@ -71,13 +70,13 @@ namespace MongoCola
         /// <returns></returns>
         public static void LoadFromConfigFile(string configFileName)
         {
-            SystemConfig.config = Utility.LoadObjFromXml<Config>(configFileName);
-            SystemConfig.config.ConnectionList.Clear();
-            foreach (var item in SystemConfig.config.SerializableConnectionList)
+            SystemConfig.Config = Utility.LoadObjFromXml<Config>(configFileName);
+            SystemConfig.Config.ConnectionList.Clear();
+            foreach (var item in SystemConfig.Config.SerializableConnectionList)
             {
-                SystemConfig.config.ConnectionList.Add(item.ConnectionName, item);
+                SystemConfig.Config.ConnectionList.Add(item.ConnectionName, item);
             }
-            _configFilename = configFileName;
+            ConfigFilename = configFileName;
         }
 
         #endregion

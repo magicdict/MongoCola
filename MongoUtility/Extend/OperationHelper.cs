@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
-using Common.Logic;
-
 
 namespace MongoUtility.Extend
 {
@@ -53,10 +52,10 @@ namespace MongoUtility.Extend
         /// <summary>
         ///     是否为系统数据集[无法删除]
         /// </summary>
-        /// <param name="mongoDBName"></param>
+        /// <param name="mongoDbName"></param>
         /// <param name="mongoColName"></param>
         /// <returns></returns>
-        public static bool IsSystemCollection(string mongoDBName, string mongoColName)
+        public static bool IsSystemCollection(string mongoDbName, string mongoColName)
         {
             //config数据库,默认为系统
             //local数据库,默认为系统
@@ -65,7 +64,7 @@ namespace MongoUtility.Extend
                 return true;
             if (mongoColName.StartsWith("fs."))
                 return true;
-            return IsSystemDataBase(mongoDBName);
+            return IsSystemDataBase(mongoDbName);
         }
 
         /// <summary>
@@ -73,20 +72,20 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="mongoDB"></param>
         /// <returns></returns>
-        public static bool IsSystemDataBase(string DataBaseName)
+        public static bool IsSystemDataBase(string dataBaseName)
         {
             //local数据库,默认为系统
-            if (DataBaseName == ConstMgr.DATABASE_NAME_LOCAL)
+            if (dataBaseName == ConstMgr.DatabaseNameLocal)
             {
                 return true;
             }
             //config数据库,默认为系统
-            if (DataBaseName == ConstMgr.DATABASE_NAME_CONFIG)
+            if (dataBaseName == ConstMgr.DatabaseNameConfig)
             {
                 return true;
             }
             //admin数据库,默认为系统
-            if (DataBaseName == ConstMgr.DATABASE_NAME_ADMIN)
+            if (dataBaseName == ConstMgr.DatabaseNameAdmin)
             {
                 return true;
             }
@@ -149,7 +148,7 @@ namespace MongoUtility.Extend
                         break;
                     case Oprcode.Repair:
                         //其实Repair的入口不在这个方法里面
-                        CommandHelper.ExecuteMongoDBCommand(CommandHelper.repairDatabase_Command,
+                        CommandHelper.ExecuteMongoDBCommand(CommandHelper.RepairDatabaseCommand,
                             mongoSvr.GetDatabase(dbName));
                         break;
                     default:
@@ -168,18 +167,18 @@ namespace MongoUtility.Extend
         /// <param name="option"></param>
         /// <returns></returns>
         public static bool CreateCollectionWithOptions(string strObjTag, string collectionName,
-            CollectionOptionsBuilder option, MongoDatabase mongoDB)
+            CollectionOptionsBuilder option, MongoDatabase mongoDb)
         {
             //不支持中文 JIRA ticket is created : SERVER-4412
             //SERVER-4412已经在2013/03解决了
             //collection names are limited to 121 bytes after converting to UTF-8. 
             var rtnResult = false;
             var strSvrPath = Utility.GetTagData(strObjTag);
-            if (mongoDB != null)
+            if (mongoDb != null)
             {
-                if (!mongoDB.CollectionExists(collectionName))
+                if (!mongoDb.CollectionExists(collectionName))
                 {
-                    mongoDB.CreateCollection(collectionName, option);
+                    mongoDb.CreateCollection(collectionName, option);
 //                    foreach (TreeNode item in treeNode.Nodes)
 //                    {
 //                        if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
@@ -200,18 +199,18 @@ namespace MongoUtility.Extend
         /// <param name="treeNode"></param>
         /// <param name="collectionName"></param>
         /// <returns></returns>
-        public static bool CreateCollection(string strObjTag, string collectionName, MongoDatabase mongoDB)
+        public static bool CreateCollection(string strObjTag, string collectionName, MongoDatabase mongoDb)
         {
             //不支持中文 JIRA ticket is created : SERVER-4412
             //SERVER-4412已经在2013/03解决了
             //collection names are limited to 121 bytes after converting to UTF-8. 
             var rtnResult = false;
             var strSvrPath = Utility.GetTagData(strObjTag);
-            if (mongoDB != null)
+            if (mongoDb != null)
             {
-                if (!mongoDB.CollectionExists(collectionName))
+                if (!mongoDb.CollectionExists(collectionName))
                 {
-                    mongoDB.CreateCollection(collectionName);
+                    mongoDb.CreateCollection(collectionName);
 //                    foreach (TreeNode item in treeNode.Nodes)
 //                    {
 //                        if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
@@ -229,42 +228,42 @@ namespace MongoUtility.Extend
         ///     获得Shard情报
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, string> GetShardInfo(MongoServer server, string Key)
+        public static Dictionary<string, string> GetShardInfo(MongoServer server, string key)
         {
-            var ShardInfo = new Dictionary<string, string>();
-            if (server.DatabaseExists(ConstMgr.DATABASE_NAME_CONFIG))
+            var shardInfo = new Dictionary<string, string>();
+            if (server.DatabaseExists(ConstMgr.DatabaseNameConfig))
             {
-                var configdb = server.GetDatabase(ConstMgr.DATABASE_NAME_CONFIG);
+                var configdb = server.GetDatabase(ConstMgr.DatabaseNameConfig);
                 if (configdb.CollectionExists("shards"))
                 {
                     foreach (var item in configdb.GetCollection("shards").FindAll().ToList())
                     {
-                        ShardInfo.Add(item.GetElement(ConstMgr.KEY_ID).Value.ToString(),
-                            item.GetElement(Key).Value.ToString());
+                        shardInfo.Add(item.GetElement(ConstMgr.KeyId).Value.ToString(),
+                            item.GetElement(key).Value.ToString());
                     }
                 }
             }
-            return ShardInfo;
+            return shardInfo;
         }
 
         /// <summary>
         ///     添加索引
         /// </summary>
-        /// <param name="AscendingKey"></param>
-        /// <param name="DescendingKey"></param>
+        /// <param name="ascendingKey"></param>
+        /// <param name="descendingKey"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public static bool CreateMongoIndex(string[] AscendingKey, string[] DescendingKey, string GeoSpatialKey,
-            IndexOptionsBuilder option, MongoCollection CurrentCollection)
+        public static bool CreateMongoIndex(string[] ascendingKey, string[] descendingKey, string geoSpatialKey,
+            IndexOptionsBuilder option, MongoCollection currentCollection)
         {
-            var mongoCol = CurrentCollection;
+            var mongoCol = currentCollection;
             var indexkeys = new IndexKeysBuilder();
-            if (!string.IsNullOrEmpty(GeoSpatialKey))
+            if (!string.IsNullOrEmpty(geoSpatialKey))
             {
-                indexkeys.GeoSpatial(GeoSpatialKey);
+                indexkeys.GeoSpatial(geoSpatialKey);
             }
-            indexkeys.Ascending(AscendingKey);
-            indexkeys.Descending(DescendingKey);
+            indexkeys.Ascending(ascendingKey);
+            indexkeys.Descending(descendingKey);
             mongoCol.CreateIndex(indexkeys, option);
             return true;
         }
@@ -276,7 +275,7 @@ namespace MongoUtility.Extend
         /// <returns></returns>
         public static bool DropMongoIndex(string indexName, MongoCollection mongoCol)
         {
-            if (indexName == ConstMgr.KEY_ID)
+            if (indexName == ConstMgr.KeyId)
             {
                 return false;
             }
@@ -302,7 +301,7 @@ namespace MongoUtility.Extend
                 {
                     result =
                         new CommandResult(
-                            jsCol.Insert(new BsonDocument().Add(ConstMgr.KEY_ID, jsName).Add("value", jsCode)).Response);
+                            jsCol.Insert(new BsonDocument().Add(ConstMgr.KeyId, jsName).Add("value", jsCode)).Response);
                 }
                 catch (MongoCommandException ex)
                 {
@@ -335,7 +334,7 @@ namespace MongoUtility.Extend
                     try
                     {
                         resultCommand = new CommandResult(
-                            jsCol.Insert(new BsonDocument().Add(ConstMgr.KEY_ID, jsName).Add("value", jsCode)).Response);
+                            jsCol.Insert(new BsonDocument().Add(ConstMgr.KeyId, jsName).Add("value", jsCode)).Response);
                     }
                     catch (MongoCommandException ex)
                     {
@@ -375,7 +374,7 @@ namespace MongoUtility.Extend
         {
             if (QueryHelper.IsExistByKey(jsCol, jsName))
             {
-                return jsCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KEY_ID, jsName)).GetValue("value").ToString();
+                return jsCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, jsName)).GetValue("value").ToString();
             }
             return string.Empty;
         }
@@ -395,7 +394,7 @@ namespace MongoUtility.Extend
                 {
                     result =
                         new CommandResult(
-                            mongoCol.Remove(Query.EQ(ConstMgr.KEY_ID, (BsonValue) strKey), WriteConcern.Acknowledged)
+                            mongoCol.Remove(Query.EQ(ConstMgr.KeyId, (BsonValue) strKey), WriteConcern.Acknowledged)
                                 .Response);
                 }
                 catch (MongoCommandException ex)
@@ -424,7 +423,7 @@ namespace MongoUtility.Extend
                 try
                 {
                     mongoCol.Insert(document, WriteConcern.Acknowledged);
-                    return document.GetElement(ConstMgr.KEY_ID).Value;
+                    return document.GetElement(ConstMgr.KeyId).Value;
                 }
                 catch (Exception)
                 {
@@ -432,7 +431,7 @@ namespace MongoUtility.Extend
                 }
             }
             mongoCol.Insert(document);
-            return document.GetElement(ConstMgr.KEY_ID).Value;
+            return document.GetElement(ConstMgr.KeyId).Value;
         }
     }
 }

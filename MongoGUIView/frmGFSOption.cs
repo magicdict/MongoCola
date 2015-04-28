@@ -2,18 +2,18 @@
 using System.IO;
 using System.Windows.Forms;
 using MongoUtility.Basic;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoGUIView
 {
-    public partial class frmGFSOption : Form
+    public partial class FrmGfsOption : Form
     {
         public Char DirectorySeparatorChar = Path.PathSeparator;
-        public GFS.enumGFSFileName filename;
-        public bool ignoreSubFolder;
-        public GFS.enumGFSAlready option;
+        public Gfs.EnumGfsFileName Filename;
+        public bool IgnoreSubFolder;
+        public Gfs.EnumGfsAlready Option;
 
-        public frmGFSOption()
+        public FrmGfsOption()
         {
             InitializeComponent();
         }
@@ -25,32 +25,32 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            filename = radFilename.Checked ? GFS.enumGFSFileName.Filename : GFS.enumGFSFileName.Path;
+            Filename = radFilename.Checked ? Gfs.EnumGfsFileName.Filename : Gfs.EnumGfsFileName.Path;
             if (radAddIt.Checked)
             {
-                option = GFS.enumGFSAlready.JustAddIt;
+                Option = Gfs.EnumGfsAlready.JustAddIt;
             }
             if (radOverwrite.Checked)
             {
-                option = GFS.enumGFSAlready.OverwriteIt;
+                Option = Gfs.EnumGfsAlready.OverwriteIt;
             }
             if (radRenameIt.Checked)
             {
-                option = GFS.enumGFSAlready.RenameIt;
+                Option = Gfs.EnumGfsAlready.RenameIt;
             }
             if (radSkipIt.Checked)
             {
-                option = GFS.enumGFSAlready.SkipIt;
+                Option = Gfs.EnumGfsAlready.SkipIt;
             }
             if (radStopIt.Checked)
             {
-                option = GFS.enumGFSAlready.Stop;
+                Option = Gfs.EnumGfsAlready.Stop;
             }
             if (txtSeperateChar.Text != string.Empty)
             {
                 DirectorySeparatorChar = txtSeperateChar.Text.ToCharArray()[0];
             }
-            ignoreSubFolder = chkIgnore.Checked;
+            IgnoreSubFolder = chkIgnore.Checked;
             Close();
         }
 
@@ -61,7 +61,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void frmGFSOption_Load(object sender, EventArgs e)
         {
-           GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
         }
     }
 }

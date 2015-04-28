@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
-using Common.Logic;
-using Common.UI;
+using Common;
 using MongoDB.Bson;
+using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoCola
 {
-    public partial class frmEvalJS : Form
+    public partial class FrmEvalJs : Form
     {
-        public frmEvalJS()
+        public FrmEvalJs()
         {
             InitializeComponent();
         }
@@ -24,12 +24,12 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmevalJS_Load(object sender, EventArgs e)
         {
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                Text = GUIConfig.GetText(TextType.EvalJS_Title);
-                ctlEval.Title = GUIConfig.GetText(TextType.EvalJS_Method);
-                lblParm.Text = GUIConfig.GetText(TextType.EvalJS_Parameter);
-                cmdEval.Text = GUIConfig.GetText(TextType.EvalJS_Run);
+                Text = GuiConfig.GetText(TextType.EvalJsTitle);
+                ctlEval.Title = GuiConfig.GetText(TextType.EvalJsMethod);
+                lblParm.Text = GuiConfig.GetText(TextType.EvalJsParameter);
+                cmdEval.Text = GuiConfig.GetText(TextType.EvalJsRun);
             }
             ctlEval.Context = "function eval(){" + Environment.NewLine;
             ctlEval.Context += "    var i = 0;" + Environment.NewLine;
@@ -45,7 +45,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdEval_Click(object sender, EventArgs e)
         {
-            var mongoDB = RuntimeMongoDBContext.GetCurrentDataBase();
+            var mongoDb = RuntimeMongoDbContext.GetCurrentDataBase();
             var js = new BsonJavaScript(ctlEval.Context);
             var Params = new List<Object>();
             if (txtParm.Text != string.Empty)
@@ -82,9 +82,9 @@ namespace MongoCola
             }
             try
             {
-                var result = mongoDB.Eval(js, Params.ToArray());
+                var result = mongoDb.Eval(js, Params.ToArray());
                 MyMessageBox.ShowMessage("Result", "Result",
-                    result.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings), true);
+                    result.ToJson(MongoHelper.JsonWriterSettings), true);
             }
             catch (Exception ex)
             {

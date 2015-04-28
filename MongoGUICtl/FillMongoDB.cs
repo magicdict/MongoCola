@@ -4,22 +4,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib;
-using Common.Logic;
-
+using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
-    public static class FillMongoDB
+    public static class FillMongoDb
     {
         #region "辅助方法和排序器"
 
-        public class lvwColumnSorter : IComparer
+        public class LvwColumnSorter : IComparer
         {
             /// <summary>
             ///     比较方式
@@ -34,16 +33,16 @@ namespace MongoGUICtl
             /// <summary>
             ///     声明CaseInsensitiveComparer类对象
             /// </summary>
-            private readonly CaseInsensitiveComparer ObjectCompare;
+            private readonly CaseInsensitiveComparer _objectCompare;
 
             /// <summary>
             ///     构造函数
             /// </summary>
-            public lvwColumnSorter()
+            public LvwColumnSorter()
             {
                 SortColumn = 0; // 默认按第一列排序            
                 Order = SortOrder.None; // 排序方式为不排序            
-                ObjectCompare = new CaseInsensitiveComparer(); // 初始化CaseInsensitiveComparer类对象
+                _objectCompare = new CaseInsensitiveComparer(); // 初始化CaseInsensitiveComparer类对象
                 CompareMethod = SortMethod.StringCompare; //是否使用Size比较
             }
 
@@ -69,7 +68,7 @@ namespace MongoGUICtl
                 switch (CompareMethod)
                 {
                     case SortMethod.StringCompare:
-                        rtnCompare = ObjectCompare.Compare(lstX.SubItems[SortColumn].Text,
+                        rtnCompare = _objectCompare.Compare(lstX.SubItems[SortColumn].Text,
                             lstY.SubItems[SortColumn].Text);
                         break;
                     case SortMethod.SizeCompare:
@@ -114,30 +113,30 @@ namespace MongoGUICtl
         /// <summary>
         /// </summary>
         /// <param name="trvSvrStatus"></param>
-        /// <param name="_mongoConnClientLst"></param>
-        public static void FillClientStatusToList(ctlTreeViewColumns trvSvrStatus,
-            Dictionary<string, MongoClient> _mongoConnClientLst)
+        /// <param name="mongoConnClientLst"></param>
+        public static void FillClientStatusToList(CtlTreeViewColumns trvSvrStatus,
+            Dictionary<string, MongoClient> mongoConnClientLst)
         {
-            var SrvDocList = new List<BsonDocument>();
-            foreach (var mongoSvrKey in _mongoConnClientLst.Keys)
+            var srvDocList = new List<BsonDocument>();
+            foreach (var mongoSvrKey in mongoConnClientLst.Keys)
             {
                 try
                 {
-                    var mongoClient = _mongoConnClientLst[mongoSvrKey];
-                    if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health)
+                    var mongoClient = mongoConnClientLst[mongoSvrKey];
+                    if (!RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).Health)
                     {
                         continue;
                     }
                     //flydreamer提供的代码
                     // 感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                    if (RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
+                    if (RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
                     {
-                        var adminDB = mongoClient.GetDatabase(ConstMgr.DATABASE_NAME_ADMIN);
+                        var adminDb = mongoClient.GetDatabase(ConstMgr.DatabaseNameAdmin);
                         //Can't Convert IMongoDB To MongoDB
-                        var ServerStatusDoc =
-                            CommandHelper.ExecuteMongoDBCommand(CommandHelper.serverStatus_Command,
-                                (MongoDatabase) adminDB).Response;
-                        SrvDocList.Add(ServerStatusDoc);
+                        var serverStatusDoc =
+                            CommandHelper.ExecuteMongoDBCommand(CommandHelper.ServerStatusCommand,
+                                (MongoDatabase) adminDb).Response;
+                        srvDocList.Add(serverStatusDoc);
                     }
                 }
                 catch (Exception ex)
@@ -145,7 +144,7 @@ namespace MongoGUICtl
                     Utility.ExceptionDeal(ex);
                 }
             }
-            UIHelper.FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList, 0);
+            UiHelper.FillDataToTreeView("Server Status", trvSvrStatus, srvDocList, 0);
             //打开第一层
             foreach (TreeNode item in trvSvrStatus.DatatreeView.Nodes)
             {
@@ -159,26 +158,26 @@ namespace MongoGUICtl
         ///     Fill Server Status to treeview
         /// </summary>
         /// <param name="trvSvrStatus"></param>
-        public static void FillSrvStatusToList(ctlTreeViewColumns trvSvrStatus,
-            Dictionary<string, MongoServer> _mongoConnSvrLst)
+        public static void FillSrvStatusToList(CtlTreeViewColumns trvSvrStatus,
+            Dictionary<string, MongoServer> mongoConnSvrLst)
         {
-            var SrvDocList = new List<BsonDocument>();
-            foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
+            var srvDocList = new List<BsonDocument>();
+            foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
                 try
                 {
-                    var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
-                    if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health)
+                    var mongoSvr = mongoConnSvrLst[mongoSvrKey];
+                    if (!RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).Health)
                     {
                         continue;
                     }
                     //flydreamer提供的代码
                     // 感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                    if (RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
+                    if (RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
                     {
-                        var ServerStatusDoc =
-                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command, mongoSvr).Response;
-                        SrvDocList.Add(ServerStatusDoc);
+                        var serverStatusDoc =
+                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand, mongoSvr).Response;
+                        srvDocList.Add(serverStatusDoc);
                     }
                 }
                 catch (Exception ex)
@@ -186,7 +185,7 @@ namespace MongoGUICtl
                     Utility.ExceptionDeal(ex);
                 }
             }
-            UIHelper.FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList, 0);
+            UiHelper.FillDataToTreeView("Server Status", trvSvrStatus, srvDocList, 0);
             //打开第一层
             foreach (TreeNode item in trvSvrStatus.DatatreeView.Nodes)
             {
@@ -198,40 +197,40 @@ namespace MongoGUICtl
         ///     Fill Database status to ListView
         /// </summary>
         /// <param name="lstSvr"></param>
-        public static void FillDataBaseStatusToList(ListView lstSvr, Dictionary<string, MongoServer> _mongoConnSvrLst)
+        public static void FillDataBaseStatusToList(ListView lstSvr, Dictionary<string, MongoServer> mongoConnSvrLst)
         {
             lstSvr.Clear();
-            lstSvr.Columns.Add(GUIConfig.GetText("DataBaseName",
-                TextType.DataBase_Status_DataBaseName));
-            lstSvr.Columns.Add(GUIConfig.GetText("CollectionCount",
-                TextType.DataBase_Status_CollectionCount));
-            lstSvr.Columns.Add(GUIConfig.GetText("DataSize",
-                TextType.DataBase_Status_DataSize));
-            lstSvr.Columns.Add(GUIConfig.GetText("FileSize",
-                TextType.DataBase_Status_FileSize));
-            lstSvr.Columns.Add(GUIConfig.GetText("IndexCount",
-                TextType.DataBase_Status_IndexCount));
-            lstSvr.Columns.Add(GUIConfig.GetText("IndexSize",
-                TextType.DataBase_Status_IndexSize));
-            lstSvr.Columns.Add(GUIConfig.GetText("ObjectCount",
-                TextType.DataBase_Status_ObjectCount));
-            lstSvr.Columns.Add(GUIConfig.GetText("StorageSize",
-                TextType.DataBase_Status_StorageSize));
-            foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
+            lstSvr.Columns.Add(GuiConfig.GetText("DataBaseName",
+                TextType.DataBaseStatusDataBaseName));
+            lstSvr.Columns.Add(GuiConfig.GetText("CollectionCount",
+                TextType.DataBaseStatusCollectionCount));
+            lstSvr.Columns.Add(GuiConfig.GetText("DataSize",
+                TextType.DataBaseStatusDataSize));
+            lstSvr.Columns.Add(GuiConfig.GetText("FileSize",
+                TextType.DataBaseStatusFileSize));
+            lstSvr.Columns.Add(GuiConfig.GetText("IndexCount",
+                TextType.DataBaseStatusIndexCount));
+            lstSvr.Columns.Add(GuiConfig.GetText("IndexSize",
+                TextType.DataBaseStatusIndexSize));
+            lstSvr.Columns.Add(GuiConfig.GetText("ObjectCount",
+                TextType.DataBaseStatusObjectCount));
+            lstSvr.Columns.Add(GuiConfig.GetText("StorageSize",
+                TextType.DataBaseStatusStorageSize));
+            foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
-                var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
+                var mongoSvr = mongoConnSvrLst[mongoSvrKey];
                 //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
-                    !RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
+                if (!RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
+                    !RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
                 {
                     continue;
                 }
                 var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                foreach (var strDBName in databaseNameList)
+                foreach (var strDbName in databaseNameList)
                 {
-                    var mongoDB = mongoSvr.GetDatabase(strDBName);
-                    var dbStatus = mongoDB.GetStats();
-                    var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                    var mongoDb = mongoSvr.GetDatabase(strDbName);
+                    var dbStatus = mongoDb.GetStats();
+                    var lst = new ListViewItem(mongoSvrKey + "." + strDbName);
                     try
                     {
                         lst.SubItems.Add(dbStatus.CollectionCount.ToString());
@@ -240,20 +239,20 @@ namespace MongoGUICtl
                     {
                         lst.SubItems.Add("0");
                     }
-                    lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(dbStatus.DataSize));
+                    lst.SubItems.Add(MongoHelper.GetBsonSize(dbStatus.DataSize));
                     try
                     {
                         //WideTiger:FileSize
-                        lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(dbStatus.FileSize));
+                        lst.SubItems.Add(MongoHelper.GetBsonSize(dbStatus.FileSize));
                     }
                     catch (Exception)
                     {
                         lst.SubItems.Add("N/A");
                     }
                     lst.SubItems.Add(dbStatus.IndexCount.ToString());
-                    lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(dbStatus.IndexSize));
+                    lst.SubItems.Add(MongoHelper.GetBsonSize(dbStatus.IndexSize));
                     lst.SubItems.Add(dbStatus.ObjectCount.ToString());
-                    lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(dbStatus.StorageSize));
+                    lst.SubItems.Add(MongoHelper.GetBsonSize(dbStatus.StorageSize));
                     lstSvr.Items.Add(lst);
                 }
             }
@@ -264,11 +263,11 @@ namespace MongoGUICtl
         ///     fill Collection status to ListView
         /// </summary>
         /// <param name="lstData"></param>
-        public static void FillCollectionStatusToList(ListView lstData, Dictionary<string, MongoServer> _mongoConnSvrLst)
+        public static void FillCollectionStatusToList(ListView lstData, Dictionary<string, MongoServer> mongoConnSvrLst)
         {
             lstData.Clear();
 
-            if (GUIConfig.IsUseDefaultLanguage)
+            if (GuiConfig.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("CollectionName");
                 lstData.Columns.Add("ObjectCount");
@@ -284,82 +283,82 @@ namespace MongoGUICtl
             else
             {
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Status_CollectionName));
+                    GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStatusCollectionName));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Status_ObjectCount));
+                    GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStatusObjectCount));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(TextType.Collection_Status_DataSize));
+                    GuiConfig.MStringResource.GetText(TextType.CollectionStatusDataSize));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Status_LastExtentSize));
+                    GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStatusLastExtentSize));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Status_StorageSize));
+                    GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStatusStorageSize));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Status_TotalIndexSize));
+                    GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStatusTotalIndexSize));
 
                 //2012-3-6
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(TextType.Collection_Status_IsCapped));
+                    GuiConfig.MStringResource.GetText(TextType.CollectionStatusIsCapped));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Status_MaxDocuments));
+                    GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStatusMaxDocuments));
 
 
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Status_AverageObjectSize));
+                    GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStatusAverageObjectSize));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Status_PaddingFactor));
+                    GuiConfig.MStringResource.GetText(
+                        TextType.CollectionStatusPaddingFactor));
             }
-            foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
+            foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
-                var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
+                var mongoSvr = mongoConnSvrLst[mongoSvrKey];
                 //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
-                    !RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
+                if (!RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
+                    !RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
                 {
                     continue;
                 }
                 var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                foreach (var strDBName in databaseNameList)
+                foreach (var strDbName in databaseNameList)
                 {
-                    var mongoDB = mongoSvr.GetDatabase(strDBName);
+                    var mongoDb = mongoSvr.GetDatabase(strDbName);
 
-                    var colNameList = mongoDB.GetCollectionNames().ToList();
+                    var colNameList = mongoDb.GetCollectionNames().ToList();
                     foreach (var strColName in colNameList)
                     {
                         try
                         {
-                            var CollectionStatus = mongoDB.GetCollection(strColName).GetStats();
-                            var lst = new ListViewItem(mongoSvrKey + "." + strDBName + "." + strColName);
-                            lst.SubItems.Add(CollectionStatus.ObjectCount.ToString());
-                            lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(CollectionStatus.DataSize));
+                            var collectionStatus = mongoDb.GetCollection(strColName).GetStats();
+                            var lst = new ListViewItem(mongoSvrKey + "." + strDbName + "." + strColName);
+                            lst.SubItems.Add(collectionStatus.ObjectCount.ToString());
+                            lst.SubItems.Add(MongoHelper.GetBsonSize(collectionStatus.DataSize));
                             try
                             {
                                 //WideTiger:LastExtentSize
                                 lst.SubItems.Add(
-                                    MongoUtility.Basic.MongoUtility.GetBsonSize(CollectionStatus.LastExtentSize));
+                                    MongoHelper.GetBsonSize(collectionStatus.LastExtentSize));
                             }
                             catch (Exception)
                             {
                                 lst.SubItems.Add("N/A");
                             }
 
-                            lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(CollectionStatus.StorageSize));
-                            lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(CollectionStatus.TotalIndexSize));
+                            lst.SubItems.Add(MongoHelper.GetBsonSize(collectionStatus.StorageSize));
+                            lst.SubItems.Add(MongoHelper.GetBsonSize(collectionStatus.TotalIndexSize));
 
                             //2012-3-6
-                            lst.SubItems.Add(CollectionStatus.IsCapped.ToString());
+                            lst.SubItems.Add(collectionStatus.IsCapped.ToString());
                             //https://jira.mongodb.org/browse/CSHARP-665
                             try
                             {
                                 //注意：这个MaxDocuments只是在CappedCollection时候有效
-                                lst.SubItems.Add(CollectionStatus.MaxDocuments.ToString());
+                                lst.SubItems.Add(collectionStatus.MaxDocuments.ToString());
                             }
                             catch (Exception ex)
                             {
@@ -368,14 +367,14 @@ namespace MongoGUICtl
                                 Utility.ExceptionLog(ex);
                             }
 
-                            lst.SubItems.Add(CollectionStatus.ObjectCount != 0
-                                ? MongoUtility.Basic.MongoUtility.GetBsonSize((long) CollectionStatus.AverageObjectSize)
+                            lst.SubItems.Add(collectionStatus.ObjectCount != 0
+                                ? MongoHelper.GetBsonSize((long) collectionStatus.AverageObjectSize)
                                 : "0");
 
                             try
                             {
                                 //在某些条件下，这个值会抛出异常，IndexKeyNotFound
-                                lst.SubItems.Add(CollectionStatus.PaddingFactor.ToString());
+                                lst.SubItems.Add(collectionStatus.PaddingFactor.ToString());
                             }
                             catch (Exception)
                             {
@@ -401,7 +400,7 @@ namespace MongoGUICtl
         /// </summary>
         /// <param name="lstSrvOpr"></param>
         public static void FillCurrentOprToList(ListView lstSrvOpr,
-            Dictionary<string, MongoServer> _mongoConnSvrLst)
+            Dictionary<string, MongoServer> mongoConnSvrLst)
         {
             lstSrvOpr.Clear();
             lstSrvOpr.Columns.Add("Name");
@@ -418,11 +417,11 @@ namespace MongoGUICtl
             lstSrvOpr.Columns.Add("connectionId");
             lstSrvOpr.Columns.Add("numYields");
             //调用的地方Try...Catch了,这里不能tryCatch
-            foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
+            foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
                 //try
                 //{
-                var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
+                var mongoSvr = mongoConnSvrLst[mongoSvrKey];
                 //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                 //                    if (!Init.SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
                 //                        !Init.SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
@@ -430,16 +429,16 @@ namespace MongoGUICtl
                 //                        continue;
                 //                    }
                 var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                foreach (var strDBName in databaseNameList)
+                foreach (var strDbName in databaseNameList)
                 {
                     try
                     {
-                        var mongoDB = mongoSvr.GetDatabase(strDBName);
-                        var dbStatus = mongoDB.GetCurrentOp();
+                        var mongoDb = mongoSvr.GetDatabase(strDbName);
+                        var dbStatus = mongoDb.GetCurrentOp();
                         var doc = dbStatus.GetValue("inprog").AsBsonArray;
                         foreach (BsonDocument item in doc)
                         {
-                            var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                            var lst = new ListViewItem(mongoSvrKey + "." + strDbName);
                             foreach (var itemName in item.Names)
                             {
                                 lst.SubItems.Add(item.GetValue(itemName).ToString());
@@ -460,7 +459,7 @@ namespace MongoGUICtl
                 //}
                 //catch (Exception ex)
                 //{
-                //Utility.ExceptionDeal(ex);
+                //MongoHelper.ExceptionDeal(ex);
                 //}
             }
             lstSrvOpr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);

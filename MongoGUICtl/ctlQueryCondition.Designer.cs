@@ -1,11 +1,14 @@
-﻿namespace MongoGUICtl
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoGUICtl
 {
-    partial class ctlQueryCondition
+    partial class CtlQueryCondition
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -32,7 +35,7 @@
             this.cmbColName = new System.Windows.Forms.ComboBox();
             this.cmbEndMark = new System.Windows.Forms.ComboBox();
             this.cmbStartMark = new System.Windows.Forms.ComboBox();
-            this.ElBsonValue = new ctlBsonValue();
+            this.ElBsonValue = new CtlBsonValue();
             this.SuspendLayout();
             // 
             // cmbCompareOpr
@@ -84,7 +87,7 @@
             this.Controls.Add(this.cmbEndMark);
             this.Controls.Add(this.cmbColName);
             this.Controls.Add(this.cmbCompareOpr);
-            this.Name = "ctlQueryCondition";
+            this.Name = "CtlQueryCondition";
             this.Size = new System.Drawing.Size(484, 27);
             this.ResumeLayout(false);
 
@@ -92,11 +95,11 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbCompareOpr;
-        private System.Windows.Forms.ComboBox cmbColName;
-        private System.Windows.Forms.ComboBox cmbEndMark;
-        private System.Windows.Forms.ComboBox cmbStartMark;
-        private ctlBsonValue ElBsonValue;
+        private ComboBox cmbCompareOpr;
+        private ComboBox cmbColName;
+        private ComboBox cmbEndMark;
+        private ComboBox cmbStartMark;
+        private CtlBsonValue ElBsonValue;
 
     }
 }

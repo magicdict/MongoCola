@@ -2,14 +2,14 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using Common.UI;
+using Common;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 using MongoUtility.EventArgs;
 
 namespace MongoUtility.Basic
 {
-    public static class GFS
+    public static class Gfs
     {
         /// <summary>
         ///     TempFileFolder
@@ -41,7 +41,7 @@ namespace MongoUtility.Basic
 
         /// <summary>
         /// </summary>
-        public enum enumGFSAlready
+        public enum EnumGfsAlready
         {
             JustAddIt,
             RenameIt,
@@ -52,7 +52,7 @@ namespace MongoUtility.Basic
 
         /// <summary>
         /// </summary>
-        public enum enumGFSFileName
+        public enum EnumGfsFileName
         {
             Filename,
             Path
@@ -83,10 +83,10 @@ namespace MongoUtility.Basic
         ///     打开文件
         /// </summary>
         /// <param name="strRemoteFileName"></param>
-        /// <param name="mongoDB"></param>
-        public static void OpenFile(string strRemoteFileName, MongoDatabase mongoDB)
+        /// <param name="mongoDb"></param>
+        public static void OpenFile(string strRemoteFileName, MongoDatabase mongoDb)
         {
-            var gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
+            var gfs = mongoDb.GetGridFS(new MongoGridFSSettings());
 
             var strLocalFileName = strRemoteFileName.Split(Path.DirectorySeparatorChar);
 
@@ -96,18 +96,18 @@ namespace MongoUtility.Basic
                 {
                     Directory.CreateDirectory(TempFileFolder);
                 }
-                var LocalFileName = TempFileFolder + Path.DirectorySeparatorChar +
+                var localFileName = TempFileFolder + Path.DirectorySeparatorChar +
                                     strLocalFileName[strLocalFileName.Length - 1];
-                gfs.Download(LocalFileName, strRemoteFileName);
-                Process.Start(LocalFileName);
+                gfs.Download(localFileName, strRemoteFileName);
+                Process.Start(localFileName);
             }
-            catch (Win32Exception)
+            catch (Win32Exception ex)
             {
-                MyMessageBox.ShowEasyMessage("Error", "No Program can open this file");
+                Utility.ExceptionDeal(ex, "No Program can open this file");
             }
             catch (Exception ex)
             {
-                Common.Logic.Utility.ExceptionDeal(ex, "Error", "Exception happend when open file");
+                Utility.ExceptionDeal(ex, "Error", "Exception happend when open file");
             }
         }
 
@@ -116,10 +116,10 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="strLocalFileName"></param>
         /// <param name="strRemoteFileName"></param>
-        /// <param name="mongoDB"></param>
-        public static void DownloadFile(string strLocalFileName, string strRemoteFileName, MongoDatabase mongoDB)
+        /// <param name="mongoDb"></param>
+        public static void DownloadFile(string strLocalFileName, string strRemoteFileName, MongoDatabase mongoDb)
         {
-            var gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
+            var gfs = mongoDb.GetGridFS(new MongoGridFSSettings());
             gfs.Download(strLocalFileName, strRemoteFileName);
         }
 
@@ -128,59 +128,59 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <remarks>Mongo允许同名文件，因为id才是主键</remarks>
         /// <param name="strFileName"></param>
-        /// <param name="Option"></param>
-        /// <param name="mongoDB"></param>
-        public static UploadResult UpLoadFile(string strFileName, UpLoadFileOption Option, MongoDatabase mongoDB)
+        /// <param name="option"></param>
+        /// <param name="mongoDb"></param>
+        public static UploadResult UpLoadFile(string strFileName, UpLoadFileOption option, MongoDatabase mongoDb)
         {
-            var gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
-            var RemoteName = string.Empty;
-            if (Option.FileNameOpt == enumGFSFileName.Filename)
+            var gfs = mongoDb.GetGridFS(new MongoGridFSSettings());
+            var remoteName = string.Empty;
+            if (option.FileNameOpt == EnumGfsFileName.Filename)
             {
-                RemoteName = new FileInfo(strFileName).Name;
+                remoteName = new FileInfo(strFileName).Name;
             }
             else
             {
-                RemoteName = Option.DirectorySeparatorChar != Path.DirectorySeparatorChar
-                    ? strFileName.Replace(Path.DirectorySeparatorChar, Option.DirectorySeparatorChar)
+                remoteName = option.DirectorySeparatorChar != Path.DirectorySeparatorChar
+                    ? strFileName.Replace(Path.DirectorySeparatorChar, option.DirectorySeparatorChar)
                     : strFileName;
             }
             try
             {
-                MongoUtility.OnActionDone(new ActionDoneEventArgs(RemoteName + " Uploading "));
-                if (!gfs.Exists(RemoteName))
+                MongoHelper.OnActionDone(new ActionDoneEventArgs(remoteName + " Uploading "));
+                if (!gfs.Exists(remoteName))
                 {
-                    gfs.Upload(strFileName, RemoteName);
+                    gfs.Upload(strFileName, remoteName);
                     return UploadResult.Complete;
                 }
-                switch (Option.AlreadyOpt)
+                switch (option.AlreadyOpt)
                 {
-                    case enumGFSAlready.JustAddIt:
-                        gfs.Upload(strFileName, RemoteName);
+                    case EnumGfsAlready.JustAddIt:
+                        gfs.Upload(strFileName, remoteName);
                         return UploadResult.Complete;
-                    case enumGFSAlready.RenameIt:
-                        var ExtendName = new FileInfo(strFileName).Extension;
-                        var MainName = RemoteName.Substring(0, RemoteName.Length - ExtendName.Length);
+                    case EnumGfsAlready.RenameIt:
+                        var extendName = new FileInfo(strFileName).Extension;
+                        var mainName = remoteName.Substring(0, remoteName.Length - extendName.Length);
                         var i = 1;
-                        while (gfs.Exists(MainName + i + ExtendName))
+                        while (gfs.Exists(mainName + i + extendName))
                         {
                             i++;
                         }
-                        gfs.Upload(strFileName, MainName + i + ExtendName);
+                        gfs.Upload(strFileName, mainName + i + extendName);
                         return UploadResult.Complete;
-                    case enumGFSAlready.SkipIt:
+                    case EnumGfsAlready.SkipIt:
                         return UploadResult.Skip;
-                    case enumGFSAlready.OverwriteIt:
-                        gfs.Delete(RemoteName);
-                        gfs.Upload(strFileName, RemoteName);
+                    case EnumGfsAlready.OverwriteIt:
+                        gfs.Delete(remoteName);
+                        gfs.Upload(strFileName, remoteName);
                         return UploadResult.Complete;
-                    case enumGFSAlready.Stop:
+                    case EnumGfsAlready.Stop:
                         return UploadResult.Skip;
                 }
                 return UploadResult.Skip;
             }
             catch (Exception ex)
             {
-                Common.Logic.Utility.ExceptionDeal(ex);
+                Utility.ExceptionDeal(ex);
                 return UploadResult.Exception;
             }
         }
@@ -189,10 +189,10 @@ namespace MongoUtility.Basic
         ///     删除文件
         /// </summary>
         /// <param name="strFileName"></param>
-        /// <param name="mongoDB"></param>
-        public static void DelFile(string strFileName, MongoDatabase mongoDB)
+        /// <param name="mongoDb"></param>
+        public static void DelFile(string strFileName, MongoDatabase mongoDb)
         {
-            var gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
+            var gfs = mongoDb.GetGridFS(new MongoGridFSSettings());
             gfs.Delete(strFileName);
         }
 
@@ -201,9 +201,9 @@ namespace MongoUtility.Basic
         /// </summary>
         public struct UpLoadFileOption
         {
-            public enumGFSAlready AlreadyOpt;
+            public EnumGfsAlready AlreadyOpt;
             public Char DirectorySeparatorChar;
-            public enumGFSFileName FileNameOpt;
+            public EnumGfsFileName FileNameOpt;
             public bool IgnoreSubFolder;
         }
 

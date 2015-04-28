@@ -1,17 +1,16 @@
-﻿using Common.Logic;
-using MongoUtility.Core;
-using ResourceLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
-
+using Common;
+using MongoCola.Config;
+using MongoUtility.Core;
+using ResourceLib.Method;
 
 namespace MongoCola.Connection
 {
-    public partial class frmConnect : Form
+    public partial class FrmConnect : Form
     {
-        public frmConnect()
+        public FrmConnect()
         {
             InitializeComponent();
         }
@@ -23,7 +22,7 @@ namespace MongoCola.Connection
         private void frmConnect_Load(object sender, EventArgs e)
         {
             RefreshConnection();
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace MongoCola.Connection
         private void RefreshConnection()
         {
             lstConnection.Items.Clear();
-            foreach (var item in SystemConfig.config.ConnectionList.Values)
+            foreach (var item in SystemConfig.Config.ConnectionList.Values)
             {
                 if (item.ReplSetName == string.Empty)
                 {
@@ -48,12 +47,12 @@ namespace MongoCola.Connection
                     t.SubItems.Add((item.Host == string.Empty ? "localhost" : item.Host));
                     t.SubItems.Add((item.Port == 0 ? string.Empty : item.Port.ToString()));
                     t.SubItems.Add(string.Empty);
-                    var ReplArray = string.Empty;
-                    foreach (var Repl in item.ReplsetList)
+                    var replArray = string.Empty;
+                    foreach (var repl in item.ReplsetList)
                     {
-                        ReplArray += Repl + ";";
+                        replArray += repl + ";";
                     }
-                    t.SubItems.Add(ReplArray);
+                    t.SubItems.Add(replArray);
                     lstConnection.Items.Add(t);
                 }
                 Utility.ListViewColumnResize(lstConnection);
@@ -69,7 +68,7 @@ namespace MongoCola.Connection
         /// <param name="e"></param>
         private void cmdAddCon_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new frmAddConnection(), true, true);
+            Utility.OpenForm(new FrmAddConnection(), true, true);
             RefreshConnection();
         }
 
@@ -85,10 +84,10 @@ namespace MongoCola.Connection
             {
                 foreach (ListViewItem item in lstConnection.CheckedItems)
                 {
-                    var config = SystemConfig.config.ConnectionList[item.Text];
+                    var config = SystemConfig.Config.ConnectionList[item.Text];
                     connLst.Add(config);
                 }
-                RuntimeMongoDBContext.ResetConnectionList(connLst);
+                RuntimeMongoDbContext.ResetConnectionList(connLst);
             }
             Close();
         }
@@ -102,10 +101,10 @@ namespace MongoCola.Connection
         {
             foreach (ListViewItem item in lstConnection.CheckedItems)
             {
-                var ConnectionName = item.Text;
-                if (SystemConfig.config.ConnectionList.ContainsKey(ConnectionName))
+                var connectionName = item.Text;
+                if (SystemConfig.Config.ConnectionList.ContainsKey(connectionName))
                 {
-                    SystemConfig.config.ConnectionList.Remove(ConnectionName);
+                    SystemConfig.Config.ConnectionList.Remove(connectionName);
                 }
             }
             RefreshConnection();
@@ -119,8 +118,8 @@ namespace MongoCola.Connection
         private void cmdModifyCon_Click(object sender, EventArgs e)
         {
             if (lstConnection.CheckedItems.Count != 1) return;
-            var ConnectionName = lstConnection.CheckedItems[0].Text;
-            Utility.OpenForm(new frmAddConnection(ConnectionName), true, true);
+            var connectionName = lstConnection.CheckedItems[0].Text;
+            Utility.OpenForm(new FrmAddConnection(connectionName), true, true);
             RefreshConnection();
         }
 

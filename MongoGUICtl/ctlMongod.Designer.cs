@@ -1,14 +1,15 @@
-﻿using System.Windows.Forms;
-using Common.UI;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using ResourceLib.UI;
 
 namespace MongoGUICtl
 {
-    partial class ctlMongod
+    partial class CtlMongod
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -43,9 +44,9 @@ namespace MongoGUICtl
             this.radSlave = new System.Windows.Forms.RadioButton();
             this.lblWarning = new System.Windows.Forms.Label();
             this.chkSmallfiles = new System.Windows.Forms.CheckBox();
-            this.ctlFilePickerDBPath = new ctlFilePicker();
-            this.ctllogLvT = new ctllogLv();
-            this.ctlFilePickerLogPath = new ctlFilePicker();
+            this.ctlFilePickerDBPath = new CtlFilePicker();
+            this.ctllogLvT = new CtllogLv();
+            this.ctlFilePickerLogPath = new CtlFilePicker();
             this.grpLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.SuspendLayout();
@@ -198,7 +199,7 @@ namespace MongoGUICtl
             this.ctlFilePickerDBPath.FileFilter = "";
             this.ctlFilePickerDBPath.Location = new System.Drawing.Point(26, 41);
             this.ctlFilePickerDBPath.Name = "ctlFilePickerDBPath";
-            this.ctlFilePickerDBPath.PickerType = ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerDBPath.PickerType = CtlFilePicker.DialogType.Directory;
             this.ctlFilePickerDBPath.SelectedPathOrFileName = "";
             this.ctlFilePickerDBPath.Size = new System.Drawing.Size(739, 35);
             this.ctlFilePickerDBPath.TabIndex = 15;
@@ -218,7 +219,7 @@ namespace MongoGUICtl
             this.ctlFilePickerLogPath.FileFilter = "";
             this.ctlFilePickerLogPath.Location = new System.Drawing.Point(9, 25);
             this.ctlFilePickerLogPath.Name = "ctlFilePickerLogPath";
-            this.ctlFilePickerLogPath.PickerType = ctlFilePicker.DialogType.SaveFile;
+            this.ctlFilePickerLogPath.PickerType = CtlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerLogPath.SelectedPathOrFileName = "";
             this.ctlFilePickerLogPath.Size = new System.Drawing.Size(739, 37);
             this.ctlFilePickerLogPath.TabIndex = 14;
@@ -240,7 +241,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.numPort);
             this.Controls.Add(this.lblPort);
             this.Controls.Add(this.grpLog);
-            this.Name = "ctlMongod";
+            this.Name = "CtlMongod";
             this.Size = new System.Drawing.Size(767, 209);
             this.Load += new System.EventHandler(this.ctlMongod_Load);
             this.grpLog.ResumeLayout(false);
@@ -255,19 +256,19 @@ namespace MongoGUICtl
 
         #endregion
 
-        private System.Windows.Forms.GroupBox grpLog;
-        private System.Windows.Forms.CheckBox chkIsAppend;
-        private System.Windows.Forms.Label lblPort;
-        private System.Windows.Forms.NumericUpDown numPort;
-        private ctllogLv ctllogLvT;
-        private ctlFilePicker ctlFilePickerLogPath;
-        private ctlFilePicker ctlFilePickerDBPath;
-        private System.Windows.Forms.CheckBox chkAuth;
-        private System.Windows.Forms.Label lblSource;
+        private GroupBox grpLog;
+        private CheckBox chkIsAppend;
+        private Label lblPort;
+        private NumericUpDown numPort;
+        private CtllogLv ctllogLvT;
+        private CtlFilePicker ctlFilePickerLogPath;
+        private CtlFilePicker ctlFilePickerDBPath;
+        private CheckBox chkAuth;
+        private Label lblSource;
         private TextBox txtSource;
-        private System.Windows.Forms.RadioButton radNormal;
-        private System.Windows.Forms.RadioButton radMaster;
-        private System.Windows.Forms.RadioButton radSlave;
+        private RadioButton radNormal;
+        private RadioButton radMaster;
+        private RadioButton radSlave;
         private Label lblWarning;
         private CheckBox chkSmallfiles;
     }

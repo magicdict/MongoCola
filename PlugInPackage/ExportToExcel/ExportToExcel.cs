@@ -15,14 +15,14 @@ namespace PlugInPackage.ExportToExcel
         /// <summary>
         ///     内部变量
         /// </summary>
-        private static MongoCollection ProcessCollection;
+        private static MongoCollection _processCollection;
 
         /// <summary>
         ///     初始化设定
         /// </summary>
         public ExportToExcel()
         {
-            RunLv = PathLv.CollectionLV;
+            RunLv = PathLv.CollectionLv;
             PlugName = "导出到Excel工具";
             PlugFunction = "将数据集导出到Excel";
         }
@@ -33,9 +33,9 @@ namespace PlugInPackage.ExportToExcel
         /// <returns></returns>
         public override int Run()
         {
-            ProcessCollection = (MongoCollection) PlugObj;
+            _processCollection = (MongoCollection) PlugObj;
             Export(null, null);
-            MessageBox.Show(ProcessCollection.Name);
+            MessageBox.Show(_processCollection.Name);
             return 0;
         }
 
@@ -46,12 +46,12 @@ namespace PlugInPackage.ExportToExcel
         /// <param name="filename"></param>
         private static void Export(List<BsonDocument> dataList, string filename)
         {
-            var Schame = MongoUtility.Basic.MongoUtility.GetCollectionSchame(ProcessCollection);
+            var schame = MongoHelper.GetCollectionSchame(_processCollection);
             dynamic excelObj = Interaction.CreateObject("Excel.Application");
             excelObj.Visible = true;
             dynamic workbook;
             dynamic worksheet;
-            var IsNew = false;
+            var isNew = false;
             if (File.Exists(filename))
             {
                 workbook = excelObj.Workbooks.Open(filename);
@@ -59,15 +59,15 @@ namespace PlugInPackage.ExportToExcel
             }
             else
             {
-                IsNew = true;
+                isNew = true;
                 workbook = excelObj.WorkBooks.Add();
                 worksheet = workbook.Sheets(1);
             }
             worksheet.Select();
-            worksheet.Name = ProcessCollection.Name;
+            worksheet.Name = _processCollection.Name;
             var rowCount = 1;
             var colCount = 1;
-            foreach (var item in Schame)
+            foreach (var item in schame)
             {
                 worksheet.Cells(rowCount, colCount).Value = item;
                 colCount++;
@@ -76,32 +76,35 @@ namespace PlugInPackage.ExportToExcel
             foreach (var docItem in dataList)
             {
                 colCount = 1;
-                var isSystem = OperationHelper.IsSystemCollection(ProcessCollection);
+                var isSystem = OperationHelper.IsSystemCollection(_processCollection);
                 if (!isSystem)
                 {
                     BsonElement id;
-                    docItem.TryGetElement(ConstMgr.KEY_ID, out id);
+                    docItem.TryGetElement(ConstMgr.KeyId, out id);
                     worksheet.Cells(rowCount, colCount).Value = !(id.Value is BsonNull)
-                        ? docItem.GetValue(ConstMgr.KEY_ID).ToString() : "[Empty]";
+                        ? docItem.GetValue(ConstMgr.KeyId).ToString()
+                        : "[Empty]";
                 }
                 else
                 {
-                    worksheet.Cells(rowCount, colCount).Value = docItem.GetValue(Schame[0]).ToString();
+                    worksheet.Cells(rowCount, colCount).Value = docItem.GetValue(schame[0]).ToString();
                 }
                 //OtherItems
-                for (var i = isSystem ? 1 : 0; i < Schame.Count; i++)
+                for (var i = isSystem ? 1 : 0; i < schame.Count; i++)
                 {
-                    if (Schame[i] == ConstMgr.KEY_ID)
+                    if (schame[i] == ConstMgr.KeyId)
                     {
                         continue;
                     }
                     BsonValue val;
-                    docItem.TryGetValue(Schame[i], out val);
-                    worksheet.Cells(rowCount, i + 1).Value = val == null ? string.Empty : ViewHelper.ConvertToString(val);
+                    docItem.TryGetValue(schame[i], out val);
+                    worksheet.Cells(rowCount, i + 1).Value = val == null
+                        ? string.Empty
+                        : ViewHelper.ConvertToString(val);
                 }
                 rowCount++;
             }
-            if (IsNew)
+            if (isNew)
             {
                 workbook.SaveAs(filename);
             }

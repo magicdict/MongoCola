@@ -1,11 +1,11 @@
 ﻿using System.Windows.Forms;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoGUICtl.Aggregation
 {
-    public partial class ctlFieldInfo : UserControl
+    public partial class CtlFieldInfo : UserControl
     {
         /// <summary>
         ///     模式
@@ -36,22 +36,22 @@ namespace MongoGUICtl.Aggregation
         /// <summary>
         ///     是否是主键保护模式
         /// </summary>
-        private bool mIDProtectMode;
+        private bool _mIdProtectMode;
 
-        private FieldMode mMode;
+        private FieldMode _mMode;
 
-        public ctlFieldInfo()
+        public CtlFieldInfo()
         {
             InitializeComponent();
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
                 lblFieldName.Text =
-                    GUIConfig.MStringResource.GetText(TextType.ctlIndexCreate_Index);
-                radSortAcs.Text = GUIConfig.MStringResource.GetText(TextType.Index_Asce);
-                radSortDes.Text = GUIConfig.MStringResource.GetText(TextType.Index_Desc);
-                radNoSort.Text = GUIConfig.MStringResource.GetText(TextType.Index_NoSort);
+                    GuiConfig.MStringResource.GetText(TextType.CtlIndexCreateIndex);
+                radSortAcs.Text = GuiConfig.MStringResource.GetText(TextType.IndexAsce);
+                radSortDes.Text = GuiConfig.MStringResource.GetText(TextType.IndexDesc);
+                radNoSort.Text = GuiConfig.MStringResource.GetText(TextType.IndexNoSort);
                 chkIsShow.Text =
-                    GUIConfig.MStringResource.GetText(TextType.ctlFieldInfo_Show);
+                    GuiConfig.MStringResource.GetText(TextType.CtlFieldInfoShow);
             }
         }
 
@@ -62,8 +62,8 @@ namespace MongoGUICtl.Aggregation
         {
             set
             {
-                mMode = value;
-                switch (mMode)
+                _mMode = value;
+                switch (_mMode)
                 {
                     case FieldMode.Field:
                         chkIsShow.Visible = true;
@@ -98,7 +98,7 @@ namespace MongoGUICtl.Aggregation
                         break;
                 }
             }
-            get { return mMode; }
+            get { return _mMode; }
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace MongoGUICtl.Aggregation
             get { return chkIsShow.Checked; }
             set
             {
-                if ((lblFieldName.Text == ConstMgr.KEY_ID) && mIDProtectMode)
+                if ((lblFieldName.Text == ConstMgr.KeyId) && _mIdProtectMode)
                 {
                     return;
                 }
@@ -138,10 +138,10 @@ namespace MongoGUICtl.Aggregation
         /// <summary>
         ///     ID的显示属性是否可变
         /// </summary>
-        public bool IsIDProtect
+        public bool IsIdProtect
         {
-            set { mIDProtectMode = value; }
-            get { return mIDProtectMode; }
+            set { _mIdProtectMode = value; }
+            get { return _mIdProtectMode; }
         }
 
         /// <summary>
@@ -154,12 +154,12 @@ namespace MongoGUICtl.Aggregation
                 lblFieldName.Text = value.ColName;
                 chkIsShow.Checked = value.IsShow;
                 txtProject.Text = value.ProjectName;
-                if (value.ColName == ConstMgr.KEY_ID)
+                if (value.ColName == ConstMgr.KeyId)
                 {
                     chkIsShow.Checked = true;
-                    chkIsShow.Enabled = !(mIDProtectMode);
+                    chkIsShow.Enabled = !(_mIdProtectMode);
                 }
-                switch (value.sortType)
+                switch (value.SortType)
                 {
                     case DataFilter.SortType.NoSort:
                         radNoSort.Checked = true;
@@ -182,15 +182,15 @@ namespace MongoGUICtl.Aggregation
                 rtnQueryFieldItem.ProjectName = txtProject.Text;
                 if (radNoSort.Checked)
                 {
-                    rtnQueryFieldItem.sortType = DataFilter.SortType.NoSort;
+                    rtnQueryFieldItem.SortType = DataFilter.SortType.NoSort;
                 }
                 if (radSortAcs.Checked)
                 {
-                    rtnQueryFieldItem.sortType = DataFilter.SortType.Ascending;
+                    rtnQueryFieldItem.SortType = DataFilter.SortType.Ascending;
                 }
                 if (radSortDes.Checked)
                 {
-                    rtnQueryFieldItem.sortType = DataFilter.SortType.Descending;
+                    rtnQueryFieldItem.SortType = DataFilter.SortType.Descending;
                 }
                 return rtnQueryFieldItem;
             }

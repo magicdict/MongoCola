@@ -85,12 +85,12 @@ namespace MongoUtility.Core
         /// <summary>
         ///     connect TimeOut (Sec)
         /// </summary>
-        public double connectTimeoutMS;
+        public double ConnectTimeoutMs;
 
         /// <summary>
         ///     Socket TimeOut (Sec)
         /// </summary>
-        public double socketTimeoutMS;
+        public double SocketTimeoutMs;
 
         /// <summary>
         ///     fsync
@@ -99,12 +99,12 @@ namespace MongoUtility.Core
         ///     true: the driver adds { fsync : true } to the getlasterror command. Implies safe=true.
         ///     false: the driver does not not add fsync to the getlasterror command.
         /// </remarks>
-        public bool fsync;
+        public bool Fsync;
 
         /// <summary>
         ///     journal
         /// </summary>
-        public bool journal;
+        public bool Journal;
 
         #endregion
 
@@ -159,7 +159,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     当前连接的MongoDB版本[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public Version MongoDBVersion;
+        [XmlIgnore] public Version MongoDbVersion;
 
         /// <summary>
         ///     认证模式[这个属性是运行时决定的]
@@ -197,7 +197,7 @@ namespace MongoUtility.Core
         ///     wtimeoutMS
         /// </summary>
         /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
-        public double wtimeoutMS;
+        public double WtimeoutMs;
 
         #endregion
     }

@@ -1,14 +1,16 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 using MongoGUICtl.Aggregation;
 
 namespace MongoGUIView
 {
-    partial class frmQuery
+    partial class FrmQuery
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -41,7 +43,7 @@ namespace MongoGUIView
             this.panFilter = new System.Windows.Forms.Panel();
             this.ConditionPan = new ConditionPanel();
             this.tabGeoNear = new System.Windows.Forms.TabPage();
-            this.GeoNear = new ctlGeoNear();
+            this.GeoNear = new CtlGeoNear();
             this.tabSql = new System.Windows.Forms.TabPage();
             this.lblAttentionSelectOnly = new System.Windows.Forms.Label();
             this.txtSql = new System.Windows.Forms.TextBox();
@@ -107,8 +109,8 @@ namespace MongoGUIView
             this.QueryFieldPicker.AutoScroll = true;
             this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
             this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = ctlFieldInfo.FieldMode.FiledSort;
-            this.QueryFieldPicker.IsIDProtect = true;
+            this.QueryFieldPicker.FieldListMode = CtlFieldInfo.FieldMode.FiledSort;
+            this.QueryFieldPicker.IsIdProtect = true;
             this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
             this.QueryFieldPicker.Name = "QueryFieldPicker";
             this.QueryFieldPicker.Size = new System.Drawing.Size(581, 462);
@@ -183,7 +185,7 @@ namespace MongoGUIView
             this.tabSql.Padding = new System.Windows.Forms.Padding(3);
             this.tabSql.Size = new System.Drawing.Size(587, 468);
             this.tabSql.TabIndex = 3;
-            this.tabSql.Text = "Sql";
+            this.tabSql.Text = "SqlHelper";
             this.tabSql.UseVisualStyleBackColor = true;
             // 
             // lblAttentionSelectOnly
@@ -253,7 +255,7 @@ namespace MongoGUIView
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmQuery";
+            this.Name = "FrmQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Query";
             this.Load += new System.EventHandler(this.frmQuery_Load);
@@ -270,22 +272,22 @@ namespace MongoGUIView
 
         #endregion
 
-        private System.Windows.Forms.Button cmdAddCondition;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabCondition;
-        private System.Windows.Forms.Button cmdSave;
-        private System.Windows.Forms.Button cmdLoad;
-        private System.Windows.Forms.Panel panFilter;
-        private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.TabPage tabGeoNear;
-        private ctlGeoNear GeoNear;
-        private System.Windows.Forms.TabPage tabSql;
-        private System.Windows.Forms.Label lblAttentionSelectOnly;
-        private System.Windows.Forms.TextBox txtSql;
-        private System.Windows.Forms.TabPage tabFieldInfo;
+        private Button cmdAddCondition;
+        private Button cmdOK;
+        private TabControl tabControl;
+        private TabPage tabCondition;
+        private Button cmdSave;
+        private Button cmdLoad;
+        private Panel panFilter;
+        private Button cmdCancel;
+        private TabPage tabGeoNear;
+        private CtlGeoNear GeoNear;
+        private TabPage tabSql;
+        private Label lblAttentionSelectOnly;
+        private TextBox txtSql;
+        private TabPage tabFieldInfo;
         private FieldPicker QueryFieldPicker;
-        private System.Windows.Forms.Button btnClear;
+        private Button btnClear;
         private ConditionPanel ConditionPan;
     }
 }

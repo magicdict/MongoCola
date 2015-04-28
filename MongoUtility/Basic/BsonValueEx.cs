@@ -15,27 +15,27 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     Boolean
         /// </summary>
-        public bool mBsonBoolean;
+        public bool MBsonBoolean;
 
         /// <summary>
         ///     DateTime
         /// </summary>
-        public DateTime mBsonDateTime;
+        public DateTime MBsonDateTime;
 
         /// <summary>
         ///     Int32
         /// </summary>
-        public Int32 mBsonInt32;
+        public Int32 MBsonInt32;
 
         /// <summary>
         ///     文字值
         /// </summary>
-        public string mBsonString;
+        public string MBsonString;
 
         /// <summary>
         ///     类型
         /// </summary>
-        public string mBsonType;
+        public string MBsonType;
 
         /// <summary>
         ///     为了序列化，必须要写这个方法
@@ -52,23 +52,23 @@ namespace MongoUtility.Basic
         {
             if (value.IsString)
             {
-                mBsonType = "BsonString";
-                mBsonString = value.ToString();
+                MBsonType = "BsonString";
+                MBsonString = value.ToString();
             }
             if (value.IsInt32)
             {
-                mBsonType = "BsonInt32";
-                mBsonInt32 = value.AsInt32;
+                MBsonType = "BsonInt32";
+                MBsonInt32 = value.AsInt32;
             }
             if (value.IsValidDateTime)
             {
-                mBsonType = "BsonDateTime";
-                mBsonDateTime = value.ToUniversalTime();
+                MBsonType = "BsonDateTime";
+                MBsonDateTime = value.ToUniversalTime();
             }
             if (value.IsBoolean)
             {
-                mBsonType = "BsonBoolean";
-                mBsonBoolean = value.AsBoolean;
+                MBsonType = "BsonBoolean";
+                MBsonBoolean = value.AsBoolean;
             }
         }
 
@@ -93,25 +93,23 @@ namespace MongoUtility.Basic
         /// <returns></returns>
         public BsonValue GetBsonValue()
         {
-            BsonValue Value = new BsonString(string.Empty);
-            switch (mBsonType)
+            BsonValue value = new BsonString(string.Empty);
+            switch (MBsonType)
             {
                 case "BsonString":
-                    Value = new BsonString(mBsonString);
+                    value = new BsonString(MBsonString);
                     break;
                 case "BsonInt32":
-                    Value = new BsonInt32(mBsonInt32);
+                    value = new BsonInt32(MBsonInt32);
                     break;
                 case "BsonDateTime":
-                    Value = new BsonDateTime(mBsonDateTime);
+                    value = new BsonDateTime(MBsonDateTime);
                     break;
                 case "BsonBoolean":
-                    Value = mBsonBoolean ? BsonBoolean.True : BsonBoolean.False;
-                    break;
-                default:
+                    value = MBsonBoolean ? BsonBoolean.True : BsonBoolean.False;
                     break;
             }
-            return Value;
+            return value;
         }
     }
 }

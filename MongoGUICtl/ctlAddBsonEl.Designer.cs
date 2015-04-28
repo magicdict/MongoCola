@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
-    partial class ctlAddBsonEl
+    partial class CtlAddBsonEl
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -31,7 +32,7 @@ namespace MongoGUICtl
         private void InitializeComponent()
         {
             this.txtElName = new System.Windows.Forms.TextBox();
-            this.ElBsonValue = new ctlBsonValue();
+            this.ElBsonValue = new CtlBsonValue();
             this.lblElement = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.lblElement);
             this.Controls.Add(this.ElBsonValue);
             this.Controls.Add(this.txtElName);
-            this.Name = "ctlAddBsonEl";
+            this.Name = "CtlAddBsonEl";
             this.Size = new System.Drawing.Size(315, 30);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -75,7 +76,7 @@ namespace MongoGUICtl
         #endregion
 
         private TextBox txtElName;
-        private ctlBsonValue ElBsonValue;
-        private System.Windows.Forms.Label lblElement;
+        private CtlBsonValue ElBsonValue;
+        private Label lblElement;
     }
 }

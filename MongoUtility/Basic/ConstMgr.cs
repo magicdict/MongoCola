@@ -7,113 +7,113 @@
         /// <summary>
         ///     普通连接
         /// </summary>
-        public const string CONNECTION_TAG = "MongoConnection";
+        public const string ConnectionTag = "MongoConnection";
 
         /// <summary>
         ///     Sharding连接
         /// </summary>
-        public const string CONNECTION_CLUSTER_TAG = "MongoClusterConnection";
+        public const string ConnectionClusterTag = "MongoClusterConnection";
 
         /// <summary>
         ///     Replset连接
         /// </summary>
-        public const string CONNECTION_REPLSET_TAG = "MongoReplsetConnection";
+        public const string ConnectionReplsetTag = "MongoReplsetConnection";
 
         /// <summary>
         ///     异常
         /// </summary>
-        public const string CONNECTION_EXCEPTION_TAG = "MongoConnectionWithException";
+        public const string ConnectionExceptionTag = "MongoConnectionWithException";
 
         /// <summary>
         ///     普通服务器Tag
         /// </summary>
-        public const string SERVER_TAG = "MongoServer";
+        public const string ServerTag = "MongoServer";
 
         /// <summary>
         ///     Replset Member
         /// </summary>
-        public const string SERVER_REPLSET_MEMBER_TAG = "MongoReplsetMemberServer";
+        public const string ServerReplsetMemberTag = "MongoReplsetMemberServer";
 
         /// <summary>
         ///     该服务器只允许操作其下的某个数据库
         /// </summary>
-        public const string SINGLE_DB_SERVER_TAG = "MongoSingleDBServer";
+        public const string SingleDbServerTag = "MongoSingleDBServer";
 
         /// <summary>
         ///     数据库
         /// </summary>
-        public const string DATABASE_TAG = "MongoDatabase";
+        public const string DatabaseTag = "MongoDatabase";
 
         /// <summary>
         ///     单数据库模式的数据库
         /// </summary>
-        public const string SINGLE_DATABASE_TAG = "SingleMongoDatabase";
+        public const string SingleDatabaseTag = "SingleMongoDatabase";
 
         /// <summary>
         ///     数据集
         /// </summary>
-        public const string COLLECTION_TAG = "MongoCollection";
+        public const string CollectionTag = "MongoCollection";
 
         /// <summary>
         ///     数据集
         /// </summary>
-        public const string COLLECTION_LIST_TAG = "MongoCollectionList";
+        public const string CollectionListTag = "MongoCollectionList";
 
         /// <summary>
         ///     数据集
         /// </summary>
-        public const string SYSTEM_COLLECTION_LIST_TAG = "MongoSystemCollectionList";
+        public const string SystemCollectionListTag = "MongoSystemCollectionList";
 
         /// <summary>
         ///     BSonDoc
         /// </summary>
-        public const string DOCUMENT_TAG = "MongoDocument";
+        public const string DocumentTag = "MongoDocument";
 
         /// <summary>
         ///     JavaScript
         /// </summary>
-        public const string JAVASCRIPT_TAG = "MongoJavascript";
+        public const string JavascriptTag = "MongoJavascript";
 
         /// <summary>
         ///     JavaScriptDoc
         /// </summary>
-        public const string JAVASCRIPT_DOC_TAG = "MongoJavascriptDocument";
+        public const string JavascriptDocTag = "MongoJavascriptDocument";
 
         /// <summary>
         ///     GFS
         /// </summary>
-        public const string GRID_FILE_SYSTEM_TAG = "MongoGFS";
+        public const string GridFileSystemTag = "MongoGFS";
 
         /// <summary>
         ///     用户列表
         /// </summary>
-        public const string USER_LIST_TAG = "MongoUserList";
+        public const string UserListTag = "MongoUserList";
 
         /// <summary>
         ///     用户
         /// </summary>
-        public const string USER_TAG = "MongoUser";
+        public const string UserTag = "MongoUser";
 
         /// <summary>
         ///     索引集
         /// </summary>
-        public const string INDEXES_TAG = "MongoIndexes";
+        public const string IndexesTag = "MongoIndexes";
 
         /// <summary>
         ///     索引
         /// </summary>
-        public const string INDEX_TAG = "MongoIndex";
+        public const string IndexTag = "MongoIndex";
 
         //The process field identifies which kind of MongoDB instance is running. Possible values are:mongos,mongod
         /// <summary>
         ///     MongoS
         /// </summary>
-        public const string ServerStatus_PROCESS_MONGOS = "mongos";
+        public const string ServerStatusProcessMongos = "mongos";
 
         /// <summary>
         ///     MongoD
         /// </summary>
-        public const string ServerStatus_PROCESS_MONGOD = "mongod";
+        public const string ServerStatusProcessMongod = "mongod";
 
         #endregion
 
@@ -122,82 +122,82 @@
         /// <summary>
         ///     Default Port(Mongod)
         /// </summary>
-        public const int MONGOD_DEFAULT_PORT = 27017;
+        public const int MongodDefaultPort = 27017;
 
-        public const int WEB_MONGOD_DEFAULT_PORT = 28017;
+        public const int WebMongodDefaultPort = 28017;
 
-        public const int SHARD_DEFAULT_PORT = 27018;
+        public const int ShardDefaultPort = 27018;
 
-        public const int CONFIG_DEFAULT_PORT = 27019;
+        public const int ConfigDefaultPort = 27019;
 
         /// <summary>
         ///     主键
         /// </summary>
-        public const string KEY_ID = "_id";
+        public const string KeyId = "_id";
 
         /// <summary>
         /// </summary>
-        public const string DATABASE_NAME_CONFIG = "config";
-
-        /// <summary>
-        ///     ADMIN
-        /// </summary>
-        public const string DATABASE_NAME_ADMIN = "admin";
+        public const string DatabaseNameConfig = "config";
 
         /// <summary>
         ///     ADMIN
         /// </summary>
-        public const string DATABASE_NAME_LOCAL = "local";
+        public const string DatabaseNameAdmin = "admin";
+
+        /// <summary>
+        ///     ADMIN
+        /// </summary>
+        public const string DatabaseNameLocal = "local";
 
         /// <summary>
         ///     系统索引
         /// </summary>
-        public const string COLLECTION_NAME_SYSTEM_INDEXES = "system.indexes";
+        public const string CollectionNameSystemIndexes = "system.indexes";
 
         /// <summary>
         ///     系统副本
         /// </summary>
-        public const string COLLECTION_NAME_SYSTEM_REPLSET = "system.replset";
+        public const string CollectionNameSystemReplset = "system.replset";
 
         /// <summary>
         ///     系统副本
         /// </summary>
-        public const string COLLECTION_NAME_SYSTEM_PROFILE = "system.profile";
+        public const string CollectionNameSystemProfile = "system.profile";
 
         /// <summary>
         ///     minvalid数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_REPLSET_MINVALID = "replset.minvalid";
+        public const string CollectionNameReplsetMinvalid = "replset.minvalid";
 
         /// <summary>
         ///     操作日志数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_OPERATION_LOG = "oplog.rs";
+        public const string CollectionNameOperationLog = "oplog.rs";
 
         /// <summary>
         ///     GFS块数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_GFS_CHUNKS = "fs.chunks";
+        public const string CollectionNameGfsChunks = "fs.chunks";
 
         /// <summary>
         ///     GFS数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_GFS_FILES = "fs.files";
+        public const string CollectionNameGfsFiles = "fs.files";
 
         /// <summary>
         ///     用户数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_USER = "system.users";
+        public const string CollectionNameUser = "system.users";
 
         /// <summary>
         ///     角色数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_ROLE = "system.roles";
+        public const string CollectionNameRole = "system.roles";
 
         /// <summary>
         ///     Js数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_JAVASCRIPT = "system.js";
+        public const string CollectionNameJavascript = "system.js";
 
         #endregion
 
@@ -206,22 +206,23 @@
         /// <summary>
         ///     查询条件构成控件用常量
         /// </summary>
-        public const string StartMark_T = "(";
-        public const string EndMark_AND = " AND ";
-        public const string EndMark_OR = " OR ";
-        public const string EndMark_AND_T = ") AND ";
-        public const string EndMark_OR_T = ") OR ";
-        public const string EndMark_T = ")";
+        public const string StartMarkT = "(";
+
+        public const string EndMarkAnd = " AND ";
+        public const string EndMarkOr = " OR ";
+        public const string EndMarkAndT = ") AND ";
+        public const string EndMarkOrT = ") OR ";
+        public const string EndMarkT = ")";
 
         /// <summary>
         ///     在标识元素路径时候，这个后缀表示当期元素只是数组的开始标志
         /// </summary>
-        public const string Array_Mark = "[ARRAY]";
+        public const string ArrayMark = "[ARRAY]";
 
         /// <summary>
         ///     在标识元素路径时候，这个后缀表示当期元素只是文档的开始标志
         /// </summary>
-        public const string Document_Mark = "[DOCUMENT]";
+        public const string DocumentMark = "[DOCUMENT]";
 
         #endregion
     }

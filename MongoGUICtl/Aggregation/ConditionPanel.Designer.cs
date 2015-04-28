@@ -1,11 +1,15 @@
-﻿namespace MongoGUICtl.Aggregation
+﻿using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MongoGUICtl.Aggregation
 {
     partial class ConditionPanel
     {
         /// <summary> 
         /// 必需的设计器变量。
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// 清理所有正在使用的资源。
@@ -32,10 +36,10 @@
             // 
             // ConditionPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new SizeF(6F, 13F);
+            this.AutoScaleMode = AutoScaleMode.Font;
             this.Name = "ConditionPanel";
-            this.Size = new System.Drawing.Size(489, 281);
+            this.Size = new Size(489, 281);
             this.ResumeLayout(false);
 
         }

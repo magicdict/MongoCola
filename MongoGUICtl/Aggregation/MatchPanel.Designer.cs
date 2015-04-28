@@ -1,11 +1,14 @@
-﻿namespace MongoGUICtl.Aggregation
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoGUICtl.Aggregation
 {
     partial class MatchPanel
     {
         /// <summary> 
         /// 必需的设计器变量。
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// 清理所有正在使用的资源。
@@ -28,8 +31,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            components = new Container();
+            this.AutoScaleMode = AutoScaleMode.Font;
         }
 
         #endregion

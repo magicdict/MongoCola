@@ -4,16 +4,16 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoCola.Aggregation
 {
-    public partial class frmMapReduce : Form
+    public partial class FrmMapReduce : Form
     {
         /// <summary>
         ///     初始化
         /// </summary>
-        public frmMapReduce()
+        public FrmMapReduce()
         {
             InitializeComponent();
         }
@@ -25,15 +25,15 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
                 ctlMapFunction.Title =
-                    GUIConfig.GetText(TextType.MapReduce_MapFunction);
+                    GuiConfig.GetText(TextType.MapReduceMapFunction);
                 ctlReduceFunction.Title =
-                    GUIConfig.GetText(TextType.MapReduce_ReduceFunction);
-                lblResult.Text = GUIConfig.GetText(TextType.MapReduce_Result);
-                cmdRun.Text = GUIConfig.GetText(TextType.MapReduce_Run);
-                cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
+                    GuiConfig.GetText(TextType.MapReduceReduceFunction);
+                lblResult.Text = GuiConfig.GetText(TextType.MapReduceResult);
+                cmdRun.Text = GuiConfig.GetText(TextType.MapReduceRun);
+                cmdClose.Text = GuiConfig.GetText(TextType.CommonClose);
             }
             ctlMapFunction.Context =
                 @"function Map(){
@@ -64,8 +64,8 @@ namespace MongoCola.Aggregation
             var args = new MapReduceArgs();
             args.MapFunction = map;
             args.ReduceFunction = reduce;
-            var mMapReduceResult = RuntimeMongoDBContext.GetCurrentCollection().MapReduce(args);
-            UIHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
+            var mMapReduceResult = RuntimeMongoDbContext.GetCurrentCollection().MapReduce(args);
+            UiHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();

@@ -1,11 +1,14 @@
-﻿namespace Common.UI
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace ResourceLib.UI
 {
-    partial class ctlFilePicker
+    partial class CtlFilePicker
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -89,7 +92,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtPathName);
             this.Controls.Add(this.cmdBrowse);
-            this.Name = "ctlFilePicker";
+            this.Name = "CtlFilePicker";
             this.Size = new System.Drawing.Size(463, 29);
             this.Load += new System.EventHandler(this.ctlFilePicker_Load);
             this.ResumeLayout(false);
@@ -99,9 +102,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmdClearPath;
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.TextBox txtPathName;
-        private System.Windows.Forms.Button cmdBrowse;
+        private Button cmdClearPath;
+        private Label lblTitle;
+        private TextBox txtPathName;
+        private Button cmdBrowse;
     }
 }

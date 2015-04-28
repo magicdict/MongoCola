@@ -2,18 +2,17 @@
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using Common;
 using MongoUtility.Basic;
-using ResourceLib;
-using Common.Logic;
-
+using ResourceLib.Method;
 
 namespace PlugInPackage.DosCommand
 {
-    public partial class frmDosCommand : Form
+    public partial class FrmDosCommand : Form
     {
         public string StrSaveText = string.Empty;
 
-        public frmDosCommand()
+        public FrmDosCommand()
         {
             InitializeComponent();
         }
@@ -24,14 +23,14 @@ namespace PlugInPackage.DosCommand
             ctlMongodPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
             ctlMongodumpPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
             ctlMongoImportExportPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
-            if (GUIConfig.IsUseDefaultLanguage)
+            if (GuiConfig.IsUseDefaultLanguage)
                 return;
-            cmdSave.Text = GUIConfig.GetText(TextType.Common_Save);
-            cmdRunDos.Text = GUIConfig.GetText(TextType.DosCommand_Run);
-            tabMongod.Text = GUIConfig.GetText(TextType.DosCommand_Tab_Deploy);
-            tabMongoDump.Text = GUIConfig.GetText(TextType.DosCommand_Tab_Backup);
+            cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
+            cmdRunDos.Text = GuiConfig.GetText(TextType.DosCommandRun);
+            tabMongod.Text = GuiConfig.GetText(TextType.DosCommandTabDeploy);
+            tabMongoDump.Text = GuiConfig.GetText(TextType.DosCommandTabBackup);
             tabMongoImportExport.Text =
-                GUIConfig.GetText(TextType.DosCommand_Tab_ExIn);
+                GuiConfig.GetText(TextType.DosCommandTabExIn);
         }
 
         /// <summary>
@@ -66,7 +65,7 @@ namespace PlugInPackage.DosCommand
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog { Filter = Utility.ConfFilter };
+            var savefile = new SaveFileDialog {Filter = Utility.ConfFilter};
             if (savefile.ShowDialog() != DialogResult.OK)
                 return;
             var save = new StreamWriter(savefile.FileName);

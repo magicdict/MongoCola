@@ -1,10 +1,10 @@
-﻿using ResourceLib;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using ResourceLib.Method;
 
-namespace Common.UI
+namespace ResourceLib.UI
 {
-    public partial class frmInputBox : Form
+    public partial class FrmInputBox : Form
     {
         /// <summary>
         ///     return result
@@ -14,31 +14,31 @@ namespace Common.UI
         /// <summary>
         ///     Init
         /// </summary>
-        internal frmInputBox()
+        internal FrmInputBox()
         {
             InitializeComponent();
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>
         ///     Set Text of OK,Cancel Button
         /// </summary>
         /// <param name="cancel"></param>
-        /// <param name="OK"></param>
-        internal void SetText(string cancel, string OK)
+        /// <param name="ok"></param>
+        internal void SetText(string cancel, string ok)
         {
             cmdCancel.Text = cancel;
-            cmdOK.Text = OK;
+            cmdOK.Text = ok;
         }
 
         /// <summary>
         ///     Set Message
         /// </summary>
         /// <param name="message"></param>
-        internal void SetMessage(string message, string DefaultValue)
+        internal void SetMessage(string message, string defaultValue)
         {
             lblMessage.Text = message;
-            txtResult.Text = DefaultValue;
+            txtResult.Text = defaultValue;
         }
 
         /// <summary>

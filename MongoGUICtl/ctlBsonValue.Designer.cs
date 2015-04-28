@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
-    partial class ctlBsonValue
+    partial class CtlBsonValue
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -115,7 +116,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.radFalse);
             this.Controls.Add(this.txtBsonValue);
             this.Controls.Add(this.cmbDataType);
-            this.Name = "ctlBsonValue";
+            this.Name = "CtlBsonValue";
             this.Size = new System.Drawing.Size(211, 28);
             ((System.ComponentModel.ISupportInitialize)(this.NumberPick)).EndInit();
             this.ResumeLayout(false);
@@ -126,11 +127,11 @@ namespace MongoGUICtl
         #endregion
 
         private TextBox txtBsonValue;
-        private System.Windows.Forms.ComboBox cmbDataType;
-        private System.Windows.Forms.RadioButton radFalse;
-        private System.Windows.Forms.RadioButton radTrue;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
-        private System.Windows.Forms.NumericUpDown NumberPick;
+        private ComboBox cmbDataType;
+        private RadioButton radFalse;
+        private RadioButton radTrue;
+        private DateTimePicker dateTimePicker;
+        private NumericUpDown NumberPick;
 
     }
 }

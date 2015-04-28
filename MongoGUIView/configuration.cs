@@ -7,14 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using ResourceLib;
-
 namespace MongoGUIView
 {
     /// <summary>
     ///     Description of Init.SystemManager.
     /// </summary>
-    public static class configuration
+    public static class Configuration
     {
         public static int RefreshStatusTimer;
     }

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Common.Logic;
-using Common.UI;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Core;
+using ResourceLib.UI;
 
 namespace MongoGUICtl
 {
-    public partial class ctlGeoNear : UserControl
+    public partial class CtlGeoNear : UserControl
     {
-        public ctlGeoNear()
+        public CtlGeoNear()
         {
             InitializeComponent();
             NumGeoX.KeyPress += NumberTextBox.NumberText_KeyPress;
@@ -27,17 +27,17 @@ namespace MongoGUICtl
 
         private void cmdGeoNear_Click(object sender, EventArgs e)
         {
-            var GeoOption = new GeoNearArgs();
-            GeoOption.DistanceMultiplier = (double.Parse(NumDistanceMultiplier.Text));
-            GeoOption.MaxDistance = (double.Parse(NumMaxDistance.Text));
-            GeoOption.Spherical = (chkSpherical.Checked);
-            GeoOption.Limit = (int) (NumResultCount.Value);
-            GeoOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
+            var geoOption = new GeoNearArgs();
+            geoOption.DistanceMultiplier = (double.Parse(NumDistanceMultiplier.Text));
+            geoOption.MaxDistance = (double.Parse(NumMaxDistance.Text));
+            geoOption.Spherical = (chkSpherical.Checked);
+            geoOption.Limit = (int) (NumResultCount.Value);
+            geoOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
             try
             {
                 var mGeoNearAs =
-                    RuntimeMongoDBContext.GetCurrentCollection().GeoNearAs<BsonDocument>(GeoOption).Response;
-                UIHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
+                    RuntimeMongoDbContext.GetCurrentCollection().GeoNearAs<BsonDocument>(geoOption).Response;
+                UiHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
                 trvGeoResult.DatatreeView.Nodes[0].Expand();
             }
             catch (Exception ex)

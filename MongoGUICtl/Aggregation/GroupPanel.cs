@@ -51,7 +51,7 @@ namespace MongoGUICtl.Aggregation
             var grouplist = new List<BsonElement>();
             foreach (GroupItem item in Controls)
             {
-                grouplist.Add(item.getGroupItem());
+                grouplist.Add(item.GetGroupItem());
             }
             return grouplist;
         }

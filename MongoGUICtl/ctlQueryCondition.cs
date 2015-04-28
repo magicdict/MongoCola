@@ -6,11 +6,11 @@ using MongoUtility.Basic;
 
 namespace MongoGUICtl
 {
-    public partial class ctlQueryCondition : UserControl
+    public partial class CtlQueryCondition : UserControl
     {
         public List<string> ColumnList;
 
-        public ctlQueryCondition()
+        public CtlQueryCondition()
         {
             InitializeComponent();
         }
@@ -28,7 +28,7 @@ namespace MongoGUICtl
                 {
                     var rtn = new DataFilter.QueryConditionInputItem();
                     rtn.Compare = (DataFilter.CompareEnum) cmbCompareOpr.SelectedIndex;
-                    rtn.Value = new BsonValueEx(ElBsonValue.getValue());
+                    rtn.Value = new BsonValueEx(ElBsonValue.GetValue());
                     rtn.StartMark = cmbStartMark.Text;
                     rtn.EndMark = cmbEndMark.Text;
                     rtn.ColName = cmbColName.Text;
@@ -39,28 +39,28 @@ namespace MongoGUICtl
             set
             {
                 cmbColName.Text = value.ColName;
-                ElBsonValue.setValue(value.Value.GetBsonValue());
+                ElBsonValue.SetValue(value.Value.GetBsonValue());
                 cmbCompareOpr.SelectedIndex = (int) value.Compare;
                 cmbStartMark.Text = value.StartMark;
                 cmbEndMark.Text = value.EndMark;
             }
         }
 
-        public void Init(List<string> ColumnList)
+        public void Init(List<string> columnList)
         {
             cmbStartMark.Items.Add(string.Empty);
-            cmbStartMark.Items.Add(ConstMgr.StartMark_T);
+            cmbStartMark.Items.Add(ConstMgr.StartMarkT);
             cmbStartMark.SelectedIndex = 0;
             cmbEndMark.Items.Add(string.Empty);
-            cmbEndMark.Items.Add(ConstMgr.EndMark_AND);
-            cmbEndMark.Items.Add(ConstMgr.EndMark_OR);
-            cmbEndMark.Items.Add(ConstMgr.EndMark_AND_T);
-            cmbEndMark.Items.Add(ConstMgr.EndMark_OR_T);
-            cmbEndMark.Items.Add(ConstMgr.EndMark_T);
+            cmbEndMark.Items.Add(ConstMgr.EndMarkAnd);
+            cmbEndMark.Items.Add(ConstMgr.EndMarkOr);
+            cmbEndMark.Items.Add(ConstMgr.EndMarkAndT);
+            cmbEndMark.Items.Add(ConstMgr.EndMarkOrT);
+            cmbEndMark.Items.Add(ConstMgr.EndMarkT);
             cmbEndMark.SelectedIndex = 0;
 
             //字段表的载入
-            foreach (var item in ColumnList)
+            foreach (var item in columnList)
             {
                 cmbColName.Items.Add(item);
             }

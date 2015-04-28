@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoCola
 {
-    partial class frmValidate
+    partial class FrmValidate
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,7 +32,7 @@ namespace MongoCola
         /// </summary>
         private void InitializeComponent()
         {
-            this.trvResult = new MongoGUICtl.ctlTreeViewColumns();
+            this.trvResult = new MongoGUICtl.CtlTreeViewColumns();
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdValidate = new System.Windows.Forms.Button();
             this.chkFull = new System.Windows.Forms.CheckBox();
@@ -101,7 +103,7 @@ namespace MongoCola
             this.Controls.Add(this.cmdValidate);
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.trvResult);
-            this.Name = "frmValidate";
+            this.Name = "FrmValidate";
             this.Tag = "Common_Validate";
             this.Text = "Validate";
             this.ResumeLayout(false);
@@ -111,10 +113,10 @@ namespace MongoCola
 
         #endregion
 
-        private ctlTreeViewColumns trvResult;
-        private System.Windows.Forms.Button cmdClose;
-        private System.Windows.Forms.Button cmdValidate;
-        private System.Windows.Forms.CheckBox chkFull;
-        private System.Windows.Forms.Button cmdSave;
+        private CtlTreeViewColumns trvResult;
+        private Button cmdClose;
+        private Button cmdValidate;
+        private CheckBox chkFull;
+        private Button cmdSave;
     }
 }

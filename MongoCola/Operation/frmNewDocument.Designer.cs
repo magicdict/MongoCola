@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoCola.Operation
 {
-    partial class frmNewDocument
+    partial class FrmNewDocument
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,11 +32,11 @@ namespace MongoCola.Operation
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewDocument));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNewDocument));
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.trvNewDocument = new MongoGUICtl.ctlTreeViewColumns();
+            this.trvNewDocument = new MongoGUICtl.CtlTreeViewColumns();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdPreview = new System.Windows.Forms.Button();
             this.cmdSaveAggregate = new System.Windows.Forms.Button();
@@ -127,7 +129,7 @@ namespace MongoCola.Operation
             this.Controls.Add(this.txtDocument);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmNewDocument";
+            this.Name = "FrmNewDocument";
             this.Text = "New Document";
             this.Load += new System.EventHandler(this.frmNewDocument_Load);
             this.ResumeLayout(false);
@@ -137,12 +139,12 @@ namespace MongoCola.Operation
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtDocument;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.Button cmdClose;
-        private ctlTreeViewColumns trvNewDocument;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button cmdPreview;
-        private System.Windows.Forms.Button cmdSaveAggregate;
+        private TextBox txtDocument;
+        private Button cmdOK;
+        private Button cmdClose;
+        private CtlTreeViewColumns trvNewDocument;
+        private Label label1;
+        private Button cmdPreview;
+        private Button cmdSaveAggregate;
     }
 }

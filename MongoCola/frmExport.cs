@@ -1,29 +1,27 @@
 ﻿using System;
 using System.Windows.Forms;
-
-using Common.UI;
+using Common;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib;
-using Common.Logic;
-
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoCola
 {
-    public partial class frmExport : Form
+    public partial class FrmExport : Form
     {
         private readonly DataViewInfo _viewinfo;
         private EnumMgr.ExportType _exportType;
 
-        public frmExport(DataViewInfo info)
+        public FrmExport(DataViewInfo info)
         {
             InitializeComponent();
             _viewinfo = info;
         }
 
-        public frmExport()
+        public FrmExport()
         {
             InitializeComponent();
         }
@@ -33,11 +31,11 @@ namespace MongoCola
             //Excel文件过滤器
             ctlExportFilePicker.FileFilter = Utility.ExcelFilter;
             _exportType = EnumMgr.ExportType.Excel;
-            ctlExportFilePicker.FileName = RuntimeMongoDBContext.GetCurrentCollection().Name;
+            ctlExportFilePicker.FileName = RuntimeMongoDbContext.GetCurrentCollection().Name;
             optExcel.CheckedChanged += optExportType_CheckedChanged;
             optText.CheckedChanged += optExportType_CheckedChanged;
             optXML.CheckedChanged += optExportType_CheckedChanged;
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>
@@ -70,9 +68,9 @@ namespace MongoCola
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MongoUtility.Basic.MongoUtility.ActionDone += (x, y) => MyMessageBox.ShowMessage("ExportImport", y.Message);
+            MongoHelper.ActionDone += (x, y) => MyMessageBox.ShowMessage("ExportImport", y.Message);
             ExportImport.ExportToFile(_viewinfo, ctlExportFilePicker.SelectedPathOrFileName, _exportType,
-                RuntimeMongoDBContext.GetCurrentCollection());
+                RuntimeMongoDbContext.GetCurrentCollection());
         }
     }
 }

@@ -1,13 +1,15 @@
-﻿using MongoGUICtl.Aggregation;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl.Aggregation;
 
 namespace MongoCola.Aggregation
 {
-    partial class frmAggregationCondition
+    partial class FrmAggregationCondition
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -84,8 +86,8 @@ namespace MongoCola.Aggregation
             this.QueryFieldPicker.AutoScroll = true;
             this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
             this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = ctlFieldInfo.FieldMode.FieldProject;
-            this.QueryFieldPicker.IsIDProtect = false;
+            this.QueryFieldPicker.FieldListMode = CtlFieldInfo.FieldMode.FieldProject;
+            this.QueryFieldPicker.IsIdProtect = false;
             this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
             this.QueryFieldPicker.Name = "QueryFieldPicker";
             this.QueryFieldPicker.Size = new System.Drawing.Size(598, 322);
@@ -163,8 +165,8 @@ namespace MongoCola.Aggregation
             // 
             this.GroupFieldPicker.AutoScroll = true;
             this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
-            this.GroupFieldPicker.FieldListMode = ctlFieldInfo.FieldMode.FieldProject;
-            this.GroupFieldPicker.IsIDProtect = false;
+            this.GroupFieldPicker.FieldListMode = CtlFieldInfo.FieldMode.FieldProject;
+            this.GroupFieldPicker.IsIdProtect = false;
             this.GroupFieldPicker.Location = new System.Drawing.Point(6, 30);
             this.GroupFieldPicker.Name = "GroupFieldPicker";
             this.GroupFieldPicker.Size = new System.Drawing.Size(592, 137);
@@ -267,7 +269,7 @@ namespace MongoCola.Aggregation
             this.ClientSize = new System.Drawing.Size(636, 412);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tabAggregation);
-            this.Name = "frmAggregationCondition";
+            this.Name = "FrmAggregationCondition";
             this.Text = "Aggregation Condition Builder";
             this.Load += new System.EventHandler(this.frmAggregationCondition_Load);
             this.tabAggregation.ResumeLayout(false);
@@ -283,24 +285,24 @@ namespace MongoCola.Aggregation
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabAggregation;
-        private System.Windows.Forms.TabPage tabProject;
+        private TabControl tabAggregation;
+        private TabPage tabProject;
         private FieldPicker QueryFieldPicker;
-        private System.Windows.Forms.TabPage tabOption;
-        private System.Windows.Forms.TabPage tabMatch;
-        private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.CheckBox chkSkip;
-        private System.Windows.Forms.CheckBox chkLimit;
-        private System.Windows.Forms.TextBox txtSkip;
-        private System.Windows.Forms.TextBox txtLimit;
-        private System.Windows.Forms.TabPage tabGroup;
-        private System.Windows.Forms.Label lblID;
+        private TabPage tabOption;
+        private TabPage tabMatch;
+        private Button btnOK;
+        private CheckBox chkSkip;
+        private CheckBox chkLimit;
+        private TextBox txtSkip;
+        private TextBox txtLimit;
+        private TabPage tabGroup;
+        private Label lblID;
         private GroupPanel groupPanelCreator;
         private FieldPicker GroupFieldPicker;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button cmdAddGroupItem;
-        private System.Windows.Forms.Button btnClearMatch;
-        private System.Windows.Forms.Button btnAddMatch;
+        private Button btnClear;
+        private Button cmdAddGroupItem;
+        private Button btnClearMatch;
+        private Button btnAddMatch;
         private MatchPanel MatchListPanel;
 
 

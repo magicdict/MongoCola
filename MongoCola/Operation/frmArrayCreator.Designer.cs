@@ -1,13 +1,15 @@
-﻿using MongoGUICtl.Aggregation;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl.Aggregation;
 
 namespace MongoCola.Operation
 {
-    partial class frmArrayCreator
+    partial class FrmArrayCreator
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -86,7 +88,7 @@ namespace MongoCola.Operation
             this.Controls.Add(this.btnClear);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmArrayCreator";
+            this.Name = "FrmArrayCreator";
             this.Text = "frmArrayCreator";
             this.ResumeLayout(false);
 
@@ -94,9 +96,9 @@ namespace MongoCola.Operation
 
         #endregion
 
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnClear;
+        private Button btnAdd;
+        private Button btnClear;
         private BsonValuePanel ArrayPanel;
-        private System.Windows.Forms.Button btnOK;
+        private Button btnOK;
     }
 }

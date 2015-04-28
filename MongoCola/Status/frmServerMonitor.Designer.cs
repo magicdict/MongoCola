@@ -1,11 +1,15 @@
-﻿namespace MongoCola.Status
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace MongoCola.Status
 {
-    partial class frmServerMonitor
+    partial class FrmServerMonitor
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -68,7 +72,7 @@
             this.ClientSize = new System.Drawing.Size(880, 330);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.MonitorGrap);
-            this.Name = "frmServerMonitor";
+            this.Name = "FrmServerMonitor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ServerMonitor";
             this.Load += new System.EventHandler(this.frmServerMonitor_Load);
@@ -79,7 +83,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart MonitorGrap;
-        private System.Windows.Forms.Button btnClose;
+        private Chart MonitorGrap;
+        private Button btnClose;
     }
 }

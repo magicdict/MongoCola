@@ -4,20 +4,20 @@ using System.Windows.Forms;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
+using ResourceLib.Method;
 using ResourceLib.Properties;
-using ResourceLib;
 
 namespace MongoGUICtl
 {
-    public partial class ctlJsEditor : UserControl
+    public partial class CtlJsEditor : UserControl
     {
         /// <summary>
         /// </summary>
-        public string strDBtag;
+        public string StrDBtag;
 
         /// <summary>
         /// </summary>
-        public ctlJsEditor()
+        public CtlJsEditor()
         {
             InitializeComponent();
         }
@@ -35,14 +35,14 @@ namespace MongoGUICtl
         private void JsEditor_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
-            GUIConfig.Translateform(Controls);
+            GuiConfig.Translateform(Controls);
             SaveStripButton.Image = Resources.save.ToBitmap();
             if (JsName != null && JsName != string.Empty)
             {
                 txtJavaScript.Text = OperationHelper.LoadJavascript(JsName, null);
                 txtJavaScript.Select(0, 0);
             }
-            txtJavaScript.GotFocus += (x, y) => { RuntimeMongoDBContext.SelectObjectTag = strDBtag; };
+            txtJavaScript.GotFocus += (x, y) => { RuntimeMongoDbContext.SelectObjectTag = StrDBtag; };
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void EditDocStripButton_Click(object sender, EventArgs e)
         {
-            GFS.SaveAndOpenStringAsFile(txtJavaScript.Text);
+            Gfs.SaveAndOpenStringAsFile(txtJavaScript.Text);
         }
     }
 }

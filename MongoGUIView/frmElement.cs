@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.UI;
 using MongoDB.Bson;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class frmElement : Form
+    public partial class FrmElement : Form
     {
         /// <summary>
         ///     路径
         /// </summary>
-        private readonly string _FullPath = string.Empty;
+        private readonly string _fullPath = string.Empty;
 
         /// <summary>
         /// </summary>
@@ -30,17 +30,17 @@ namespace MongoGUIView
 
         /// <summary>
         /// </summary>
-        /// <param name="IsUpdateMode"></param>
-        /// <param name="SelectNode"></param>
-        /// <param name="IsElement"></param>
-        public frmElement(bool IsUpdateMode, TreeNode SelectNode, bool IsElement)
+        /// <param name="isUpdateMode"></param>
+        /// <param name="selectNode"></param>
+        /// <param name="isElement"></param>
+        public FrmElement(bool isUpdateMode, TreeNode selectNode, bool isElement)
         {
             InitializeComponent();
-            _isUpdateMode = IsUpdateMode;
+            _isUpdateMode = isUpdateMode;
             //TODO:
-            _FullPath = SelectNode.FullPath;
-            _selectNode = SelectNode;
-            _isElement = IsElement;
+            _fullPath = selectNode.FullPath;
+            _selectNode = selectNode;
+            _isElement = isElement;
         }
 
         /// <summary>
@@ -51,18 +51,18 @@ namespace MongoGUIView
         {
             if (_isUpdateMode)
             {
-                AddBsonElement.switchToUpdateMode();
-                AddBsonElement.setElement(_selectNode.Tag);
+                AddBsonElement.SwitchToUpdateMode();
+                AddBsonElement.SetElement(_selectNode.Tag);
             }
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                cmdOK.Text = GUIConfig.MStringResource.GetText(TextType.Common_OK);
-                cmdCancel.Text = GUIConfig.MStringResource.GetText(TextType.Common_Cancel);
+                cmdOK.Text = GuiConfig.MStringResource.GetText(TextType.CommonOk);
+                cmdCancel.Text = GuiConfig.MStringResource.GetText(TextType.CommonCancel);
             }
             if (!_isElement)
             {
                 //TODO:在这个模式，数组里面暂时不能添加数组或者文档
-                AddBsonElement.switchToValueMode();
+                AddBsonElement.SwitchToValueMode();
             }
         }
 
@@ -77,55 +77,55 @@ namespace MongoGUIView
             {
                 if (_isElement)
                 {
-                    ElementHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value,
+                    ElementHelper.ModifyElement(_fullPath, AddBsonElement.GetElement().Value,
                         (BsonElement) _selectNode.Tag,
-                        RuntimeMongoDBContext.CurrentDocument,
-                        RuntimeMongoDBContext.GetCurrentCollection());
+                        RuntimeMongoDbContext.CurrentDocument,
+                        RuntimeMongoDbContext.GetCurrentCollection());
                 }
                 else
                 {
-                    ElementHelper.ModifyArrayValue(_FullPath, AddBsonElement.getElement().Value, _selectNode.Index,
-                        RuntimeMongoDBContext.CurrentDocument,
-                        RuntimeMongoDBContext.GetCurrentCollection());
+                    ElementHelper.ModifyArrayValue(_fullPath, AddBsonElement.GetElement().Value, _selectNode.Index,
+                        RuntimeMongoDbContext.CurrentDocument,
+                        RuntimeMongoDbContext.GetCurrentCollection());
                 }
-                _selectNode.Text = string.IsNullOrEmpty(AddBsonElement.getElement().Name)
+                _selectNode.Text = string.IsNullOrEmpty(AddBsonElement.GetElement().Name)
                     ? string.Empty
-                    : AddBsonElement.getElement().Name;
-                _selectNode.Tag = AddBsonElement.getElement().Value;
+                    : AddBsonElement.GetElement().Name;
+                _selectNode.Tag = AddBsonElement.GetElement().Value;
             }
             else
             {
-                var AddMessage = string.Empty;
+                var addMessage = string.Empty;
                 if (_isElement)
                 {
-                    AddMessage = ElementHelper.AddElement(_FullPath, AddBsonElement.getElement(),
-                        RuntimeMongoDBContext.CurrentDocument,
-                        RuntimeMongoDBContext.GetCurrentCollection());
+                    addMessage = ElementHelper.AddElement(_fullPath, AddBsonElement.GetElement(),
+                        RuntimeMongoDbContext.CurrentDocument,
+                        RuntimeMongoDbContext.GetCurrentCollection());
                 }
                 else
                 {
-                    ElementHelper.AddArrayValue(_FullPath, AddBsonElement.getElement().Value,
-                        RuntimeMongoDBContext.CurrentDocument,
-                        RuntimeMongoDBContext.GetCurrentCollection());
+                    ElementHelper.AddArrayValue(_fullPath, AddBsonElement.GetElement().Value,
+                        RuntimeMongoDbContext.CurrentDocument,
+                        RuntimeMongoDbContext.GetCurrentCollection());
                 }
-                if (!string.IsNullOrEmpty(AddMessage))
+                if (!string.IsNullOrEmpty(addMessage))
                 {
-                    MyMessageBox.ShowMessage("Exception", AddMessage);
+                    MyMessageBox.ShowMessage("Exception", addMessage);
                     return;
                 }
-                TreeNode NewNode;
-                NewNode = string.IsNullOrEmpty(AddBsonElement.getElement().Name)
+                TreeNode newNode;
+                newNode = string.IsNullOrEmpty(AddBsonElement.GetElement().Name)
                     ? new TreeNode()
-                    : new TreeNode(AddBsonElement.getElement().Name);
+                    : new TreeNode(AddBsonElement.GetElement().Name);
                 if (_isElement)
                 {
-                    NewNode.Tag = AddBsonElement.getElement();
+                    newNode.Tag = AddBsonElement.GetElement();
                 }
                 else
                 {
-                    NewNode.Tag = AddBsonElement.getElement().Value;
+                    newNode.Tag = AddBsonElement.GetElement().Value;
                 }
-                _selectNode.Nodes.Add(NewNode);
+                _selectNode.Nodes.Add(newNode);
             }
             Close();
         }

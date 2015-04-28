@@ -8,7 +8,6 @@ using MongoDB.Driver;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.EventArgs;
-using Common.Logic;
 
 namespace MongoUtility.Extend
 {
@@ -17,23 +16,23 @@ namespace MongoUtility.Extend
         /// <summary>
         ///     ExportToFile
         /// </summary>
-        /// <param name="CurrentDataViewInfo"></param>
-        /// <param name="ExcelFileName"></param>
+        /// <param name="currentDataViewInfo"></param>
+        /// <param name="excelFileName"></param>
         /// <param name="exportType"></param>
         /// <param name="mongoCol"></param>
-        public static void ExportToFile(DataViewInfo CurrentDataViewInfo,
-            string ExcelFileName,
+        public static void ExportToFile(DataViewInfo currentDataViewInfo,
+            string excelFileName,
             EnumMgr.ExportType exportType,
             MongoCollection mongoCol)
         {
             MongoCursor<BsonDocument> cursor;
             //Query condition:
-            if (CurrentDataViewInfo != null && CurrentDataViewInfo.IsUseFilter)
+            if (currentDataViewInfo != null && currentDataViewInfo.IsUseFilter)
             {
                 cursor = mongoCol.FindAs<BsonDocument>(
-                    QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
-                    .SetFields(QueryHelper.GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                    .SetSortOrder(QueryHelper.GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList));
+                    QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList))
+                    .SetFields(QueryHelper.GetOutputFields(currentDataViewInfo.MDataFilter.QueryFieldList))
+                    .SetSortOrder(QueryHelper.GetSort(currentDataViewInfo.MDataFilter.QueryFieldList));
             }
             else
             {
@@ -47,12 +46,12 @@ namespace MongoUtility.Extend
                     GC.Collect();
                     break;
                 case EnumMgr.ExportType.Text:
-                    ExportToJson(dataList, ExcelFileName, MongoUtility.Basic.MongoUtility.JsonWriterSettings);
+                    ExportToJson(dataList, excelFileName, MongoHelper.JsonWriterSettings);
                     break;
                 case EnumMgr.ExportType.Xml:
                     break;
             }
-            MongoUtility.Basic.MongoUtility.OnActionDone(new ActionDoneEventArgs(" Completed "));
+            MongoHelper.OnActionDone(new ActionDoneEventArgs(" Completed "));
         }
 
         /// <summary>

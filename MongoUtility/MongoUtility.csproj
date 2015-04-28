@@ -78,7 +78,7 @@
     <Compile Include="Aggregation\DataViewInfo.cs" />
     <Compile Include="Basic\MongodbDosCommand.cs" />
     <Compile Include="Basic\GFS.cs" />
-    <Compile Include="Basic\Utility.cs" />
+    <Compile Include="Basic\MongoHelper.cs" />
     <Compile Include="Basic\ConstMgr.cs" />
     <Compile Include="Basic\EnumMgr.cs" />
     <Compile Include="Extend\CommandHelper.cs" />
@@ -91,7 +91,7 @@
     <Compile Include="Core\RuntimeMongoDBContext.cs" />
     <Compile Include="Extend\OperationHelper.cs" />
     <Compile Include="Aggregation\QueryHelper.cs" />
-    <Compile Include="Aggregation\Sql.cs" />
+    <Compile Include="Aggregation\SqlHelper.cs" />
     <Compile Include="EventArgs\SelectedIndexChangeEventArgs.cs" />
     <Compile Include="EventArgs\TextChangeEventArgs.cs" />
     <Compile Include="Core\GetConnectionInfo.cs" />
@@ -104,13 +104,13 @@
     <Compile Include="Security\EachDatabaseUser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{40495682-C452-41C4-B2AE-8C60D7743BC9}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{40495682-c452-41c4-b2ae-8c60d7743bc9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

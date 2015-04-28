@@ -1,14 +1,14 @@
-﻿using Microsoft.Win32;
-using ResourceLib.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.Win32;
+using ResourceLib.Properties;
 
-namespace ResourceLib
+namespace ResourceLib.Method
 {
     /// <summary>
     ///     提供从操作系统读取图标的方法
@@ -26,12 +26,12 @@ namespace ResourceLib
             Collection = 3,
             Keys = 4,
             Document = 5,
-            DBKey = 6,
+            DbKey = 6,
             KeyInfo = 7,
             UserIcon = 8,
             CollectionList = 9,
             JavaScriptList = 10,
-            GFS = 11,
+            Gfs = 11,
             JsDoc = 12,
             SystemCol = 13,
             Err = 14,
@@ -77,14 +77,14 @@ namespace ResourceLib
             return icon;
         }
 
-        public static byte[] imageToByteArray(Image imageIn, ImageFormat Format)
+        public static byte[] ImageToByteArray(Image imageIn, ImageFormat format)
         {
             var ms = new MemoryStream();
             imageIn.Save(ms, ImageFormat.Png);
             return ms.ToArray();
         }
 
-        public static Image byteArrayToImage(byte[] byteArrayIn)
+        public static Image ByteArrayToImage(byte[] byteArrayIn)
         {
             var ms = new MemoryStream(byteArrayIn);
             var returnImage = Image.FromStream(ms);
@@ -122,7 +122,7 @@ namespace ResourceLib
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Collection));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Keys));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Document));
-            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.DBKey));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.DbKey));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.KeyInfo));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.User));
 
@@ -158,19 +158,19 @@ namespace ResourceLib
         /// <returns></returns>
         public static Int32 GetIconIndexByFileName(string fileName, bool isLarge)
         {
-            var GetIcon = new FileInfo(fileName).Extension;
-            if (IconList.ContainsKey(GetIcon))
+            var getIcon = new FileInfo(fileName).Extension;
+            if (IconList.ContainsKey(getIcon))
             {
-                return IconList[GetIcon];
+                return IconList[getIcon];
             }
-            var mIcon = GetIconByFileType(GetIcon, isLarge);
+            var mIcon = GetIconByFileType(getIcon, isLarge);
             if (mIcon != null)
             {
                 IconImagelist.Images.Add(mIcon);
-                IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
+                IconList.Add(getIcon, IconImagelist.Images.Count - 1);
                 return IconImagelist.Images.Count - 1;
             }
-            IconList.Add(GetIcon, 0);
+            IconList.Add(getIcon, 0);
             return 0;
         }
 
@@ -183,10 +183,10 @@ namespace ResourceLib
         {
             if (string.IsNullOrEmpty(fileName)) return null;
             if (!File.Exists(fileName)) return null;
-            var shInfo = new SHFILEINFO();
+            var shInfo = new Shfileinfo();
             //Use this to get the small Icon
             Win32.SHGetFileInfo(fileName, 0, ref shInfo, (uint) Marshal.SizeOf(shInfo),
-                Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
+                Win32.ShgfiIcon | Win32.ShgfiSmallicon);
             //The icon is returned in the hIcon member of the shinfo struct
             var myIcon = Icon.FromHandle(shInfo.hIcon);
             return myIcon;
@@ -255,8 +255,8 @@ namespace ResourceLib
                     var phiconLarge = new int[1];
                     var phiconSmall = new int[1];
                     Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
-                    var IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
-                    resultIcon = Icon.FromHandle(IconHnd);
+                    var iconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
+                    resultIcon = Icon.FromHandle(iconHnd);
                 }
                 catch
                 {
@@ -275,8 +275,8 @@ namespace ResourceLib
                         var phiconLarge = new int[1];
                         var phiconSmall = new int[1];
                         Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
-                        var IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
-                        resultIcon = Icon.FromHandle(IconHnd);
+                        var iconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
+                        resultIcon = Icon.FromHandle(iconHnd);
                     }
                 }
                 return resultIcon;
@@ -317,7 +317,7 @@ namespace ResourceLib
         /// <summary>
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        public struct SHFILEINFO
+        public struct Shfileinfo
         {
             public IntPtr hIcon;
             private readonly IntPtr iIcon;
@@ -329,12 +329,12 @@ namespace ResourceLib
         /// 定义调用的API方法
         private static class Win32
         {
-            public const uint SHGFI_ICON = 0x100;
-            public const uint SHGFI_LARGEICON = 0x0; // 'Large icon
-            public const uint SHGFI_SMALLICON = 0x1; // 'Small icon
+            public const uint ShgfiIcon = 0x100;
+            public const uint ShgfiLargeicon = 0x0; // 'Large icon
+            public const uint ShgfiSmallicon = 0x1; // 'Small icon
 
             [DllImport("shell32.dll")]
-            public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi,
+            public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref Shfileinfo psfi,
                 uint cbSizeFileInfo, uint uFlags);
 
             [DllImport("shell32.dll")]

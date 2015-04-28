@@ -1,18 +1,17 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MongoDB.Bson;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
-    public partial class ctlUserRolesPanel : UserControl
+    public partial class CtlUserRolesPanel : UserControl
     {
-        public ctlUserRolesPanel()
+        public CtlUserRolesPanel()
         {
             InitializeComponent();
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                grpRoles.Text = GUIConfig.MStringResource.GetText(TextType.Common_Roles);
+                grpRoles.Text = GuiConfig.MStringResource.GetText(TextType.CommonRoles);
             }
         }
 
@@ -36,7 +35,7 @@ namespace MongoGUICtl
             }
         }
 
-        public BsonArray getRoles()
+        public BsonArray GetRoles()
         {
             var roles = new BsonArray();
             foreach (Control item in grpRoles.Controls)
@@ -52,7 +51,7 @@ namespace MongoGUICtl
             return roles;
         }
 
-        public void setRoles(BsonArray value)
+        public void SetRoles(BsonArray value)
         {
             {
                 foreach (string item in value)

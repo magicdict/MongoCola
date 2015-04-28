@@ -38,24 +38,72 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utility\GetResource.cs" />
-    <Compile Include="Utility\GUIConfig.cs" />
+    <Compile Include="UI\CloneMeunToolItem.cs" />
+    <Compile Include="UI\ctlFilePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ctlFilePicker.Designer.cs">
+      <DependentUpon>ctlFilePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmConfirm.Designer.cs">
+      <DependentUpon>frmConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmEasyMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmEasyMessage.Designer.cs">
+      <DependentUpon>frmEasyMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmInputBox.Designer.cs">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmMesssage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmMesssage.Designer.cs">
+      <DependentUpon>frmMesssage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MyMessageBox.cs" />
+    <Compile Include="Method\GetResource.cs" />
+    <Compile Include="Method\GUIConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Utility\GetResource_Icon.cs" />
-    <Compile Include="Utility\GetSystemIcon.cs" />
-    <Compile Include="Utility\StringResource.cs" />
-    <Compile Include="Utility\TextType.cs" />
+    <Compile Include="Method\GetResource_Icon.cs" />
+    <Compile Include="Method\GetSystemIcon.cs" />
+    <Compile Include="Method\StringResource.cs" />
+    <Compile Include="Method\TextType.cs" />
+    <Compile Include="UI\NumberTextBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ctlFilePicker.resx">
+      <DependentUpon>ctlFilePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmConfirm.resx">
+      <DependentUpon>frmConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmEasyMessage.resx">
+      <DependentUpon>frmEasyMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmInputBox.resx">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmMesssage.resx">
+      <DependentUpon>frmMesssage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

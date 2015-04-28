@@ -1,13 +1,16 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using MongoGUICtl;
 
 namespace MongoCola.Status
 {
-    partial class frmStatus
+    partial class FrmStatus
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -37,7 +40,7 @@ namespace MongoCola.Status
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbChartField = new System.Windows.Forms.ComboBox();
             this.btnOpCnt = new System.Windows.Forms.Button();
-            this.trvStatus = new MongoGUICtl.ctlTreeViewColumns();
+            this.trvStatus = new MongoGUICtl.CtlTreeViewColumns();
             ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,7 +112,7 @@ namespace MongoCola.Status
             this.Controls.Add(this.trvStatus);
             this.Controls.Add(this.cmdClose);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "frmStatus";
+            this.Name = "FrmStatus";
             this.Tag = "Main_Menu_Mangt_Status";
             this.Text = "Status";
             this.Load += new System.EventHandler(this.frmStatus_Load);
@@ -120,10 +123,10 @@ namespace MongoCola.Status
 
         #endregion
 
-        private System.Windows.Forms.Button cmdClose;
-        private ctlTreeViewColumns trvStatus;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
-        private System.Windows.Forms.ComboBox cmbChartField;
-        private System.Windows.Forms.Button btnOpCnt;
+        private Button cmdClose;
+        private CtlTreeViewColumns trvStatus;
+        private Chart chartResult;
+        private ComboBox cmbChartField;
+        private Button btnOpCnt;
     }
 }

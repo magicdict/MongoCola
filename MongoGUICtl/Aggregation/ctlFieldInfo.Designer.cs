@@ -1,11 +1,14 @@
-﻿namespace MongoGUICtl.Aggregation
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoGUICtl.Aggregation
 {
-    partial class ctlFieldInfo
+    partial class CtlFieldInfo
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -105,7 +108,7 @@
             this.Controls.Add(this.radNoSort);
             this.Controls.Add(this.chkIsShow);
             this.Controls.Add(this.lblFieldName);
-            this.Name = "ctlFieldInfo";
+            this.Name = "CtlFieldInfo";
             this.Size = new System.Drawing.Size(457, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -114,11 +117,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblFieldName;
-        private System.Windows.Forms.CheckBox chkIsShow;
-        private System.Windows.Forms.RadioButton radNoSort;
-        private System.Windows.Forms.RadioButton radSortAcs;
-        private System.Windows.Forms.RadioButton radSortDes;
-        private System.Windows.Forms.TextBox txtProject;
+        private Label lblFieldName;
+        private CheckBox chkIsShow;
+        private RadioButton radNoSort;
+        private RadioButton radSortAcs;
+        private RadioButton radSortDes;
+        private TextBox txtProject;
     }
 }

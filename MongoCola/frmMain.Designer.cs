@@ -1,15 +1,16 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 using MongoGUICtl;
 using MongoGUIView;
 
 namespace MongoCola
 {
-    partial class frmMain
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -127,9 +128,9 @@ namespace MongoCola
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.tabSvrStatus = new System.Windows.Forms.TabPage();
-            this.ServerStatusCtl = new MongoGUIView.ctlServerStatus();
+            this.ServerStatusCtl = new MongoGUIView.CtlServerStatus();
             this.tabCommandShell = new System.Windows.Forms.TabPage();
-            this.ctlShellCommandEditor = new MongoGUICtl.ctlJsEditor();
+            this.ctlShellCommandEditor = new MongoGUICtl.CtlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -986,7 +987,7 @@ namespace MongoCola
             this.Controls.Add(this.toolStripMain);
             this.Controls.Add(this.menuStripMain);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "frmMain";
+            this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mongo-Cola";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -1005,32 +1006,32 @@ namespace MongoCola
         }
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStripMain;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusSelectedObj;
-        private System.Windows.Forms.ToolStrip toolStripMain;
-        private System.Windows.Forms.MenuStrip menuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem ManagerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AddConnectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem RefreshToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem OperationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DataBaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DelMongoDBToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CreateMongoCollectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DataCollectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DelMongoCollectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem IndexManageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AddUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem RenameCollectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ToolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem OptionsToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ThanksToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ExpandAllConnectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CollapseAllConnectionToolStripMenuItem;
+        private StatusStrip statusStripMain;
+        private ToolStripStatusLabel toolStripStatusSelectedObj;
+        private ToolStrip toolStripMain;
+        private MenuStrip menuStripMain;
+        private ToolStripMenuItem ManagerToolStripMenuItem;
+        private ToolStripMenuItem AddConnectionToolStripMenuItem;
+        private ToolStripMenuItem RefreshToolStripMenuItem;
+        private ToolStripMenuItem ExitToolStripMenuItem;
+        private ToolStripMenuItem ViewToolStripMenuItem;
+        private ToolStripMenuItem OperationToolStripMenuItem;
+        private ToolStripMenuItem DataBaseToolStripMenuItem;
+        private ToolStripMenuItem DelMongoDBToolStripMenuItem;
+        private ToolStripMenuItem CreateMongoCollectionToolStripMenuItem;
+        private ToolStripMenuItem DataCollectionToolStripMenuItem;
+        private ToolStripMenuItem DelMongoCollectionToolStripMenuItem;
+        private ToolStripMenuItem IndexManageToolStripMenuItem;
+        private ToolStripMenuItem AddUserToolStripMenuItem;
+        private ToolStripMenuItem RenameCollectionToolStripMenuItem;
+        private ToolStripMenuItem ToolsToolStripMenuItem;
+        private ToolStripMenuItem OptionsToolStripMenuItem;
+        private ContextMenuStrip contextMenuStripMain;
+        private ToolStripMenuItem HelpToolStripMenuItem;
+        private ToolStripMenuItem AboutToolStripMenuItem;
+        private ToolStripMenuItem ThanksToolStripMenuItem;
+        private ToolStripMenuItem ExpandAllConnectionToolStripMenuItem;
+        private ToolStripMenuItem CollapseAllConnectionToolStripMenuItem;
 
 
         private ToolStripButton ExpandAllConnectionToolStripButton;
@@ -1066,7 +1067,7 @@ namespace MongoCola
         private Splitter splitter1;
         private ToolStripMenuItem UserGuideToolStripMenuItem;
         private ToolStripMenuItem CompactToolStripMenuItem;
-        private ctlServerStatus ServerStatusCtl;
+        private CtlServerStatus ServerStatusCtl;
         private TabControl tabView;
         private TabPage tabSvrStatus;
         private TabPage tabCommandShell;
@@ -1077,7 +1078,7 @@ namespace MongoCola
         private ToolStripMenuItem ViewRefreshToolStripMenuItem;
         private ToolStripMenuItem InitGFSToolStripMenuItem;
         private ToolStripMenuItem JavaScriptStripMenuItem;
-        private ctlJsEditor ctlShellCommandEditor;
+        private CtlJsEditor ctlShellCommandEditor;
         private ToolStripMenuItem AggregationToolStripMenuItem;
         private ToolStripMenuItem countToolStripMenuItem;
         private ToolStripMenuItem distinctToolStripMenuItem;

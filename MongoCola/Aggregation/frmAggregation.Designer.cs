@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoCola.Aggregation
 {
-    partial class frmAggregation
+    partial class FrmAggregation
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -38,8 +40,8 @@ namespace MongoCola.Aggregation
             this.lblAggregatePipeline = new System.Windows.Forms.Label();
             this.cmbForAggregatePipeline = new System.Windows.Forms.ComboBox();
             this.cmdClear = new System.Windows.Forms.Button();
-            this.trvCondition  = new ctlTreeViewColumns();
-            this.trvResult = new ctlTreeViewColumns();
+            this.trvCondition  = new CtlTreeViewColumns();
+            this.trvResult = new CtlTreeViewColumns();
             this.btnAggrBuilder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -168,7 +170,7 @@ namespace MongoCola.Aggregation
             this.Controls.Add(this.cmdRun);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.trvResult);
-            this.Name = "frmAggregation";
+            this.Name = "FrmAggregation";
             this.Text = "frmAggregation";
             this.Load += new System.EventHandler(this.frmAggregation_Load);
             this.ResumeLayout(false);
@@ -178,16 +180,16 @@ namespace MongoCola.Aggregation
 
         #endregion
 
-        private ctlTreeViewColumns trvResult;
-        private System.Windows.Forms.Label lblResult;
-        private System.Windows.Forms.Button cmdRun;
-        private ctlTreeViewColumns trvCondition;
-        private System.Windows.Forms.Button cmdAddCondition;
-        private System.Windows.Forms.LinkLabel lnkReference;
-        private System.Windows.Forms.Button cmdSaveAggregatePipeline;
-        private System.Windows.Forms.Label lblAggregatePipeline;
-        private System.Windows.Forms.ComboBox cmbForAggregatePipeline;
-        private System.Windows.Forms.Button cmdClear;
-        private System.Windows.Forms.Button btnAggrBuilder;
+        private CtlTreeViewColumns trvResult;
+        private Label lblResult;
+        private Button cmdRun;
+        private CtlTreeViewColumns trvCondition;
+        private Button cmdAddCondition;
+        private LinkLabel lnkReference;
+        private Button cmdSaveAggregatePipeline;
+        private Label lblAggregatePipeline;
+        private ComboBox cmbForAggregatePipeline;
+        private Button cmdClear;
+        private Button btnAggrBuilder;
     }
 }

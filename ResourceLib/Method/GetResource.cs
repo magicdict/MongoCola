@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using ResourceLib.Properties;
 
-namespace ResourceLib
+namespace ResourceLib.Method
 {
     public class GetResource
     {
@@ -32,7 +32,7 @@ namespace ResourceLib
                 case ImageType.Blank:
                     micon = Resources.Blank;
                     break;
-                case ImageType.AccessDB:
+                case ImageType.AccessDb:
                     micon = Resources.AccessDB;
                     break;
                 case ImageType.ShutDown:
@@ -81,7 +81,7 @@ namespace ResourceLib
                 case ImageType.KeyInfo:
                     micon = Resources.KeyInfo;
                     break;
-                case ImageType.DBKey:
+                case ImageType.DbKey:
                     micon = Resources.DBkey;
                     break;
                 case ImageType.Document:

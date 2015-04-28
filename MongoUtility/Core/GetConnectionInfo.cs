@@ -1,85 +1,74 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoUtility.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
-namespace MongoUtility.NewUtility
+namespace MongoUtility.Core
 {
     public static class GetConnectionInfo
     {
         /// <summary>
-        /// 获得数据库列表
+        ///     获得数据库列表
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
         public static List<BsonDocument> GetDatabaseList(MongoClient client)
         {
             //暂时返回一个同步的结果
-            IAsyncCursor<BsonDocument> DatabaseCursor = null;
-            Task task = Task.Run(
-                async () =>
-                {
-                    DatabaseCursor = await client.ListDatabasesAsync();
-                }
-            );
+            IAsyncCursor<BsonDocument> databaseCursor = null;
+            var task = Task.Run(
+                async () => { databaseCursor = await client.ListDatabasesAsync(); }
+                );
             task.Wait();
-            List<BsonDocument> DatabaseList = null;
+            List<BsonDocument> databaseList = null;
             task = Task.Run(
-                async () =>
-                {
-                    DatabaseList = await DatabaseCursor.ToListAsync();
-                }
-            );
+                async () => { databaseList = await databaseCursor.ToListAsync(); }
+                );
             task.Wait();
-            return DatabaseList;
+            return databaseList;
         }
 
         /// <summary>
-        /// 获得数据集列表
+        ///     获得数据集列表
         /// </summary>
         /// <param name="client"></param>
         /// <param name="DataBaseDoc"></param>
         /// <returns></returns>
-        public static List<BsonDocument> GetCollectionList(MongoClient client,string DBName)
+        public static List<BsonDocument> GetCollectionList(MongoClient client, string dbName)
         {
-            var db = client.GetDatabase(DBName);
-            IAsyncCursor<BsonDocument> CollectionCursor = null;
-            Task task = Task.Run(
-                async () =>
-                {
-                    CollectionCursor = await db.ListCollectionsAsync();
-                }
-            );
+            var db = client.GetDatabase(dbName);
+            IAsyncCursor<BsonDocument> collectionCursor = null;
+            var task = Task.Run(
+                async () => { collectionCursor = await db.ListCollectionsAsync(); }
+                );
             task.Wait();
-            List<BsonDocument> CollectionList = null;
+            List<BsonDocument> collectionList = null;
             task = Task.Run(
-                async () =>
-                {
-                    CollectionList = await CollectionCursor.ToListAsync();
-                }
-            );
+                async () => { collectionList = await collectionCursor.ToListAsync(); }
+                );
             task.Wait();
-            return CollectionList;
+            return collectionList;
         }
 
         /// <summary>
-        /// 获得数据集实例
+        ///     获得数据集实例
         /// </summary>
         /// <param name="client"></param>
-        /// <param name="DBName"></param>
-        /// <param name="CollectionName"></param>
+        /// <param name="dbName"></param>
+        /// <param name="collectionName"></param>
         /// <returns></returns>
-        public static IMongoCollection<BsonDocument> GetCollectionInfo(MongoClient client, string DBName, string CollectionName)
+        public static IMongoCollection<BsonDocument> GetCollectionInfo(MongoClient client, string dbName,
+            string collectionName)
         {
-            var db = client.GetDatabase(DBName);
-            var Col = db.GetCollection<BsonDocument>(CollectionName);
-            return Col;
+            var db = client.GetDatabase(dbName);
+            var col = db.GetCollection<BsonDocument>(collectionName);
+            return col;
         }
 
         /// <summary>
-        /// 获得信息
+        ///     获得信息
         /// </summary>
         /// <param name="config"></param>
         public static void GetInfo(MongoConnectionConfig config)
@@ -87,26 +76,25 @@ namespace MongoUtility.NewUtility
             //OnlyTest Start
             try
             {
-                var client = RuntimeMongoDBContext.CreateMongoClient(ref config);
-                List<BsonDocument> list = GetDatabaseList(client);
+                var client = RuntimeMongoDbContext.CreateMongoClient(ref config);
+                var list = GetDatabaseList(client);
                 foreach (var doc in list)
                 {
-                    System.Diagnostics.Debug.WriteLine(doc.ToString());
-                    string DBName = doc.GetElement("name").Value.ToString();
-                    foreach (var col in GetCollectionList(client, DBName))
+                    Debug.WriteLine(doc.ToString());
+                    var dbName = doc.GetElement("name").Value.ToString();
+                    foreach (var col in GetCollectionList(client, dbName))
                     {
-                        string CollectionName = col.GetElement("name").Value.ToString();
-                        System.Diagnostics.Debug.WriteLine(col.ToString());
-                        var ICol = GetCollectionInfo(client, DBName, CollectionName);
+                        var collectionName = col.GetElement("name").Value.ToString();
+                        Debug.WriteLine(col.ToString());
+                        var ICol = GetCollectionInfo(client, dbName, collectionName);
                     }
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                Debug.WriteLine(ex.ToString());
             }
             //OnlyTest End
         }
-
     }
 }

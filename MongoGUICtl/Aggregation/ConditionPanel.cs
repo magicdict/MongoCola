@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Common.UI;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using ResourceLib.UI;
 
 namespace MongoGUICtl.Aggregation
 {
@@ -29,9 +29,10 @@ namespace MongoGUICtl.Aggregation
         public ConditionPanel()
         {
             InitializeComponent();
-            if (RuntimeMongoDBContext.GetCurrentCollection() != null)
+            if (RuntimeMongoDbContext.GetCurrentCollection() != null)
             {
-                ColumnList = MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection());
+                ColumnList =
+                    MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection());
             }
         }
 
@@ -41,7 +42,7 @@ namespace MongoGUICtl.Aggregation
         public void AddCondition()
         {
             _conditionCount++;
-            var newCondition = new ctlQueryCondition();
+            var newCondition = new CtlQueryCondition();
             newCondition.Init(ColumnList);
             _conditionPos.Y += newCondition.Height;
             newCondition.Location = _conditionPos;
@@ -52,15 +53,15 @@ namespace MongoGUICtl.Aggregation
         /// <summary>
         ///     设置DataFilter
         /// </summary>
-        public void SetCurrDataFilter(DataViewInfo CurrentDataViewInfo)
+        public void SetCurrDataFilter(DataViewInfo currentDataViewInfo)
         {
             //过滤条件
             for (var i = 0; i < _conditionCount; i++)
             {
-                var ctl = (ctlQueryCondition) Controls.Find("Condition" + (i + 1), true)[0];
+                var ctl = (CtlQueryCondition) Controls.Find("Condition" + (i + 1), true)[0];
                 if (ctl.IsSeted)
                 {
-                    CurrentDataViewInfo.mDataFilter.QueryConditionList.Add(ctl.ConditionItem);
+                    currentDataViewInfo.MDataFilter.QueryConditionList.Add(ctl.ConditionItem);
                 }
             }
         }
@@ -68,18 +69,18 @@ namespace MongoGUICtl.Aggregation
         /// <summary>
         ///     将条件转成UI
         /// </summary>
-        /// <param name="NewDataFilter"></param>
-        public void PutQueryToUI(DataFilter NewDataFilter)
+        /// <param name="newDataFilter"></param>
+        public void PutQueryToUi(DataFilter newDataFilter)
         {
             var strErrMsg = string.Empty;
-            var ShowColumnList = new List<string>();
+            var showColumnList = new List<string>();
             foreach (var item in ColumnList)
             {
-                ShowColumnList.Add(item);
+                showColumnList.Add(item);
             }
             //清除所有的控件
-            var FieldList = NewDataFilter.QueryFieldList;
-            foreach (var queryFieldItem in NewDataFilter.QueryFieldList)
+            var fieldList = newDataFilter.QueryFieldList;
+            foreach (var queryFieldItem in newDataFilter.QueryFieldList)
             {
                 //动态加载控件
                 if (!ColumnList.Contains(queryFieldItem.ColName))
@@ -89,21 +90,21 @@ namespace MongoGUICtl.Aggregation
                 }
                 else
                 {
-                    ShowColumnList.Remove(queryFieldItem.ColName);
+                    showColumnList.Remove(queryFieldItem.ColName);
                 }
             }
-            foreach (var item in ShowColumnList)
+            foreach (var item in showColumnList)
             {
                 strErrMsg += "New Field" + item + "Is Append" + Environment.NewLine;
                 //输出配置的初始化
-                FieldList.Add(new DataFilter.QueryFieldItem(item));
+                fieldList.Add(new DataFilter.QueryFieldItem(item));
             }
             Controls.Clear();
             _conditionPos = new Point(5, 0);
             _conditionCount = 0;
-            foreach (var queryConditionItem in NewDataFilter.QueryConditionList)
+            foreach (var queryConditionItem in newDataFilter.QueryConditionList)
             {
-                var newCondition = new ctlQueryCondition();
+                var newCondition = new CtlQueryCondition();
                 newCondition.Init(ColumnList);
                 _conditionPos.Y += newCondition.Height;
                 newCondition.Location = _conditionPos;

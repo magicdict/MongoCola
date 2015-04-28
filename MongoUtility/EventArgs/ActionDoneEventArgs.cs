@@ -2,16 +2,16 @@
 {
     public class ActionDoneEventArgs : System.EventArgs
     {
-        private readonly string _Message;
+        private readonly string _message;
 
-        public ActionDoneEventArgs(string Message)
+        public ActionDoneEventArgs(string message)
         {
-            _Message = Message;
+            _message = message;
         }
 
         public string Message
         {
-            get { return _Message; }
+            get { return _message; }
         }
     }
 }

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
-
-using Common.UI;
+using MongoCola.Config;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoCola.Connection
 {
-    public partial class frmAddConnection : Form
+    public partial class FrmAddConnection : Form
     {
         //http://www.mongodb.org/display/DOCS/Connections
 
@@ -29,7 +29,7 @@ namespace MongoCola.Connection
         /// <summary>
         ///     初始化（新建）
         /// </summary>
-        public frmAddConnection()
+        public FrmAddConnection()
         {
             InitializeComponent();
             OnLoad();
@@ -38,13 +38,13 @@ namespace MongoCola.Connection
         /// <summary>
         ///     初始化（修改）
         /// </summary>
-        /// <param name="ConnectionName"></param>
-        public frmAddConnection(string ConnectionName)
+        /// <param name="connectionName"></param>
+        public FrmAddConnection(string connectionName)
         {
             InitializeComponent();
-            OldConnectionName = ConnectionName;
+            OldConnectionName = connectionName;
             //Modify Mode
-            ModifyConn = SystemConfig.config.ConnectionList[ConnectionName];
+            ModifyConn = SystemConfig.Config.ConnectionList[connectionName];
             OnLoad();
 
             txtConnectionName.Text = ModifyConn.ConnectionName;
@@ -54,11 +54,11 @@ namespace MongoCola.Connection
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
             txtDataBaseName.Text = ModifyConn.DataBaseName;
-            chkFsync.Checked = ModifyConn.fsync;
-            chkJournal.Checked = ModifyConn.journal;
+            chkFsync.Checked = ModifyConn.Fsync;
+            chkJournal.Checked = ModifyConn.Journal;
 
-            NumSocketTimeOut.Value = (decimal)ModifyConn.socketTimeoutMS;
-            NumConnectTimeOut.Value = (decimal)ModifyConn.connectTimeoutMS;
+            NumSocketTimeOut.Value = (decimal) ModifyConn.SocketTimeoutMs;
+            NumConnectTimeOut.Value = (decimal) ModifyConn.ConnectTimeoutMs;
 
             txtReplsetName.Text = ModifyConn.ReplSetName;
             txtConnectionString.Text = ModifyConn.ConnectionString;
@@ -68,7 +68,7 @@ namespace MongoCola.Connection
                 lstHost.Items.Add(item);
             }
 
-            if (ModifyConn.StorageEngine == EnumMgr.StorageEngineType.MMAPv1)
+            if (ModifyConn.StorageEngine == EnumMgr.StorageEngineType.MmaPv1)
             {
                 cmbStorageEngine.SelectedIndex = 0;
             }
@@ -77,8 +77,9 @@ namespace MongoCola.Connection
                 cmbStorageEngine.SelectedIndex = 1;
             }
 
-            cmdAdd.Text = GUIConfig.IsUseDefaultLanguage
-                ? "Modify" : GUIConfig.GetText(TextType.Common_Modify);
+            cmdAdd.Text = GuiConfig.IsUseDefaultLanguage
+                ? "Modify"
+                : GuiConfig.GetText(TextType.CommonModify);
         }
 
         /// <summary>
@@ -88,7 +89,6 @@ namespace MongoCola.Connection
         /// <param name="e"></param>
         private void frmAddConnection_Load(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace MongoCola.Connection
         /// </summary>
         private void OnLoad()
         {
-            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
+            foreach (var item in Enum.GetValues(typeof (EnumMgr.StorageEngineType)))
             {
                 cmbStorageEngine.Items.Add(item);
                 cmbStorageEngine.SelectedIndex = 0;
@@ -107,10 +107,10 @@ namespace MongoCola.Connection
             NumSocketTimeOut.GotFocus += (x, y) => NumSocketTimeOut.Select(0, 5);
             NumConnectTimeOut.GotFocus += (x, y) => NumConnectTimeOut.Select(0, 5);
             //Color
-            cmdTest.BackColor = GUIConfig.ActionColor;
-            cmdAdd.BackColor = GUIConfig.SuccessColor;
-            cmdCancel.BackColor = GUIConfig.FailColor;
-            GUIConfig.Translateform(this);
+            cmdTest.BackColor = GuiConfig.ActionColor;
+            cmdAdd.BackColor = GuiConfig.SuccessColor;
+            cmdCancel.BackColor = GuiConfig.FailColor;
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>
@@ -121,31 +121,31 @@ namespace MongoCola.Connection
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             CreateConnection();
-            var NewCollectionName = txtConnectionName.Text;
+            var newCollectionName = txtConnectionName.Text;
             if (OldConnectionName != string.Empty)
             {
                 //如果有旧名称，说明是修改模式
-                if (OldConnectionName != NewCollectionName)
+                if (OldConnectionName != newCollectionName)
                 {
                     //修改了名称,检查一下新的名字是否存在
-                    if (SystemConfig.config.ConnectionList.ContainsKey(NewCollectionName))
+                    if (SystemConfig.Config.ConnectionList.ContainsKey(newCollectionName))
                     {
                         //存在则警告
                         MyMessageBox.ShowMessage("Connection", "Connection Name Already Exist!");
                         return;
                     }
                     //不存在则删除旧的记录
-                    SystemConfig.config.ConnectionList.Remove(OldConnectionName);
+                    SystemConfig.Config.ConnectionList.Remove(OldConnectionName);
                 }
             }
             //保存配置
-            if (SystemConfig.config.ConnectionList.ContainsKey(NewCollectionName))
+            if (SystemConfig.Config.ConnectionList.ContainsKey(newCollectionName))
             {
-                SystemConfig.config.ConnectionList[NewCollectionName] = ModifyConn;
+                SystemConfig.Config.ConnectionList[newCollectionName] = ModifyConn;
             }
             else
             {
-                SystemConfig.config.ConnectionList.Add(NewCollectionName, ModifyConn);
+                SystemConfig.Config.ConnectionList.Add(newCollectionName, ModifyConn);
             }
             Close();
         }
@@ -160,7 +160,7 @@ namespace MongoCola.Connection
             CreateConnection();
             try
             {
-                var srv = RuntimeMongoDBContext.CreateMongoServer(ref ModifyConn);
+                var srv = RuntimeMongoDbContext.CreateMongoServer(ref ModifyConn);
                 srv.Connect();
                 srv.Disconnect();
                 MyMessageBox.ShowMessage("Connect Test", "Connected OK.");
@@ -168,13 +168,13 @@ namespace MongoCola.Connection
             catch (MongoAuthenticationException ex)
             {
                 //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                if (!GUIConfig.IsUseDefaultLanguage)
+                if (!GuiConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        GUIConfig.GetText(
-                            TextType.Exception_AuthenticationException),
-                        GUIConfig.GetText(
-                            TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
+                        GuiConfig.GetText(
+                            TextType.ExceptionAuthenticationException),
+                        GuiConfig.GetText(
+                            TextType.ExceptionAuthenticationExceptionNote), ex.ToString(), true);
                 }
                 else
                 {
@@ -188,12 +188,12 @@ namespace MongoCola.Connection
                 //无法连接的理由：
                 //1.服务器没有启动
                 //2.认证模式不正确
-                if (!GUIConfig.IsUseDefaultLanguage)
+                if (!GuiConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        GUIConfig.GetText(TextType.Exception_NotConnected),
-                        GUIConfig.GetText(
-                            TextType.Exception_NotConnected_Note),
+                        GuiConfig.GetText(TextType.ExceptionNotConnected),
+                        GuiConfig.GetText(
+                            TextType.ExceptionNotConnectedNote),
                         ex.ToString(), true);
                 }
                 else
@@ -214,7 +214,7 @@ namespace MongoCola.Connection
             ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != string.Empty)
             {
-                var strException = MongoUtility.Basic.MongoUtility.FillConfigWithConnectionString(ref ModifyConn);
+                var strException = MongoHelper.FillConfigWithConnectionString(ref ModifyConn);
                 if (strException != string.Empty)
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);
@@ -253,28 +253,28 @@ namespace MongoCola.Connection
                 ModifyConn.IsUseDefaultSetting = chkUseDefault.Checked;
                 if (ModifyConn.IsUseDefaultSetting)
                 {
-                    ModifyConn.wtimeoutMS = SystemConfig.config.wtimeoutMS;
-                    ModifyConn.WaitQueueSize = SystemConfig.config.WaitQueueSize;
-                    ModifyConn.WriteConcern = SystemConfig.config.WriteConcern;
-                    ModifyConn.ReadPreference = SystemConfig.config.ReadPreference;
+                    ModifyConn.WtimeoutMs = SystemConfig.Config.WtimeoutMs;
+                    ModifyConn.WaitQueueSize = SystemConfig.Config.WaitQueueSize;
+                    ModifyConn.WriteConcern = SystemConfig.Config.WriteConcern;
+                    ModifyConn.ReadPreference = SystemConfig.Config.ReadPreference;
                 }
                 else
                 {
-                    ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;
-                    ModifyConn.WaitQueueSize = (int)NumWaitQueueSize.Value;
+                    ModifyConn.WtimeoutMs = (double) NumWTimeoutMS.Value;
+                    ModifyConn.WaitQueueSize = (int) NumWaitQueueSize.Value;
                     ModifyConn.WriteConcern = cmbWriteConcern.Text;
                     ModifyConn.ReadPreference = cmbReadPreference.Text;
                 }
 
-                ModifyConn.socketTimeoutMS = (double)NumSocketTimeOut.Value;
-                ModifyConn.connectTimeoutMS = (double)NumConnectTimeOut.Value;
-                ModifyConn.journal = chkJournal.Checked;
-                ModifyConn.fsync = chkFsync.Checked;
+                ModifyConn.SocketTimeoutMs = (double) NumSocketTimeOut.Value;
+                ModifyConn.ConnectTimeoutMs = (double) NumConnectTimeOut.Value;
+                ModifyConn.Journal = chkJournal.Checked;
+                ModifyConn.Fsync = chkFsync.Checked;
                 ModifyConn.ReplSetName = txtReplsetName.Text;
                 ModifyConn.ReplsetList = new List<string>();
                 if (cmbStorageEngine.SelectedIndex == 0)
                 {
-                    ModifyConn.StorageEngine = EnumMgr.StorageEngineType.MMAPv1;
+                    ModifyConn.StorageEngine = EnumMgr.StorageEngineType.MmaPv1;
                 }
                 else
                 {

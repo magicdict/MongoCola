@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
-namespace Common.UI
+namespace ResourceLib.UI
 {
-    partial class frmInputBox
+    partial class FrmInputBox
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,7 +31,7 @@ namespace Common.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInputBox));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInputBox));
             this.lblMessage = new System.Windows.Forms.Label();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -105,7 +106,7 @@ namespace Common.UI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmInputBox";
+            this.Name = "FrmInputBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmInputBox";
             ((System.ComponentModel.ISupportInitialize)(this.imgInfo)).EndInit();
@@ -117,9 +118,9 @@ namespace Common.UI
         #endregion
 
         private TextBox txtResult;
-        private System.Windows.Forms.Label lblMessage;
-        private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.Button cmdOK;
+        private Label lblMessage;
+        private Button cmdCancel;
+        private Button cmdOK;
         private PictureBox imgInfo;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -14,10 +13,10 @@ namespace MongoUtility.Aggregation
         ///     �������ֶ�����
         /// </summary>
         /// <returns></returns>
-        public static string[] GetOutputFields(List<DataFilter.QueryFieldItem> FieldItemLst)
+        public static string[] GetOutputFields(List<DataFilter.QueryFieldItem> fieldItemLst)
         {
             var outputFieldLst = new List<string>();
-            foreach (var item in FieldItemLst)
+            foreach (var item in fieldItemLst)
             {
                 if (item.IsShow)
                 {
@@ -31,15 +30,15 @@ namespace MongoUtility.Aggregation
         ///     �������
         /// </summary>
         /// <returns></returns>
-        public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> FieldItemLst)
+        public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> fieldItemLst)
         {
             var sort = new SortByBuilder();
             var ascendingList = new List<string>();
             var descendingList = new List<string>();
             //_id�������ֵ���ʽ�������Բ�Ҫ����_id!!
-            foreach (var item in FieldItemLst)
+            foreach (var item in fieldItemLst)
             {
-                switch (item.sortType)
+                switch (item.SortType)
                 {
                     case DataFilter.SortType.NoSort:
                         break;
@@ -62,24 +61,24 @@ namespace MongoUtility.Aggregation
         ///     ����������
         /// </summary>
         /// <returns></returns>
-        public static IMongoQuery GetQuery(List<DataFilter.QueryConditionInputItem> QueryCompareList)
+        public static IMongoQuery GetQuery(List<DataFilter.QueryConditionInputItem> queryCompareList)
         {
             //������������������
             var conditiongrpList = new List<List<DataFilter.QueryConditionInputItem>>();
             List<DataFilter.QueryConditionInputItem> currGrp = null;
-            for (var i = 0; i < QueryCompareList.Count; i++)
+            for (var i = 0; i < queryCompareList.Count; i++)
             {
-                if (i == 0 || QueryCompareList[i].StartMark == ConstMgr.StartMark_T ||
-                              QueryCompareList[i - 1].EndMark.StartsWith(ConstMgr.EndMark_T))
+                if (i == 0 || queryCompareList[i].StartMark == ConstMgr.StartMarkT ||
+                    queryCompareList[i - 1].EndMark.StartsWith(ConstMgr.EndMarkT))
                 {
                     var newGroup = new List<DataFilter.QueryConditionInputItem>();
                     conditiongrpList.Add(newGroup);
                     currGrp = newGroup;
-                    currGrp.Add(QueryCompareList[i]);
+                    currGrp.Add(queryCompareList[i]);
                 }
                 else
                 {
-                    currGrp.Add(QueryCompareList[i]);
+                    currGrp.Add(queryCompareList[i]);
                 }
             }
             //��ÿ�������ܽ�Ϊ1��IMongoQuery��1�����ӷ���
@@ -91,7 +90,7 @@ namespace MongoUtility.Aggregation
             for (var i = 0; i < conditiongrpList.Count - 1; i++)
             {
                 var joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
-                if (joinMark == ConstMgr.EndMark_AND_T)
+                if (joinMark == ConstMgr.EndMarkAndT)
                 {
                     rtnQuery =
                         Query.And(i == 0
@@ -99,7 +98,7 @@ namespace MongoUtility.Aggregation
                             : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
                 }
 
-                if (joinMark == ConstMgr.EndMark_OR_T)
+                if (joinMark == ConstMgr.EndMarkOrT)
                 {
                     rtnQuery =
                         Query.Or(i == 0
@@ -120,11 +119,11 @@ namespace MongoUtility.Aggregation
             var rtnQuery = Query.Or(GetQuery(conditionGroup[0]));
             for (var i = 1; i < conditionGroup.Count; i++)
             {
-                if (conditionGroup[i - 1].EndMark == ConstMgr.EndMark_AND)
+                if (conditionGroup[i - 1].EndMark == ConstMgr.EndMarkAnd)
                 {
                     rtnQuery = Query.And(rtnQuery, GetQuery(conditionGroup[i]));
                 }
-                if (conditionGroup[i - 1].EndMark == ConstMgr.EndMark_OR)
+                if (conditionGroup[i - 1].EndMark == ConstMgr.EndMarkOr)
                 {
                     rtnQuery = Query.Or(rtnQuery, GetQuery(conditionGroup[i]));
                 }
@@ -143,22 +142,22 @@ namespace MongoUtility.Aggregation
             var queryvalue = item.Value.GetBsonValue();
             switch (item.Compare)
             {
-                case DataFilter.CompareEnum.EQ:
+                case DataFilter.CompareEnum.Eq:
                     query = Query.EQ(item.ColName, queryvalue);
                     break;
-                case DataFilter.CompareEnum.GT:
+                case DataFilter.CompareEnum.Gt:
                     query = Query.GT(item.ColName, queryvalue);
                     break;
-                case DataFilter.CompareEnum.GTE:
+                case DataFilter.CompareEnum.Gte:
                     query = Query.GTE(item.ColName, queryvalue);
                     break;
-                case DataFilter.CompareEnum.LT:
+                case DataFilter.CompareEnum.Lt:
                     query = Query.LT(item.ColName, queryvalue);
                     break;
-                case DataFilter.CompareEnum.LTE:
+                case DataFilter.CompareEnum.Lte:
                     query = Query.LTE(item.ColName, queryvalue);
                     break;
-                case DataFilter.CompareEnum.NE:
+                case DataFilter.CompareEnum.Ne:
                     query = Query.NE(item.ColName, queryvalue);
                     break;
                 default:
@@ -172,11 +171,11 @@ namespace MongoUtility.Aggregation
         ///     Is Exist by Key
         /// </summary>
         /// <param name="mongoCol">Collection</param>
-        /// <param name="KeyValue">KeyValue</param>
+        /// <param name="keyValue">KeyValue</param>
         /// <returns></returns>
-        public static bool IsExistByKey(MongoCollection mongoCol, BsonValue KeyValue)
+        public static bool IsExistByKey(MongoCollection mongoCol, BsonValue keyValue)
         {
-            return mongoCol.FindAs<BsonDocument>(Query.EQ(ConstMgr.KEY_ID, KeyValue)).Count() > 0;
+            return mongoCol.FindAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, keyValue)).Count() > 0;
         }
     }
 }

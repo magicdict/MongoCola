@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace PlugInPackage.DosCommand
 {
-    partial class frmDosCommand
+    partial class FrmDosCommand
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -37,9 +39,9 @@ namespace PlugInPackage.DosCommand
             this.tabMongoDump = new System.Windows.Forms.TabPage();
             this.tabMongoImportExport = new System.Windows.Forms.TabPage();
             this.txtDosCommand = new System.Windows.Forms.TextBox();
-            this.ctlMongodPanel = new ctlMongod();
-            this.ctlMongodumpPanel = new ctlMongodump();
-            this.ctlMongoImportExportPanel = new ctlMongoImportExport();
+            this.ctlMongodPanel = new CtlMongod();
+            this.ctlMongodumpPanel = new CtlMongodump();
+            this.ctlMongoImportExportPanel = new CtlMongoImportExport();
             this.tabFunction.SuspendLayout();
             this.tabMongod.SuspendLayout();
             this.tabMongoDump.SuspendLayout();
@@ -160,7 +162,7 @@ namespace PlugInPackage.DosCommand
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmDosCommand";
+            this.Name = "FrmDosCommand";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "DosCommand";
             this.Load += new System.EventHandler(this.frmDosCommand_Load);
@@ -175,15 +177,15 @@ namespace PlugInPackage.DosCommand
 
         #endregion
 
-        private System.Windows.Forms.Button cmdSave;
-        private System.Windows.Forms.Button cmdRunDos;
-        private System.Windows.Forms.TabControl tabFunction;
-        private System.Windows.Forms.TabPage tabMongod;
-        private ctlMongod ctlMongodPanel;
-        private System.Windows.Forms.TabPage tabMongoDump;
-        private ctlMongodump ctlMongodumpPanel;
-        private System.Windows.Forms.TabPage tabMongoImportExport;
-        private ctlMongoImportExport ctlMongoImportExportPanel;
-        private System.Windows.Forms.TextBox txtDosCommand;
+        private Button cmdSave;
+        private Button cmdRunDos;
+        private TabControl tabFunction;
+        private TabPage tabMongod;
+        private CtlMongod ctlMongodPanel;
+        private TabPage tabMongoDump;
+        private CtlMongodump ctlMongodumpPanel;
+        private TabPage tabMongoImportExport;
+        private CtlMongoImportExport ctlMongoImportExportPanel;
+        private TextBox txtDosCommand;
     }
 }

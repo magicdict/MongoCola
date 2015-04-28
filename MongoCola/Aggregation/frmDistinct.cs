@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
-using Common.UI;
 using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoCola.Aggregation
 {
-    public partial class frmDistinct : Form
+    public partial class FrmDistinct : Form
     {
         /// <summary>
         ///     Distinct条件
@@ -20,10 +19,10 @@ namespace MongoCola.Aggregation
         public List<DataFilter.QueryConditionInputItem> DistinctConditionList =
             new List<DataFilter.QueryConditionInputItem>();
 
-        public frmDistinct(DataFilter mDataFilter, bool IsUseFilter)
+        public FrmDistinct(DataFilter mDataFilter, bool isUseFilter)
         {
             InitializeComponent();
-            if (mDataFilter.QueryConditionList.Count <= 0 || !IsUseFilter) return;
+            if (mDataFilter.QueryConditionList.Count <= 0 || !isUseFilter) return;
             Text += "[With DataView Filter]";
             //直接使用 DistinctConditionList = mDataFilter.QueryConditionList
             //DistinctConditionList是引用类型，在LoadQuery的时候，会改变mDataFilter.QueryConditionList的值
@@ -36,23 +35,23 @@ namespace MongoCola.Aggregation
 
         private void frmSelectKey_Load(object sender, EventArgs e)
         {
-            var mongoCol = RuntimeMongoDBContext.GetCurrentCollection();
-            var MongoColumn = MongoUtility.Basic.MongoUtility.GetCollectionSchame(mongoCol);
-            var _conditionPos = new Point(20, 20);
-            foreach (var item in MongoColumn)
+            var mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
+            var mongoColumn = MongoHelper.GetCollectionSchame(mongoCol);
+            var conditionPos = new Point(20, 20);
+            foreach (var item in mongoColumn)
             {
                 //动态加载控件
-                var ctrItem = new RadioButton {Name = item, Location = _conditionPos, Text = item};
+                var ctrItem = new RadioButton {Name = item, Location = conditionPos, Text = item};
                 panColumn.Controls.Add(ctrItem);
                 //纵向位置的累加
-                _conditionPos.Y += ctrItem.Height;
+                conditionPos.Y += ctrItem.Height;
             }
-            if (GUIConfig.IsUseDefaultLanguage) return;
+            if (GuiConfig.IsUseDefaultLanguage) return;
             cmdQuery.Text =
-                GUIConfig.GetText(TextType.Distinct_Action_LoadQuery);
-            cmdRun.Text = GUIConfig.GetText(TextType.Common_OK);
+                GuiConfig.GetText(TextType.DistinctActionLoadQuery);
+            cmdRun.Text = GuiConfig.GetText(TextType.CommonOk);
             lblSelectField.Text =
-                GUIConfig.GetText(TextType.Distinct_SelectField);
+                GuiConfig.GetText(TextType.DistinctSelectField);
         }
 
         /// <summary>
@@ -76,30 +75,30 @@ namespace MongoCola.Aggregation
                 MyMessageBox.ShowMessage("Distinct", "Pick the field");
                 return;
             }
-            var ResultArray =
+            var resultArray =
                 (BsonArray)
-                    RuntimeMongoDBContext.GetCurrentCollection()
+                    RuntimeMongoDbContext.GetCurrentCollection()
                         .Distinct(strKey, QueryHelper.GetQuery(DistinctConditionList));
-            var ResultList = new List<BsonValue>();
-            foreach (var item in ResultArray)
+            var resultList = new List<BsonValue>();
+            foreach (var item in resultArray)
             {
-                ResultList.Add(item);
+                resultList.Add(item);
             }
             //防止错误的条件造成的海量数据
-            var Count = 0;
+            var count = 0;
             var strResult = string.Empty;
-            ResultList.Sort();
-            foreach (var item in ResultList)
+            resultList.Sort();
+            foreach (var item in resultList)
             {
-                if (Count == 1000)
+                if (count == 1000)
                 {
                     strResult = "Too many result,Display first 1000 records" + Environment.NewLine + strResult;
                     break;
                 }
-                strResult += item.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings) + Environment.NewLine;
-                Count++;
+                strResult += item.ToJson(MongoHelper.JsonWriterSettings) + Environment.NewLine;
+                count++;
             }
-            strResult = "Distinct Count: " + ResultList.Count + Environment.NewLine + Environment.NewLine + strResult;
+            strResult = "Distinct Count: " + resultList.Count + Environment.NewLine + Environment.NewLine + strResult;
             MyMessageBox.ShowMessage("Distinct", "Distinct:" + strKey, strResult, true);
         }
 
@@ -107,9 +106,9 @@ namespace MongoCola.Aggregation
         {
             var openFile = new OpenFileDialog();
             if (openFile.ShowDialog() != DialogResult.OK) return;
-            var NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+            var newDataFilter = DataFilter.LoadFilter(openFile.FileName);
             DistinctConditionList.Clear();
-            DistinctConditionList = NewDataFilter.QueryConditionList;
+            DistinctConditionList = newDataFilter.QueryConditionList;
         }
     }
 }

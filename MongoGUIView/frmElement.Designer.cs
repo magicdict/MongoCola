@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoGUIView
 {
-    partial class frmElement
+    partial class FrmElement
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,7 +34,7 @@ namespace MongoGUIView
         {
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
-            this.AddBsonElement = new ctlAddBsonEl();
+            this.AddBsonElement = new CtlAddBsonEl();
             this.SuspendLayout();
             // 
             // cmdCancel
@@ -76,7 +78,7 @@ namespace MongoGUIView
             this.Controls.Add(this.AddBsonElement);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "frmElement";
+            this.Name = "FrmElement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Element";
             this.Load += new System.EventHandler(this.frmElement_Load);
@@ -86,9 +88,9 @@ namespace MongoGUIView
 
         #endregion
 
-        private ctlAddBsonEl AddBsonElement;
-        private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.Button cmdOK;
+        private CtlAddBsonEl AddBsonElement;
+        private Button cmdCancel;
+        private Button cmdOK;
 
     }
 }

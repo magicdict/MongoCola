@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using Common;
 using MongoUtility.Core;
-using MongoUtility.Basic;
 
 namespace PlugInPackage
 {
@@ -19,25 +19,25 @@ namespace PlugInPackage
         /// <summary>
         ///     运行插件
         /// </summary>
-        /// <param name="PlugInKeyCode"></param>
-        public static void RunPlugIn(string PlugInKeyCode)
+        /// <param name="plugInKeyCode"></param>
+        public static void RunPlugIn(string plugInKeyCode)
         {
-            var mPlug = PlugInList[PlugInKeyCode];
+            var mPlug = PlugInList[plugInKeyCode];
             switch (mPlug.RunLv)
             {
-                case PlugInBase.PathLv.ConnectionLV:
-                    mPlug.PlugObj = RuntimeMongoDBContext.GetCurrentServer();
+                case PlugInBase.PathLv.ConnectionLv:
+                    mPlug.PlugObj = RuntimeMongoDbContext.GetCurrentServer();
                     break;
-                case PlugInBase.PathLv.InstanceLV:
-                    mPlug.PlugObj = RuntimeMongoDBContext.GetCurrentServer();
+                case PlugInBase.PathLv.InstanceLv:
+                    mPlug.PlugObj = RuntimeMongoDbContext.GetCurrentServer();
                     break;
-                case PlugInBase.PathLv.DatabaseLV:
-                    mPlug.PlugObj = RuntimeMongoDBContext.GetCurrentDataBase();
+                case PlugInBase.PathLv.DatabaseLv:
+                    mPlug.PlugObj = RuntimeMongoDbContext.GetCurrentDataBase();
                     break;
-                case PlugInBase.PathLv.CollectionLV:
-                    mPlug.PlugObj = RuntimeMongoDBContext.GetCurrentCollection();
+                case PlugInBase.PathLv.CollectionLv:
+                    mPlug.PlugObj = RuntimeMongoDbContext.GetCurrentCollection();
                     break;
-                case PlugInBase.PathLv.DocumentLV:
+                case PlugInBase.PathLv.DocumentLv:
                     break;
             }
             mPlug.Run();
@@ -52,19 +52,19 @@ namespace PlugInPackage
             {
                 try
                 {
-                    var FileName = mFile.Replace(Application.StartupPath + @"\", string.Empty);
+                    var fileName = mFile.Replace(Application.StartupPath + @"\", string.Empty);
                     //正式版本中，应该不会有这些
-                    if (FileName != "PlugInPackage.dll") continue;
+                    if (fileName != "PlugInPackage.dll") continue;
                     var mAssem = Assembly.LoadFile(mFile);
-                    var TypeName = FileName.Substring(0, FileName.Length - 4);
+                    var typeName = fileName.Substring(0, fileName.Length - 4);
                     var mTypelist = mAssem.GetTypes();
                     foreach (var mType in mTypelist)
                     {
                         if (mType.BaseType == typeof (PlugInBase))
                         {
-                            var ConstructorInfo = mType.GetConstructor(new Type[] {});
-                            var mPlug = (PlugInBase) ConstructorInfo.Invoke(new object[] {});
-                            PlugInList.Add(TypeName + "." + mType, mPlug);
+                            var constructorInfo = mType.GetConstructor(new Type[] {});
+                            var mPlug = (PlugInBase) constructorInfo.Invoke(new object[] {});
+                            PlugInList.Add(typeName + "." + mType, mPlug);
                         }
                     }
                 }
@@ -75,7 +75,6 @@ namespace PlugInPackage
             }
         }
 
-
         /// <summary>
         ///     将插件放入列表
         /// </summary>
@@ -83,41 +82,41 @@ namespace PlugInPackage
         {
             try
             {
-                PlugIn.LoadPlugIn();
-                foreach (var plugin in PlugIn.PlugInList)
+                LoadPlugIn();
+                foreach (var plugin in PlugInList)
                 {
-                    var PlugInType = string.Empty;
+                    var plugInType = string.Empty;
                     switch (plugin.Value.RunLv)
                     {
-                        case PlugInBase.PathLv.ConnectionLV:
-                            PlugInType = "[Connection]";
+                        case PlugInBase.PathLv.ConnectionLv:
+                            plugInType = "[Connection]";
                             break;
-                        case PlugInBase.PathLv.InstanceLV:
-                            PlugInType = "[Instance]";
+                        case PlugInBase.PathLv.InstanceLv:
+                            plugInType = "[Instance]";
                             break;
-                        case PlugInBase.PathLv.DatabaseLV:
-                            PlugInType = "[Database]";
+                        case PlugInBase.PathLv.DatabaseLv:
+                            plugInType = "[Database]";
                             break;
-                        case PlugInBase.PathLv.CollectionLV:
-                            PlugInType = "[Collection]";
+                        case PlugInBase.PathLv.CollectionLv:
+                            plugInType = "[Collection]";
                             break;
-                        case PlugInBase.PathLv.DocumentLV:
-                            PlugInType = "[Document]";
+                        case PlugInBase.PathLv.DocumentLv:
+                            plugInType = "[Document]";
                             break;
                         case PlugInBase.PathLv.Misc:
-                            PlugInType = "[Misc]";
+                            plugInType = "[Misc]";
                             break;
                     }
-                    ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName + PlugInType);
+                    ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName + plugInType);
                     menu.ToolTipText = plugin.Value.PlugFunction;
                     menu.Tag = plugin.Key;
-                    menu.Click += (x, y) => PlugIn.RunPlugIn(plugin.Key);
+                    menu.Click += (x, y) => RunPlugIn(plugin.Key);
                     plugInToolStripMenuItem.DropDownItems.Add(menu);
                 }
             }
             catch (Exception ex)
             {
-                Common.Logic.Utility.ExceptionDeal(ex);
+                Utility.ExceptionDeal(ex);
             }
         }
     }

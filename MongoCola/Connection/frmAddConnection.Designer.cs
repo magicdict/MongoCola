@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace MongoCola.Connection
 {
-    partial class frmAddConnection
+    partial class FrmAddConnection
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -725,7 +726,7 @@ namespace MongoCola.Connection
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmAddConnection";
+            this.Name = "FrmAddConnection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "AddConnection_Title";
             this.Text = "Server Connection";
@@ -754,21 +755,21 @@ namespace MongoCola.Connection
 
         #endregion
 
-        private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.Button cmdAdd;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label lblPort;
-        private System.Windows.Forms.Label lblConnectionName;
-        private System.Windows.Forms.Label lblHost;
+        private Button cmdCancel;
+        private Button cmdAdd;
+        private Label lblPassword;
+        private Label lblUsername;
+        private Label lblPort;
+        private Label lblConnectionName;
+        private Label lblHost;
         private TextBox txtConnectionName;
         private TextBox txtHost;
         private TextBox txtUsername;
         private TextBox txtPassword;
         private TextBox txtDataBaseName;
-        private System.Windows.Forms.Label lblDataBaseName;
-        private System.Windows.Forms.Label lblConnectionString;
-        private System.Windows.Forms.TextBox txtConnectionString;
+        private Label lblDataBaseName;
+        private Label lblConnectionString;
+        private TextBox txtConnectionString;
         private Label lblAttentionPassword;
         private NumericUpDown numPort;
         private Button cmdTest;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Driver;
@@ -19,7 +20,7 @@ using MongoUtility.EventArgs;
 
 namespace MongoUtility.Basic
 {
-    public static class MongoUtility
+    public static class MongoHelper
     {
         /// <summary>
         ///     驱动版本 MongoDB.Driver.DLL
@@ -49,11 +50,11 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     GFS初始化
         /// </summary>
-        public static void InitGFS(MongoDatabase mongoDB)
+        public static void InitGfs(MongoDatabase mongoDb)
         {
-            if (!mongoDB.CollectionExists(ConstMgr.COLLECTION_NAME_GFS_FILES))
+            if (!mongoDb.CollectionExists(ConstMgr.CollectionNameGfsFiles))
             {
-                mongoDB.CreateCollection(ConstMgr.COLLECTION_NAME_GFS_FILES);
+                mongoDb.CreateCollection(ConstMgr.CollectionNameGfsFiles);
             }
         }
 
@@ -63,8 +64,7 @@ namespace MongoUtility.Basic
         /// <returns></returns>
         public static string GetCurrentSvrInfo(MongoServer mongosvr)
         {
-            var rtnSvrInfo = string.Empty;
-            rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter + Environment.NewLine;
+            var rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter + Environment.NewLine;
             rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary + Environment.NewLine;
             rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary + Environment.NewLine;
             rtnSvrInfo += "Address：" + mongosvr.Instance.Address + Environment.NewLine;
@@ -103,11 +103,11 @@ namespace MongoUtility.Basic
                 config.ReadPreference = mongourl.ReadPreference.ToString();
                 config.WriteConcern = mongourl.GetWriteConcern(true).ToString();
                 config.WaitQueueSize = mongourl.WaitQueueSize;
-                config.wtimeoutMS = (int) mongourl.WaitQueueTimeout.TotalMilliseconds;
+                config.WtimeoutMs = (int) mongourl.WaitQueueTimeout.TotalMilliseconds;
                 config.IsUseDefaultSetting = false;
 
-                config.socketTimeoutMS = (int) mongourl.SocketTimeout.TotalMilliseconds;
-                config.connectTimeoutMS = (int) mongourl.ConnectTimeout.TotalMilliseconds;
+                config.SocketTimeoutMs = (int) mongourl.SocketTimeout.TotalMilliseconds;
+                config.ConnectTimeoutMs = (int) mongourl.ConnectTimeout.TotalMilliseconds;
                 config.ReplSetName = mongourl.ReplicaSetName;
                 foreach (var item in mongourl.Servers)
                 {
@@ -128,22 +128,22 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     数据库User初始化
         /// </summary>
-        public static void InitDBUser(MongoDatabase mongoDB)
+        public static void InitDbUser(MongoDatabase mongoDb)
         {
-            if (!mongoDB.CollectionExists(ConstMgr.COLLECTION_NAME_USER))
+            if (!mongoDb.CollectionExists(ConstMgr.CollectionNameUser))
             {
-                mongoDB.CreateCollection(ConstMgr.COLLECTION_NAME_USER);
+                mongoDb.CreateCollection(ConstMgr.CollectionNameUser);
             }
         }
 
         /// <summary>
         ///     Js数据集初始化
         /// </summary>
-        public static void InitJavascript(MongoDatabase mongoDB)
+        public static void InitJavascript(MongoDatabase mongoDb)
         {
-            if (!mongoDB.CollectionExists(ConstMgr.COLLECTION_NAME_JAVASCRIPT))
+            if (!mongoDb.CollectionExists(ConstMgr.CollectionNameJavascript))
             {
-                mongoDB.CreateCollection(ConstMgr.COLLECTION_NAME_JAVASCRIPT);
+                mongoDb.CreateCollection(ConstMgr.CollectionNameJavascript);
             }
         }
 
@@ -151,9 +151,9 @@ namespace MongoUtility.Basic
         ///     保存文件
         /// </summary>
         /// <param name="result"></param>
-        public static void SaveResultToJSonFile(BsonDocument result, string FileName)
+        public static void SaveResultToJSonFile(BsonDocument result, string fileName)
         {
-            var writer = new StreamWriter(FileName, false);
+            var writer = new StreamWriter(fileName, false);
             writer.Write(result.ToJson(JsonWriterSettings));
             writer.Close();
         }
@@ -162,9 +162,9 @@ namespace MongoUtility.Basic
         ///     获得系统JS数据集
         /// </summary>
         /// <returns></returns>
-        public static MongoCollection GetCurrentJsCollection(MongoDatabase mongoDB)
+        public static MongoCollection GetCurrentJsCollection(MongoDatabase mongoDb)
         {
-            MongoCollection mongoJsCol = mongoDB.GetCollection(ConstMgr.COLLECTION_NAME_JAVASCRIPT);
+            MongoCollection mongoJsCol = mongoDb.GetCollection(ConstMgr.CollectionNameJavascript);
             return mongoJsCol;
         }
 
@@ -174,14 +174,7 @@ namespace MongoUtility.Basic
         /// <returns></returns>
         public static List<string> GetJsNameList()
         {
-            var jsNamelst = new List<string>();
-            foreach (
-                var item in GetCurrentJsCollection(RuntimeMongoDBContext.GetCurrentDataBase()).FindAllAs<BsonDocument>()
-                )
-            {
-                jsNamelst.Add(item.GetValue(ConstMgr.KEY_ID).ToString());
-            }
-            return jsNamelst;
+            return GetCurrentJsCollection(RuntimeMongoDbContext.GetCurrentDataBase()).FindAllAs<BsonDocument>().Select(item => item.GetValue(ConstMgr.KeyId).ToString()).ToList();
         }
 
         /// <summary>
@@ -200,23 +193,23 @@ namespace MongoUtility.Basic
         /// <returns></returns>
         public static List<string> GetCollectionSchame(MongoCollection mongoCol)
         {
-            var CheckRecordCnt = 100;
-            var _ColumnList = new List<string>();
-            var _dataList = new List<BsonDocument>();
-            _dataList = mongoCol.FindAllAs<BsonDocument>()
-                .SetLimit(CheckRecordCnt)
+            var checkRecordCnt = 100;
+            var columnList = new List<string>();
+            var dataList = new List<BsonDocument>();
+            dataList = mongoCol.FindAllAs<BsonDocument>()
+                .SetLimit(checkRecordCnt)
                 .ToList();
-            foreach (var doc in _dataList)
+            foreach (var doc in dataList)
             {
-                foreach (var item in getBsonNameList(string.Empty, doc))
+                foreach (var item in GetBsonNameList(string.Empty, doc))
                 {
-                    if (!_ColumnList.Contains(item))
+                    if (!columnList.Contains(item))
                     {
-                        _ColumnList.Add(item);
+                        columnList.Add(item);
                     }
                 }
             }
-            return _ColumnList;
+            return columnList;
         }
 
         /// <summary>
@@ -225,41 +218,33 @@ namespace MongoUtility.Basic
         /// <param name="docName"></param>
         /// <param name="doc"></param>
         /// <returns></returns>
-        public static List<string> getBsonNameList(string docName, BsonDocument doc)
+        public static List<string> GetBsonNameList(string docName, BsonDocument doc)
         {
-            var _ColumnList = new List<string>();
+            var columnList = new List<string>();
             foreach (var strName in doc.Names)
             {
                 if (doc.GetValue(strName).IsBsonDocument)
                 {
                     //包含子文档的时候
-                    _ColumnList.Add(strName);
-                    foreach (var item in getBsonNameList(strName, doc.GetValue(strName).AsBsonDocument))
-                    {
-                        _ColumnList.Add(item);
-                    }
+                    columnList.Add(strName);
+                    columnList.AddRange(GetBsonNameList(strName, doc.GetValue(strName).AsBsonDocument));
                 }
                 else
                 {
-                    _ColumnList.Add(docName + (docName != string.Empty ? "." : string.Empty) + strName);
+                    columnList.Add(docName + (docName != string.Empty ? "." : string.Empty) + strName);
                 }
             }
-            return _ColumnList;
+            return columnList;
         }
 
         /// <summary>
         ///     将执行结果转化为细节报告文字列
         /// </summary>
-        /// <param name="Resultlst"></param>
+        /// <param name="resultlst"></param>
         /// <returns></returns>
-        public static string ConvertCommandResultlstToString(List<CommandResult> Resultlst)
+        public static string ConvertCommandResultlstToString(List<CommandResult> resultlst)
         {
-            var Details = string.Empty;
-            foreach (var item in Resultlst)
-            {
-                Details += item.Response + Environment.NewLine;
-            }
-            return Details;
+            return resultlst.Aggregate(string.Empty, (current, item) => current + (item.Response + Environment.NewLine));
         }
 
         /// <summary>
@@ -270,8 +255,8 @@ namespace MongoUtility.Basic
         public static string GetBsonSize(BsonValue size)
         {
             return size.IsInt32
-                ? Common.Logic.Utility.GetSize((int) size)
-                : Common.Logic.Utility.GetSize((long) size);
+                ? Utility.GetSize((int) size)
+                : Utility.GetSize((long) size);
         }
     }
 }

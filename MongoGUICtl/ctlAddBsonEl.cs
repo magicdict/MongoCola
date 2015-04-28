@@ -4,9 +4,9 @@ using MongoDB.Bson;
 
 namespace MongoGUICtl
 {
-    public partial class ctlAddBsonEl : UserControl
+    public partial class CtlAddBsonEl : UserControl
     {
-        public ctlAddBsonEl()
+        public CtlAddBsonEl()
         {
             InitializeComponent();
             lblElement.Visible = false;
@@ -19,7 +19,7 @@ namespace MongoGUICtl
         {
             get
             {
-                if (txtElName.Text == string.Empty | ElBsonValue.getValue() == null)
+                if (txtElName.Text == string.Empty | ElBsonValue.GetValue() == null)
                 {
                     return false;
                 }
@@ -30,13 +30,13 @@ namespace MongoGUICtl
         /// <summary>
         ///     切换为元素修改模式
         /// </summary>
-        public void switchToUpdateMode()
+        public void SwitchToUpdateMode()
         {
             txtElName.Visible = false;
             lblElement.Visible = true;
         }
 
-        public void switchToValueMode()
+        public void SwitchToValueMode()
         {
             txtElName.Visible = false;
             lblElement.Visible = false;
@@ -45,9 +45,9 @@ namespace MongoGUICtl
         /// <summary>
         ///     Get Element or Bsonvalue
         /// </summary>
-        public BsonElement getElement()
+        public BsonElement GetElement()
         {
-            var value = ElBsonValue.getValue();
+            var value = ElBsonValue.GetValue();
             var el = new BsonElement(txtElName.Text, value);
             return el;
         }
@@ -56,17 +56,17 @@ namespace MongoGUICtl
         ///     Set Element or Bsonvalue
         /// </summary>
         /// <param name="value"></param>
-        public void setElement(Object value)
+        public void SetElement(Object value)
         {
             if (value.GetType() == typeof (BsonElement))
             {
                 txtElName.Text = ((BsonElement) value).Name;
                 lblElement.Text = ((BsonElement) value).Name;
-                ElBsonValue.setValue(((BsonElement) value).Value);
+                ElBsonValue.SetValue(((BsonElement) value).Value);
             }
             else
             {
-                ElBsonValue.setValue((BsonValue) value);
+                ElBsonValue.SetValue((BsonValue) value);
             }
         }
     }

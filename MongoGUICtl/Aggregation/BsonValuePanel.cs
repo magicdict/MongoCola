@@ -41,7 +41,7 @@ namespace MongoGUICtl.Aggregation
         public void AddBsonValueItem()
         {
             _conditionCount++;
-            var newBsonValueItem = new ctlBsonValue();
+            var newBsonValueItem = new CtlBsonValue();
             newBsonValueItem.Location = _conditionPos;
             newBsonValueItem.Name = "BsonValueItem" + _conditionCount;
             Controls.Add(newBsonValueItem);
@@ -54,15 +54,15 @@ namespace MongoGUICtl.Aggregation
         /// <returns></returns>
         public BsonArray GetBsonArray()
         {
-            var ValueList = new BsonArray();
-            foreach (ctlBsonValue item in Controls)
+            var valueList = new BsonArray();
+            foreach (CtlBsonValue item in Controls)
             {
-                if (item.getValue() != null)
+                if (item.GetValue() != null)
                 {
-                    ValueList.Add(item.getValue());
+                    valueList.Add(item.GetValue());
                 }
             }
-            return ValueList;
+            return valueList;
         }
 
         /// <summary>

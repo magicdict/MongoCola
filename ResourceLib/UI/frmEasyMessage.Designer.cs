@@ -1,11 +1,14 @@
-﻿namespace Common.UI
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace ResourceLib.UI
 {
-    partial class frmEasyMessage
+    partial class FrmEasyMessage
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -67,7 +70,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmEasyMessage";
+            this.Name = "FrmEasyMessage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmEasyMessage";
             this.ResumeLayout(false);
@@ -76,7 +79,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblMessage;
-        private System.Windows.Forms.Button cmdOK;
+        private Label lblMessage;
+        private Button cmdOK;
     }
 }

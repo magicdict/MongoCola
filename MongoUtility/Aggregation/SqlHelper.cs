@@ -7,85 +7,85 @@ using MongoUtility.Basic;
 
 namespace MongoUtility.Aggregation
 {
-    public static class Sql
+    public static class SqlHelper
     {
         //http://www.mongodb.org/display/DOCS/SQL+to+Mongo+Mapping+Chart(旧网址)
         //http://docs.mongodb.org/manual/reference/sql-comparison/
 
         /// <summary>
-        ///     Convert Query Sql To DataFilter
+        ///     Convert Query SqlHelper To DataFilter
         /// </summary>
-        /// <param name="Sql"></param>
+        /// <param name="sql"></param>
         /// <returns></returns>
-        public static DataFilter ConvertQuerySql(string Sql, MongoCollection mongoCol)
+        public static DataFilter ConvertQuerySql(string sql, MongoCollection mongoCol)
         {
             var rtnQuery = new DataFilter();
-            Sql = Sql.Trim();
+            sql = sql.Trim();
             //引号中的空格用&nbsp;代替，引号以外的东西小写
-            Sql = Regular(Sql);
+            sql = Regular(sql);
             //先将字符串里面的空格统一成单个空格
             //Select    A,B  From   C ->
             //Select A,B From C
-            while (Sql.Contains("  "))
+            while (sql.Contains("  "))
             {
-                Sql = Sql.Replace("  ", " ");
+                sql = sql.Replace("  ", " ");
             }
             //找出Select ，From ， Group 
-            var SqlToken = Sql.Split(" ".ToCharArray());
+            var sqlToken = sql.Split(" ".ToCharArray());
 
-            var SelectStartIndex = -1;
-            var FromStartIndex = -1;
-            var WhereStartIndex = -1;
-            var GroupByStartIndex = -1;
-            var OrderByStartIndex = -1;
+            var selectStartIndex = -1;
+            var fromStartIndex = -1;
+            var whereStartIndex = -1;
+            var groupByStartIndex = -1;
+            var orderByStartIndex = -1;
 
-            for (var i = 0; i < SqlToken.Length; i++)
+            for (var i = 0; i < sqlToken.Length; i++)
             {
-                switch (SqlToken[i].ToLower())
+                switch (sqlToken[i].ToLower())
                 {
                     case "select":
-                        SelectStartIndex = i;
+                        selectStartIndex = i;
                         break;
                     case "from":
-                        FromStartIndex = i;
+                        fromStartIndex = i;
                         break;
                     case "where":
-                        WhereStartIndex = i;
+                        whereStartIndex = i;
                         break;
                     case "group":
-                        GroupByStartIndex = i;
+                        groupByStartIndex = i;
                         break;
                     case "order":
-                        OrderByStartIndex = i;
+                        orderByStartIndex = i;
                         break;
                     default:
                         break;
                 }
             }
 
-            string[] KeyWords = {"select", "from", "where", "group", "order"};
+            string[] keyWords = {"select", "from", "where", "group", "order"};
 
             //From - > CollectionName
-            GetKeyContent(FromStartIndex, SqlToken, KeyWords);
+            GetKeyContent(fromStartIndex, sqlToken, keyWords);
 
             //Select 设定 必须项
             //Select - > FieldList
-            var strSelect = GetKeyContent(SelectStartIndex, SqlToken, KeyWords);
+            var strSelect = GetKeyContent(selectStartIndex, sqlToken, keyWords);
             if (strSelect == string.Empty)
             {
                 return null;
             }
-            var ColumnNameLst = MongoUtility.Basic.MongoUtility.GetCollectionSchame(mongoCol);
+            var columnNameLst = MongoHelper.GetCollectionSchame(mongoCol);
             if (strSelect == "*")
             {
                 //Select * 
-                foreach (var item in ColumnNameLst)
+                foreach (var item in columnNameLst)
                 {
                     var field = new DataFilter.QueryFieldItem
                     {
                         ColName = item,
                         IsShow = true,
-                        sortType = DataFilter.SortType.NoSort
+                        SortType = DataFilter.SortType.NoSort
                     };
                     rtnQuery.QueryFieldList.Add(field);
                 }
@@ -99,21 +99,21 @@ namespace MongoUtility.Aggregation
                     {
                         ColName = item,
                         IsShow = true,
-                        sortType = DataFilter.SortType.NoSort
+                        SortType = DataFilter.SortType.NoSort
                     };
                     rtnQuery.QueryFieldList.Add(field);
                 }
             }
 
             //Where 设定,可选项
-            var strWhere = GetKeyContent(WhereStartIndex, SqlToken, KeyWords);
+            var strWhere = GetKeyContent(whereStartIndex, sqlToken, keyWords);
             if (strWhere != string.Empty)
             {
-                rtnQuery.QueryConditionList = SetQueryCondition(strWhere, ColumnNameLst);
+                rtnQuery.QueryConditionList = SetQueryCondition(strWhere, columnNameLst);
             }
 
             //Order 设定,可选项
-            var strOrder = GetKeyContent(OrderByStartIndex, SqlToken, KeyWords);
+            var strOrder = GetKeyContent(orderByStartIndex, sqlToken, keyWords);
             if (strOrder != string.Empty)
             {
                 SetQueryOrder(rtnQuery, strOrder);
@@ -121,7 +121,7 @@ namespace MongoUtility.Aggregation
 
 
             //Group 设定,可选项
-            var strGroup = GetKeyContent(GroupByStartIndex, SqlToken, KeyWords);
+            var strGroup = GetKeyContent(groupByStartIndex, sqlToken, keyWords);
             if (strGroup != string.Empty)
             {
                 //TODO:Group
@@ -133,22 +133,22 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     Group
         /// </summary>
-        /// <param name="KeyWordStartIndex"></param>
-        /// <param name="SqlToken"></param>
-        /// <param name="KeyWords"></param>
+        /// <param name="keyWordStartIndex"></param>
+        /// <param name="sqlToken"></param>
+        /// <param name="keyWords"></param>
         /// <returns></returns>
-        private static string GetKeyContent(int KeyWordStartIndex, string[] SqlToken, string[] KeyWords)
+        private static string GetKeyContent(int keyWordStartIndex, string[] sqlToken, string[] keyWords)
         {
             var strSelect = string.Empty;
-            if (KeyWordStartIndex != -1)
+            if (keyWordStartIndex != -1)
             {
-                for (var i = KeyWordStartIndex + 1; i < SqlToken.Length; i++)
+                for (var i = keyWordStartIndex + 1; i < sqlToken.Length; i++)
                 {
-                    if (KeyWords.Contains(SqlToken[i].ToLower()))
+                    if (keyWords.Contains(sqlToken[i].ToLower()))
                     {
                         break;
                     }
-                    strSelect += SqlToken[i] + " ";
+                    strSelect += sqlToken[i] + " ";
                 }
                 strSelect = strSelect.Trim();
             }
@@ -158,77 +158,77 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     引号中的空格用&nbsp;代替，引号以外的东西小写
         /// </summary>
-        /// <param name="SqlContent"></param>
+        /// <param name="sqlContent"></param>
         /// <returns></returns>
-        private static string Regular(string SqlContent)
+        private static string Regular(string sqlContent)
         {
-            var IsInQuote = false;
-            var LowerSql = string.Empty;
-            for (var i = 0; i < SqlContent.Length; i++)
+            var isInQuote = false;
+            var lowerSql = string.Empty;
+            for (var i = 0; i < sqlContent.Length; i++)
             {
-                if (SqlContent[i].ToString() == "\"")
+                if (sqlContent[i].ToString() == "\"")
                 {
-                    IsInQuote = !IsInQuote;
-                    LowerSql += SqlContent[i];
+                    isInQuote = !isInQuote;
+                    lowerSql += sqlContent[i];
                 }
                 else
                 {
-                    if (IsInQuote)
+                    if (isInQuote)
                     {
-                        if (SqlContent[i].ToString() == " ")
+                        if (sqlContent[i].ToString() == " ")
                         {
                             //权宜之计，如果真的有&nbsp;。。。
-                            LowerSql += "&nbsp;";
+                            lowerSql += "&nbsp;";
                         }
                         else
                         {
-                            LowerSql += SqlContent[i];
+                            lowerSql += sqlContent[i];
                         }
                     }
                     else
                     {
-                        LowerSql += SqlContent[i].ToString().ToLower();
+                        lowerSql += sqlContent[i].ToString().ToLower();
                     }
                 }
             }
-            return LowerSql;
+            return lowerSql;
         }
 
         /// <summary>
         ///     Order 的设置
         /// </summary>
-        /// <param name="CurrentDataFilter"></param>
-        /// <param name="SqlContent"></param>
-        private static void SetQueryOrder(DataFilter CurrentDataFilter, string SqlContent)
+        /// <param name="currentDataFilter"></param>
+        /// <param name="sqlContent"></param>
+        private static void SetQueryOrder(DataFilter currentDataFilter, string sqlContent)
         {
             //如果获得了内容，应该是这个样子的 By A ASC,B DES
             //1.删除By By A ASC,B DES -> A Asc,B Des
-            SqlContent = SqlContent.Substring(3);
+            sqlContent = sqlContent.Substring(3);
             //2.通过逗号分隔列表
             //A Asc , B Des ->  A Asc
             //                  B Des
-            var SortFieldLst = SqlContent.Split(",".ToCharArray());
+            var sortFieldLst = sqlContent.Split(",".ToCharArray());
             //3.分出 Field 和 Order
-            foreach (var SortField in SortFieldLst)
+            foreach (var sortField in sortFieldLst)
             {
-                var Sortfld = SortField.Trim().Split(" ".ToCharArray());
-                for (var i = 0; i < CurrentDataFilter.QueryFieldList.Count; i++)
+                var sortfld = sortField.Trim().Split(" ".ToCharArray());
+                for (var i = 0; i < currentDataFilter.QueryFieldList.Count; i++)
                 {
-                    if (CurrentDataFilter.QueryFieldList[i].ColName.ToLower() == Sortfld[0].ToLower())
+                    if (currentDataFilter.QueryFieldList[i].ColName.ToLower() == sortfld[0].ToLower())
                     {
                         //无参数时候，默认是升序[Can't Modify]QueryFieldList是一个结构体
-                        var queryfld = CurrentDataFilter.QueryFieldList[i];
-                        if (Sortfld.Length == 1)
+                        var queryfld = currentDataFilter.QueryFieldList[i];
+                        if (sortfld.Length == 1)
                         {
-                            queryfld.sortType = DataFilter.SortType.Ascending;
+                            queryfld.SortType = DataFilter.SortType.Ascending;
                         }
                         else
                         {
-                            queryfld.sortType = Sortfld[1].ToLower().StartsWith("d")
+                            queryfld.SortType = sortfld[1].ToLower().StartsWith("d")
                                 ? DataFilter.SortType.Descending
                                 : DataFilter.SortType.Ascending;
                         }
-                        CurrentDataFilter.QueryFieldList[i] = queryfld;
+                        currentDataFilter.QueryFieldList[i] = queryfld;
                         break;
                     }
                 }
@@ -238,64 +238,64 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     通过Sql文的Where条件和列名称来获取Query条件
         /// </summary>
-        /// <param name="SqlContent">Where条件</param>
-        /// <param name="ColumnNameLst">列名称</param>
+        /// <param name="sqlContent">Where条件</param>
+        /// <param name="columnNameLst">列名称</param>
         /// <returns></returns>
-        private static List<DataFilter.QueryConditionInputItem> SetQueryCondition(string SqlContent,
-            List<string> ColumnNameLst)
+        private static List<DataFilter.QueryConditionInputItem> SetQueryCondition(string sqlContent,
+            List<string> columnNameLst)
         {
-            var Conditionlst = new List<DataFilter.QueryConditionInputItem>();
+            var conditionlst = new List<DataFilter.QueryConditionInputItem>();
             // (a=1 or b="A") AND c="3" => ( a = 1 or b = "A" ) and c = "3"  
             //1. 除了引号里面的文字，全部小写
-            string[] KeyWord = {"(", ")", "=", "or", "and", ">", ">=", "<", "<=", "<>"};
-            foreach (var Keyitem in KeyWord)
+            string[] keyWord = {"(", ")", "=", "or", "and", ">", ">=", "<", "<=", "<>"};
+            foreach (var keyitem in keyWord)
             {
-                SqlContent = SqlContent.Replace(Keyitem, " " + Keyitem + " ");
+                sqlContent = sqlContent.Replace(keyitem, " " + keyitem + " ");
             }
-            while (SqlContent.Contains("  "))
+            while (sqlContent.Contains("  "))
             {
-                SqlContent = SqlContent.Replace("  ", " ");
+                sqlContent = sqlContent.Replace("  ", " ");
             }
-            SqlContent = SqlContent.Trim();
+            sqlContent = sqlContent.Trim();
             //从左到右  ( a = 1 or 
             //           b = "A" ) and 
             //           c = "3"  
-            var Token = SqlContent.Split(" ".ToCharArray());
+            var token = sqlContent.Split(" ".ToCharArray());
             var mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
             {
                 StartMark = string.Empty,
                 EndMark = string.Empty
             };
 
-            for (var i = 0; i < Token.Length; i++)
+            for (var i = 0; i < token.Length; i++)
             {
-                var strToken = Token[i].Replace("&nbsp;", " ");
+                var strToken = token[i].Replace("&nbsp;", " ");
                 switch (strToken)
                 {
                     case "(":
                         mQueryConditionInputItem.StartMark = "(";
                         break;
                     case "=":
-                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.EQ;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.Eq;
                         break;
                     case ">":
-                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.GT;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.Gt;
                         break;
                     case "<":
-                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.LT;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.Lt;
                         break;
                     case ">=":
-                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.GTE;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.Gte;
                         break;
                     case "<=":
-                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.LTE;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.Lte;
                         break;
                     case "<>":
-                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.NE;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.Ne;
                         break;
                     case "or":
-                        mQueryConditionInputItem.EndMark = ConstMgr.EndMark_OR;
-                        Conditionlst.Add(mQueryConditionInputItem);
+                        mQueryConditionInputItem.EndMark = ConstMgr.EndMarkOr;
+                        conditionlst.Add(mQueryConditionInputItem);
                         mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
                         {
                             StartMark = string.Empty,
@@ -304,8 +304,8 @@ namespace MongoUtility.Aggregation
 
                         break;
                     case "and":
-                        mQueryConditionInputItem.EndMark = ConstMgr.EndMark_AND;
-                        Conditionlst.Add(mQueryConditionInputItem);
+                        mQueryConditionInputItem.EndMark = ConstMgr.EndMarkAnd;
+                        conditionlst.Add(mQueryConditionInputItem);
                         mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
                         {
                             StartMark = string.Empty,
@@ -316,28 +316,28 @@ namespace MongoUtility.Aggregation
                     case ")":
                         mQueryConditionInputItem.EndMark = ")";
 
-                        if (i == Token.Length - 1)
+                        if (i == token.Length - 1)
                         {
-                            mQueryConditionInputItem.EndMark = ConstMgr.EndMark_T;
+                            mQueryConditionInputItem.EndMark = ConstMgr.EndMarkT;
                         }
                         else
                         {
-                            if (Token[i + 1] == "or")
+                            if (token[i + 1] == "or")
                             {
-                                mQueryConditionInputItem.EndMark = ConstMgr.EndMark_OR_T;
+                                mQueryConditionInputItem.EndMark = ConstMgr.EndMarkOrT;
                                 i++;
                             }
                             else
                             {
-                                if (Token[i + 1] == "and")
+                                if (token[i + 1] == "and")
                                 {
-                                    mQueryConditionInputItem.EndMark = ConstMgr.EndMark_AND_T;
+                                    mQueryConditionInputItem.EndMark = ConstMgr.EndMarkAndT;
                                     i++;
                                 }
                             }
                         }
 
-                        Conditionlst.Add(mQueryConditionInputItem);
+                        conditionlst.Add(mQueryConditionInputItem);
                         mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
                         {
                             StartMark = string.Empty,
@@ -348,12 +348,12 @@ namespace MongoUtility.Aggregation
                     default:
                         if (mQueryConditionInputItem.ColName == null)
                         {
-                            foreach (var ColName in ColumnNameLst)
+                            foreach (var colName in columnNameLst)
                             {
-                                if (ColName.ToLower() == strToken.ToLower())
+                                if (colName.ToLower() == strToken.ToLower())
                                 {
                                     //小写的复原
-                                    mQueryConditionInputItem.ColName = ColName;
+                                    mQueryConditionInputItem.ColName = colName;
                                     break;
                                 }
                             }
@@ -375,11 +375,11 @@ namespace MongoUtility.Aggregation
                         break;
                 }
             }
-            if (Token[Token.Length - 1] != ")")
+            if (token[token.Length - 1] != ")")
             {
-                Conditionlst.Add(mQueryConditionInputItem);
+                conditionlst.Add(mQueryConditionInputItem);
             }
-            return Conditionlst;
+            return conditionlst;
         }
     }
 }

@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace PlugInPackage.GenerateConfigIni
 {
-    partial class frmGenerateConfigIni
+    partial class FrmGenerateConfigIni
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -34,7 +36,7 @@ namespace PlugInPackage.GenerateConfigIni
             this.btnClose = new System.Windows.Forms.Button();
             this.grpReplset = new System.Windows.Forms.GroupBox();
             this.lnkRef = new System.Windows.Forms.LinkLabel();
-            this.ctlGenerateMongod = new ctlMongod();
+            this.ctlGenerateMongod = new CtlMongod();
             this.SuspendLayout();
             // 
             // btnGenerate
@@ -96,7 +98,7 @@ namespace PlugInPackage.GenerateConfigIni
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.ctlGenerateMongod);
-            this.Name = "frmGenerateConfigIni";
+            this.Name = "FrmGenerateConfigIni";
             this.Text = "Generate Config INI File";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -105,10 +107,10 @@ namespace PlugInPackage.GenerateConfigIni
 
         #endregion
 
-        private ctlMongod ctlGenerateMongod;
-        private System.Windows.Forms.Button btnGenerate;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.GroupBox grpReplset;
-        private System.Windows.Forms.LinkLabel lnkRef;
+        private CtlMongod ctlGenerateMongod;
+        private Button btnGenerate;
+        private Button btnClose;
+        private GroupBox grpReplset;
+        private LinkLabel lnkRef;
     }
 }

@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Common.UI;
+using Common;
 using MongoCola.Operation;
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
+using ResourceLib.UI;
 
 namespace MongoCola.Aggregation
 {
-    public partial class frmAggregation : Form
+    public partial class FrmAggregation : Form
     {
         /// <summary>
         ///     聚合数组
         /// </summary>
-        private BsonArray _AggrArray = new BsonArray();
+        private BsonArray _aggrArray = new BsonArray();
 
-        public frmAggregation()
+        public FrmAggregation()
         {
             InitializeComponent();
         }
@@ -31,12 +32,12 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void cmdRun_Click(object sender, EventArgs e)
         {
-            if (_AggrArray.Count <= 0)
+            if (_aggrArray.Count <= 0)
                 return;
-            var mCommandResult = CommandHelper.Aggregate(_AggrArray, RuntimeMongoDBContext.GetCurrentCollection().Name);
+            var mCommandResult = CommandHelper.Aggregate(_aggrArray, RuntimeMongoDbContext.GetCurrentCollection().Name);
             if (mCommandResult.Ok)
             {
-                UIHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
+                UiHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
                 trvResult.DatatreeView.BeginUpdate();
                 trvResult.DatatreeView.ExpandAll();
                 trvResult.DatatreeView.EndUpdate();
@@ -54,16 +55,16 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void frmAggregation_Load(object sender, EventArgs e)
         {
-            foreach (var item in MongoUtility.Basic.MongoUtility.GetJsNameList())
+            foreach (var item in MongoHelper.GetJsNameList())
             {
                 cmbForAggregatePipeline.Items.Add(item);
             }
             cmbForAggregatePipeline.SelectedIndexChanged += (x, y) =>
             {
-                _AggrArray =
+                _aggrArray =
                     (BsonArray)
                         BsonDocument.Parse(OperationHelper.LoadJavascript(cmbForAggregatePipeline.Text,
-                            RuntimeMongoDBContext.GetCurrentCollection())).GetValue(0);
+                            RuntimeMongoDbContext.GetCurrentCollection())).GetValue(0);
                 FillAggreationTreeview();
             };
         }
@@ -77,14 +78,14 @@ namespace MongoCola.Aggregation
         {
             try
             {
-                var frmInsertDoc = new frmNewDocument();
-                Common.Logic.Utility.OpenForm(frmInsertDoc, false, true);
-                _AggrArray.Add(frmInsertDoc.mBsonDocument);
+                var frmInsertDoc = new FrmNewDocument();
+                Utility.OpenForm(frmInsertDoc, false, true);
+                _aggrArray.Add(frmInsertDoc.MBsonDocument);
                 FillAggreationTreeview();
             }
             catch (Exception ex)
             {
-                Common.Logic.Utility.ExceptionDeal(ex);
+                Utility.ExceptionDeal(ex);
             }
         }
 
@@ -93,12 +94,12 @@ namespace MongoCola.Aggregation
         /// </summary>
         private void FillAggreationTreeview()
         {
-            var ConditionList = new List<BsonDocument>();
-            foreach (BsonDocument item in _AggrArray)
+            var conditionList = new List<BsonDocument>();
+            foreach (BsonDocument item in _aggrArray)
             {
-                ConditionList.Add(item);
+                conditionList.Add(item);
             }
-            UIHelper.FillDataToTreeView("Aggregation", trvCondition, ConditionList, 0);
+            UiHelper.FillDataToTreeView("Aggregation", trvCondition, conditionList, 0);
             trvCondition.DatatreeView.BeginUpdate();
             trvCondition.DatatreeView.ExpandAll();
             trvCondition.DatatreeView.EndUpdate();
@@ -111,7 +112,7 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void cmdClear_Click(object sender, EventArgs e)
         {
-            _AggrArray.Clear();
+            _aggrArray.Clear();
             trvCondition.TreeView.Nodes.Clear();
         }
 
@@ -132,12 +133,12 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void cmdSaveAggregatePipeline_Click(object sender, EventArgs e)
         {
-            if (_AggrArray.Count == 0)
+            if (_aggrArray.Count == 0)
                 return;
             var strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：",
                 "Save Aggregate Pipeline");
-            OperationHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _AggrArray).ToString(),
-                RuntimeMongoDBContext.GetCurrentCollection());
+            OperationHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _aggrArray).ToString(),
+                RuntimeMongoDbContext.GetCurrentCollection());
         }
 
         /// <summary>
@@ -147,11 +148,11 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void btnAggrBuilder_Click(object sender, EventArgs e)
         {
-            var frmAggregationBuilder = new frmAggregationCondition();
-            Common.Logic.Utility.OpenForm(frmAggregationBuilder, false, true);
+            var frmAggregationBuilder = new FrmAggregationCondition();
+            Utility.OpenForm(frmAggregationBuilder, false, true);
             foreach (var item in frmAggregationBuilder.Aggregation)
             {
-                _AggrArray.Add(item);
+                _aggrArray.Add(item);
             }
             FillAggreationTreeview();
         }

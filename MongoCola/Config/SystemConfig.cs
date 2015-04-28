@@ -8,10 +8,9 @@
  */
 
 using System.IO;
-using Common.Logic;
-using ResourceLib;
+using ResourceLib.Method;
 
-namespace MongoCola
+namespace MongoCola.Config
 {
     /// <summary>
     ///     Description of SystemManager.
@@ -22,7 +21,7 @@ namespace MongoCola
 
         /// 配置
         /// </summary>
-        public static Config config = new Config();
+        public static Config Config = new Config();
 
         /// <summary>
         ///     版本号
@@ -51,12 +50,12 @@ namespace MongoCola
         {
             get
             {
-                if (config == null)
+                if (Config == null)
                 {
                     return true;
                 }
-                return (config.LanguageFileName == "English.xml" ||
-                        string.IsNullOrEmpty(config.LanguageFileName));
+                return (Config.LanguageFileName == "English.xml" ||
+                        string.IsNullOrEmpty(Config.LanguageFileName));
             }
         }
 
@@ -65,14 +64,14 @@ namespace MongoCola
         /// </summary>
         public static void InitLanguage()
         {
-            GUIConfig.IsUseDefaultLanguage = IsUseDefaultLanguage;
+            GuiConfig.IsUseDefaultLanguage = IsUseDefaultLanguage;
             //语言的初始化
             if (!IsUseDefaultLanguage)
             {
-                var LanguageFile = "Language" + Path.DirectorySeparatorChar + config.LanguageFileName;
-                if (File.Exists(LanguageFile))
+                var languageFile = "Language" + Path.DirectorySeparatorChar + Config.LanguageFileName;
+                if (File.Exists(languageFile))
                 {
-                    GUIConfig.MStringResource.InitLanguage(LanguageFile);
+                    GuiConfig.MStringResource.InitLanguage(languageFile);
                 }
             }
         }

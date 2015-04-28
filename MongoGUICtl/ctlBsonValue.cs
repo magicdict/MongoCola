@@ -5,25 +5,25 @@ using MongoUtility.Basic;
 
 namespace MongoGUICtl
 {
-    public partial class ctlBsonValue : UserControl
+    public partial class CtlBsonValue : UserControl
     {
         /// <summary>
         ///     获得一个新BSonArray的委托
         /// </summary>
-        public Func<BsonArray> getArray;
+        public Func<BsonArray> GetArray;
 
         /// <summary>
         ///     获得一个新BSonDocument的委托
         /// </summary>
-        public Func<BsonDocument> getDocument;
+        public Func<BsonDocument> GetDocument;
 
-        private BsonArray mBsonArray = new BsonArray();
-        private BsonDocument mBsonDocument = new BsonDocument();
+        private BsonArray _mBsonArray = new BsonArray();
+        private BsonDocument _mBsonDocument = new BsonDocument();
 
         /// <summary>
         ///     初始化，请确保 getArray 和 getDocument正确设定
         /// </summary>
-        public ctlBsonValue()
+        public CtlBsonValue()
         {
             InitializeComponent();
 
@@ -56,7 +56,7 @@ namespace MongoGUICtl
         ///     使用属性会发生一些MONO上的移植问题
         /// </summary>
         /// <returns></returns>
-        public BsonValue getValue()
+        public BsonValue GetValue()
         {
             BsonValue mValue = null;
             switch (cmbDataType.SelectedIndex)
@@ -74,10 +74,10 @@ namespace MongoGUICtl
                     mValue = radTrue.Checked ? BsonBoolean.True : BsonBoolean.False;
                     break;
                 case 4:
-                    mValue = mBsonArray;
+                    mValue = _mBsonArray;
                     break;
                 case 5:
-                    mValue = mBsonDocument;
+                    mValue = _mBsonDocument;
                     break;
             }
             return mValue;
@@ -87,7 +87,7 @@ namespace MongoGUICtl
         ///     使用属性会发生一些MONO上的移植问题
         /// </summary>
         /// <returns></returns>
-        public void setValue(BsonValue value)
+        public void SetValue(BsonValue value)
         {
             txtBsonValue.Visible = false;
             txtBsonValue.Text = string.Empty;
@@ -131,24 +131,24 @@ namespace MongoGUICtl
             }
             if (value.IsBsonArray)
             {
-                var t = getArray();
+                var t = GetArray();
                 if (t != null)
                 {
-                    mBsonArray = t;
+                    _mBsonArray = t;
                     txtBsonValue.Visible = true;
-                    txtBsonValue.Text = mBsonArray.ToString();
+                    txtBsonValue.Text = _mBsonArray.ToString();
                     txtBsonValue.ReadOnly = true;
                     cmbDataType.SelectedIndex = 4;
                 }
             }
             if (value.IsBsonDocument)
             {
-                var t = getDocument();
+                var t = GetDocument();
                 if (t != null)
                 {
-                    mBsonDocument = t;
+                    _mBsonDocument = t;
                     txtBsonValue.Visible = true;
-                    txtBsonValue.Text = mBsonDocument.ToString();
+                    txtBsonValue.Text = _mBsonDocument.ToString();
                     txtBsonValue.ReadOnly = true;
                     cmbDataType.SelectedIndex = 5;
                 }
@@ -167,22 +167,22 @@ namespace MongoGUICtl
             switch (cmbDataType.SelectedIndex)
             {
                 case 0:
-                    setValue(new BsonString(string.Empty));
+                    SetValue(new BsonString(string.Empty));
                     break;
                 case 1:
-                    setValue(new BsonInt32(0));
+                    SetValue(new BsonInt32(0));
                     break;
                 case 2:
-                    setValue(new BsonDateTime(DateTime.Now));
+                    SetValue(new BsonDateTime(DateTime.Now));
                     break;
                 case 3:
-                    setValue(BsonBoolean.False);
+                    SetValue(BsonBoolean.False);
                     break;
                 case 4:
-                    setValue(new BsonArray());
+                    SetValue(new BsonArray());
                     break;
                 case 5:
-                    setValue(new BsonDocument());
+                    SetValue(new BsonDocument());
                     break;
                 default:
                     break;

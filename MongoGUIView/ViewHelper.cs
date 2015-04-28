@@ -1,14 +1,15 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using Common;
+using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using ResourceLib.Method;
 
 namespace MongoGUIView
 {
@@ -21,11 +22,11 @@ namespace MongoGUIView
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="controls"></param>
-        /// <param name="CurrentDataViewInfo"></param>
+        /// <param name="currentDataViewInfo"></param>
         public static void FillDataToControl(List<BsonDocument> dataList, List<Control> controls,
-            DataViewInfo CurrentDataViewInfo)
+            DataViewInfo currentDataViewInfo)
         {
-            var collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
+            var collectionPath = currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[1];
             var cp = collectionPath.Split("/".ToCharArray());
             foreach (var control in controls)
             {
@@ -33,7 +34,7 @@ namespace MongoGUIView
                 {
                     if (
                         !(dataList.Count == 0 &&
-                          CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[0] == ConstMgr.COLLECTION_TAG))
+                          currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[0] == ConstMgr.CollectionTag))
                     {
                         //只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
                         FillDataToListView(cp[(int) EnumMgr.PathLv.CollectionLv], (ListView) control, dataList);
@@ -41,13 +42,13 @@ namespace MongoGUIView
                 }
                 if (control.GetType() == typeof (TextBox))
                 {
-                    FillJSONDataToTextBox((TextBox) control, dataList, CurrentDataViewInfo.SkipCnt);
+                    FillJsonDataToTextBox((TextBox) control, dataList, currentDataViewInfo.SkipCnt);
                 }
-                if (control.GetType() == typeof (ctlTreeViewColumns))
+                if (control.GetType() == typeof (CtlTreeViewColumns))
                 {
-                    UIHelper.FillDataToTreeView(cp[(int) EnumMgr.PathLv.CollectionLv], (ctlTreeViewColumns) control,
+                    UiHelper.FillDataToTreeView(cp[(int) EnumMgr.PathLv.CollectionLv], (CtlTreeViewColumns) control,
                         dataList,
-                        CurrentDataViewInfo.SkipCnt);
+                        currentDataViewInfo.SkipCnt);
                 }
             }
         }
@@ -112,17 +113,17 @@ namespace MongoGUIView
         /// </summary>
         /// <param name="txtData"></param>
         /// <param name="dataList"></param>
-        public static void FillJSONDataToTextBox(TextBox txtData, List<BsonDocument> dataList, int SkipCnt)
+        public static void FillJsonDataToTextBox(TextBox txtData, List<BsonDocument> dataList, int skipCnt)
         {
             txtData.Clear();
-            var Count = 1;
+            var count = 1;
             var sb = new StringBuilder();
-            foreach (var BsonDoc in dataList)
+            foreach (var bsonDoc in dataList)
             {
-                sb.AppendLine("/* " + (SkipCnt + Count) + " */");
+                sb.AppendLine("/* " + (skipCnt + count) + " */");
 
-                sb.AppendLine(BsonDoc.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings));
-                Count++;
+                sb.AppendLine(bsonDoc.ToJson(MongoHelper.JsonWriterSettings));
+                count++;
             }
             txtData.Text = sb.ToString();
         }
@@ -139,10 +140,10 @@ namespace MongoGUIView
             lstData.SmallImageList = null;
             switch (collectionName)
             {
-                case ConstMgr.COLLECTION_NAME_GFS_FILES:
+                case ConstMgr.CollectionNameGfsFiles:
                     SetGridFileToListView(dataList, lstData);
                     break;
-                case ConstMgr.COLLECTION_NAME_USER:
+                case ConstMgr.CollectionNameUser:
                     SetUserListToListView(dataList, lstData);
                     break;
                 default:
@@ -160,22 +161,22 @@ namespace MongoGUIView
         /// <param name="collectionName"></param>
         private static void SetDataListToListView(List<BsonDocument> dataList, ListView lstData, string collectionName)
         {
-            var _columnlist = new List<string>();
+            var columnlist = new List<string>();
             //可以让_id 不在第一位，昏过去了,很多逻辑需要调整
             var isSystem = OperationHelper.IsSystemCollection(string.Empty, collectionName);
             if (!isSystem)
             {
-                _columnlist.Add(ConstMgr.KEY_ID);
-                lstData.Columns.Add(ConstMgr.KEY_ID);
+                columnlist.Add(ConstMgr.KeyId);
+                lstData.Columns.Add(ConstMgr.KeyId);
             }
             foreach (var docItem in dataList)
             {
                 var lstItem = new ListViewItem();
                 foreach (var item in docItem.Names)
                 {
-                    if (!_columnlist.Contains(item))
+                    if (!columnlist.Contains(item))
                     {
-                        _columnlist.Add(item);
+                        columnlist.Add(item);
                         lstData.Columns.Add(item);
                     }
                 }
@@ -183,12 +184,12 @@ namespace MongoGUIView
                 if (!isSystem)
                 {
                     BsonElement id;
-                    docItem.TryGetElement(ConstMgr.KEY_ID, out id);
+                    docItem.TryGetElement(ConstMgr.KeyId, out id);
                     if (!(id.Value is BsonNull))
                     {
-                        lstItem.Text = docItem.GetValue(ConstMgr.KEY_ID).ToString();
+                        lstItem.Text = docItem.GetValue(ConstMgr.KeyId).ToString();
                         //这里保存真实的主Key数据，删除的时候使用
-                        lstItem.Tag = docItem.GetValue(ConstMgr.KEY_ID);
+                        lstItem.Tag = docItem.GetValue(ConstMgr.KeyId);
                     }
                     else
                     {
@@ -198,22 +199,22 @@ namespace MongoGUIView
                 }
                 else
                 {
-                    lstItem.Text = docItem.GetValue(_columnlist[0]).ToString();
+                    lstItem.Text = docItem.GetValue(columnlist[0]).ToString();
                 }
                 //OtherItems
-                for (var i = isSystem ? 1 : 0; i < _columnlist.Count; i++)
+                for (var i = isSystem ? 1 : 0; i < columnlist.Count; i++)
                 {
-                    if (_columnlist[i] == ConstMgr.KEY_ID)
+                    if (columnlist[i] == ConstMgr.KeyId)
                     {
                         continue;
                     }
                     BsonValue val;
-                    docItem.TryGetValue(_columnlist[i], out val);
+                    docItem.TryGetValue(columnlist[i], out val);
                     lstItem.SubItems.Add(val == null ? "" : ConvertToString(val));
                 }
                 lstData.Items.Add(lstItem);
             }
-            Common.Logic.Utility.ListViewColumnResize(lstData);
+            Utility.ListViewColumnResize(lstData);
         }
 
         /// <summary>
@@ -227,18 +228,18 @@ namespace MongoGUIView
             //这里为了向前兼容暂时保持ReadOnle属性
             //Ref:http://docs.mongodb.org/manual/reference/method/db.addUser/
             lstData.Clear();
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("ID");
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(TextType.Common_Username));
-                lstData.Columns.Add(GUIConfig.MStringResource.GetText(TextType.Common_Roles));
+                    GuiConfig.MStringResource.GetText(TextType.CommonUsername));
+                lstData.Columns.Add(GuiConfig.MStringResource.GetText(TextType.CommonRoles));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(TextType.Common_Password));
+                    GuiConfig.MStringResource.GetText(TextType.CommonPassword));
                 lstData.Columns.Add("userSource");
                 lstData.Columns.Add("otherDBRoles");
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(TextType.Common_ReadOnly));
+                    GuiConfig.MStringResource.GetText(TextType.CommonReadOnly));
             }
             else
             {
@@ -254,7 +255,7 @@ namespace MongoGUIView
             {
                 var lstItem = new ListViewItem();
                 //ID
-                lstItem.Text = docFile.GetValue(ConstMgr.KEY_ID).ToString();
+                lstItem.Text = docFile.GetValue(ConstMgr.KeyId).ToString();
                 //User
                 lstItem.SubItems.Add(docFile.GetValue("user").ToString());
                 //roles
@@ -271,9 +272,9 @@ namespace MongoGUIView
                 docFile.TryGetValue("userSource", out strUserSource);
                 lstItem.SubItems.Add(strUserSource == null ? "N/A" : strUserSource.ToString());
                 //OtherDBRoles
-                BsonValue strOtherDBRoles;
-                docFile.TryGetValue("otherDBRoles", out strOtherDBRoles);
-                lstItem.SubItems.Add(strOtherDBRoles == null ? "N/A" : strOtherDBRoles.ToString());
+                BsonValue strOtherDbRoles;
+                docFile.TryGetValue("otherDBRoles", out strOtherDbRoles);
+                lstItem.SubItems.Add(strOtherDbRoles == null ? "N/A" : strOtherDbRoles.ToString());
                 //ReadOnly
                 //20130802 roles列表示。ReadOnly可能不存在！
                 BsonValue strReadOnly;
@@ -281,7 +282,7 @@ namespace MongoGUIView
                 lstItem.SubItems.Add(strReadOnly == null ? "N/A" : strReadOnly.ToString());
                 lstData.Items.Add(lstItem);
             }
-            Common.Logic.Utility.ListViewColumnResize(lstData);
+            Utility.ListViewColumnResize(lstData);
             //lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
@@ -293,15 +294,15 @@ namespace MongoGUIView
         private static void SetGridFileToListView(List<BsonDocument> dataList, ListView lstData)
         {
             lstData.Clear();
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                lstData.Columns.Add(GUIConfig.MStringResource.GetText(TextType.GFS_filename));
-                lstData.Columns.Add(GUIConfig.MStringResource.GetText(TextType.GFS_length));
+                lstData.Columns.Add(GuiConfig.MStringResource.GetText(TextType.GfsFilename));
+                lstData.Columns.Add(GuiConfig.MStringResource.GetText(TextType.GfsLength));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(TextType.GFS_chunkSize));
+                    GuiConfig.MStringResource.GetText(TextType.GfsChunkSize));
                 lstData.Columns.Add(
-                    GUIConfig.MStringResource.GetText(TextType.GFS_uploadDate));
-                lstData.Columns.Add(GUIConfig.MStringResource.GetText(TextType.GFS_md5));
+                    GuiConfig.MStringResource.GetText(TextType.GfsUploadDate));
+                lstData.Columns.Add(GuiConfig.MStringResource.GetText(TextType.GfsMd5));
                 //!MONO
                 lstData.Columns.Add("ContentType");
             }
@@ -321,49 +322,49 @@ namespace MongoGUIView
 
             foreach (var docFile in dataList)
             {
-                var Filename = docFile.GetValue("filename").ToString();
+                var filename = docFile.GetValue("filename").ToString();
                 var lstItem = new ListViewItem();
-                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(Filename, false);
-                lstItem.Text = Filename;
-                lstItem.ToolTipText = Filename;
-                lstItem.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(docFile.GetValue("length")));
-                lstItem.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(docFile.GetValue("chunkSize")));
+                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(filename, false);
+                lstItem.Text = filename;
+                lstItem.ToolTipText = filename;
+                lstItem.SubItems.Add(MongoHelper.GetBsonSize(docFile.GetValue("length")));
+                lstItem.SubItems.Add(MongoHelper.GetBsonSize(docFile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
                 //!MONO
-                lstItem.SubItems.Add(GetSystemIcon.GetContentType(Filename));
+                lstItem.SubItems.Add(GetSystemIcon.GetContentType(filename));
                 lstData.Items.Add(lstItem);
             }
             //自动调节列宽
-            Common.Logic.Utility.ListViewColumnResize(lstData);
+            Utility.ListViewColumnResize(lstData);
             // 用新的排序方法对ListView排序
-            var _lvwGFSColumnSorter = new FillMongoDB.lvwColumnSorter();
-            lstData.ListViewItemSorter = _lvwGFSColumnSorter;
+            var lvwGfsColumnSorter = new FillMongoDb.LvwColumnSorter();
+            lstData.ListViewItemSorter = lvwGfsColumnSorter;
             lstData.ColumnClick += (sender, e) =>
             {
                 switch (e.Column)
                 {
                     case 1:
                     case 2:
-                        _lvwGFSColumnSorter.CompareMethod = FillMongoDB.lvwColumnSorter.SortMethod.SizeCompare;
+                        lvwGfsColumnSorter.CompareMethod = FillMongoDb.LvwColumnSorter.SortMethod.SizeCompare;
                         break;
                     default:
-                        _lvwGFSColumnSorter.CompareMethod = FillMongoDB.lvwColumnSorter.SortMethod.StringCompare;
+                        lvwGfsColumnSorter.CompareMethod = FillMongoDb.LvwColumnSorter.SortMethod.StringCompare;
                         break;
                 }
                 // 检查点击的列是不是现在的排序列.
-                if (e.Column == _lvwGFSColumnSorter.SortColumn)
+                if (e.Column == lvwGfsColumnSorter.SortColumn)
                 {
                     // 重新设置此列的排序方法.
-                    _lvwGFSColumnSorter.Order = _lvwGFSColumnSorter.Order == SortOrder.Ascending
+                    lvwGfsColumnSorter.Order = lvwGfsColumnSorter.Order == SortOrder.Ascending
                         ? SortOrder.Descending
                         : SortOrder.Ascending;
                 }
                 else
                 {
                     // 设置排序列，默认为正向排序
-                    _lvwGFSColumnSorter.SortColumn = e.Column;
-                    _lvwGFSColumnSorter.Order = SortOrder.Ascending;
+                    lvwGfsColumnSorter.SortColumn = e.Column;
+                    lvwGfsColumnSorter.Order = SortOrder.Ascending;
                 }
                 lstData.Sort();
             };
@@ -443,7 +444,7 @@ namespace MongoGUIView
                 default:
                     break;
             }
-            var datalist = DataViewInfo.GetDataList(ref mDataViewInfo, RuntimeMongoDBContext.GetCurrentServer());
+            var datalist = DataViewInfo.GetDataList(ref mDataViewInfo, RuntimeMongoDbContext.GetCurrentServer());
             FillDataToControl(datalist, dataShower, mDataViewInfo);
         }
 

@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.Logic;
+using Common;
 using MongoDB.Bson;
 using MongoGUICtl;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoCola
 {
-    public partial class frmValidate : Form
+    public partial class FrmValidate : Form
     {
-        private BsonDocument Result;
+        private BsonDocument _result;
 
-        public frmValidate()
+        public FrmValidate()
         {
             InitializeComponent();
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
             cmdSave.Enabled = false;
         }
 
@@ -27,11 +28,11 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdValidate_Click(object sender, EventArgs e)
         {
-            var TextSearchOption = new BsonDocument().Add(new BsonElement("full", chkFull.Checked.ToString()));
-            var SearchResult = CommandHelper.ExecuteMongoColCommand("validate",
-                RuntimeMongoDBContext.GetCurrentCollection(), TextSearchOption);
-            Result = SearchResult.Response;
-            UIHelper.FillDataToTreeView("Validate Result", trvResult, Result);
+            var textSearchOption = new BsonDocument().Add(new BsonElement("full", chkFull.Checked.ToString()));
+            var searchResult = CommandHelper.ExecuteMongoColCommand("validate",
+                RuntimeMongoDbContext.GetCurrentCollection(), textSearchOption);
+            _result = searchResult.Response;
+            UiHelper.FillDataToTreeView("Validate Result", trvResult, _result);
             cmdSave.Enabled = true;
         }
 
@@ -56,7 +57,7 @@ namespace MongoCola
             dialog.Filter = Utility.JsFilter;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MongoUtility.Basic.MongoUtility.SaveResultToJSonFile(Result, dialog.FileName);
+                MongoHelper.SaveResultToJSonFile(_result, dialog.FileName);
             }
         }
     }

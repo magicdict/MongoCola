@@ -1,4 +1,8 @@
-﻿using Common.Logic;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using Common;
+using MongoCola.Config;
 using MongoCola.Connection;
 using MongoGUICtl;
 using MongoGUIView;
@@ -7,24 +11,20 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using PlugInPackage;
+using ResourceLib.Method;
 using ResourceLib.Properties;
-using ResourceLib;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-
-
+using ResourceLib.UI;
 
 namespace MongoCola
 {
-    public partial class frmMain
+    public partial class FrmMain
     {
         #region"MainForm"
 
         /// <summary>
         ///     切换Tab的时候，必须切换当前对象
         /// </summary>
-        public frmMain()
+        public FrmMain()
         {
             InitializeComponent();
             GetSystemIcon.InitMainTreeImage();
@@ -32,14 +32,14 @@ namespace MongoCola
             trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
             tabView.ImageList = GetSystemIcon.TabViewImage;
             SetMenuImage();
-            GUIConfig.Translateform(this);
-            if (!GUIConfig.IsUseDefaultLanguage)
+            GuiConfig.Translateform(this);
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
                 //其他控件
                 statusStripMain.Items[0].Text =
-                    GUIConfig.GetText(TextType.Main_StatusBar_Text_Ready);
+                    GuiConfig.GetText(TextType.MainStatusBarTextReady);
                 tabSvrStatus.Text =
-                    GUIConfig.GetText("Main_Menu_Mangt_Status");
+                    GuiConfig.GetText("Main_Menu_Mangt_Status");
             }
             //Init ToolBar
             InitToolBar();
@@ -65,7 +65,7 @@ namespace MongoCola
             //Set Tool bar button enable
             SetToolBarEnabled();
             //Open ConnectionManagement Form
-            Utility.OpenForm(new frmConnect(), true, true);
+            Utility.OpenForm(new FrmConnect(), true, true);
             try
             {
                 ServerStatusCtl.SetEnable(true);
@@ -96,7 +96,7 @@ namespace MongoCola
             CommandHelper.RunCommandComplete += CommandLog;
             //长时间操作时候，实时提示进度在状态栏中
             lblAction.Text = string.Empty;
-            MongoUtility.Basic.MongoUtility.ActionDone += (x, y) =>
+            MongoHelper.ActionDone += (x, y) =>
             {
                 //1.lblAction 没有InvokeRequired
                 //2.DoEvents必须
@@ -159,72 +159,77 @@ namespace MongoCola
                 trvsrvlst.SelectedNode = e.Node;
                 var strNodeType = Utility.GetTagType(e.Node.Tag.ToString());
                 var mongoSvrKey = Utility.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
-                RuntimeMongoDBContext._CurrentMongoConnectionconfig = SystemConfig.config.ConnectionList[mongoSvrKey];
-                if (string.IsNullOrEmpty(RuntimeMongoDBContext._CurrentMongoConnectionconfig.UserName))
+                RuntimeMongoDbContext.CurrentMongoConnectionconfig = SystemConfig.Config.ConnectionList[mongoSvrKey];
+                if (string.IsNullOrEmpty(RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName))
                 {
                     lblUserInfo.Text = "UserInfo:Admin";
                 }
                 else
                 {
-                    lblUserInfo.Text = "UserInfo:" + RuntimeMongoDBContext._CurrentMongoConnectionconfig.UserName;
+                    lblUserInfo.Text = "UserInfo:" + RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName;
                 }
-                if (RuntimeMongoDBContext._CurrentMongoConnectionconfig.AuthMode)
+                if (RuntimeMongoDbContext.CurrentMongoConnectionconfig.AuthMode)
                 {
                     lblUserInfo.Text += " @AuthMode";
                 }
-                if (RuntimeMongoDBContext._CurrentMongoConnectionconfig.IsReadOnly)
+                if (RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
                 {
                     lblUserInfo.Text += " [ReadOnly]";
                 }
-                if (!RuntimeMongoDBContext._CurrentMongoConnectionconfig.IsReadOnly)
+                if (!RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
                 {
                     //恢复数据：这个操作可以针对服务器，数据库，数据集，所以可以放在共通
                     RestoreMongoToolStripMenuItem.Enabled = true;
                 }
-                RuntimeMongoDBContext.SelectObjectTag = string.Empty;
-                if (RuntimeMongoDBContext.SelectObjectTag != null)
+                RuntimeMongoDbContext.SelectObjectTag = string.Empty;
+                if (RuntimeMongoDbContext.SelectObjectTag != null)
                 {
-                    RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
+                    RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
                 }
                 switch (strNodeType)
                 {
-                    case ConstMgr.CONNECTION_TAG:
-                    case ConstMgr.CONNECTION_REPLSET_TAG:
-                    case ConstMgr.CONNECTION_CLUSTER_TAG:
+                    case ConstMgr.ConnectionTag:
+                    case ConstMgr.ConnectionReplsetTag:
+                    case ConstMgr.ConnectionClusterTag:
                         ConnectionHandler(strNodeType, e);
                         break;
-                    case ConstMgr.CONNECTION_EXCEPTION_TAG:
+                    case ConstMgr.ConnectionExceptionTag:
                         ExceptionConnectionHandler(strNodeType, e);
                         break;
-                    case ConstMgr.SERVER_TAG:
+                    case ConstMgr.ServerTag:
                         ServerHandler(strNodeType, e);
                         break;
-                    case ConstMgr.SINGLE_DB_SERVER_TAG:
+                    case ConstMgr.SingleDbServerTag:
                         SingleDBServerHandler(strNodeType, e);
                         break;
-                    case ConstMgr.DATABASE_TAG:
-                    case ConstMgr.SINGLE_DATABASE_TAG:
+                    case ConstMgr.DatabaseTag:
+                    case ConstMgr.SingleDatabaseTag:
                         DataBaseHandler(strNodeType, e);
                         break;
-                    case ConstMgr.SYSTEM_COLLECTION_LIST_TAG:
-                        RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
+                    case ConstMgr.SystemCollectionListTag:
+                        RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "System Collection List ";
                         break;
-                    case ConstMgr.COLLECTION_LIST_TAG:
-                        RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
+                    case ConstMgr.CollectionListTag:
+                        RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "Collection List ";
                         break;
-                    case ConstMgr.COLLECTION_TAG:
+                    case ConstMgr.CollectionTag:
                         CollectionHandler(strNodeType, e);
                         break;
-                    case ConstMgr.INDEX_TAG:
-                        statusStripMain.Items[0].Text = GUIConfig.GetText("Selected Index:", TextType.Selected_Index) + ":" + RuntimeMongoDBContext.SelectTagData;
+                    case ConstMgr.IndexTag:
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("Selected Index:", TextType.SelectedIndex) +
+                                                        ":" + RuntimeMongoDbContext.SelectTagData;
                         break;
-                    case ConstMgr.INDEXES_TAG:
-                        statusStripMain.Items[0].Text = GUIConfig.GetText("Selected Index:", TextType.Selected_Indexes) + ":" + RuntimeMongoDBContext.SelectTagData;
+                    case ConstMgr.IndexesTag:
+                        statusStripMain.Items[0].Text =
+                            GuiConfig.GetText("Selected Index:", TextType.SelectedIndexes) + ":" +
+                            RuntimeMongoDbContext.SelectTagData;
                         break;
-                    case ConstMgr.USER_LIST_TAG:
-                        statusStripMain.Items[0].Text = GUIConfig.GetText("Selected UserList:", TextType.Selected_UserList) + ":" + RuntimeMongoDBContext.SelectTagData;
+                    case ConstMgr.UserListTag:
+                        statusStripMain.Items[0].Text =
+                            GuiConfig.GetText("Selected UserList:", TextType.SelectedUserList) + ":" +
+                            RuntimeMongoDbContext.SelectTagData;
                         ViewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == MouseButtons.Right)
                         {
@@ -243,10 +248,11 @@ namespace MongoCola
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         break;
-                    case ConstMgr.GRID_FILE_SYSTEM_TAG:
+                    case ConstMgr.GridFileSystemTag:
                         //GridFileSystem
-                        RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = GUIConfig.GetText("Selected GFS", TextType.Selected_GFS) + ":" + RuntimeMongoDBContext.SelectTagData;
+                        RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("Selected GFS", TextType.SelectedGfs) + ":" +
+                                                        RuntimeMongoDbContext.SelectTagData;
                         ViewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == MouseButtons.Right)
                         {
@@ -265,10 +271,10 @@ namespace MongoCola
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         break;
-                    case ConstMgr.JAVASCRIPT_TAG:
-                        RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
+                    case ConstMgr.JavascriptTag:
+                        RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
                         ViewDataToolStripMenuItem.Enabled = true;
-                        if (!RuntimeMongoDBContext._CurrentMongoConnectionconfig.IsReadOnly)
+                        if (!RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
                         {
                             creatJavaScriptToolStripMenuItem.Enabled = true;
                         }
@@ -290,8 +296,8 @@ namespace MongoCola
                         }
                         statusStripMain.Items[0].Text = "Selected collection Javascript";
                         break;
-                    case ConstMgr.JAVASCRIPT_DOC_TAG:
-                        statusStripMain.Items[0].Text = "Selected JavaScript:" + RuntimeMongoDBContext.SelectTagData;
+                    case ConstMgr.JavascriptDocTag:
+                        statusStripMain.Items[0].Text = "Selected JavaScript:" + RuntimeMongoDbContext.SelectTagData;
                         ViewDataToolStripMenuItem.Enabled = true;
                         dropJavascriptToolStripMenuItem.Enabled = true;
 
@@ -400,7 +406,7 @@ namespace MongoCola
         {
             if (tabView.SelectedTab != null && tabView.SelectedTab.Tag != null)
             {
-                RuntimeMongoDBContext.SelectObjectTag = tabView.SelectedTab.Tag.ToString();
+                RuntimeMongoDbContext.SelectObjectTag = tabView.SelectedTab.Tag.ToString();
             }
         }
 
@@ -411,24 +417,24 @@ namespace MongoCola
         {
             try
             {
-                switch (RuntimeMongoDBContext.SelectTagType)
+                switch (RuntimeMongoDbContext.SelectTagType)
                 {
-                    case ConstMgr.USER_LIST_TAG:
-                        MongoUtility.Basic.MongoUtility.InitDBUser(RuntimeMongoDBContext.GetCurrentDataBase());
+                    case ConstMgr.UserListTag:
+                        MongoHelper.InitDbUser(RuntimeMongoDbContext.GetCurrentDataBase());
                         ViewDataRecord();
                         break;
-                    case ConstMgr.GRID_FILE_SYSTEM_TAG:
-                        MongoUtility.Basic.MongoUtility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
+                    case ConstMgr.GridFileSystemTag:
+                        MongoHelper.InitGfs(RuntimeMongoDbContext.GetCurrentDataBase());
                         ViewDataRecord();
                         break;
-                    case ConstMgr.JAVASCRIPT_TAG:
-                        MongoUtility.Basic.MongoUtility.InitJavascript(RuntimeMongoDBContext.GetCurrentDataBase());
+                    case ConstMgr.JavascriptTag:
+                        MongoHelper.InitJavascript(RuntimeMongoDbContext.GetCurrentDataBase());
                         break;
-                    case ConstMgr.JAVASCRIPT_DOC_TAG:
+                    case ConstMgr.JavascriptDocTag:
                         ViewJavascript();
                         break;
-                    case ConstMgr.COLLECTION_TAG:
-                    case ConstMgr.DOCUMENT_TAG:
+                    case ConstMgr.CollectionTag:
+                    case ConstMgr.DocumentTag:
                         ViewDataRecord();
                         break;
                     default:
@@ -447,42 +453,42 @@ namespace MongoCola
         /// </summary>
         private void ViewJavascript()
         {
-            var DataList = RuntimeMongoDBContext.SelectTagData.Split("/".ToCharArray());
+            var dataList = RuntimeMongoDbContext.SelectTagData.Split("/".ToCharArray());
 
-            if (MutliTabManger.TabInfo.ContainsKey(RuntimeMongoDBContext.SelectTagData))
+            if (MutliTabManger.TabInfo.ContainsKey(RuntimeMongoDbContext.SelectTagData))
             {
-                tabView.SelectTab(MutliTabManger.TabInfo[RuntimeMongoDBContext.SelectTagData].Tab);
+                tabView.SelectTab(MutliTabManger.TabInfo[RuntimeMongoDbContext.SelectTagData].Tab);
             }
             else
             {
-                var JsName = DataList[(int)EnumMgr.PathLv.DocumentLv];
-                var JsEditor = new ctlJsEditor { strDBtag = RuntimeMongoDBContext.SelectObjectTag };
-                var DataTab = new TabPage(JsName)
+                var jsName = dataList[(int) EnumMgr.PathLv.DocumentLv];
+                var jsEditor = new CtlJsEditor {StrDBtag = RuntimeMongoDbContext.SelectObjectTag};
+                var dataTab = new TabPage(jsName)
                 {
-                    Tag = RuntimeMongoDBContext.SelectObjectTag,
+                    Tag = RuntimeMongoDbContext.SelectObjectTag,
                     ImageIndex = 1
                 };
 
-                JsEditor.JsName = JsName;
-                DataTab.Controls.Add(JsEditor);
-                JsEditor.Dock = DockStyle.Fill;
-                tabView.Controls.Add(DataTab);
+                jsEditor.JsName = jsName;
+                dataTab.Controls.Add(jsEditor);
+                jsEditor.Dock = DockStyle.Fill;
+                tabView.Controls.Add(dataTab);
 
-                var DataMenuItem = new ToolStripMenuItem(JsName)
+                var dataMenuItem = new ToolStripMenuItem(jsName)
                 {
-                    Tag = DataTab.Tag,
+                    Tag = dataTab.Tag,
                     Image = GetSystemIcon.TabViewImage.Images[1]
                 };
-                JavaScriptStripMenuItem.DropDownItems.Add(DataMenuItem);
-                DataMenuItem.Click += (x, y) => tabView.SelectTab(DataTab);
-                MutliTabManger.AddTabView(RuntimeMongoDBContext.SelectTagData, null, DataTab);
-                JsEditor.CloseTab += (x, y) =>
+                JavaScriptStripMenuItem.DropDownItems.Add(dataMenuItem);
+                dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
+                MutliTabManger.AddTabView(RuntimeMongoDbContext.SelectTagData, null, dataTab);
+                jsEditor.CloseTab += (x, y) =>
                 {
-                    tabView.Controls.Remove(DataTab);
-                    MutliTabManger.RemoveTab(RuntimeMongoDBContext.SelectTagData);
-                    JavaScriptStripMenuItem.DropDownItems.Remove(DataMenuItem);
+                    tabView.Controls.Remove(dataTab);
+                    MutliTabManger.RemoveTab(RuntimeMongoDbContext.SelectTagData);
+                    JavaScriptStripMenuItem.DropDownItems.Remove(dataMenuItem);
                 };
-                tabView.SelectTab(DataTab);
+                tabView.SelectTab(dataTab);
             }
         }
 
@@ -493,80 +499,80 @@ namespace MongoCola
         {
             //由于Collection 和 Document 都可以触发这个事件，所以，先把Tag以前的标题头去掉
             //Collectiong:XXXX 和 Document:XXXX 都统一成 XXXX
-            var DataKey = RuntimeMongoDBContext.SelectTagData;
-            if (MutliTabManger.TabInfo.ContainsKey(DataKey))
+            var dataKey = RuntimeMongoDbContext.SelectTagData;
+            if (MutliTabManger.TabInfo.ContainsKey(dataKey))
             {
-                tabView.SelectTab(MutliTabManger.TabInfo[DataKey].Tab);
+                tabView.SelectTab(MutliTabManger.TabInfo[dataKey].Tab);
             }
             else
             {
                 var mDataViewInfo = new DataViewInfo
                 {
-                    strDBTag = RuntimeMongoDBContext.SelectObjectTag,
+                    StrDbTag = RuntimeMongoDbContext.SelectObjectTag,
                     IsUseFilter = false,
-                    IsReadOnly = RuntimeMongoDBContext._CurrentMongoConnectionconfig.IsReadOnly,
-                    mDataFilter = new DataFilter()
+                    IsReadOnly = RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly,
+                    MDataFilter = new DataFilter()
                 };
 
                 //mDataViewInfo.IsSafeMode = config.IsSafeMode;
 
-                ctlDataView DataViewctl;
-                switch (RuntimeMongoDBContext.SelectTagType)
+                CtlDataView dataViewctl;
+                switch (RuntimeMongoDbContext.SelectTagType)
                 {
-                    case ConstMgr.GRID_FILE_SYSTEM_TAG:
-                        DataViewctl = new ctlGFSView(mDataViewInfo);
+                    case ConstMgr.GridFileSystemTag:
+                        dataViewctl = new CtlGfsView(mDataViewInfo);
                         break;
-                    case ConstMgr.USER_LIST_TAG:
-                        DataViewctl = new ctlUserView(mDataViewInfo);
+                    case ConstMgr.UserListTag:
+                        dataViewctl = new CtlUserView(mDataViewInfo);
                         break;
                     default:
-                        DataViewctl = new ctlDocumentView(mDataViewInfo);
+                        dataViewctl = new CtlDocumentView(mDataViewInfo);
                         break;
                 }
 
 
-                DataViewctl.mDataViewInfo = mDataViewInfo;
+                dataViewctl.MDataViewInfo = mDataViewInfo;
 
-                var DataTab = new TabPage(RuntimeMongoDBContext.GetCurrentCollection().FullName)
+                var dataTab = new TabPage(RuntimeMongoDbContext.GetCurrentCollection().FullName)
                 {
-                    Tag = RuntimeMongoDBContext.SelectObjectTag,
-                    ToolTipText = RuntimeMongoDBContext.SelectObjectTag
+                    Tag = RuntimeMongoDbContext.SelectObjectTag,
+                    ToolTipText = RuntimeMongoDbContext.SelectObjectTag
                 };
 
-                switch (RuntimeMongoDBContext.SelectTagType)
+                switch (RuntimeMongoDbContext.SelectTagType)
                 {
-                    case ConstMgr.COLLECTION_TAG:
-                        DataTab.ImageIndex = 2;
+                    case ConstMgr.CollectionTag:
+                        dataTab.ImageIndex = 2;
                         break;
-                    case ConstMgr.USER_LIST_TAG:
-                        DataTab.ImageIndex = 3;
+                    case ConstMgr.UserListTag:
+                        dataTab.ImageIndex = 3;
                         break;
                     default:
-                        DataTab.ImageIndex = 4;
+                        dataTab.ImageIndex = 4;
                         break;
                 }
 
-                DataTab.Controls.Add(DataViewctl);
-                DataViewctl.Dock = DockStyle.Fill;
-                tabView.Controls.Add(DataTab);
+                dataTab.Controls.Add(dataViewctl);
+                dataViewctl.Dock = DockStyle.Fill;
+                tabView.Controls.Add(dataTab);
 
-                var DataMenuItem = new ToolStripMenuItem(RuntimeMongoDBContext.GetCurrentCollection().Name)
+                var dataMenuItem = new ToolStripMenuItem(RuntimeMongoDbContext.GetCurrentCollection().Name)
                 {
-                    Tag = DataTab.Tag,
-                    Image = GetSystemIcon.TabViewImage.Images[DataTab.ImageIndex]
+                    Tag = dataTab.Tag,
+                    Image = GetSystemIcon.TabViewImage.Images[dataTab.ImageIndex]
                 };
-                collectionToolStripMenuItem.DropDownItems.Add(DataMenuItem);
-                DataMenuItem.Click += (x, y) => tabView.SelectTab(DataTab);
-                MutliTabManger.AddTabView(DataKey, mDataViewInfo, DataTab);
+                collectionToolStripMenuItem.DropDownItems.Add(dataMenuItem);
+                dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
+                MutliTabManger.AddTabView(dataKey, mDataViewInfo, dataTab);
 
-                DataViewctl.CloseTab += (x, y) =>
+                dataViewctl.CloseTab += (x, y) =>
                 {
-                    MutliTabManger.RemoveTab(DataKey);
-                    tabView.Controls.Remove(DataTab);
-                    collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
-                    DataTab = null;
+                    MutliTabManger.RemoveTab(dataKey);
+                    tabView.Controls.Remove(dataTab);
+                    collectionToolStripMenuItem.DropDownItems.Remove(dataMenuItem);
+                    dataTab = null;
                 };
-                tabView.SelectTab(DataTab);
+                tabView.SelectTab(dataTab);
             }
         }
 
@@ -579,10 +585,10 @@ namespace MongoCola
         {
             if (tabView.SelectedTab == null)
                 return;
-            var ctl = tabView.SelectedTab.Controls[0] as ctlDataView;
+            var ctl = tabView.SelectedTab.Controls[0] as CtlDataView;
             if (ctl != null)
             {
-                ctl.RefreshGUI();
+                ctl.RefreshGui();
             }
         }
 

@@ -12,8 +12,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using MongoUtility.Core;
 
-
-namespace MongoCola
+namespace MongoCola.Config
 {
     /// <summary>
     ///     Description of Config.
@@ -81,7 +80,7 @@ namespace MongoCola
         ///     wtimeoutMS
         /// </summary>
         /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
-        public double wtimeoutMS;
+        public double WtimeoutMs;
 
         #endregion
     }

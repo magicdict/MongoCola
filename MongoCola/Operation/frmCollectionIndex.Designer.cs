@@ -1,14 +1,15 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 using MongoGUICtl;
 
 namespace MongoCola.Operation
 {
-    partial class frmCollectionIndex
+    partial class FrmCollectionIndex
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -45,11 +46,11 @@ namespace MongoCola.Operation
             this.chkIsSparse = new System.Windows.Forms.CheckBox();
             this.chkIsDroppedDups = new System.Windows.Forms.CheckBox();
             this.chkIsBackground = new System.Windows.Forms.CheckBox();
-            this.ctlIndexCreate5 = new ctlIndexCreate();
-            this.ctlIndexCreate4 = new ctlIndexCreate();
-            this.ctlIndexCreate3 = new ctlIndexCreate();
-            this.ctlIndexCreate2 = new ctlIndexCreate();
-            this.ctlIndexCreate1 = new ctlIndexCreate();
+            this.ctlIndexCreate5 = new CtlIndexCreate();
+            this.ctlIndexCreate4 = new CtlIndexCreate();
+            this.ctlIndexCreate3 = new CtlIndexCreate();
+            this.ctlIndexCreate2 = new CtlIndexCreate();
+            this.ctlIndexCreate1 = new CtlIndexCreate();
             this.tabIndexMgr.SuspendLayout();
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();
@@ -266,7 +267,7 @@ namespace MongoCola.Operation
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCollectionIndex";
+            this.Name = "FrmCollectionIndex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Index Management";
             this.Load += new System.EventHandler(this.frmCollectionIndex_Load);
@@ -281,23 +282,23 @@ namespace MongoCola.Operation
 
         #endregion
 
-        private System.Windows.Forms.Button cmdAddIndex;
-        private System.Windows.Forms.Button cmdDelIndex;
-        private System.Windows.Forms.ListView lstIndex;
-        private System.Windows.Forms.TabControl tabIndexMgr;
-        private System.Windows.Forms.TabPage tabCurrentIndex;
-        private System.Windows.Forms.TabPage tabIndexManager;
-        private System.Windows.Forms.CheckBox chkIsDroppedDups;
-        private System.Windows.Forms.CheckBox chkIsBackground;
-        private System.Windows.Forms.CheckBox chkIsSparse;
-        private System.Windows.Forms.CheckBox chkIsUnique;
-        private ctlIndexCreate ctlIndexCreate1;
-        private ctlIndexCreate ctlIndexCreate5;
-        private ctlIndexCreate ctlIndexCreate4;
-        private ctlIndexCreate ctlIndexCreate3;
-        private ctlIndexCreate ctlIndexCreate2;
+        private Button cmdAddIndex;
+        private Button cmdDelIndex;
+        private ListView lstIndex;
+        private TabControl tabIndexMgr;
+        private TabPage tabCurrentIndex;
+        private TabPage tabIndexManager;
+        private CheckBox chkIsDroppedDups;
+        private CheckBox chkIsBackground;
+        private CheckBox chkIsSparse;
+        private CheckBox chkIsUnique;
+        private CtlIndexCreate ctlIndexCreate1;
+        private CtlIndexCreate ctlIndexCreate5;
+        private CtlIndexCreate ctlIndexCreate4;
+        private CtlIndexCreate ctlIndexCreate3;
+        private CtlIndexCreate ctlIndexCreate2;
         private TextBox txtIndexName;
-        private System.Windows.Forms.Label lblIndexName;
+        private Label lblIndexName;
         private CheckBox chkExpireData;
         private NumericUpDown numTTL;
     }

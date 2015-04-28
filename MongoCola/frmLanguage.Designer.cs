@@ -1,11 +1,14 @@
-﻿namespace MongoCola
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoCola
 {
-    partial class frmLanguage
+    partial class FrmLanguage
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -75,7 +78,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmLanguage";
+            this.Name = "FrmLanguage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Language";
             this.Load += new System.EventHandler(this.frmLanguage_Load);
@@ -86,8 +89,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbLanguage;
-        private System.Windows.Forms.Label lblLanguagePickTip;
-        private System.Windows.Forms.Button cmdOK;
+        private ComboBox cmbLanguage;
+        private Label lblLanguagePickTip;
+        private Button cmdOK;
     }
 }

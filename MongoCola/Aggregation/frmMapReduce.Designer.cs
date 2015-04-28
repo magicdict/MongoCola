@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoCola.Aggregation
 {
-    partial class frmMapReduce
+    partial class FrmMapReduce
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,9 +34,9 @@ namespace MongoCola.Aggregation
         {
             this.lblResult = new System.Windows.Forms.Label();
             this.cmdRun = new System.Windows.Forms.Button();
-            this.ctlMapFunction = new ctlTextMgr();
-            this.trvResult  = new ctlTreeViewColumns();
-            this.ctlReduceFunction = new ctlTextMgr();
+            this.ctlMapFunction = new CtlTextMgr();
+            this.trvResult  = new CtlTreeViewColumns();
+            this.ctlReduceFunction = new CtlTextMgr();
             this.cmdClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -115,7 +117,7 @@ namespace MongoCola.Aggregation
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmMapReduce";
+            this.Name = "FrmMapReduce";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MapReduce";
             this.Load += new System.EventHandler(this.frmMapReduce_Load);
@@ -126,12 +128,12 @@ namespace MongoCola.Aggregation
 
         #endregion
 
-        private System.Windows.Forms.Label lblResult;
-        private System.Windows.Forms.Button cmdRun;
+        private Label lblResult;
+        private Button cmdRun;
         
-        private ctlTreeViewColumns trvResult;
-        private ctlTextMgr ctlMapFunction;
-        private ctlTextMgr ctlReduceFunction;
-        private System.Windows.Forms.Button cmdClose;
+        private CtlTreeViewColumns trvResult;
+        private CtlTextMgr ctlMapFunction;
+        private CtlTextMgr ctlReduceFunction;
+        private Button cmdClose;
     }
 }

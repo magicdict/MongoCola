@@ -1,11 +1,14 @@
-﻿namespace MongoCola.Aggregation
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoCola.Aggregation
 {
-    partial class frmDistinct
+    partial class FrmDistinct
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -90,7 +93,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmDistinct";
+            this.Name = "FrmDistinct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Distinct";
             this.Load += new System.EventHandler(this.frmSelectKey_Load);
@@ -101,9 +104,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmdRun;
-        private System.Windows.Forms.Panel panColumn;
-        private System.Windows.Forms.Label lblSelectField;
-        private System.Windows.Forms.Button cmdQuery;
+        private Button cmdRun;
+        private Panel panColumn;
+        private Label lblSelectField;
+        private Button cmdQuery;
     }
 }

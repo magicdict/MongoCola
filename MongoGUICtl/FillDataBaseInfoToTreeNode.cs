@@ -1,90 +1,89 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common;
 using MongoDB.Driver;
 using MongoUtility.Basic;
+using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib;
-
-using MongoDB.Bson;
-using Common.Logic;
-
+using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
-    public static partial class UIHelper
+    public static partial class UiHelper
     {
         /// <summary>
-        /// 将数据库放入Node
+        ///     将数据库放入Node
         /// </summary>
-        /// <param name="strDBName"></param>
+        /// <param name="strDbName"></param>
         /// <param name="mongoSvrKey"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        public static TreeNode FillDataBaseInfoToTreeNode(string strDBName, string mongoSvrKey, MongoClient client = null)
+        public static TreeNode FillDataBaseInfoToTreeNode(string strDbName, string mongoSvrKey,
+            MongoClient client = null)
         {
-            var strShowDBName = strDBName;
-            if (!GUIConfig.IsUseDefaultLanguage)
+            var strShowDbName = strDbName;
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                if (GUIConfig.MStringResource.LanguageType == "Chinese")
+                if (GuiConfig.MStringResource.LanguageType == "Chinese")
                 {
-                    switch (strDBName)
+                    switch (strDbName)
                     {
-                        case ConstMgr.DATABASE_NAME_ADMIN:
-                            strShowDBName = "管理员权限(admin)";
+                        case ConstMgr.DatabaseNameAdmin:
+                            strShowDbName = "管理员权限(admin)";
                             break;
                         case "local":
-                            strShowDBName = "本地(local)";
+                            strShowDbName = "本地(local)";
                             break;
                         case "config":
-                            strShowDBName = "配置(config)";
+                            strShowDbName = "配置(config)";
                             break;
                         default:
                             break;
                     }
                 }
             }
-            var mongoDBNode = new TreeNode(strShowDBName);
-            mongoDBNode.Tag = ConstMgr.DATABASE_TAG + ":" + mongoSvrKey + "/" + strDBName;
+            var mongoDbNode = new TreeNode(strShowDbName);
+            mongoDbNode.Tag = ConstMgr.DatabaseTag + ":" + mongoSvrKey + "/" + strDbName;
             //var mongoDB = mongoSvr.GetDatabase(strDBName);
 
-            var UserNode = new TreeNode("User", (int)GetSystemIcon.MainTreeImageType.UserIcon,
-                (int)GetSystemIcon.MainTreeImageType.UserIcon);
-            UserNode.Tag = ConstMgr.USER_LIST_TAG + ":" + mongoSvrKey + "/" + strDBName + "/" +
-                           ConstMgr.COLLECTION_NAME_USER;
-            mongoDBNode.Nodes.Add(UserNode);
+            var userNode = new TreeNode("User", (int) GetSystemIcon.MainTreeImageType.UserIcon,
+                (int) GetSystemIcon.MainTreeImageType.UserIcon);
+            userNode.Tag = ConstMgr.UserListTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
+                           ConstMgr.CollectionNameUser;
+            mongoDbNode.Nodes.Add(userNode);
 
-            var JsNode = new TreeNode("JavaScript", (int)GetSystemIcon.MainTreeImageType.JavaScriptList,
-                (int)GetSystemIcon.MainTreeImageType.JavaScriptList);
-            JsNode.Tag = ConstMgr.JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + strDBName + "/" +
-                         ConstMgr.COLLECTION_NAME_JAVASCRIPT;
-            mongoDBNode.Nodes.Add(JsNode);
+            var jsNode = new TreeNode("JavaScript", (int) GetSystemIcon.MainTreeImageType.JavaScriptList,
+                (int) GetSystemIcon.MainTreeImageType.JavaScriptList);
+            jsNode.Tag = ConstMgr.JavascriptTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
+                         ConstMgr.CollectionNameJavascript;
+            mongoDbNode.Nodes.Add(jsNode);
 
-            var GFSNode = new TreeNode("Grid File System", (int)GetSystemIcon.MainTreeImageType.GFS,
-                (int)GetSystemIcon.MainTreeImageType.GFS);
-            GFSNode.Tag = ConstMgr.GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + strDBName + "/" +
-                          ConstMgr.COLLECTION_NAME_GFS_FILES;
-            mongoDBNode.Nodes.Add(GFSNode);
+            var gfsNode = new TreeNode("Grid File System", (int) GetSystemIcon.MainTreeImageType.Gfs,
+                (int) GetSystemIcon.MainTreeImageType.Gfs);
+            gfsNode.Tag = ConstMgr.GridFileSystemTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
+                          ConstMgr.CollectionNameGfsFiles;
+            mongoDbNode.Nodes.Add(gfsNode);
 
             var mongoSysColListNode = new TreeNode("Collections(System)",
-                (int)GetSystemIcon.MainTreeImageType.SystemCol, (int)GetSystemIcon.MainTreeImageType.SystemCol);
-            mongoSysColListNode.Tag = ConstMgr.SYSTEM_COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + strDBName;
-            mongoDBNode.Nodes.Add(mongoSysColListNode);
+                (int) GetSystemIcon.MainTreeImageType.SystemCol, (int) GetSystemIcon.MainTreeImageType.SystemCol);
+            mongoSysColListNode.Tag = ConstMgr.SystemCollectionListTag + ":" + mongoSvrKey + "/" + strDbName;
+            mongoDbNode.Nodes.Add(mongoSysColListNode);
 
             var mongoColListNode = new TreeNode("Collections(General)",
-                (int)GetSystemIcon.MainTreeImageType.CollectionList,
-                (int)GetSystemIcon.MainTreeImageType.CollectionList);
-            mongoColListNode.Tag = ConstMgr.COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + strDBName;
-            var colNameList = MongoUtility.NewUtility.GetConnectionInfo.GetCollectionList(client, strDBName);
-            foreach (BsonDocument ColDoc in colNameList)
+                (int) GetSystemIcon.MainTreeImageType.CollectionList,
+                (int) GetSystemIcon.MainTreeImageType.CollectionList);
+            mongoColListNode.Tag = ConstMgr.CollectionListTag + ":" + mongoSvrKey + "/" + strDbName;
+            var colNameList = GetConnectionInfo.GetCollectionList(client, strDbName);
+            foreach (var colDoc in colNameList)
             {
-                var strColName = ColDoc.GetElement("name").Value.ToString();
+                var strColName = colDoc.GetElement("name").Value.ToString();
                 switch (strColName)
                 {
-                    case ConstMgr.COLLECTION_NAME_USER:
+                    case ConstMgr.CollectionNameUser:
                         //system.users,fs,system.js这几个系统级别的Collection不需要放入
                         break;
-                    case ConstMgr.COLLECTION_NAME_JAVASCRIPT:
-                        //foreach (var doc in  MongoUtility.NewUtility.GetConnectionInfo.GetCollectionInfo(client, strDBName, ConstMgr.COLLECTION_NAME_JAVASCRIPT).Find<BsonDocument>(null,null))
+                    case ConstMgr.CollectionNameJavascript:
+                        //foreach (var doc in  MongoHelper.NewUtility.GetConnectionInfo.GetCollectionInfo(client, strDBName, ConstMgr.COLLECTION_NAME_JAVASCRIPT).Find<BsonDocument>(null,null))
                         //{
                         //    var js = new TreeNode(doc.GetValue(ConstMgr.KEY_ID).ToString());
                         //    js.ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc;
@@ -98,23 +97,23 @@ namespace MongoGUICtl
                         var mongoColNode = new TreeNode();
                         try
                         {
-                            var ICol = MongoUtility.NewUtility.GetConnectionInfo.GetCollectionInfo(client, strDBName, strColName);
-                            mongoColNode = FillCollectionInfoToTreeNode(ICol, mongoSvrKey);
+                            var col = GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName);
+                            mongoColNode = FillCollectionInfoToTreeNode(col, mongoSvrKey);
                         }
                         catch (Exception ex)
                         {
                             mongoColNode = new TreeNode(strColName + "[exception:]");
-                            mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
-                            mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
+                            mongoColNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Err;
+                            mongoColNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Err;
                             Utility.ExceptionDeal(ex);
                         }
-                        if (OperationHelper.IsSystemCollection(strDBName, strColName))
+                        if (OperationHelper.IsSystemCollection(strDbName, strColName))
                         {
                             switch (strColName)
                             {
-                                case ConstMgr.COLLECTION_NAME_GFS_CHUNKS:
-                                case ConstMgr.COLLECTION_NAME_GFS_FILES:
-                                    GFSNode.Nodes.Add(mongoColNode);
+                                case ConstMgr.CollectionNameGfsChunks:
+                                case ConstMgr.CollectionNameGfsFiles:
+                                    gfsNode.Nodes.Add(mongoColNode);
                                     break;
                                 default:
                                     mongoSysColListNode.Nodes.Add(mongoColNode);
@@ -128,11 +127,10 @@ namespace MongoGUICtl
                         break;
                 }
             }
-            mongoDBNode.Nodes.Add(mongoColListNode);
-            mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-            mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-            return mongoDBNode;
+            mongoDbNode.Nodes.Add(mongoColListNode);
+            mongoDbNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+            mongoDbNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+            return mongoDbNode;
         }
-
     }
 }

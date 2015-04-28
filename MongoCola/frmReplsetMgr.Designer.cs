@@ -1,11 +1,14 @@
-﻿namespace MongoCola
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoCola
 {
-    partial class frmReplsetMgr
+    partial class FrmReplsetMgr
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -219,7 +222,7 @@
             this.Controls.Add(this.grpAddHost);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmReplsetMgr";
+            this.Name = "FrmReplsetMgr";
             this.Tag = "Main_Menu_Distributed_ReplicaSet";
             this.Text = "Add Replset Member";
             this.Load += new System.EventHandler(this.frmReplsetMgr_Load);
@@ -234,18 +237,18 @@
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown NumReplPort;
-        private System.Windows.Forms.Label lblReplPort;
-        private System.Windows.Forms.TextBox txtReplHost;
-        private System.Windows.Forms.Label lblReplHost;
-        private System.Windows.Forms.Button cmdAddHost;
-        private System.Windows.Forms.NumericUpDown NumPriority;
-        private System.Windows.Forms.Label lblpriority;
-        private System.Windows.Forms.CheckBox chkArbiterOnly;
-        private System.Windows.Forms.GroupBox grpAddHost;
-        private System.Windows.Forms.Button cmdClose;
-        private System.Windows.Forms.GroupBox grpRemoveHost;
-        private System.Windows.Forms.Button cmdRemoveHost;
-        private System.Windows.Forms.ListBox lstHost;
+        private NumericUpDown NumReplPort;
+        private Label lblReplPort;
+        private TextBox txtReplHost;
+        private Label lblReplHost;
+        private Button cmdAddHost;
+        private NumericUpDown NumPriority;
+        private Label lblpriority;
+        private CheckBox chkArbiterOnly;
+        private GroupBox grpAddHost;
+        private Button cmdClose;
+        private GroupBox grpRemoveHost;
+        private Button cmdRemoveHost;
+        private ListBox lstHost;
     }
 }

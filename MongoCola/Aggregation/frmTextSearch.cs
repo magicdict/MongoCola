@@ -1,30 +1,28 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-
+using Common;
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib;
-using Common.Logic;
-
+using ResourceLib.Method;
 
 namespace MongoCola.Aggregation
 {
-    public partial class frmTextSearch : Form
+    public partial class FrmTextSearch : Form
     {
-        private BsonDocument Result;
+        private BsonDocument _result;
 
-        public frmTextSearch()
+        public FrmTextSearch()
         {
             InitializeComponent();
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                btnSearch.Text = GUIConfig.GetText(TextType.Common_Search);
-                cmdSave.Text = GUIConfig.GetText(TextType.Common_Save);
-                cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
+                btnSearch.Text = GuiConfig.GetText(TextType.CommonSearch);
+                cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
+                cmdClose.Text = GuiConfig.GetText(TextType.CommonClose);
             }
             //加载语言列表
             cmbLanguage.Items.Clear();
@@ -46,20 +44,20 @@ namespace MongoCola.Aggregation
         {
             //检索文法： http://docs.mongodb.org/manual/reference/command/text/#text-search-languages
             //检索关键字
-            var TextSearchOption = new BsonDocument().Add(new BsonElement("search", txtKey.Text));
+            var textSearchOption = new BsonDocument().Add(new BsonElement("search", txtKey.Text));
             //语言
             if (cmbLanguage.SelectedIndex != 0)
             {
-                TextSearchOption.Add(new BsonElement("language", cmbLanguage.Text));
+                textSearchOption.Add(new BsonElement("language", cmbLanguage.Text));
             }
             //返回数限制
-            TextSearchOption.Add(new BsonElement("limit", (BsonValue) NUDLimit.Value));
+            textSearchOption.Add(new BsonElement("limit", (BsonValue) NUDLimit.Value));
             try
             {
-                var SearchResult = CommandHelper.ExecuteMongoColCommand("text",
-                    RuntimeMongoDBContext.GetCurrentCollection(), TextSearchOption);
-                Result = SearchResult.Response;
-                UIHelper.FillDataToTreeView("Text Search Result", trvResult, Result);
+                var searchResult = CommandHelper.ExecuteMongoColCommand("text",
+                    RuntimeMongoDbContext.GetCurrentCollection(), textSearchOption);
+                _result = searchResult.Response;
+                UiHelper.FillDataToTreeView("Text Search Result", trvResult, _result);
                 cmdSave.Enabled = true;
             }
             catch (Exception ex)
@@ -99,7 +97,7 @@ namespace MongoCola.Aggregation
             dialog.Filter = Utility.JsFilter;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MongoUtility.Basic.MongoUtility.SaveResultToJSonFile(Result, dialog.FileName);
+                MongoHelper.SaveResultToJSonFile(_result, dialog.FileName);
             }
         }
     }

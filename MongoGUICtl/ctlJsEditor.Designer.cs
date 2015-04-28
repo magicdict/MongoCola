@@ -1,11 +1,14 @@
-﻿namespace MongoGUICtl
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoGUICtl
 {
-    partial class ctlJsEditor
+    partial class CtlJsEditor
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -28,7 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlJsEditor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlJsEditor));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.EditDocStripButton = new System.Windows.Forms.ToolStripButton();
             this.SaveStripButton = new System.Windows.Forms.ToolStripButton();
@@ -98,7 +101,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtJavaScript);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "ctlJsEditor";
+            this.Name = "CtlJsEditor";
             this.Size = new System.Drawing.Size(696, 357);
             this.Load += new System.EventHandler(this.JsEditor_Load);
             this.toolStrip1.ResumeLayout(false);
@@ -110,10 +113,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton CloseStripButton;
-        private System.Windows.Forms.ToolStripButton SaveStripButton;
-        private System.Windows.Forms.TextBox txtJavaScript;
-        private System.Windows.Forms.ToolStripButton EditDocStripButton;
+        private ToolStrip toolStrip1;
+        private ToolStripButton CloseStripButton;
+        private ToolStripButton SaveStripButton;
+        private TextBox txtJavaScript;
+        private ToolStripButton EditDocStripButton;
     }
 }

@@ -1,11 +1,14 @@
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace MongoGUICtl
 {
-	partial class ctlTreeViewColumns
+	partial class CtlTreeViewColumns
 	{
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+		private IContainer components = null;
 
 		/// <summary> 
 		/// Clean up any resources being used.
@@ -92,9 +95,9 @@ namespace MongoGUICtl
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.DatatreeView);
 			this.Controls.Add(this.listView);
-			this.Name = "ctlTreeViewColumns";
+			this.Name = "CtlTreeViewColumns";
 			this.Size = new System.Drawing.Size(438, 170);
-			this.Load += new System.EventHandler(this.ctlTreeViewColumnsLoad);
+			this.Load += new System.EventHandler(this.CtlTreeViewColumnsLoad);
 			this.SizeChanged += new System.EventHandler(this.Control_SizeChanged);
 			this.ResumeLayout(false);
 
@@ -102,10 +105,10 @@ namespace MongoGUICtl
 
 		#endregion
 
-        public System.Windows.Forms.ListView listView;
-		private System.Windows.Forms.ColumnHeader colName;
-		private System.Windows.Forms.ColumnHeader colValue;
-		private System.Windows.Forms.ColumnHeader colType;
-		public System.Windows.Forms.TreeView DatatreeView;
+        public ListView listView;
+		private ColumnHeader colName;
+		private ColumnHeader colValue;
+		private ColumnHeader colType;
+		public TreeView DatatreeView;
 	}
 }

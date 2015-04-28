@@ -1,4 +1,4 @@
-﻿namespace ResourceLib
+﻿namespace ResourceLib.Method
 {
     public enum IconType
     {
@@ -14,7 +14,7 @@
         /// <summary>
         ///     Access数据库
         /// </summary>
-        AccessDB,
+        AccessDb,
         ShutDown,
         NextPage,
         PrePage,
@@ -39,7 +39,7 @@
 
         Keys,
         KeyInfo,
-        DBKey,
+        DbKey,
         Document,
         User,
         Smile,

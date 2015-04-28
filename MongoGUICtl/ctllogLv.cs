@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
 using MongoUtility.Basic;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
-    public partial class ctllogLv : UserControl
+    public partial class CtllogLv : UserControl
     {
-        public delegate void LogLvChangedHandler(MongodbDosCommand.MongologLevel logLV);
+        public delegate void LogLvChangedHandler(MongodbDosCommand.MongologLevel logLv);
 
-        public ctllogLv()
+        public CtllogLv()
         {
             InitializeComponent();
         }
@@ -18,7 +18,7 @@ namespace MongoGUICtl
 
         private void ctllogLv_Load(object sender, EventArgs e)
         {
-            GUIConfig.Translateform(this.Controls);
+            GuiConfig.Translateform(Controls);
             cmbLogLevel.Items.Add("Quiet");
             cmbLogLevel.Items.Add("V");
             cmbLogLevel.Items.Add("VV");

@@ -1,11 +1,14 @@
-﻿namespace MongoCola.Status
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoCola.Status
 {
-    partial class frmProfilling
+    partial class FrmProfilling
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -116,7 +119,7 @@
             this.Controls.Add(this.lblSlow);
             this.Controls.Add(this.lblProfilingLevel);
             this.Controls.Add(this.cmbProfillingLv);
-            this.Name = "frmProfilling";
+            this.Name = "FrmProfilling";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "Main_Menu_Operation_ProfillingLevel";
             this.Text = "Profilling Level";
@@ -129,11 +132,11 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbProfillingLv;
-        private System.Windows.Forms.Label lblProfilingLevel;
-        private System.Windows.Forms.Label lblSlow;
-        private System.Windows.Forms.NumericUpDown NumTime;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.Button cmdCancel;
+        private ComboBox cmbProfillingLv;
+        private Label lblProfilingLevel;
+        private Label lblSlow;
+        private NumericUpDown NumTime;
+        private Button cmdOK;
+        private Button cmdCancel;
     }
 }

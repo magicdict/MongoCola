@@ -2,30 +2,28 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
-
-using Common.UI;
+using Common;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib;
-using Common.Logic;
-
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoCola.Operation
 {
-    public partial class frmCollectionIndex : Form
+    public partial class FrmCollectionIndex : Form
     {
         /// <summary>
         ///     当前数据集名称
         /// </summary>
-        private readonly MongoCollection _mongoCollection = RuntimeMongoDBContext.GetCurrentCollection();
+        private readonly MongoCollection _mongoCollection = RuntimeMongoDbContext.GetCurrentCollection();
 
         /// <summary>
         /// </summary>
-        public frmCollectionIndex()
+        public FrmCollectionIndex()
         {
             InitializeComponent();
         }
@@ -37,44 +35,44 @@ namespace MongoCola.Operation
         /// <param name="e"></param>
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                Text = GUIConfig.GetText(TextType.CollectionIndex_Title);
+                Text = GuiConfig.GetText(TextType.CollectionIndexTitle);
                 tabCurrentIndex.Text =
-                    GUIConfig.GetText(TextType.CollectionIndex_Tab_Current);
+                    GuiConfig.GetText(TextType.CollectionIndexTabCurrent);
                 cmdDelIndex.Text =
-                    GUIConfig.GetText(
-                        TextType.CollectionIndex_Tab_Current_Del);
+                    GuiConfig.GetText(
+                        TextType.CollectionIndexTabCurrentDel);
                 tabIndexManager.Text =
-                    GUIConfig.GetText(TextType.CollectionIndex_Tab_Manager);
-                cmdAddIndex.Text = GUIConfig.GetText(TextType.Common_Add);
+                    GuiConfig.GetText(TextType.CollectionIndexTabManager);
+                cmdAddIndex.Text = GuiConfig.GetText(TextType.CommonAdd);
 
                 chkIsDroppedDups.Text =
-                    GUIConfig.GetText(TextType.Index_RepeatDel);
+                    GuiConfig.GetText(TextType.IndexRepeatDel);
                 chkIsBackground.Text =
-                    GUIConfig.GetText(TextType.Index_Background);
-                chkIsSparse.Text = GUIConfig.GetText(TextType.Index_Sparse);
-                chkIsUnique.Text = GUIConfig.GetText(TextType.Index_Unify);
+                    GuiConfig.GetText(TextType.IndexBackground);
+                chkIsSparse.Text = GuiConfig.GetText(TextType.IndexSparse);
+                chkIsUnique.Text = GuiConfig.GetText(TextType.IndexUnify);
 
-                lblIndexName.Text = GUIConfig.GetText(TextType.Index_Name);
+                lblIndexName.Text = GuiConfig.GetText(TextType.IndexName);
                 chkExpireData.Text =
-                    GUIConfig.GetText(TextType.Index_ExpireData);
+                    GuiConfig.GetText(TextType.IndexExpireData);
 
-                lstIndex.Columns.Add(GUIConfig.GetText(TextType.Index_Name));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexName));
                 lstIndex.Columns.Add(
-                    GUIConfig.GetText(TextType.Index_Version));
-                lstIndex.Columns.Add(GUIConfig.GetText(TextType.Index_Keys));
+                    GuiConfig.GetText(TextType.IndexVersion));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexKeys));
                 lstIndex.Columns.Add(
-                    GUIConfig.GetText(TextType.Index_NameSpace));
+                    GuiConfig.GetText(TextType.IndexNameSpace));
 
                 lstIndex.Columns.Add(
-                    GUIConfig.GetText(TextType.Index_Background));
-                lstIndex.Columns.Add(GUIConfig.GetText(TextType.Index_Sparse));
-                lstIndex.Columns.Add(GUIConfig.GetText(TextType.Index_Unify));
+                    GuiConfig.GetText(TextType.IndexBackground));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexSparse));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexUnify));
                 lstIndex.Columns.Add(
-                    GUIConfig.GetText(TextType.Index_RepeatDel));
+                    GuiConfig.GetText(TextType.IndexRepeatDel));
                 lstIndex.Columns.Add(
-                    GUIConfig.GetText(TextType.Index_ExpireData));
+                    GuiConfig.GetText(TextType.IndexExpireData));
             }
             else
             {
@@ -89,7 +87,7 @@ namespace MongoCola.Operation
                 lstIndex.Columns.Add("Expire Data");
             }
             //2.2.2 开始支持TTL索引
-            if (RuntimeMongoDBContext.GetCurrentServer().BuildInfo.Version < new Version(2, 2, 2, 0))
+            if (RuntimeMongoDbContext.GetCurrentServer().BuildInfo.Version < new Version(2, 2, 2, 0))
             {
                 chkExpireData.Enabled = false;
                 numTTL.Enabled = false;
@@ -112,7 +110,7 @@ namespace MongoCola.Operation
             }
             foreach (ListViewItem item in lstIndex.CheckedItems)
             {
-                OperationHelper.DropMongoIndex(item.SubItems[0].Text, RuntimeMongoDBContext.GetCurrentCollection());
+                OperationHelper.DropMongoIndex(item.SubItems[0].Text, RuntimeMongoDbContext.GetCurrentCollection());
             }
             RefreshList();
         }
@@ -124,29 +122,29 @@ namespace MongoCola.Operation
         /// <param name="e"></param>
         private void cmdAddIndex_Click(object sender, EventArgs e)
         {
-            var AscendingKey = new List<string>();
-            var DescendingKey = new List<string>();
-            var GeoSpatialKey = string.Empty;
-            var FirstKey = string.Empty;
-            var TextKey = string.Empty;
+            var ascendingKey = new List<string>();
+            var descendingKey = new List<string>();
+            var geoSpatialKey = string.Empty;
+            var firstKey = string.Empty;
+            var textKey = string.Empty;
             for (var i = 0; i < 5; i++)
             {
-                var ctl = (ctlIndexCreate) Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
+                var ctl = (CtlIndexCreate) Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
                 if (ctl.KeyName == string.Empty) continue;
-                FirstKey = ctl.KeyName.Trim();
+                firstKey = ctl.KeyName.Trim();
                 switch (ctl.IndexKeyType)
                 {
                     case EnumMgr.IndexType.Ascending:
-                        AscendingKey.Add(ctl.KeyName.Trim());
+                        ascendingKey.Add(ctl.KeyName.Trim());
                         break;
                     case EnumMgr.IndexType.Descending:
-                        DescendingKey.Add(ctl.KeyName.Trim());
+                        descendingKey.Add(ctl.KeyName.Trim());
                         break;
                     case EnumMgr.IndexType.GeoSpatial:
-                        GeoSpatialKey = ctl.KeyName.Trim();
+                        geoSpatialKey = ctl.KeyName.Trim();
                         break;
                     case EnumMgr.IndexType.Text:
-                        TextKey = ctl.KeyName.Trim();
+                        textKey = ctl.KeyName.Trim();
                         break;
                     default:
                         break;
@@ -162,30 +160,30 @@ namespace MongoCola.Operation
                 //TTL的限制条件很多
                 //http://docs.mongodb.org/manual/tutorial/expire-data/
                 //不能是组合键
-                var CanUseTTL = true;
-                if ((AscendingKey.Count + DescendingKey.Count + (string.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1)) != 1)
+                var canUseTtl = true;
+                if ((ascendingKey.Count + descendingKey.Count + (string.IsNullOrEmpty(geoSpatialKey) ? 0 : 1)) != 1)
                 {
                     MyMessageBox.ShowMessage("Can't Set TTL",
                         "the TTL index may not be compound (may not have multiple fields).");
-                    CanUseTTL = false;
+                    canUseTtl = false;
                 }
                 else
                 {
                     //不能是_id
-                    if (FirstKey == ConstMgr.KEY_ID)
+                    if (firstKey == ConstMgr.KeyId)
                     {
                         MyMessageBox.ShowMessage("Can't Set TTL",
                             "you cannot create this index on the _id field, or a field that already has an index.");
-                        CanUseTTL = false;
+                        canUseTtl = false;
                     }
                 }
-                if (RuntimeMongoDBContext.GetCurrentCollection().IsCapped())
+                if (RuntimeMongoDbContext.GetCurrentCollection().IsCapped())
                 {
                     MyMessageBox.ShowMessage("Can't Set TTL",
                         "you cannot use a TTL index on a capped collection, because MongoDB cannot remove documents from a capped collection.");
-                    CanUseTTL = false;
+                    canUseTtl = false;
                 }
-                if (CanUseTTL)
+                if (canUseTtl)
                 {
                     MyMessageBox.ShowMessage("Constraints", "Constraints Of TimeToLive",
                         "the indexed field must be a date BSON type. If the field does not have a date type, the data will not expire." +
@@ -196,24 +194,24 @@ namespace MongoCola.Operation
                 }
             }
             if (txtIndexName.Text != string.Empty &&
-                !RuntimeMongoDBContext.GetCurrentCollection().IndexExists(txtIndexName.Text) &&
-                (AscendingKey.Count + DescendingKey.Count +
-                 (string.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1) +
-                 (string.IsNullOrEmpty(TextKey) ? 0 : 1)) != 0)
+                !RuntimeMongoDbContext.GetCurrentCollection().IndexExists(txtIndexName.Text) &&
+                (ascendingKey.Count + descendingKey.Count +
+                 (string.IsNullOrEmpty(geoSpatialKey) ? 0 : 1) +
+                 (string.IsNullOrEmpty(textKey) ? 0 : 1)) != 0)
             {
                 option.SetName(txtIndexName.Text);
                 try
                 {
                     //暂时要求只能一个TextKey
-                    if (!string.IsNullOrEmpty(TextKey))
+                    if (!string.IsNullOrEmpty(textKey))
                     {
-                        var TextKeysDoc = new IndexKeysDocument {{TextKey, "text"}};
-                        RuntimeMongoDBContext.GetCurrentCollection().CreateIndex(TextKeysDoc, option);
+                        var textKeysDoc = new IndexKeysDocument {{textKey, "text"}};
+                        RuntimeMongoDbContext.GetCurrentCollection().CreateIndex(textKeysDoc, option);
                     }
                     else
                     {
-                        OperationHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey,
-                            option, RuntimeMongoDBContext.GetCurrentCollection());
+                        OperationHelper.CreateMongoIndex(ascendingKey.ToArray(), descendingKey.ToArray(), geoSpatialKey,
+                            option, RuntimeMongoDbContext.GetCurrentCollection());
                     }
                     MyMessageBox.ShowMessage("Index Add Completed!",
                         "IndexName:" + txtIndexName.Text + " is add to collection.");
@@ -238,18 +236,18 @@ namespace MongoCola.Operation
             lstIndex.Items.Clear();
             foreach (var item in _mongoCollection.GetIndexes())
             {
-                var ListItem = new ListViewItem(item.Name);
-                ListItem.SubItems.Add(item.Version.ToString(CultureInfo.InvariantCulture));
-                ListItem.SubItems.Add(EnumMgr.GetKeyString(item.Key));
-                ListItem.SubItems.Add(item.Namespace);
-                ListItem.SubItems.Add(item.IsBackground.ToString());
-                ListItem.SubItems.Add(item.IsSparse.ToString());
-                ListItem.SubItems.Add(item.IsUnique.ToString());
-                ListItem.SubItems.Add(item.DroppedDups.ToString());
-                ListItem.SubItems.Add(item.TimeToLive != TimeSpan.MaxValue
+                var listItem = new ListViewItem(item.Name);
+                listItem.SubItems.Add(item.Version.ToString(CultureInfo.InvariantCulture));
+                listItem.SubItems.Add(EnumMgr.GetKeyString(item.Key));
+                listItem.SubItems.Add(item.Namespace);
+                listItem.SubItems.Add(item.IsBackground.ToString());
+                listItem.SubItems.Add(item.IsSparse.ToString());
+                listItem.SubItems.Add(item.IsUnique.ToString());
+                listItem.SubItems.Add(item.DroppedDups.ToString());
+                listItem.SubItems.Add(item.TimeToLive != TimeSpan.MaxValue
                     ? item.TimeToLive.TotalSeconds.ToString(CultureInfo.InvariantCulture)
                     : "Not Set");
-                lstIndex.Items.Add(ListItem);
+                lstIndex.Items.Add(listItem);
             }
         }
 

@@ -28,7 +28,7 @@ namespace MongoGUICtl.Aggregation
         public void AddMatchItem()
         {
             _conditionCount++;
-            var newMatchItem = new ctlMatchItem();
+            var newMatchItem = new CtlMatchItem();
             newMatchItem.Location = _conditionPos;
             newMatchItem.Name = "MatchItem" + _conditionCount;
             Controls.Add(newMatchItem);
@@ -41,27 +41,27 @@ namespace MongoGUICtl.Aggregation
         /// <returns></returns>
         public BsonDocument GetMatchDocument()
         {
-            var Matchlist = new BsonDocument();
-            foreach (ctlMatchItem item in Controls)
+            var matchlist = new BsonDocument();
+            foreach (CtlMatchItem item in Controls)
             {
-                var match = item.getMatchItem();
+                var match = item.GetMatchItem();
                 if (match != null)
                 {
-                    var MatchName = match.GetElement(0).Name;
-                    if (Matchlist.Contains(MatchName))
+                    var matchName = match.GetElement(0).Name;
+                    if (matchlist.Contains(matchName))
                     {
-                        var AddMatch = match.GetElement(0).Value.AsBsonDocument;
-                        Matchlist.GetElement(MatchName).Value.AsBsonDocument.AddRange(AddMatch);
+                        var addMatch = match.GetElement(0).Value.AsBsonDocument;
+                        matchlist.GetElement(matchName).Value.AsBsonDocument.AddRange(addMatch);
                     }
                     else
                     {
-                        Matchlist.AddRange(match);
+                        matchlist.AddRange(match);
                     }
                 }
             }
-            if (Matchlist.ElementCount > 0)
+            if (matchlist.ElementCount > 0)
             {
-                return new BsonDocument("$match", Matchlist);
+                return new BsonDocument("$match", matchlist);
             }
             return null;
         }

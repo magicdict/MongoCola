@@ -1,11 +1,14 @@
-﻿namespace Common.UI
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace ResourceLib.UI
 {
-    partial class frmMesssage
+    partial class FrmMesssage
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -28,7 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMesssage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMesssage));
             this.txtException = new System.Windows.Forms.TextBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -124,7 +127,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmMesssage";
+            this.Name = "FrmMesssage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Result";
             this.panForBgcolor.ResumeLayout(false);
@@ -136,11 +139,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtException;
-        private System.Windows.Forms.Label lblMessage;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.Button cmdDetails;
-        private System.Windows.Forms.Panel panForBgcolor;
-        private System.Windows.Forms.PictureBox picImage;
+        private TextBox txtException;
+        private Label lblMessage;
+        private Button cmdOK;
+        private Button cmdDetails;
+        private Panel panForBgcolor;
+        private PictureBox picImage;
     }
 }

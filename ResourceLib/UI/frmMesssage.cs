@@ -1,41 +1,41 @@
-﻿using ResourceLib;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using ResourceLib.Method;
 
-namespace Common.UI
+namespace ResourceLib.UI
 {
-    public partial class frmMesssage : Form
+    public partial class FrmMesssage : Form
     {
         /// <summary>
         ///     Is Show Details
         /// </summary>
-        private bool _ShowDetails;
+        private bool _showDetails;
 
-        internal frmMesssage()
+        internal FrmMesssage()
         {
             InitializeComponent();
             //系统图标
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>
         ///     Show Info
         /// </summary>
-        /// <param name="Message">Message</param>
-        /// <param name="Details">Details</param>
-        /// <param name="IsShowDetails">Is Show Details</param>
-        internal void SetMessage(string Message, string Details, bool IsShowDetails)
+        /// <param name="message">Message</param>
+        /// <param name="details">Details</param>
+        /// <param name="isShowDetails">Is Show Details</param>
+        internal void SetMessage(string message, string details, bool isShowDetails)
         {
-            lblMessage.Text = Message;
-            txtException.Text = Details;
+            lblMessage.Text = message;
+            txtException.Text = details;
             txtException.Select(0, 0);
-            if (Details == string.Empty)
+            if (details == string.Empty)
             {
-                IsShowDetails = false;
+                isShowDetails = false;
             }
-            _ShowDetails = IsShowDetails;
-            Height = _ShowDetails ? 350 : 130;
+            _showDetails = isShowDetails;
+            Height = _showDetails ? 350 : 130;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Common.UI
         /// <param name="e"></param>
         private void cmdDetails_Click(object sender, EventArgs e)
         {
-            if (_ShowDetails)
+            if (_showDetails)
             {
                 Height = 130;
                 panForBgcolor.BringToFront();
@@ -64,30 +64,30 @@ namespace Common.UI
             {
                 Height = 350;
             }
-            _ShowDetails = !_ShowDetails;
+            _showDetails = !_showDetails;
         }
 
         /// <summary>
         ///     Set Message for display
         /// </summary>
-        /// <param name="Message"></param>
+        /// <param name="message"></param>
         /// <param name="img"></param>
-        /// <param name="Details"></param>
-        internal void SetMessage(string Message, Image img, string Details)
+        /// <param name="details"></param>
+        internal void SetMessage(string message, Image img, string details)
         {
             picImage.Image = img;
-            SetMessage(Message, Details, true);
+            SetMessage(message, details, true);
         }
 
         /// <summary>
         ///     SetText
         /// </summary>
-        /// <param name="Detail"></param>
-        /// <param name="OK"></param>
-        internal void SetText(string Detail, string OK)
+        /// <param name="detail"></param>
+        /// <param name="ok"></param>
+        internal void SetText(string detail, string ok)
         {
-            cmdDetails.Text = Detail;
-            cmdOK.Text = OK;
+            cmdDetails.Text = detail;
+            cmdOK.Text = ok;
         }
     }
 }

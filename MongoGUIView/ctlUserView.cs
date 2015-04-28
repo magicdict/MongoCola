@@ -1,37 +1,36 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.Logic;
-using Common.UI;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using MongoUtility.Security;
-using ResourceLib;
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class ctlUserView : ctlDataView
+    public partial class CtlUserView : CtlDataView
     {
-        public ctlUserView(DataViewInfo _DataViewInfo)
+        public CtlUserView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             InitToolAndMenu();
-            mDataViewInfo = _DataViewInfo;
-            _dataShower.Add(lstData);
+            MDataViewInfo = dataViewInfo;
+            DataShower.Add(lstData);
         }
 
         private void ctlUserView_Load(object sender, EventArgs e)
         {
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
                 AddUserStripButton.Text =
-                    GUIConfig.MStringResource.GetText(
+                    GuiConfig.MStringResource.GetText(
                         "Main_Menu_Operation_Database_AddUser");
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
                 ChangePasswordStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Common_ChangePassword);
+                    GuiConfig.MStringResource.GetText(TextType.CommonChangePassword);
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
                 RemoveUserStripButton.Text =
-                    GUIConfig.MStringResource.GetText(
+                    GuiConfig.MStringResource.GetText(
                         "Main_Menu_Operation_Database_DelUser");
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
             }
@@ -42,7 +41,7 @@ namespace MongoGUIView
 
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsReadOnly)
+            if (lstData.SelectedItems.Count > 0 && !MDataViewInfo.IsReadOnly)
             {
                 AddUserToolStripMenuItem.Enabled = true;
                 AddUserStripButton.Enabled = true;
@@ -65,7 +64,7 @@ namespace MongoGUIView
 
         protected void lstData_MouseClick(object sender, MouseEventArgs e)
         {
-            RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
             if (lstData.SelectedItems.Count > 0)
             {
                 if (e.Button == MouseButtons.Right)
@@ -98,7 +97,7 @@ namespace MongoGUIView
         private void AddUserStripButton_Click(object sender, EventArgs e)
         {
             OpenAddNewUserForm();
-            RefreshGUI();
+            RefreshGui();
         }
 
         /// <summary>
@@ -107,7 +106,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void RemoveUserStripButton_Click(object sender, EventArgs e)
         {
-            if (mDataViewInfo.IsAdminDB)
+            if (MDataViewInfo.IsAdminDb)
             {
                 RemoveUserFromAdmin();
             }
@@ -115,7 +114,7 @@ namespace MongoGUIView
             {
                 RemoveUser();
             }
-            RefreshGUI();
+            RefreshGui();
         }
 
         /// <summary>
@@ -125,10 +124,10 @@ namespace MongoGUIView
         {
             var strTitle = "Drop User";
             var strMessage = "Are you sure to delete user(s) from Admin Group?";
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GUIConfig.MStringResource.GetText(TextType.Drop_User);
-                strMessage = GUIConfig.MStringResource.GetText(TextType.Drop_User_Confirm);
+                strTitle = GuiConfig.MStringResource.GetText(TextType.DropUser);
+                strMessage = GuiConfig.MStringResource.GetText(TextType.DropUserConfirm);
             }
 
             //这里也可以使用普通的删除数据的方法来删除用户。
@@ -148,7 +147,7 @@ namespace MongoGUIView
                     User.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), true);
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
-                RefreshGUI();
+                RefreshGui();
             }
         }
 
@@ -159,10 +158,10 @@ namespace MongoGUIView
         {
             var strTitle = "Drop User";
             var strMessage = "Are you sure to delete user(s) from this database";
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GUIConfig.MStringResource.GetText(TextType.Drop_User);
-                strMessage = GUIConfig.MStringResource.GetText(TextType.Drop_User_Confirm);
+                strTitle = GuiConfig.MStringResource.GetText(TextType.DropUser);
+                strMessage = GuiConfig.MStringResource.GetText(TextType.DropUserConfirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
@@ -181,7 +180,7 @@ namespace MongoGUIView
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RemoveUserToolStripMenuItem.Enabled = false;
-                RefreshGUI();
+                RefreshGui();
             }
         }
 
@@ -192,12 +191,12 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void ChangePasswordStripButton_Click(object sender, EventArgs e)
         {
-//            Common.Utility.OpenForm(mDataViewInfo.strDBTag.EndsWith(ConstMgr.DATABASE_NAME_ADMIN + "/" +
+//            Common.MongoHelper.OpenForm(mDataViewInfo.strDBTag.EndsWith(ConstMgr.DATABASE_NAME_ADMIN + "/" +
 //                                                                   ConstMgr.COLLECTION_NAME_USER)
 //                ? new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text)
 //                : new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text), true, true);
             OpenChangePasswordForm();
-            RefreshGUI();
+            RefreshGui();
         }
 
         #endregion

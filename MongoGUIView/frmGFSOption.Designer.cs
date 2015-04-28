@@ -1,11 +1,14 @@
-﻿namespace MongoGUIView
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoGUIView
 {
-    partial class frmGFSOption
+    partial class FrmGfsOption
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -204,7 +207,7 @@
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.grpFileAlreadyExist);
             this.Controls.Add(this.grpFilename);
-            this.Name = "frmGFSOption";
+            this.Name = "FrmGfsOption";
             this.Text = "GFS Insert Option";
             this.Load += new System.EventHandler(this.frmGFSOption_Load);
             this.grpFilename.ResumeLayout(false);
@@ -217,18 +220,18 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox grpFilename;
-        private System.Windows.Forms.RadioButton radFullPath;
-        private System.Windows.Forms.RadioButton radFilename;
-        private System.Windows.Forms.GroupBox grpFileAlreadyExist;
-        private System.Windows.Forms.RadioButton radStopIt;
-        private System.Windows.Forms.RadioButton radOverwrite;
-        private System.Windows.Forms.RadioButton radSkipIt;
-        private System.Windows.Forms.RadioButton radAddIt;
-        private System.Windows.Forms.RadioButton radRenameIt;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.CheckBox chkIgnore;
-        private System.Windows.Forms.TextBox txtSeperateChar;
-        private System.Windows.Forms.Label lblSeperateChar;
+        private GroupBox grpFilename;
+        private RadioButton radFullPath;
+        private RadioButton radFilename;
+        private GroupBox grpFileAlreadyExist;
+        private RadioButton radStopIt;
+        private RadioButton radOverwrite;
+        private RadioButton radSkipIt;
+        private RadioButton radAddIt;
+        private RadioButton radRenameIt;
+        private Button cmdOK;
+        private CheckBox chkIgnore;
+        private TextBox txtSeperateChar;
+        private Label lblSeperateChar;
     }
 }

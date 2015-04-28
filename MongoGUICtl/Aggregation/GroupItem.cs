@@ -14,13 +14,13 @@ namespace MongoGUICtl.Aggregation
             InitializeComponent();
         }
 
-        public BsonElement getGroupItem()
+        public BsonElement GetGroupItem()
         {
             //_id : "$author",
             //docsPerAuthor : { $sum : 1 },
             //viewsPerAuthor : { $sum : "$pageViews" }
-            var GroupFuncItem = new BsonDocument(cmbGroupFunction.Text, cmbGroupValue.Text);
-            return new BsonElement(txtProject.Text, GroupFuncItem);
+            var groupFuncItem = new BsonDocument(cmbGroupFunction.Text, cmbGroupValue.Text);
+            return new BsonElement(txtProject.Text, groupFuncItem);
         }
 
         private void GroupItem_Load(object sender, EventArgs e)
@@ -29,10 +29,13 @@ namespace MongoGUICtl.Aggregation
             {
                 cmbGroupFunction.Items.Add(item);
             }
-            if (RuntimeMongoDBContext.GetCurrentCollection() != null)
+            if (RuntimeMongoDbContext.GetCurrentCollection() != null)
             {
                 cmbGroupValue.Items.Add("1");
-                foreach (var item in MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (
+                    var item in
+                        MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection())
+                    )
                 {
                     cmbGroupFunction.Items.Add("$" + item);
                     cmbGroupValue.Items.Add("$" + item);

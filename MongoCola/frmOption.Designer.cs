@@ -1,13 +1,15 @@
-﻿using Common.UI;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using ResourceLib.UI;
 
 namespace MongoCola
 {
-    partial class frmOption
+    partial class FrmOption
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -37,7 +39,7 @@ namespace MongoCola
         	this.lblLanguage = new System.Windows.Forms.Label();
         	this.cmbLanguage = new System.Windows.Forms.ComboBox();
         	this.lblExectablePath = new System.Windows.Forms.Label();
-        	this.ctlFilePickerMongoBinPath = new ctlFilePicker();
+        	this.ctlFilePickerMongoBinPath = new CtlFilePicker();
         	this.tabControl1 = new System.Windows.Forms.TabControl();
         	this.tabGerneric = new System.Windows.Forms.TabPage();
         	this.tabTooktip = new System.Windows.Forms.TabPage();
@@ -150,7 +152,7 @@ namespace MongoCola
         	this.ctlFilePickerMongoBinPath.FileName = "";
         	this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(21, 31);
         	this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
-        	this.ctlFilePickerMongoBinPath.PickerType = ctlFilePicker.DialogType.Directory;
+        	this.ctlFilePickerMongoBinPath.PickerType = CtlFilePicker.DialogType.Directory;
         	this.ctlFilePickerMongoBinPath.SelectedPathOrFileName = "";
         	this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(569, 36);
         	this.ctlFilePickerMongoBinPath.TabIndex = 0;
@@ -337,7 +339,7 @@ namespace MongoCola
         	this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         	this.MaximizeBox = false;
         	this.MinimizeBox = false;
-        	this.Name = "frmOption";
+        	this.Name = "FrmOption";
         	this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
         	this.Text = "Option";
         	this.Load += new System.EventHandler(this.frmOption_Load);
@@ -357,29 +359,29 @@ namespace MongoCola
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown numRefreshForStatus;
-        private System.Windows.Forms.Label lblRefreshIntervalForStatus;
-        private ctlFilePicker ctlFilePickerMongoBinPath;
-        private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.ComboBox cmbLanguage;
-        private System.Windows.Forms.Label lblLanguage;
-        private System.Windows.Forms.Label lblExectablePath;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabTooktip;
-        private System.Windows.Forms.TabPage tabGerneric;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.LinkLabel lnkWriteConcern;
-        private System.Windows.Forms.LinkLabel lnkReadPreference;
-        private System.Windows.Forms.ComboBox cmbWriteConcern;
-        private System.Windows.Forms.Label lblWriteConcern;
-        private System.Windows.Forms.ComboBox cmbReadPreference;
-        private System.Windows.Forms.Label lblReadPreference;
-        private System.Windows.Forms.Label lblWtimeoutDescript;
-        private System.Windows.Forms.NumericUpDown NumWTimeoutMS;
-        private System.Windows.Forms.Label lblQueueSize;
-        private System.Windows.Forms.Label lblWTimeout;
-        private System.Windows.Forms.NumericUpDown NumWaitQueueSize;
+        private NumericUpDown numRefreshForStatus;
+        private Label lblRefreshIntervalForStatus;
+        private CtlFilePicker ctlFilePickerMongoBinPath;
+        private Button cmdCancel;
+        private Button cmdOK;
+        private ComboBox cmbLanguage;
+        private Label lblLanguage;
+        private Label lblExectablePath;
+        private TabControl tabControl1;
+        private TabPage tabTooktip;
+        private TabPage tabGerneric;
+        private TabPage tabPage1;
+        private LinkLabel lnkWriteConcern;
+        private LinkLabel lnkReadPreference;
+        private ComboBox cmbWriteConcern;
+        private Label lblWriteConcern;
+        private ComboBox cmbReadPreference;
+        private Label lblReadPreference;
+        private Label lblWtimeoutDescript;
+        private NumericUpDown NumWTimeoutMS;
+        private Label lblQueueSize;
+        private Label lblWTimeout;
+        private NumericUpDown NumWaitQueueSize;
 
     }
 }

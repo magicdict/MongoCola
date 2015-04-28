@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoCola.Aggregation
 {
-    partial class frmTextSearch
+    partial class FrmTextSearch
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -38,7 +40,7 @@ namespace MongoCola.Aggregation
             this.lblLanguage = new System.Windows.Forms.Label();
             this.lblLimit = new System.Windows.Forms.Label();
             this.NUDLimit = new System.Windows.Forms.NumericUpDown();
-            this.trvResult = new ctlTreeViewColumns();
+            this.trvResult = new CtlTreeViewColumns();
             this.lnkRef = new System.Windows.Forms.LinkLabel();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
@@ -189,7 +191,7 @@ namespace MongoCola.Aggregation
             this.Controls.Add(this.lblInput);
             this.Controls.Add(this.trvResult);
             this.Controls.Add(this.lblResult);
-            this.Name = "frmTextSearch";
+            this.Name = "FrmTextSearch";
             this.Text = "TextSearch";
             ((System.ComponentModel.ISupportInitialize)(this.NUDLimit)).EndInit();
             this.ResumeLayout(false);
@@ -199,17 +201,17 @@ namespace MongoCola.Aggregation
 
         #endregion
 
-        private ctlTreeViewColumns trvResult;
-        private System.Windows.Forms.Label lblResult;
-        private System.Windows.Forms.Label lblInput;
-        private System.Windows.Forms.TextBox txtKey;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.ComboBox cmbLanguage;
-        private System.Windows.Forms.Label lblLanguage;
-        private System.Windows.Forms.Label lblLimit;
-        private System.Windows.Forms.NumericUpDown NUDLimit;
-        private System.Windows.Forms.LinkLabel lnkRef;
-        private System.Windows.Forms.Button cmdSave;
-        private System.Windows.Forms.Button cmdClose;
+        private CtlTreeViewColumns trvResult;
+        private Label lblResult;
+        private Label lblInput;
+        private TextBox txtKey;
+        private Button btnSearch;
+        private ComboBox cmbLanguage;
+        private Label lblLanguage;
+        private Label lblLimit;
+        private NumericUpDown NUDLimit;
+        private LinkLabel lnkRef;
+        private Button cmdSave;
+        private Button cmdClose;
     }
 }

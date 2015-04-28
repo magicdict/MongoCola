@@ -4,65 +4,65 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using MongoUtility.Core;
 using MongoUtility.Extend;
+using ResourceLib.Method;
 using ResourceLib.Properties;
-using ResourceLib;
 
 namespace MongoCola.Status
 {
-    public partial class frmServerMonitor : Form
+    public partial class FrmServerMonitor : Form
     {
-        private Timer M;
+        private Timer _m;
 
-        public frmServerMonitor()
+        public FrmServerMonitor()
         {
             InitializeComponent();
-            GUIConfig.Translateform(this);
+            GuiConfig.Translateform(this);
         }
 
         private void frmServerMonitor_Load(object sender, EventArgs e)
         {
             Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
-            M = new Timer {Interval = 3000};
-            M.Tick += M_Tick;
-            var QuerySeries = new Series("Query")
+            _m = new Timer {Interval = 3000};
+            _m.Tick += M_Tick;
+            var querySeries = new Series("Query")
             {
                 ChartType = SeriesChartType.Line,
                 XValueType = ChartValueType.String,
                 YValueType = ChartValueType.Int32
             };
-            MonitorGrap.Series.Add(QuerySeries);
+            MonitorGrap.Series.Add(querySeries);
 
-            var InsertSeries = new Series("Insert")
+            var insertSeries = new Series("Insert")
             {
                 ChartType = SeriesChartType.Line,
                 XValueType = ChartValueType.String,
                 YValueType = ChartValueType.Int32
             };
-            MonitorGrap.Series.Add(InsertSeries);
-            FormClosing += (x, y) => M.Stop();
-            M.Start();
+            MonitorGrap.Series.Add(insertSeries);
+            FormClosing += (x, y) => _m.Stop();
+            _m.Start();
         }
 
         private void M_Tick(object sender, EventArgs e)
         {
-            var DocStatus =
-                CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
-                    RuntimeMongoDBContext.GetCurrentServer()).Response;
+            var docStatus =
+                CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
+                    RuntimeMongoDbContext.GetCurrentServer()).Response;
 
             var queryPoint = new DataPoint();
             queryPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),
-                DocStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("query").Value);
+                docStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("query").Value);
             MonitorGrap.Series[0].Points.Add(queryPoint);
 
             var insertPoint = new DataPoint();
             insertPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),
-                DocStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("insert").Value);
+                docStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("insert").Value);
             MonitorGrap.Series[1].Points.Add(insertPoint);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            M.Stop();
+            _m.Stop();
             Close();
         }
     }

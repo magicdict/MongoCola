@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Common.Logic;
+using Common;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
+using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class ctlDataView : UserControl
+    public partial class CtlDataView : UserControl
     {
         #region"Main"
 
@@ -22,22 +23,22 @@ namespace MongoGUIView
         /// <summary>
         ///     是否是一个数据容器
         /// </summary>
-        private bool _IsDataView = true;
+        private bool _isDataView = true;
 
         /// <summary>
         ///     Control for show Data
         /// </summary>
-        public List<Control> _dataShower = new List<Control>();
+        public List<Control> DataShower = new List<Control>();
 
         /// <summary>
         ///     DataView信息
         /// </summary>
-        public DataViewInfo mDataViewInfo;
+        public DataViewInfo MDataViewInfo;
 
         /// <summary>
         ///     初始化
         /// </summary>
-        public ctlDataView()
+        public CtlDataView()
         {
             InitializeComponent();
         }
@@ -45,11 +46,11 @@ namespace MongoGUIView
         /// <summary>
         ///     初始化
         /// </summary>
-        /// <param name="_DataViewInfo"></param>
-        public ctlDataView(DataViewInfo _DataViewInfo)
+        /// <param name="dataViewInfo"></param>
+        public CtlDataView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
-            mDataViewInfo = _DataViewInfo;
+            MDataViewInfo = dataViewInfo;
         }
 
         /// <summary>
@@ -60,11 +61,11 @@ namespace MongoGUIView
         {
             set
             {
-                _IsDataView = value;
-                CollapseAllStripButton.Visible = _IsDataView;
-                ExpandAllStripButton.Visible = _IsDataView;
+                _isDataView = value;
+                CollapseAllStripButton.Visible = _isDataView;
+                ExpandAllStripButton.Visible = _isDataView;
             }
-            get { return _IsDataView; }
+            get { return _isDataView; }
         }
 
         /// <summary>
@@ -79,20 +80,20 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
-            if (mDataViewInfo == null)
+            if (MDataViewInfo == null)
             {
                 return;
             }
             cmbRecPerPage.SelectedIndex = 1;
-            mDataViewInfo.LimitCnt = 100;
-            GUIConfig.Translateform(this.Controls);
+            MDataViewInfo.LimitCnt = 100;
+            GuiConfig.Translateform(Controls);
             InitControlsVisiableAndEvent();
             //加载数据
             //第一次加载数据的时候，会发生滚动条位置不正确的问题，需要DoEvents,RefreshGUI.
             //可能是太多的事情一起做，造成了一些诡异的位置计算问题。DoEvents暂停一下，然后再刷新一下
             Application.DoEvents();
             //数据导航
-            RefreshGUI();
+            RefreshGui();
         }
 
         /// <summary>
@@ -143,12 +144,12 @@ namespace MongoGUIView
             CollapseAllStripButton.Enabled = true;
 
 
-            PrePageStripButton.Enabled = mDataViewInfo.HasPrePage;
-            NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
-            FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
-            LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
+            PrePageStripButton.Enabled = MDataViewInfo.HasPrePage;
+            NextPageStripButton.Enabled = MDataViewInfo.HasNextPage;
+            FirstPageStripButton.Enabled = MDataViewInfo.HasPrePage;
+            LastPageStripButton.Enabled = MDataViewInfo.HasNextPage;
 
-            FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            FilterStripButton.Checked = MDataViewInfo.IsUseFilter;
             FilterStripButton.Enabled = true;
             QueryStripButton.Enabled = true;
 
@@ -213,16 +214,16 @@ namespace MongoGUIView
             switch (cmbRecPerPage.SelectedIndex)
             {
                 case 0:
-                    mDataViewInfo.LimitCnt = 50;
+                    MDataViewInfo.LimitCnt = 50;
                     break;
                 case 1:
-                    mDataViewInfo.LimitCnt = 100;
+                    MDataViewInfo.LimitCnt = 100;
                     break;
                 case 2:
-                    mDataViewInfo.LimitCnt = 200;
+                    MDataViewInfo.LimitCnt = 200;
                     break;
                 default:
-                    mDataViewInfo.LimitCnt = 100;
+                    MDataViewInfo.LimitCnt = 100;
                     break;
             }
             ReloadData();
@@ -241,18 +242,18 @@ namespace MongoGUIView
                 skip--;
                 if (skip >= 0)
                 {
-                    if (mDataViewInfo.CurrentCollectionTotalCnt <= skip)
+                    if (MDataViewInfo.CurrentCollectionTotalCnt <= skip)
                     {
-                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - 1;
-                        if (mDataViewInfo.SkipCnt == -1)
+                        MDataViewInfo.SkipCnt = MDataViewInfo.CurrentCollectionTotalCnt - 1;
+                        if (MDataViewInfo.SkipCnt == -1)
                         {
                             ///CurrentCollectionTotalCnt可能为0
-                            mDataViewInfo.SkipCnt = 0;
+                            MDataViewInfo.SkipCnt = 0;
                         }
                     }
                     else
                     {
-                        mDataViewInfo.SkipCnt = skip;
+                        MDataViewInfo.SkipCnt = skip;
                     }
                     ReloadData();
                 }
@@ -270,7 +271,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void FirstPage_Click(object sender, EventArgs e)
         {
-            ViewHelper.PageChanged(ViewHelper.PageChangeOpr.FirstPage, ref mDataViewInfo, _dataShower);
+            ViewHelper.PageChanged(ViewHelper.PageChangeOpr.FirstPage, ref MDataViewInfo, DataShower);
             SetDataNav();
         }
 
@@ -281,7 +282,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void PrePage_Click(object sender, EventArgs e)
         {
-            ViewHelper.PageChanged(ViewHelper.PageChangeOpr.PrePage, ref mDataViewInfo, _dataShower);
+            ViewHelper.PageChanged(ViewHelper.PageChangeOpr.PrePage, ref MDataViewInfo, DataShower);
             SetDataNav();
         }
 
@@ -292,7 +293,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void NextPage_Click(object sender, EventArgs e)
         {
-            ViewHelper.PageChanged(ViewHelper.PageChangeOpr.NextPage, ref mDataViewInfo, _dataShower);
+            ViewHelper.PageChanged(ViewHelper.PageChangeOpr.NextPage, ref MDataViewInfo, DataShower);
             SetDataNav();
         }
 
@@ -303,7 +304,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void LastPage_Click(object sender, EventArgs e)
         {
-            ViewHelper.PageChanged(ViewHelper.PageChangeOpr.LastPage, ref mDataViewInfo, _dataShower);
+            ViewHelper.PageChanged(ViewHelper.PageChangeOpr.LastPage, ref MDataViewInfo, DataShower);
             SetDataNav();
         }
 
@@ -334,7 +335,7 @@ namespace MongoGUIView
         /// <summary>
         ///     清除所有数据
         /// </summary>
-        private void clear()
+        private void Clear()
         {
             lstData.Clear();
             txtData.Text = string.Empty;
@@ -348,44 +349,44 @@ namespace MongoGUIView
         /// </summary>
         private void SetDataNav()
         {
-            PrePageStripButton.Enabled = mDataViewInfo.HasPrePage;
-            NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
-            FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
-            LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
-            FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            PrePageStripButton.Enabled = MDataViewInfo.HasPrePage;
+            NextPageStripButton.Enabled = MDataViewInfo.HasNextPage;
+            FirstPageStripButton.Enabled = MDataViewInfo.HasPrePage;
+            LastPageStripButton.Enabled = MDataViewInfo.HasNextPage;
+            FilterStripButton.Checked = MDataViewInfo.IsUseFilter;
             QueryStripButton.Enabled = true;
             var strTitle = "Records";
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GUIConfig.MStringResource.GetText("Main_Menu_DataView");
+                strTitle = GuiConfig.MStringResource.GetText("Main_Menu_DataView");
             }
-            if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
+            if (MDataViewInfo.CurrentCollectionTotalCnt == 0)
             {
                 DataNaviToolStripLabel.Text = strTitle + "：0/0";
             }
             else
             {
-                DataNaviToolStripLabel.Text = strTitle + "：" + (mDataViewInfo.SkipCnt + 1) + "/" +
-                                              mDataViewInfo.CurrentCollectionTotalCnt;
+                DataNaviToolStripLabel.Text = strTitle + "：" + (MDataViewInfo.SkipCnt + 1) + "/" +
+                                              MDataViewInfo.CurrentCollectionTotalCnt;
             }
-            txtSkip.Text = (mDataViewInfo.SkipCnt + 1).ToString();
+            txtSkip.Text = (MDataViewInfo.SkipCnt + 1).ToString();
         }
 
         /// <summary>
         ///     Refresh Data
         /// </summary>
-        public void RefreshGUI()
+        public void RefreshGui()
         {
-            clear();
-            mDataViewInfo.SkipCnt = 0;
-            RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
-            var datalist = DataViewInfo.GetDataList(ref mDataViewInfo, RuntimeMongoDBContext.GetCurrentServer());
-            ViewHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
+            Clear();
+            MDataViewInfo.SkipCnt = 0;
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
+            var datalist = DataViewInfo.GetDataList(ref MDataViewInfo, RuntimeMongoDbContext.GetCurrentServer());
+            ViewHelper.FillDataToControl(datalist, DataShower, MDataViewInfo);
             InitControlsEnable();
             SetDataNav();
-            if (mDataViewInfo.Query != string.Empty)
+            if (MDataViewInfo.Query != string.Empty)
             {
-                txtQuery.Text = mDataViewInfo.Query;
+                txtQuery.Text = MDataViewInfo.Query;
                 if (!tabDataShower.TabPages.Contains(tabQuery))
                 {
                     tabDataShower.TabPages.Add(tabQuery);
@@ -406,14 +407,14 @@ namespace MongoGUIView
         /// </summary>
         private void ReloadData()
         {
-            if (mDataViewInfo == null)
+            if (MDataViewInfo == null)
             {
                 return;
             }
-            clear();
-            RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
-            var datalist = DataViewInfo.GetDataList(ref mDataViewInfo, RuntimeMongoDBContext.GetCurrentServer());
-            ViewHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
+            Clear();
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
+            var datalist = DataViewInfo.GetDataList(ref MDataViewInfo, RuntimeMongoDbContext.GetCurrentServer());
+            ViewHelper.FillDataToControl(datalist, DataShower, MDataViewInfo);
             SetDataNav();
             IsNeedRefresh = false;
         }
@@ -425,11 +426,11 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void QueryStripButton_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new frmQuery(mDataViewInfo), true, false);
-            FilterStripButton.Enabled = mDataViewInfo.IsUseFilter;
-            FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            Utility.OpenForm(new FrmQuery(MDataViewInfo), true, false);
+            FilterStripButton.Enabled = MDataViewInfo.IsUseFilter;
+            FilterStripButton.Checked = MDataViewInfo.IsUseFilter;
             //重新展示数据
-            RefreshGUI();
+            RefreshGui();
         }
 
         /// <summary>
@@ -439,16 +440,16 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void FilterStripButton_Click(object sender, EventArgs e)
         {
-            mDataViewInfo.IsUseFilter = !mDataViewInfo.IsUseFilter;
-            FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            MDataViewInfo.IsUseFilter = !MDataViewInfo.IsUseFilter;
+            FilterStripButton.Checked = MDataViewInfo.IsUseFilter;
             //过滤变更后，重新刷新
-            RefreshGUI();
+            RefreshGui();
         }
 
         //刷新
         private void RefreshStripButton_Click(object sender, EventArgs e)
         {
-            RefreshGUI();
+            RefreshGui();
         }
 
         #endregion

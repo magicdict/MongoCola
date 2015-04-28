@@ -1,13 +1,15 @@
-﻿using Common.UI;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using ResourceLib.UI;
 
 namespace MongoCola
 {
-    partial class frmExport
+    partial class FrmExport
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -35,7 +37,7 @@ namespace MongoCola
             this.optXML = new System.Windows.Forms.RadioButton();
             this.optText = new System.Windows.Forms.RadioButton();
             this.optExcel = new System.Windows.Forms.RadioButton();
-            this.ctlExportFilePicker = new Common.UI.ctlFilePicker();
+            this.ctlExportFilePicker = new CtlFilePicker();
             this.grpExportType.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,7 +106,7 @@ namespace MongoCola
             this.ctlExportFilePicker.FileName = "";
             this.ctlExportFilePicker.Location = new System.Drawing.Point(12, 20);
             this.ctlExportFilePicker.Name = "ctlExportFilePicker";
-            this.ctlExportFilePicker.PickerType = Common.UI.ctlFilePicker.DialogType.SaveFile;
+            this.ctlExportFilePicker.PickerType = CtlFilePicker.DialogType.SaveFile;
             this.ctlExportFilePicker.SelectedPathOrFileName = "";
             this.ctlExportFilePicker.Size = new System.Drawing.Size(739, 30);
             this.ctlExportFilePicker.TabIndex = 0;
@@ -119,7 +121,7 @@ namespace MongoCola
             this.Controls.Add(this.grpExportType);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ctlExportFilePicker);
-            this.Name = "frmExport";
+            this.Name = "FrmExport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "Main_Menu_Operation_DataCollection_ExportToFile";
             this.Text = "ExportImport To File";
@@ -132,11 +134,11 @@ namespace MongoCola
 
         #endregion
 
-        private ctlFilePicker ctlExportFilePicker;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.GroupBox grpExportType;
-        private System.Windows.Forms.RadioButton optXML;
-        private System.Windows.Forms.RadioButton optText;
-        private System.Windows.Forms.RadioButton optExcel;
+        private CtlFilePicker ctlExportFilePicker;
+        private Button btnSave;
+        private GroupBox grpExportType;
+        private RadioButton optXML;
+        private RadioButton optText;
+        private RadioButton optExcel;
     }
 }

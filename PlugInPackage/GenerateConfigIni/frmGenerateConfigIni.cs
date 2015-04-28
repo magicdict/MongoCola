@@ -2,17 +2,16 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using Common;
 using MongoUtility.Basic;
-using Common.Logic;
-
 
 namespace PlugInPackage.GenerateConfigIni
 {
-    public partial class frmGenerateConfigIni : Form
+    public partial class FrmGenerateConfigIni : Form
     {
         /// <summary>
         /// </summary>
-        public frmGenerateConfigIni()
+        public FrmGenerateConfigIni()
         {
             InitializeComponent();
         }

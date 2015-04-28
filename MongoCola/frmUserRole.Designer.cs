@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoCola
 {
-    partial class frmUserRole
+    partial class FrmUserRole
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,7 +32,7 @@ namespace MongoCola
         /// </summary>
         private void InitializeComponent()
         {
-            this.otherDBRolesPanel = new ctlUserRolesPanel();
+            this.otherDBRolesPanel = new CtlUserRolesPanel();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -71,7 +73,7 @@ namespace MongoCola
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.otherDBRolesPanel);
-            this.Name = "frmUserRole";
+            this.Name = "FrmUserRole";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UserRole";
             this.ResumeLayout(false);
@@ -80,8 +82,8 @@ namespace MongoCola
 
         #endregion
 
-        private ctlUserRolesPanel otherDBRolesPanel;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.Button cmdCancel;
+        private CtlUserRolesPanel otherDBRolesPanel;
+        private Button cmdOK;
+        private Button cmdCancel;
     }
 }

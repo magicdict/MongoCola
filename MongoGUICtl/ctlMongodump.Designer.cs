@@ -1,13 +1,15 @@
-﻿using Common.UI;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using ResourceLib.UI;
 
 namespace MongoGUICtl
 {
-    partial class ctlMongodump
+    partial class CtlMongodump
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -30,8 +32,8 @@ namespace MongoGUICtl
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctllogLvT = new ctllogLv();
-            this.ctlFilePickerOutput = new ctlFilePicker();
+            this.ctllogLvT = new CtllogLv();
+            this.ctlFilePickerOutput = new CtlFilePicker();
             this.lblHostAddr = new System.Windows.Forms.Label();
             this.txtHostAddr = new System.Windows.Forms.TextBox();
             this.lblPort = new System.Windows.Forms.Label();
@@ -57,7 +59,7 @@ namespace MongoGUICtl
             this.ctlFilePickerOutput.FileFilter = "";
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(33, 98);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
-            this.ctlFilePickerOutput.PickerType = ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerOutput.PickerType = CtlFilePicker.DialogType.Directory;
             this.ctlFilePickerOutput.SelectedPathOrFileName = "";
             this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 41);
             this.ctlFilePickerOutput.TabIndex = 1;
@@ -162,7 +164,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.lblHostAddr);
             this.Controls.Add(this.ctlFilePickerOutput);
             this.Controls.Add(this.ctllogLvT);
-            this.Name = "ctlMongodump";
+            this.Name = "CtlMongodump";
             this.Size = new System.Drawing.Size(800, 200);
             this.Load += new System.EventHandler(this.ctlMongodump_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
@@ -173,15 +175,15 @@ namespace MongoGUICtl
 
         #endregion
 
-        private ctllogLv ctllogLvT;
-        private ctlFilePicker ctlFilePickerOutput;
-        private System.Windows.Forms.Label lblHostAddr;
-        private System.Windows.Forms.TextBox txtHostAddr;
-        private System.Windows.Forms.Label lblPort;
-        private System.Windows.Forms.NumericUpDown numPort;
-        private System.Windows.Forms.Label lblDBName;
-        private System.Windows.Forms.TextBox txtDBName;
-        private System.Windows.Forms.Label lblCollectionName;
-        private System.Windows.Forms.TextBox txtCollectionName;
+        private CtllogLv ctllogLvT;
+        private CtlFilePicker ctlFilePickerOutput;
+        private Label lblHostAddr;
+        private TextBox txtHostAddr;
+        private Label lblPort;
+        private NumericUpDown numPort;
+        private Label lblDBName;
+        private TextBox txtDBName;
+        private Label lblCollectionName;
+        private TextBox txtCollectionName;
     }
 }

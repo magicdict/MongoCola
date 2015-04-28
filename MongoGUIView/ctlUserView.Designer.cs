@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace MongoGUIView
 {
-    partial class ctlUserView
+    partial class CtlUserView
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -141,7 +142,7 @@ namespace MongoGUIView
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.IsDocumentView = false;
-            this.Name = "ctlUserView";
+            this.Name = "CtlUserView";
             this.Load += new System.EventHandler(this.ctlUserView_Load);
             this.Controls.SetChildIndex(this.toolStripContainer1, 0);
             this.tabDataShower.ResumeLayout(false);

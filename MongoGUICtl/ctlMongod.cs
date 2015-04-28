@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common;
 using MongoUtility.Basic;
 using MongoUtility.EventArgs;
-using ResourceLib;
-using Common.Logic;
-
+using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
-    public partial class ctlMongod : UserControl
+    public partial class CtlMongod : UserControl
     {
         public EventHandler<TextChangeEventArgs> CommandChanged;
         public MongodbDosCommand.MongodConfig MongodCommand = new MongodbDosCommand.MongodConfig();
@@ -16,33 +15,33 @@ namespace MongoGUICtl
         /// <summary>
         ///     构造函数
         /// </summary>
-        public ctlMongod()
+        public CtlMongod()
         {
             InitializeComponent();
             ctlFilePickerLogPath.FileFilter = Utility.LogFilter;
-            if (!GUIConfig.IsUseDefaultLanguage)
+            if (!GuiConfig.IsUseDefaultLanguage)
             {
-                lblPort.Text = GUIConfig.MStringResource.GetText(TextType.Common_Port);
+                lblPort.Text = GuiConfig.MStringResource.GetText(TextType.CommonPort);
                 lblSource.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.DosCommand_Tab_Deploy_SlaveSource);
+                    GuiConfig.MStringResource.GetText(
+                        TextType.DosCommandTabDeploySlaveSource);
                 chkAuth.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.DosCommand_Tab_Deploy_Authentication);
+                    GuiConfig.MStringResource.GetText(
+                        TextType.DosCommandTabDeployAuthentication);
                 chkIsAppend.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.DosCommand_Tab_Deploy_AppendMode);
+                    GuiConfig.MStringResource.GetText(
+                        TextType.DosCommandTabDeployAppendMode);
                 ctlFilePickerDBPath.Title =
-                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy_DBPath);
+                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabDeployDbPath);
                 ctlFilePickerLogPath.Title =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.DosCommand_Tab_Deploy_LogPath);
+                    GuiConfig.MStringResource.GetText(
+                        TextType.DosCommandTabDeployLogPath);
                 radMaster.Text =
-                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy_Master);
+                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabDeployMaster);
                 radSlave.Text =
-                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy_Slave);
+                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabDeploySlave);
                 grpLog.Text =
-                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy_Log);
+                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabDeployLog);
             }
         }
 
@@ -66,20 +65,20 @@ namespace MongoGUICtl
         /// <summary>
         ///     DB路径
         /// </summary>
-        /// <param name="FilePath"></param>
-        private void ctlFilePickerDBPath_PathChanged(string FilePath)
+        /// <param name="filePath"></param>
+        private void ctlFilePickerDBPath_PathChanged(string filePath)
         {
-            MongodCommand.DBPath = FilePath;
+            MongodCommand.DbPath = filePath;
             OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
         /// <summary>
         ///     路径
         /// </summary>
-        /// <param name="FilePath"></param>
-        private void ctlFilePickerT_PathChanged(string FilePath)
+        /// <param name="filePath"></param>
+        private void ctlFilePickerT_PathChanged(string filePath)
         {
-            MongodCommand.LogPath = FilePath;
+            MongodCommand.LogPath = filePath;
             OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
@@ -89,7 +88,7 @@ namespace MongoGUICtl
         /// <param name="logLv"></param>
         private void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
-            MongodCommand.LogLV = logLv;
+            MongodCommand.LogLv = logLv;
             OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
@@ -111,8 +110,8 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void MongodType_CheckedChanged(object sender, EventArgs e)
         {
-            MongodCommand.master = radMaster.Checked;
-            MongodCommand.slave = radSlave.Checked;
+            MongodCommand.Master = radMaster.Checked;
+            MongodCommand.Slave = radSlave.Checked;
             OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
@@ -143,7 +142,7 @@ namespace MongoGUICtl
         /// </summary>
         private void txtSource_TextChanged(object sender, EventArgs e)
         {
-            MongodCommand.source = txtSource.Text;
+            MongodCommand.Source = txtSource.Text;
             if (MongodCommand != null)
             {
                 OnCommandChange(new TextChangeEventArgs(string.Empty,

@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
-using Common.Logic;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
+using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Method;
 
 namespace MongoCola.Aggregation
 {
-    public partial class frmGroup : Form
+    public partial class FrmGroup : Form
     {
         /// <summary>
         ///     条件输入器数量
@@ -33,10 +33,10 @@ namespace MongoCola.Aggregation
         public List<DataFilter.QueryConditionInputItem> GroupConditionList =
             new List<DataFilter.QueryConditionInputItem>();
 
-        public frmGroup(DataFilter mDataFilter, bool IsUseFilter)
+        public FrmGroup(DataFilter mDataFilter, bool isUseFilter)
         {
             InitializeComponent();
-            if (mDataFilter.QueryConditionList.Count <= 0 || !IsUseFilter) return;
+            if (mDataFilter.QueryConditionList.Count <= 0 || !isUseFilter) return;
             Text += "[With DataView Filter]";
             foreach (var item in mDataFilter.QueryConditionList)
             {
@@ -51,24 +51,24 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            var mongoCol = RuntimeMongoDBContext.GetCurrentCollection();
+            var mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
             var query = QueryHelper.GetQuery(GroupConditionList);
             var groupdoc = new GroupByDocument();
-            var ChartTite = string.Empty;
+            var chartTite = string.Empty;
             foreach (CheckBox item in panColumn.Controls)
             {
                 if (!item.Checked) continue;
                 groupdoc.Add(item.Name, true);
-                ChartTite += item.Name + ",";
+                chartTite += item.Name + ",";
             }
-            ChartTite = ChartTite.TrimEnd(",".ToCharArray());
-            var Initial = new BsonDocument();
+            chartTite = chartTite.TrimEnd(",".ToCharArray());
+            var initial = new BsonDocument();
             for (var i = 0; i < _conditionCount; i++)
             {
-                var ctl = (ctlAddBsonEl) Controls.Find("BsonEl" + (i + 1), true)[0];
+                var ctl = (CtlAddBsonEl) Controls.Find("BsonEl" + (i + 1), true)[0];
                 if (ctl.IsSetted)
                 {
-                    Initial.Add(ctl.getElement());
+                    initial.Add(ctl.GetElement());
                 }
             }
 
@@ -79,35 +79,35 @@ namespace MongoCola.Aggregation
             try
             {
                 //SkipCnt Reset
-                var Result = mongoCol.Group(query, groupdoc, Initial, reduce, finalize);
+                var result = mongoCol.Group(query, groupdoc, initial, reduce, finalize);
                 //图形化初始化
                 chartResult.Series.Clear();
                 chartResult.Titles.Clear();
-                var SeriesResult = new Series("Result");
+                var seriesResult = new Series("Result");
 
                 //防止错误的条件造成的海量数据
-                var Count = 0;
-                foreach (var item in Result)
+                var count = 0;
+                foreach (var item in result)
                 {
-                    if (Count == 1000)
+                    if (count == 1000)
                     {
                         break;
                     }
                     resultlst.Add(item);
                     //必须带有Count元素
                     var dPoint = new DataPoint(0, (double) item.GetElement("count").Value);
-                    SeriesResult.Points.Add(dPoint);
-                    Count++;
+                    seriesResult.Points.Add(dPoint);
+                    count++;
                 }
-                ViewHelper.FillJSONDataToTextBox(txtResult, resultlst, 0);
-                if (Count == 1001)
+                ViewHelper.FillJsonDataToTextBox(txtResult, resultlst, 0);
+                if (count == 1001)
                 {
                     txtResult.Text = "Too many result,Display first 1000 records" + Environment.NewLine + txtResult.Text;
                 }
                 txtResult.Select(0, 0);
                 //图形化加载
-                chartResult.Series.Add(SeriesResult);
-                chartResult.Titles.Add(ChartTite);
+                chartResult.Series.Add(seriesResult);
+                chartResult.Titles.Add(chartTite);
                 tabGroup.SelectedIndex = 4;
             }
             catch (Exception ex)
@@ -123,36 +123,36 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void frmGroup_Load(object sender, EventArgs e)
         {
-            var mongoCol = RuntimeMongoDBContext.GetCurrentCollection();
-            var MongoColumn = MongoUtility.Basic.MongoUtility.GetCollectionSchame(mongoCol);
-            var _conditionPos = new Point(50, 20);
-            foreach (var item in MongoColumn)
+            var mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
+            var mongoColumn = MongoHelper.GetCollectionSchame(mongoCol);
+            var conditionPos = new Point(50, 20);
+            foreach (var item in mongoColumn)
             {
                 //动态加载控件
-                var ctrItem = new CheckBox {Name = item, Location = _conditionPos, Text = item};
+                var ctrItem = new CheckBox {Name = item, Location = conditionPos, Text = item};
                 panColumn.Controls.Add(ctrItem);
                 //纵向位置的累加
-                _conditionPos.Y += ctrItem.Height;
+                conditionPos.Y += ctrItem.Height;
             }
-            _conditionPos = new Point(50, 20);
-            var firstAddBsonElCtl = new ctlAddBsonEl {Location = _conditionPos, Name = "BsonEl" + _conditionCount};
+            conditionPos = new Point(50, 20);
+            var firstAddBsonElCtl = new CtlAddBsonEl {Location = conditionPos, Name = "BsonEl" + _conditionCount};
             var el = new BsonElement("count", new BsonInt32(0));
-            firstAddBsonElCtl.setElement(el);
+            firstAddBsonElCtl.SetElement(el);
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
-            if (GUIConfig.IsUseDefaultLanguage) return;
-            ctlReduce.Title = GUIConfig.GetText(TextType.Group_Tab_Reduce);
+            if (GuiConfig.IsUseDefaultLanguage) return;
+            ctlReduce.Title = GuiConfig.GetText(TextType.GroupTabReduce);
             ctlFinalize.Title =
-                GUIConfig.GetText(TextType.Group_Tab_Finalize);
+                GuiConfig.GetText(TextType.GroupTabFinalize);
             lblSelectGroupField.Text =
-                GUIConfig.GetText(TextType.Group_Tab_Group_Notes);
+                GuiConfig.GetText(TextType.GroupTabGroupNotes);
             lblAddInitField.Text =
-                GUIConfig.GetText(TextType.Group_Tab_InitColumn_Note);
+                GuiConfig.GetText(TextType.GroupTabInitColumnNote);
             cmdAddInitField.Text =
-                GUIConfig.GetText(TextType.Group_Tab_InitColumn);
-            lblResult.Text = GUIConfig.GetText(TextType.Group_Tab_Result);
-            cmdQuery.Text = GUIConfig.GetText(TextType.Group_LoadQuery);
-            cmdRun.Text = GUIConfig.GetText(TextType.Common_OK);
+                GuiConfig.GetText(TextType.GroupTabInitColumn);
+            lblResult.Text = GuiConfig.GetText(TextType.GroupTabResult);
+            cmdQuery.Text = GuiConfig.GetText(TextType.GroupLoadQuery);
+            cmdRun.Text = GuiConfig.GetText(TextType.CommonOk);
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace MongoCola.Aggregation
         private void cmdAddFld_Click(object sender, EventArgs e)
         {
             _conditionCount++;
-            var newCondition = new ctlAddBsonEl();
+            var newCondition = new CtlAddBsonEl();
             _conditionPos.Y += newCondition.Height;
             newCondition.Location = _conditionPos;
             newCondition.Name = "BsonEl" + _conditionCount;
@@ -178,9 +178,9 @@ namespace MongoCola.Aggregation
         {
             var openFile = new OpenFileDialog();
             if (openFile.ShowDialog() != DialogResult.OK) return;
-            var NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+            var newDataFilter = DataFilter.LoadFilter(openFile.FileName);
             GroupConditionList.Clear();
-            GroupConditionList = NewDataFilter.QueryConditionList;
+            GroupConditionList = newDataFilter.QueryConditionList;
         }
     }
 }

@@ -1,13 +1,15 @@
-﻿using MongoGUICtl;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using MongoGUICtl;
 
 namespace MongoCola
 {
-    partial class frmEvalJS
+    partial class FrmEvalJs
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -33,7 +35,7 @@ namespace MongoCola
             this.cmdEval = new System.Windows.Forms.Button();
             this.txtParm = new System.Windows.Forms.TextBox();
             this.lblParm = new System.Windows.Forms.Label();
-            this.ctlEval = new ctlTextMgr();
+            this.ctlEval = new CtlTextMgr();
             this.SuspendLayout();
             // 
             // cmdEval
@@ -86,7 +88,7 @@ namespace MongoCola
             this.Controls.Add(this.txtParm);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "frmEvalJS";
+            this.Name = "FrmEvalJs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Eval Javascript";
             this.Load += new System.EventHandler(this.frmevalJS_Load);
@@ -97,9 +99,9 @@ namespace MongoCola
 
         #endregion
 
-        private System.Windows.Forms.Button cmdEval;
-        private System.Windows.Forms.Label lblParm;
-        private System.Windows.Forms.TextBox txtParm;
-        private ctlTextMgr ctlEval;
+        private Button cmdEval;
+        private Label lblParm;
+        private TextBox txtParm;
+        private CtlTextMgr ctlEval;
     }
 }

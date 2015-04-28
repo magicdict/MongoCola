@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using ResourceLib;
+using ResourceLib.Method;
 
-namespace Common.UI
+namespace ResourceLib.UI
 {
-    public partial class ctlFilePicker : UserControl
+    public partial class CtlFilePicker : UserControl
     {
-        public delegate void PathChangedHandler(string FilePath);
+        public delegate void PathChangedHandler(string filePath);
 
         /// <summary>
         ///     Dialog Type
@@ -19,10 +19,10 @@ namespace Common.UI
         }
 
         private DialogType _dialogType = DialogType.Directory;
-        private string _FileFilter = string.Empty;
-        private string _FileName = string.Empty;
+        private string _fileFilter = string.Empty;
+        private string _fileName = string.Empty;
 
-        public ctlFilePicker()
+        public CtlFilePicker()
         {
             InitializeComponent();
         }
@@ -32,8 +32,8 @@ namespace Common.UI
         /// </summary>
         public string FileFilter
         {
-            get { return _FileFilter; }
-            set { _FileFilter = value; }
+            get { return _fileFilter; }
+            set { _fileFilter = value; }
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace Common.UI
         /// </summary>
         public string FileName
         {
-            get { return _FileName; }
-            set { _FileName = value; }
+            get { return _fileName; }
+            set { _fileName = value; }
         }
 
         /// <summary>
@@ -89,10 +89,10 @@ namespace Common.UI
             switch (_dialogType)
             {
                 case DialogType.OpenFile:
-                    var openFile = new OpenFileDialog {FileName = _FileName};
-                    if (_FileFilter != string.Empty)
+                    var openFile = new OpenFileDialog {FileName = _fileName};
+                    if (_fileFilter != string.Empty)
                     {
-                        openFile.Filter = _FileFilter;
+                        openFile.Filter = _fileFilter;
                     }
                     if (openFile.ShowDialog() == DialogResult.OK)
                     {
@@ -100,10 +100,10 @@ namespace Common.UI
                     }
                     break;
                 case DialogType.SaveFile:
-                    var saveFile = new SaveFileDialog {FileName = _FileName};
-                    if (_FileFilter != string.Empty)
+                    var saveFile = new SaveFileDialog {FileName = _fileName};
+                    if (_fileFilter != string.Empty)
                     {
-                        saveFile.Filter = _FileFilter;
+                        saveFile.Filter = _fileFilter;
                     }
                     if (saveFile.ShowDialog() == DialogResult.OK)
                     {
@@ -146,7 +146,7 @@ namespace Common.UI
         private void ctlFilePicker_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
-            GUIConfig.Translateform(this.Controls);
+            GuiConfig.Translateform(Controls);
         }
     }
 }

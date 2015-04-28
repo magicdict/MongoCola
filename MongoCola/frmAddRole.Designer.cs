@@ -1,11 +1,14 @@
-﻿namespace MongoCola
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace MongoCola
 {
-    partial class frmAddRole
+    partial class FrmAddRole
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -260,7 +263,7 @@
             this.Controls.Add(this.txtRolename);
             this.Controls.Add(this.lblRoleName);
             this.Controls.Add(this.btnAddRole);
-            this.Name = "frmAddRole";
+            this.Name = "FrmAddRole";
             this.Text = "Add Custom Role";
             this.Load += new System.EventHandler(this.frmAddRole_Load);
             this.groupBox1.ResumeLayout(false);
@@ -272,26 +275,26 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnAddRole;
-        private System.Windows.Forms.Label lblRoleName;
-        private System.Windows.Forms.TextBox txtRolename;
-        private System.Windows.Forms.Label lblPrivilege;
-        private System.Windows.Forms.Label lblResource;
-        private System.Windows.Forms.Label lblAction;
-        private System.Windows.Forms.ComboBox cmbDatabase;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cmbResourceType;
-        private System.Windows.Forms.Label lblResourceType;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbCollection;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbActionGroup;
-        private System.Windows.Forms.CheckedListBox chklstAction;
-        private System.Windows.Forms.Button btnAddPriviege;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListView lstPriviege;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private Button btnAddRole;
+        private Label lblRoleName;
+        private TextBox txtRolename;
+        private Label lblPrivilege;
+        private Label lblResource;
+        private Label lblAction;
+        private ComboBox cmbDatabase;
+        private GroupBox groupBox1;
+        private ComboBox cmbResourceType;
+        private Label lblResourceType;
+        private Label label1;
+        private Label label2;
+        private ComboBox cmbCollection;
+        private Label label3;
+        private ComboBox cmbActionGroup;
+        private CheckedListBox chklstAction;
+        private Button btnAddPriviege;
+        private Label label4;
+        private ListView lstPriviege;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
     }
 }

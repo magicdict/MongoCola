@@ -8,18 +8,18 @@ namespace MongoUtility.Basic
     {
         /// <summary>
         /// </summary>
-        public static Object _ClipElement;
+        public static Object ClipElement;
 
         /// <summary>
         /// </summary>
-        public static bool _IsElementClip = true;
+        public static bool IsElementClip = true;
 
         /// <summary>
         ///     Can Paste As Value
         /// </summary>
         public static bool CanPasteAsValue
         {
-            get { return (_ClipElement != null && !_IsElementClip); }
+            get { return (ClipElement != null && !IsElementClip); }
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace MongoUtility.Basic
         /// </summary>
         public static bool CanPasteAsElement
         {
-            get { return (_ClipElement != null && _IsElementClip); }
+            get { return (ClipElement != null && IsElementClip); }
         }
 
         //http://www.mongodb.org/display/DOCS/Capped+Collections#CappedCollections-UsageandRestrictions
@@ -40,117 +40,117 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     Paste
         /// </summary>
-        /// <param name="ElementPath"></param>
-        /// <param name="CurrentDocument"></param>
-        public static string PasteElement(string ElementPath, BsonDocument CurrentDocument,
-            MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        /// <param name="currentDocument"></param>
+        public static string PasteElement(string elementPath, BsonDocument currentDocument,
+            MongoCollection currentCollection)
         {
-            var BaseDoc = CurrentDocument;
-            var t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            var baseDoc = currentDocument;
+            var t = GetLastParentDocument(baseDoc, elementPath, true);
             if (t.IsBsonDocument)
             {
                 try
                 {
-                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement) _ClipElement);
+                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement) ClipElement);
                 }
                 catch (InvalidOperationException ex)
                 {
                     return ex.Message;
                 }
             }
-            if (!CurrentCollection.IsCapped())
+            if (!currentCollection.IsCapped())
             {
-                CurrentCollection.Save(BaseDoc);
+                currentCollection.Save(baseDoc);
             }
             return string.Empty;
         }
 
         /// <summary>
         /// </summary>
-        /// <param name="ElementPath"></param>
-        public static void PasteValue(string ElementPath, BsonDocument CurrentDocument,
-            MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        public static void PasteValue(string elementPath, BsonDocument currentDocument,
+            MongoCollection currentCollection)
         {
-            var BaseDoc = CurrentDocument;
-            var t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            var baseDoc = currentDocument;
+            var t = GetLastParentDocument(baseDoc, elementPath, true);
             if (t.IsBsonArray)
             {
-                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue) _ClipElement);
+                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue) ClipElement);
             }
-            if (!CurrentCollection.IsCapped())
+            if (!currentCollection.IsCapped())
             {
-                CurrentCollection.Save(BaseDoc);
+                currentCollection.Save(baseDoc);
             }
         }
 
         /// <summary>
         ///     Cut Element
         /// </summary>
-        /// <param name="El"></param>
-        public static void CopyElement(BsonElement El)
+        /// <param name="el"></param>
+        public static void CopyElement(BsonElement el)
         {
-            _ClipElement = El;
-            _IsElementClip = true;
+            ClipElement = el;
+            IsElementClip = true;
         }
 
         /// <summary>
         ///     Cut Array Value
         /// </summary>
-        /// <param name="Val"></param>
-        public static void CopyValue(BsonValue Val)
+        /// <param name="val"></param>
+        public static void CopyValue(BsonValue val)
         {
-            _ClipElement = Val;
-            _IsElementClip = false;
+            ClipElement = val;
+            IsElementClip = false;
         }
 
         /// <summary>
         ///     Cut Element
         /// </summary>
-        /// <param name="ElementPath"></param>
-        public static void CutElement(string ElementPath, BsonElement El, BsonDocument CurrentDocument,
-            MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        public static void CutElement(string elementPath, BsonElement el, BsonDocument currentDocument,
+            MongoCollection currentCollection)
         {
-            _ClipElement = El;
-            _IsElementClip = true;
-            DropElement(ElementPath, El, CurrentDocument, CurrentCollection);
+            ClipElement = el;
+            IsElementClip = true;
+            DropElement(elementPath, el, currentDocument, currentCollection);
         }
 
         /// <summary>
         ///     Cut Array Value
         /// </summary>
-        /// <param name="ElementPath"></param>
-        public static void CutValue(string ElementPath, int ValueIndex, BsonValue Val, BsonDocument CurrentDocument,
-            MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        public static void CutValue(string elementPath, int valueIndex, BsonValue val, BsonDocument currentDocument,
+            MongoCollection currentCollection)
         {
-            _ClipElement = Val;
-            _IsElementClip = false;
-            DropArrayValue(ElementPath, ValueIndex, CurrentDocument, CurrentCollection);
+            ClipElement = val;
+            IsElementClip = false;
+            DropArrayValue(elementPath, valueIndex, currentDocument, currentCollection);
         }
 
         /// <summary>
         ///     Add Element
         /// </summary>
-        /// <param name="ElementPath"></param>
-        /// <param name="AddElement"></param>
-        public static string AddElement(string ElementPath, BsonElement AddElement, BsonDocument CurrentDocument,
-            MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        /// <param name="addElement"></param>
+        public static string AddElement(string elementPath, BsonElement addElement, BsonDocument currentDocument,
+            MongoCollection currentCollection)
         {
-            var BaseDoc = CurrentDocument;
-            var t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            var baseDoc = currentDocument;
+            var t = GetLastParentDocument(baseDoc, elementPath, true);
             if (t.IsBsonDocument)
             {
                 try
                 {
-                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, AddElement);
+                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, addElement);
                 }
                 catch (InvalidOperationException ex)
                 {
                     return ex.Message;
                 }
             }
-            if (!CurrentCollection.IsCapped())
+            if (!currentCollection.IsCapped())
             {
-                CurrentCollection.Save(BaseDoc);
+                currentCollection.Save(baseDoc);
             }
             return string.Empty;
         }
@@ -158,177 +158,177 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     Add Value
         /// </summary>
-        /// <param name="ElementPath"></param>
-        /// <param name="AddValue"></param>
-        public static void AddArrayValue(string ElementPath, BsonValue AddValue, BsonDocument CurrentDocument,
-            MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        /// <param name="addValue"></param>
+        public static void AddArrayValue(string elementPath, BsonValue addValue, BsonDocument currentDocument,
+            MongoCollection currentCollection)
         {
-            var BaseDoc = CurrentDocument;
-            var t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            var baseDoc = currentDocument;
+            var t = GetLastParentDocument(baseDoc, elementPath, true);
             if (t.IsBsonArray)
             {
-                t.AsBsonArray.Insert(t.AsBsonArray.Count, AddValue);
+                t.AsBsonArray.Insert(t.AsBsonArray.Count, addValue);
             }
-            if (!CurrentCollection.IsCapped())
+            if (!currentCollection.IsCapped())
             {
-                CurrentCollection.Save(BaseDoc);
+                currentCollection.Save(baseDoc);
             }
         }
 
         /// <summary>
         ///     Drop Element
         /// </summary>
-        /// <param name="ElementPath"></param>
-        /// <param name="El"></param>
-        public static void DropElement(string ElementPath, BsonElement El, BsonDocument CurrentDocument,
-            MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        /// <param name="el"></param>
+        public static void DropElement(string elementPath, BsonElement el, BsonDocument currentDocument,
+            MongoCollection currentCollection)
         {
-            var BaseDoc = CurrentDocument;
-            var t = GetLastParentDocument(BaseDoc, ElementPath, false);
+            var baseDoc = currentDocument;
+            var t = GetLastParentDocument(baseDoc, elementPath, false);
             if (t.IsBsonDocument)
             {
-                t.AsBsonDocument.Remove(El.Name);
+                t.AsBsonDocument.Remove(el.Name);
             }
-            CurrentCollection.Save(BaseDoc);
+            currentCollection.Save(baseDoc);
         }
 
         /// <summary>
         ///     Drop A Value of Array
         /// </summary>
-        /// <param name="ElementPath"></param>
-        /// <param name="ValueIndex"></param>
-        public static void DropArrayValue(string ElementPath, int ValueIndex, BsonDocument CurrentDocument,
-            MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        /// <param name="valueIndex"></param>
+        public static void DropArrayValue(string elementPath, int valueIndex, BsonDocument currentDocument,
+            MongoCollection currentCollection)
         {
-            var BaseDoc = CurrentDocument;
-            var t = GetLastParentDocument(BaseDoc, ElementPath, false);
+            var baseDoc = currentDocument;
+            var t = GetLastParentDocument(baseDoc, elementPath, false);
             if (t.IsBsonArray)
             {
-                t.AsBsonArray.RemoveAt(ValueIndex);
+                t.AsBsonArray.RemoveAt(valueIndex);
             }
-            if (!CurrentCollection.IsCapped())
+            if (!currentCollection.IsCapped())
             {
-                CurrentCollection.Save(BaseDoc);
+                currentCollection.Save(baseDoc);
             }
         }
 
         /// <summary>
         ///     Modify Element
         /// </summary>
-        /// <param name="ElementPath"></param>
-        /// <param name="NewValue"></param>
-        /// <param name="El"></param>
-        public static void ModifyElement(string ElementPath, BsonValue NewValue, BsonElement El,
-            BsonDocument CurrentDocument, MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        /// <param name="newValue"></param>
+        /// <param name="el"></param>
+        public static void ModifyElement(string elementPath, BsonValue newValue, BsonElement el,
+            BsonDocument currentDocument, MongoCollection currentCollection)
         {
-            var BaseDoc = CurrentDocument;
-            var t = GetLastParentDocument(BaseDoc, ElementPath, false);
+            var baseDoc = currentDocument;
+            var t = GetLastParentDocument(baseDoc, elementPath, false);
             if (t.IsBsonDocument)
             {
                 //TODO:需要重新实现
-                t.AsBsonDocument.SetElement(new BsonElement(El.Name, NewValue));
+                t.AsBsonDocument.SetElement(new BsonElement(el.Name, newValue));
             }
-            if (!CurrentCollection.IsCapped())
+            if (!currentCollection.IsCapped())
             {
-                CurrentCollection.Save(BaseDoc);
+                currentCollection.Save(baseDoc);
             }
         }
 
         /// <summary>
         ///     Modify A Value of Array
         /// </summary>
-        /// <param name="ElementPath"></param>
-        /// <param name="NewValue"></param>
-        /// <param name="ValueIndex"></param>
-        public static void ModifyArrayValue(string ElementPath, BsonValue NewValue, int ValueIndex,
-            BsonDocument CurrentDocument, MongoCollection CurrentCollection)
+        /// <param name="elementPath"></param>
+        /// <param name="newValue"></param>
+        /// <param name="valueIndex"></param>
+        public static void ModifyArrayValue(string elementPath, BsonValue newValue, int valueIndex,
+            BsonDocument currentDocument, MongoCollection currentCollection)
         {
-            var BaseDoc = CurrentDocument;
-            var t = GetLastParentDocument(BaseDoc, ElementPath, false);
+            var baseDoc = currentDocument;
+            var t = GetLastParentDocument(baseDoc, elementPath, false);
             if (t.IsBsonArray)
             {
-                t.AsBsonArray[ValueIndex] = NewValue;
+                t.AsBsonArray[valueIndex] = newValue;
             }
-            if (!CurrentCollection.IsCapped())
+            if (!currentCollection.IsCapped())
             {
-                CurrentCollection.Save(BaseDoc);
+                currentCollection.Save(baseDoc);
             }
         }
 
         /// <summary>
         ///     Locate the Operation Place
         /// </summary>
-        /// <param name="BaseDoc"></param>
-        /// <param name="ElementPath"></param>
-        /// <param name="IsGetLast">T:GetOperationPlace F:GetOperationPlace Parent</param>
+        /// <param name="baseDoc"></param>
+        /// <param name="elementPath"></param>
+        /// <param name="isGetLast">T:GetOperationPlace F:GetOperationPlace Parent</param>
         /// <returns></returns>
-        public static BsonValue GetLastParentDocument(BsonDocument BaseDoc, string ElementPath, bool IsGetLast)
+        public static BsonValue GetLastParentDocument(BsonDocument baseDoc, string elementPath, bool isGetLast)
         {
-            BsonValue Current = BaseDoc;
+            BsonValue current = baseDoc;
             //JpCnWord[1]\Translations[ARRAY]\Translations[1]\Sentences[ARRAY]\Sentences[1]\Japanese:"ああいう文章はなかなか書けない"
             //1.将路径按照\分开
-            var strPath = ElementPath.Split(@"\".ToCharArray());
+            var strPath = elementPath.Split(@"\".ToCharArray());
             //JpCnWord[1]                                    First
             //Translations[ARRAY]
             //Translations[1]
             //Sentences[ARRAY]
             //Sentences[1]
             //Japanese:"ああいう文章はなかなか書けない"        Last
-            int DeepLv;
-            if (IsGetLast)
+            int deepLv;
+            if (isGetLast)
             {
-                DeepLv = strPath.Length;
+                deepLv = strPath.Length;
             }
             else
             {
-                DeepLv = strPath.Length - 1;
+                deepLv = strPath.Length - 1;
             }
-            for (var i = 1; i < DeepLv; i++)
+            for (var i = 1; i < deepLv; i++)
             {
                 var strTag = strPath[i];
-                var IsArray = false;
-                if (strTag.EndsWith(ConstMgr.Array_Mark))
+                var isArray = false;
+                if (strTag.EndsWith(ConstMgr.ArrayMark))
                 {
                     //去除[Array]后缀
-                    strTag = strTag.Substring(0, strTag.Length - ConstMgr.Array_Mark.Length);
-                    IsArray = true;
+                    strTag = strTag.Substring(0, strTag.Length - ConstMgr.ArrayMark.Length);
+                    isArray = true;
                 }
-                if (IsArray)
+                if (isArray)
                 {
                     //这里的Array是指一个列表的上层节点，在BSON里面没有相应的对象，只是个逻辑概念
                     if (strTag == string.Empty)
                     {
                         //Array里面的Array,所以没有元素名称。
                         //TODO：正确做法是将元素的Index传入，这里暂时认为第一个数组就是目标数组
-                        foreach (var item in Current.AsBsonArray)
+                        foreach (var item in current.AsBsonArray)
                         {
                             if (item.IsBsonArray)
                             {
-                                Current = item;
+                                current = item;
                             }
                         }
                     }
                     else
                     {
-                        Current = Current.AsBsonDocument.GetValue(strTag).AsBsonArray;
+                        current = current.AsBsonDocument.GetValue(strTag).AsBsonArray;
                     }
                 }
                 else
                 {
-                    if (Current.IsBsonArray)
+                    if (current.IsBsonArray)
                     {
                         //当前的如果是数组，获得当前下标。
-                        int Index =
+                        int index =
                             Convert.ToInt16(strTag.Substring(strTag.IndexOf("[") + 1,
                                 strTag.Length - strTag.IndexOf("[") - 2));
-                        Current = Current.AsBsonArray[Index - 1];
+                        current = current.AsBsonArray[index - 1];
                     }
                     else
                     {
-                        if (Current.IsBsonDocument)
+                        if (current.IsBsonDocument)
                         {
                             //如果当前还是一个文档的话
-                            Current = Current.AsBsonDocument.GetValue(strTag);
+                            current = current.AsBsonDocument.GetValue(strTag);
                         }
                         else
                         {
@@ -338,7 +338,7 @@ namespace MongoUtility.Basic
                     }
                 }
             }
-            return Current;
+            return current;
         }
     }
 }

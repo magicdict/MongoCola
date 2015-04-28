@@ -1,5 +1,5 @@
-﻿using MongoDB.Driver;
-using System.Linq;
+﻿using System.Linq;
+using MongoDB.Driver;
 
 namespace MongoUtility.Basic
 {
@@ -14,41 +14,6 @@ namespace MongoUtility.Basic
             Text,
             Xml
         }
-
-        /// <summary>
-        ///     Key String
-        /// </summary>
-        /// <param name="keys"></param>
-        /// <returns></returns>
-        public static string GetKeyString(IndexKeysDocument keys)
-        {
-            var KeyString = string.Empty;
-            foreach (var key in keys.Elements)
-            {
-                KeyString += key.Name + ":";
-                switch (key.Value.ToString())
-                {
-                    case "1":
-                        KeyString += EnumMgr.IndexType.Ascending.ToString();
-                        break;
-                    case "-1":
-                        KeyString += EnumMgr.IndexType.Descending.ToString();
-                        break;
-                    case "2d":
-                        KeyString += EnumMgr.IndexType.GeoSpatial.ToString();
-                        break;
-                    case "text":
-                        KeyString += EnumMgr.IndexType.Text.ToString();
-                        break;
-                    default:
-                        break;
-                }
-                KeyString += ";";
-            }
-            KeyString = "[" + KeyString.TrimEnd(";".ToArray()) + "]";
-            return KeyString;
-        }
-
 
         /// <summary>
         ///     索引类型
@@ -115,7 +80,7 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     MMAPv1
             /// </summary>
-            MMAPv1,
+            MmaPv1,
 
             /// <summary>
             ///     WiredTiger
@@ -128,21 +93,55 @@ namespace MongoUtility.Basic
         /// </summary>
         public enum TextSearchLanguage
         {
-            danish,
-            dutch,
-            english,
-            finnish,
-            french,
-            german,
-            hungarian,
-            italian,
-            norwegian,
-            portuguese,
-            romanian,
-            russian,
-            spanish,
-            swedish,
-            turkish
+            Danish,
+            Dutch,
+            English,
+            Finnish,
+            French,
+            German,
+            Hungarian,
+            Italian,
+            Norwegian,
+            Portuguese,
+            Romanian,
+            Russian,
+            Spanish,
+            Swedish,
+            Turkish
+        }
+
+        /// <summary>
+        ///     Key String
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <returns></returns>
+        public static string GetKeyString(IndexKeysDocument keys)
+        {
+            var keyString = string.Empty;
+            foreach (var key in keys.Elements)
+            {
+                keyString += key.Name + ":";
+                switch (key.Value.ToString())
+                {
+                    case "1":
+                        keyString += IndexType.Ascending.ToString();
+                        break;
+                    case "-1":
+                        keyString += IndexType.Descending.ToString();
+                        break;
+                    case "2d":
+                        keyString += IndexType.GeoSpatial.ToString();
+                        break;
+                    case "text":
+                        keyString += IndexType.Text.ToString();
+                        break;
+                    default:
+                        break;
+                }
+                keyString += ";";
+            }
+            keyString = "[" + keyString.TrimEnd(";".ToArray()) + "]";
+            return keyString;
         }
     }
 }

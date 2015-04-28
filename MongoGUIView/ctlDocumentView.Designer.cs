@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace MongoGUIView
 {
-    partial class ctlDocumentView
+    partial class CtlDocumentView
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -30,7 +31,7 @@ namespace MongoGUIView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlDocumentView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlDocumentView));
             this.NewDocumentStripButton = new System.Windows.Forms.ToolStripButton();
             this.DelSelectRecordToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.OpenDocInEditorStripButton = new System.Windows.Forms.ToolStripButton();
@@ -228,7 +229,7 @@ namespace MongoGUIView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ctlDocumentView";
+            this.Name = "CtlDocumentView";
             this.Load += new System.EventHandler(this.ctlDocumentView_Load);
             this.Controls.SetChildIndex(this.toolStripContainer1, 0);
             this.tabDataShower.ResumeLayout(false);
@@ -269,11 +270,11 @@ namespace MongoGUIView
         private ToolStripSeparator SeperateBarForMenuItem2;
         private ToolStripSeparator SeperateBarForMenuItem1;
 
-        private System.Windows.Forms.ToolStripButton NewDocumentStripButton;
-        private System.Windows.Forms.ToolStripButton DelSelectRecordToolStripButton;
-        private System.Windows.Forms.ToolStripButton OpenDocInEditorStripButton;
-        private System.Windows.Forms.ToolStripButton CutElementStripButton;
-        private System.Windows.Forms.ToolStripButton CopyElementStripButton;
-        private System.Windows.Forms.ToolStripButton PasteElementStripButton;
+        private ToolStripButton NewDocumentStripButton;
+        private ToolStripButton DelSelectRecordToolStripButton;
+        private ToolStripButton OpenDocInEditorStripButton;
+        private ToolStripButton CutElementStripButton;
+        private ToolStripButton CopyElementStripButton;
+        private ToolStripButton PasteElementStripButton;
     }
 }
