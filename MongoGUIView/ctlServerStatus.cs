@@ -111,33 +111,7 @@ namespace MongoGUIView
         private void ctlServerStatus_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
-            //RefreshStatus(false);
-            if (!GUIConfig.IsUseDefaultLanguage)
-            {
-                Text = GUIConfig.MStringResource.GetText(TextType.ServiceStatus_Title);
-                tabSvrBasicInfo.Text =
-                    GUIConfig.MStringResource.GetText(TextType.ServiceStatus_ServerInfo);
-                tabDBBasicInfo.Text =
-                    GUIConfig.MStringResource.GetText(TextType.ServiceStatus_DataBaseInfo);
-                tabCollectionInfo.Text =
-                    GUIConfig.MStringResource.GetText(TextType.ServiceStatus_CollectionInfo);
-                tabCurrentOprInfo.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.ServiceStatus_CurrentOperationInfo);
-                RefreshStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Common_Refresh);
-                btnSwitch.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Collection_Resume_AutoRefresh);
-                CloseStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Common_Close);
-            }
-            //refreshTimer.Interval = configuration.RefreshStatusTimer*1000;
-            //refreshTimer.Tick += (x, y) => RefreshStatus(false);
-            //
-            //ShortTimer.Interval = configuration.RefreshStatusTimer*1000;
-            //ShortTimer.Tick += (x, y) => RefreshCurrentOpr();
-
+            GUIConfig.Translateform(this.Controls);
             SetEnable(false);
             AutoRefresh = false;
             // 用新的排序方法对ListView排序

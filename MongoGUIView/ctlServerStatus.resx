@@ -117,23 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="RefreshStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIJSURBVDhPvVKtktswGPQT3OkF2giW5KwX6EQwpBfBQLMe
-        agzDLBgWsXpKLBhWwbAzPBbBsBoeNDTbruTcTcs7/TybZEbev08p/ss8P5fieCxlOH8YQpDwJ4nj91Lf
-        jv+eXXcRzY+Lato41G1EQiL1Z4X+pUKacRoRzhW6rjQ32jwNybs2Rut7uCvxGmAng2qQ0N7C2D6LUQLj
-        a4RzGpl4+VWKy2Ulmu5nbUOAGy0iHz/0qK813STMqYKyAyrnbkmYrjYouu7OJdXAXiGoGzR7avR8wsTP
-        nr8Jc3KIkeQpEgHGqCRwL3ybYg052ow+L8rSvT773H8kKb6Y/J3ILIrFpzuXKyQR16ocK5Ex1bBWMi5d
-        HBd26z2fB4ysWG0VyvJeFk1D8mF2ADwPk4tmPwEd/B8CTDj5d3G1ruYFNs3C9mebD4drIkrGo3slIKKG
-        DI51RHZO5JG38mawWhWqsMl9DBgGXleleFWRyxGMSAHuoeANJAF74E72FH4SMGuC7yyXxVj4luqTQ6ph
-        9gGaYfR+gNYChVcQXLDidakqQG4j4aGMw2LTyVzBWsEENWMbfNl+HnUdoCggDg7CaqinCjKTB6KHNB4f
-        N53P5DRlWZi0lLf/gV4Tho61I9nSmaTkvKbI2idnQ4gbfZ7d14XkMt23/XJ83D7E1WbjHh59zCSdiCER
-        q/fY/26K4jdtPeEIN2bq8AAAAABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAILSURBVDhPvVIvj9swHM0nuPMHmFbDgeriDzCphgXT1bAw
+        bIfWwLIYltVs0UgMy2ZYdoHHali2wIOBYW/PTu+08Wm/6LWVnPfv5xb/ZZ6fS3E8ljKcPwwhSPiTxPF7
+        qW/Hf8+uu4jmx0U1bRzqNiIhkfqzQv9SIc04jQjnCl1XmhttnobkXRuj9T3clXgNsJNBNUhob2Fsn8Uo
+        gfE1wjmNTLz8KsXlshJN97O2IcCNFpGPH3rU15puEuZUQdkBlXO3JExXGxRdd+eSamCvENQNmj01ej5h
+        4mfP34Q5OcRI8hSJAGNUErgXvk2xhhxtRp8XZelen33uP5IUX0z+TmQWxeLTncsVkohrVY6VyJhqWCsZ
+        ly6OC7v1ns8DRlastgpleS+LpiH5MDsAnofJRbOfgA7+DwEmnPy7uFpX8wKbZmH7s82HwzURJePRvRIQ
+        UUMGxzoiOyfyyFt5M1itClXY5D4GDAOvq1K8qsjlCEakAPdQ8AaSgD1wJ3sKPwmYNcF3lstiLHxL9ckh
+        1TD7AM0wej9Aa4HCKwguWPG6VBUgt5HwUMZhselkrmCtYIKasQ2+bD+Pug5QFBAHB2E11FMFmckD0UMa
+        j4+bzmdymrIsTFrK2/9ArwlDx9qRbOlMUnJeU2Ttk7MhxI0+z+7rQnKZ7tt+OT5uH+Jqs3EPjz5mkk7E
+        kIjVe+x/N0XxG2St4QJpJSVTAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="ExpandAllStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -166,13 +166,13 @@
   <data name="CloseStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFuSURBVDhPnZMhb8MwEIX9ByrtD0wqHIlUWFKpsKRSYUml
-        wKKpcLBwcHAwcDCw0LDQsNA/4f7B7b07J3W2op70ojjJ++x7dgJLn6zRLLeo+X0r+biVtF9BzV1b6lXS
-        BlpRM4lNkHztHcILzfLzpbmDPk+az63mj6LTznVca2qh/ULTZq79W5ApgObuPAXAmI5UMbcw76i5xuXs
-        DkiHlZiRKka5Jb6y4j1NJsxORbTDdwXQiM1KVWa5dCp95/cpalq/uP4BEJb3DHN2c/4+e7+YlStjGWTp
-        kIgw+cwBSHoIiyWXfhIYDQyZlRfBINMMuEUwMGlWDchcQQ1YBhO3kmMHYDmWMExD/2whF4CUFhQtyEMA
-        lmPLta26Q+oQ9ermxwAMrFdCiupt5MxamRMB9UEibdgePygUeqc26H/t5hGAICcnkQM+HCGDMLYAacT7
-        wRz/AvhjdHjQI4tasfEfZxS/gfhtQj4GGP7IZyqEEH4Bi5/UGA2Nwk4AAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFsSURBVDhPnZOhcsMwEET1AQH9gILAAoPAgIDAgIDAkMwY
+        BnUCCwMLCwsNCw0DBQMFA/UJ9wfX3TvZkdug3Mx6LNv7pFvJgaVP1miWW9T8vpV83Erar6Dmri31KmkD
+        raiZxCZIvvYO4YVm+fnS3EGfJ83nVvNH0WnnOq41tdB+oWkz1/4tyBRAc3eeAmBMR6qYW5h31FzjcnYH
+        pMNKzEgVo9wSX1nxniYTZqci2uG7AmjEZqUqs1w6lb7z+xQ1rV9c/wAIy3uGObs5f5+9X8zKlbEMsnRI
+        RJh85gAkPYTFkks/CYwGhszKi2CQaQbcIhiYNKsGZK6gBiyDiVvJsQOwHEsYpqF/tpALQEoLihbkIQDL
+        seXaVt0hdYh6dfNjAAbWKyFF9TZyZq3MiYD6IJE2bI8fFAq9Uxv0v3bzCECQk5PIAR+OkEEYW4A04v1g
+        jn8B/DE6POiRRa3Y+I8zit9A/DYhHwMMf+QzFUIIvxdN0+cN+LWDAAAAAElFTkSuQmCC
 </value>
   </data>
 </root>

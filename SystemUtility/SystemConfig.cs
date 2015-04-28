@@ -43,8 +43,6 @@ namespace SystemUtility
 
         #region"多语言"
 
-
-
         /// <summary>
         ///     是否使用默认语言
         /// </summary>

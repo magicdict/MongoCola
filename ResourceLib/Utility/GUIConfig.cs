@@ -44,8 +44,7 @@ namespace ResourceLib.Utility
         /// <param name="DefaultText"></param>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static string GetText(string DefaultText,
-            TextType tag = TextType.UseDefaultLanguage)
+        public static string GetText(string DefaultText,TextType tag = TextType.UseDefaultLanguage)
         {
             if (IsUseDefaultLanguage || tag == TextType.UseDefaultLanguage) return DefaultText;
             return MStringResource.GetText(tag);
