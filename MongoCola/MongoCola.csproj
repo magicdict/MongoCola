@@ -116,8 +116,13 @@
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Config.cs" />
+    <Compile Include="Config\ConfigHelper.cs" />
+    <Compile Include="Config\SystemConfig.cs" />
     <Compile Include="frmExport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,7 +153,7 @@
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MutliTabManger.cs" />
+    <Compile Include="Config\MutliTabManger.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -456,10 +461,6 @@
     <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
       <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
       <Name>ResourceLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SystemUtility\SystemUtility.csproj">
-      <Project>{2F285CE0-729D-4388-9010-74C3B9862D69}</Project>
-      <Name>SystemUtility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SystemUtility;
+
 using Common.Logic;
 using Common.UI;
 using MongoDB.Bson;
@@ -24,7 +24,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmevalJS_Load(object sender, EventArgs e)
         {
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 Text = GUIConfig.GetText(TextType.EvalJS_Title);
                 ctlEval.Title = GUIConfig.GetText(TextType.EvalJS_Method);

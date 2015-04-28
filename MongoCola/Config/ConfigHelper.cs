@@ -2,7 +2,7 @@
 using Common.Logic;
 using MongoUtility.Core;
 
-namespace SystemUtility.Config
+namespace MongoCola
 {
     public static class ConfigHelper
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using SystemUtility;
+
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Basic;

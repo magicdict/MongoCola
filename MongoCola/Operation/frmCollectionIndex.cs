@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
-using SystemUtility;
+
 using Common.UI;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -36,7 +36,7 @@ namespace MongoCola.Operation
         /// <param name="e"></param>
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 Text = GUIConfig.GetText(TextType.CollectionIndex_Title);
                 tabCurrentIndex.Text =

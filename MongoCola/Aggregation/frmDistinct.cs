@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using SystemUtility;
+
 using Common.UI;
 using MongoDB.Bson;
 using MongoUtility.Aggregation;
@@ -47,7 +47,7 @@ namespace MongoCola.Aggregation
                 //纵向位置的累加
                 _conditionPos.Y += ctrItem.Height;
             }
-            if (SystemConfig.IsUseDefaultLanguage) return;
+            if (GUIConfig.IsUseDefaultLanguage) return;
             cmdQuery.Text =
                 GUIConfig.GetText(TextType.Distinct_Action_LoadQuery);
             cmdRun.Text = GUIConfig.GetText(TextType.Common_OK);

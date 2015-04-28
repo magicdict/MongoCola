@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using SystemUtility;
+
 using Common.Logic;
 using Common.UI;
 using MongoDB.Driver.Builders;
@@ -25,7 +25,7 @@ namespace MongoCola.Operation
 
         private void frmCreateCollection_Load(object sender, EventArgs e)
         {
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 Text = GUIConfig.GetText(TextType.Create_New_Collection);
                 lblCollectionName.Text =

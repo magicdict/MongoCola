@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SystemUtility;
+
 using Common.UI;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
@@ -138,7 +138,7 @@ namespace MongoCola
                 }
                 RefreshOtherDbRoles();
             }
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 if (_ModifyName == string.Empty)
                 {

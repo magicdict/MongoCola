@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using SystemUtility;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
@@ -26,7 +25,7 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 ctlMapFunction.Title =
                     GUIConfig.GetText(TextType.MapReduce_MapFunction);

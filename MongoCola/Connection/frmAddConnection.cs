@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
-using SystemUtility;
+
 using Common.UI;
 using MongoDB.Driver;
 using MongoUtility.Basic;
@@ -77,7 +77,7 @@ namespace MongoCola.Connection
                 cmbStorageEngine.SelectedIndex = 1;
             }
 
-            cmdAdd.Text = SystemConfig.IsUseDefaultLanguage
+            cmdAdd.Text = GUIConfig.IsUseDefaultLanguage
                 ? "Modify" : GUIConfig.GetText(TextType.Common_Modify);
         }
 
@@ -168,7 +168,7 @@ namespace MongoCola.Connection
             catch (MongoAuthenticationException ex)
             {
                 //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                if (!SystemConfig.IsUseDefaultLanguage)
+                if (!GUIConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
                         GUIConfig.GetText(
@@ -188,7 +188,7 @@ namespace MongoCola.Connection
                 //无法连接的理由：
                 //1.服务器没有启动
                 //2.认证模式不正确
-                if (!SystemConfig.IsUseDefaultLanguage)
+                if (!GUIConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
                         GUIConfig.GetText(TextType.Exception_NotConnected),

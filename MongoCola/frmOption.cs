@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using SystemUtility;
-using SystemUtility.Config;
+
+
 using MongoDB.Driver;
 using ResourceLib.Utility;
 
@@ -30,7 +30,7 @@ namespace MongoCola
                 }
             }
 
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 if (
                     File.Exists("Language" + Path.DirectorySeparatorChar +
@@ -89,7 +89,7 @@ namespace MongoCola
             NumWaitQueueSize.Value = SystemConfig.config.WaitQueueSize;
 
 
-            if (SystemConfig.IsUseDefaultLanguage) return;
+            if (GUIConfig.IsUseDefaultLanguage) return;
             //国际化
             Text = GUIConfig.GetText(TextType.Option_Title);
             cmdOK.Text = GUIConfig.GetText(TextType.Common_OK);

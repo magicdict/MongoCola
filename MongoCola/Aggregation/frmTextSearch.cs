@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using SystemUtility;
+
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Basic;
@@ -19,7 +19,7 @@ namespace MongoCola.Aggregation
         public frmTextSearch()
         {
             InitializeComponent();
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 btnSearch.Text = GUIConfig.GetText(TextType.Common_Search);
                 cmdSave.Text = GUIConfig.GetText(TextType.Common_Save);

@@ -12,7 +12,8 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using MongoUtility.Core;
 
-namespace SystemUtility.Config
+
+namespace MongoCola
 {
     /// <summary>
     ///     Description of Config.

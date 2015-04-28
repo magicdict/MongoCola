@@ -4,8 +4,8 @@ using ResourceLib.Utility;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SystemUtility;
-using SystemUtility.Config;
+
+
 
 namespace MongoCola.Connection
 {

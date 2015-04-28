@@ -8,7 +8,7 @@
  */
 
 using System.Windows.Forms;
-using SystemUtility;
+
 using Common.Logic;
 using MongoUtility.Basic;
 using MongoUtility.Core;
@@ -29,7 +29,7 @@ namespace MongoCola
         private void ConnectionHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
         {
             //普通连接
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 statusStripMain.Items[0].Text = "Selected Connection:" + RuntimeMongoDBContext.SelectTagData;
             }
@@ -132,7 +132,7 @@ namespace MongoCola
         private void ServerHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
         {
             RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 statusStripMain.Items[0].Text = "Selected Server:" + RuntimeMongoDBContext.SelectTagData;
             }
@@ -248,7 +248,7 @@ namespace MongoCola
             RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
             var roles = User.GetCurrentDBRoles(RuntimeMongoDBContext._CurrentMongoConnectionconfig.ConnectionName,
                 RuntimeMongoDBContext.GetCurrentDataBase().Name);
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 statusStripMain.Items[0].Text = "Selected DataBase:" + RuntimeMongoDBContext.SelectTagData;
             }
@@ -367,7 +367,7 @@ namespace MongoCola
 
         private void CollectionHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
         {
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 statusStripMain.Items[0].Text = "Selected Collection:" + RuntimeMongoDBContext.SelectTagData;
             }

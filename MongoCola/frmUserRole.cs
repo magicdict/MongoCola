@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using SystemUtility;
+
 using MongoDB.Bson;
 using ResourceLib.Utility;
 
@@ -16,7 +16,7 @@ namespace MongoCola
             Result = orgRoles;
             otherDBRolesPanel.setRoles(Result);
             otherDBRolesPanel.IsAdmin = false;
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 cmdOK.Text = GUIConfig.GetText(TextType.Common_OK);
                 cmdCancel.Text = GUIConfig.GetText(TextType.Common_Cancel);

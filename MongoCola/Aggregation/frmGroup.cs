@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using SystemUtility;
+
 using Common.Logic;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -140,7 +140,7 @@ namespace MongoCola.Aggregation
             firstAddBsonElCtl.setElement(el);
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
-            if (SystemConfig.IsUseDefaultLanguage) return;
+            if (GUIConfig.IsUseDefaultLanguage) return;
             ctlReduce.Title = GUIConfig.GetText(TextType.Group_Tab_Reduce);
             ctlFinalize.Title =
                 GUIConfig.GetText(TextType.Group_Tab_Finalize);

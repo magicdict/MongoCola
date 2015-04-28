@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SystemUtility;
-using SystemUtility.Config;
+
+
 using Common.UI;
 using MongoCola.Aggregation;
 using MongoCola.Connection;
@@ -36,7 +36,7 @@ namespace MongoCola
         {
             Utility.OpenForm(new frmOption(), true, true);
             SystemConfig.InitLanguage();
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 MyMessageBox.ShowMessage("Language", "Language will change to \"English\" when you restart this tool");
             }
@@ -123,7 +123,7 @@ namespace MongoCola
         private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ReplSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
-                SystemConfig.IsUseDefaultLanguage
+                GUIConfig.IsUseDefaultLanguage
                     ? "ReplSetName"
                     : GUIConfig.GetText(TextType.Replset_InitReplset));
             if (ReplSetName == string.Empty)
@@ -209,7 +209,7 @@ namespace MongoCola
                 RefreshToolStripMenuItem.Enabled = true;
                 RefreshToolStripButton.Enabled = true;
             }
-            statusStripMain.Items[0].Text = !SystemConfig.IsUseDefaultLanguage
+            statusStripMain.Items[0].Text = !GUIConfig.IsUseDefaultLanguage
                 ? GUIConfig.GetText(TextType.Main_StatusBar_Text_Ready)
                 : "Ready";
         }
@@ -319,7 +319,7 @@ namespace MongoCola
         private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strDBName = string.Empty;
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 strDBName = MyMessageBox.ShowInput("Please Input DataBaseName：", "Create Database");
             }
@@ -385,7 +385,7 @@ namespace MongoCola
             if (!string.IsNullOrEmpty(info))
             {
                 MyMessageBox.ShowMessage(
-                    SystemConfig.IsUseDefaultLanguage
+                    GUIConfig.IsUseDefaultLanguage
                         ? "UserInformation"
                         : GUIConfig.GetText("Main_Menu_Operation_Server_UserInfo"),
                     "The User Information of：[" +
@@ -431,7 +431,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ServePropertyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 MyMessageBox.ShowMessage("Server Property", "Server Property",
                     MongoUtility.Basic.Utility.GetCurrentSvrInfo(RuntimeMongoDBContext.GetCurrentServer()), true);
@@ -470,7 +470,7 @@ namespace MongoCola
         {
             var strTitle = "Drop Database";
             var strMessage = "Are you really want to Drop current Database?";
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 strTitle = GUIConfig.GetText(TextType.Drop_DataBase);
                 strMessage =
@@ -678,7 +678,7 @@ namespace MongoCola
         {
             var strTitle = "Drop Collection";
             var strMessage = "Are you sure to drop this Collection?";
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 strTitle = GUIConfig.GetText(TextType.Drop_Collection);
                 strMessage =
@@ -717,7 +717,7 @@ namespace MongoCola
             var strPath = RuntimeMongoDBContext.SelectTagData;
             var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
             var strNewCollectionName = string.Empty;
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 strNewCollectionName = MyMessageBox.ShowInput(
                     "Please input new collection name：",
@@ -765,7 +765,7 @@ namespace MongoCola
             trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" +
                                                   RuntimeMongoDBContext.GetCurrentCollection().GetStats().IsCapped;
 
-            if (SystemConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 statusStripMain.Items[0].Text = "selected Collection:" + RuntimeMongoDBContext.SelectTagData;
             }
@@ -952,7 +952,7 @@ namespace MongoCola
         {
             var strTitle = "Restore";
             var strMessage = "Are you sure to Restore?";
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 strTitle =
                     GUIConfig.GetText(
@@ -1072,7 +1072,7 @@ namespace MongoCola
         {
             var strTitle = "Import Collection";
             var strMessage = "Are you sure to Import Collection?";
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 strTitle = GUIConfig.GetText(TextType.Drop_Data);
                 strMessage = GUIConfig.GetText(TextType.Drop_Data_Confirm);

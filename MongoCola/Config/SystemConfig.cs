@@ -11,7 +11,7 @@ using System.IO;
 using Common.Logic;
 using ResourceLib.Utility;
 
-namespace SystemUtility
+namespace MongoCola
 {
     /// <summary>
     ///     Description of SystemManager.
@@ -22,7 +22,7 @@ namespace SystemUtility
 
         /// 配置
         /// </summary>
-        public static Config.Config config = new Config.Config();
+        public static Config config = new Config();
 
         /// <summary>
         ///     版本号
@@ -47,7 +47,7 @@ namespace SystemUtility
         ///     是否使用默认语言
         /// </summary>
         /// <returns></returns>
-        public static bool IsUseDefaultLanguage
+        private static bool IsUseDefaultLanguage
         {
             get
             {
