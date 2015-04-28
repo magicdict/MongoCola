@@ -358,6 +358,44 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     根据路径字符获得客户端
+        /// </summary>
+        /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
+        /// <returns></returns>
+        /// <param name="_mongoConnSvrLst"></param>
+        public static MongoClient GetMongoClientBySvrPath(string strObjTag,
+            Dictionary<string, MongoClient> _mongoConnSvrLst)
+        {
+            var strSvrPath = Utility.GetTagData(strObjTag);
+            var strPath = strSvrPath.Split("/".ToCharArray());
+            if (strPath.Length == 1)
+            {
+                //[Tag:Connection
+                if (_mongoConnSvrLst.ContainsKey(strPath[0]))
+                {
+                    return _mongoConnSvrLst[strPath[0]];
+                }
+            }
+            if (strPath.Length > (int)EnumMgr.PathLv.InstanceLv)
+            {
+                if (strPath[0] == strPath[1])
+                {
+                    //[Tag:Connection/Connection/DBName/Collection]
+                    return _mongoConnSvrLst[strPath[0]];
+                }
+                //[Tag:Connection/Host@Port/DBName/Collection]
+                var strInstKey = string.Empty;
+                strInstKey = strPath[(int)EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int)EnumMgr.PathLv.InstanceLv];
+                if (_mongoInstanceLst.ContainsKey(strInstKey))
+                {
+                    var mongoInstance = _mongoInstanceLst[strInstKey];
+                    return _mongoConnSvrLst[strPath[0]];
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         ///     根据路径字符获得数据库
         /// </summary>
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
@@ -372,6 +410,26 @@ namespace MongoUtility.Core
                 if (strPathArray.Length > (int) EnumMgr.PathLv.DatabaseLv)
                 {
                     rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int) EnumMgr.PathLv.DatabaseLv]);
+                }
+            }
+            return rtnMongoDB;
+        }
+        /// <summary>
+        ///     根据路径字符获得数据库
+        /// </summary>
+        /// <param name="strObjTag"></param>
+        /// <param name="mongoSvr"></param>
+        /// <returns></returns>
+        public static IMongoDatabase GetMongoDBBySvrPath(string strObjTag, MongoClient mongoSvr)
+        {
+            IMongoDatabase rtnMongoDB = null;
+            if (mongoSvr != null)
+            {
+                var strSvrPath = Utility.GetTagData(strObjTag);
+                var strPathArray = strSvrPath.Split("/".ToCharArray());
+                if (strPathArray.Length > (int)EnumMgr.PathLv.DatabaseLv)
+                {
+                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int)EnumMgr.PathLv.DatabaseLv]);
                 }
             }
             return rtnMongoDB;
@@ -392,6 +450,27 @@ namespace MongoUtility.Core
                 if (strPathArray.Length > (int) EnumMgr.PathLv.CollectionLv)
                 {
                     rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int) EnumMgr.PathLv.CollectionLv]);
+                }
+            }
+            return rtnMongoCollection;
+        }
+
+        /// <summary>
+        ///     通过路径获得数据集
+        /// </summary>
+        /// <param name="strObjTag"></param>
+        /// <param name="mongoDB"></param>
+        /// <returns></returns>
+        public static IMongoCollection<BsonDocument> GetMongoCollectionBySvrPath(string strObjTag, IMongoDatabase mongoDB)
+        {
+            IMongoCollection<BsonDocument> rtnMongoCollection = null;
+            if (mongoDB != null)
+            {
+                var strSvrPath = Utility.GetTagData(strObjTag);
+                var strPathArray = strSvrPath.Split("/".ToCharArray());
+                if (strPathArray.Length > (int)EnumMgr.PathLv.CollectionLv)
+                {
+                    rtnMongoCollection = mongoDB.GetCollection<BsonDocument>(strPathArray[(int)EnumMgr.PathLv.CollectionLv]);
                 }
             }
             return rtnMongoCollection;
