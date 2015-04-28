@@ -146,7 +146,7 @@ namespace MongoUtility.Basic
             }
             try
             {
-                Utility.OnActionDone(new ActionDoneEventArgs(RemoteName + " Uploading "));
+                MongoUtility.OnActionDone(new ActionDoneEventArgs(RemoteName + " Uploading "));
                 if (!gfs.Exists(RemoteName))
                 {
                     gfs.Upload(strFileName, RemoteName);

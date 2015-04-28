@@ -4,7 +4,7 @@ using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
+using ResourceLib;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -121,7 +121,7 @@ namespace MongoGUIView
             {
                 sb.AppendLine("/* " + (SkipCnt + Count) + " */");
 
-                sb.AppendLine(BsonDoc.ToJson(Utility.JsonWriterSettings));
+                sb.AppendLine(BsonDoc.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings));
                 Count++;
             }
             txtData.Text = sb.ToString();
@@ -326,8 +326,8 @@ namespace MongoGUIView
                 lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(Filename, false);
                 lstItem.Text = Filename;
                 lstItem.ToolTipText = Filename;
-                lstItem.SubItems.Add(Utility.GetBsonSize(docFile.GetValue("length")));
-                lstItem.SubItems.Add(Utility.GetBsonSize(docFile.GetValue("chunkSize")));
+                lstItem.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(docFile.GetValue("length")));
+                lstItem.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(docFile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
                 //!MONO

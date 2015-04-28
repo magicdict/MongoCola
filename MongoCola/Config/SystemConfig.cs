@@ -9,7 +9,7 @@
 
 using System.IO;
 using Common.Logic;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola
 {

@@ -9,8 +9,9 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Security;
 using ResourceLib.Properties;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+using Common.Logic;
+
 
 namespace MongoCola
 {

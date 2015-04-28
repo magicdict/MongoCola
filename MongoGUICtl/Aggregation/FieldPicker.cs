@@ -55,7 +55,7 @@ namespace MongoGUICtl.Aggregation
         /// <param name="mIsShow"></param>
         public void InitByCurrentCollection(bool mIsShow)
         {
-            var ColumnList = Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection());
+            var ColumnList = MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection());
             var FieldList = new List<DataFilter.QueryFieldItem>();
             foreach (var item in ColumnList)
             {

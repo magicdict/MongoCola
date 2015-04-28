@@ -10,7 +10,7 @@ using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUIView
 {

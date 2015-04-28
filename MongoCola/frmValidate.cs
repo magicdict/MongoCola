@@ -5,7 +5,7 @@ using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola
 {
@@ -56,7 +56,7 @@ namespace MongoCola
             dialog.Filter = Utility.JsFilter;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MongoUtility.Basic.Utility.SaveResultToJSonFile(Result, dialog.FileName);
+                MongoUtility.Basic.MongoUtility.SaveResultToJSonFile(Result, dialog.FileName);
             }
         }
     }

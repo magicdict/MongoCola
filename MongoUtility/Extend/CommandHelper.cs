@@ -6,7 +6,8 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.EventArgs;
-using Utility = Common.Logic.Utility;
+using Common.Logic;
+
 
 namespace MongoUtility.Extend
 {

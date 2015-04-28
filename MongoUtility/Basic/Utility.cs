@@ -19,7 +19,7 @@ using MongoUtility.EventArgs;
 
 namespace MongoUtility.Basic
 {
-    public static class Utility
+    public static class MongoUtility
     {
         /// <summary>
         ///     驱动版本 MongoDB.Driver.DLL

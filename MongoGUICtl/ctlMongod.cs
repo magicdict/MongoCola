@@ -2,8 +2,9 @@
 using System.Windows.Forms;
 using MongoUtility.Basic;
 using MongoUtility.EventArgs;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+using Common.Logic;
+
 
 namespace MongoGUICtl
 {

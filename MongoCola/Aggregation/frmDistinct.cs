@@ -8,7 +8,7 @@ using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola.Aggregation
 {
@@ -37,7 +37,7 @@ namespace MongoCola.Aggregation
         private void frmSelectKey_Load(object sender, EventArgs e)
         {
             var mongoCol = RuntimeMongoDBContext.GetCurrentCollection();
-            var MongoColumn = Utility.GetCollectionSchame(mongoCol);
+            var MongoColumn = MongoUtility.Basic.MongoUtility.GetCollectionSchame(mongoCol);
             var _conditionPos = new Point(20, 20);
             foreach (var item in MongoColumn)
             {
@@ -96,7 +96,7 @@ namespace MongoCola.Aggregation
                     strResult = "Too many result,Display first 1000 records" + Environment.NewLine + strResult;
                     break;
                 }
-                strResult += item.ToJson(Utility.JsonWriterSettings) + Environment.NewLine;
+                strResult += item.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings) + Environment.NewLine;
                 Count++;
             }
             strResult = "Distinct Count: " + ResultList.Count + Environment.NewLine + Environment.NewLine + strResult;

@@ -3,8 +3,9 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using MongoUtility.Basic;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+using Common.Logic;
+
 
 namespace PlugInPackage.DosCommand
 {
@@ -65,7 +66,7 @@ namespace PlugInPackage.DosCommand
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = Utility.ConfFilter};
+            var savefile = new SaveFileDialog { Filter = Utility.ConfFilter };
             if (savefile.ShowDialog() != DialogResult.OK)
                 return;
             var save = new StreamWriter(savefile.FileName);

@@ -5,7 +5,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Properties;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola.Status
 {

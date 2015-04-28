@@ -5,7 +5,7 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Properties;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUICtl
 {

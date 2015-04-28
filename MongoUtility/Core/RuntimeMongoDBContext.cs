@@ -13,7 +13,8 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Security;
-using Utility = Common.Logic.Utility;
+using Common.Logic;
+
 
 namespace MongoUtility.Core
 {

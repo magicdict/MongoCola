@@ -143,9 +143,9 @@ namespace MongoUtility.Aggregation
                     .SetLimit(CurrentDataViewInfo.LimitCnt);
             }
             CurrentDataViewInfo.Query = cursor.Query != null
-                ? cursor.Query.ToJson(Utility.JsonWriterSettings)
+                ? cursor.Query.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings)
                 : string.Empty;
-            CurrentDataViewInfo.Explain = cursor.Explain().ToJson(Utility.JsonWriterSettings);
+            CurrentDataViewInfo.Explain = cursor.Explain().ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings);
             var dataList = cursor.ToList();
             if (CurrentDataViewInfo.SkipCnt == 0)
             {

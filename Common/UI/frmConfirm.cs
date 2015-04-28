@@ -1,4 +1,4 @@
-﻿using ResourceLib.Utility;
+﻿using ResourceLib;
 using System;
 using System.Windows.Forms;
 

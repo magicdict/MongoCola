@@ -8,12 +8,12 @@ using MongoUtility.Core;
 using MongoUtility.Extend;
 using PlugInPackage;
 using ResourceLib.Properties;
-using ResourceLib.Utility;
+using ResourceLib;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-using Utility = Common.Logic.Utility;
+
 
 namespace MongoCola
 {
@@ -96,7 +96,7 @@ namespace MongoCola
             CommandHelper.RunCommandComplete += CommandLog;
             //长时间操作时候，实时提示进度在状态栏中
             lblAction.Text = string.Empty;
-            MongoUtility.Basic.Utility.ActionDone += (x, y) =>
+            MongoUtility.Basic.MongoUtility.ActionDone += (x, y) =>
             {
                 //1.lblAction 没有InvokeRequired
                 //2.DoEvents必须
@@ -414,15 +414,15 @@ namespace MongoCola
                 switch (RuntimeMongoDBContext.SelectTagType)
                 {
                     case ConstMgr.USER_LIST_TAG:
-                        MongoUtility.Basic.Utility.InitDBUser(RuntimeMongoDBContext.GetCurrentDataBase());
+                        MongoUtility.Basic.MongoUtility.InitDBUser(RuntimeMongoDBContext.GetCurrentDataBase());
                         ViewDataRecord();
                         break;
                     case ConstMgr.GRID_FILE_SYSTEM_TAG:
-                        MongoUtility.Basic.Utility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
+                        MongoUtility.Basic.MongoUtility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
                         ViewDataRecord();
                         break;
                     case ConstMgr.JAVASCRIPT_TAG:
-                        MongoUtility.Basic.Utility.InitJavascript(RuntimeMongoDBContext.GetCurrentDataBase());
+                        MongoUtility.Basic.MongoUtility.InitJavascript(RuntimeMongoDBContext.GetCurrentDataBase());
                         break;
                     case ConstMgr.JAVASCRIPT_DOC_TAG:
                         ViewJavascript();

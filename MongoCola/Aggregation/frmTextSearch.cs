@@ -7,8 +7,9 @@ using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+using Common.Logic;
+
 
 namespace MongoCola.Aggregation
 {
@@ -98,7 +99,7 @@ namespace MongoCola.Aggregation
             dialog.Filter = Utility.JsFilter;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MongoUtility.Basic.Utility.SaveResultToJSonFile(Result, dialog.FileName);
+                MongoUtility.Basic.MongoUtility.SaveResultToJSonFile(Result, dialog.FileName);
             }
         }
     }

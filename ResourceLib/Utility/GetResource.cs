@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using ResourceLib.Properties;
 
-namespace ResourceLib.Utility
+namespace ResourceLib
 {
     public class GetResource
     {

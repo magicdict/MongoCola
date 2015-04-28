@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoUtility.Basic;
-using ResourceLib.Utility;
+using ResourceLib;
 using MongoDB.Bson;
 using System.Threading.Tasks;
 using System.Linq.Expressions;

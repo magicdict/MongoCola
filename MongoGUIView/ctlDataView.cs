@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using Common.Logic;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUIView
 {

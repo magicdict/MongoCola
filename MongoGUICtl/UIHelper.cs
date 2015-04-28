@@ -7,8 +7,9 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using MongoUtility.Security;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+using Common.Logic;
+
 
 namespace MongoGUICtl
 {

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 using MongoDB.Driver;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola.Status
 {

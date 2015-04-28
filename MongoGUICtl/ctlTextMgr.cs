@@ -3,7 +3,8 @@ using System.Windows.Forms;
 using Common.UI;
 using MongoUtility.Basic;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
+using ResourceLib;
+using Common.Logic;
 
 namespace MongoGUICtl
 {
@@ -37,7 +38,7 @@ namespace MongoGUICtl
         {
             if (!DesignMode)
             {
-                foreach (var item in Utility.GetJsNameList())
+                foreach (var item in MongoUtility.Basic.MongoUtility.GetJsNameList())
                 {
                     cmbJsList.Items.Add(item);
                 }

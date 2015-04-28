@@ -75,7 +75,7 @@ namespace MongoUtility.Aggregation
             {
                 return null;
             }
-            var ColumnNameLst = Utility.GetCollectionSchame(mongoCol);
+            var ColumnNameLst = MongoUtility.Basic.MongoUtility.GetCollectionSchame(mongoCol);
             if (strSelect == "*")
             {
                 //Select * 

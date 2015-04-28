@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Common.UI;
 using Microsoft.VisualBasic;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace Common.Logic
 {

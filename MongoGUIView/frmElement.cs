@@ -4,7 +4,7 @@ using Common.UI;
 using MongoDB.Bson;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUIView
 {

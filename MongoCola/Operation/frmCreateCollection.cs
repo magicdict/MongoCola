@@ -8,7 +8,7 @@ using Common.UI;
 using MongoDB.Driver.Builders;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola.Operation
 {

@@ -31,7 +31,7 @@ namespace MongoGUICtl.Aggregation
             InitializeComponent();
             if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {
-                ColumnList = Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection());
+                ColumnList = MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection());
             }
         }
 

@@ -32,7 +32,7 @@ namespace MongoGUICtl.Aggregation
             if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {
                 cmbGroupValue.Items.Add("1");
-                foreach (var item in Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (var item in MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
                 {
                     cmbGroupFunction.Items.Add("$" + item);
                     cmbGroupValue.Items.Add("$" + item);

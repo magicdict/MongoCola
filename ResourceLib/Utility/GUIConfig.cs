@@ -11,7 +11,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ResourceLib.Utility
+namespace ResourceLib
 {
     /// <summary>
     ///     Description of UIConfig.

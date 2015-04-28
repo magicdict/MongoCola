@@ -9,8 +9,9 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+using Common.Logic;
+
 
 namespace MongoGUICtl
 {
@@ -239,20 +240,20 @@ namespace MongoGUICtl
                     {
                         lst.SubItems.Add("0");
                     }
-                    lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.DataSize));
+                    lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(dbStatus.DataSize));
                     try
                     {
                         //WideTiger:FileSize
-                        lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.FileSize));
+                        lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(dbStatus.FileSize));
                     }
                     catch (Exception)
                     {
                         lst.SubItems.Add("N/A");
                     }
                     lst.SubItems.Add(dbStatus.IndexCount.ToString());
-                    lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.IndexSize));
+                    lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(dbStatus.IndexSize));
                     lst.SubItems.Add(dbStatus.ObjectCount.ToString());
-                    lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.StorageSize));
+                    lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(dbStatus.StorageSize));
                     lstSvr.Items.Add(lst);
                 }
             }
@@ -337,20 +338,20 @@ namespace MongoGUICtl
                             var CollectionStatus = mongoDB.GetCollection(strColName).GetStats();
                             var lst = new ListViewItem(mongoSvrKey + "." + strDBName + "." + strColName);
                             lst.SubItems.Add(CollectionStatus.ObjectCount.ToString());
-                            lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.DataSize));
+                            lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(CollectionStatus.DataSize));
                             try
                             {
                                 //WideTiger:LastExtentSize
                                 lst.SubItems.Add(
-                                    MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.LastExtentSize));
+                                    MongoUtility.Basic.MongoUtility.GetBsonSize(CollectionStatus.LastExtentSize));
                             }
                             catch (Exception)
                             {
                                 lst.SubItems.Add("N/A");
                             }
 
-                            lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.StorageSize));
-                            lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.TotalIndexSize));
+                            lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(CollectionStatus.StorageSize));
+                            lst.SubItems.Add(MongoUtility.Basic.MongoUtility.GetBsonSize(CollectionStatus.TotalIndexSize));
 
                             //2012-3-6
                             lst.SubItems.Add(CollectionStatus.IsCapped.ToString());
@@ -368,7 +369,7 @@ namespace MongoGUICtl
                             }
 
                             lst.SubItems.Add(CollectionStatus.ObjectCount != 0
-                                ? MongoUtility.Basic.Utility.GetBsonSize((long) CollectionStatus.AverageObjectSize)
+                                ? MongoUtility.Basic.MongoUtility.GetBsonSize((long) CollectionStatus.AverageObjectSize)
                                 : "0");
 
                             try

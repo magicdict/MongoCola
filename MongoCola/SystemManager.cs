@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using Common.Logic;
 
 namespace MongoCola
 {
@@ -19,17 +20,17 @@ namespace MongoCola
         {
             //MongoDB驱动版本的取得
             var info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Driver.dll");
-            Utility.MongoDbDriverVersion = info.ProductVersion;
+            MongoUtility.Basic.MongoUtility.MongoDbDriverVersion = info.ProductVersion;
             info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Bson.dll");
-            Utility.MongoDbBsonVersion = info.ProductVersion;
+            MongoUtility.Basic.MongoUtility.MongoDbBsonVersion = info.ProductVersion;
             //版本设定
             SystemConfig.Version = Application.ProductVersion;
             SystemConfig.DebugMode = false;
             SystemConfig.MonoMode = Type.GetType("Mono.Runtime") != null;
             //异常处理器的初始化
-            Common.Logic.Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + Utility.MongoDbDriverVersion +
+            Common.Logic.Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + MongoUtility.Basic.MongoUtility.MongoDbDriverVersion +
                                                        Environment.NewLine;
-            Common.Logic.Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + Utility.MongoDbBsonVersion +
+            Common.Logic.Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + MongoUtility.Basic.MongoUtility.MongoDbBsonVersion +
                                                         Environment.NewLine;
             //config
             var localconfigfile = Application.StartupPath + "\\" + ConfigHelper._configFilename;

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using MongoUtility.Basic;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUIView
 {

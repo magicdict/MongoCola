@@ -3,9 +3,10 @@ using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+
 using MongoDB.Bson;
+using Common.Logic;
 
 
 namespace MongoGUICtl

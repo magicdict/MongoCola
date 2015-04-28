@@ -15,7 +15,7 @@ using MongoUtility.Core;
 using MongoUtility.Extend;
 using MongoUtility.Security;
 using PlugInPackage;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola
 {

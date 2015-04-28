@@ -6,8 +6,9 @@ using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+using Common.Logic;
+
 
 namespace MongoCola
 {
@@ -69,7 +70,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MongoUtility.Basic.Utility.ActionDone += (x, y) => MyMessageBox.ShowMessage("ExportImport", y.Message);
+            MongoUtility.Basic.MongoUtility.ActionDone += (x, y) => MyMessageBox.ShowMessage("ExportImport", y.Message);
             ExportImport.ExportToFile(_viewinfo, ctlExportFilePicker.SelectedPathOrFileName, _exportType,
                 RuntimeMongoDBContext.GetCurrentCollection());
         }

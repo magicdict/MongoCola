@@ -6,7 +6,7 @@ using Common.UI;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUIView
 {

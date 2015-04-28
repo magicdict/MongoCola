@@ -8,6 +8,7 @@ using MongoDB.Driver;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.EventArgs;
+using Common.Logic;
 
 namespace MongoUtility.Extend
 {
@@ -46,12 +47,12 @@ namespace MongoUtility.Extend
                     GC.Collect();
                     break;
                 case EnumMgr.ExportType.Text:
-                    ExportToJson(dataList, ExcelFileName, Utility.JsonWriterSettings);
+                    ExportToJson(dataList, ExcelFileName, MongoUtility.Basic.MongoUtility.JsonWriterSettings);
                     break;
                 case EnumMgr.ExportType.Xml:
                     break;
             }
-            Utility.OnActionDone(new ActionDoneEventArgs(" Completed "));
+            MongoUtility.Basic.MongoUtility.OnActionDone(new ActionDoneEventArgs(" Completed "));
         }
 
         /// <summary>

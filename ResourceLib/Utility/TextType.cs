@@ -1,4 +1,4 @@
-﻿namespace ResourceLib.Utility
+﻿namespace ResourceLib
 {
     /// <summary>
     ///     字符枚举

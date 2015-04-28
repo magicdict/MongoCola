@@ -6,7 +6,7 @@ using Common.Logic;
 using Common.UI;
 using MongoDB.Bson;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola
 {
@@ -84,7 +84,7 @@ namespace MongoCola
             {
                 var result = mongoDB.Eval(js, Params.ToArray());
                 MyMessageBox.ShowMessage("Result", "Result",
-                    result.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings), true);
+                    result.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings), true);
             }
             catch (Exception ex)
             {

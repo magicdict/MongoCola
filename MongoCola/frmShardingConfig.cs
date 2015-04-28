@@ -8,7 +8,7 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola
 {
@@ -140,7 +140,7 @@ namespace MongoCola
             }
             Resultlst.Add(Result);
             MyMessageBox.ShowMessage("Add Sharding", "Result:" + (Result.Ok ? "OK" : "Fail"),
-                Utility.ConvertCommandResultlstToString(Resultlst));
+                MongoUtility.Basic.MongoUtility.ConvertCommandResultlstToString(Resultlst));
             lstSharding.Items.Clear();
             foreach (var lst in OperationHelper.GetShardInfo(_prmSvr, "_id"))
             {
@@ -254,7 +254,7 @@ namespace MongoCola
         {
             var Resultlst = new List<CommandResult> {CommandHelper.EnableSharding(_prmSvr, cmbDataBase.Text)};
             MyMessageBox.ShowMessage("EnableSharding", "Result",
-                Utility.ConvertCommandResultlstToString(Resultlst));
+                MongoUtility.Basic.MongoUtility.ConvertCommandResultlstToString(Resultlst));
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace MongoCola
             BsonDocument IndexDoc = Result[cmbIndexList.SelectedIndex].Key;
             Resultlst.Add(CommandHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, IndexDoc));
             MyMessageBox.ShowMessage("EnableSharding", "Result",
-                Utility.ConvertCommandResultlstToString(Resultlst));
+                MongoUtility.Basic.MongoUtility.ConvertCommandResultlstToString(Resultlst));
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace MongoCola
             {
                 var Resultlst = new List<CommandResult> {CommandHelper.RemoveSharding(_prmSvr, item)};
                 MyMessageBox.ShowMessage("Remove Sharding", "Result",
-                    Utility.ConvertCommandResultlstToString(Resultlst));
+                    MongoUtility.Basic.MongoUtility.ConvertCommandResultlstToString(Resultlst));
             }
             lstSharding.Items.Clear();
             foreach (var lst in OperationHelper.GetShardInfo(_prmSvr, "_id"))
@@ -304,7 +304,7 @@ namespace MongoCola
             {
                 CommandHelper.AddShardTag(_prmSvr, txtShardName.Text, txtTagShard.Text)
             };
-            MyMessageBox.ShowMessage("Add Shard Tag", "Result", Utility.ConvertCommandResultlstToString(Resultlst));
+            MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoUtility.Basic.MongoUtility.ConvertCommandResultlstToString(Resultlst));
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace MongoCola
                     ctlBsonValueShardKeyFrom.getValue(),
                     ctlBsonValueShardKeyTo.getValue(), cmbTagList.Text.Split(".".ToCharArray())[1])
             };
-            MyMessageBox.ShowMessage("Add Shard Tag", "Result", Utility.ConvertCommandResultlstToString(Resultlst));
+            MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoUtility.Basic.MongoUtility.ConvertCommandResultlstToString(Resultlst));
         }
 
         /// <summary>

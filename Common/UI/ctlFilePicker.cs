@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace Common.UI
 {

@@ -8,7 +8,7 @@ using Common.UI;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola.Connection
 {
@@ -214,7 +214,7 @@ namespace MongoCola.Connection
             ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != string.Empty)
             {
-                var strException = Utility.FillConfigWithConnectionString(ref ModifyConn);
+                var strException = MongoUtility.Basic.MongoUtility.FillConfigWithConnectionString(ref ModifyConn);
                 if (strException != string.Empty)
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);

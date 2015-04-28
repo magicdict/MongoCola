@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 
 using MongoDB.Driver;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola
 {

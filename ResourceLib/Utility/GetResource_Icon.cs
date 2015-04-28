@@ -1,4 +1,4 @@
-﻿namespace ResourceLib.Utility
+﻿namespace ResourceLib
 {
     public enum IconType
     {

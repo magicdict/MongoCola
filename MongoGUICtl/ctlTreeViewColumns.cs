@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using MongoDB.Bson;
 using MongoUtility.Basic;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUICtl
 {

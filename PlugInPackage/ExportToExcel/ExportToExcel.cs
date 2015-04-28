@@ -46,7 +46,7 @@ namespace PlugInPackage.ExportToExcel
         /// <param name="filename"></param>
         private static void Export(List<BsonDocument> dataList, string filename)
         {
-            var Schame = Utility.GetCollectionSchame(ProcessCollection);
+            var Schame = MongoUtility.Basic.MongoUtility.GetCollectionSchame(ProcessCollection);
             dynamic excelObj = Interaction.CreateObject("Excel.Application");
             excelObj.Visible = true;
             dynamic workbook;

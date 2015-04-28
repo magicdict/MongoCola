@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using ResourceLib.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Microsoft.Win32;
-using ResourceLib.Properties;
 
-namespace ResourceLib.Utility
+namespace ResourceLib
 {
     /// <summary>
     ///     提供从操作系统读取图标的方法

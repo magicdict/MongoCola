@@ -36,7 +36,7 @@ namespace MongoGUICtl.Aggregation
             }
             if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {
-                foreach (var item in Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (var item in MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
                 {
                     cmbField.Items.Add(item);
                 }

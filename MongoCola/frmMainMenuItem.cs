@@ -18,8 +18,9 @@ using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
-using Utility = Common.Logic.Utility;
+using ResourceLib;
+using Common.Logic;
+
 
 namespace MongoCola
 {
@@ -434,7 +435,7 @@ namespace MongoCola
             if (GUIConfig.IsUseDefaultLanguage)
             {
                 MyMessageBox.ShowMessage("Server Property", "Server Property",
-                    MongoUtility.Basic.Utility.GetCurrentSvrInfo(RuntimeMongoDBContext.GetCurrentServer()), true);
+                    MongoUtility.Basic.MongoUtility.GetCurrentSvrInfo(RuntimeMongoDBContext.GetCurrentServer()), true);
             }
             else
             {
@@ -443,7 +444,7 @@ namespace MongoCola
                         "Main_Menu_Operation_Server_Properties"),
                     GUIConfig.GetText(
                         "Main_Menu_Operation_Server_Properties"),
-                    MongoUtility.Basic.Utility.GetCurrentSvrInfo(RuntimeMongoDBContext.GetCurrentServer()), true);
+                    MongoUtility.Basic.MongoUtility.GetCurrentSvrInfo(RuntimeMongoDBContext.GetCurrentServer()), true);
             }
         }
 
@@ -597,7 +598,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoUtility.Basic.Utility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
+            MongoUtility.Basic.MongoUtility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
             DisableAllOpr();
             trvsrvlst.Nodes.Clear();
             var connectNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst, SystemConfig.config.ConnectionList);
@@ -635,7 +636,7 @@ namespace MongoCola
         {
             var strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
             if (strJsName == string.Empty) return;
-            var jsCol = MongoUtility.Basic.Utility.GetCurrentJsCollection(RuntimeMongoDBContext.GetCurrentDataBase());
+            var jsCol = MongoUtility.Basic.MongoUtility.GetCurrentJsCollection(RuntimeMongoDBContext.GetCurrentDataBase());
             if (QueryHelper.IsExistByKey(jsCol, strJsName))
             {
                 MyMessageBox.ShowMessage("Error", "javascript is already exist");

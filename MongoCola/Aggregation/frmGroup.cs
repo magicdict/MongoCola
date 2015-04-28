@@ -11,7 +11,7 @@ using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola.Aggregation
 {
@@ -124,7 +124,7 @@ namespace MongoCola.Aggregation
         private void frmGroup_Load(object sender, EventArgs e)
         {
             var mongoCol = RuntimeMongoDBContext.GetCurrentCollection();
-            var MongoColumn = MongoUtility.Basic.Utility.GetCollectionSchame(mongoCol);
+            var MongoColumn = MongoUtility.Basic.MongoUtility.GetCollectionSchame(mongoCol);
             var _conditionPos = new Point(50, 20);
             foreach (var item in MongoColumn)
             {

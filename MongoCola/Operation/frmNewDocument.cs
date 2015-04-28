@@ -6,7 +6,7 @@ using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoCola.Operation
 {
@@ -77,7 +77,7 @@ namespace MongoCola.Operation
                 newdoc = BsonDocument.Parse(txtDocument.Text);
                 UIHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
-                txtDocument.Text = newdoc.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings);
+                txtDocument.Text = newdoc.ToJson(MongoUtility.Basic.MongoUtility.JsonWriterSettings);
             }
             catch (Exception ex)
             {

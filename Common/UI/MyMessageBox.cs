@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Common.Logic;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace Common.UI
 {

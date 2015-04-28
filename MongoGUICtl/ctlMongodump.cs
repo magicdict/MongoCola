@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MongoUtility.Basic;
 using MongoUtility.EventArgs;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUICtl
 {

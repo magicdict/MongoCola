@@ -54,7 +54,7 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void frmAggregation_Load(object sender, EventArgs e)
         {
-            foreach (var item in Utility.GetJsNameList())
+            foreach (var item in MongoUtility.Basic.MongoUtility.GetJsNameList())
             {
                 cmbForAggregatePipeline.Items.Add(item);
             }

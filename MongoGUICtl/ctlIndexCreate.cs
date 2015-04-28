@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using ResourceLib;
 
 namespace MongoGUICtl
 {
@@ -16,7 +16,7 @@ namespace MongoGUICtl
             GUIConfig.Translateform(Controls);
             if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {
-                foreach (var FieldName in Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (var FieldName in MongoUtility.Basic.MongoUtility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
                 {
                     cmbKeyName.Items.Add(FieldName);
                 }
