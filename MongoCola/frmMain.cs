@@ -10,7 +10,6 @@ using PlugInPackage;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using SystemUtility;
@@ -52,21 +51,6 @@ namespace MongoCola
             }
         }
 
-        #region "多文档视图管理"
-
-        /// <summary>
-        ///     多文档视图管理
-        /// </summary>
-        public static Dictionary<string, DataViewInfo> _viewInfoList =
-            new Dictionary<string, DataViewInfo>();
-
-        /// <summary>
-        ///     多文档视图管理
-        /// </summary>
-        public static Dictionary<string, TabPage> _viewTabList = new Dictionary<string, TabPage>();
-
-        #endregion
-
         /// <summary>
         ///     Load Form
         /// </summary>
@@ -74,8 +58,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //加载插件
-            PlugInSetting();
+            //加载到菜单
+            PlugIn.LoadPlugInMenuItem(plugInToolStripMenuItem);
             //禁用操作
             DisableAllOpr();
             //Set Tool bar button enable
@@ -121,50 +105,7 @@ namespace MongoCola
             };
         }
 
-        /// <summary>
-        ///     加载插件信息
-        /// </summary>
-        private void PlugInSetting()
-        {
-            try
-            {
-                PlugIn.LoadPlugIn();
-                foreach (var plugin in PlugIn.PlugInList)
-                {
-                    var PlugInType = string.Empty;
-                    switch (plugin.Value.RunLv)
-                    {
-                        case PlugInBase.PathLv.ConnectionLV:
-                            PlugInType = "[Connection]";
-                            break;
-                        case PlugInBase.PathLv.InstanceLV:
-                            PlugInType = "[Instance]";
-                            break;
-                        case PlugInBase.PathLv.DatabaseLV:
-                            PlugInType = "[Database]";
-                            break;
-                        case PlugInBase.PathLv.CollectionLV:
-                            PlugInType = "[Collection]";
-                            break;
-                        case PlugInBase.PathLv.DocumentLV:
-                            PlugInType = "[Document]";
-                            break;
-                        case PlugInBase.PathLv.Misc:
-                            PlugInType = "[Misc]";
-                            break;
-                    }
-                    ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName + PlugInType);
-                    menu.ToolTipText = plugin.Value.PlugFunction;
-                    menu.Tag = plugin.Key;
-                    menu.Click += (x, y) => PlugIn.RunPlugIn(plugin.Key);
-                    plugInToolStripMenuItem.DropDownItems.Add(menu);
-                }
-            }
-            catch (Exception ex)
-            {
-                Utility.ExceptionDeal(ex);
-            }
-        }
+
 
 
         /// <summary>
@@ -558,9 +499,9 @@ namespace MongoCola
         {
             var DataList = RuntimeMongoDBContext.SelectTagData.Split("/".ToCharArray());
 
-            if (_viewTabList.ContainsKey(RuntimeMongoDBContext.SelectTagData))
+            if (MutliTabManger.TabInfo.ContainsKey(RuntimeMongoDBContext.SelectTagData))
             {
-                tabView.SelectTab(_viewTabList[RuntimeMongoDBContext.SelectTagData]);
+                tabView.SelectTab(MutliTabManger.TabInfo[RuntimeMongoDBContext.SelectTagData].Tab);
             }
             else
             {
@@ -584,11 +525,11 @@ namespace MongoCola
                 };
                 JavaScriptStripMenuItem.DropDownItems.Add(DataMenuItem);
                 DataMenuItem.Click += (x, y) => tabView.SelectTab(DataTab);
-                _viewTabList.Add(RuntimeMongoDBContext.SelectTagData, DataTab);
+                MutliTabManger.AddTabView(RuntimeMongoDBContext.SelectTagData,null,DataTab);
                 JsEditor.CloseTab += (x, y) =>
                 {
                     tabView.Controls.Remove(DataTab);
-                    _viewTabList.Remove(RuntimeMongoDBContext.SelectTagData);
+                    MutliTabManger.RemoveTab(RuntimeMongoDBContext.SelectTagData);
                     JavaScriptStripMenuItem.DropDownItems.Remove(DataMenuItem);
                 };
                 tabView.SelectTab(DataTab);
@@ -603,9 +544,9 @@ namespace MongoCola
             //由于Collection 和 Document 都可以触发这个事件，所以，先把Tag以前的标题头去掉
             //Collectiong:XXXX 和 Document:XXXX 都统一成 XXXX
             var DataKey = RuntimeMongoDBContext.SelectTagData;
-            if (_viewTabList.ContainsKey(DataKey))
+            if (MutliTabManger.TabInfo.ContainsKey(DataKey))
             {
-                tabView.SelectTab(_viewTabList[DataKey]);
+                tabView.SelectTab(MutliTabManger.TabInfo[DataKey].Tab);
             }
             else
             {
@@ -666,13 +607,12 @@ namespace MongoCola
                 };
                 collectionToolStripMenuItem.DropDownItems.Add(DataMenuItem);
                 DataMenuItem.Click += (x, y) => tabView.SelectTab(DataTab);
-                _viewTabList.Add(DataKey, DataTab);
-                _viewInfoList.Add(DataKey, mDataViewInfo);
+                MutliTabManger.AddTabView(DataKey, mDataViewInfo, DataTab);
+                
                 DataViewctl.CloseTab += (x, y) =>
                 {
+                    MutliTabManger.RemoveTab(DataKey);
                     tabView.Controls.Remove(DataTab);
-                    _viewTabList.Remove(DataKey);
-                    _viewInfoList.Remove(DataKey);
                     collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
                     DataTab = null;
                 };

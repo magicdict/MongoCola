@@ -27,19 +27,20 @@ namespace MongoCola
             /// </summary>
             public TabPage Tab;
         }
-
         /// <summary>
         ///     新增一个视图
         /// </summary>
         /// <param name="Key"></param>
         /// <param name="Info"></param>
         /// <param name="Tab"></param>
-        public static void AddTabView(string Key,DataViewInfo Info,TabPage Tab){
-            TabViewItem t = new TabViewItem(){
+        public static void AddTabView(string Key, DataViewInfo Info, TabPage Tab)
+        {
+            TabViewItem t = new TabViewItem()
+            {
                 Info = Info,
                 Tab = Tab
-            }
-            TabInfo.Add(key,t);
+            };
+            TabInfo.Add(Key, t);
         }
         /// <summary>
         ///     去除一个视图
@@ -47,8 +48,18 @@ namespace MongoCola
         /// <param name="Key"></param>
         public static void RemoveTab(string Key)
         {
-            TabInfo.Remove(key);
+            TabInfo.Remove(Key);
         }
-
+        /// <summary>
+        /// 主键变更
+        /// </summary>
+        /// <param name="strNewNodeData"></param>
+        /// <param name="strNodeData"></param>
+        public static void ChangeKey(string strNewNodeData, string strNodeData)
+        {
+            TabViewItem Item = TabInfo[strNodeData];
+            RemoveTab(strNodeData);
+            AddTabView(strNodeData, Item.Info, Item.Tab);
+        }
     }
 }

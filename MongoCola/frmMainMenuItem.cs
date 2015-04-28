@@ -80,7 +80,7 @@ namespace MongoCola
             {
                 //关闭相关的Tab
                 var CloseList = new List<string>();
-                foreach (var item in _viewTabList.Keys)
+                foreach (var item in MutliTabManger.TabInfo.Keys)
                 {
                     if (item.StartsWith(RuntimeMongoDBContext._CurrentMongoConnectionconfig.ConnectionName + "/"))
                     {
@@ -89,10 +89,8 @@ namespace MongoCola
                 }
                 foreach (var CloseTabKey in CloseList)
                 {
-                    tabView.Controls.Remove(_viewTabList[CloseTabKey]);
-                    _viewTabList[CloseTabKey] = null;
-                    _viewTabList.Remove(CloseTabKey);
-                    _viewInfoList.Remove(CloseTabKey);
+                    tabView.Controls.Remove(MutliTabManger.TabInfo[CloseTabKey].Tab);
+                    MutliTabManger.RemoveTab(CloseTabKey);
                     var MenuKey = string.Empty;
                     ToolStripMenuItem CloseMenuItem = null;
                     foreach (ToolStripMenuItem menuitem in collectionToolStripMenuItem.DropDownItems)
@@ -227,7 +225,7 @@ namespace MongoCola
                 var ConnectionTreeNodes = new List<TreeNode>();
                 await Task.Run(() =>
                 {
-                    ConnectionTreeNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst,SystemConfig.config.ConnectionList);
+                    ConnectionTreeNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst, SystemConfig.config.ConnectionList);
                 });
                 //如果第一个节点的字节点不为空
                 if (ConnectionTreeNodes != null)
@@ -481,7 +479,7 @@ namespace MongoCola
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strDBName = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.DatabaseLv];
+            var strDBName = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.DatabaseLv];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
@@ -494,9 +492,9 @@ namespace MongoCola
                 //关闭所有的相关视图
                 //foreach不能直接修改，需要一个备份
                 var tempTable = new Dictionary<string, TabPage>();
-                foreach (var item in _viewTabList.Keys)
+                foreach (var item in MutliTabManger.TabInfo.Keys)
                 {
-                    tempTable.Add(item, _viewTabList[item]);
+                    tempTable.Add(item, MutliTabManger.TabInfo[item].Tab);
                 }
 
                 foreach (var KeyItem in tempTable.Keys)
@@ -508,7 +506,7 @@ namespace MongoCola
                         foreach (ToolStripMenuItem Menuitem in collectionToolStripMenuItem.DropDownItems)
                         {
                             //菜单的寻找
-                            if (Menuitem.Tag == _viewTabList[KeyItem].Tag)
+                            if (Menuitem.Tag == MutliTabManger.TabInfo[KeyItem].Tab.Tag)
                             {
                                 DataMenuItem = Menuitem;
                             }
@@ -519,10 +517,8 @@ namespace MongoCola
                             collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
                         }
                         //TabPage的删除
-                        tabView.Controls.Remove(_viewTabList[KeyItem]);
-                        _viewTabList.Remove(KeyItem);
-                        _viewInfoList.Remove(KeyItem);
-                        _viewTabList[KeyItem] = null;
+                        tabView.Controls.Remove(MutliTabManger.TabInfo[KeyItem].Tab);
+                        MutliTabManger.TabInfo.Remove(KeyItem);
                     }
                 }
                 tempTable = null;
@@ -604,7 +600,7 @@ namespace MongoCola
             MongoUtility.Basic.Utility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
             DisableAllOpr();
             trvsrvlst.Nodes.Clear();
-            var connectNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst,SystemConfig.config.ConnectionList);
+            var connectNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst, SystemConfig.config.ConnectionList);
             foreach (var element in connectNodes)
             {
                 trvsrvlst.Nodes.Add(element);
@@ -652,8 +648,8 @@ namespace MongoCola
                 {
                     var jsNode = new TreeNode(strJsName)
                     {
-                        ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
-                        SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
+                        ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
+                        SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     var jsTag = RuntimeMongoDBContext.SelectTagData;
                     jsNode.Tag = ConstMgr.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
@@ -690,12 +686,12 @@ namespace MongoCola
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
             if (!RuntimeMongoDBContext.GetCurrentDataBase().DropCollection(strCollection).Ok) return;
             var strNodeData = RuntimeMongoDBContext.SelectTagData;
-            if (_viewTabList.ContainsKey(strNodeData))
+            if (MutliTabManger.TabInfo.ContainsKey(strNodeData))
             {
-                var DataTab = _viewTabList[strNodeData];
+                var DataTab = MutliTabManger.TabInfo[strNodeData].Tab;
                 foreach (ToolStripMenuItem item in collectionToolStripMenuItem.DropDownItems)
                 {
                     if (item.Tag != DataTab.Tag)
@@ -704,8 +700,7 @@ namespace MongoCola
                     break;
                 }
                 tabView.Controls.Remove(DataTab);
-                _viewTabList.Remove(strNodeData);
-                _viewInfoList.Remove(strNodeData);
+                MutliTabManger.RemoveTab(strNodeData);
                 DataTab = null;
             }
             trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
@@ -720,7 +715,7 @@ namespace MongoCola
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
             var strNewCollectionName = string.Empty;
             if (SystemConfig.IsUseDefaultLanguage)
             {
@@ -739,14 +734,14 @@ namespace MongoCola
             var result = RuntimeMongoDBContext.GetCurrentDataBase()
                 .RenameCollection(strCollection, strNewCollectionName).Ok;
             if (!result) return;
-            var strNodeData = RuntimeMongoDBContext.SelectTagData;
+            var strOldNodeTag = RuntimeMongoDBContext.SelectTagData;
             var strNewNodeTag = RuntimeMongoDBContext.SelectObjectTag.Substring(0,
                 RuntimeMongoDBContext.SelectObjectTag.Length - RuntimeMongoDBContext.GetCurrentCollection().Name.Length);
             strNewNodeTag += strNewCollectionName;
             var strNewNodeData = Utility.GetTagData(strNewNodeTag);
-            if (_viewTabList.ContainsKey(strNodeData))
+            if (MutliTabManger.TabInfo.ContainsKey(strOldNodeTag))
             {
-                var DataTab = _viewTabList[strNodeData];
+                var DataTab = MutliTabManger.TabInfo[strOldNodeTag].Tab;
                 foreach (ToolStripMenuItem item in collectionToolStripMenuItem.DropDownItems)
                 {
                     if (item.Tag == DataTab.Tag)
@@ -760,11 +755,7 @@ namespace MongoCola
                 DataTab.Tag = strNewNodeTag;
 
                 //Change trvsrvlst.SelectedNode
-                _viewTabList.Add(strNewNodeData, _viewTabList[strNodeData]);
-                _viewTabList.Remove(strNodeData);
-
-                _viewInfoList.Add(strNewNodeData, _viewInfoList[strNodeData]);
-                _viewInfoList.Remove(strNodeData);
+                MutliTabManger.ChangeKey(strNewNodeData, strOldNodeTag);
             }
             DisableAllOpr();
             RuntimeMongoDBContext.SelectObjectTag = strNewNodeTag;
@@ -824,14 +815,14 @@ namespace MongoCola
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
             var Result = OperationHelper.DelJavascript(strCollection, RuntimeMongoDBContext.GetCurrentCollection());
             if (string.IsNullOrEmpty(Result))
             {
                 var strNodeData = RuntimeMongoDBContext.SelectTagData;
-                if (_viewTabList.ContainsKey(strNodeData))
+                if (MutliTabManger.TabInfo.ContainsKey(strNodeData))
                 {
-                    var DataTab = _viewTabList[strNodeData];
+                    var DataTab = MutliTabManger.TabInfo[strNodeData].Tab;
                     foreach (ToolStripMenuItem item in JavaScriptStripMenuItem.DropDownItems)
                     {
                         if (item.Tag != DataTab.Tag)
@@ -840,7 +831,7 @@ namespace MongoCola
                         break;
                     }
                     tabView.Controls.Remove(DataTab);
-                    _viewTabList.Remove(strNodeData);
+                    MutliTabManger.RemoveTab(strNodeData);
                 }
                 trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
                 DisableAllOpr();
@@ -919,9 +910,8 @@ namespace MongoCola
         private void ExportToFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ColPath = RuntimeMongoDBContext.SelectTagData;
-            Utility.OpenForm(
-                !_viewInfoList.ContainsKey(ColPath) ? new frmExport() : new frmExport(_viewInfoList[ColPath]), true,
-                true);
+            Utility.OpenForm(!MutliTabManger.TabInfo.ContainsKey(ColPath) ? 
+                new frmExport() : new frmExport(MutliTabManger.TabInfo[ColPath].Info), true, true);
         }
 
         #endregion
@@ -1123,10 +1113,10 @@ namespace MongoCola
             var Query = new DataFilter();
             var ColPath = RuntimeMongoDBContext.SelectTagData;
             var IsUseFilter = false;
-            if (_viewInfoList.ContainsKey(ColPath))
+            if (MutliTabManger.TabInfo.ContainsKey(ColPath))
             {
-                Query = _viewInfoList[ColPath].mDataFilter;
-                IsUseFilter = _viewInfoList[ColPath].IsUseFilter;
+                Query = MutliTabManger.TabInfo[ColPath].Info.mDataFilter;
+                IsUseFilter = MutliTabManger.TabInfo[ColPath].Info.IsUseFilter;
             }
 
             if (Query.QueryConditionList.Count == 0 || !IsUseFilter)
@@ -1153,10 +1143,10 @@ namespace MongoCola
             var Query = new DataFilter();
             var ColPath = RuntimeMongoDBContext.SelectTagData;
             var IsUseFilter = false;
-            if (_viewInfoList.ContainsKey(ColPath))
+            if (MutliTabManger.TabInfo.ContainsKey(ColPath))
             {
-                Query = _viewInfoList[ColPath].mDataFilter;
-                IsUseFilter = _viewInfoList[ColPath].IsUseFilter;
+                Query = MutliTabManger.TabInfo[ColPath].Info.mDataFilter;
+                IsUseFilter = MutliTabManger.TabInfo[ColPath].Info.IsUseFilter;
             }
             Utility.OpenForm(new frmDistinct(Query, IsUseFilter), true, true);
         }
@@ -1171,10 +1161,10 @@ namespace MongoCola
             var Query = new DataFilter();
             var ColPath = RuntimeMongoDBContext.SelectTagData;
             var IsUseFilter = false;
-            if (_viewInfoList.ContainsKey(ColPath))
+            if (MutliTabManger.TabInfo.ContainsKey(ColPath))
             {
-                Query = _viewInfoList[ColPath].mDataFilter;
-                IsUseFilter = _viewInfoList[ColPath].IsUseFilter;
+                Query = MutliTabManger.TabInfo[ColPath].Info.mDataFilter;
+                IsUseFilter = MutliTabManger.TabInfo[ColPath].Info.IsUseFilter;
             }
             Utility.OpenForm(new frmGroup(Query, IsUseFilter), true, true);
         }

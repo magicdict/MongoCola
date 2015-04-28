@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using MongoUtility.Core;
-using ResourceLib.Utility;
+using MongoUtility.Basic;
 
 namespace PlugInPackage
 {
@@ -44,9 +44,9 @@ namespace PlugInPackage
         }
 
         /// <summary>
-        ///     加载到菜单项目
+        ///     加载插件信息
         /// </summary>
-        public static void LoadPlugIn()
+        private static void LoadPlugIn()
         {
             foreach (var mFile in Directory.GetFiles(Application.StartupPath + @"\", "*.dll"))
             {
@@ -72,6 +72,52 @@ namespace PlugInPackage
                 {
                     Debug.WriteLine(ex.ToString());
                 }
+            }
+        }
+
+
+        /// <summary>
+        ///     将插件放入列表
+        /// </summary>
+        public static void LoadPlugInMenuItem(ToolStripMenuItem plugInToolStripMenuItem)
+        {
+            try
+            {
+                PlugIn.LoadPlugIn();
+                foreach (var plugin in PlugIn.PlugInList)
+                {
+                    var PlugInType = string.Empty;
+                    switch (plugin.Value.RunLv)
+                    {
+                        case PlugInBase.PathLv.ConnectionLV:
+                            PlugInType = "[Connection]";
+                            break;
+                        case PlugInBase.PathLv.InstanceLV:
+                            PlugInType = "[Instance]";
+                            break;
+                        case PlugInBase.PathLv.DatabaseLV:
+                            PlugInType = "[Database]";
+                            break;
+                        case PlugInBase.PathLv.CollectionLV:
+                            PlugInType = "[Collection]";
+                            break;
+                        case PlugInBase.PathLv.DocumentLV:
+                            PlugInType = "[Document]";
+                            break;
+                        case PlugInBase.PathLv.Misc:
+                            PlugInType = "[Misc]";
+                            break;
+                    }
+                    ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName + PlugInType);
+                    menu.ToolTipText = plugin.Value.PlugFunction;
+                    menu.Tag = plugin.Key;
+                    menu.Click += (x, y) => PlugIn.RunPlugIn(plugin.Key);
+                    plugInToolStripMenuItem.DropDownItems.Add(menu);
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.Logic.Utility.ExceptionDeal(ex);
             }
         }
     }
