@@ -107,9 +107,9 @@ namespace MongoCola.Connection
             NumSocketTimeOut.GotFocus += (x, y) => NumSocketTimeOut.Select(0, 5);
             NumConnectTimeOut.GotFocus += (x, y) => NumConnectTimeOut.Select(0, 5);
             //Color
-            cmdTest.BackColor = MyMessageBox.ActionColor;
-            cmdAdd.BackColor = MyMessageBox.SuccessColor;
-            cmdCancel.BackColor = MyMessageBox.FailColor;
+            cmdTest.BackColor = GUIConfig.ActionColor;
+            cmdAdd.BackColor = GUIConfig.SuccessColor;
+            cmdCancel.BackColor = GUIConfig.FailColor;
             GUIConfig.Translateform(this);
         }
 

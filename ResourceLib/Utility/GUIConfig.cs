@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ResourceLib.Utility
@@ -17,6 +18,16 @@ namespace ResourceLib.Utility
     /// </summary>
     public static class GUIConfig
     {
+
+        /// <summary>
+        ///     成功提示色
+        /// </summary>
+        public static Color SuccessColor = Color.LightGreen;
+        public static Color FailColor = Color.Pink;
+        public static Color ActionColor = Color.LightBlue;
+        public static Color WarningColor = Color.LightYellow;
+
+
         /// <summary>
         ///     是否使用默认语言
         /// </summary>
@@ -132,6 +143,17 @@ namespace ResourceLib.Utility
                 if (ctrlItem.GetType().FullName == typeof(Button).FullName)
                 {
                     ((Button)ctrlItem).Text = Display;
+                    if (ctrlItem.Tag.ToString() == TextType.Common_OK.ToString())
+                    {
+                        ((Button)ctrlItem).BackColor = SuccessColor;
+                    }
+                    if (ctrlItem.Tag.ToString() == TextType.Common_No.ToString() ||
+                        ctrlItem.Tag.ToString() == TextType.Common_Close.ToString() ||
+                        ctrlItem.Tag.ToString() == TextType.Common_Cancel.ToString())
+                    {
+                        ((Button)ctrlItem).BackColor = FailColor;
+                    }
+
                 }
                 if (ctrlItem.GetType().FullName == typeof(CheckBox).FullName)
                 {

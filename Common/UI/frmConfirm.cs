@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResourceLib.Utility;
+using System;
 using System.Windows.Forms;
 
 namespace Common.UI
@@ -16,8 +17,7 @@ namespace Common.UI
         public frmConfirm()
         {
             InitializeComponent();
-            cmdYes.BackColor = MyMessageBox.SuccessColor;
-            cmdNo.BackColor = MyMessageBox.FailColor;
+            GUIConfig.Translateform(this);
         }
 
         /// <summary>
@@ -50,17 +50,6 @@ namespace Common.UI
         {
             Result = false;
             lblMessage.Text = strMessage;
-        }
-
-        /// <summary>
-        ///     set the text of yes no button
-        /// </summary>
-        /// <param name="Yes"></param>
-        /// <param name="No"></param>
-        internal void SetText(string Yes, string No)
-        {
-            cmdYes.Text = Yes;
-            cmdNo.Text = No;
         }
     }
 }

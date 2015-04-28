@@ -8,14 +8,6 @@ namespace Common.UI
 {
     public static class MyMessageBox
     {
-        /// <summary>
-        ///     成功提示色
-        /// </summary>
-        public static Color SuccessColor = Color.LightGreen;
-
-        public static Color FailColor = Color.Pink;
-        public static Color ActionColor = Color.LightBlue;
-        public static Color WarningColor = Color.LightYellow;
 
         /// <summary>
         ///     消息窗体
@@ -37,20 +29,6 @@ namespace Common.UI
         /// </summary>
         private static readonly frmInputBox _frmInputBox = new frmInputBox();
 
-        /// <summary>
-        ///     语言切换
-        /// </summary>
-        public static void InitMsgBoxUI()
-        {
-            _frmConfirm.SetText(GUIConfig.GetText("Yes", TextType.Common_Yes),
-                GUIConfig.GetText("No", TextType.Common_No));
-
-            _frmMessage.SetText(GUIConfig.GetText("Detail", TextType.Common_Detail),
-                GUIConfig.GetText("OK", TextType.Common_OK));
-            _frmInputBox.SetText(GUIConfig.GetText("Cancel", TextType.Common_Cancel),
-                GUIConfig.GetText("OK", TextType.Common_OK));
-            _frmEasyMessage.SetText(GUIConfig.GetText("OK", TextType.Common_OK));
-        }
 
         /// <summary>
         ///     确认信息表示

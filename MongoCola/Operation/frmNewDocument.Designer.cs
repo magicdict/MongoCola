@@ -34,7 +34,7 @@ namespace MongoCola.Operation
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.trvNewDocument  = new ctlTreeViewColumns();
+            this.trvNewDocument = new MongoGUICtl.ctlTreeViewColumns();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdPreview = new System.Windows.Forms.Button();
             this.cmdSaveAggregate = new System.Windows.Forms.Button();
@@ -55,6 +55,7 @@ namespace MongoCola.Operation
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(82, 25);
             this.cmdOK.TabIndex = 1;
+            this.cmdOK.Tag = "Common_OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -65,6 +66,7 @@ namespace MongoCola.Operation
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(82, 25);
             this.cmdClose.TabIndex = 2;
+            this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -105,6 +107,7 @@ namespace MongoCola.Operation
             this.cmdSaveAggregate.Name = "cmdSaveAggregate";
             this.cmdSaveAggregate.Size = new System.Drawing.Size(82, 25);
             this.cmdSaveAggregate.TabIndex = 26;
+            this.cmdSaveAggregate.Tag = "Common_Save";
             this.cmdSaveAggregate.Text = "Save";
             this.cmdSaveAggregate.UseVisualStyleBackColor = false;
             this.cmdSaveAggregate.Click += new System.EventHandler(this.cmdSaveDocument_Click);

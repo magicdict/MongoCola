@@ -35,16 +35,17 @@ namespace MongoCola
             this.optXML = new System.Windows.Forms.RadioButton();
             this.optText = new System.Windows.Forms.RadioButton();
             this.optExcel = new System.Windows.Forms.RadioButton();
-            this.ctlExportFilePicker = new ctlFilePicker();
+            this.ctlExportFilePicker = new Common.UI.ctlFilePicker();
             this.grpExportType.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(585, 121);
+            this.btnSave.Location = new System.Drawing.Point(585, 112);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(145, 26);
+            this.btnSave.Size = new System.Drawing.Size(145, 24);
             this.btnSave.TabIndex = 1;
+            this.btnSave.Tag = "Common_Save";
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -54,9 +55,9 @@ namespace MongoCola
             this.grpExportType.Controls.Add(this.optXML);
             this.grpExportType.Controls.Add(this.optText);
             this.grpExportType.Controls.Add(this.optExcel);
-            this.grpExportType.Location = new System.Drawing.Point(12, 61);
+            this.grpExportType.Location = new System.Drawing.Point(12, 56);
             this.grpExportType.Name = "grpExportType";
-            this.grpExportType.Size = new System.Drawing.Size(258, 65);
+            this.grpExportType.Size = new System.Drawing.Size(258, 60);
             this.grpExportType.TabIndex = 2;
             this.grpExportType.TabStop = false;
             this.grpExportType.Text = "ExportImport File Type";
@@ -65,9 +66,9 @@ namespace MongoCola
             // 
             this.optXML.AutoSize = true;
             this.optXML.Enabled = false;
-            this.optXML.Location = new System.Drawing.Point(188, 30);
+            this.optXML.Location = new System.Drawing.Point(188, 28);
             this.optXML.Name = "optXML";
-            this.optXML.Size = new System.Drawing.Size(47, 17);
+            this.optXML.Size = new System.Drawing.Size(41, 16);
             this.optXML.TabIndex = 3;
             this.optXML.TabStop = true;
             this.optXML.Text = "XML";
@@ -76,9 +77,9 @@ namespace MongoCola
             // optText
             // 
             this.optText.AutoSize = true;
-            this.optText.Location = new System.Drawing.Point(96, 30);
+            this.optText.Location = new System.Drawing.Point(96, 28);
             this.optText.Name = "optText";
-            this.optText.Size = new System.Drawing.Size(86, 17);
+            this.optText.Size = new System.Drawing.Size(95, 16);
             this.optText.TabIndex = 3;
             this.optText.TabStop = true;
             this.optText.Text = "Text（JSON）";
@@ -88,9 +89,9 @@ namespace MongoCola
             // 
             this.optExcel.AutoSize = true;
             this.optExcel.Checked = true;
-            this.optExcel.Location = new System.Drawing.Point(24, 30);
+            this.optExcel.Location = new System.Drawing.Point(24, 28);
             this.optExcel.Name = "optExcel";
-            this.optExcel.Size = new System.Drawing.Size(51, 17);
+            this.optExcel.Size = new System.Drawing.Size(53, 16);
             this.optExcel.TabIndex = 3;
             this.optExcel.TabStop = true;
             this.optExcel.Text = "Excel";
@@ -101,25 +102,26 @@ namespace MongoCola
             this.ctlExportFilePicker.BackColor = System.Drawing.Color.Transparent;
             this.ctlExportFilePicker.FileFilter = "";
             this.ctlExportFilePicker.FileName = "";
-            this.ctlExportFilePicker.Location = new System.Drawing.Point(12, 22);
+            this.ctlExportFilePicker.Location = new System.Drawing.Point(12, 20);
             this.ctlExportFilePicker.Name = "ctlExportFilePicker";
-            this.ctlExportFilePicker.PickerType = ctlFilePicker.DialogType.SaveFile;
+            this.ctlExportFilePicker.PickerType = Common.UI.ctlFilePicker.DialogType.SaveFile;
             this.ctlExportFilePicker.SelectedPathOrFileName = "";
-            this.ctlExportFilePicker.Size = new System.Drawing.Size(739, 33);
+            this.ctlExportFilePicker.Size = new System.Drawing.Size(739, 30);
             this.ctlExportFilePicker.TabIndex = 0;
             this.ctlExportFilePicker.Title = "FileName";
             // 
             // frmExport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(755, 159);
+            this.ClientSize = new System.Drawing.Size(755, 147);
             this.Controls.Add(this.grpExportType);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ctlExportFilePicker);
             this.Name = "frmExport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "Main_Menu_Operation_DataCollection_ExportToFile";
             this.Text = "ExportImport To File";
             this.Load += new System.EventHandler(this.frmExport_Load);
             this.grpExportType.ResumeLayout(false);

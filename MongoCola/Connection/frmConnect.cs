@@ -24,8 +24,6 @@ namespace MongoCola.Connection
         private void frmConnect_Load(object sender, EventArgs e)
         {
             RefreshConnection();
-            cmdOK.BackColor = MyMessageBox.SuccessColor;
-            cmdClose.BackColor = MyMessageBox.FailColor;
             GUIConfig.Translateform(this);
         }
 

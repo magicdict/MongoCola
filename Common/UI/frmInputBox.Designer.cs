@@ -30,6 +30,7 @@ namespace Common.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInputBox));
             this.lblMessage = new System.Windows.Forms.Label();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -61,6 +62,7 @@ namespace Common.UI
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(71, 25);
             this.cmdOK.TabIndex = 5;
+            this.cmdOK.Tag = "Common_OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -72,6 +74,7 @@ namespace Common.UI
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(86, 25);
             this.cmdCancel.TabIndex = 6;
+            this.cmdCancel.Tag = "Common_Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
@@ -79,7 +82,7 @@ namespace Common.UI
             // imgInfo
             // 
             this.imgInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.imgInfo.Image = global::ResourceLib.Properties.Resources.Input;
+            this.imgInfo.Image = ((System.Drawing.Image)(resources.GetObject("imgInfo.Image")));
             this.imgInfo.Location = new System.Drawing.Point(35, 20);
             this.imgInfo.Name = "imgInfo";
             this.imgInfo.Size = new System.Drawing.Size(32, 32);

@@ -49,7 +49,7 @@ namespace MongoCola
                     statusStripMain.Items[0].Text =
                         GUIConfig.GetText(TextType.Main_StatusBar_Text_Ready);
                     tabSvrStatus.Text =
-                        GUIConfig.GetText(TextType.Main_Menu_Mangt_Status);
+                        GUIConfig.GetText("Main_Menu_Mangt_Status");
                 }
             }
         }
@@ -389,8 +389,7 @@ namespace MongoCola
                 MyMessageBox.ShowMessage(
                     SystemConfig.IsUseDefaultLanguage
                         ? "UserInformation"
-                        : GUIConfig.GetText(
-                            TextType.Main_Menu_Operation_Server_UserInfo),
+                        : GUIConfig.GetText("Main_Menu_Operation_Server_UserInfo"),
                     "The User Information of：[" +
                     SystemConfig.config.ConnectionList[ConnectionName].UserName + "]", info, true);
             }
@@ -443,9 +442,9 @@ namespace MongoCola
             {
                 MyMessageBox.ShowMessage(
                     GUIConfig.GetText(
-                        TextType.Main_Menu_Operation_Server_Properties),
+                        "Main_Menu_Operation_Server_Properties"),
                     GUIConfig.GetText(
-                        TextType.Main_Menu_Operation_Server_Properties),
+                        "Main_Menu_Operation_Server_Properties"),
                     MongoUtility.Basic.Utility.GetCurrentSvrInfo(RuntimeMongoDBContext.GetCurrentServer()), true);
             }
         }
@@ -967,7 +966,7 @@ namespace MongoCola
             {
                 strTitle =
                     GUIConfig.GetText(
-                        TextType.Main_Menu_Operation_BackupAndRestore_Restore);
+                        "Main_Menu_Operation_BackupAndRestore_Restore");
                 strMessage =
                     GUIConfig.GetText(TextType.Restore_Connection_Confirm);
             }

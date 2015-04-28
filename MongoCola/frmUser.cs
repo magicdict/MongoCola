@@ -144,8 +144,8 @@ namespace MongoCola
                 {
                     Text =
                         GUIConfig.GetText(_IsAdmin
-                            ? TextType.Main_Menu_Operation_Server_AddUserToAdmin
-                            : TextType.Main_Menu_Operation_Database_AddUser);
+                            ? "Main_Menu_Operation_Server_AddUserToAdmin"
+                            : "Main_Menu_Operation_Database_AddUser");
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else

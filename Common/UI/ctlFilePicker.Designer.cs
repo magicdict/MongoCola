@@ -40,8 +40,9 @@
             this.cmdClearPath.BackColor = System.Drawing.Color.Transparent;
             this.cmdClearPath.Location = new System.Drawing.Point(375, 3);
             this.cmdClearPath.Name = "cmdClearPath";
-            this.cmdClearPath.Size = new System.Drawing.Size(75, 25);
+            this.cmdClearPath.Size = new System.Drawing.Size(75, 23);
             this.cmdClearPath.TabIndex = 10;
+            this.cmdClearPath.Tag = "Common_Clear";
             this.cmdClearPath.Text = "Clear";
             this.cmdClearPath.UseVisualStyleBackColor = false;
             this.cmdClearPath.Click += new System.EventHandler(this.cmdClearPath_Click);
@@ -50,9 +51,9 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Location = new System.Drawing.Point(3, 13);
+            this.lblTitle.Location = new System.Drawing.Point(3, 12);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(27, 13);
+            this.lblTitle.Size = new System.Drawing.Size(35, 12);
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Title";
             // 
@@ -63,7 +64,7 @@
             this.txtPathName.Location = new System.Drawing.Point(50, 6);
             this.txtPathName.Name = "txtPathName";
             this.txtPathName.ReadOnly = true;
-            this.txtPathName.Size = new System.Drawing.Size(238, 20);
+            this.txtPathName.Size = new System.Drawing.Size(238, 21);
             this.txtPathName.TabIndex = 8;
             // 
             // cmdBrowse
@@ -72,15 +73,16 @@
             this.cmdBrowse.BackColor = System.Drawing.Color.Transparent;
             this.cmdBrowse.Location = new System.Drawing.Point(294, 3);
             this.cmdBrowse.Name = "cmdBrowse";
-            this.cmdBrowse.Size = new System.Drawing.Size(75, 24);
+            this.cmdBrowse.Size = new System.Drawing.Size(75, 22);
             this.cmdBrowse.TabIndex = 7;
+            this.cmdBrowse.Tag = "Common_Browse";
             this.cmdBrowse.Text = "Browse...";
             this.cmdBrowse.UseVisualStyleBackColor = false;
             this.cmdBrowse.Click += new System.EventHandler(this.cmdBrowse_Click);
             // 
             // ctlFilePicker
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.cmdClearPath);
@@ -88,7 +90,7 @@
             this.Controls.Add(this.txtPathName);
             this.Controls.Add(this.cmdBrowse);
             this.Name = "ctlFilePicker";
-            this.Size = new System.Drawing.Size(463, 31);
+            this.Size = new System.Drawing.Size(463, 29);
             this.Load += new System.EventHandler(this.ctlFilePicker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

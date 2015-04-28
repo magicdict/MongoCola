@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMesssage));
             this.txtException = new System.Windows.Forms.TextBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -70,6 +71,7 @@
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(117, 37);
             this.cmdOK.TabIndex = 7;
+            this.cmdOK.Tag = "Common_OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -82,6 +84,7 @@
             this.cmdDetails.Name = "cmdDetails";
             this.cmdDetails.Size = new System.Drawing.Size(117, 37);
             this.cmdDetails.TabIndex = 8;
+            this.cmdDetails.Tag = "Common_Detail";
             this.cmdDetails.Text = "details";
             this.cmdDetails.UseVisualStyleBackColor = false;
             this.cmdDetails.Click += new System.EventHandler(this.cmdDetails_Click);
@@ -99,7 +102,7 @@
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.Image = global::ResourceLib.Properties.Resources.Info;
+            this.picImage.Image = ((System.Drawing.Image)(resources.GetObject("picImage.Image")));
             this.picImage.Location = new System.Drawing.Point(13, 23);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(32, 32);

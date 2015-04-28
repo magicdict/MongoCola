@@ -40,7 +40,7 @@ namespace MongoCola
                 statusStripMain.Items[0].Text =
                     GUIConfig.GetText(TextType.Main_StatusBar_Text_Ready);
                 tabSvrStatus.Text =
-                    GUIConfig.GetText(TextType.Main_Menu_Mangt_Status);
+                    GUIConfig.GetText("Main_Menu_Mangt_Status");
             }
             //Init ToolBar
             InitToolBar();

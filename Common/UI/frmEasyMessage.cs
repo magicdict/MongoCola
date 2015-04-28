@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResourceLib.Utility;
+using System;
 using System.Windows.Forms;
 
 namespace Common.UI
@@ -8,15 +9,7 @@ namespace Common.UI
         public frmEasyMessage()
         {
             InitializeComponent();
-            cmdOK.BackColor = MyMessageBox.SuccessColor;
-        }
-
-        /// <summary>
-        ///     Set Text
-        /// </summary>
-        internal void SetText(string OK)
-        {
-            cmdOK.Text = OK;
+            GUIConfig.Translateform(this);
         }
 
         /// <summary>

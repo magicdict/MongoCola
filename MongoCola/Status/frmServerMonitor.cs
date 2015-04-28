@@ -16,6 +16,7 @@ namespace MongoCola.Status
         public frmServerMonitor()
         {
             InitializeComponent();
+            GUIConfig.Translateform(this);
         }
 
         private void frmServerMonitor_Load(object sender, EventArgs e)

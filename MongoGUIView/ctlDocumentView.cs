@@ -22,6 +22,7 @@ namespace MongoGUIView
         {
             InitializeComponent();
             InitToolAndMenu();
+            if (_DataViewInfo == null) return;
             mDataViewInfo = _DataViewInfo;
             _dataShower.Add(lstData);
             _dataShower.Add(txtData);
@@ -42,39 +43,39 @@ namespace MongoGUIView
         {
             if (!GUIConfig.IsUseDefaultLanguage)
             {
-                NewDocumentToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataCollection_AddDocument);
-                DelSelectRecordToolToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataCollection_DropDocument);
+                //NewDocumentToolStripMenuItem.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataCollection_AddDocument);
+                //DelSelectRecordToolToolStripMenuItem.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
-                AddElementToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataDocument_AddElement);
-                DropElementToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataDocument_DropElement);
-                ModifyElementToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataDocument_ModifyElement);
+                //AddElementToolStripMenuItem.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataDocument_AddElement);
+                //DropElementToolStripMenuItem.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataDocument_DropElement);
+                //ModifyElementToolStripMenuItem.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataDocument_ModifyElement);
 
-                NewDocumentStripButton.Text = NewDocumentToolStripMenuItem.Text;
-                OpenDocInEditorStripButton.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
-                DelSelectRecordToolStripButton.Text = DelSelectRecordToolToolStripMenuItem.Text;
-                CopyElementToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataDocument_CopyElement);
-                CopyElementStripButton.Text = CopyElementToolStripMenuItem.Text;
-                CutElementToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataDocument_CutElement);
-                CutElementStripButton.Text = CutElementToolStripMenuItem.Text;
-                PasteElementToolStripMenuItem.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_DataDocument_PasteElement);
+                //NewDocumentStripButton.Text = NewDocumentToolStripMenuItem.Text;
+                //OpenDocInEditorStripButton.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
+                //DelSelectRecordToolStripButton.Text = DelSelectRecordToolToolStripMenuItem.Text;
+                //CopyElementToolStripMenuItem.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataDocument_CopyElement);
+                //CopyElementStripButton.Text = CopyElementToolStripMenuItem.Text;
+                //CutElementToolStripMenuItem.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataDocument_CutElement);
+                //CutElementStripButton.Text = CutElementToolStripMenuItem.Text;
+                //PasteElementToolStripMenuItem.Text =
+                //    GUIConfig.MStringResource.GetText(
+                //        TextType.Main_Menu_Operation_DataDocument_PasteElement);
                 PasteElementStripButton.Text = PasteElementToolStripMenuItem.Text;
             }
 

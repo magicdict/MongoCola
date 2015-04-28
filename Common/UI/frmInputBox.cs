@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResourceLib.Utility;
+using System;
 using System.Windows.Forms;
 
 namespace Common.UI
@@ -16,8 +17,7 @@ namespace Common.UI
         internal frmInputBox()
         {
             InitializeComponent();
-            cmdOK.BackColor = MyMessageBox.SuccessColor;
-            cmdCancel.BackColor = MyMessageBox.FailColor;
+            GUIConfig.Translateform(this);
         }
 
         /// <summary>

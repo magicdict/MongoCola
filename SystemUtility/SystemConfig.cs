@@ -76,7 +76,6 @@ namespace SystemUtility
                 {
                     GUIConfig.MStringResource.InitLanguage(LanguageFile);
                 }
-                Utility.Init();
             }
         }
 

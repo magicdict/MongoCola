@@ -85,37 +85,7 @@ namespace MongoGUIView
             }
             cmbRecPerPage.SelectedIndex = 1;
             mDataViewInfo.LimitCnt = 100;
-            if (!GUIConfig.IsUseDefaultLanguage)
-            {
-                //数据显示区
-                tabTreeView.Text = GUIConfig.MStringResource.GetText(TextType.Main_Tab_Tree);
-                tabTableView.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Main_Tab_Table);
-                tabTextView.Text = GUIConfig.MStringResource.GetText(TextType.Main_Tab_Text);
-                PrePageStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Previous);
-                NextPageStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Next);
-                FirstPageStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_First);
-                LastPageStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Last);
-                QueryStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Query);
-                FilterStripButton.Text =
-                    GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_DataView_DataFilter);
-                RefreshStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Common_Refresh);
-                CloseStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Common_Close);
-                ExpandAllStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Common_Expansion);
-                CollapseAllStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Common_Collapse);
-                HelpStripButton.Text =
-                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_Help);
-            }
+            GUIConfig.Translateform(this.Controls);
             InitControlsVisiableAndEvent();
             //加载数据
             //第一次加载数据的时候，会发生滚动条位置不正确的问题，需要DoEvents,RefreshGUI.
@@ -387,7 +357,7 @@ namespace MongoGUIView
             var strTitle = "Records";
             if (!GUIConfig.IsUseDefaultLanguage)
             {
-                strTitle = GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView);
+                strTitle = GUIConfig.MStringResource.GetText("Main_Menu_DataView");
             }
             if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
             {

@@ -37,7 +37,7 @@ namespace MongoCola.Status
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbChartField = new System.Windows.Forms.ComboBox();
             this.btnOpCnt = new System.Windows.Forms.Button();
-            this.trvStatus = new ctlTreeViewColumns();
+            this.trvStatus = new MongoGUICtl.ctlTreeViewColumns();
             ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,6 +47,7 @@ namespace MongoCola.Status
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(125, 28);
             this.cmdClose.TabIndex = 1;
+            this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -109,6 +110,7 @@ namespace MongoCola.Status
             this.Controls.Add(this.cmdClose);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmStatus";
+            this.Tag = "Main_Menu_Mangt_Status";
             this.Text = "Status";
             this.Load += new System.EventHandler(this.frmStatus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartResult)).EndInit();

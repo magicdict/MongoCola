@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MongoDB.Bson;
+using ResourceLib.Utility;
 
 namespace MongoCola.Operation
 {
@@ -13,6 +14,7 @@ namespace MongoCola.Operation
 
         public frmArrayCreator()
         {
+            GUIConfig.Translateform(this);
             InitializeComponent();
         }
 

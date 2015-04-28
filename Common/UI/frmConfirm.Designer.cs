@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfirm));
             this.lblMessage = new System.Windows.Forms.Label();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.cmdYes = new System.Windows.Forms.Button();
@@ -48,7 +49,7 @@
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.Image = global::ResourceLib.Properties.Resources.QuestionMark;
+            this.picImage.Image = ((System.Drawing.Image)(resources.GetObject("picImage.Image")));
             this.picImage.Location = new System.Drawing.Point(29, 30);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(32, 32);
@@ -63,6 +64,7 @@
             this.cmdYes.Name = "cmdYes";
             this.cmdYes.Size = new System.Drawing.Size(79, 25);
             this.cmdYes.TabIndex = 0;
+            this.cmdYes.Tag = "Common_Yes";
             this.cmdYes.Text = "Yes";
             this.cmdYes.UseVisualStyleBackColor = false;
             this.cmdYes.Click += new System.EventHandler(this.cmdYes_Click);
@@ -74,6 +76,7 @@
             this.cmdNo.Name = "cmdNo";
             this.cmdNo.Size = new System.Drawing.Size(86, 25);
             this.cmdNo.TabIndex = 1;
+            this.cmdNo.Tag = "Common_No";
             this.cmdNo.Text = "No";
             this.cmdNo.UseVisualStyleBackColor = false;
             this.cmdNo.Click += new System.EventHandler(this.cmdNo_Click);

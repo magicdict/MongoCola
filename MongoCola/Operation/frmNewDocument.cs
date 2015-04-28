@@ -105,11 +105,7 @@ namespace MongoCola.Operation
         /// <param name="e"></param>
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
-            if (SystemConfig.IsUseDefaultLanguage) return;
-            cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
-            cmdSaveAggregate.Text = GUIConfig.GetText(TextType.Common_Save);
-            cmdOK.Text = GUIConfig.GetText(TextType.Common_OK);
-            //cmdPreview.Text = GUIConfig.GetText();
+            GUIConfig.Translateform(this);
         }
     }
 }

@@ -25,14 +25,14 @@ namespace MongoGUIView
             {
                 AddUserStripButton.Text =
                     GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_Database_AddUser);
+                        "Main_Menu_Operation_Database_AddUser");
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
                 ChangePasswordStripButton.Text =
                     GUIConfig.MStringResource.GetText(TextType.Common_ChangePassword);
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
                 RemoveUserStripButton.Text =
                     GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_Database_DelUser);
+                        "Main_Menu_Operation_Database_DelUser");
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
             }
             AddUserStripButton.Enabled = true;

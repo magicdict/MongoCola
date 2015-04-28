@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResourceLib.Utility;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -15,8 +16,7 @@ namespace Common.UI
         {
             InitializeComponent();
             //系统图标
-            cmdOK.BackColor = MyMessageBox.SuccessColor;
-            cmdDetails.BackColor = MyMessageBox.ActionColor;
+            GUIConfig.Translateform(this);
         }
 
         /// <summary>

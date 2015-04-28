@@ -40,40 +40,40 @@
             // cmbProfillingLv
             // 
             this.cmbProfillingLv.FormattingEnabled = true;
-            this.cmbProfillingLv.Location = new System.Drawing.Point(96, 3);
+            this.cmbProfillingLv.Location = new System.Drawing.Point(130, 5);
             this.cmbProfillingLv.Name = "cmbProfillingLv";
-            this.cmbProfillingLv.Size = new System.Drawing.Size(121, 21);
+            this.cmbProfillingLv.Size = new System.Drawing.Size(121, 20);
             this.cmbProfillingLv.TabIndex = 0;
             this.cmbProfillingLv.SelectedIndexChanged += new System.EventHandler(this.cmbProfillingLv_SelectedIndexChanged);
             // 
             // lblProfilingLevel
             // 
             this.lblProfilingLevel.AutoSize = true;
-            this.lblProfilingLevel.Location = new System.Drawing.Point(21, 9);
+            this.lblProfilingLevel.Location = new System.Drawing.Point(21, 8);
             this.lblProfilingLevel.Name = "lblProfilingLevel";
-            this.lblProfilingLevel.Size = new System.Drawing.Size(65, 13);
+            this.lblProfilingLevel.Size = new System.Drawing.Size(83, 12);
             this.lblProfilingLevel.TabIndex = 1;
             this.lblProfilingLevel.Text = "Profile Level";
             // 
             // lblSlow
             // 
             this.lblSlow.AutoSize = true;
-            this.lblSlow.Location = new System.Drawing.Point(21, 41);
+            this.lblSlow.Location = new System.Drawing.Point(21, 38);
             this.lblSlow.Name = "lblSlow";
-            this.lblSlow.Size = new System.Drawing.Size(61, 13);
+            this.lblSlow.Size = new System.Drawing.Size(65, 12);
             this.lblSlow.TabIndex = 2;
             this.lblSlow.Text = "Slow(msec)";
             // 
             // NumTime
             // 
-            this.NumTime.Location = new System.Drawing.Point(97, 34);
+            this.NumTime.Location = new System.Drawing.Point(131, 33);
             this.NumTime.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.NumTime.Name = "NumTime";
-            this.NumTime.Size = new System.Drawing.Size(120, 20);
+            this.NumTime.Size = new System.Drawing.Size(120, 21);
             this.NumTime.TabIndex = 3;
             this.NumTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NumTime.Value = new decimal(new int[] {
@@ -84,30 +84,32 @@
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(24, 70);
+            this.cmdOK.Location = new System.Drawing.Point(44, 91);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(75, 23);
+            this.cmdOK.Size = new System.Drawing.Size(75, 21);
             this.cmdOK.TabIndex = 4;
+            this.cmdOK.Tag = "Common_OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(142, 70);
+            this.cmdCancel.Location = new System.Drawing.Point(153, 91);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 23);
+            this.cmdCancel.Size = new System.Drawing.Size(75, 21);
             this.cmdCancel.TabIndex = 5;
-            this.cmdCancel.Text = "Cancel";
+            this.cmdCancel.Tag = "Common_Close";
+            this.cmdCancel.Text = "Close";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // frmProfilling
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(245, 102);
+            this.ClientSize = new System.Drawing.Size(303, 124);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.NumTime);
@@ -116,6 +118,7 @@
             this.Controls.Add(this.cmbProfillingLv);
             this.Name = "frmProfilling";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "Main_Menu_Operation_ProfillingLevel";
             this.Text = "Profilling Level";
             this.Load += new System.EventHandler(this.frmProfilling_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NumTime)).EndInit();

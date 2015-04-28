@@ -35,6 +35,7 @@ namespace MongoGUIView
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlDataView));
             this.tabDataShower = new System.Windows.Forms.TabControl();
             this.tabTreeView = new System.Windows.Forms.TabPage();
+            this.trvData = new MongoGUICtl.ctlTreeViewColumns();
             this.tabTableView = new System.Windows.Forms.TabPage();
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
@@ -57,11 +58,10 @@ namespace MongoGUIView
             this.cmbRecPerPage = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
+            this.HelpStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.CustomtoolStrip = new System.Windows.Forms.ToolStrip();
-            this.HelpStripButton = new System.Windows.Forms.ToolStripButton();
-            this.trvData = new ctlTreeViewColumns();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -83,7 +83,7 @@ namespace MongoGUIView
             this.tabDataShower.Location = new System.Drawing.Point(0, 0);
             this.tabDataShower.Name = "tabDataShower";
             this.tabDataShower.SelectedIndex = 0;
-            this.tabDataShower.Size = new System.Drawing.Size(917, 453);
+            this.tabDataShower.Size = new System.Drawing.Size(917, 391);
             this.tabDataShower.TabIndex = 1;
             // 
             // tabTreeView
@@ -94,10 +94,21 @@ namespace MongoGUIView
             this.tabTreeView.Location = new System.Drawing.Point(4, 22);
             this.tabTreeView.Name = "tabTreeView";
             this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTreeView.Size = new System.Drawing.Size(909, 427);
+            this.tabTreeView.Size = new System.Drawing.Size(909, 365);
             this.tabTreeView.TabIndex = 0;
+            this.tabTreeView.Tag = "Main_Tab_Tree";
             this.tabTreeView.Text = "TreeView";
             this.tabTreeView.UseVisualStyleBackColor = true;
+            // 
+            // trvData
+            // 
+            this.trvData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
+            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvData.Location = new System.Drawing.Point(3, 3);
+            this.trvData.Name = "trvData";
+            this.trvData.Padding = new System.Windows.Forms.Padding(1);
+            this.trvData.Size = new System.Drawing.Size(903, 359);
+            this.trvData.TabIndex = 0;
             // 
             // tabTableView
             // 
@@ -107,8 +118,9 @@ namespace MongoGUIView
             this.tabTableView.Location = new System.Drawing.Point(4, 22);
             this.tabTableView.Name = "tabTableView";
             this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTableView.Size = new System.Drawing.Size(909, 427);
+            this.tabTableView.Size = new System.Drawing.Size(909, 365);
             this.tabTableView.TabIndex = 1;
+            this.tabTableView.Tag = "Main_Tab_Table";
             this.tabTableView.Text = "TableView";
             this.tabTableView.UseVisualStyleBackColor = true;
             // 
@@ -121,7 +133,7 @@ namespace MongoGUIView
             this.lstData.HideSelection = false;
             this.lstData.Location = new System.Drawing.Point(3, 3);
             this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(903, 421);
+            this.lstData.Size = new System.Drawing.Size(903, 359);
             this.lstData.TabIndex = 1;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
@@ -134,8 +146,9 @@ namespace MongoGUIView
             this.tabTextView.Location = new System.Drawing.Point(4, 22);
             this.tabTextView.Name = "tabTextView";
             this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTextView.Size = new System.Drawing.Size(909, 427);
+            this.tabTextView.Size = new System.Drawing.Size(909, 365);
             this.tabTextView.TabIndex = 2;
+            this.tabTextView.Tag = "Main_Tab_Text";
             this.tabTextView.Text = "TextView";
             this.tabTextView.UseVisualStyleBackColor = true;
             // 
@@ -146,7 +159,7 @@ namespace MongoGUIView
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
             this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtData.Size = new System.Drawing.Size(903, 421);
+            this.txtData.Size = new System.Drawing.Size(903, 359);
             this.txtData.TabIndex = 0;
             // 
             // tabQuery
@@ -154,7 +167,7 @@ namespace MongoGUIView
             this.tabQuery.Controls.Add(this.txtQuery);
             this.tabQuery.Location = new System.Drawing.Point(4, 22);
             this.tabQuery.Name = "tabQuery";
-            this.tabQuery.Size = new System.Drawing.Size(909, 427);
+            this.tabQuery.Size = new System.Drawing.Size(909, 369);
             this.tabQuery.TabIndex = 3;
             this.tabQuery.Text = "Query";
             this.tabQuery.UseVisualStyleBackColor = true;
@@ -165,7 +178,7 @@ namespace MongoGUIView
             this.txtQuery.Location = new System.Drawing.Point(0, 0);
             this.txtQuery.Multiline = true;
             this.txtQuery.Name = "txtQuery";
-            this.txtQuery.Size = new System.Drawing.Size(909, 427);
+            this.txtQuery.Size = new System.Drawing.Size(909, 369);
             this.txtQuery.TabIndex = 0;
             // 
             // contextMenuStripMain
@@ -193,9 +206,9 @@ namespace MongoGUIView
             this.RefreshStripButton,
             this.HelpStripButton,
             this.CloseStripButton});
-            this.ViewtoolStrip.Location = new System.Drawing.Point(3, 0);
+            this.ViewtoolStrip.Location = new System.Drawing.Point(3, 25);
             this.ViewtoolStrip.Name = "ViewtoolStrip";
-            this.ViewtoolStrip.Size = new System.Drawing.Size(598, 25);
+            this.ViewtoolStrip.Size = new System.Drawing.Size(574, 25);
             this.ViewtoolStrip.TabIndex = 2;
             this.ViewtoolStrip.Text = "Main";
             // 
@@ -206,6 +219,7 @@ namespace MongoGUIView
             this.FirstPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FirstPageStripButton.Name = "FirstPageStripButton";
             this.FirstPageStripButton.Size = new System.Drawing.Size(23, 22);
+            this.FirstPageStripButton.Tag = "Main_Menu_DataView_First";
             this.FirstPageStripButton.Text = "First Page";
             this.FirstPageStripButton.Click += new System.EventHandler(this.FirstPage_Click);
             // 
@@ -216,6 +230,7 @@ namespace MongoGUIView
             this.PrePageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PrePageStripButton.Name = "PrePageStripButton";
             this.PrePageStripButton.Size = new System.Drawing.Size(23, 22);
+            this.PrePageStripButton.Tag = "Main_Menu_DataView_Previous";
             this.PrePageStripButton.Text = "Previous Page";
             this.PrePageStripButton.Click += new System.EventHandler(this.PrePage_Click);
             // 
@@ -226,6 +241,7 @@ namespace MongoGUIView
             this.NextPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextPageStripButton.Name = "NextPageStripButton";
             this.NextPageStripButton.Size = new System.Drawing.Size(23, 22);
+            this.NextPageStripButton.Tag = "Main_Menu_DataView_Next";
             this.NextPageStripButton.Text = "Next Page";
             this.NextPageStripButton.Click += new System.EventHandler(this.NextPage_Click);
             // 
@@ -236,6 +252,7 @@ namespace MongoGUIView
             this.LastPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LastPageStripButton.Name = "LastPageStripButton";
             this.LastPageStripButton.Size = new System.Drawing.Size(23, 22);
+            this.LastPageStripButton.Tag = "Main_Menu_DataView_Last";
             this.LastPageStripButton.Text = "Last Page";
             this.LastPageStripButton.Click += new System.EventHandler(this.LastPage_Click);
             // 
@@ -246,6 +263,7 @@ namespace MongoGUIView
             this.ExpandAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ExpandAllStripButton.Name = "ExpandAllStripButton";
             this.ExpandAllStripButton.Size = new System.Drawing.Size(23, 22);
+            this.ExpandAllStripButton.Tag = "Common_Expansion";
             this.ExpandAllStripButton.Text = "ExpandAll";
             this.ExpandAllStripButton.Click += new System.EventHandler(this.ExpandAll_Click);
             // 
@@ -256,6 +274,7 @@ namespace MongoGUIView
             this.CollapseAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CollapseAllStripButton.Name = "CollapseAllStripButton";
             this.CollapseAllStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CollapseAllStripButton.Tag = "Common_Collapse";
             this.CollapseAllStripButton.Text = "CollapseAll";
             this.CollapseAllStripButton.Click += new System.EventHandler(this.CollapseAll_Click);
             // 
@@ -266,6 +285,7 @@ namespace MongoGUIView
             this.QueryStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.QueryStripButton.Name = "QueryStripButton";
             this.QueryStripButton.Size = new System.Drawing.Size(23, 22);
+            this.QueryStripButton.Tag = "Main_Menu_DataView_Query";
             this.QueryStripButton.Text = "Query";
             this.QueryStripButton.Click += new System.EventHandler(this.QueryStripButton_Click);
             // 
@@ -276,13 +296,14 @@ namespace MongoGUIView
             this.FilterStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FilterStripButton.Name = "FilterStripButton";
             this.FilterStripButton.Size = new System.Drawing.Size(23, 22);
+            this.FilterStripButton.Tag = "Main_Menu_DataView_DataFilter";
             this.FilterStripButton.Text = "Filter";
             this.FilterStripButton.Click += new System.EventHandler(this.FilterStripButton_Click);
             // 
             // DataNaviToolStripLabel
             // 
             this.DataNaviToolStripLabel.Name = "DataNaviToolStripLabel";
-            this.DataNaviToolStripLabel.Size = new System.Drawing.Size(48, 22);
+            this.DataNaviToolStripLabel.Size = new System.Drawing.Size(55, 22);
             this.DataNaviToolStripLabel.Text = "100/200";
             // 
             // txtSkip
@@ -293,7 +314,7 @@ namespace MongoGUIView
             // GotoStripButton
             // 
             this.GotoStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.GotoStripButton.Image = global::ResourceLib.Properties.Resources.Run;
+            this.GotoStripButton.Image = ((System.Drawing.Image)(resources.GetObject("GotoStripButton.Image")));
             this.GotoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GotoStripButton.Name = "GotoStripButton";
             this.GotoStripButton.Size = new System.Drawing.Size(23, 22);
@@ -323,8 +344,20 @@ namespace MongoGUIView
             this.RefreshStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshStripButton.Name = "RefreshStripButton";
             this.RefreshStripButton.Size = new System.Drawing.Size(23, 22);
+            this.RefreshStripButton.Tag = "Common_Refresh";
             this.RefreshStripButton.Text = "Refresh";
             this.RefreshStripButton.Click += new System.EventHandler(this.RefreshStripButton_Click);
+            // 
+            // HelpStripButton
+            // 
+            this.HelpStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.HelpStripButton.Image = ((System.Drawing.Image)(resources.GetObject("HelpStripButton.Image")));
+            this.HelpStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HelpStripButton.Name = "HelpStripButton";
+            this.HelpStripButton.Size = new System.Drawing.Size(23, 22);
+            this.HelpStripButton.Tag = "Main_Menu_Help";
+            this.HelpStripButton.Text = "Help";
+            this.HelpStripButton.Click += new System.EventHandler(this.HelpStripButton_Click);
             // 
             // CloseStripButton
             // 
@@ -333,6 +366,7 @@ namespace MongoGUIView
             this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseStripButton.Name = "CloseStripButton";
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CloseStripButton.Tag = "Common_Close";
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
@@ -342,11 +376,11 @@ namespace MongoGUIView
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabDataShower);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(917, 453);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(917, 391);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(917, 478);
+            this.toolStripContainer1.Size = new System.Drawing.Size(917, 441);
             this.toolStripContainer1.TabIndex = 3;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -358,39 +392,19 @@ namespace MongoGUIView
             // CustomtoolStrip
             // 
             this.CustomtoolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.CustomtoolStrip.Location = new System.Drawing.Point(632, 0);
+            this.CustomtoolStrip.Location = new System.Drawing.Point(39, 0);
             this.CustomtoolStrip.Name = "CustomtoolStrip";
             this.CustomtoolStrip.Size = new System.Drawing.Size(111, 25);
             this.CustomtoolStrip.TabIndex = 4;
             this.CustomtoolStrip.Text = "toolStrip1";
             // 
-            // HelpStripButton
-            // 
-            this.HelpStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.HelpStripButton.Image = global::ResourceLib.Properties.Resources.QuestionMark;
-            this.HelpStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.HelpStripButton.Name = "HelpStripButton";
-            this.HelpStripButton.Size = new System.Drawing.Size(23, 22);
-            this.HelpStripButton.Text = "Help";
-            this.HelpStripButton.Click += new System.EventHandler(this.HelpStripButton_Click);
-            // 
-            // trvData
-            // 
-            this.trvData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
-            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvData.Location = new System.Drawing.Point(3, 3);
-            this.trvData.Name = "trvData";
-            this.trvData.Padding = new System.Windows.Forms.Padding(1);
-            this.trvData.Size = new System.Drawing.Size(903, 421);
-            this.trvData.TabIndex = 0;
-            // 
             // ctlDataView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "ctlDataView";
-            this.Size = new System.Drawing.Size(917, 478);
+            this.Size = new System.Drawing.Size(917, 441);
             this.Load += new System.EventHandler(this.ctlDataView_Load);
             this.tabDataShower.ResumeLayout(false);
             this.tabTreeView.ResumeLayout(false);

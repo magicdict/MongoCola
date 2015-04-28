@@ -22,27 +22,27 @@ namespace MongoGUIView
             {
                 DeleteFileToolStripMenuItem.Text =
                     GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_FileSystem_DelFile);
+                        "Main_Menu_Operation_FileSystem_DelFile");
                 DeleteFileStripButton.Text = DeleteFileToolStripMenuItem.Text;
 
                 UploadFileToolStripMenuItem.Text =
                     GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_FileSystem_UploadFile);
+                        "Main_Menu_Operation_FileSystem_UploadFile");
                 UploadFileStripButton.Text = UploadFileToolStripMenuItem.Text;
 
                 UploadFolderToolStripMenuItem.Text =
                     GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_FileSystem_UploadFolder);
+                        "Main_Menu_Operation_FileSystem_UploadFolder");
                 UpLoadFolderStripButton.Text = UploadFolderToolStripMenuItem.Text;
 
                 DownloadFileToolStripMenuItem.Text =
                     GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_FileSystem_Download);
+                        "Main_Menu_Operation_FileSystem_Download");
                 DownloadFileStripButton.Text = DownloadFileToolStripMenuItem.Text;
 
                 OpenFileToolStripMenuItem.Text =
                     GUIConfig.MStringResource.GetText(
-                        TextType.Main_Menu_Operation_FileSystem_OpenFile);
+                        "Main_Menu_Operation_FileSystem_OpenFile");
                 OpenFileStripButton.Text = OpenFileToolStripMenuItem.Text;
             }
         }

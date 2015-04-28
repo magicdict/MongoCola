@@ -36,12 +36,7 @@ namespace MongoCola
             optExcel.CheckedChanged += optExportType_CheckedChanged;
             optText.CheckedChanged += optExportType_CheckedChanged;
             optXML.CheckedChanged += optExportType_CheckedChanged;
-            if (SystemConfig.IsUseDefaultLanguage)
-                return;
-            btnSave.Text = GUIConfig.GetText(TextType.Common_Save);
-            Text =
-                GUIConfig.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_ExportToFile);
+            GUIConfig.Translateform(this);
         }
 
         /// <summary>

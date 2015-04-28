@@ -121,11 +121,7 @@ namespace MongoCola.Status
                     }
                     break;
             }
-            if (!SystemConfig.IsUseDefaultLanguage)
-            {
-                Text = GUIConfig.GetText(TextType.Main_Menu_Mangt_Status);
-                cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
-            }
+            GUIConfig.Translateform(this);
             UIHelper.FillDataToTreeView(strType, trvStatus, DocStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }

@@ -146,8 +146,7 @@ namespace Common.UI
         private void ctlFilePicker_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
-            cmdBrowse.Text = GUIConfig.GetText("Browse", TextType.Common_Browse);
-            cmdClearPath.Text = GUIConfig.GetText("Clear", TextType.Common_Clear);
+            GUIConfig.Translateform(this.Controls);
         }
     }
 }

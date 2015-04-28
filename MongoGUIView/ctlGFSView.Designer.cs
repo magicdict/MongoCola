@@ -30,6 +30,7 @@ namespace MongoGUIView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlGFSView));
             this.cmbListViewStyle = new System.Windows.Forms.ToolStripComboBox();
             this.OpenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,41 +52,41 @@ namespace MongoGUIView
             // 
             // tabDataShower
             // 
-            this.tabDataShower.Size = new System.Drawing.Size(917, 391);
+            this.tabDataShower.Size = new System.Drawing.Size(917, 366);
             // 
             // tabTreeView
             // 
-            this.tabTreeView.Size = new System.Drawing.Size(909, 366);
+            this.tabTreeView.Size = new System.Drawing.Size(909, 340);
             // 
             // tabTableView
             // 
-            this.tabTableView.Size = new System.Drawing.Size(909, 366);
+            this.tabTableView.Size = new System.Drawing.Size(909, 340);
             // 
             // trvData
             // 
-            this.trvData.Size = new System.Drawing.Size(903, 360);
+            this.trvData.Size = new System.Drawing.Size(903, 334);
             // 
             // lstData
             // 
-            this.lstData.Size = new System.Drawing.Size(903, 360);
-            this.lstData.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseDoubleClick);
-            this.lstData.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseClick);
+            this.lstData.Size = new System.Drawing.Size(903, 334);
             this.lstData.SelectedIndexChanged += new System.EventHandler(this.lstData_SelectedIndexChanged);
+            this.lstData.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseClick);
+            this.lstData.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseDoubleClick);
             // 
             // tabTextView
             // 
-            this.tabTextView.Size = new System.Drawing.Size(909, 366);
+            this.tabTextView.Size = new System.Drawing.Size(909, 340);
             // 
             // txtData
             // 
-            this.txtData.Size = new System.Drawing.Size(903, 360);
+            this.txtData.Size = new System.Drawing.Size(903, 334);
             // 
             // toolStripContainer1
             // 
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(917, 391);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(917, 366);
             // 
             // cmbListViewStyle
             // 
@@ -97,12 +98,12 @@ namespace MongoGUIView
             "List",
             "Tile"});
             this.cmbListViewStyle.Name = "cmbListViewStyle";
-            this.cmbListViewStyle.Size = new System.Drawing.Size(121, 21);
+            this.cmbListViewStyle.Size = new System.Drawing.Size(121, 25);
             this.cmbListViewStyle.Text = "Details";
             // 
             // OpenFileToolStripMenuItem
             // 
-            this.OpenFileToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.OpenFile;
+            this.OpenFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OpenFileToolStripMenuItem.Image")));
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
             this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(80, 25);
             this.OpenFileToolStripMenuItem.Text = "Open File";
@@ -110,7 +111,7 @@ namespace MongoGUIView
             // 
             // UploadFileToolStripMenuItem
             // 
-            this.UploadFileToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.UpLoadFile;
+            this.UploadFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("UploadFileToolStripMenuItem.Image")));
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
             this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.UploadFileToolStripMenuItem.Text = "Upload File";
@@ -118,7 +119,7 @@ namespace MongoGUIView
             // 
             // UploadFolderToolStripMenuItem
             // 
-            this.UploadFolderToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.UploadFolder;
+            this.UploadFolderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("UploadFolderToolStripMenuItem.Image")));
             this.UploadFolderToolStripMenuItem.Name = "UploadFolderToolStripMenuItem";
             this.UploadFolderToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.UploadFolderToolStripMenuItem.Text = "UploadFolder";
@@ -126,7 +127,7 @@ namespace MongoGUIView
             // 
             // DownloadFileToolStripMenuItem
             // 
-            this.DownloadFileToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.DownloadFile;
+            this.DownloadFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DownloadFileToolStripMenuItem.Image")));
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
             this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DownloadFileToolStripMenuItem.Text = "Download File";
@@ -134,7 +135,7 @@ namespace MongoGUIView
             // 
             // DeleteFileToolStripMenuItem
             // 
-            this.DeleteFileToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.delete_file;
+            this.DeleteFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DeleteFileToolStripMenuItem.Image")));
             this.DeleteFileToolStripMenuItem.Name = "DeleteFileToolStripMenuItem";
             this.DeleteFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DeleteFileToolStripMenuItem.Text = "Delete File";
@@ -143,7 +144,7 @@ namespace MongoGUIView
             // DeleteFileStripButton
             // 
             this.DeleteFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DeleteFileStripButton.Image = global::ResourceLib.Properties.Resources.delete_file;
+            this.DeleteFileStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteFileStripButton.Image")));
             this.DeleteFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteFileStripButton.Name = "DeleteFileStripButton";
             this.DeleteFileStripButton.Size = new System.Drawing.Size(23, 22);
@@ -152,7 +153,7 @@ namespace MongoGUIView
             // DownloadFileStripButton
             // 
             this.DownloadFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DownloadFileStripButton.Image = global::ResourceLib.Properties.Resources.DownloadFile;
+            this.DownloadFileStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DownloadFileStripButton.Image")));
             this.DownloadFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DownloadFileStripButton.Name = "DownloadFileStripButton";
             this.DownloadFileStripButton.Size = new System.Drawing.Size(23, 22);
@@ -161,7 +162,7 @@ namespace MongoGUIView
             // UpLoadFolderStripButton
             // 
             this.UpLoadFolderStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.UpLoadFolderStripButton.Image = global::ResourceLib.Properties.Resources.UploadFolder;
+            this.UpLoadFolderStripButton.Image = ((System.Drawing.Image)(resources.GetObject("UpLoadFolderStripButton.Image")));
             this.UpLoadFolderStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UpLoadFolderStripButton.Name = "UpLoadFolderStripButton";
             this.UpLoadFolderStripButton.Size = new System.Drawing.Size(23, 22);
@@ -171,7 +172,7 @@ namespace MongoGUIView
             // UploadFileStripButton
             // 
             this.UploadFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.UploadFileStripButton.Image = global::ResourceLib.Properties.Resources.UpLoadFile;
+            this.UploadFileStripButton.Image = ((System.Drawing.Image)(resources.GetObject("UploadFileStripButton.Image")));
             this.UploadFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UploadFileStripButton.Name = "UploadFileStripButton";
             this.UploadFileStripButton.Size = new System.Drawing.Size(23, 22);
@@ -181,7 +182,7 @@ namespace MongoGUIView
             // OpenFileStripButton
             // 
             this.OpenFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.OpenFileStripButton.Image = global::ResourceLib.Properties.Resources.OpenFile;
+            this.OpenFileStripButton.Image = ((System.Drawing.Image)(resources.GetObject("OpenFileStripButton.Image")));
             this.OpenFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenFileStripButton.Name = "OpenFileStripButton";
             this.OpenFileStripButton.Size = new System.Drawing.Size(23, 22);

@@ -14,11 +14,6 @@ namespace Common.Logic
 {
     public static class Utility
     {
-        public static void Init()
-        {
-            MyMessageBox.InitMsgBoxUI();
-        }
-
         #region "类型"
 
         /// <summary>
