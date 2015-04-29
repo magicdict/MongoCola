@@ -88,7 +88,6 @@
       <DependentUpon>frmQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="configuration.cs" />
     <Compile Include="ctlDataView.cs">
       <SubType>UserControl</SubType>
     </Compile>

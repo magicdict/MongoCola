@@ -80,8 +80,6 @@ namespace MongoCola
                 MongoConfig.LoadFromConfigFile();
                 RuntimeMongoDbContext.MongoConnectionConfigList = MongoConnectionConfig.MongoConfig.ConnectionList;
             }
-            //各个子系统的多语言设定
-            Configuration.RefreshStatusTimer = SystemConfig.RefreshStatusTimer;
             Application.Run(new FrmMain());
             //delete tempfile directory when exit
             if (Directory.Exists(Gfs.TempFileFolder))
