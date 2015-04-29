@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Config;
 using MongoUtility.Core;
 using ResourceLib.Method;
+using MongoCola.Config;
 
 namespace MongoCola.Connection
 {

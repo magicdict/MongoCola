@@ -91,20 +91,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MongoDB.Bson, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MongoDB.Bson.2.0.0\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MongoDB.Driver, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MongoDB.Driver.2.0.0\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MongoDB.Driver.Core, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MongoDB.Driver.Core.2.0.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MongoDB.Driver.Legacy, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\mongocsharpdriver.2.0.0\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -123,11 +123,23 @@
     <Compile Include="Config\Config.cs" />
     <Compile Include="Config\ConfigHelper.cs" />
     <Compile Include="Config\SystemConfig.cs" />
-    <Compile Include="frmExport.cs">
+    <Compile Include="Connection\frmAddConnection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExport.Designer.cs">
-      <DependentUpon>frmExport.cs</DependentUpon>
+    <Compile Include="Connection\frmAddConnection.Designer.cs">
+      <DependentUpon>frmAddConnection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\frmConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connection\frmConnect.Designer.cs">
+      <DependentUpon>frmConnect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\frmLanguage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\frmLanguage.Designer.cs">
+      <DependentUpon>frmLanguage.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMainHelper.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -137,75 +149,15 @@
       <SubType>Form</SubType>
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUserRole.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmUserRole.Designer.cs">
-      <DependentUpon>frmUserRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAddRole.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAddRole.Designer.cs">
-      <DependentUpon>frmAddRole.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMainTreeView.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Config\MutliTabManger.cs" />
+    <Compile Include="MutliTabManger.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Aggregation\frmTextSearch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aggregation\frmTextSearch.Designer.cs">
-      <DependentUpon>frmTextSearch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmValidate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmValidate.Designer.cs">
-      <DependentUpon>frmValidate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Status\frmServerMonitor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Status\frmServerMonitor.Designer.cs">
-      <DependentUpon>frmServerMonitor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Operation\frmArrayCreator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operation\frmArrayCreator.Designer.cs">
-      <DependentUpon>frmArrayCreator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Aggregation\frmAggregation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aggregation\frmAggregation.Designer.cs">
-      <DependentUpon>frmAggregation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Aggregation\frmAggregationCondition.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aggregation\frmAggregationCondition.Designer.cs">
-      <DependentUpon>frmAggregationCondition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmLanguage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLanguage.Designer.cs">
-      <DependentUpon>frmLanguage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Operation\frmCreateCollection.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operation\frmCreateCollection.Designer.cs">
-      <DependentUpon>frmCreateCollection.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -213,173 +165,32 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Status\frmProfilling.cs">
+    <Compile Include="Config\frmOption.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Status\frmProfilling.Designer.cs">
-      <DependentUpon>frmProfilling.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Status\frmStatus.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Status\frmStatus.Designer.cs">
-      <DependentUpon>frmStatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Operation\frmNewDocument.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operation\frmNewDocument.Designer.cs">
-      <DependentUpon>frmNewDocument.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmReplsetMgr.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmReplsetMgr.Designer.cs">
-      <DependentUpon>frmReplsetMgr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmEvalJS.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmEvalJS.Designer.cs">
-      <DependentUpon>frmEvalJS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmUser.Designer.cs">
-      <DependentUpon>frmUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Aggregation\frmDistinct.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aggregation\frmDistinct.Designer.cs">
-      <DependentUpon>frmDistinct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Aggregation\frmGroup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aggregation\frmGroup.Designer.cs">
-      <DependentUpon>frmGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Connection\frmAddConnection.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Connection\frmAddConnection.Designer.cs">
-      <DependentUpon>frmAddConnection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmShardingConfig.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmShardingConfig.Designer.cs">
-      <DependentUpon>frmShardingConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Connection\frmConnect.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Connection\frmConnect.Designer.cs">
-      <DependentUpon>frmConnect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Operation\frmCollectionIndex.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operation\frmCollectionIndex.Designer.cs">
-      <DependentUpon>frmCollectionIndex.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Aggregation\frmMapReduce.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aggregation\frmMapReduce.Designer.cs">
-      <DependentUpon>frmMapReduce.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmOption.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmOption.Designer.cs">
+    <Compile Include="Config\frmOption.Designer.cs">
       <DependentUpon>frmOption.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManager.cs" />
-    <EmbeddedResource Include="frmAddRole.resx">
-      <DependentUpon>frmAddRole.cs</DependentUpon>
+    <EmbeddedResource Include="Connection\frmAddConnection.resx">
+      <DependentUpon>frmAddConnection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExport.resx">
-      <DependentUpon>frmExport.cs</DependentUpon>
+    <EmbeddedResource Include="Connection\frmConnect.resx">
+      <DependentUpon>frmConnect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUserRole.resx">
-      <DependentUpon>frmUserRole.cs</DependentUpon>
+    <EmbeddedResource Include="Config\frmLanguage.resx">
+      <DependentUpon>frmLanguage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\frmArrayCreator.resx">
-      <DependentUpon>frmArrayCreator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Aggregation\frmTextSearch.resx">
-      <DependentUpon>frmTextSearch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmValidate.resx">
-      <DependentUpon>frmValidate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Status\frmServerMonitor.resx">
-      <DependentUpon>frmServerMonitor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Aggregation\frmAggregation.resx">
-      <DependentUpon>frmAggregation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Aggregation\frmAggregationCondition.resx">
-      <DependentUpon>frmAggregationCondition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Operation\frmCreateCollection.resx">
-      <DependentUpon>frmCreateCollection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmLanguage.resx">
-      <DependentUpon>frmLanguage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\frmNewDocument.resx">
-      <DependentUpon>frmNewDocument.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Status\frmProfilling.resx">
-      <DependentUpon>frmProfilling.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Status\frmStatus.resx">
-      <DependentUpon>frmStatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmReplsetMgr.resx">
-      <DependentUpon>frmReplsetMgr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmEvalJS.resx">
-      <DependentUpon>frmEvalJS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmUser.resx">
-      <DependentUpon>frmUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Aggregation\frmDistinct.resx">
-      <DependentUpon>frmDistinct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Aggregation\frmGroup.resx">
-      <DependentUpon>frmGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Connection\frmAddConnection.resx">
-      <DependentUpon>frmAddConnection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmShardingConfig.resx">
-      <DependentUpon>frmShardingConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Connection\frmConnect.resx">
-      <DependentUpon>frmConnect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Operation\frmCollectionIndex.resx">
-      <DependentUpon>frmCollectionIndex.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Aggregation\frmMapReduce.resx">
-      <DependentUpon>frmMapReduce.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmOption.resx">
+    <EmbeddedResource Include="Config\frmOption.resx">
       <DependentUpon>frmOption.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
@@ -441,6 +252,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{40495682-c452-41c4-b2ae-8c60d7743bc9}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FunctionForm\FunctionForm.csproj">
+      <Project>{564926f7-427a-412c-8de0-967e9d082a84}</Project>
+      <Name>FunctionForm</Name>
     </ProjectReference>
     <ProjectReference Include="..\MongoGUICtl\MongoGUICtl.csproj">
       <Project>{EC2826B3-7033-4F9B-B52A-BD1CA85F583B}</Project>

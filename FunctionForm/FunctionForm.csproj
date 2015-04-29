@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{564926F7-427A-412C-8DE0-967E9D082A84}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FunctionForm</RootNamespace>
+    <AssemblyName>FunctionForm</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.0.0\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.0.0\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.0.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.2.0.0\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aggregation\frmAggregation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aggregation\frmAggregation.Designer.cs">
+      <DependentUpon>frmAggregation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Aggregation\frmAggregationCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aggregation\frmAggregationCondition.Designer.cs">
+      <DependentUpon>frmAggregationCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Aggregation\frmDistinct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aggregation\frmDistinct.Designer.cs">
+      <DependentUpon>frmDistinct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Aggregation\frmGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aggregation\frmGroup.Designer.cs">
+      <DependentUpon>frmGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Aggregation\frmMapReduce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aggregation\frmMapReduce.Designer.cs">
+      <DependentUpon>frmMapReduce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Aggregation\frmTextSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aggregation\frmTextSearch.Designer.cs">
+      <DependentUpon>frmTextSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\frmAddRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\frmAddRole.Designer.cs">
+      <DependentUpon>frmAddRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\frmEvalJS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\frmEvalJS.Designer.cs">
+      <DependentUpon>frmEvalJS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\frmExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\frmExport.Designer.cs">
+      <DependentUpon>frmExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\frmReplsetMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\frmReplsetMgr.Designer.cs">
+      <DependentUpon>frmReplsetMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\frmShardingConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\frmShardingConfig.Designer.cs">
+      <DependentUpon>frmShardingConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\frmUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\frmUserRole.Designer.cs">
+      <DependentUpon>frmUserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\frmValidate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\frmValidate.Designer.cs">
+      <DependentUpon>frmValidate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\frmArrayCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\frmArrayCreator.Designer.cs">
+      <DependentUpon>frmArrayCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\frmCollectionIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\frmCollectionIndex.Designer.cs">
+      <DependentUpon>frmCollectionIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\frmCreateCollection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\frmCreateCollection.Designer.cs">
+      <DependentUpon>frmCreateCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\frmNewDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\frmNewDocument.Designer.cs">
+      <DependentUpon>frmNewDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Status\frmProfilling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Status\frmProfilling.Designer.cs">
+      <DependentUpon>frmProfilling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Status\frmServerMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Status\frmServerMonitor.Designer.cs">
+      <DependentUpon>frmServerMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Status\frmStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Status\frmStatus.Designer.cs">
+      <DependentUpon>frmStatus.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Aggregation\frmAggregation.resx">
+      <DependentUpon>frmAggregation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aggregation\frmAggregationCondition.resx">
+      <DependentUpon>frmAggregationCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aggregation\frmDistinct.resx">
+      <DependentUpon>frmDistinct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aggregation\frmGroup.resx">
+      <DependentUpon>frmGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aggregation\frmMapReduce.resx">
+      <DependentUpon>frmMapReduce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aggregation\frmTextSearch.resx">
+      <DependentUpon>frmTextSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\frmAddRole.resx">
+      <DependentUpon>frmAddRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\frmEvalJS.resx">
+      <DependentUpon>frmEvalJS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\frmExport.resx">
+      <DependentUpon>frmExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\frmReplsetMgr.resx">
+      <DependentUpon>frmReplsetMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\frmShardingConfig.resx">
+      <DependentUpon>frmShardingConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\frmUserRole.resx">
+      <DependentUpon>frmUserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\frmValidate.resx">
+      <DependentUpon>frmValidate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\frmArrayCreator.resx">
+      <DependentUpon>frmArrayCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\frmCollectionIndex.resx">
+      <DependentUpon>frmCollectionIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\frmCreateCollection.resx">
+      <DependentUpon>frmCreateCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\frmNewDocument.resx">
+      <DependentUpon>frmNewDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Status\frmProfilling.resx">
+      <DependentUpon>frmProfilling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Status\frmServerMonitor.resx">
+      <DependentUpon>frmServerMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Status\frmStatus.resx">
+      <DependentUpon>frmStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{40495682-c452-41c4-b2ae-8c60d7743bc9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoGUICtl\MongoGUICtl.csproj">
+      <Project>{ec2826b3-7033-4f9b-b52a-bd1ca85f583b}</Project>
+      <Name>MongoGUICtl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
+      <Project>{e71af267-0dfd-4e71-94a7-48f40793ceef}</Project>
+      <Name>MongoGUIView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
+      <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
+      <Name>MongoUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
+      <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
+      <Name>ResourceLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
