@@ -57,7 +57,7 @@ namespace FunctionForm.Aggregation
                 var searchResult = CommandHelper.ExecuteMongoColCommand("text",
                     RuntimeMongoDbContext.GetCurrentCollection(), textSearchOption);
                 _result = searchResult.Response;
-                UiHelper.FillDataToTreeView("Text Search Result", trvResult, _result);
+                UIHelper.FillDataToTreeView("Text Search Result", trvResult, _result);
                 cmdSave.Enabled = true;
             }
             catch (Exception ex)

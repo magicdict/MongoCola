@@ -37,7 +37,7 @@ namespace FunctionForm.Aggregation
             var mCommandResult = CommandHelper.Aggregate(_aggrArray, RuntimeMongoDbContext.GetCurrentCollection().Name);
             if (mCommandResult.Ok)
             {
-                UiHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
+                UIHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
                 trvResult.DatatreeView.BeginUpdate();
                 trvResult.DatatreeView.ExpandAll();
                 trvResult.DatatreeView.EndUpdate();
@@ -99,7 +99,7 @@ namespace FunctionForm.Aggregation
             {
                 conditionList.Add(item);
             }
-            UiHelper.FillDataToTreeView("Aggregation", trvCondition, conditionList, 0);
+            UIHelper.FillDataToTreeView("Aggregation", trvCondition, conditionList, 0);
             trvCondition.DatatreeView.BeginUpdate();
             trvCondition.DatatreeView.ExpandAll();
             trvCondition.DatatreeView.EndUpdate();

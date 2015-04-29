@@ -203,8 +203,6 @@ namespace ResourceLib.Method
         {
             if (!string.IsNullOrEmpty(fileType))
             {
-                RegistryKey regVersion = null;
-                string regFileType = null;
                 string regIconString = null;
                 var systemDirectory = Environment.SystemDirectory + "\\";
 
@@ -216,6 +214,7 @@ namespace ResourceLib.Method
                 else
                 {
                     //读系统注册表中文件类型信息
+                    RegistryKey regVersion;
                     try
                     {
                         regVersion = Registry.ClassesRoot.OpenSubKey(fileType, true);
@@ -227,7 +226,7 @@ namespace ResourceLib.Method
                     }
                     if (regVersion != null)
                     {
-                        regFileType = regVersion.GetValue(string.Empty) as string;
+                        var regFileType = regVersion.GetValue(string.Empty) as string;
                         regVersion.Close();
                         regVersion = Registry.ClassesRoot.OpenSubKey(regFileType + @"\DefaultIcon", true);
                         if (regVersion != null)
@@ -293,16 +292,14 @@ namespace ResourceLib.Method
         public static Icon GetIconByFileType(string sFileExt)
         {
             {
-                string sProg;
                 var tmp = Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue(string.Empty);
                 //Get the program that will open files with this extension
-                sProg =
-                    Registry.ClassesRoot.OpenSubKey(tmp.ToString())
-                        .OpenSubKey("shell")
-                        .OpenSubKey("open")
-                        .OpenSubKey("command")
-                        .GetValue(string.Empty)
-                        .ToString();
+                var sProg = Registry.ClassesRoot.OpenSubKey(tmp.ToString())
+                    .OpenSubKey("shell")
+                    .OpenSubKey("open")
+                    .OpenSubKey("command")
+                    .GetValue(string.Empty)
+                    .ToString();
                 //strip the filename
                 sProg = sProg.Substring(0, 1) == Convert.ToChar(34).ToString()
                     ? sProg.Substring(1, sProg.IndexOf(Convert.ToChar(34), 2) - 1)
@@ -330,7 +327,6 @@ namespace ResourceLib.Method
         private static class Win32
         {
             public const uint ShgfiIcon = 0x100;
-            public const uint ShgfiLargeicon = 0x0; // 'Large icon
             public const uint ShgfiSmallicon = 0x1; // 'Small icon
 
             [DllImport("shell32.dll")]

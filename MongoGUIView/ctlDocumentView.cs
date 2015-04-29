@@ -521,7 +521,7 @@ namespace MongoGUIView
                 if (string.IsNullOrEmpty(pasteMessage))
                 {
                     //GetCurrentDocument()的第一个元素是ID
-                    UiHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,
+                    UIHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,
                         new BsonDocument().Add((BsonElement) ElementHelper.ClipElement));
                 }
                 else

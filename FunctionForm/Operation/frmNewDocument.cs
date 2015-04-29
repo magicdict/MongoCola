@@ -75,7 +75,7 @@ namespace FunctionForm.Operation
             {
                 BsonDocument newdoc;
                 newdoc = BsonDocument.Parse(txtDocument.Text);
-                UiHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
+                UIHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
                 txtDocument.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
             }

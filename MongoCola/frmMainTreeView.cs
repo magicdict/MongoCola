@@ -96,9 +96,8 @@ namespace MongoCola
         /// <summary>
         ///     异常连接
         /// </summary>
-        /// <param name="strNodeType"></param>
         /// <param name="e"></param>
-        private void ExceptionConnectionHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
+        private void ExceptionConnectionHandler(TreeNodeMouseClickEventArgs e)
         {
             RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
             DisconnectToolStripMenuItem.Enabled = true;
@@ -126,9 +125,8 @@ namespace MongoCola
         /// <summary>
         ///     Server
         /// </summary>
-        /// <param name="strNodeType"></param>
         /// <param name="e"></param>
-        private void ServerHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
+        private void ServerHandler(TreeNodeMouseClickEventArgs e)
         {
             RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
             if (GuiConfig.IsUseDefaultLanguage)
@@ -213,7 +211,7 @@ namespace MongoCola
             }
         }
 
-        private void SingleDBServerHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
+        private void SingleDBServerHandler(TreeNodeMouseClickEventArgs e)
         {
             //单数据库模式,禁止所有服务器操作
             RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
@@ -364,7 +362,7 @@ namespace MongoCola
             }
         }
 
-        private void CollectionHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
+        private void CollectionHandler(TreeNodeMouseClickEventArgs e)
         {
             if (GuiConfig.IsUseDefaultLanguage)
             {

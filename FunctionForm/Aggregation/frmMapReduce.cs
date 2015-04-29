@@ -65,7 +65,7 @@ namespace FunctionForm.Aggregation
             args.MapFunction = map;
             args.ReduceFunction = reduce;
             var mMapReduceResult = RuntimeMongoDbContext.GetCurrentCollection().MapReduce(args);
-            UiHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
+            UIHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();

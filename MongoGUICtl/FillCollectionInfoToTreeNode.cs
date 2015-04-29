@@ -10,7 +10,7 @@ using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
-    public static partial class UiHelper
+    public static partial class UIHelper
     {
         /// <summary>
         ///     将数据集放入Node

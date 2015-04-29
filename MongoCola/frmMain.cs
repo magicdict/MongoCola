@@ -192,13 +192,13 @@ namespace MongoCola
                         ConnectionHandler(strNodeType, e);
                         break;
                     case ConstMgr.ConnectionExceptionTag:
-                        ExceptionConnectionHandler(strNodeType, e);
+                        ExceptionConnectionHandler(e);
                         break;
                     case ConstMgr.ServerTag:
-                        ServerHandler(strNodeType, e);
+                        ServerHandler(e);
                         break;
                     case ConstMgr.SingleDbServerTag:
-                        SingleDBServerHandler(strNodeType, e);
+                        SingleDBServerHandler(e);
                         break;
                     case ConstMgr.DatabaseTag:
                     case ConstMgr.SingleDatabaseTag:
@@ -213,7 +213,7 @@ namespace MongoCola
                         statusStripMain.Items[0].Text = "Collection List ";
                         break;
                     case ConstMgr.CollectionTag:
-                        CollectionHandler(strNodeType, e);
+                        CollectionHandler(e);
                         break;
                     case ConstMgr.IndexTag:
                         statusStripMain.Items[0].Text = GuiConfig.GetText("Selected Index:", TextType.SelectedIndex) +

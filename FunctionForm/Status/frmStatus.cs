@@ -121,7 +121,7 @@ namespace FunctionForm.Status
                     break;
             }
             GuiConfig.Translateform(this);
-            UiHelper.FillDataToTreeView(strType, trvStatus, docStatus);
+            UIHelper.FillDataToTreeView(strType, trvStatus, docStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
 

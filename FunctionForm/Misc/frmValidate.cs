@@ -32,7 +32,7 @@ namespace FunctionForm
             var searchResult = CommandHelper.ExecuteMongoColCommand("validate",
                 RuntimeMongoDbContext.GetCurrentCollection(), textSearchOption);
             _result = searchResult.Response;
-            UiHelper.FillDataToTreeView("Validate Result", trvResult, _result);
+            UIHelper.FillDataToTreeView("Validate Result", trvResult, _result);
             cmdSave.Enabled = true;
         }
 

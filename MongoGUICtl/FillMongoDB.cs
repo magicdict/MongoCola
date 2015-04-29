@@ -144,7 +144,7 @@ namespace MongoGUICtl
                     Utility.ExceptionDeal(ex);
                 }
             }
-            UiHelper.FillDataToTreeView("Server Status", trvSvrStatus, srvDocList, 0);
+            UIHelper.FillDataToTreeView("Server Status", trvSvrStatus, srvDocList, 0);
             //打开第一层
             foreach (TreeNode item in trvSvrStatus.DatatreeView.Nodes)
             {
@@ -185,7 +185,7 @@ namespace MongoGUICtl
                     Utility.ExceptionDeal(ex);
                 }
             }
-            UiHelper.FillDataToTreeView("Server Status", trvSvrStatus, srvDocList, 0);
+            UIHelper.FillDataToTreeView("Server Status", trvSvrStatus, srvDocList, 0);
             //打开第一层
             foreach (TreeNode item in trvSvrStatus.DatatreeView.Nodes)
             {

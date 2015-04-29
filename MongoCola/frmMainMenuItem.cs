@@ -202,7 +202,7 @@ namespace MongoCola
                 await
                     Task.Run(() =>
                     {
-                        connectionTreeNodes = UiHelper.GetConnectionNodes();
+                        connectionTreeNodes = UIHelper.GetConnectionNodes();
                     });
                 //如果第一个节点的字节点不为空
                 if (connectionTreeNodes != null)
@@ -247,8 +247,7 @@ namespace MongoCola
 
         private void ExpandNode(TreeNode node)
         {
-            if (node.Tag == null)
-                return;
+            if (node.Tag == null) return;
             var strNodeType = Utility.GetTagType(node.Tag.ToString());
             if (strNodeType != ConstMgr.CollectionTag && strNodeType != ConstMgr.GridFileSystemTag)
             {
@@ -573,7 +572,7 @@ namespace MongoCola
             MongoHelper.InitGfs();
             DisableAllOpr();
             trvsrvlst.Nodes.Clear();
-            var connectNodes = UiHelper.GetConnectionNodes();
+            var connectNodes = UIHelper.GetConnectionNodes();
             foreach (var element in connectNodes)
             {
                 trvsrvlst.Nodes.Add(element);
