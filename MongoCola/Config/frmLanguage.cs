@@ -37,7 +37,7 @@ namespace MongoCola
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SystemManager.SystemConfig.LanguageFileName = cmbLanguage.Text + ".xml";
-            ConfigHelper.SaveToConfigFile();
+            SystemManager.SystemConfig.SaveSystemConfig();
             Close();
         }
     }

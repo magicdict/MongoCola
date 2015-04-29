@@ -58,7 +58,7 @@ namespace MongoCola.Connection
                 Utility.ListViewColumnResize(lstConnection);
             }
             lstConnection.Sort();
-            ConfigHelper.SaveToConfigFile();
+            SystemManager.MongoConfig.SaveMongoConfig();
         }
 
         /// <summary>

@@ -141,7 +141,7 @@ namespace MongoCola
                     (newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
                 };
                 SystemManager.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
-                ConfigHelper.SaveToConfigFile();
+                SystemManager.MongoConfig.SaveMongoConfig();
                 RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
                 RuntimeMongoDbContext.MongoConnSvrLst.Add(
                     RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
@@ -166,7 +166,7 @@ namespace MongoCola
             var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
             Utility.OpenForm(new FrmReplsetMgr(ref newConfig), true, true);
             SystemManager.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
-            ConfigHelper.SaveToConfigFile();
+            SystemManager.MongoConfig.SaveMongoConfig(); 
             RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
             RuntimeMongoDbContext.MongoConnSvrLst.Add(
                 RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,

@@ -58,10 +58,12 @@ namespace MongoCola
             Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + MongoHelper.MongoDbBsonVersion +
                                            Environment.NewLine;
             //config
-            var localconfigfile = Application.StartupPath + "\\" + ConfigHelper.ConfigFilename;
+            SystemConfig.AppPath = Application.StartupPath + "\\";
+            MongoConfig.AppPath = Application.StartupPath + "\\";
+            string localconfigfile = Application.StartupPath + "\\" + SystemConfig.SystemConfigFilename;
             if (File.Exists(localconfigfile))
             {
-                ConfigHelper.LoadFromConfigFile(localconfigfile);
+                SystemConfig.LoadFromConfigFile();
                 InitLanguage();
                 MongodbDosCommand.MongoBinPath = SystemManager.SystemConfig.MongoBinPath;
             }
@@ -73,10 +75,14 @@ namespace MongoCola
                 InitLanguage();
                 var frmOption = new FrmOption();
                 frmOption.ShowDialog();
-                ConfigHelper.SaveToConfigFile(localconfigfile);
+                SystemConfig.SaveSystemConfig();
             }
-            //设定MongoUtility
-            RuntimeMongoDbContext.MongoConnectionConfigList = SystemManager.MongoConfig.ConnectionList;
+            localconfigfile = Application.StartupPath + "\\" + MongoConfig.MongoConfigFilename;
+            if (File.Exists(localconfigfile))
+            {
+                MongoConfig.LoadFromConfigFile();
+                RuntimeMongoDbContext.MongoConnectionConfigList = SystemManager.MongoConfig.ConnectionList;
+            }
             //各个子系统的多语言设定
             Configuration.RefreshStatusTimer = SystemManager.SystemConfig.RefreshStatusTimer;
             Application.Run(new FrmMain());

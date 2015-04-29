@@ -54,8 +54,7 @@ namespace ResourceLib.UI
             set
             {
                 lblTitle.Text = value;
-                txtPathName.Left = lblTitle.Right + 4;
-                txtPathName.Width = cmdBrowse.Left - lblTitle.Right - 8;
+                ResizeControl(null,null);
             }
         }
 
@@ -147,6 +146,14 @@ namespace ResourceLib.UI
         {
             if (DesignMode) return;
             GuiConfig.Translateform(Controls);
+        }
+
+        private void ResizeControl(object sender, EventArgs e)
+        {
+            txtPathName.Left = lblTitle.Right + 4;
+            txtPathName.Width = Width - cmdBrowse.Width - lblTitle.Width - cmdClearPath.Width - 30;
+            cmdClearPath.Left = Width - cmdClearPath.Width;
+            cmdBrowse.Left = Width - cmdClearPath.Width - cmdBrowse.Width - 4;
         }
     }
 }

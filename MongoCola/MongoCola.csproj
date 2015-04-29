@@ -121,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\SystemConfig.cs" />
-    <Compile Include="Config\ConfigHelper.cs" />
     <Compile Include="Config\MongoConfig.cs" />
     <Compile Include="Connection\frmAddConnection.cs">
       <SubType>Form</SubType>

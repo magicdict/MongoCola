@@ -116,7 +116,7 @@ namespace MongoCola
             SystemManager.SystemConfig.RefreshStatusTimer = (int)numRefreshForStatus.Value;
             SystemManager.SystemConfig.LanguageFileName = cmbLanguage.Text + ".xml";
 
-            ConfigHelper.SaveToConfigFile();
+            SystemManager.MongoConfig.SaveMongoConfig(); 
             Close();
         }
 
