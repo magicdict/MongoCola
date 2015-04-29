@@ -93,7 +93,7 @@ namespace MongoCola
                 tabView.Controls.Remove(tabCommandShell);
             };
             tabView.SelectedIndexChanged += tabView_SelectedIndexChanged;
-            CommandHelper.RunCommandComplete += CommandLog;
+            //CommandHelper.RunCommandComplete += CommandLog;
             //长时间操作时候，实时提示进度在状态栏中
             lblAction.Text = string.Empty;
             MongoHelper.ActionDone += (x, y) =>
@@ -159,7 +159,7 @@ namespace MongoCola
                 trvsrvlst.SelectedNode = e.Node;
                 var strNodeType = Utility.GetTagType(e.Node.Tag.ToString());
                 var mongoSvrKey = Utility.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
-                RuntimeMongoDbContext.CurrentMongoConnectionconfig = SystemManager.MongoConfig.ConnectionList[mongoSvrKey];
+                RuntimeMongoDbContext.CurrentMongoConnectionconfig = MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey];
                 if (string.IsNullOrEmpty(RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName))
                 {
                     lblUserInfo.Text = "UserInfo:Admin";
@@ -533,7 +533,7 @@ namespace MongoCola
 
                 dataViewctl.MDataViewInfo = mDataViewInfo;
 
-                var dataTab = new TabPage(RuntimeMongoDbContext.GetCurrentCollection().FullName)
+                var dataTab = new TabPage(RuntimeMongoDbContext.GetCurrentCollectionFullName())
                 {
                     Tag = RuntimeMongoDbContext.SelectObjectTag,
                     ToolTipText = RuntimeMongoDbContext.SelectObjectTag
@@ -556,7 +556,7 @@ namespace MongoCola
                 dataViewctl.Dock = DockStyle.Fill;
                 tabView.Controls.Add(dataTab);
 
-                var dataMenuItem = new ToolStripMenuItem(RuntimeMongoDbContext.GetCurrentCollection().Name)
+                var dataMenuItem = new ToolStripMenuItem(RuntimeMongoDbContext.GetCurrentCollectionName())
                 {
                     Tag = dataTab.Tag,
                     Image = GetSystemIcon.TabViewImage.Images[dataTab.ImageIndex]

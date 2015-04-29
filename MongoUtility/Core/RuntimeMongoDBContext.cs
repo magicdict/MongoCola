@@ -268,6 +268,16 @@ namespace MongoUtility.Core
             return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase());
         }
 
+        public static string GetCurrentCollectionName()
+        {
+            return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase()).Name;
+        }
+
+        public static string GetCurrentCollectionFullName()
+        {
+            return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase()).FullName;
+        }
+
         /// <summary>
         ///     获得当前服务器配置
         /// </summary>

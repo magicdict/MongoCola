@@ -107,7 +107,7 @@ namespace MongoCola
                         collectionToolStripMenuItem.DropDownItems.Remove(closeMenuItem);
                     }
                 }
-                RuntimeMongoDbContext.GetCurrentServer().Disconnect();
+                //RuntimeMongoDbContext.GetCurrentServer().Disconnect();
             }
             RuntimeMongoDbContext.MongoConnSvrLst.Remove(
                 RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName);
@@ -129,7 +129,7 @@ namespace MongoCola
             if (replSetName == string.Empty)
                 return;
             var result = CommandHelper.InitReplicaSet(replSetName,
-                RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName, SystemManager.MongoConfig.ConnectionList);
+                RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName, MongoConnectionConfig.MongoConfig.ConnectionList);
             if (result.Ok)
             {
                 //修改配置
@@ -140,8 +140,8 @@ namespace MongoCola
                     newConfig.Host +
                     (newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
                 };
-                SystemManager.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
-                SystemManager.MongoConfig.SaveMongoConfig();
+                MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
+                MongoConnectionConfig.MongoConfig.SaveMongoConfig();
                 RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
                 RuntimeMongoDbContext.MongoConnSvrLst.Add(
                     RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
@@ -165,8 +165,8 @@ namespace MongoCola
         {
             var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
             Utility.OpenForm(new FrmReplsetMgr(ref newConfig), true, true);
-            SystemManager.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
-            SystemManager.MongoConfig.SaveMongoConfig(); 
+            MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
+            MongoConnectionConfig.MongoConfig.SaveMongoConfig(); 
             RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
             RuntimeMongoDbContext.MongoConnSvrLst.Add(
                 RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
@@ -228,7 +228,7 @@ namespace MongoCola
                         () =>
                         {
                             connectionTreeNodes = UiHelper.GetConnectionNodes(RuntimeMongoDbContext.MongoConnSvrLst,
-                                SystemManager.MongoConfig.ConnectionList);
+                                MongoConnectionConfig.MongoConfig.ConnectionList);
                         });
                 //如果第一个节点的字节点不为空
                 if (connectionTreeNodes != null)
@@ -392,7 +392,7 @@ namespace MongoCola
                         ? "UserInformation"
                         : GuiConfig.GetText("Main_Menu_Operation_Server_UserInfo"),
                     "The User Information of：[" +
-                    SystemManager.MongoConfig.ConnectionList[connectionName].UserName + "]", info, true);
+                    MongoConnectionConfig.MongoConfig.ConnectionList[connectionName].UserName + "]", info, true);
             }
             //}
         }
@@ -603,7 +603,7 @@ namespace MongoCola
             DisableAllOpr();
             trvsrvlst.Nodes.Clear();
             var connectNodes = UiHelper.GetConnectionNodes(RuntimeMongoDbContext.MongoConnSvrLst,
-                SystemManager.MongoConfig.ConnectionList);
+                MongoConnectionConfig.MongoConfig.ConnectionList);
             foreach (var element in connectNodes)
             {
                 trvsrvlst.Nodes.Add(element);

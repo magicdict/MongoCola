@@ -85,13 +85,13 @@ namespace MongoCola
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CommandLog(object sender, RunCommandEventArgs e)
-        {
-            ctlShellCommandEditor.AppendLine("========================================================");
-            ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  Response:" + e.Result.Response);
-            ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  Code:" + e.Result.Code);
-            ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  OK:" + e.Result.Ok);
-            ctlShellCommandEditor.AppendLine("========================================================");
-        }
+        //private void CommandLog(object sender, RunCommandEventArgs e)
+        //{
+        //    ctlShellCommandEditor.AppendLine("========================================================");
+        //    ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  Response:" + e.Result.Response);
+        //    ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  Code:" + e.Result.Code);
+        //    ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  OK:" + e.Result.Ok);
+        //    ctlShellCommandEditor.AppendLine("========================================================");
+        //}
     }
 }

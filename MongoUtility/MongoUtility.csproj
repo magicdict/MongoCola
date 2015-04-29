@@ -81,6 +81,8 @@
     <Compile Include="Basic\MongoHelper.cs" />
     <Compile Include="Basic\ConstMgr.cs" />
     <Compile Include="Basic\EnumMgr.cs" />
+    <Compile Include="Core\MongoConfig.cs" />
+    <Compile Include="Core\Operater.cs" />
     <Compile Include="Extend\CommandHelper.cs" />
     <Compile Include="EventArgs\EventArgExtensions.cs" />
     <Compile Include="EventArgs\ActionDoneEventArgs.cs" />

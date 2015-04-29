@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace MongoCola.Config
+namespace MongoUtility.Core
 {
     [Serializable]
     public class MongoConfig
@@ -56,7 +56,7 @@ namespace MongoCola.Config
         /// <returns></returns>
         public static void AddConnection(MongoConnectionConfig con)
         {
-            SystemManager.MongoConfig.ConnectionList.Add(con.ConnectionName, con);
+            MongoConnectionConfig.MongoConfig.ConnectionList.Add(con.ConnectionName, con);
         }
         /// <summary>
         ///     写入配置
@@ -64,10 +64,10 @@ namespace MongoCola.Config
         /// <param name="configFileName"></param>
         public void SaveMongoConfig()
         {
-            SystemManager.MongoConfig.SerializableConnectionList.Clear();
-            foreach (var item in SystemManager.MongoConfig.ConnectionList.Values)
+            MongoConnectionConfig.MongoConfig.SerializableConnectionList.Clear();
+            foreach (var item in MongoConnectionConfig.MongoConfig.ConnectionList.Values)
             {
-                SystemManager.MongoConfig.SerializableConnectionList.Add(item);
+                MongoConnectionConfig.MongoConfig.SerializableConnectionList.Add(item);
             }
             Utility.SaveObjAsXml(AppPath + MongoConfigFilename,this);
         }
@@ -76,11 +76,11 @@ namespace MongoCola.Config
         /// </summary>
         public static void LoadFromConfigFile()
         {
-            SystemManager.MongoConfig = Utility.LoadObjFromXml<MongoConfig>(AppPath + MongoConfigFilename);
-            SystemManager.MongoConfig.ConnectionList.Clear();
-            foreach (var item in SystemManager.MongoConfig.SerializableConnectionList)
+            MongoConnectionConfig.MongoConfig = Utility.LoadObjFromXml<MongoConfig>(AppPath + MongoConfigFilename);
+            MongoConnectionConfig.MongoConfig.ConnectionList.Clear();
+            foreach (var item in MongoConnectionConfig.MongoConfig.SerializableConnectionList)
             {
-                SystemManager.MongoConfig.ConnectionList.Add(item.ConnectionName, item);
+                MongoConnectionConfig.MongoConfig.ConnectionList.Add(item.ConnectionName, item);
             }
         }
     }

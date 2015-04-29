@@ -18,10 +18,7 @@ namespace MongoCola
         ///     配置
         /// </summary>
         public static SystemConfig SystemConfig = new SystemConfig();
-        /// <summary>
-        ///     
-        /// </summary>
-        public static MongoConfig MongoConfig = new MongoConfig();
+
 
         /// <summary>
         ///     版本号
@@ -81,7 +78,7 @@ namespace MongoCola
             if (File.Exists(localconfigfile))
             {
                 MongoConfig.LoadFromConfigFile();
-                RuntimeMongoDbContext.MongoConnectionConfigList = SystemManager.MongoConfig.ConnectionList;
+                RuntimeMongoDbContext.MongoConnectionConfigList = MongoConnectionConfig.MongoConfig.ConnectionList;
             }
             //各个子系统的多语言设定
             Configuration.RefreshStatusTimer = SystemManager.SystemConfig.RefreshStatusTimer;

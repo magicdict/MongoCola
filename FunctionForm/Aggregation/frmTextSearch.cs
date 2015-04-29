@@ -22,7 +22,7 @@ namespace FunctionForm.Aggregation
             {
                 btnSearch.Text = GuiConfig.GetText(TextType.CommonSearch);
                 cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
-                cmdClose.Text = GuiConfig.GetText(TextType.CommonClose);
+                cmdClose.Text = GuiConfig.GetText(TextType.Common_Close);
             }
             //加载语言列表
             cmbLanguage.Items.Clear();

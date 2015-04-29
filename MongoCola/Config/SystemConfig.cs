@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using MongoUtility.Core;
 using Common;
 
@@ -66,10 +65,10 @@ namespace MongoCola.Config
         /// <param name="configFileName"></param>
         public void SaveSystemConfig()
         {
-            SystemManager.MongoConfig.SerializableConnectionList.Clear();
-            foreach (var item in SystemManager.MongoConfig.ConnectionList.Values)
+            MongoConnectionConfig.MongoConfig.SerializableConnectionList.Clear();
+            foreach (var item in MongoConnectionConfig.MongoConfig.ConnectionList.Values)
             {
-                SystemManager.MongoConfig.SerializableConnectionList.Add(item);
+                MongoConnectionConfig.MongoConfig.SerializableConnectionList.Add(item);
             }
             Utility.SaveObjAsXml(AppPath + SystemConfigFilename, this);
         }

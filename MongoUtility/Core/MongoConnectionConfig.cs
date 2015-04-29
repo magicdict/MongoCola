@@ -20,6 +20,11 @@ namespace MongoUtility.Core
     [Serializable]
     public class MongoConnectionConfig
     {
+        /// <summary>
+        ///     
+        /// </summary>
+        public static MongoConfig MongoConfig = new MongoConfig();
+
         #region"固有属性"
 
         /// <summary>

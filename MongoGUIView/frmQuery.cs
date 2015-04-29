@@ -59,8 +59,8 @@ namespace MongoGUIView
                 GuiConfig.MStringResource.GetText(TextType.QueryFilterAddCondition);
             cmdLoad.Text = GuiConfig.MStringResource.GetText(TextType.QueryActionLoad);
             cmdSave.Text = GuiConfig.MStringResource.GetText(TextType.CommonSave);
-            cmdOK.Text = GuiConfig.MStringResource.GetText(TextType.CommonOk);
-            cmdCancel.Text = GuiConfig.MStringResource.GetText(TextType.CommonCancel);
+            cmdOK.Text = GuiConfig.MStringResource.GetText(TextType.Common_OK);
+            cmdCancel.Text = GuiConfig.MStringResource.GetText(TextType.Common_Cancel);
         }
 
         /// <summary>

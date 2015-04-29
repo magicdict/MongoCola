@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using MongoUtility.Core;
 using ResourceLib.Method;
-using MongoCola.Config;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace MongoCola.Connection
 {
@@ -31,7 +30,7 @@ namespace MongoCola.Connection
         private void RefreshConnection()
         {
             lstConnection.Items.Clear();
-            foreach (var item in SystemManager.MongoConfig.ConnectionList.Values)
+            foreach (var item in MongoConnectionConfig.MongoConfig.ConnectionList.Values)
             {
                 if (item.ReplSetName == string.Empty)
                 {
@@ -58,7 +57,7 @@ namespace MongoCola.Connection
                 Utility.ListViewColumnResize(lstConnection);
             }
             lstConnection.Sort();
-            SystemManager.MongoConfig.SaveMongoConfig();
+            MongoConnectionConfig.MongoConfig.SaveMongoConfig();
         }
 
         /// <summary>
@@ -84,7 +83,7 @@ namespace MongoCola.Connection
             {
                 foreach (ListViewItem item in lstConnection.CheckedItems)
                 {
-                    var config = SystemManager.MongoConfig.ConnectionList[item.Text];
+                    var config = MongoConnectionConfig.MongoConfig.ConnectionList[item.Text];
                     connLst.Add(config);
                 }
                 RuntimeMongoDbContext.ResetConnectionList(connLst);
@@ -102,9 +101,9 @@ namespace MongoCola.Connection
             foreach (ListViewItem item in lstConnection.CheckedItems)
             {
                 var connectionName = item.Text;
-                if (SystemManager.MongoConfig.ConnectionList.ContainsKey(connectionName))
+                if (MongoConnectionConfig.MongoConfig.ConnectionList.ContainsKey(connectionName))
                 {
-                    SystemManager.MongoConfig.ConnectionList.Remove(connectionName);
+                    MongoConnectionConfig.MongoConfig.ConnectionList.Remove(connectionName);
                 }
             }
             RefreshConnection();
