@@ -8,7 +8,7 @@ namespace MongoGUICtl
 {
     public partial class CtlMongodump : UserControl
     {
-        private readonly MongodbDosCommand.StruMongoDump _mongodumpCommand = new MongodbDosCommand.StruMongoDump();
+        private readonly MongoDumpInfo _mongodumpCommand = new MongoDumpInfo();
         public EventHandler<TextChangeEventArgs> CommandChanged;
 
         public CtlMongodump()

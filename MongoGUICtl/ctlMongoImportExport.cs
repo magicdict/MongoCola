@@ -8,8 +8,8 @@ namespace MongoGUICtl
 {
     public partial class CtlMongoImportExport : UserControl
     {
-        private readonly MongodbDosCommand.StruImportExport _mongoImportExportCommand =
-            new MongodbDosCommand.StruImportExport();
+        private readonly ImportExportInfo _mongoImportExportCommand =
+            new ImportExportInfo();
 
         public EventHandler<TextChangeEventArgs> CommandChanged;
 

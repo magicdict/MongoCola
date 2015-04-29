@@ -11,7 +11,6 @@ using FunctionForm;
 using FunctionForm.Aggregation;
 using FunctionForm.Operation;
 using FunctionForm.Status;
-using MongoCola.Config;
 using MongoCola.Connection;
 using MongoGUICtl;
 using MongoUtility.Aggregation;
@@ -109,8 +108,7 @@ namespace MongoCola
                 }
                 //RuntimeMongoDbContext.GetCurrentServer().Disconnect();
             }
-            RuntimeMongoDbContext.MongoConnSvrLst.Remove(
-                RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName);
+            RuntimeMongoDbContext.RemoveConnectionConfig(RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName);
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             RefreshToolStripMenuItem_Click(sender, e);
         }
@@ -126,33 +124,17 @@ namespace MongoCola
                 GuiConfig.IsUseDefaultLanguage
                     ? "ReplSetName"
                     : GuiConfig.GetText(TextType.ReplsetInitReplset));
-            if (replSetName == string.Empty)
-                return;
-            var result = CommandHelper.InitReplicaSet(replSetName,
-                RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName, MongoConnectionConfig.MongoConfig.ConnectionList);
-            if (result.Ok)
+            if (replSetName == string.Empty) return;
+            string result = string.Empty;
+            if (Operater.InitReplicaSet(replSetName, ref result))
             {
-                //修改配置
-                var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
-                newConfig.ReplSetName = replSetName;
-                newConfig.ReplsetList = new List<string>
-                {
-                    newConfig.Host +
-                    (newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
-                };
-                MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
-                MongoConnectionConfig.MongoConfig.SaveMongoConfig();
-                RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
-                RuntimeMongoDbContext.MongoConnSvrLst.Add(
-                    RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
-                    RuntimeMongoDbContext.CreateMongoServer(ref newConfig));
                 ServerStatusCtl.SetEnable(false);
                 MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
                 ServerStatusCtl.SetEnable(true);
             }
             else
             {
-                MyMessageBox.ShowMessage("ReplSetName", "Failed", result.ErrorMessage);
+                MyMessageBox.ShowMessage("ReplSetName", "Failed", result);
             }
         }
 
@@ -165,12 +147,7 @@ namespace MongoCola
         {
             var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
             Utility.OpenForm(new FrmReplsetMgr(ref newConfig), true, true);
-            MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
-            MongoConnectionConfig.MongoConfig.SaveMongoConfig(); 
-            RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
-            RuntimeMongoDbContext.MongoConnSvrLst.Add(
-                RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
-                RuntimeMongoDbContext.CreateMongoServer(ref newConfig));
+            Operater.ReplicaSet(newConfig);
             ServerStatusCtl.SetEnable(false);
             MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
             ServerStatusCtl.SetEnable(true);
@@ -224,12 +201,10 @@ namespace MongoCola
             {
                 var connectionTreeNodes = new List<TreeNode>();
                 await
-                    Task.Run(
-                        () =>
-                        {
-                            connectionTreeNodes = UiHelper.GetConnectionNodes(RuntimeMongoDbContext.MongoConnSvrLst,
-                                MongoConnectionConfig.MongoConfig.ConnectionList);
-                        });
+                    Task.Run(() =>
+                    {
+                        connectionTreeNodes = UiHelper.GetConnectionNodes();
+                    });
                 //如果第一个节点的字节点不为空
                 if (connectionTreeNodes != null)
                 {
@@ -333,14 +308,12 @@ namespace MongoCola
                         GuiConfig.GetText(TextType.CreateNewDataBaseInput),
                         GuiConfig.GetText(TextType.CreateNewDataBase));
             }
-            string errMessage;
-            RuntimeMongoDbContext.GetCurrentServer().IsDatabaseNameValid(strDbName, out errMessage);
-            if (errMessage == null)
+            string errMessage = string.Empty;
+            if (Operater.IsDatabaseNameValid(strDbName, out errMessage))
             {
                 try
                 {
-                    var strRusult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
-                        OperationHelper.Oprcode.Create, RuntimeMongoDbContext.GetCurrentServer());
+                    var strRusult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName, OperationHelper.Oprcode.Create);
                     if (string.IsNullOrEmpty(strRusult))
                     {
                         DisableAllOpr();
@@ -424,7 +397,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void slaveResyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CommandHelper.ExecuteMongoCommand(CommandHelper.ResyncCommand);
+            Operater.ResyncCommand();
         }
 
         /// <summary>
@@ -437,7 +410,7 @@ namespace MongoCola
             if (GuiConfig.IsUseDefaultLanguage)
             {
                 MyMessageBox.ShowMessage("Server Property", "Server Property",
-                    MongoHelper.GetCurrentSvrInfo(RuntimeMongoDbContext.GetCurrentServer()), true);
+                    MongoHelper.GetCurrentSvrInfo(), true);
             }
             else
             {
@@ -446,7 +419,7 @@ namespace MongoCola
                         "Main_Menu_Operation_Server_Properties"),
                     GuiConfig.GetText(
                         "Main_Menu_Operation_Server_Properties"),
-                    MongoHelper.GetCurrentSvrInfo(RuntimeMongoDbContext.GetCurrentServer()), true);
+                    MongoHelper.GetCurrentSvrInfo(), true);
             }
         }
 
@@ -482,13 +455,12 @@ namespace MongoCola
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strDbName = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.DatabaseLv];
+            var strDbName = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.DatabaseLv];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
             }
-            var rtnResult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
-                OperationHelper.Oprcode.Drop, RuntimeMongoDbContext.GetCurrentServer());
+            var rtnResult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName, OperationHelper.Oprcode.Drop);
             if (string.IsNullOrEmpty(rtnResult))
             {
                 DisableAllOpr();
@@ -589,7 +561,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void RepairDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CommandHelper.ExecuteMongoCommand(CommandHelper.RepairDatabaseCommand);
+            Operater.RepairDB();
         }
 
         /// <summary>
@@ -599,11 +571,10 @@ namespace MongoCola
         /// <param name="e"></param>
         private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoHelper.InitGfs(RuntimeMongoDbContext.GetCurrentDataBase());
+            MongoHelper.InitGfs();
             DisableAllOpr();
             trvsrvlst.Nodes.Clear();
-            var connectNodes = UiHelper.GetConnectionNodes(RuntimeMongoDbContext.MongoConnSvrLst,
-                MongoConnectionConfig.MongoConfig.ConnectionList);
+            var connectNodes = UiHelper.GetConnectionNodes();
             foreach (var element in connectNodes)
             {
                 trvsrvlst.Nodes.Add(element);
@@ -638,22 +609,19 @@ namespace MongoCola
         {
             var strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
             if (strJsName == string.Empty) return;
-            var jsCol =
-                MongoHelper.GetCurrentJsCollection(RuntimeMongoDbContext.GetCurrentDataBase());
-            if (QueryHelper.IsExistByKey(jsCol, strJsName))
+            if (QueryHelper.IsExistByKey(strJsName))
             {
                 MyMessageBox.ShowMessage("Error", "javascript is already exist");
             }
             else
             {
-                var result = OperationHelper.CreateNewJavascript(strJsName, string.Empty,
-                    RuntimeMongoDbContext.GetCurrentCollection());
+                var result = OperationHelper.CreateNewJavascript(strJsName, string.Empty);
                 if (string.IsNullOrEmpty(result))
                 {
                     var jsNode = new TreeNode(strJsName)
                     {
-                        ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
-                        SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
+                        ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
+                        SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     var jsTag = RuntimeMongoDbContext.SelectTagData;
                     jsNode.Tag = ConstMgr.JavascriptDocTag + ":" + jsTag + "/" + strJsName;
@@ -690,8 +658,8 @@ namespace MongoCola
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
-            if (!RuntimeMongoDbContext.GetCurrentDataBase().DropCollection(strCollection).Ok) return;
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
+            if (!OperationHelper.DrapCollection(strCollection)) return;
             var strNodeData = RuntimeMongoDbContext.SelectTagData;
             if (MutliTabManger.TabInfo.ContainsKey(strNodeData))
             {
@@ -718,7 +686,7 @@ namespace MongoCola
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
             string strNewCollectionName;
             if (GuiConfig.IsUseDefaultLanguage)
             {
@@ -734,12 +702,10 @@ namespace MongoCola
                     strCollection);
             }
             if (string.IsNullOrEmpty(strNewCollectionName)) return;
-            var result = RuntimeMongoDbContext.GetCurrentDataBase()
-                .RenameCollection(strCollection, strNewCollectionName).Ok;
-            if (!result) return;
+            if (!OperationHelper.RenameCollection(strCollection, strNewCollectionName)) return;
             var strOldNodeTag = RuntimeMongoDbContext.SelectTagData;
             var strNewNodeTag = RuntimeMongoDbContext.SelectObjectTag.Substring(0,
-                RuntimeMongoDbContext.SelectObjectTag.Length - RuntimeMongoDbContext.GetCurrentCollection().Name.Length);
+                RuntimeMongoDbContext.SelectObjectTag.Length - RuntimeMongoDbContext.GetCurrentCollectionName().Length);
             strNewNodeTag += strNewCollectionName;
             var strNewNodeData = Utility.GetTagData(strNewNodeTag);
             if (MutliTabManger.TabInfo.ContainsKey(strOldNodeTag))
@@ -765,8 +731,7 @@ namespace MongoCola
             trvsrvlst.SelectedNode.Text = strNewCollectionName;
             trvsrvlst.SelectedNode.Tag = strNewNodeTag;
             trvsrvlst.SelectedNode.ToolTipText = strNewCollectionName + Environment.NewLine;
-            trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" +
-                                                  RuntimeMongoDbContext.GetCurrentCollection().GetStats().IsCapped;
+            trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" +RuntimeMongoDbContext.GetCurrentCollectionIsCapped();
 
             if (GuiConfig.IsUseDefaultLanguage)
             {
@@ -797,7 +762,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ReIndexToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RuntimeMongoDbContext.GetCurrentCollection().ReIndex();
+            Operater.ReIndex();
         }
 
         /// <summary>
@@ -807,7 +772,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void CompactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CommandHelper.ExecuteMongoCommand(CommandHelper.CompactCommand);
+            Operater.Compact();
         }
 
         /// <summary>
@@ -818,8 +783,8 @@ namespace MongoCola
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
-            var result = OperationHelper.DelJavascript(strCollection, RuntimeMongoDbContext.GetCurrentCollection());
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
+            var result = OperationHelper.DelJavascript(strCollection);
             if (string.IsNullOrEmpty(result))
             {
                 var strNodeData = RuntimeMongoDbContext.SelectTagData;
@@ -970,10 +935,7 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoRestore = new MongodbDosCommand.StruMongoRestore();
-            var mongosrv = RuntimeMongoDbContext.GetCurrentServer().Instance;
-            mongoRestore.HostAddr = mongosrv.Address.Host;
-            mongoRestore.Port = mongosrv.Address.Port;
+            var mongoRestore = MongoRestoreInfo.getMongoRestoreInfo();
             var dumpFile = new FolderBrowserDialog();
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
@@ -995,11 +957,7 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoDump = new MongodbDosCommand.StruMongoDump();
-            var mongosrv = RuntimeMongoDbContext.GetCurrentServer().Instance;
-            mongoDump.HostAddr = mongosrv.Address.Host;
-            mongoDump.Port = mongosrv.Address.Port;
-            mongoDump.DbName = RuntimeMongoDbContext.GetCurrentDataBase().Name;
+            var mongoDump = MongoDumpInfo.getMongoDump(true);
             var dumpFile = new FolderBrowserDialog();
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
@@ -1020,12 +978,7 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoDump = new MongodbDosCommand.StruMongoDump();
-            var mongosrv = RuntimeMongoDbContext.GetCurrentServer().Instance;
-            mongoDump.HostAddr = mongosrv.Address.Host;
-            mongoDump.Port = mongosrv.Address.Port;
-            mongoDump.DbName = RuntimeMongoDbContext.GetCurrentDataBase().Name;
-            mongoDump.CollectionName = RuntimeMongoDbContext.GetCurrentCollection().Name;
+            var mongoDump = MongoDumpInfo.getMongoDump(false);
             var dumpFile = new FolderBrowserDialog();
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
@@ -1046,21 +999,16 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoImportExport = new MongodbDosCommand.StruImportExport();
-            var mongosrv = RuntimeMongoDbContext.GetCurrentServer().Instance;
-            mongoImportExport.HostAddr = mongosrv.Address.Host;
-            mongoImportExport.Port = mongosrv.Address.Port;
-            mongoImportExport.DbName = RuntimeMongoDbContext.GetCurrentDataBase().Name;
-            mongoImportExport.CollectionName = RuntimeMongoDbContext.GetCurrentCollection().Name;
-            var dumpFile = new SaveFileDialog
+            var mongoImportExport = ImportExportInfo.getStruImportExport();
+            var ExportCol = new SaveFileDialog
             {
                 Filter = Utility.TxtFilter,
                 CheckFileExists = false
             };
             //if the file not exist,the server will create a new one
-            if (dumpFile.ShowDialog() == DialogResult.OK)
+            if (ExportCol.ShowDialog() == DialogResult.OK)
             {
-                mongoImportExport.FileName = dumpFile.FileName;
+                mongoImportExport.FileName = ExportCol.FileName;
             }
             mongoImportExport.Direct = MongodbDosCommand.ImprotExport.Export;
             var dosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(mongoImportExport);
@@ -1087,16 +1035,11 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoImportExport = new MongodbDosCommand.StruImportExport();
-            var mongosrv = RuntimeMongoDbContext.GetCurrentServer().Instance;
-            mongoImportExport.HostAddr = mongosrv.Address.Host;
-            mongoImportExport.Port = mongosrv.Address.Port;
-            mongoImportExport.DbName = RuntimeMongoDbContext.GetCurrentDataBase().Name;
-            mongoImportExport.CollectionName = RuntimeMongoDbContext.GetCurrentCollection().Name;
-            var dumpFile = new OpenFileDialog();
-            if (dumpFile.ShowDialog() == DialogResult.OK)
+            var mongoImportExport = ImportExportInfo.getStruImportExport();
+            var ImportCol = new OpenFileDialog();
+            if (ImportCol.ShowDialog() == DialogResult.OK)
             {
-                mongoImportExport.FileName = dumpFile.FileName;
+                mongoImportExport.FileName = ImportCol.FileName;
             }
             mongoImportExport.Direct = MongodbDosCommand.ImprotExport.Import;
             var dosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(mongoImportExport);
@@ -1125,15 +1068,11 @@ namespace MongoCola
 
             if (query.QueryConditionList.Count == 0 || !isUseFilter)
             {
-                MyMessageBox.ShowEasyMessage("Count",
-                    "Count Result : " + RuntimeMongoDbContext.GetCurrentCollection().Count());
+                MyMessageBox.ShowEasyMessage("Count", "Count Result : " + QueryHelper.GetCurrentCollectionCount(null));
             }
             else
             {
-                var mQuery = QueryHelper.GetQuery(query.QueryConditionList);
-                MyMessageBox.ShowMessage("Count",
-                    "Count[With DataView Filter]:" + RuntimeMongoDbContext.GetCurrentCollection().Count(mQuery),
-                    mQuery.ToString(), true);
+                MyMessageBox.ShowMessage("Count", "Count[With DataView Filter]:" + QueryHelper.GetCurrentCollectionCount(query));
             }
         }
 

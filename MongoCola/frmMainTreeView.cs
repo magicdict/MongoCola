@@ -8,7 +8,6 @@
  */
 
 using System.Windows.Forms;
-using MongoCola.Config;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
@@ -247,7 +246,7 @@ namespace MongoCola
         {
             RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
             var roles = User.GetCurrentDbRoles(RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
-                RuntimeMongoDbContext.GetCurrentDataBase().Name);
+                RuntimeMongoDbContext.GetCurrentDataBaseName());
             if (GuiConfig.IsUseDefaultLanguage)
             {
                 statusStripMain.Items[0].Text = "Selected DataBase:" + RuntimeMongoDbContext.SelectTagData;
@@ -259,7 +258,7 @@ namespace MongoCola
                     RuntimeMongoDbContext.SelectTagData;
             }
             //系统库不允许修改
-            if (!OperationHelper.IsSystemDataBase(RuntimeMongoDbContext.GetCurrentDataBase().Name))
+            if (!OperationHelper.IsSystemDataBase(RuntimeMongoDbContext.GetCurrentDataBaseName()))
             {
                 if (RuntimeMongoDbContext.CurrentMongoConnectionconfig.AuthMode)
                 {
@@ -378,7 +377,7 @@ namespace MongoCola
                     RuntimeMongoDbContext.SelectTagData;
             }
             //解禁 删除数据集
-            if (!OperationHelper.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()))
+            if (!OperationHelper.IsSystemCollection())
             {
                 //系统数据库无法删除！！
                 if (!RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
@@ -392,7 +391,7 @@ namespace MongoCola
                 ImportCollectionToolStripMenuItem.Enabled = true;
                 CompactToolStripMenuItem.Enabled = true;
             }
-            if (!OperationHelper.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()) &&
+            if (!OperationHelper.IsSystemCollection() &&
                 !RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
             {
                 IndexManageToolStripMenuItem.Enabled = true;

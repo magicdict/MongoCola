@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
+using FunctionForm;
 using ResourceLib.UI;
 
 namespace MongoCola
@@ -225,7 +226,7 @@ namespace MongoCola
         private TabPage tabGerneric;
         private TabPage tabPage1;
         private CtlFilePicker ctlFilePickerMongoBinPath;
-        private FunctionForm.ctlMongoConfig ctlMongoConfig1;
+        private ctlMongoConfig ctlMongoConfig1;
 
     }
 }

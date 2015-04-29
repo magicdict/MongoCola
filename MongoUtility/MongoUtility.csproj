@@ -78,9 +78,13 @@
     <Compile Include="Aggregation\DataViewInfo.cs" />
     <Compile Include="Basic\MongodbDosCommand.cs" />
     <Compile Include="Basic\GFS.cs" />
+    <Compile Include="Basic\MongodConfig.cs" />
     <Compile Include="Basic\MongoHelper.cs" />
     <Compile Include="Basic\ConstMgr.cs" />
     <Compile Include="Basic\EnumMgr.cs" />
+    <Compile Include="Basic\MongoDumpInfo.cs" />
+    <Compile Include="Basic\ImportExportInfo.cs" />
+    <Compile Include="Basic\MongoRestoreInfo.cs" />
     <Compile Include="Core\MongoConfig.cs" />
     <Compile Include="Core\Operater.cs" />
     <Compile Include="Extend\CommandHelper.cs" />

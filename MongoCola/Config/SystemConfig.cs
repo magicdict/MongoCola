@@ -8,9 +8,8 @@
  */
 
 using System;
-using System.Collections.Generic;
-using MongoUtility.Core;
 using Common;
+using MongoUtility.Core;
 
 namespace MongoCola.Config
 {

@@ -1,7 +1,7 @@
-﻿using ResourceLib.Method;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using ResourceLib.Method;
 
 namespace MongoCola
 {

@@ -50,8 +50,9 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     GFS初始化
         /// </summary>
-        public static void InitGfs(MongoDatabase mongoDb)
+        public static void InitGfs()
         {
+            var mongoDb = RuntimeMongoDbContext.GetCurrentDataBase();
             if (!mongoDb.CollectionExists(ConstMgr.CollectionNameGfsFiles))
             {
                 mongoDb.CreateCollection(ConstMgr.CollectionNameGfsFiles);
@@ -62,8 +63,9 @@ namespace MongoUtility.Basic
         ///     get current Server Information
         /// </summary>
         /// <returns></returns>
-        public static string GetCurrentSvrInfo(MongoServer mongosvr)
+        public static string GetCurrentSvrInfo()
         {
+            var mongosvr = RuntimeMongoDbContext.GetCurrentServer();
             var rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter + Environment.NewLine;
             rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary + Environment.NewLine;
             rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary + Environment.NewLine;
@@ -128,22 +130,24 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     数据库User初始化
         /// </summary>
-        public static void InitDbUser(MongoDatabase mongoDb)
+        public static void InitDbUser()
         {
-            if (!mongoDb.CollectionExists(ConstMgr.CollectionNameUser))
+            var mongDB = RuntimeMongoDbContext.GetCurrentDataBase();
+            if (!mongDB.CollectionExists(ConstMgr.CollectionNameUser))
             {
-                mongoDb.CreateCollection(ConstMgr.CollectionNameUser);
+                mongDB.CreateCollection(ConstMgr.CollectionNameUser);
             }
         }
 
         /// <summary>
         ///     Js数据集初始化
         /// </summary>
-        public static void InitJavascript(MongoDatabase mongoDb)
+        public static void InitJavascript()
         {
-            if (!mongoDb.CollectionExists(ConstMgr.CollectionNameJavascript))
+            var mongDB = RuntimeMongoDbContext.GetCurrentDataBase();
+            if (!mongDB.CollectionExists(ConstMgr.CollectionNameJavascript))
             {
-                mongoDb.CreateCollection(ConstMgr.CollectionNameJavascript);
+                mongDB.CreateCollection(ConstMgr.CollectionNameJavascript);
             }
         }
 

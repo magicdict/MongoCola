@@ -2,14 +2,12 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Config;
 using MongoCola.Connection;
 using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using PlugInPackage;
 using ResourceLib.Method;
 using ResourceLib.Properties;
@@ -420,15 +418,15 @@ namespace MongoCola
                 switch (RuntimeMongoDbContext.SelectTagType)
                 {
                     case ConstMgr.UserListTag:
-                        MongoHelper.InitDbUser(RuntimeMongoDbContext.GetCurrentDataBase());
+                        MongoHelper.InitDbUser();
                         ViewDataRecord();
                         break;
                     case ConstMgr.GridFileSystemTag:
-                        MongoHelper.InitGfs(RuntimeMongoDbContext.GetCurrentDataBase());
+                        MongoHelper.InitGfs();
                         ViewDataRecord();
                         break;
                     case ConstMgr.JavascriptTag:
-                        MongoHelper.InitJavascript(RuntimeMongoDbContext.GetCurrentDataBase());
+                        MongoHelper.InitJavascript();
                         break;
                     case ConstMgr.JavascriptDocTag:
                         ViewJavascript();

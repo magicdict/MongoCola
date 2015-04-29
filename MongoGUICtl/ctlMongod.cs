@@ -10,7 +10,8 @@ namespace MongoGUICtl
     public partial class CtlMongod : UserControl
     {
         public EventHandler<TextChangeEventArgs> CommandChanged;
-        public MongodbDosCommand.MongodConfig MongodCommand = new MongodbDosCommand.MongodConfig();
+
+        public MongodConfig MongodCommand = new MongodConfig();
 
         /// <summary>
         ///     构造函数

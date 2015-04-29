@@ -4,13 +4,14 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
+using MongoUtility.Core;
 
 namespace MongoUtility.Aggregation
 {
     public static class QueryHelper
     {
         /// <summary>
-        ///     �������ֶ�����
+        ///     
         /// </summary>
         /// <returns></returns>
         public static string[] GetOutputFields(List<DataFilter.QueryFieldItem> fieldItemLst)
@@ -26,8 +27,18 @@ namespace MongoUtility.Aggregation
             return outputFieldLst.ToArray();
         }
 
+        public static long GetCurrentCollectionCount(DataFilter query)
+        {
+            if (query == null)
+            {
+                return RuntimeMongoDbContext.GetCurrentCollection().Count();
+            }
+            var mQuery = GetQuery(query.QueryConditionList);
+            return RuntimeMongoDbContext.GetCurrentCollection().Count(mQuery);
+        }
+
         /// <summary>
-        ///     �������
+        ///    
         /// </summary>
         /// <returns></returns>
         public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> fieldItemLst)
@@ -35,7 +46,7 @@ namespace MongoUtility.Aggregation
             var sort = new SortByBuilder();
             var ascendingList = new List<string>();
             var descendingList = new List<string>();
-            //_id�������ֵ���ʽ�������Բ�Ҫ����_id!!
+            
             foreach (var item in fieldItemLst)
             {
                 switch (item.SortType)
@@ -56,12 +67,12 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///     ����������
+        ///     
         /// </summary>
         /// <returns></returns>
         public static IMongoQuery GetQuery(List<DataFilter.QueryConditionInputItem> queryCompareList)
         {
-            //������������������
+            //
             var conditiongrpList = new List<List<DataFilter.QueryConditionInputItem>>();
             List<DataFilter.QueryConditionInputItem> currGrp = null;
             for (var i = 0; i < queryCompareList.Count; i++)
@@ -79,7 +90,7 @@ namespace MongoUtility.Aggregation
                     if (currGrp != null) currGrp.Add(queryCompareList[i]);
                 }
             }
-            //��ÿ�������ܽ�Ϊ1��IMongoQuery��1�����ӷ���
+            //
             IMongoQuery rtnQuery = null;
             if (conditiongrpList.Count == 1)
             {
@@ -108,7 +119,7 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///     ��ÿ������ϲ�Ϊһ��IMongoQuery
+        ///     
         /// </summary>
         /// <param name="conditionGroup"></param>
         /// <returns></returns>
@@ -130,7 +141,7 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///     ��And��Or����������������ת��Ϊһ��IMongoQuery
+        ///     
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -171,8 +182,9 @@ namespace MongoUtility.Aggregation
         /// <param name="mongoCol">Collection</param>
         /// <param name="keyValue">KeyValue</param>
         /// <returns></returns>
-        public static bool IsExistByKey(MongoCollection mongoCol, BsonValue keyValue)
+        public static bool IsExistByKey(string keyValue)
         {
+            var mongoCol = MongoHelper.GetCurrentJsCollection(RuntimeMongoDbContext.GetCurrentDataBase());
             return mongoCol.FindAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, keyValue)).Count() > 0;
         }
     }

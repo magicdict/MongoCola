@@ -235,9 +235,10 @@ namespace MongoGUICtl
         /// <param name="mongoConnSvrLst"></param>
         /// <param name="mongoConConfigLst"></param>
         /// <returns></returns>
-        public static List<TreeNode> GetConnectionNodes(Dictionary<string, MongoServer> mongoConnSvrLst,
-            Dictionary<string, MongoConnectionConfig> mongoConConfigLst)
+        public static List<TreeNode> GetConnectionNodes()
         {
+            Dictionary<string, MongoServer> mongoConnSvrLst = RuntimeMongoDbContext.MongoConnSvrLst;
+            Dictionary<string, MongoConnectionConfig> mongoConConfigLst = MongoConnectionConfig.MongoConfig.ConnectionList;
             var connectionNodes = new List<TreeNode>();
             foreach (var mongoConnKey in mongoConnSvrLst.Keys)
             {

@@ -137,8 +137,7 @@ namespace FunctionForm.Aggregation
                 return;
             var strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：",
                 "Save Aggregate Pipeline");
-            OperationHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _aggrArray).ToString(),
-                RuntimeMongoDbContext.GetCurrentCollection());
+            OperationHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _aggrArray).ToString());
         }
 
         /// <summary>

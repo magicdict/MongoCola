@@ -28,12 +28,12 @@ namespace MongoCola
         /// <summary>
         ///     测试模式
         /// </summary>
-        public static bool DebugMode = false;
+        public static bool DebugMode;
 
         /// <summary>
         ///     是否为MONO
         /// </summary>
-        public static bool MonoMode = false;
+        public static bool MonoMode;
 
         /// <summary>
         ///     初始化
@@ -46,9 +46,9 @@ namespace MongoCola
             info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Bson.dll");
             MongoHelper.MongoDbBsonVersion = info.ProductVersion;
             //版本设定
-            SystemManager.Version = Application.ProductVersion;
-            SystemManager.DebugMode = false;
-            SystemManager.MonoMode = Type.GetType("Mono.Runtime") != null;
+            Version = Application.ProductVersion;
+            DebugMode = false;
+            MonoMode = Type.GetType("Mono.Runtime") != null;
             //异常处理器的初始化
             Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + MongoHelper.MongoDbDriverVersion +
                                           Environment.NewLine;
@@ -62,11 +62,11 @@ namespace MongoCola
             {
                 SystemConfig.LoadFromConfigFile();
                 InitLanguage();
-                MongodbDosCommand.MongoBinPath = SystemManager.SystemConfig.MongoBinPath;
+                MongodbDosCommand.MongoBinPath = SystemConfig.MongoBinPath;
             }
             else
             {
-                SystemManager.SystemConfig = new Config.SystemConfig();
+                SystemConfig = new SystemConfig();
                 var frmLanguage = new FrmLanguage();
                 frmLanguage.ShowDialog();
                 InitLanguage();
@@ -81,7 +81,7 @@ namespace MongoCola
                 RuntimeMongoDbContext.MongoConnectionConfigList = MongoConnectionConfig.MongoConfig.ConnectionList;
             }
             //各个子系统的多语言设定
-            Configuration.RefreshStatusTimer = SystemManager.SystemConfig.RefreshStatusTimer;
+            Configuration.RefreshStatusTimer = SystemConfig.RefreshStatusTimer;
             Application.Run(new FrmMain());
             //delete tempfile directory when exit
             if (Directory.Exists(Gfs.TempFileFolder))

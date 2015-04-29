@@ -65,11 +65,11 @@ namespace MongoUtility.Core
                 //The default value for SocketTimeout has been changed from 30 seconds to 0, 
                 if (config.SocketTimeoutMs != 0)
                 {
-                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int) (config.SocketTimeoutMs/1000));
+                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int)(config.SocketTimeoutMs / 1000));
                 }
                 if (config.ConnectTimeoutMs != 0)
                 {
-                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int) (config.ConnectTimeoutMs/1000));
+                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.ConnectTimeoutMs / 1000));
                 }
                 //                if (SystemConfig.configHelperInstance.wtimeoutMS != 0)
                 //                {
@@ -249,7 +249,14 @@ namespace MongoUtility.Core
         {
             return GetMongoServerBySvrPath(SelectObjectTag, MongoConnSvrLst);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ConnectionName"></param>
+        public static void RemoveConnectionConfig(string ConnectionName)
+        {
+            MongoConnSvrLst.Remove(ConnectionName);
+        }
         /// <summary>
         ///     获得当前数据库
         /// </summary>
@@ -258,7 +265,10 @@ namespace MongoUtility.Core
         {
             return GetMongoDBBySvrPath(SelectObjectTag, GetCurrentServer());
         }
-
+        public static string GetCurrentDataBaseName()
+        {
+            return GetMongoDBBySvrPath(SelectObjectTag, GetCurrentServer()).Name;
+        }
         /// <summary>
         ///     获得当前数据集
         /// </summary>
@@ -267,12 +277,26 @@ namespace MongoUtility.Core
         {
             return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase());
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetCurrentCollectionIsCapped()
+        {
+            return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase()).GetStats().IsCapped;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string GetCurrentCollectionName()
         {
             return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase()).Name;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string GetCurrentCollectionFullName()
         {
             return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase()).FullName;
@@ -285,7 +309,7 @@ namespace MongoUtility.Core
         public static MongoConnectionConfig GetCurrentServerConfig()
         {
             var serverName = SelectObjectTag.Split(":".ToCharArray())[1];
-            serverName = serverName.Split("/".ToCharArray())[(int) EnumMgr.PathLv.ConnectionLv];
+            serverName = serverName.Split("/".ToCharArray())[(int)EnumMgr.PathLv.ConnectionLv];
             var rtnMongoConnectionConfig = new MongoConnectionConfig();
             if (MongoConnectionConfigList.ContainsKey(serverName))
             {
@@ -348,7 +372,7 @@ namespace MongoUtility.Core
                     return mongoConnSvrLst[strPath[0]];
                 }
             }
-            if (strPath.Length > (int) EnumMgr.PathLv.InstanceLv)
+            if (strPath.Length > (int)EnumMgr.PathLv.InstanceLv)
             {
                 if (strPath[0] == strPath[1])
                 {
@@ -357,7 +381,7 @@ namespace MongoUtility.Core
                 }
                 //[Tag:Connection/Host@Port/DBName/Collection]
                 var strInstKey = string.Empty;
-                strInstKey = strPath[(int) EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int) EnumMgr.PathLv.InstanceLv];
+                strInstKey = strPath[(int)EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int)EnumMgr.PathLv.InstanceLv];
                 if (MongoInstanceLst.ContainsKey(strInstKey))
                 {
                     var mongoInstance = MongoInstanceLst[strInstKey];
@@ -386,7 +410,7 @@ namespace MongoUtility.Core
                     return mongoConnSvrLst[strPath[0]];
                 }
             }
-            if (strPath.Length > (int) EnumMgr.PathLv.InstanceLv)
+            if (strPath.Length > (int)EnumMgr.PathLv.InstanceLv)
             {
                 if (strPath[0] == strPath[1])
                 {
@@ -395,7 +419,7 @@ namespace MongoUtility.Core
                 }
                 //[Tag:Connection/Host@Port/DBName/Collection]
                 var strInstKey = string.Empty;
-                strInstKey = strPath[(int) EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int) EnumMgr.PathLv.InstanceLv];
+                strInstKey = strPath[(int)EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int)EnumMgr.PathLv.InstanceLv];
                 if (MongoInstanceLst.ContainsKey(strInstKey))
                 {
                     var mongoInstance = MongoInstanceLst[strInstKey];
@@ -417,9 +441,9 @@ namespace MongoUtility.Core
             {
                 var strSvrPath = Utility.GetTagData(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int) EnumMgr.PathLv.DatabaseLv)
+                if (strPathArray.Length > (int)EnumMgr.PathLv.DatabaseLv)
                 {
-                    rtnMongoDb = mongoSvr.GetDatabase(strPathArray[(int) EnumMgr.PathLv.DatabaseLv]);
+                    rtnMongoDb = mongoSvr.GetDatabase(strPathArray[(int)EnumMgr.PathLv.DatabaseLv]);
                 }
             }
             return rtnMongoDb;
@@ -438,9 +462,9 @@ namespace MongoUtility.Core
             {
                 var strSvrPath = Utility.GetTagData(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int) EnumMgr.PathLv.DatabaseLv)
+                if (strPathArray.Length > (int)EnumMgr.PathLv.DatabaseLv)
                 {
-                    rtnMongoDb = mongoSvr.GetDatabase(strPathArray[(int) EnumMgr.PathLv.DatabaseLv]);
+                    rtnMongoDb = mongoSvr.GetDatabase(strPathArray[(int)EnumMgr.PathLv.DatabaseLv]);
                 }
             }
             return rtnMongoDb;
@@ -458,9 +482,9 @@ namespace MongoUtility.Core
             {
                 var strSvrPath = Utility.GetTagData(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int) EnumMgr.PathLv.CollectionLv)
+                if (strPathArray.Length > (int)EnumMgr.PathLv.CollectionLv)
                 {
-                    rtnMongoCollection = mongoDb.GetCollection(strPathArray[(int) EnumMgr.PathLv.CollectionLv]);
+                    rtnMongoCollection = mongoDb.GetCollection(strPathArray[(int)EnumMgr.PathLv.CollectionLv]);
                 }
             }
             return rtnMongoCollection;
@@ -480,10 +504,10 @@ namespace MongoUtility.Core
             {
                 var strSvrPath = Utility.GetTagData(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int) EnumMgr.PathLv.CollectionLv)
+                if (strPathArray.Length > (int)EnumMgr.PathLv.CollectionLv)
                 {
                     rtnMongoCollection =
-                        mongoDb.GetCollection<BsonDocument>(strPathArray[(int) EnumMgr.PathLv.CollectionLv]);
+                        mongoDb.GetCollection<BsonDocument>(strPathArray[(int)EnumMgr.PathLv.CollectionLv]);
                 }
             }
             return rtnMongoCollection;

@@ -7,6 +7,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
+using MongoUtility.Core;
 
 namespace MongoUtility.Extend
 {
@@ -45,6 +46,13 @@ namespace MongoUtility.Extend
         /// <returns></returns>
         public static bool IsSystemCollection(MongoCollection mongoCol)
         {
+            //http://docs.mongodb.org/manual/reference/system-collections/
+            return IsSystemCollection(mongoCol.Database.Name, mongoCol.Name);
+        }
+
+        public static bool IsSystemCollection()
+        {
+            MongoCollection mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
             //http://docs.mongodb.org/manual/reference/system-collections/
             return IsSystemCollection(mongoCol.Database.Name, mongoCol.Name);
         }
@@ -100,11 +108,9 @@ namespace MongoUtility.Extend
         /// <param name="func"></param>
         /// <param name="tr"></param>
         /// <returns></returns>
-        public static string DataBaseOpration(string strObjTag,
-            string dbName,
-            Oprcode func,
-            MongoServer mongoSvr)
+        public static string DataBaseOpration(string strObjTag, string dbName, Oprcode func)
         {
+            var mongoSvr = RuntimeMongoDbContext.GetCurrentServer();
             var rtnResult = string.Empty;
             var strSvrPath = Utility.GetTagData(strObjTag);
             var result = new CommandResult(new BsonDocument());
@@ -135,10 +141,10 @@ namespace MongoUtility.Extend
                         if (mongoSvr.DatabaseExists(dbName))
                         {
                             result = mongoSvr.DropDatabase(dbName);
-//                            if (tr != null)
-//                            {
-//                                tr.TreeView.Nodes.Remove(tr);
-//                            }
+                            //                            if (tr != null)
+                            //                            {
+                            //                                tr.TreeView.Nodes.Remove(tr);
+                            //                            }
                             if (!result.Response.Contains("err"))
                             {
                                 return string.Empty;
@@ -179,19 +185,20 @@ namespace MongoUtility.Extend
                 if (!mongoDb.CollectionExists(collectionName))
                 {
                     mongoDb.CreateCollection(collectionName, option);
-//                    foreach (TreeNode item in treeNode.Nodes)
-//                    {
-//                        if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
-//                        {
-//                            item.Nodes.Add(UIHelper.FillCollectionInfoToTreeNode(collectionName, mongoDB, ConKey + "/" + svrKey));
-//                        }
-//                    }
                     rtnResult = true;
                 }
             }
             return rtnResult;
         }
 
+        public static bool DrapCollection(string strCollection)
+        {
+            return  RuntimeMongoDbContext.GetCurrentDataBase().DropCollection(strCollection).Ok;
+        }
+        public static bool RenameCollection(string strCollection,string strNewCollectionName)
+        {
+            return RuntimeMongoDbContext.GetCurrentDataBase().RenameCollection(strCollection, strNewCollectionName).Ok;
+        }
         /// <summary>
         ///     Create Collection
         /// </summary>
@@ -211,13 +218,6 @@ namespace MongoUtility.Extend
                 if (!mongoDb.CollectionExists(collectionName))
                 {
                     mongoDb.CreateCollection(collectionName);
-//                    foreach (TreeNode item in treeNode.Nodes)
-//                    {
-//                        if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
-//                        {
-//                            item.Nodes.Add(UIHelper.FillCollectionInfoToTreeNode(collectionName, mongoDB, ConKey + "/" + svrKey));
-//                        }
-//                    }
                     rtnResult = true;
                 }
             }
@@ -291,10 +291,11 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="jsName"></param>
         /// <param name="jsCode"></param>
-        public static string CreateNewJavascript(string jsName, string jsCode, MongoCollection jsCol)
+        public static string CreateNewJavascript(string jsName, string jsCode)
         {
+            var jsCol = RuntimeMongoDbContext.GetCurrentCollection();
             //标准的JS库格式未知
-            if (!QueryHelper.IsExistByKey(jsCol, jsName))
+            if (!QueryHelper.IsExistByKey(jsName))
             {
                 var result = new CommandResult(new BsonDocument());
                 try
@@ -325,9 +326,9 @@ namespace MongoUtility.Extend
         public static string SaveEditorJavascript(string jsName, string jsCode, MongoCollection jsCol)
         {
             //标准的JS库格式未知
-            if (QueryHelper.IsExistByKey(jsCol, jsName))
+            if (QueryHelper.IsExistByKey(jsName))
             {
-                var result = DropDocument(jsCol, (BsonString) jsName);
+                var result = DropDocument(jsCol, (BsonString)jsName);
                 if (string.IsNullOrEmpty(result))
                 {
                     var resultCommand = new CommandResult(new BsonDocument());
@@ -356,11 +357,12 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="jsName"></param>
         /// <returns></returns>
-        public static string DelJavascript(string jsName, MongoCollection jsCol)
+        public static string DelJavascript(string jsName)
         {
-            if (QueryHelper.IsExistByKey(jsCol, jsName))
+            var jsCol = RuntimeMongoDbContext.GetCurrentCollection();
+            if (QueryHelper.IsExistByKey(jsName))
             {
-                return DropDocument(jsCol, (BsonString) jsName);
+                return DropDocument(jsCol, (BsonString)jsName);
             }
             return string.Empty;
         }
@@ -372,7 +374,7 @@ namespace MongoUtility.Extend
         /// <returns></returns>
         public static string LoadJavascript(string jsName, MongoCollection jsCol)
         {
-            if (QueryHelper.IsExistByKey(jsCol, jsName))
+            if (QueryHelper.IsExistByKey(jsName))
             {
                 return jsCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, jsName)).GetValue("value").ToString();
             }
@@ -388,13 +390,13 @@ namespace MongoUtility.Extend
         public static string DropDocument(MongoCollection mongoCol, object strKey)
         {
             var result = new CommandResult(new BsonDocument());
-            if (QueryHelper.IsExistByKey(mongoCol, (BsonValue) strKey))
+            if (QueryHelper.IsExistByKey(strKey.ToString()))
             {
                 try
                 {
                     result =
                         new CommandResult(
-                            mongoCol.Remove(Query.EQ(ConstMgr.KeyId, (BsonValue) strKey), WriteConcern.Acknowledged)
+                            mongoCol.Remove(Query.EQ(ConstMgr.KeyId, (BsonValue)strKey), WriteConcern.Acknowledged)
                                 .Response);
                 }
                 catch (MongoCommandException ex)
