@@ -67,7 +67,7 @@ namespace MongoGUIView
                 _refreshTimer.Stop();
                 _shortTimer.Stop();
                 btnSwitch.Text = !GuiConfig.IsUseDefaultLanguage
-                    ? GuiConfig.MStringResource.GetText(
+                    ? GuiConfig.GetText(
                         TextType.CollectionResumeAutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
@@ -93,7 +93,7 @@ namespace MongoGUIView
                 _refreshTimer.Stop();
                 _shortTimer.Stop();
                 btnSwitch.Text = !GuiConfig.IsUseDefaultLanguage
-                    ? GuiConfig.MStringResource.GetText(
+                    ? GuiConfig.GetText(
                         TextType.CollectionResumeAutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
@@ -229,7 +229,7 @@ namespace MongoGUIView
                 _refreshTimer.Start();
                 _shortTimer.Start();
                 btnSwitch.Text = !GuiConfig.IsUseDefaultLanguage
-                    ? GuiConfig.MStringResource.GetText(
+                    ? GuiConfig.GetText(
                         TextType.CollectionStopAutoRefresh)
                     : "Stop Auto Refresh";
                 btnSwitch.Image = Resources.Pause;
@@ -239,7 +239,7 @@ namespace MongoGUIView
                 _refreshTimer.Stop();
                 _shortTimer.Stop();
                 btnSwitch.Text = !GuiConfig.IsUseDefaultLanguage
-                    ? GuiConfig.MStringResource.GetText(
+                    ? GuiConfig.GetText(
                         TextType.CollectionResumeAutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;

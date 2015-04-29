@@ -25,24 +25,24 @@ namespace MongoGUICtl
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 lblCollectionName.Text =
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.CollectionStatusCollectionName);
                 lblDBName.Text =
-                    GuiConfig.MStringResource.GetText(TextType.AddConnectionDbName);
-                lblHost.Text = GuiConfig.MStringResource.GetText(TextType.CommonHost);
+                    GuiConfig.GetText(TextType.AddConnectionDbName);
+                lblHost.Text = GuiConfig.GetText(TextType.CommonHost);
                 lblFieldList.Text =
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.DosCommandTabExInColumnList);
-                lblPort.Text = GuiConfig.MStringResource.GetText(TextType.CommonPort);
+                lblPort.Text = GuiConfig.GetText(TextType.CommonPort);
                 grpDirect.Text =
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.DosCommandTabExInOperation);
                 radImport.Text =
-                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabExInImport);
+                    GuiConfig.GetText(TextType.DosCommandTabExInImport);
                 radExport.Text =
-                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabExInExport);
+                    GuiConfig.GetText(TextType.DosCommandTabExInExport);
                 ctlFilePickerOutput.Title =
-                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabExInWorkfile);
+                    GuiConfig.GetText(TextType.DosCommandTabExInWorkfile);
             }
         }
 

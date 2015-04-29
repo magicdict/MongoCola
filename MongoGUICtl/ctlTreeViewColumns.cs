@@ -255,9 +255,9 @@ namespace MongoGUICtl
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                colName.Text = GuiConfig.MStringResource.GetText(TextType.CommonName);
-                colValue.Text = GuiConfig.MStringResource.GetText(TextType.CommonValue);
-                colType.Text = GuiConfig.MStringResource.GetText(TextType.CommonType);
+                colName.Text = GuiConfig.GetText(TextType.CommonName);
+                colValue.Text = GuiConfig.GetText(TextType.CommonValue);
+                colType.Text = GuiConfig.GetText(TextType.CommonType);
             }
         }
     }

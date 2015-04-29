@@ -46,11 +46,11 @@ namespace MongoGUICtl
                     (x, y) => { txtContext.Text = OperationHelper.LoadJavascript(cmbJsList.Text, null); };
                 if (!GuiConfig.IsUseDefaultLanguage)
                 {
-                    cmdSave.Text = GuiConfig.MStringResource.GetText(TextType.CommonSave);
+                    cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
                     cmdSaveLocal.Text =
-                        GuiConfig.MStringResource.GetText(TextType.CommonSaveLocal);
+                        GuiConfig.GetText(TextType.CommonSaveLocal);
                     cmdLoadLocal.Text =
-                        GuiConfig.MStringResource.GetText(TextType.QueryActionLoad);
+                        GuiConfig.GetText(TextType.QueryActionLoad);
                 }
             }
         }

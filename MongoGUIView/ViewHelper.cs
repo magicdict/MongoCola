@@ -232,14 +232,14 @@ namespace MongoGUIView
             {
                 lstData.Columns.Add("ID");
                 lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(TextType.CommonUsername));
-                lstData.Columns.Add(GuiConfig.MStringResource.GetText(TextType.CommonRoles));
+                    GuiConfig.GetText(TextType.CommonUsername));
+                lstData.Columns.Add(GuiConfig.GetText(TextType.CommonRoles));
                 lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(TextType.CommonPassword));
+                    GuiConfig.GetText(TextType.CommonPassword));
                 lstData.Columns.Add("userSource");
                 lstData.Columns.Add("otherDBRoles");
                 lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(TextType.CommonReadOnly));
+                    GuiConfig.GetText(TextType.CommonReadOnly));
             }
             else
             {
@@ -296,13 +296,13 @@ namespace MongoGUIView
             lstData.Clear();
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                lstData.Columns.Add(GuiConfig.MStringResource.GetText(TextType.GfsFilename));
-                lstData.Columns.Add(GuiConfig.MStringResource.GetText(TextType.GfsLength));
+                lstData.Columns.Add(GuiConfig.GetText(TextType.GfsFilename));
+                lstData.Columns.Add(GuiConfig.GetText(TextType.GfsLength));
                 lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(TextType.GfsChunkSize));
+                    GuiConfig.GetText(TextType.GfsChunkSize));
                 lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(TextType.GfsUploadDate));
-                lstData.Columns.Add(GuiConfig.MStringResource.GetText(TextType.GfsMd5));
+                    GuiConfig.GetText(TextType.GfsUploadDate));
+                lstData.Columns.Add(GuiConfig.GetText(TextType.GfsMd5));
                 //!MONO
                 lstData.Columns.Add("ContentType");
             }

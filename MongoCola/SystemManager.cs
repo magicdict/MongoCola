@@ -1,24 +1,21 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using MongoCola.Config;
-using MongoGUIView;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using ResourceLib.Method;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace MongoCola
 {
     public static class SystemManager
     {
-
         /// <summary>
         ///     配置
         /// </summary>
         public static SystemConfig SystemConfig = new SystemConfig();
-
 
         /// <summary>
         ///     版本号
@@ -100,7 +97,7 @@ namespace MongoCola
                 var languageFile = "Language" + Path.DirectorySeparatorChar + SystemConfig.LanguageFileName;
                 if (File.Exists(languageFile))
                 {
-                    GuiConfig.MStringResource.InitLanguage(languageFile);
+                    StringResource.InitLanguage(languageFile);
                 }
             }
         }

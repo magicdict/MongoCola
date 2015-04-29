@@ -22,16 +22,11 @@ namespace MongoGUIView
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                AddUserStripButton.Text =
-                    GuiConfig.MStringResource.GetText(
-                        "Main_Menu_Operation_Database_AddUser");
+                AddUserStripButton.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_Database_AddUser);
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
-                ChangePasswordStripButton.Text =
-                    GuiConfig.MStringResource.GetText(TextType.CommonChangePassword);
+                ChangePasswordStripButton.Text = GuiConfig.GetText(TextType.CommonChangePassword);
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
-                RemoveUserStripButton.Text =
-                    GuiConfig.MStringResource.GetText(
-                        "Main_Menu_Operation_Database_DelUser");
+                RemoveUserStripButton.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_Database_DelUser);
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
             }
             AddUserStripButton.Enabled = true;
@@ -126,8 +121,8 @@ namespace MongoGUIView
             var strMessage = "Are you sure to delete user(s) from Admin Group?";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.MStringResource.GetText(TextType.DropUser);
-                strMessage = GuiConfig.MStringResource.GetText(TextType.DropUserConfirm);
+                strTitle = GuiConfig.GetText(TextType.DropUser);
+                strMessage = GuiConfig.GetText(TextType.DropUserConfirm);
             }
 
             //这里也可以使用普通的删除数据的方法来删除用户。
@@ -160,8 +155,8 @@ namespace MongoGUIView
             var strMessage = "Are you sure to delete user(s) from this database";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.MStringResource.GetText(TextType.DropUser);
-                strMessage = GuiConfig.MStringResource.GetText(TextType.DropUserConfirm);
+                strTitle = GuiConfig.GetText(TextType.DropUser);
+                strMessage = GuiConfig.GetText(TextType.DropUserConfirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
@@ -191,10 +186,10 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void ChangePasswordStripButton_Click(object sender, EventArgs e)
         {
-//            Common.MongoHelper.OpenForm(mDataViewInfo.strDBTag.EndsWith(ConstMgr.DATABASE_NAME_ADMIN + "/" +
-//                                                                   ConstMgr.COLLECTION_NAME_USER)
-//                ? new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text)
-//                : new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text), true, true);
+            //            Common.MongoHelper.OpenForm(mDataViewInfo.strDBTag.EndsWith(ConstMgr.DATABASE_NAME_ADMIN + "/" +
+            //                                                                   ConstMgr.COLLECTION_NAME_USER)
+            //                ? new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text)
+            //                : new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text), true, true);
             OpenChangePasswordForm();
             RefreshGui();
         }

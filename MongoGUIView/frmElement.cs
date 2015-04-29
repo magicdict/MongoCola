@@ -56,8 +56,8 @@ namespace MongoGUIView
             }
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                cmdOK.Text = GuiConfig.MStringResource.GetText(TextType.CommonOk);
-                cmdCancel.Text = GuiConfig.MStringResource.GetText(TextType.CommonCancel);
+                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
+                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             }
             if (!_isElement)
             {

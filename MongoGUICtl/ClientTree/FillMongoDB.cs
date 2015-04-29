@@ -62,8 +62,8 @@ namespace MongoGUICtl
             /// <returns></returns>
             public int Compare(object x, object y)
             {
-                var lstX = (ListViewItem) x;
-                var lstY = (ListViewItem) y;
+                var lstX = (ListViewItem)x;
+                var lstY = (ListViewItem)y;
                 var rtnCompare = 0;
                 switch (CompareMethod)
                 {
@@ -100,7 +100,7 @@ namespace MongoGUICtl
                 }
                 if (Order == SortOrder.Descending)
                 {
-                    rtnCompare = rtnCompare*-1;
+                    rtnCompare = rtnCompare * -1;
                 }
                 return rtnCompare;
             }
@@ -135,7 +135,7 @@ namespace MongoGUICtl
                         //Can't Convert IMongoDB To MongoDB
                         var serverStatusDoc =
                             CommandHelper.ExecuteMongoDBCommand(CommandHelper.ServerStatusCommand,
-                                (MongoDatabase) adminDb).Response;
+                                (MongoDatabase)adminDb).Response;
                         srvDocList.Add(serverStatusDoc);
                     }
                 }
@@ -266,55 +266,16 @@ namespace MongoGUICtl
         public static void FillCollectionStatusToList(ListView lstData, Dictionary<string, MongoServer> mongoConnSvrLst)
         {
             lstData.Clear();
-
-            if (GuiConfig.IsUseDefaultLanguage)
-            {
-                lstData.Columns.Add("CollectionName");
-                lstData.Columns.Add("ObjectCount");
-                lstData.Columns.Add("DataSize");
-                lstData.Columns.Add("LastExtentSize");
-                lstData.Columns.Add("StorageSize");
-                lstData.Columns.Add("TotalIndexSize");
-                lstData.Columns.Add("IsCapped");
-                lstData.Columns.Add("MaxDocuments");
-                lstData.Columns.Add("AverageObjectSize");
-                lstData.Columns.Add("PaddingFactor");
-            }
-            else
-            {
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(
-                        TextType.CollectionStatusCollectionName));
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(
-                        TextType.CollectionStatusObjectCount));
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(TextType.CollectionStatusDataSize));
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(
-                        TextType.CollectionStatusLastExtentSize));
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(
-                        TextType.CollectionStatusStorageSize));
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(
-                        TextType.CollectionStatusTotalIndexSize));
-
-                //2012-3-6
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(TextType.CollectionStatusIsCapped));
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(
-                        TextType.CollectionStatusMaxDocuments));
-
-
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(
-                        TextType.CollectionStatusAverageObjectSize));
-                lstData.Columns.Add(
-                    GuiConfig.MStringResource.GetText(
-                        TextType.CollectionStatusPaddingFactor));
-            }
+            lstData.Columns.Add(GuiConfig.GetText("CollectionName", TextType.CollectionStatusCollectionName));
+            lstData.Columns.Add(GuiConfig.GetText("ObjectCount", TextType.CollectionStatusObjectCount));
+            lstData.Columns.Add(GuiConfig.GetText("DataSize", TextType.CollectionStatusDataSize));
+            lstData.Columns.Add(GuiConfig.GetText("LastExtentSize", TextType.CollectionStatusLastExtentSize));
+            lstData.Columns.Add(GuiConfig.GetText("StorageSize", TextType.CollectionStatusStorageSize));
+            lstData.Columns.Add(GuiConfig.GetText("TotalIndexSize", TextType.CollectionStatusTotalIndexSize));
+            lstData.Columns.Add(GuiConfig.GetText("IsCapped", TextType.CollectionStatusIsCapped));
+            lstData.Columns.Add(GuiConfig.GetText("MaxDocuments", TextType.CollectionStatusMaxDocuments));
+            lstData.Columns.Add(GuiConfig.GetText("AverageObjectSize", TextType.CollectionStatusAverageObjectSize));
+            lstData.Columns.Add(GuiConfig.GetText("PaddingFactor", TextType.CollectionStatusPaddingFactor));
             foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
                 var mongoSvr = mongoConnSvrLst[mongoSvrKey];
@@ -368,7 +329,7 @@ namespace MongoGUICtl
                             }
 
                             lst.SubItems.Add(collectionStatus.ObjectCount != 0
-                                ? MongoHelper.GetBsonSize((long) collectionStatus.AverageObjectSize)
+                                ? MongoHelper.GetBsonSize((long)collectionStatus.AverageObjectSize)
                                 : "0");
 
                             try
@@ -416,18 +377,10 @@ namespace MongoGUICtl
             lstSrvOpr.Columns.Add("desc");
             lstSrvOpr.Columns.Add("connectionId");
             lstSrvOpr.Columns.Add("numYields");
-            //调用的地方Try...Catch了,这里不能tryCatch
             foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
-                //try
-                //{
                 var mongoSvr = mongoConnSvrLst[mongoSvrKey];
                 //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                //                    if (!Init.SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
-                //                        !Init.SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
-                //                    {
-                //                        continue;
-                //                    }
                 var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
                 foreach (var strDbName in databaseNameList)
                 {
@@ -456,11 +409,6 @@ namespace MongoGUICtl
                         Utility.ExceptionDeal(ex);
                     }
                 }
-                //}
-                //catch (Exception ex)
-                //{
-                //MongoHelper.ExceptionDeal(ex);
-                //}
             }
             lstSrvOpr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }

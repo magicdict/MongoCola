@@ -34,10 +34,8 @@ namespace MongoCola
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 //其他控件
-                statusStripMain.Items[0].Text =
-                    GuiConfig.GetText(TextType.MainStatusBarTextReady);
-                tabSvrStatus.Text =
-                    GuiConfig.GetText("Main_Menu_Mangt_Status");
+                statusStripMain.Items[0].Text =GuiConfig.GetText(TextType.MainStatusBarTextReady);
+                tabSvrStatus.Text =GuiConfig.GetText(TextType.Main_Menu_Mangt_Status);
             }
             //Init ToolBar
             InitToolBar();

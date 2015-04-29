@@ -19,29 +19,19 @@ namespace MongoGUIView
             DataShower.Add(lstData);
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                DeleteFileToolStripMenuItem.Text =
-                    GuiConfig.MStringResource.GetText(
-                        "Main_Menu_Operation_FileSystem_DelFile");
+                DeleteFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_DelFile);
                 DeleteFileStripButton.Text = DeleteFileToolStripMenuItem.Text;
 
-                UploadFileToolStripMenuItem.Text =
-                    GuiConfig.MStringResource.GetText(
-                        "Main_Menu_Operation_FileSystem_UploadFile");
+                UploadFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_UploadFile);
                 UploadFileStripButton.Text = UploadFileToolStripMenuItem.Text;
 
-                UploadFolderToolStripMenuItem.Text =
-                    GuiConfig.MStringResource.GetText(
-                        "Main_Menu_Operation_FileSystem_UploadFolder");
+                UploadFolderToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_UploadFolder);
                 UpLoadFolderStripButton.Text = UploadFolderToolStripMenuItem.Text;
 
-                DownloadFileToolStripMenuItem.Text =
-                    GuiConfig.MStringResource.GetText(
-                        "Main_Menu_Operation_FileSystem_Download");
+                DownloadFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_Download);
                 DownloadFileStripButton.Text = DownloadFileToolStripMenuItem.Text;
 
-                OpenFileToolStripMenuItem.Text =
-                    GuiConfig.MStringResource.GetText(
-                        "Main_Menu_Operation_FileSystem_OpenFile");
+                OpenFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_OpenFile);
                 OpenFileStripButton.Text = OpenFileToolStripMenuItem.Text;
             }
         }
@@ -62,7 +52,7 @@ namespace MongoGUIView
             UploadFolderToolStripMenuItem.Enabled = true;
 
             cmbListViewStyle.Visible = true;
-            cmbListViewStyle.SelectedIndexChanged += (x, y) => { lstData.View = (View) cmbListViewStyle.SelectedIndex; };
+            cmbListViewStyle.SelectedIndexChanged += (x, y) => { lstData.View = (View)cmbListViewStyle.SelectedIndex; };
         }
 
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)
@@ -267,8 +257,8 @@ namespace MongoGUIView
             var strMessage = "Are you sure to delete selected File(s)?";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.MStringResource.GetText(TextType.DropData);
-                strMessage = GuiConfig.MStringResource.GetText(TextType.DropDataConfirm);
+                strTitle = GuiConfig.GetText(TextType.DropData);
+                strMessage = GuiConfig.GetText(TextType.DropDataConfirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {

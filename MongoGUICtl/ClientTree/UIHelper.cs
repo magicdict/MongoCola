@@ -295,7 +295,7 @@ namespace MongoGUICtl
                         secondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
                     }
                     tinySetting.Server = secondaryAddr;
-                    var replsetMember = new MongoClient(tinySetting).GetServer();
+                    //var replsetMember = new MongoClient(tinySetting).GetServer();
                     //shardNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv,
                     //    replsetMember.Instance, userList));
                 }
@@ -332,12 +332,12 @@ namespace MongoGUICtl
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 connectionNode.Text += "[" +
-                                       GuiConfig.MStringResource.GetText(
+                                       GuiConfig.GetText(
                                            TextType.ExceptionAuthenticationException) + "]";
                 Utility.ExceptionDeal(ex,
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.ExceptionAuthenticationException),
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.ExceptionAuthenticationExceptionNote));
             }
             else
@@ -360,12 +360,12 @@ namespace MongoGUICtl
                 if (!GuiConfig.IsUseDefaultLanguage)
                 {
                     connectionNode.Text += "[" +
-                                           GuiConfig.MStringResource.GetText(
+                                           GuiConfig.GetText(
                                                TextType.ExceptionAuthenticationException) + "]";
                     Utility.ExceptionDeal(ex,
-                        GuiConfig.MStringResource.GetText(
+                        GuiConfig.GetText(
                             TextType.ExceptionAuthenticationException),
-                        GuiConfig.MStringResource.GetText(
+                        GuiConfig.GetText(
                             TextType.ExceptionAuthenticationExceptionNote));
                 }
                 else
@@ -379,10 +379,10 @@ namespace MongoGUICtl
                 if (!GuiConfig.IsUseDefaultLanguage)
                 {
                     connectionNode.Text += "[" +
-                                           GuiConfig.MStringResource.GetText(
+                                           GuiConfig.GetText(
                                                TextType.ExceptionNotConnected) + "]";
                     Utility.ExceptionDeal(ex,
-                        GuiConfig.MStringResource.GetText(TextType.ExceptionNotConnected),
+                        GuiConfig.GetText(TextType.ExceptionNotConnected),
                         "Unknown Exception");
                 }
                 else
@@ -407,11 +407,11 @@ namespace MongoGUICtl
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 connectionNode.Text += "[" +
-                                       GuiConfig.MStringResource.GetText(
+                                       GuiConfig.GetText(
                                            TextType.ExceptionNotConnected) + "]";
                 Utility.ExceptionDeal(ex,
-                    GuiConfig.MStringResource.GetText(TextType.ExceptionNotConnected),
-                    GuiConfig.MStringResource.GetText(TextType.ExceptionNotConnectedNote));
+                    GuiConfig.GetText(TextType.ExceptionNotConnected),
+                    GuiConfig.GetText(TextType.ExceptionNotConnectedNote));
             }
             else
             {
@@ -430,10 +430,10 @@ namespace MongoGUICtl
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 connectionNode.Text += "[" +
-                                       GuiConfig.MStringResource.GetText(
+                                       GuiConfig.GetText(
                                            TextType.ExceptionNotConnected) + "]";
                 Utility.ExceptionDeal(ex,
-                    GuiConfig.MStringResource.GetText(TextType.ExceptionNotConnected),
+                    GuiConfig.GetText(TextType.ExceptionNotConnected),
                     "Unknown Exception");
             }
             else

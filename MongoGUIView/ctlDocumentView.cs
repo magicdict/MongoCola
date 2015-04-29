@@ -357,8 +357,8 @@ namespace MongoGUIView
             var strMessage = "Are you sure to delete selected document(s)?";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.MStringResource.GetText(TextType.DropData);
-                strMessage = GuiConfig.MStringResource.GetText(TextType.DropDataConfirm);
+                strTitle = GuiConfig.GetText(TextType.DropData);
+                strMessage = GuiConfig.GetText(TextType.DropDataConfirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {

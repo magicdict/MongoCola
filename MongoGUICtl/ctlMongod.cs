@@ -22,27 +22,27 @@ namespace MongoGUICtl
             ctlFilePickerLogPath.FileFilter = Utility.LogFilter;
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                lblPort.Text = GuiConfig.MStringResource.GetText(TextType.CommonPort);
+                lblPort.Text = GuiConfig.GetText(TextType.CommonPort);
                 lblSource.Text =
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.DosCommandTabDeploySlaveSource);
                 chkAuth.Text =
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.DosCommandTabDeployAuthentication);
                 chkIsAppend.Text =
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.DosCommandTabDeployAppendMode);
                 ctlFilePickerDBPath.Title =
-                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabDeployDbPath);
+                    GuiConfig.GetText(TextType.DosCommandTabDeployDbPath);
                 ctlFilePickerLogPath.Title =
-                    GuiConfig.MStringResource.GetText(
+                    GuiConfig.GetText(
                         TextType.DosCommandTabDeployLogPath);
                 radMaster.Text =
-                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabDeployMaster);
+                    GuiConfig.GetText(TextType.DosCommandTabDeployMaster);
                 radSlave.Text =
-                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabDeploySlave);
+                    GuiConfig.GetText(TextType.DosCommandTabDeploySlave);
                 grpLog.Text =
-                    GuiConfig.MStringResource.GetText(TextType.DosCommandTabDeployLog);
+                    GuiConfig.GetText(TextType.DosCommandTabDeployLog);
             }
         }
 

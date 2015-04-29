@@ -21,9 +21,17 @@ namespace ResourceLib.Method
         ///     成功提示色
         /// </summary>
         public static Color SuccessColor = Color.LightGreen;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static Color FailColor = Color.Pink;
+        /// <summary>
+        /// 
+        /// </summary>
         public static Color ActionColor = Color.LightBlue;
+        /// <summary>
+        ///     
+        /// </summary>
         public static Color WarningColor = Color.LightYellow;
 
         /// <summary>
@@ -42,16 +50,34 @@ namespace ResourceLib.Method
         /// <param name="defaultText"></param>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static string GetText(string defaultText, TextType tag = TextType.UseDefaultLanguage)
+        public static string GetText(string defaultText, TextType tag)
         {
             if (IsUseDefaultLanguage || tag == TextType.UseDefaultLanguage) return defaultText;
-            return MStringResource.GetText(tag);
+            var strText = string.Empty;
+            StringResource._stringDic.TryGetValue(tag.ToString(), out strText);
+            strText = string.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
+            return strText;
         }
-
-        public static string GetText(TextType textType)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static string GetText(string tag)
         {
-            if (IsUseDefaultLanguage) return textType.ToString();
-            return MStringResource.GetText(textType);
+            var strText = string.Empty;
+            StringResource._stringDic.TryGetValue(tag.ToString(), out strText);
+            strText = string.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
+            return strText;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static string GetText(TextType tag)
+        {
+            return GetText(tag.ToString());
         }
 
         /// <summary>
@@ -63,7 +89,7 @@ namespace ResourceLib.Method
             if (IsUseDefaultLanguage) return;
             if (frm.Tag != null)
             {
-                var display = MStringResource.GetText(frm.Tag.ToString());
+                var display = GetText(frm.Tag.ToString());
                 if (!string.IsNullOrEmpty(display))
                 {
                     frm.Text = display;
@@ -81,7 +107,7 @@ namespace ResourceLib.Method
                 if (menuItem.GetType().FullName == typeof (ToolStripMenuItem).FullName)
                 {
                     if (((ToolStripMenuItem) menuItem).Tag == null) continue;
-                    var display = MStringResource.GetText(((ToolStripMenuItem) menuItem).Tag.ToString());
+                    var display = GetText(((ToolStripMenuItem) menuItem).Tag.ToString());
                     if (string.IsNullOrEmpty(display)) continue;
                     ((ToolStripMenuItem) menuItem).Text = display;
                     if (((ToolStripMenuItem) menuItem).DropDownItems.Count > 0)
@@ -90,7 +116,7 @@ namespace ResourceLib.Method
                 if (menuItem.GetType().FullName == typeof (ToolStripButton).FullName)
                 {
                     if (((ToolStripButton) menuItem).Tag == null) continue;
-                    var display = MStringResource.GetText(((ToolStripButton) menuItem).Tag.ToString());
+                    var display = GetText(((ToolStripButton) menuItem).Tag.ToString());
                     if (string.IsNullOrEmpty(display)) continue;
                     ((ToolStripButton) menuItem).Text = display;
                 }
@@ -119,7 +145,7 @@ namespace ResourceLib.Method
                     {
                         if (tab.Tag != null)
                         {
-                            display = MStringResource.GetText(tab.Tag.ToString());
+                            display = GetText(tab.Tag.ToString());
                             tab.Text = display;
                         }
                         Translateform(tab.Controls);
@@ -131,7 +157,7 @@ namespace ResourceLib.Method
                     Translateform(ctrlItem.Controls);
                 }
                 if (ctrlItem.Tag == null) continue;
-                display = MStringResource.GetText(ctrlItem.Tag.ToString());
+                display = GetText(ctrlItem.Tag.ToString());
                 if (string.IsNullOrEmpty(display)) continue;
 
                 if (ctrlItem.GetType().FullName == typeof (Label).FullName)

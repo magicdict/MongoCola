@@ -7,6 +7,7 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using MongoDB.Driver;
 
 namespace FunctionForm
 {
@@ -47,7 +48,7 @@ namespace FunctionForm
         {
             var mongoDb = RuntimeMongoDbContext.GetCurrentDataBase();
             var js = new BsonJavaScript(ctlEval.Context);
-            var Params = new List<Object>();
+            var Params = new List<BsonValue>();
             if (txtParm.Text != string.Empty)
             {
                 foreach (var parm in txtParm.Text.Split(",".ToCharArray()))
@@ -82,7 +83,8 @@ namespace FunctionForm
             }
             try
             {
-                var result = mongoDb.Eval(js, Params.ToArray());
+                EvalArgs args = new EvalArgs() { Args = Params.ToArray() , Code = js };
+                var result = mongoDb.Eval(args);
                 MyMessageBox.ShowMessage("Result", "Result",
                     result.ToJson(MongoHelper.JsonWriterSettings), true);
             }

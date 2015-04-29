@@ -24,7 +24,7 @@ namespace MongoGUICtl
             var strShowDbName = strDbName;
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                if (GuiConfig.MStringResource.LanguageType == "Chinese")
+                if (StringResource.LanguageType == "Chinese")
                 {
                     switch (strDbName)
                     {

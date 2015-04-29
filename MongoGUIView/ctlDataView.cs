@@ -358,7 +358,7 @@ namespace MongoGUIView
             var strTitle = "Records";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.MStringResource.GetText("Main_Menu_DataView");
+                strTitle = GuiConfig.GetText(TextType.Main_Menu_DataView);
             }
             if (MDataViewInfo.CurrentCollectionTotalCnt == 0)
             {

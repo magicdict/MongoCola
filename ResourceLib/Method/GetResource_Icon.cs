@@ -9,8 +9,10 @@
 
     public enum ImageType
     {
+        /// <summary>
+        /// 空白
+        /// </summary>
         Blank,
-
         /// <summary>
         ///     Access数据库
         /// </summary>

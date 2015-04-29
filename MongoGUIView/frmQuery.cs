@@ -51,16 +51,16 @@ namespace MongoGUIView
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
             if (GuiConfig.IsUseDefaultLanguage) return;
-            Text = GuiConfig.MStringResource.GetText(TextType.QueryTitle);
-            tabFieldInfo.Text = GuiConfig.MStringResource.GetText(TextType.QueryFieldInfo);
-            tabCondition.Text = GuiConfig.MStringResource.GetText(TextType.QueryFilter);
-            tabSql.Text = GuiConfig.MStringResource.GetText(TextType.ConvertSqlTitle);
+            Text = GuiConfig.GetText(TextType.QueryTitle);
+            tabFieldInfo.Text = GuiConfig.GetText(TextType.QueryFieldInfo);
+            tabCondition.Text = GuiConfig.GetText(TextType.QueryFilter);
+            tabSql.Text = GuiConfig.GetText(TextType.ConvertSqlTitle);
             cmdAddCondition.Text =
-                GuiConfig.MStringResource.GetText(TextType.QueryFilterAddCondition);
-            cmdLoad.Text = GuiConfig.MStringResource.GetText(TextType.QueryActionLoad);
-            cmdSave.Text = GuiConfig.MStringResource.GetText(TextType.CommonSave);
-            cmdOK.Text = GuiConfig.MStringResource.GetText(TextType.CommonOk);
-            cmdCancel.Text = GuiConfig.MStringResource.GetText(TextType.CommonCancel);
+                GuiConfig.GetText(TextType.QueryFilterAddCondition);
+            cmdLoad.Text = GuiConfig.GetText(TextType.QueryActionLoad);
+            cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
+            cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
+            cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
         }
 
         /// <summary>

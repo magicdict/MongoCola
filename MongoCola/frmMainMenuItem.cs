@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using FunctionForm;
 using FunctionForm.Aggregation;
 using FunctionForm.Operation;
@@ -19,6 +11,14 @@ using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MongoCola
 {
@@ -48,7 +48,7 @@ namespace MongoCola
                     statusStripMain.Items[0].Text =
                         GuiConfig.GetText(TextType.MainStatusBarTextReady);
                     tabSvrStatus.Text =
-                        GuiConfig.GetText("Main_Menu_Mangt_Status");
+                        GuiConfig.GetText(TextType.Main_Menu_Mangt_Status);
                 }
             }
         }
@@ -361,7 +361,7 @@ namespace MongoCola
                 MyMessageBox.ShowMessage(
                     GuiConfig.IsUseDefaultLanguage
                         ? "UserInformation"
-                        : GuiConfig.GetText("Main_Menu_Operation_Server_UserInfo"),
+                        : GuiConfig.GetText(TextType.Main_Menu_Operation_Server_UserInfo),
                     "The User Information of：[" +
                     MongoConnectionConfig.MongoConfig.ConnectionList[connectionName].UserName + "]", info, true);
             }
@@ -413,10 +413,8 @@ namespace MongoCola
             else
             {
                 MyMessageBox.ShowMessage(
-                    GuiConfig.GetText(
-                        "Main_Menu_Operation_Server_Properties"),
-                    GuiConfig.GetText(
-                        "Main_Menu_Operation_Server_Properties"),
+                    GuiConfig.GetText(TextType.Main_Menu_Operation_Server_Properties),
+                    GuiConfig.GetText(TextType.Main_Menu_Operation_Server_Properties),
                     MongoHelper.GetCurrentSvrInfo(), true);
             }
         }
@@ -729,7 +727,7 @@ namespace MongoCola
             trvsrvlst.SelectedNode.Text = strNewCollectionName;
             trvsrvlst.SelectedNode.Tag = strNewNodeTag;
             trvsrvlst.SelectedNode.ToolTipText = strNewCollectionName + Environment.NewLine;
-            trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" +RuntimeMongoDbContext.GetCurrentCollectionIsCapped();
+            trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" + RuntimeMongoDbContext.GetCurrentCollectionIsCapped();
 
             if (GuiConfig.IsUseDefaultLanguage)
             {
@@ -921,11 +919,8 @@ namespace MongoCola
             var strMessage = "Are you sure to Restore?";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle =
-                    GuiConfig.GetText(
-                        "Main_Menu_Operation_BackupAndRestore_Restore");
-                strMessage =
-                    GuiConfig.GetText(TextType.RestoreConnectionConfirm);
+                strTitle = GuiConfig.GetText(TextType.Main_Menu_Operation_BackupAndRestore_Restore);
+                strMessage = GuiConfig.GetText(TextType.RestoreConnectionConfirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;

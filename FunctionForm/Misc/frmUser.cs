@@ -38,7 +38,7 @@ namespace FunctionForm
             if (!isAdmin)
             {
                 //Admin以外的不能有otherDBRoles
-                Width = Width/2;
+                Width = Width / 2;
             }
             userRoles.IsAdmin = isAdmin;
         }
@@ -61,7 +61,7 @@ namespace FunctionForm
             if (!isAdmin)
             {
                 //Admin以外的不能有otherDBRoles
-                Width = Width/2;
+                Width = Width / 2;
             }
         }
 
@@ -141,10 +141,9 @@ namespace FunctionForm
             {
                 if (_modifyName == string.Empty)
                 {
-                    Text =
-                        GuiConfig.GetText(_isAdmin
-                            ? "Main_Menu_Operation_Server_AddUserToAdmin"
-                            : "Main_Menu_Operation_Database_AddUser");
+                    Text = GuiConfig.GetText(_isAdmin
+                            ? TextType.Main_Menu_Operation_Server_AddUserToAdmin
+                            : TextType.Main_Menu_Operation_Database_AddUser);
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else
@@ -175,7 +174,7 @@ namespace FunctionForm
             lstOtherRoles.Items.Clear();
             foreach (var item in _otherDbRolesDict.Keys)
             {
-                lstOtherRoles.Items.Add(new ListViewItem(new[] {item, _otherDbRolesDict[item].Value.ToString()}));
+                lstOtherRoles.Items.Add(new ListViewItem(new[] { item, _otherDbRolesDict[item].Value.ToString() }));
             }
         }
 
