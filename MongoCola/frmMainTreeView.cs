@@ -59,7 +59,7 @@ namespace MongoCola
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStripMain = new ContextMenuStrip();
-                if (SystemConfig.MonoMode)
+                if (SystemManager.MonoMode)
                 {
                     var t1 = DisconnectToolStripMenuItem.Clone();
                     t1.Click += DisconnectToolStripMenuItem_Click;
@@ -107,7 +107,7 @@ namespace MongoCola
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStripMain = new ContextMenuStrip();
-                if (SystemConfig.MonoMode)
+                if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
                     var t1 = DisconnectToolStripMenuItem.Clone();
@@ -163,7 +163,7 @@ namespace MongoCola
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStripMain = new ContextMenuStrip();
-                if (SystemConfig.MonoMode)
+                if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
                     var t1 = CreateMongoDBToolStripMenuItem.Clone();
@@ -221,7 +221,7 @@ namespace MongoCola
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStripMain = new ContextMenuStrip();
-                if (SystemConfig.MonoMode)
+                if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
                     var t1 = DisconnectToolStripMenuItem.Clone();
@@ -298,7 +298,7 @@ namespace MongoCola
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStripMain = new ContextMenuStrip();
-                if (SystemConfig.MonoMode)
+                if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
                     var t1 = DelMongoDBToolStripMenuItem.Clone();
@@ -408,7 +408,7 @@ namespace MongoCola
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStripMain = new ContextMenuStrip();
-                if (SystemConfig.MonoMode)
+                if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
                     var t1 = DelMongoCollectionToolStripMenuItem.Clone();

@@ -7,11 +7,37 @@ using MongoCola.Config;
 using MongoGUIView;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using ResourceLib.Method;
 
 namespace MongoCola
 {
     public static class SystemManager
     {
+
+        /// <summary>
+        ///     配置
+        /// </summary>
+        public static SystemConfig SystemConfig = new SystemConfig();
+        /// <summary>
+        ///     
+        /// </summary>
+        public static MongoConfig MongoConfig = new MongoConfig();
+
+        /// <summary>
+        ///     版本号
+        /// </summary>
+        public static string Version = string.Empty;
+
+        /// <summary>
+        ///     测试模式
+        /// </summary>
+        public static bool DebugMode = false;
+
+        /// <summary>
+        ///     是否为MONO
+        /// </summary>
+        public static bool MonoMode = false;
+
         /// <summary>
         ///     初始化
         /// </summary>
@@ -23,9 +49,9 @@ namespace MongoCola
             info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Bson.dll");
             MongoHelper.MongoDbBsonVersion = info.ProductVersion;
             //版本设定
-            SystemConfig.Version = Application.ProductVersion;
-            SystemConfig.DebugMode = false;
-            SystemConfig.MonoMode = Type.GetType("Mono.Runtime") != null;
+            SystemManager.Version = Application.ProductVersion;
+            SystemManager.DebugMode = false;
+            SystemManager.MonoMode = Type.GetType("Mono.Runtime") != null;
             //异常处理器的初始化
             Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + MongoHelper.MongoDbDriverVersion +
                                           Environment.NewLine;
@@ -36,23 +62,23 @@ namespace MongoCola
             if (File.Exists(localconfigfile))
             {
                 ConfigHelper.LoadFromConfigFile(localconfigfile);
-                SystemConfig.InitLanguage();
-                MongodbDosCommand.MongoBinPath = SystemConfig.Config.MongoBinPath;
+                InitLanguage();
+                MongodbDosCommand.MongoBinPath = SystemManager.SystemConfig.MongoBinPath;
             }
             else
             {
-                SystemConfig.Config = new Config.Config();
+                SystemManager.SystemConfig = new Config.SystemConfig();
                 var frmLanguage = new FrmLanguage();
                 frmLanguage.ShowDialog();
-                SystemConfig.InitLanguage();
+                InitLanguage();
                 var frmOption = new FrmOption();
                 frmOption.ShowDialog();
                 ConfigHelper.SaveToConfigFile(localconfigfile);
             }
             //设定MongoUtility
-            RuntimeMongoDbContext.MongoConnectionConfigList = SystemConfig.Config.ConnectionList;
+            RuntimeMongoDbContext.MongoConnectionConfigList = SystemManager.MongoConfig.ConnectionList;
             //各个子系统的多语言设定
-            Configuration.RefreshStatusTimer = SystemConfig.Config.RefreshStatusTimer;
+            Configuration.RefreshStatusTimer = SystemManager.SystemConfig.RefreshStatusTimer;
             Application.Run(new FrmMain());
             //delete tempfile directory when exit
             if (Directory.Exists(Gfs.TempFileFolder))
@@ -60,5 +86,23 @@ namespace MongoCola
                 Directory.Delete(Gfs.TempFileFolder, true);
             }
         }
+
+        /// <summary>
+        ///     初始化语言
+        /// </summary>
+        public static void InitLanguage()
+        {
+            GuiConfig.IsUseDefaultLanguage = SystemConfig.IsUseDefaultLanguage();
+            //语言的初始化
+            if (!SystemConfig.IsUseDefaultLanguage())
+            {
+                var languageFile = "Language" + Path.DirectorySeparatorChar + SystemConfig.LanguageFileName;
+                if (File.Exists(languageFile))
+                {
+                    GuiConfig.MStringResource.InitLanguage(languageFile);
+                }
+            }
+        }
+
     }
 }

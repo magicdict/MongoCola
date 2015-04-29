@@ -35,7 +35,7 @@ namespace MongoCola
         private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utility.OpenForm(new FrmOption(), true, true);
-            SystemConfig.InitLanguage();
+            SystemManager.InitLanguage();
             if (GuiConfig.IsUseDefaultLanguage)
             {
                 MyMessageBox.ShowMessage("Language", "Language will change to \"English\" when you restart this tool");
@@ -129,7 +129,7 @@ namespace MongoCola
             if (replSetName == string.Empty)
                 return;
             var result = CommandHelper.InitReplicaSet(replSetName,
-                RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName, SystemConfig.Config.ConnectionList);
+                RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName, SystemManager.MongoConfig.ConnectionList);
             if (result.Ok)
             {
                 //修改配置
@@ -140,7 +140,7 @@ namespace MongoCola
                     newConfig.Host +
                     (newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
                 };
-                SystemConfig.Config.ConnectionList[newConfig.ConnectionName] = newConfig;
+                SystemManager.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
                 ConfigHelper.SaveToConfigFile();
                 RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
                 RuntimeMongoDbContext.MongoConnSvrLst.Add(
@@ -165,7 +165,7 @@ namespace MongoCola
         {
             var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
             Utility.OpenForm(new FrmReplsetMgr(ref newConfig), true, true);
-            SystemConfig.Config.ConnectionList[newConfig.ConnectionName] = newConfig;
+            SystemManager.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
             ConfigHelper.SaveToConfigFile();
             RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
             RuntimeMongoDbContext.MongoConnSvrLst.Add(
@@ -228,7 +228,7 @@ namespace MongoCola
                         () =>
                         {
                             connectionTreeNodes = UiHelper.GetConnectionNodes(RuntimeMongoDbContext.MongoConnSvrLst,
-                                SystemConfig.Config.ConnectionList);
+                                SystemManager.MongoConfig.ConnectionList);
                         });
                 //如果第一个节点的字节点不为空
                 if (connectionTreeNodes != null)
@@ -392,7 +392,7 @@ namespace MongoCola
                         ? "UserInformation"
                         : GuiConfig.GetText("Main_Menu_Operation_Server_UserInfo"),
                     "The User Information of：[" +
-                    SystemConfig.Config.ConnectionList[connectionName].UserName + "]", info, true);
+                    SystemManager.MongoConfig.ConnectionList[connectionName].UserName + "]", info, true);
             }
             //}
         }
@@ -603,7 +603,7 @@ namespace MongoCola
             DisableAllOpr();
             trvsrvlst.Nodes.Clear();
             var connectNodes = UiHelper.GetConnectionNodes(RuntimeMongoDbContext.MongoConnSvrLst,
-                SystemConfig.Config.ConnectionList);
+                SystemManager.MongoConfig.ConnectionList);
             foreach (var element in connectNodes)
             {
                 trvsrvlst.Nodes.Add(element);
@@ -928,10 +928,10 @@ namespace MongoCola
         /// <returns></returns>
         private bool MongoPathCheck()
         {
-            if (Directory.Exists(SystemConfig.Config.MongoBinPath)) return true;
+            if (Directory.Exists(SystemManager.SystemConfig.MongoBinPath)) return true;
             MyMessageBox.ShowMessage("Exception",
                 "Mongo Bin Path Can't be found",
-                "Mongo Bin Path[" + SystemConfig.Config.MongoBinPath + "]Can't be found");
+                "Mongo Bin Path[" + SystemManager.SystemConfig.MongoBinPath + "]Can't be found");
             Utility.OpenForm(new FrmOption(), true, true);
             return false;
         }

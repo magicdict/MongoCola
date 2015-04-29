@@ -120,9 +120,9 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\Config.cs" />
-    <Compile Include="Config\ConfigHelper.cs" />
     <Compile Include="Config\SystemConfig.cs" />
+    <Compile Include="Config\ConfigHelper.cs" />
+    <Compile Include="Config\MongoConfig.cs" />
     <Compile Include="Connection\frmAddConnection.cs">
       <SubType>Form</SubType>
     </Compile>

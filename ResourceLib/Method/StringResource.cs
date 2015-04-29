@@ -23,6 +23,11 @@ namespace ResourceLib.Method
         public string LanguageType = string.Empty;
 
         /// <summary>
+        ///     英语（默认语种）
+        /// </summary>
+        public const string Language_English = "English";
+
+        /// <summary>
         ///     字符资源
         /// </summary>
         /// <param name="languageFileName">当前语言文件</param>

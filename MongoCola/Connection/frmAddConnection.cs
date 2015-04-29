@@ -44,7 +44,7 @@ namespace MongoCola.Connection
             InitializeComponent();
             OldConnectionName = connectionName;
             //Modify Mode
-            ModifyConn = SystemConfig.Config.ConnectionList[connectionName];
+            ModifyConn = SystemManager.MongoConfig.ConnectionList[connectionName];
             OnLoad();
 
             txtConnectionName.Text = ModifyConn.ConnectionName;
@@ -128,24 +128,24 @@ namespace MongoCola.Connection
                 if (OldConnectionName != newCollectionName)
                 {
                     //修改了名称,检查一下新的名字是否存在
-                    if (SystemConfig.Config.ConnectionList.ContainsKey(newCollectionName))
+                    if (SystemManager.MongoConfig.ConnectionList.ContainsKey(newCollectionName))
                     {
                         //存在则警告
                         MyMessageBox.ShowMessage("Connection", "Connection Name Already Exist!");
                         return;
                     }
                     //不存在则删除旧的记录
-                    SystemConfig.Config.ConnectionList.Remove(OldConnectionName);
+                    SystemManager.MongoConfig.ConnectionList.Remove(OldConnectionName);
                 }
             }
             //保存配置
-            if (SystemConfig.Config.ConnectionList.ContainsKey(newCollectionName))
+            if (SystemManager.MongoConfig.ConnectionList.ContainsKey(newCollectionName))
             {
-                SystemConfig.Config.ConnectionList[newCollectionName] = ModifyConn;
+                SystemManager.MongoConfig.ConnectionList[newCollectionName] = ModifyConn;
             }
             else
             {
-                SystemConfig.Config.ConnectionList.Add(newCollectionName, ModifyConn);
+                SystemManager.MongoConfig.ConnectionList.Add(newCollectionName, ModifyConn);
             }
             Close();
         }
@@ -253,10 +253,10 @@ namespace MongoCola.Connection
                 ModifyConn.IsUseDefaultSetting = chkUseDefault.Checked;
                 if (ModifyConn.IsUseDefaultSetting)
                 {
-                    ModifyConn.WtimeoutMs = SystemConfig.Config.WtimeoutMs;
-                    ModifyConn.WaitQueueSize = SystemConfig.Config.WaitQueueSize;
-                    ModifyConn.WriteConcern = SystemConfig.Config.WriteConcern;
-                    ModifyConn.ReadPreference = SystemConfig.Config.ReadPreference;
+                    ModifyConn.WtimeoutMs = SystemManager.MongoConfig.WtimeoutMs;
+                    ModifyConn.WaitQueueSize = SystemManager.MongoConfig.WaitQueueSize;
+                    ModifyConn.WriteConcern = SystemManager.MongoConfig.WriteConcern;
+                    ModifyConn.ReadPreference = SystemManager.MongoConfig.ReadPreference;
                 }
                 else
                 {

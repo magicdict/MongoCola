@@ -43,9 +43,9 @@ namespace MongoCola
             }
             //Init ToolBar
             InitToolBar();
-            Text += "  " + SystemConfig.Version;
+            Text += "  " + SystemManager.Version;
             Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            if (SystemConfig.MonoMode)
+            if (SystemManager.MonoMode)
             {
                 Text += " MONO";
             }
@@ -159,7 +159,7 @@ namespace MongoCola
                 trvsrvlst.SelectedNode = e.Node;
                 var strNodeType = Utility.GetTagType(e.Node.Tag.ToString());
                 var mongoSvrKey = Utility.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
-                RuntimeMongoDbContext.CurrentMongoConnectionconfig = SystemConfig.Config.ConnectionList[mongoSvrKey];
+                RuntimeMongoDbContext.CurrentMongoConnectionconfig = SystemManager.MongoConfig.ConnectionList[mongoSvrKey];
                 if (string.IsNullOrEmpty(RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName))
                 {
                     lblUserInfo.Text = "UserInfo:Admin";
@@ -234,7 +234,7 @@ namespace MongoCola
                         if (e.Button == MouseButtons.Right)
                         {
                             contextMenuStripMain = new ContextMenuStrip();
-                            if (SystemConfig.MonoMode)
+                            if (SystemManager.MonoMode)
                             {
                                 var t8 = ViewDataToolStripMenuItem.Clone();
                                 t8.Click += (x, y) => ViewDataObj();
@@ -257,7 +257,7 @@ namespace MongoCola
                         if (e.Button == MouseButtons.Right)
                         {
                             contextMenuStripMain = new ContextMenuStrip();
-                            if (SystemConfig.MonoMode)
+                            if (SystemManager.MonoMode)
                             {
                                 var t8 = ViewDataToolStripMenuItem.Clone();
                                 t8.Click += (x, y) => ViewDataObj();
@@ -281,7 +281,7 @@ namespace MongoCola
                         if (e.Button == MouseButtons.Right)
                         {
                             contextMenuStripMain = new ContextMenuStrip();
-                            if (SystemConfig.MonoMode)
+                            if (SystemManager.MonoMode)
                             {
                                 var t8 = creatJavaScriptToolStripMenuItem.Clone();
                                 t8.Click += creatJavaScriptToolStripMenuItem_Click;
@@ -304,7 +304,7 @@ namespace MongoCola
                         if (e.Button == MouseButtons.Right)
                         {
                             contextMenuStripMain = new ContextMenuStrip();
-                            if (SystemConfig.MonoMode)
+                            if (SystemManager.MonoMode)
                             {
                                 var t1 = ViewDataToolStripMenuItem.Clone();
                                 t1.Click += (x, y) => ViewDataObj();
@@ -368,7 +368,7 @@ namespace MongoCola
             OptionToolStripButton = OptionsToolStripMenuItem.CloneFromMenuItem();
             UserGuideToolStripButton = UserGuideToolStripMenuItem.CloneFromMenuItem();
             //暂时不对应MONO
-            if (SystemConfig.MonoMode)
+            if (SystemManager.MonoMode)
             {
                 RefreshToolStripButton.Click += RefreshToolStripMenuItem_Click;
                 OptionToolStripButton.Click += OptionToolStripMenuItem_Click;

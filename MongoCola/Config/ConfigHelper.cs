@@ -17,7 +17,7 @@ namespace MongoCola.Config
         /// <returns></returns>
         public static bool AddConnection(MongoConnectionConfig con)
         {
-            SystemConfig.Config.ConnectionList.Add(con.ConnectionName, con);
+            SystemManager.MongoConfig.ConnectionList.Add(con.ConnectionName, con);
             return true;
         }
 
@@ -29,7 +29,7 @@ namespace MongoCola.Config
         /// <returns></returns>
         public static string GetConnectionNameByHost(string addr, int port)
         {
-            foreach (var item in SystemConfig.Config.ConnectionList.Values)
+            foreach (var item in SystemManager.MongoConfig.ConnectionList.Values)
             {
                 if (item.Host == addr && item.Port == port)
                 {
@@ -55,12 +55,12 @@ namespace MongoCola.Config
         /// <param name="configFileName"></param>
         public static void SaveToConfigFile(string configFileName)
         {
-            SystemConfig.Config.SerializableConnectionList.Clear();
-            foreach (var item in SystemConfig.Config.ConnectionList.Values)
+            SystemManager.MongoConfig.SerializableConnectionList.Clear();
+            foreach (var item in SystemManager.MongoConfig.ConnectionList.Values)
             {
-                SystemConfig.Config.SerializableConnectionList.Add(item);
+                SystemManager.MongoConfig.SerializableConnectionList.Add(item);
             }
-            Utility.SaveObjAsXml(configFileName, SystemConfig.Config);
+            Utility.SaveObjAsXml(configFileName, SystemManager.SystemConfig);
         }
 
         /// <summary>
@@ -70,11 +70,11 @@ namespace MongoCola.Config
         /// <returns></returns>
         public static void LoadFromConfigFile(string configFileName)
         {
-            SystemConfig.Config = Utility.LoadObjFromXml<Config>(configFileName);
-            SystemConfig.Config.ConnectionList.Clear();
-            foreach (var item in SystemConfig.Config.SerializableConnectionList)
+            SystemManager.SystemConfig = Utility.LoadObjFromXml<SystemConfig>(configFileName);
+            SystemManager.MongoConfig.ConnectionList.Clear();
+            foreach (var item in SystemManager.MongoConfig.SerializableConnectionList)
             {
-                SystemConfig.Config.ConnectionList.Add(item.ConnectionName, item);
+                SystemManager.MongoConfig.ConnectionList.Add(item.ConnectionName, item);
             }
             ConfigFilename = configFileName;
         }

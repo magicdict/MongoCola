@@ -1,81 +1,51 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: scs
- * Date: 2015/1/12
- * Time: 10:31
+ * Date: 2015/1/8
+ * Time: 13:50
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.IO;
-using ResourceLib.Method;
+using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using MongoUtility.Core;
 
 namespace MongoCola.Config
 {
     /// <summary>
-    ///     Description of SystemManager.
+    ///     SystemConfig
     /// </summary>
-    public static class SystemConfig
+    [Serializable]
+    public class SystemConfig
     {
         #region"通用"
-
-        /// 配置
+        /// <summary>
+        ///     MongoBin的路径，用于Dos命令
         /// </summary>
-        public static Config Config = new Config();
+        public string MongoBinPath = string.Empty;
 
         /// <summary>
-        ///     版本号
+        ///     Config Format Version
         /// </summary>
-        public static string Version = string.Empty;
-
+        public byte ConfigVer = 1;
         /// <summary>
-        ///     测试模式
+        ///     语言
         /// </summary>
-        public static bool DebugMode = false;
-
+        public string LanguageFileName = string.Empty;
         /// <summary>
-        ///     是否为MONO
+        ///     状态刷新间隔时间
         /// </summary>
-        public static bool MonoMode = false;
-
-        #endregion
-
-        #region"多语言"
-
+        public int RefreshStatusTimer = 30;
         /// <summary>
         ///     是否使用默认语言
         /// </summary>
         /// <returns></returns>
-        private static bool IsUseDefaultLanguage
-        {
-            get
-            {
-                if (Config == null)
-                {
-                    return true;
-                }
-                return (Config.LanguageFileName == "English.xml" ||
-                        string.IsNullOrEmpty(Config.LanguageFileName));
-            }
+        public bool IsUseDefaultLanguage()
+        { 
+            return (LanguageFileName == "English.xml" || string.IsNullOrEmpty(LanguageFileName));
         }
-
-        /// <summary>
-        ///     初始化
-        /// </summary>
-        public static void InitLanguage()
-        {
-            GuiConfig.IsUseDefaultLanguage = IsUseDefaultLanguage;
-            //语言的初始化
-            if (!IsUseDefaultLanguage)
-            {
-                var languageFile = "Language" + Path.DirectorySeparatorChar + Config.LanguageFileName;
-                if (File.Exists(languageFile))
-                {
-                    GuiConfig.MStringResource.InitLanguage(languageFile);
-                }
-            }
-        }
-
         #endregion
     }
 }

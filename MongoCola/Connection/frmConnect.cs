@@ -31,7 +31,7 @@ namespace MongoCola.Connection
         private void RefreshConnection()
         {
             lstConnection.Items.Clear();
-            foreach (var item in SystemConfig.Config.ConnectionList.Values)
+            foreach (var item in SystemManager.MongoConfig.ConnectionList.Values)
             {
                 if (item.ReplSetName == string.Empty)
                 {
@@ -84,7 +84,7 @@ namespace MongoCola.Connection
             {
                 foreach (ListViewItem item in lstConnection.CheckedItems)
                 {
-                    var config = SystemConfig.Config.ConnectionList[item.Text];
+                    var config = SystemManager.MongoConfig.ConnectionList[item.Text];
                     connLst.Add(config);
                 }
                 RuntimeMongoDbContext.ResetConnectionList(connLst);
@@ -102,9 +102,9 @@ namespace MongoCola.Connection
             foreach (ListViewItem item in lstConnection.CheckedItems)
             {
                 var connectionName = item.Text;
-                if (SystemConfig.Config.ConnectionList.ContainsKey(connectionName))
+                if (SystemManager.MongoConfig.ConnectionList.ContainsKey(connectionName))
                 {
-                    SystemConfig.Config.ConnectionList.Remove(connectionName);
+                    SystemManager.MongoConfig.ConnectionList.Remove(connectionName);
                 }
             }
             RefreshConnection();
