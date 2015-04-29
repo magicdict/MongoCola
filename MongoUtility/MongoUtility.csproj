@@ -83,7 +83,7 @@
     <Compile Include="Basic\ConstMgr.cs" />
     <Compile Include="Basic\EnumMgr.cs" />
     <Compile Include="Basic\MongoDumpInfo.cs" />
-    <Compile Include="Basic\ImportExportInfo.cs" />
+    <Compile Include="Basic\MongoImportExportInfo.cs" />
     <Compile Include="Basic\MongoRestoreInfo.cs" />
     <Compile Include="Core\MongoConfig.cs" />
     <Compile Include="Core\Operater.cs" />

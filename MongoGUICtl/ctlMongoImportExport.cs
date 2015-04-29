@@ -8,8 +8,8 @@ namespace MongoGUICtl
 {
     public partial class CtlMongoImportExport : UserControl
     {
-        private readonly ImportExportInfo _mongoImportExportCommand =
-            new ImportExportInfo();
+        private readonly MongoImportExportInfo _mongoImportExportCommand =
+            new MongoImportExportInfo();
 
         public EventHandler<TextChangeEventArgs> CommandChanged;
 
@@ -55,67 +55,67 @@ namespace MongoGUICtl
         {
             _mongoImportExportCommand.FileName = filePath;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
 
         private void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
             _mongoImportExportCommand.LogLv = logLv;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
 
         private void txtHostAddr_TextChanged(object sender, EventArgs e)
         {
             _mongoImportExportCommand.HostAddr = txtHostAddr.Text;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
 
         private void txtDBName_TextChanged(object sender, EventArgs e)
         {
             _mongoImportExportCommand.DbName = txtDBName.Text;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
 
         private void txtCollectionName_TextChanged(object sender, EventArgs e)
         {
             _mongoImportExportCommand.CollectionName = txtCollectionName.Text;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
 
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             _mongoImportExportCommand.Port = (int) numPort.Value;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
 
         private void txtFieldList_TextChanged(object sender, EventArgs e)
         {
             _mongoImportExportCommand.FieldList = txtFieldList.Text;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
 
         private void radExport_CheckedChanged(object sender, EventArgs e)
         {
             _mongoImportExportCommand.Direct = radExport.Checked
-                ? MongodbDosCommand.ImprotExport.Export
-                : MongodbDosCommand.ImprotExport.Import;
+                ? MongoImportExportInfo.ImprotExport.Export
+                : MongoImportExportInfo.ImprotExport.Import;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
 
         private void radImport_CheckedChanged(object sender, EventArgs e)
         {
             _mongoImportExportCommand.Direct = radExport.Checked
-                ? MongodbDosCommand.ImprotExport.Export
-                : MongodbDosCommand.ImprotExport.Import;
+                ? MongoImportExportInfo.ImprotExport.Export
+                : MongoImportExportInfo.ImprotExport.Import;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
+                MongoImportExportInfo.GetMongoImportExportCommandLine(_mongoImportExportCommand)));
         }
     }
 }

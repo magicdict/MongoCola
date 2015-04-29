@@ -43,7 +43,7 @@ namespace MongoCola
             this.tabGerneric = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ctlFilePickerMongoBinPath = new ResourceLib.UI.CtlFilePicker();
-            this.ctlMongoConfig1 = new FunctionForm.ctlMongoConfig();
+            this.ctlMongoConfig1 = new FunctionForm.CtlMongoConfig();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
@@ -226,7 +226,7 @@ namespace MongoCola
         private TabPage tabGerneric;
         private TabPage tabPage1;
         private CtlFilePicker ctlFilePickerMongoBinPath;
-        private ctlMongoConfig ctlMongoConfig1;
+        private CtlMongoConfig ctlMongoConfig1;
 
     }
 }

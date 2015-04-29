@@ -33,7 +33,7 @@ namespace FunctionForm.Aggregation
                     GuiConfig.GetText(TextType.MapReduceReduceFunction);
                 lblResult.Text = GuiConfig.GetText(TextType.MapReduceResult);
                 cmdRun.Text = GuiConfig.GetText(TextType.MapReduceRun);
-                cmdClose.Text = GuiConfig.GetText(TextType.Common_Close);
+                cmdClose.Text = GuiConfig.GetText(TextType.CommonClose);
             }
             ctlMapFunction.Context =
                 @"function Map(){

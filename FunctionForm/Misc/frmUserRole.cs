@@ -17,8 +17,8 @@ namespace FunctionForm
             otherDBRolesPanel.IsAdmin = false;
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                cmdOK.Text = GuiConfig.GetText(TextType.Common_OK);
-                cmdCancel.Text = GuiConfig.GetText(TextType.Common_Cancel);
+                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
+                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             }
         }
 

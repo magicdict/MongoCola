@@ -90,11 +90,10 @@ namespace MongoCola
                 {
                     tabView.Controls.Remove(MutliTabManger.TabInfo[closeTabKey].Tab);
                     MutliTabManger.RemoveTab(closeTabKey);
-                    var menuKey = string.Empty;
                     ToolStripMenuItem closeMenuItem = null;
                     foreach (ToolStripMenuItem menuitem in collectionToolStripMenuItem.DropDownItems)
                     {
-                        menuKey = menuitem.Tag.ToString();
+                        var menuKey = menuitem.Tag.ToString();
                         menuKey = menuKey.Substring(menuKey.IndexOf(":", StringComparison.Ordinal) + 1);
                         if (closeTabKey == menuKey)
                         {
@@ -308,7 +307,7 @@ namespace MongoCola
                         GuiConfig.GetText(TextType.CreateNewDataBaseInput),
                         GuiConfig.GetText(TextType.CreateNewDataBase));
             }
-            string errMessage = string.Empty;
+            string errMessage;
             if (Operater.IsDatabaseNameValid(strDbName, out errMessage))
             {
                 try
@@ -561,7 +560,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void RepairDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Operater.RepairDB();
+            Operater.RepairDb();
         }
 
         /// <summary>
@@ -935,13 +934,13 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoRestore = MongoRestoreInfo.getMongoRestoreInfo();
+            var mongoRestore = MongoRestoreInfo.GetMongoRestoreInfo();
             var dumpFile = new FolderBrowserDialog();
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
                 mongoRestore.DirectoryPerDb = dumpFile.SelectedPath;
             }
-            var dosCommand = MongodbDosCommand.GetMongoRestoreCommandLine(mongoRestore);
+            var dosCommand = MongoRestoreInfo.GetMongoRestoreCommandLine(mongoRestore);
             RunCommand(dosCommand);
             RefreshToolStripMenuItem_Click(null, null);
         }
@@ -957,13 +956,13 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoDump = MongoDumpInfo.getMongoDump(true);
+            var mongoDump = MongoDumpInfo.GetMongoDump(true);
             var dumpFile = new FolderBrowserDialog();
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
                 mongoDump.OutPutPath = dumpFile.SelectedPath;
             }
-            var dosCommand = MongodbDosCommand.GetMongodumpCommandLine(mongoDump);
+            var dosCommand = MongoDumpInfo.GetMongodumpCommandLine(mongoDump);
             RunCommand(dosCommand);
         }
 
@@ -978,13 +977,13 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoDump = MongoDumpInfo.getMongoDump(false);
+            var mongoDump = MongoDumpInfo.GetMongoDump(false);
             var dumpFile = new FolderBrowserDialog();
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
                 mongoDump.OutPutPath = dumpFile.SelectedPath;
             }
-            var dosCommand = MongodbDosCommand.GetMongodumpCommandLine(mongoDump);
+            var dosCommand = MongoDumpInfo.GetMongodumpCommandLine(mongoDump);
             RunCommand(dosCommand);
         }
 
@@ -999,19 +998,19 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoImportExport = ImportExportInfo.getStruImportExport();
-            var ExportCol = new SaveFileDialog
+            var mongoImportExport = MongoImportExportInfo.GetImportExportInfo();
+            var exportCol = new SaveFileDialog
             {
                 Filter = Utility.TxtFilter,
                 CheckFileExists = false
             };
             //if the file not exist,the server will create a new one
-            if (ExportCol.ShowDialog() == DialogResult.OK)
+            if (exportCol.ShowDialog() == DialogResult.OK)
             {
-                mongoImportExport.FileName = ExportCol.FileName;
+                mongoImportExport.FileName = exportCol.FileName;
             }
-            mongoImportExport.Direct = MongodbDosCommand.ImprotExport.Export;
-            var dosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(mongoImportExport);
+            mongoImportExport.Direct = MongoImportExportInfo.ImprotExport.Export;
+            var dosCommand = MongoImportExportInfo.GetMongoImportExportCommandLine(mongoImportExport);
             RunCommand(dosCommand);
         }
 
@@ -1035,14 +1034,14 @@ namespace MongoCola
             {
                 return;
             }
-            var mongoImportExport = ImportExportInfo.getStruImportExport();
-            var ImportCol = new OpenFileDialog();
-            if (ImportCol.ShowDialog() == DialogResult.OK)
+            var mongoImportExport = MongoImportExportInfo.GetImportExportInfo();
+            var importCol = new OpenFileDialog();
+            if (importCol.ShowDialog() == DialogResult.OK)
             {
-                mongoImportExport.FileName = ImportCol.FileName;
+                mongoImportExport.FileName = importCol.FileName;
             }
-            mongoImportExport.Direct = MongodbDosCommand.ImprotExport.Import;
-            var dosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(mongoImportExport);
+            mongoImportExport.Direct = MongoImportExportInfo.ImprotExport.Import;
+            var dosCommand = MongoImportExportInfo.GetMongoImportExportCommandLine(mongoImportExport);
             RunCommand(dosCommand);
         }
 

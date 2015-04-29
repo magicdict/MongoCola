@@ -42,15 +42,15 @@ namespace MongoUtility.Core
                 RuntimeMongoDbContext.CreateMongoServer(ref newConfig));
         }
 
-        public static bool IsDatabaseNameValid(string strDBName, out string errMessage)
+        public static bool IsDatabaseNameValid(string strDbName, out string errMessage)
         {
-            return RuntimeMongoDbContext.GetCurrentServer().IsDatabaseNameValid(strDBName, out errMessage);
+            return RuntimeMongoDbContext.GetCurrentServer().IsDatabaseNameValid(strDbName, out errMessage);
         }
 
         public static void ResyncCommand(){
             CommandHelper.ExecuteMongoCommand(CommandHelper.ResyncCommand);
         }
-        public static void RepairDB()
+        public static void RepairDb()
         {
             CommandHelper.ExecuteMongoCommand(CommandHelper.RepairDatabaseCommand);
         }

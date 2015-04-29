@@ -31,7 +31,6 @@ namespace MongoCola.Config
         /// </summary>
         public static string AppPath = string.Empty;
 
-
         /// <summary>
         ///     MongoBin的路径，用于Dos命令
         /// </summary>
@@ -40,7 +39,7 @@ namespace MongoCola.Config
         /// <summary>
         ///     Config Format Version
         /// </summary>
-        public byte ConfigVer = 1;
+        public byte ConfigVer = 2;
         /// <summary>
         ///     语言
         /// </summary>
@@ -61,7 +60,6 @@ namespace MongoCola.Config
         /// <summary>
         ///     写入配置
         /// </summary>
-        /// <param name="configFileName"></param>
         public void SaveSystemConfig()
         {
             MongoConnectionConfig.MongoConfig.SerializableConnectionList.Clear();
@@ -74,7 +72,6 @@ namespace MongoCola.Config
         /// <summary>
         ///     读取配置
         /// </summary>
-        /// <param name="configFileName"></param>
         /// <returns></returns>
         public static void LoadFromConfigFile()
         {

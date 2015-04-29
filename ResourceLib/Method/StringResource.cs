@@ -25,7 +25,7 @@ namespace ResourceLib.Method
         /// <summary>
         ///     英语（默认语种）
         /// </summary>
-        public const string Language_English = "English";
+        public const string LanguageEnglish = "English";
 
         /// <summary>
         ///     字符资源

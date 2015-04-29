@@ -17,7 +17,7 @@ namespace MongoCola
             ctlFilePickerMongoBinPath.SelectedPathOrFileName = SystemManager.SystemConfig.MongoBinPath;
             //this.numLimitCnt.Value = SystemConfig.config.LimitCnt;
             numRefreshForStatus.Value = SystemManager.SystemConfig.RefreshStatusTimer;
-            cmbLanguage.Items.Add(StringResource.Language_English);
+            cmbLanguage.Items.Add(StringResource.LanguageEnglish);
             if (Directory.Exists("Language"))
             {
                 foreach (var fileName in Directory.GetFiles("Language"))
@@ -38,12 +38,12 @@ namespace MongoCola
                 }
                 else
                 {
-                    cmbLanguage.Text = StringResource.Language_English;
+                    cmbLanguage.Text = StringResource.LanguageEnglish;
                 }
             }
             else
             {
-                cmbLanguage.Text = StringResource.Language_English;
+                cmbLanguage.Text = StringResource.LanguageEnglish;
             }
             GuiConfig.Translateform(this);
         }

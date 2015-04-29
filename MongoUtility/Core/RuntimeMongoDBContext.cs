@@ -252,10 +252,10 @@ namespace MongoUtility.Core
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ConnectionName"></param>
-        public static void RemoveConnectionConfig(string ConnectionName)
+        /// <param name="connectionName"></param>
+        public static void RemoveConnectionConfig(string connectionName)
         {
-            MongoConnSvrLst.Remove(ConnectionName);
+            MongoConnSvrLst.Remove(connectionName);
         }
         /// <summary>
         ///     获得当前数据库

@@ -32,8 +32,8 @@ namespace FunctionForm.Operation
                         TextType.CollectionStatusCollectionName);
                 chkAdvance.Text =
                     GuiConfig.GetText(TextType.CommonAdvanceOption);
-                cmdOK.Text = GuiConfig.GetText(TextType.Common_OK);
-                cmdCancel.Text = GuiConfig.GetText(TextType.Common_Cancel);
+                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
+                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
                 chkIsCapped.Text =
                     GuiConfig.GetText(TextType.CollectionStatusIsCapped);
                 lblMaxDocument.Text =

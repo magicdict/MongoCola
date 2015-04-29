@@ -141,13 +141,13 @@ namespace ResourceLib.Method
                 if (ctrlItem.GetType().FullName == typeof (Button).FullName)
                 {
                     ((Button) ctrlItem).Text = display;
-                    if (ctrlItem.Tag.ToString() == TextType.Common_OK.ToString())
+                    if (ctrlItem.Tag.ToString() == TextType.CommonOk.ToString())
                     {
                         ((Button) ctrlItem).BackColor = SuccessColor;
                     }
-                    if (ctrlItem.Tag.ToString() == TextType.Common_No.ToString() ||
-                        ctrlItem.Tag.ToString() == TextType.Common_Close.ToString() ||
-                        ctrlItem.Tag.ToString() == TextType.Common_Cancel.ToString())
+                    if (ctrlItem.Tag.ToString() == TextType.CommonNo.ToString() ||
+                        ctrlItem.Tag.ToString() == TextType.CommonClose.ToString() ||
+                        ctrlItem.Tag.ToString() == TextType.CommonCancel.ToString())
                     {
                         ((Button) ctrlItem).BackColor = FailColor;
                     }

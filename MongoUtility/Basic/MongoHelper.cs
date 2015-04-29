@@ -132,10 +132,10 @@ namespace MongoUtility.Basic
         /// </summary>
         public static void InitDbUser()
         {
-            var mongDB = RuntimeMongoDbContext.GetCurrentDataBase();
-            if (!mongDB.CollectionExists(ConstMgr.CollectionNameUser))
+            var mongDb = RuntimeMongoDbContext.GetCurrentDataBase();
+            if (!mongDb.CollectionExists(ConstMgr.CollectionNameUser))
             {
-                mongDB.CreateCollection(ConstMgr.CollectionNameUser);
+                mongDb.CreateCollection(ConstMgr.CollectionNameUser);
             }
         }
 
@@ -144,10 +144,10 @@ namespace MongoUtility.Basic
         /// </summary>
         public static void InitJavascript()
         {
-            var mongDB = RuntimeMongoDbContext.GetCurrentDataBase();
-            if (!mongDB.CollectionExists(ConstMgr.CollectionNameJavascript))
+            var mongDb = RuntimeMongoDbContext.GetCurrentDataBase();
+            if (!mongDb.CollectionExists(ConstMgr.CollectionNameJavascript))
             {
-                mongDB.CreateCollection(ConstMgr.CollectionNameJavascript);
+                mongDb.CreateCollection(ConstMgr.CollectionNameJavascript);
             }
         }
 

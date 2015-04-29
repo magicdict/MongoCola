@@ -105,11 +105,11 @@ namespace MongoUtility.Security
         /// <returns></returns>
         public static List<string> GetCurrentDbRoles(string connectionName, string dbName)
         {
-            var Roles = new List<string>();
+            var roles = new List<string>();
 //			foreach (BsonValue item in MongoDbHelper._mongoUserLst[ConnectionName].GetRolesByDBName(DBName)) {
 //				Roles.Add(item.ToString());
 //			}
-            return Roles;
+            return roles;
         }
 
         #endregion

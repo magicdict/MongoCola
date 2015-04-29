@@ -25,18 +25,7 @@ namespace MongoUtility.Basic
         //mongotop.exe (2.0.3) 
         //*Utilities Changed by Mongo Version
 
-        public enum ImprotExport
-        {
-            /// <summary>
-            ///     导入
-            /// </summary>
-            Import,
 
-            /// <summary>
-            ///     导出
-            /// </summary>
-            Export
-        }
 
         /// <summary>
         ///     日志等级
@@ -98,9 +87,8 @@ namespace MongoUtility.Basic
             //http://docs.mongodb.org/manual/reference/configuration-options/
             //http://www.cnblogs.com/think-first/archive/2013/03/22/2976553.html
             //Location of the database files 
-            var strIni = string.Empty;
 
-            strIni = "#Basic database configuration" + Environment.NewLine;
+            var strIni = "#Basic database configuration" + Environment.NewLine;
 
             if (mongod.DbPath != string.Empty)
             {
@@ -178,8 +166,6 @@ namespace MongoUtility.Basic
                     case MongologLevel.Vvvvv:
                         dosCommand += " --vvvvv ";
                         break;
-                    default:
-                        break;
                 }
                 //日志是否为添加模式
                 if (mongod.Islogappend)
@@ -209,89 +195,6 @@ namespace MongoUtility.Basic
             if (mongod.IsAuth)
             {
                 dosCommand += " --auth";
-            }
-            return dosCommand;
-        }
-
-        /// <summary>
-        ///     获得备份的配置
-        /// </summary>
-        /// <param name="mongoDump"></param>
-        /// <returns></returns>
-        public static string GetMongodumpCommandLine(MongoDumpInfo mongoDump)
-        {
-            //mongodump.exe 备份程序
-            var dosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
-            dosCommand = dosCommand.Replace("@hostaddr", mongoDump.HostAddr);
-            dosCommand = dosCommand.Replace("@port", mongoDump.Port.ToString());
-            dosCommand = dosCommand.Replace("@dbname", mongoDump.DbName);
-            if (mongoDump.CollectionName != string.Empty)
-            {
-                //-c CollectionName Or --collection CollectionName
-                dosCommand += " --collection " + mongoDump.CollectionName;
-            }
-            if (mongoDump.OutPutPath != string.Empty)
-            {
-                //3.0.0 RC10 不允许带有空格的路径了?
-                //dosCommand += " --out \"" + mongoDump.OutPutPath + "\"";
-                dosCommand += " --out " + mongoDump.OutPutPath;
-            }
-            return dosCommand;
-        }
-
-        /// <summary>
-        ///     获得恢复的配置
-        ///     和恢复数据库是相同的操作，只是根据目录结构不同进行不同恢复操作
-        ///     目录名称表示数据库名称，BSON文件表示数据集
-        /// </summary>
-        /// <param name="mongoRestore"></param>
-        /// <returns></returns>
-        public static string GetMongoRestoreCommandLine(MongoRestoreInfo mongoRestore)
-        {
-            //mongorestore.exe 恢复程序
-            var dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
-            dosCommand = dosCommand.Replace("@hostaddr", mongoRestore.HostAddr);
-            dosCommand = dosCommand.Replace("@port", mongoRestore.Port.ToString());
-            dosCommand = dosCommand.Replace("@dbname", mongoRestore.DirectoryPerDb);
-            return dosCommand;
-        }
-
-        /// <summary>
-        ///     获得MongoImportExport命令[必须指定数据集名称！！]
-        /// </summary>
-        /// <param name="mongoImprotExport"></param>
-        /// <returns></returns>
-        public static string GetMongoImportExportCommandLine(ImportExportInfo mongoImprotExport)
-        {
-            //mongodump.exe 备份程序
-            string dosCommand;
-            if (mongoImprotExport.Direct == ImprotExport.Import)
-            {
-                dosCommand = @"mongoimport -h @hostaddr:@port -d @dbname";
-                if (mongoImprotExport.FieldList != string.Empty)
-                {
-                    dosCommand += " --fields " + mongoImprotExport.FieldList;
-                }
-                if (mongoImprotExport.FileName != string.Empty)
-                {
-                    dosCommand += " --file \"" + mongoImprotExport.FileName + "\"";
-                }
-            }
-            else
-            {
-                dosCommand = @"mongoexport -h @hostaddr:@port -d @dbname";
-                if (mongoImprotExport.FileName != string.Empty)
-                {
-                    dosCommand += " --out \"" + mongoImprotExport.FileName + "\"";
-                }
-            }
-            dosCommand = dosCommand.Replace("@hostaddr", mongoImprotExport.HostAddr);
-            dosCommand = dosCommand.Replace("@port", mongoImprotExport.Port.ToString());
-            dosCommand = dosCommand.Replace("@dbname", mongoImprotExport.DbName);
-            if (mongoImprotExport.CollectionName != string.Empty)
-            {
-                //-c CollectionName Or --collection CollectionName
-                dosCommand += " --collection " + mongoImprotExport.CollectionName;
             }
             return dosCommand;
         }
@@ -352,8 +255,5 @@ namespace MongoUtility.Basic
                 return;
             StrOutPut = StrOutPut + outputLine.Data + Environment.NewLine;
         }
-
-
-
     }
 }

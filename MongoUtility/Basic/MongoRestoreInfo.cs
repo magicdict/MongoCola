@@ -23,7 +23,24 @@ namespace MongoUtility.Basic
         /// </summary>
         public Int32 Port = ConstMgr.MongodDefaultPort;
 
-        public static MongoRestoreInfo getMongoRestoreInfo()
+        /// <summary>
+        ///     获得恢复的配置
+        ///     和恢复数据库是相同的操作，只是根据目录结构不同进行不同恢复操作
+        ///     目录名称表示数据库名称，BSON文件表示数据集
+        /// </summary>
+        /// <param name="mongoRestore"></param>
+        /// <returns></returns>
+        public static string GetMongoRestoreCommandLine(MongoRestoreInfo mongoRestore)
+        {
+            //mongorestore.exe 恢复程序
+            var dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
+            dosCommand = dosCommand.Replace("@hostaddr", mongoRestore.HostAddr);
+            dosCommand = dosCommand.Replace("@port", mongoRestore.Port.ToString());
+            dosCommand = dosCommand.Replace("@dbname", mongoRestore.DirectoryPerDb);
+            return dosCommand;
+        }
+
+        public static MongoRestoreInfo GetMongoRestoreInfo()
         {
             var mongoRestore = new MongoRestoreInfo();
             var mongosrv = RuntimeMongoDbContext.GetCurrentServer().Instance;

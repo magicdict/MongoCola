@@ -44,42 +44,42 @@ namespace MongoGUICtl
         {
             _mongodumpCommand.OutPutPath = filePath;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
 
         private void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
             _mongodumpCommand.LogLv = logLv;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
 
         private void txtHostAddr_TextChanged(object sender, EventArgs e)
         {
             _mongodumpCommand.HostAddr = txtHostAddr.Text;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
 
         private void txtDBName_TextChanged(object sender, EventArgs e)
         {
             _mongodumpCommand.DbName = txtDBName.Text;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
 
         private void txtCollectionName_TextChanged(object sender, EventArgs e)
         {
             _mongodumpCommand.CollectionName = txtCollectionName.Text;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
 
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             _mongodumpCommand.Port = (int) numPort.Value;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-                MongodbDosCommand.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
     }
 }
