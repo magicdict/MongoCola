@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using MongoUtility.Extend;
+using MongoUtility.Core;
 
-namespace MongoUtility.Core
+namespace MongoUtility.Extend
 {
     public static class Operater
     {
@@ -26,7 +27,6 @@ namespace MongoUtility.Core
                     RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
                     RuntimeMongoDbContext.CreateMongoServer(ref newConfig));
                 return true;
-
             }
             strMessage = result.ErrorMessage;
             return false;
@@ -46,18 +46,30 @@ namespace MongoUtility.Core
         {
             return RuntimeMongoDbContext.GetCurrentServer().IsDatabaseNameValid(strDbName, out errMessage);
         }
-
-        public static void ResyncCommand(){
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void ResyncCommand()
+        {
             CommandHelper.ExecuteMongoCommand(CommandHelper.ResyncCommand);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public static void RepairDb()
         {
             CommandHelper.ExecuteMongoCommand(CommandHelper.RepairDatabaseCommand);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public static void ReIndex()
         {
             RuntimeMongoDbContext.GetCurrentCollection().ReIndex();
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public static void Compact()
         {
             CommandHelper.ExecuteMongoCommand(CommandHelper.CompactCommand);

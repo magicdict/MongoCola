@@ -86,7 +86,7 @@
     <Compile Include="ToolKit\MongoImportExportInfo.cs" />
     <Compile Include="ToolKit\MongoRestoreInfo.cs" />
     <Compile Include="Core\MongoConfig.cs" />
-    <Compile Include="Core\Operater.cs" />
+    <Compile Include="Extend\Operater.cs" />
     <Compile Include="Extend\CommandHelper.cs" />
     <Compile Include="EventArgs\EventArgExtensions.cs" />
     <Compile Include="EventArgs\ActionDoneEventArgs.cs" />
