@@ -340,7 +340,7 @@ namespace MongoGUIView
             //自动调节列宽
             Utility.ListViewColumnResize(lstData);
             // 用新的排序方法对ListView排序
-            var lvwGfsColumnSorter = new FillMongoDb.LvwColumnSorter();
+            var lvwGfsColumnSorter = new LvwColumnSorter();
             lstData.ListViewItemSorter = lvwGfsColumnSorter;
             lstData.ColumnClick += (sender, e) =>
             {
@@ -348,10 +348,10 @@ namespace MongoGUIView
                 {
                     case 1:
                     case 2:
-                        lvwGfsColumnSorter.CompareMethod = FillMongoDb.LvwColumnSorter.SortMethod.SizeCompare;
+                        lvwGfsColumnSorter.CompareMethod = LvwColumnSorter.SortMethod.SizeCompare;
                         break;
                     default:
-                        lvwGfsColumnSorter.CompareMethod = FillMongoDb.LvwColumnSorter.SortMethod.StringCompare;
+                        lvwGfsColumnSorter.CompareMethod = LvwColumnSorter.SortMethod.StringCompare;
                         break;
                 }
                 // 检查点击的列是不是现在的排序列.

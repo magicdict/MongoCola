@@ -80,19 +80,16 @@ namespace MongoUtility.Core
                 var list = GetDatabaseList(client);
                 foreach (var doc in list)
                 {
-                    Debug.WriteLine(doc.ToString());
                     var dbName = doc.GetElement("name").Value.ToString();
                     foreach (var col in GetCollectionList(client, dbName))
                     {
                         var collectionName = col.GetElement("name").Value.ToString();
-                        Debug.WriteLine(col.ToString());
                         var ICol = GetCollectionInfo(client, dbName, collectionName);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.ToString());
             }
             //OnlyTest End
         }

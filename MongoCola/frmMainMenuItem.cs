@@ -1,14 +1,16 @@
 ﻿using Common;
-using FunctionForm;
 using FunctionForm.Aggregation;
+using FunctionForm.Misc;
 using FunctionForm.Operation;
 using FunctionForm.Status;
+using MongoCola.Config;
 using MongoCola.Connection;
-using MongoGUICtl;
+using MongoGUICtl.ClientTree;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
+using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
 using System;
@@ -16,13 +18,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FunctionForm.Misc;
-using MongoCola.Config;
-using MongoGUICtl.ClientTree;
-using MongoUtility.ToolKit;
 
 namespace MongoCola
 {
@@ -123,10 +120,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var replSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
-                GuiConfig.IsUseDefaultLanguage
-                    ? "ReplSetName"
-                    : GuiConfig.GetText(TextType.ReplsetInitReplset));
+            var replSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :", GuiConfig.GetText("ReplSetName", TextType.ReplsetInitReplset));
             if (replSetName == string.Empty) return;
             string result = string.Empty;
             if (Operater.InitReplicaSet(replSetName, ref result))
@@ -173,14 +167,12 @@ namespace MongoCola
         /// <param name="e"></param>
         private async void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("RefreshToolStripMenuItem_Click:" + Thread.CurrentThread.ManagedThreadId);
             DisableAllOpr();
             var result = await RefreshConnectionAsync();
             RefreshToolStripMenuItem.Enabled = false;
             RefreshToolStripButton.Enabled = false;
             if (result == -1)
             {
-                Debug.WriteLine("Result:Error");
                 trvsrvlst.Nodes.Clear();
                 trvsrvlst.Nodes.Add("丢失与数据库的连接！");
             }
@@ -189,9 +181,7 @@ namespace MongoCola
                 RefreshToolStripMenuItem.Enabled = true;
                 RefreshToolStripButton.Enabled = true;
             }
-            statusStripMain.Items[0].Text = !GuiConfig.IsUseDefaultLanguage
-                ? GuiConfig.GetText(TextType.MainStatusBarTextReady)
-                : "Ready";
+            statusStripMain.Items[0].Text = GuiConfig.GetText("Ready", TextType.MainStatusBarTextReady);
         }
 
         /// <summary>
