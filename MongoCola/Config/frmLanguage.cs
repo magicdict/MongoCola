@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace MongoCola
+namespace MongoCola.Config
 {
     public partial class FrmLanguage : Form
     {

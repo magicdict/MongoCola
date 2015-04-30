@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace MongoCola
+namespace MongoCola.Config
 {
     partial class FrmLanguage
     {

@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.ToolKit;
 
 namespace MongoUtility.Aggregation
 {

@@ -8,6 +8,7 @@ using MongoDB.Driver;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.EventArgs;
+using MongoUtility.ToolKit;
 
 namespace MongoUtility.Extend
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace FunctionForm
+namespace FunctionForm.Misc
 {
     partial class FrmAddRole
     {

@@ -66,6 +66,7 @@
     <Compile Include="ClientTree\FillCollectionInfoToTreeNode.cs" />
     <Compile Include="ClientTree\FillDataBaseInfoToTreeNode.cs" />
     <Compile Include="ClientTree\FillMongoDB.cs" />
+    <Compile Include="ClientTree\LvwColumnSorter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClientTree\UIHelper.cs" />
     <Compile Include="Aggregation\BsonValuePanel.cs">

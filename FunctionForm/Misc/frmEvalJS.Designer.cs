@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MongoGUICtl;
 
-namespace FunctionForm
+namespace FunctionForm.Misc
 {
     partial class FrmEvalJs
     {

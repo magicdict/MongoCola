@@ -6,11 +6,9 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using MongoUtility.Extend;
-using MongoUtility.Security;
 using ResourceLib.Method;
 
-namespace MongoGUICtl
+namespace MongoGUICtl.ClientTree
 {
     public static partial class UIHelper
     {
@@ -217,110 +215,6 @@ namespace MongoGUICtl
                 }
             }
             return connectionNodes;
-        }
-
-        private static void FillNormal(TreeNode connectionNode, MongoConnectionConfig config,
-            BsonDocument serverStatusDoc)
-        {
-            //Server Status mongod
-            //Master - Slave 的判断
-            BsonElement replElement;
-            serverStatusDoc.TryGetElement("repl", out replElement);
-            //CSHARP-1066: Change BsonElement from a class to a struct. 
-            //if (replElement == null)
-            if (replElement.Value == null)
-            {
-                config.ServerRole = MongoConnectionConfig.SvrRoleType.DataSvr;
-            }
-            else
-            {
-                config.ServerRole = replElement.Value.AsBsonDocument.GetElement("ismaster").Value ==
-                                    BsonBoolean.True
-                    ? MongoConnectionConfig.SvrRoleType.MasterSvr
-                    : MongoConnectionConfig.SvrRoleType.SlaveSvr;
-            }
-            connectionNode.Tag = ConstMgr.ConnectionTag + ":" + config.ConnectionName;
-        }
-
-        private static MongoConnectionConfig FillShards(string mongoConnKey, MongoServer mongoSrv,
-            TreeNode connectionNode, EachDatabaseUser userList, MongoConnectionConfig config)
-        {
-            //Shard的时候，必须将所有服务器的ReadPreferred设成可读
-            config.ServerRole = MongoConnectionConfig.SvrRoleType.ShardSvr;
-            connectionNode.Tag = ConstMgr.ConnectionClusterTag + ":" + config.ConnectionName;
-            var shardListNode = new TreeNode("Shards")
-            {
-                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
-                ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
-            };
-            foreach (var lst in OperationHelper.GetShardInfo(mongoSrv, "host"))
-            {
-                var shardNode = new TreeNode
-                {
-                    Text = lst.Key,
-                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
-                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
-                };
-                var strHostList = lst.Value;
-                var strAddress = strHostList.Split("/".ToCharArray());
-                string strAddresslst;
-                if (strAddress.Length == 2)
-                {
-                    //#1  replset/host:port,host:port
-                    shardNode.Text += "[Replset:" + strAddress[0] + "]";
-                    strAddresslst = strAddress[1];
-                }
-                else
-                {
-                    //#2  host:port,host:port
-                    strAddresslst = strHostList;
-                }
-                foreach (var item in strAddresslst.Split(",".ToCharArray()))
-                {
-                    var tinySetting = new MongoClientSettings
-                    {
-                        ConnectionMode = ConnectionMode.Direct,
-                        ReadPreference = ReadPreference.PrimaryPreferred,
-                        ReplicaSetName = strAddress[0]
-                    };
-                    //防止无法读取Sharding状态。Sharding可能是一个Slaver
-                    MongoServerAddress secondaryAddr;
-                    if (item.Split(":".ToCharArray()).Length == 2)
-                    {
-                        secondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0],
-                            Convert.ToInt32(item.Split(":".ToCharArray())[1]));
-                    }
-                    else
-                    {
-                        secondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
-                    }
-                    tinySetting.Server = secondaryAddr;
-                    //var replsetMember = new MongoClient(tinySetting).GetServer();
-                    //shardNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv,
-                    //    replsetMember.Instance, userList));
-                }
-                shardListNode.Nodes.Add(shardNode);
-            }
-            connectionNode.Nodes.Add(shardListNode);
-            return config;
-        }
-
-        private static MongoConnectionConfig FillReplset(string mongoConnKey, MongoServer mongoSrv,
-            TreeNode connectionNode, EachDatabaseUser userList, MongoConnectionConfig config)
-        {
-            connectionNode.Tag = ConstMgr.ConnectionReplsetTag + ":" + config.ConnectionName;
-            var serverListNode = new TreeNode("Servers")
-            {
-                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
-                ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
-            };
-            foreach (var serverInstace in mongoSrv.Instances)
-            {
-                //serverListNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv, serverInstace, userList));
-            }
-            connectionNode.Nodes.Add(serverListNode);
-            config.ServerRole = MongoConnectionConfig.SvrRoleType.ReplsetSvr;
-            return config;
         }
 
         private static void AuthenticationExceptionHandler(MongoAuthenticationException ex,

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
+using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
 using ResourceLib.Method;
 

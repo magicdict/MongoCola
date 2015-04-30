@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ResourceLib.UI;
 
-namespace FunctionForm
+namespace FunctionForm.Misc
 {
     partial class FrmExport
     {

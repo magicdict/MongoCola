@@ -7,6 +7,7 @@ using MongoDB.Driver;
 using MongoGUIView;
 using MongoUtility.Basic;
 using MongoUtility.Extend;
+using MongoUtility.ToolKit;
 
 namespace PlugInPackage.ExportToExcel
 {

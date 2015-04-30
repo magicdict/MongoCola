@@ -11,7 +11,7 @@ using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
 
-namespace FunctionForm
+namespace FunctionForm.Misc
 {
     public partial class FrmUser : Form
     {

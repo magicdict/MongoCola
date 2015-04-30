@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using ResourceLib.Method;
 
-namespace FunctionForm
+namespace FunctionForm.Misc
 {
     public partial class FrmUserRole : Form
     {

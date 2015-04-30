@@ -1,4 +1,6 @@
-﻿namespace MongoUtility.Basic
+﻿using MongoUtility.Basic;
+
+namespace MongoUtility.ToolKit
 {
     /// <summary>
     ///     Mongod使用结构体
@@ -49,7 +51,7 @@
         /// <summary>
         ///     日志等级
         /// </summary>
-        public MongoUtility.Basic.MongodbDosCommand.MongologLevel LogLv = MongoUtility.Basic.MongodbDosCommand.MongologLevel.Quiet;
+        public MongodbDosCommand.MongologLevel LogLv = MongodbDosCommand.MongologLevel.Quiet;
 
         /// <summary>
         ///     日志文件

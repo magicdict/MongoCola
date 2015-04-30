@@ -1,7 +1,8 @@
 ﻿using System;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 
-namespace MongoUtility.Basic
+namespace MongoUtility.ToolKit
 {
     /// <summary>
     ///     MongoRestore使用的结构

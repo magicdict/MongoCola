@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace MongoUtility.Basic
+namespace MongoUtility.ToolKit
 {
     /// <summary>
     ///     DOS方式操作Mongodb的类

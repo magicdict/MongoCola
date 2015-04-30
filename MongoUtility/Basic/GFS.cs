@@ -6,6 +6,7 @@ using Common;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 using MongoUtility.EventArgs;
+using MongoUtility.ToolKit;
 
 namespace MongoUtility.Basic
 {

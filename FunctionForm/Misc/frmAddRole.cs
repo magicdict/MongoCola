@@ -7,7 +7,7 @@ using MongoUtility.Core;
 using MongoUtility.Security;
 using ResourceLib.UI;
 
-namespace FunctionForm
+namespace FunctionForm.Misc
 {
     public partial class FrmAddRole : Form
     {

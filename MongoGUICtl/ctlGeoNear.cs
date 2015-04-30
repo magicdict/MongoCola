@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
 using ResourceLib.UI;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
+using FunctionForm.Misc;
 using MongoUtility.Core;
 using ResourceLib.Method;
 

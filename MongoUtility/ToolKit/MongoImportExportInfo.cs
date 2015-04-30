@@ -1,7 +1,8 @@
 ﻿using System;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 
-namespace MongoUtility.Basic
+namespace MongoUtility.ToolKit
 {
     /// <summary>
     ///     ImportExport使用的结构

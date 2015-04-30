@@ -4,6 +4,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Common;
 using MongoDB.Bson;
 using MongoGUICtl;
+using MongoGUICtl.ClientTree;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;

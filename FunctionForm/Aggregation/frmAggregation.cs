@@ -6,9 +6,11 @@ using Common;
 using FunctionForm.Operation;
 using MongoDB.Bson;
 using MongoGUICtl;
+using MongoGUICtl.ClientTree;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
+using MongoUtility.ToolKit;
 using ResourceLib.UI;
 
 namespace FunctionForm.Aggregation

@@ -7,7 +7,7 @@ using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Method;
 
-namespace MongoGUICtl
+namespace MongoGUICtl.ClientTree
 {
     public static partial class UIHelper
     {

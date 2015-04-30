@@ -8,7 +8,7 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using ResourceLib.Method;
 
-namespace MongoGUICtl
+namespace MongoGUICtl.ClientTree
 {
     public static partial class UIHelper
     {

@@ -6,6 +6,7 @@ using Common;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Driver;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.EventArgs;
 
@@ -18,7 +19,7 @@ using MongoUtility.EventArgs;
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace MongoUtility.Basic
+namespace MongoUtility.ToolKit
 {
     public static class MongoHelper
     {

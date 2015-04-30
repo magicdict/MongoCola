@@ -7,10 +7,11 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
+using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
 
-namespace FunctionForm
+namespace FunctionForm.Misc
 {
     public partial class FrmShardingConfig : Form
     {

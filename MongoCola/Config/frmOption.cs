@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using ResourceLib.Method;
 
-namespace MongoCola
+namespace MongoCola.Config
 {
     public partial class FrmOption : Form
     {
