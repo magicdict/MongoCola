@@ -9,9 +9,9 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class CtlGfsView : CtlDataView
+    public partial class ctlGFSView : ctlDataView
     {
-        public CtlGfsView(DataViewInfo dataViewInfo)
+        public ctlGFSView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             InitTool();

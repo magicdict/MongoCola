@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MongoGUIView
 {
-    partial class CtlGfsView
+    partial class ctlGFSView
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace MongoGUIView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlGfsView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlGFSView));
             this.cmbListViewStyle = new System.Windows.Forms.ToolStripComboBox();
             this.OpenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();

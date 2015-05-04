@@ -4,7 +4,7 @@ using MongoGUICtl;
 
 namespace MongoGUIView
 {
-    partial class CtlDataView
+    partial class ctlDataView
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace MongoGUIView
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlDataView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlDataView));
             this.tabDataShower = new System.Windows.Forms.TabControl();
             this.tabTreeView = new System.Windows.Forms.TabPage();
             this.trvData = new MongoGUICtl.CtlTreeViewColumns();

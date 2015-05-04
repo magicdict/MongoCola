@@ -8,9 +8,9 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class CtlUserView : CtlDataView
+    public partial class ctlUserView : ctlDataView
     {
-        public CtlUserView(DataViewInfo dataViewInfo)
+        public ctlUserView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             InitToolAndMenu();

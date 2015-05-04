@@ -128,7 +128,7 @@ namespace MongoCola
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.tabSvrStatus = new System.Windows.Forms.TabPage();
-            this.ServerStatusCtl = new MongoGUIView.CtlServerStatus();
+            this.ServerStatusCtl = new MongoGUIView.ctlServerStatus();
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MongoGUICtl.CtlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
@@ -1067,7 +1067,7 @@ namespace MongoCola
         private Splitter splitter1;
         private ToolStripMenuItem UserGuideToolStripMenuItem;
         private ToolStripMenuItem CompactToolStripMenuItem;
-        private CtlServerStatus ServerStatusCtl;
+        private ctlServerStatus ServerStatusCtl;
         private TabControl tabView;
         private TabPage tabSvrStatus;
         private TabPage tabCommandShell;

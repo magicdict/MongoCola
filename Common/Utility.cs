@@ -19,7 +19,7 @@ namespace Common
                 return Default;
             try
             {
-                var enumValue = (T) Enum.Parse(typeof (T), strEnum);
+                var enumValue = (T)Enum.Parse(typeof(T), strEnum);
                 return enumValue;
             }
             catch (Exception)
@@ -44,17 +44,17 @@ namespace Common
                 return "0 Byte";
             }
             byte unitOrder = 2;
-            var tempSize = size/Math.Pow(2, 20);
+            var tempSize = size / Math.Pow(2, 20);
             while (!(tempSize > 0.1 & tempSize < 1000))
             {
                 if (tempSize < 0.1)
                 {
-                    tempSize = tempSize*1024;
+                    tempSize = tempSize * 1024;
                     unitOrder--;
                 }
                 else
                 {
-                    tempSize = tempSize/1024;
+                    tempSize = tempSize / 1024;
                     unitOrder++;
                 }
             }
@@ -81,7 +81,7 @@ namespace Common
                 if (size.EndsWith(unit[i]))
                 {
                     size = size.Replace(unit[i], string.Empty).Trim();
-                    return (long) (Convert.ToDouble(size)*Math.Pow(2, (i*10)));
+                    return (long)(Convert.ToDouble(size) * Math.Pow(2, (i * 10)));
                 }
             }
             return 0;
@@ -111,6 +111,17 @@ namespace Common
                 return objectTag.Split(":".ToCharArray())[1];
             }
             return string.Empty;
+        }
+
+        /// <summary>
+        /// 获得NodeData的名字
+        /// </summary>
+        /// <param name="NodeData"></param>
+        /// <returns></returns>
+        public static string GetNameFromNodeData(string NodeData)
+        {
+            var arr = NodeData.Split("/".ToCharArray());
+            return arr[arr.Length - 1];
         }
 
         #endregion

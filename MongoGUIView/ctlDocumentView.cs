@@ -14,11 +14,11 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class CtlDocumentView : CtlDataView
+    public partial class ctlDocumentView : ctlDataView
     {
         #region"UI"
 
-        public CtlDocumentView(DataViewInfo dataViewInfo)
+        public ctlDocumentView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             InitToolAndMenu();

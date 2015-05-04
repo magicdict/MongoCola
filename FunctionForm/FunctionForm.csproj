@@ -94,6 +94,7 @@
     <Compile Include="Aggregation\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operater\Collection.cs" />
     <Compile Include="Ctrl\ctlMongoConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>

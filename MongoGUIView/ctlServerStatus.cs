@@ -9,7 +9,7 @@ using ResourceLib.Properties;
 
 namespace MongoGUIView
 {
-    public partial class CtlServerStatus : UserControl
+    public partial class ctlServerStatus : UserControl
     {
         /// <summary>
         ///     常规刷新
@@ -26,7 +26,7 @@ namespace MongoGUIView
         /// </summary>
         private bool _autoRefresh = true;
 
-        public CtlServerStatus()
+        public ctlServerStatus()
         {
             InitializeComponent();
         }

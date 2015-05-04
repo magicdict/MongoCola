@@ -100,6 +100,10 @@ namespace MongoCola
                 lblAction.Text = y.Message;
                 Application.DoEvents();
             };
+            //多文档管理器的设定
+            MultiTabManger.ViewMenu = collectionToolStripMenuItem;
+            MultiTabManger.ViewJsMenu = JavaScriptStripMenuItem;
+            MultiTabManger.ViewTabContain = tabView;
         }
 
         /// <summary>
@@ -452,9 +456,9 @@ namespace MongoCola
         {
             var dataList = RuntimeMongoDbContext.SelectTagData.Split("/".ToCharArray());
 
-            if (MutliTabManger.TabInfo.ContainsKey(RuntimeMongoDbContext.SelectTagData))
+            if (MultiTabManger.TabInfo.ContainsKey(RuntimeMongoDbContext.SelectTagData))
             {
-                tabView.SelectTab(MutliTabManger.TabInfo[RuntimeMongoDbContext.SelectTagData].Tab);
+                tabView.SelectTab(MultiTabManger.TabInfo[RuntimeMongoDbContext.SelectTagData].Tab);
             }
             else
             {
@@ -478,11 +482,11 @@ namespace MongoCola
                 };
                 JavaScriptStripMenuItem.DropDownItems.Add(dataMenuItem);
                 dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
-                MutliTabManger.AddTabView(RuntimeMongoDbContext.SelectTagData, null, dataTab);
+                MultiTabManger.AddTabInfo(RuntimeMongoDbContext.SelectTagData, null, dataTab);
                 jsEditor.CloseTab += (x, y) =>
                 {
                     tabView.Controls.Remove(dataTab);
-                    MutliTabManger.RemoveTab(RuntimeMongoDbContext.SelectTagData);
+                    MultiTabManger.RemoveTabInfo(RuntimeMongoDbContext.SelectTagData);
                     JavaScriptStripMenuItem.DropDownItems.Remove(dataMenuItem);
                 };
                 tabView.SelectTab(dataTab);
@@ -497,9 +501,9 @@ namespace MongoCola
             //由于Collection 和 Document 都可以触发这个事件，所以，先把Tag以前的标题头去掉
             //Collectiong:XXXX 和 Document:XXXX 都统一成 XXXX
             var dataKey = RuntimeMongoDbContext.SelectTagData;
-            if (MutliTabManger.TabInfo.ContainsKey(dataKey))
+            if (MultiTabManger.TabInfo.ContainsKey(dataKey))
             {
-                tabView.SelectTab(MutliTabManger.TabInfo[dataKey].Tab);
+                tabView.SelectTab(MultiTabManger.TabInfo[dataKey].Tab);
             }
             else
             {
@@ -513,17 +517,17 @@ namespace MongoCola
 
                 //mDataViewInfo.IsSafeMode = config.IsSafeMode;
 
-                CtlDataView dataViewctl;
+                ctlDataView dataViewctl;
                 switch (RuntimeMongoDbContext.SelectTagType)
                 {
                     case ConstMgr.GridFileSystemTag:
-                        dataViewctl = new CtlGfsView(mDataViewInfo);
+                        dataViewctl = new ctlGFSView(mDataViewInfo);
                         break;
                     case ConstMgr.UserListTag:
-                        dataViewctl = new CtlUserView(mDataViewInfo);
+                        dataViewctl = new ctlUserView(mDataViewInfo);
                         break;
                     default:
-                        dataViewctl = new CtlDocumentView(mDataViewInfo);
+                        dataViewctl = new ctlDocumentView(mDataViewInfo);
                         break;
                 }
 
@@ -560,11 +564,11 @@ namespace MongoCola
                 };
                 collectionToolStripMenuItem.DropDownItems.Add(dataMenuItem);
                 dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
-                MutliTabManger.AddTabView(dataKey, mDataViewInfo, dataTab);
+                MultiTabManger.AddTabInfo(dataKey, mDataViewInfo, dataTab);
 
                 dataViewctl.CloseTab += (x, y) =>
                 {
-                    MutliTabManger.RemoveTab(dataKey);
+                    MultiTabManger.RemoveTabInfo(dataKey);
                     tabView.Controls.Remove(dataTab);
                     collectionToolStripMenuItem.DropDownItems.Remove(dataMenuItem);
                     dataTab = null;
@@ -582,7 +586,7 @@ namespace MongoCola
         {
             if (tabView.SelectedTab == null)
                 return;
-            var ctl = tabView.SelectedTab.Controls[0] as CtlDataView;
+            var ctl = tabView.SelectedTab.Controls[0] as ctlDataView;
             if (ctl != null)
             {
                 ctl.RefreshGui();

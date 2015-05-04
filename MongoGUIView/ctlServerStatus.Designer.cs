@@ -4,7 +4,7 @@ using MongoGUICtl;
 
 namespace MongoGUIView
 {
-    partial class CtlServerStatus
+    partial class ctlServerStatus
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace MongoGUIView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlServerStatus));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlServerStatus));
             this.tabSvrStatus = new System.Windows.Forms.TabControl();
             this.tabSvrBasicInfo = new System.Windows.Forms.TabPage();
             this.trvSvrStatus = new MongoGUICtl.CtlTreeViewColumns();

@@ -11,7 +11,7 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class CtlDataView : UserControl
+    public partial class ctlDataView : UserControl
     {
         #region"Main"
 
@@ -38,7 +38,7 @@ namespace MongoGUIView
         /// <summary>
         ///     初始化
         /// </summary>
-        public CtlDataView()
+        public ctlDataView()
         {
             InitializeComponent();
         }
@@ -47,7 +47,7 @@ namespace MongoGUIView
         ///     初始化
         /// </summary>
         /// <param name="dataViewInfo"></param>
-        public CtlDataView(DataViewInfo dataViewInfo)
+        public ctlDataView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             MDataViewInfo = dataViewInfo;

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MongoGUIView
 {
-    partial class CtlUserView
+    partial class ctlUserView
     {
         /// <summary> 
         /// Required designer variable.
