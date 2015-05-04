@@ -94,10 +94,10 @@
     <Compile Include="Aggregation\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlMongoConfig.cs">
+    <Compile Include="Ctrl\ctlMongoConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctlMongoConfig.Designer.cs">
+    <Compile Include="Ctrl\ctlMongoConfig.Designer.cs">
       <DependentUpon>ctlMongoConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\frmAddConnection.cs">
@@ -215,7 +215,7 @@
     <EmbeddedResource Include="Aggregation\frmTextSearch.resx">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctlMongoConfig.resx">
+    <EmbeddedResource Include="Ctrl\ctlMongoConfig.resx">
       <DependentUpon>ctlMongoConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\frmAddConnection.resx">
