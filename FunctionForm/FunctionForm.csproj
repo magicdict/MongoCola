@@ -101,12 +101,6 @@
     <Compile Include="Ctrl\ctlMongoConfig.Designer.cs">
       <DependentUpon>ctlMongoConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmAddConnection.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Misc\frmAddConnection.Designer.cs">
-      <DependentUpon>frmAddConnection.cs</DependentUpon>
-    </Compile>
     <Compile Include="Misc\frmAddRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,9 +212,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ctrl\ctlMongoConfig.resx">
       <DependentUpon>ctlMongoConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmAddConnection.resx">
-      <DependentUpon>frmAddConnection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>
