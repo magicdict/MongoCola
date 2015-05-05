@@ -38,7 +38,7 @@ namespace MongoGUICtl
             {
                 var mGeoNearAs =
                     RuntimeMongoDbContext.GetCurrentCollection().GeoNearAs<BsonDocument>(geoOption).Response;
-                UIHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
+                UiHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
                 trvGeoResult.DatatreeView.Nodes[0].Expand();
             }
             catch (Exception ex)

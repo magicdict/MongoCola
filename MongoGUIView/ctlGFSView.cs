@@ -9,9 +9,9 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class ctlGFSView : ctlDataView
+    public partial class CtlGfsView : CtlDataView
     {
-        public ctlGFSView(DataViewInfo dataViewInfo)
+        public CtlGfsView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             InitTool();
@@ -19,19 +19,20 @@ namespace MongoGUIView
             DataShower.Add(lstData);
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                DeleteFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_DelFile);
+                DeleteFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.MainMenuOperationFileSystemDelFile);
                 DeleteFileStripButton.Text = DeleteFileToolStripMenuItem.Text;
 
-                UploadFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_UploadFile);
+                UploadFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.MainMenuOperationFileSystemUploadFile);
                 UploadFileStripButton.Text = UploadFileToolStripMenuItem.Text;
 
-                UploadFolderToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_UploadFolder);
+                UploadFolderToolStripMenuItem.Text =
+                    GuiConfig.GetText(TextType.MainMenuOperationFileSystemUploadFolder);
                 UpLoadFolderStripButton.Text = UploadFolderToolStripMenuItem.Text;
 
-                DownloadFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_Download);
+                DownloadFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.MainMenuOperationFileSystemDownload);
                 DownloadFileStripButton.Text = DownloadFileToolStripMenuItem.Text;
 
-                OpenFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_FileSystem_OpenFile);
+                OpenFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.MainMenuOperationFileSystemOpenFile);
                 OpenFileStripButton.Text = OpenFileToolStripMenuItem.Text;
             }
         }
@@ -52,7 +53,7 @@ namespace MongoGUIView
             UploadFolderToolStripMenuItem.Enabled = true;
 
             cmbListViewStyle.Visible = true;
-            cmbListViewStyle.SelectedIndexChanged += (x, y) => { lstData.View = (View)cmbListViewStyle.SelectedIndex; };
+            cmbListViewStyle.SelectedIndexChanged += (x, y) => { lstData.View = (View) cmbListViewStyle.SelectedIndex; };
         }
 
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)

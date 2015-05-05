@@ -8,9 +8,9 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class ctlUserView : ctlDataView
+    public partial class CtlUserView : CtlDataView
     {
-        public ctlUserView(DataViewInfo dataViewInfo)
+        public CtlUserView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             InitToolAndMenu();
@@ -22,11 +22,11 @@ namespace MongoGUIView
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                AddUserStripButton.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_Database_AddUser);
+                AddUserStripButton.Text = GuiConfig.GetText(TextType.MainMenuOperationDatabaseAddUser);
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
                 ChangePasswordStripButton.Text = GuiConfig.GetText(TextType.CommonChangePassword);
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
-                RemoveUserStripButton.Text = GuiConfig.GetText(TextType.Main_Menu_Operation_Database_DelUser);
+                RemoveUserStripButton.Text = GuiConfig.GetText(TextType.MainMenuOperationDatabaseDelUser);
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
             }
             AddUserStripButton.Enabled = true;

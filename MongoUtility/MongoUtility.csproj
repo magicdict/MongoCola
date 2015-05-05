@@ -76,6 +76,7 @@
     <Compile Include="Aggregation\AggregationHelper.cs" />
     <Compile Include="Aggregation\DataFilter.cs" />
     <Compile Include="Aggregation\DataViewInfo.cs" />
+    <Compile Include="Core\TagInfo.cs" />
     <Compile Include="ToolKit\MongodbDosCommand.cs" />
     <Compile Include="Basic\GFS.cs" />
     <Compile Include="ToolKit\MongodConfig.cs" />

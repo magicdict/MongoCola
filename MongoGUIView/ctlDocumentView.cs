@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using MongoGUICtl;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
@@ -14,11 +13,11 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class ctlDocumentView : ctlDataView
+    public partial class CtlDocumentView : CtlDataView
     {
         #region"UI"
 
-        public ctlDocumentView(DataViewInfo dataViewInfo)
+        public CtlDocumentView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             InitToolAndMenu();
@@ -522,7 +521,7 @@ namespace MongoGUIView
                 if (string.IsNullOrEmpty(pasteMessage))
                 {
                     //GetCurrentDocument()的第一个元素是ID
-                    UIHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,
+                    UiHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,
                         new BsonDocument().Add((BsonElement) ElementHelper.ClipElement));
                 }
                 else

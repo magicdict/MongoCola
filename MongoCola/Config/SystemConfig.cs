@@ -40,20 +40,23 @@ namespace MongoCola.Config
         ///     Config Format Version
         /// </summary>
         public byte ConfigVer = 2;
+
         /// <summary>
         ///     语言
         /// </summary>
         public string LanguageFileName = string.Empty;
+
         /// <summary>
         ///     状态刷新间隔时间
         /// </summary>
         public int RefreshStatusTimer = 30;
+
         /// <summary>
         ///     是否使用默认语言
         /// </summary>
         /// <returns></returns>
         public bool IsUseDefaultLanguage()
-        { 
+        {
             return (LanguageFileName == "English.xml" || string.IsNullOrEmpty(LanguageFileName));
         }
 
@@ -69,6 +72,7 @@ namespace MongoCola.Config
             }
             Utility.SaveObjAsXml(AppPath + SystemConfigFilename, this);
         }
+
         /// <summary>
         ///     读取配置
         /// </summary>
@@ -77,6 +81,7 @@ namespace MongoCola.Config
         {
             SystemManager.SystemConfig = Utility.LoadObjFromXml<SystemConfig>(AppPath + SystemConfigFilename);
         }
+
         #endregion
     }
 }

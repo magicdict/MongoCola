@@ -61,6 +61,7 @@ namespace MongoUtility.ToolKit
         ///     主机端口
         /// </summary>
         public Int32 Port = ConstMgr.MongodDefaultPort;
+
         /// <summary>
         ///     获得MongoImportExport命令[必须指定数据集名称！！]
         /// </summary>
@@ -70,7 +71,7 @@ namespace MongoUtility.ToolKit
         {
             //mongodump.exe 备份程序
             string dosCommand;
-            if (mongoImprotExport.Direct == MongoImportExportInfo.ImprotExport.Import)
+            if (mongoImprotExport.Direct == ImprotExport.Import)
             {
                 dosCommand = @"mongoimport -h @hostaddr:@port -d @dbname";
                 if (mongoImprotExport.FieldList != String.Empty)
@@ -100,6 +101,7 @@ namespace MongoUtility.ToolKit
             }
             return dosCommand;
         }
+
         public static MongoImportExportInfo GetImportExportInfo()
         {
             var mongoImportExport = new MongoImportExportInfo();

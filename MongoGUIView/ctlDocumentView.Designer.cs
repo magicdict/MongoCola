@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MongoGUIView
 {
-    partial class ctlDocumentView
+    partial class CtlDocumentView
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace MongoGUIView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlDocumentView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtlDocumentView));
             this.NewDocumentStripButton = new System.Windows.Forms.ToolStripButton();
             this.DelSelectRecordToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.OpenDocInEditorStripButton = new System.Windows.Forms.ToolStripButton();

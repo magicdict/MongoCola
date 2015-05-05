@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Common;
 using MongoDB.Bson;
-using MongoGUICtl;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Basic;
 using MongoUtility.Core;
@@ -59,7 +58,7 @@ namespace FunctionForm.Aggregation
                 var searchResult = CommandHelper.ExecuteMongoColCommand("text",
                     RuntimeMongoDbContext.GetCurrentCollection(), textSearchOption);
                 _result = searchResult.Response;
-                UIHelper.FillDataToTreeView("Text Search Result", trvResult, _result);
+                UiHelper.FillDataToTreeView("Text Search Result", trvResult, _result);
                 cmdSave.Enabled = true;
             }
             catch (Exception ex)

@@ -35,7 +35,7 @@ namespace FunctionForm.Misc
                 if (CommandHelper.IsShellOk(result))
                 {
                     RuntimeMongoDbContext.CurrentMongoConnectionconfig.ReplsetList.Add(txtReplHost.Text + ":" +
-                                                                                        NumReplPort.Value);
+                                                                                       NumReplPort.Value);
                     MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
                 }
                 else

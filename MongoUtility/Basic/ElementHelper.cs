@@ -52,7 +52,7 @@ namespace MongoUtility.Basic
             {
                 try
                 {
-                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement)ClipElement);
+                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement) ClipElement);
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -78,7 +78,7 @@ namespace MongoUtility.Basic
             var t = GetLastParentDocument(baseDoc, elementPath, true);
             if (t.IsBsonArray)
             {
-                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue)ClipElement);
+                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue) ClipElement);
             }
             if (!currentCollection.IsCapped())
             {
@@ -329,7 +329,9 @@ namespace MongoUtility.Basic
                     if (current.IsBsonArray)
                     {
                         //当前的如果是数组，获得当前下标。
-                        int index = Convert.ToInt16(strTag.Substring(strTag.IndexOf("[") + 1, strTag.Length - strTag.IndexOf("[") - 2));
+                        int index =
+                            Convert.ToInt16(strTag.Substring(strTag.IndexOf("[") + 1,
+                                strTag.Length - strTag.IndexOf("[") - 2));
                         current = current.AsBsonArray[index - 1];
                     }
                     else

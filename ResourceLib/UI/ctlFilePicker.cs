@@ -54,7 +54,7 @@ namespace ResourceLib.UI
             set
             {
                 lblTitle.Text = value;
-                ResizeControl(null,null);
+                ResizeControl(null, null);
             }
         }
 

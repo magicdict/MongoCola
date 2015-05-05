@@ -2,9 +2,7 @@
 using System.Windows.Forms;
 using Common;
 using MongoDB.Bson;
-using MongoGUICtl;
 using MongoGUICtl.ClientTree;
-using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using MongoUtility.ToolKit;
@@ -77,7 +75,7 @@ namespace FunctionForm.Operation
             {
                 BsonDocument newdoc;
                 newdoc = BsonDocument.Parse(txtDocument.Text);
-                UIHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
+                UiHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
                 txtDocument.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
             }

@@ -35,8 +35,8 @@ namespace MongoCola
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 //其他控件
-                statusStripMain.Items[0].Text =GuiConfig.GetText(TextType.MainStatusBarTextReady);
-                tabSvrStatus.Text =GuiConfig.GetText(TextType.Main_Menu_Mangt_Status);
+                statusStripMain.Items[0].Text = GuiConfig.GetText(TextType.MainStatusBarTextReady);
+                tabSvrStatus.Text = GuiConfig.GetText(TextType.MainMenuMangtStatus);
             }
             //Init ToolBar
             InitToolBar();
@@ -158,9 +158,10 @@ namespace MongoCola
             {
                 //选中节点的设置
                 trvsrvlst.SelectedNode = e.Node;
-                var strNodeType = Utility.GetTagType(e.Node.Tag.ToString());
-                var mongoSvrKey = Utility.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
-                RuntimeMongoDbContext.CurrentMongoConnectionconfig = MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey];
+                var strNodeType = TagInfo.GetTagType(e.Node.Tag.ToString());
+                var mongoSvrKey = TagInfo.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
+                RuntimeMongoDbContext.CurrentMongoConnectionconfig =
+                    MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey];
                 if (string.IsNullOrEmpty(RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName))
                 {
                     lblUserInfo.Text = "UserInfo:Admin";
@@ -517,17 +518,17 @@ namespace MongoCola
 
                 //mDataViewInfo.IsSafeMode = config.IsSafeMode;
 
-                ctlDataView dataViewctl;
+                CtlDataView dataViewctl;
                 switch (RuntimeMongoDbContext.SelectTagType)
                 {
                     case ConstMgr.GridFileSystemTag:
-                        dataViewctl = new ctlGFSView(mDataViewInfo);
+                        dataViewctl = new CtlGfsView(mDataViewInfo);
                         break;
                     case ConstMgr.UserListTag:
-                        dataViewctl = new ctlUserView(mDataViewInfo);
+                        dataViewctl = new CtlUserView(mDataViewInfo);
                         break;
                     default:
-                        dataViewctl = new ctlDocumentView(mDataViewInfo);
+                        dataViewctl = new CtlDocumentView(mDataViewInfo);
                         break;
                 }
 
@@ -586,7 +587,7 @@ namespace MongoCola
         {
             if (tabView.SelectedTab == null)
                 return;
-            var ctl = tabView.SelectedTab.Controls[0] as ctlDataView;
+            var ctl = tabView.SelectedTab.Controls[0] as CtlDataView;
             if (ctl != null)
             {
                 ctl.RefreshGui();

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using MongoUtility.Basic;
 using MongoUtility.EventArgs;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
@@ -11,7 +10,6 @@ namespace MongoGUICtl
     public partial class CtlMongod : UserControl
     {
         public EventHandler<TextChangeEventArgs> CommandChanged;
-
         public MongodConfig MongodCommand = new MongodConfig();
 
         /// <summary>

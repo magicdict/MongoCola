@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MongoUtility.Extend;
 using MongoUtility.Core;
 
 namespace MongoUtility.Extend
@@ -9,7 +8,8 @@ namespace MongoUtility.Extend
         public static bool InitReplicaSet(string replSetName, ref string strMessage)
         {
             var result = CommandHelper.InitReplicaSet(replSetName,
-                RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName, MongoConnectionConfig.MongoConfig.ConnectionList);
+                RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName,
+                MongoConnectionConfig.MongoConfig.ConnectionList);
             if (result.Ok)
             {
                 //修改配置
@@ -46,29 +46,29 @@ namespace MongoUtility.Extend
         {
             return RuntimeMongoDbContext.GetCurrentServer().IsDatabaseNameValid(strDbName, out errMessage);
         }
+
         /// <summary>
-        /// 
         /// </summary>
         public static void ResyncCommand()
         {
             CommandHelper.ExecuteMongoCommand(CommandHelper.ResyncCommand);
         }
+
         /// <summary>
-        /// 
         /// </summary>
         public static void RepairDb()
         {
             CommandHelper.ExecuteMongoCommand(CommandHelper.RepairDatabaseCommand);
         }
+
         /// <summary>
-        /// 
         /// </summary>
         public static void ReIndex()
         {
             RuntimeMongoDbContext.GetCurrentCollection().ReIndex();
         }
+
         /// <summary>
-        /// 
         /// </summary>
         public static void Compact()
         {

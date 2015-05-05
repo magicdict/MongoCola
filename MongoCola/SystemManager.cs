@@ -1,13 +1,13 @@
-﻿using Common;
-using MongoCola.Config;
-using MongoUtility.Basic;
-using MongoUtility.Core;
-using ResourceLib.Method;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using Common;
+using MongoCola.Config;
+using MongoUtility.Basic;
+using MongoUtility.Core;
 using MongoUtility.ToolKit;
+using ResourceLib.Method;
 
 namespace MongoCola
 {
@@ -55,7 +55,7 @@ namespace MongoCola
             //config
             SystemConfig.AppPath = Application.StartupPath + "\\";
             MongoConfig.AppPath = Application.StartupPath + "\\";
-            string localconfigfile = Application.StartupPath + "\\" + SystemConfig.SystemConfigFilename;
+            var localconfigfile = Application.StartupPath + "\\" + SystemConfig.SystemConfigFilename;
             if (File.Exists(localconfigfile))
             {
                 SystemConfig.LoadFromConfigFile();
@@ -102,6 +102,5 @@ namespace MongoCola
                 }
             }
         }
-
     }
 }

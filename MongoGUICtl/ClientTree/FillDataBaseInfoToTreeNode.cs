@@ -9,7 +9,7 @@ using ResourceLib.Method;
 
 namespace MongoGUICtl.ClientTree
 {
-    public static partial class UIHelper
+    public static partial class UiHelper
     {
         /// <summary>
         ///     将数据库放入Node

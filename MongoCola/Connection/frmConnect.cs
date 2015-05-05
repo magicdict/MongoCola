@@ -68,7 +68,7 @@ namespace MongoCola.Connection
         /// <param name="e"></param>
         private void cmdAddCon_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmAddConnection(), true, true);
+            Utility.OpenForm(new FrmConnectionMgr(), true, true);
             RefreshConnection();
         }
 
@@ -119,7 +119,7 @@ namespace MongoCola.Connection
         {
             if (lstConnection.CheckedItems.Count != 1) return;
             var connectionName = lstConnection.CheckedItems[0].Text;
-            Utility.OpenForm(new FrmAddConnection(connectionName), true, true);
+            Utility.OpenForm(new FrmConnectionMgr(connectionName), true, true);
             RefreshConnection();
         }
 

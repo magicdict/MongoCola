@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -83,8 +82,7 @@ namespace MongoUtility.Core
                     var dbName = doc.GetElement("name").Value.ToString();
                     foreach (var col in GetCollectionList(client, dbName))
                     {
-                        var collectionName = col.GetElement("name").Value.ToString();
-                        var ICol = GetCollectionInfo(client, dbName, collectionName);
+                        col.GetElement("name").Value.ToString();
                     }
                 }
             }

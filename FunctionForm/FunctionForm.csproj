@@ -94,7 +94,7 @@
     <Compile Include="Aggregation\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operater\Collection.cs" />
+    <Compile Include="Operation\Collection.cs" />
     <Compile Include="Ctrl\ctlMongoConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -148,6 +148,12 @@
     </Compile>
     <Compile Include="Misc\frmValidate.Designer.cs">
       <DependentUpon>frmValidate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\frmConnectionMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\frmConnectionMgr.Designer.cs">
+      <DependentUpon>frmConnectionMgr.cs</DependentUpon>
     </Compile>
     <Compile Include="Operation\frmArrayCreator.cs">
       <SubType>Form</SubType>
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\frmValidate.resx">
       <DependentUpon>frmValidate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\frmConnectionMgr.resx">
+      <DependentUpon>frmConnectionMgr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmArrayCreator.resx">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>

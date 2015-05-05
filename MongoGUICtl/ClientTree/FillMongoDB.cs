@@ -1,19 +1,20 @@
-﻿using Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace MongoGUICtl.ClientTree
 {
     public static class FillMongoDb
     {
         #region"展示状态"
+
         /// <summary>
         /// </summary>
         /// <param name="trvSvrStatus"></param>
@@ -37,7 +38,7 @@ namespace MongoGUICtl.ClientTree
                     {
                         var adminDb = mongoClient.GetDatabase(ConstMgr.DatabaseNameAdmin);
                         //Can't Convert IMongoDB To MongoDB
-                        var command = new CommandDocument { { CommandHelper.ServerStatusCommand.CommandString, 1 } };
+                        var command = new CommandDocument {{CommandHelper.ServerStatusCommand.CommandString, 1}};
 
                         var serverStatusDoc =
                             CommandHelper.ExecuteMongoDBCommand(command, adminDb).Response;
@@ -49,7 +50,7 @@ namespace MongoGUICtl.ClientTree
                     Utility.ExceptionDeal(ex);
                 }
             }
-            UIHelper.FillDataToTreeView("Server Status", trvSvrStatus, srvDocList, 0);
+            UiHelper.FillDataToTreeView("Server Status", trvSvrStatus, srvDocList, 0);
             //打开第一层
             foreach (TreeNode item in trvSvrStatus.DatatreeView.Nodes)
             {
@@ -61,9 +62,10 @@ namespace MongoGUICtl.ClientTree
         ///     Fill Database status to ListView
         /// </summary>
         /// <param name="lstSvr"></param>
-        public static void FillDataBaseStatusToList(CtlTreeViewColumns lstSvr, Dictionary<string, MongoServer> mongoConnSvrLst)
+        public static void FillDataBaseStatusToList(CtlTreeViewColumns lstSvr,
+            Dictionary<string, MongoServer> mongoConnSvrLst)
         {
-            var DBStatusList = new List<BsonDocument>();
+            var dbStatusList = new List<BsonDocument>();
             foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
                 var mongoSvr = mongoConnSvrLst[mongoSvrKey];
@@ -78,19 +80,20 @@ namespace MongoGUICtl.ClientTree
                 {
                     var mongoDb = mongoSvr.GetDatabase(strDbName);
                     var dbStatus = mongoDb.GetStats();
-                    DBStatusList.Add(dbStatus.Response);
+                    dbStatusList.Add(dbStatus.Response);
                 }
             }
-            UIHelper.FillDataToTreeView("DataBase Status", lstSvr, DBStatusList, 0);
+            UiHelper.FillDataToTreeView("DataBase Status", lstSvr, dbStatusList, 0);
         }
 
         /// <summary>
         ///     fill Collection status to ListView
         /// </summary>
         /// <param name="lstData"></param>
-        public static void FillCollectionStatusToList(CtlTreeViewColumns lstData, Dictionary<string, MongoServer> mongoConnSvrLst)
+        public static void FillCollectionStatusToList(CtlTreeViewColumns lstData,
+            Dictionary<string, MongoServer> mongoConnSvrLst)
         {
-            var DBStatusList = new List<BsonDocument>();
+            var dbStatusList = new List<BsonDocument>();
             foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
                 var mongoSvr = mongoConnSvrLst[mongoSvrKey];
@@ -108,12 +111,13 @@ namespace MongoGUICtl.ClientTree
                     foreach (var strColName in colNameList)
                     {
                         var collectionStatus = mongoDb.GetCollection(strColName).GetStats();
-                        DBStatusList.Add(collectionStatus.Response);
+                        dbStatusList.Add(collectionStatus.Response);
                     }
                 }
             }
-            UIHelper.FillDataToTreeView("Collection Status", lstData, DBStatusList, 0);
+            UiHelper.FillDataToTreeView("Collection Status", lstData, dbStatusList, 0);
         }
+
         #endregion
     }
 }

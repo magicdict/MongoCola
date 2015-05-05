@@ -72,7 +72,7 @@ namespace MongoUtility.ToolKit
             mongoDump.HostAddr = mongosrv.Address.Host;
             mongoDump.Port = mongosrv.Address.Port;
             mongoDump.DbName = RuntimeMongoDbContext.GetCurrentDataBaseName();
-            if(!isDb) mongoDump.CollectionName = RuntimeMongoDbContext.GetCurrentCollectionName();
+            if (!isDb) mongoDump.CollectionName = RuntimeMongoDbContext.GetCurrentCollectionName();
             return mongoDump;
         }
     }

@@ -21,16 +21,16 @@ namespace ResourceLib.Method
         ///     成功提示色
         /// </summary>
         public static Color SuccessColor = Color.LightGreen;
+
         /// <summary>
-        /// 
         /// </summary>
         public static Color FailColor = Color.Pink;
+
         /// <summary>
-        /// 
         /// </summary>
         public static Color ActionColor = Color.LightBlue;
+
         /// <summary>
-        ///     
         /// </summary>
         public static Color WarningColor = Color.LightYellow;
 
@@ -54,24 +54,24 @@ namespace ResourceLib.Method
         {
             if (IsUseDefaultLanguage || tag == TextType.UseDefaultLanguage) return defaultText;
             var strText = string.Empty;
-            StringResource._stringDic.TryGetValue(tag.ToString(), out strText);
+            StringResource.StringDic.TryGetValue(tag.ToString(), out strText);
             strText = string.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
             return strText;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
         public static string GetText(string tag)
         {
             var strText = string.Empty;
-            StringResource._stringDic.TryGetValue(tag.ToString(), out strText);
-            strText = string.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
+            StringResource.StringDic.TryGetValue(tag, out strText);
+            strText = string.IsNullOrEmpty(strText) ? tag : strText.Replace("&amp;", "&");
             return strText;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>

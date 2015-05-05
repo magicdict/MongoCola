@@ -57,7 +57,7 @@ namespace MongoCola.Config
         {
             ctlMongoConfig1.SaveConfig();
             SystemManager.SystemConfig.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPathOrFileName;
-            SystemManager.SystemConfig.RefreshStatusTimer = (int)numRefreshForStatus.Value;
+            SystemManager.SystemConfig.RefreshStatusTimer = (int) numRefreshForStatus.Value;
             SystemManager.SystemConfig.LanguageFileName = cmbLanguage.Text + ".xml";
             Close();
         }

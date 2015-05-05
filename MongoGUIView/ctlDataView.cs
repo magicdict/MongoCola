@@ -11,7 +11,7 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class ctlDataView : UserControl
+    public partial class CtlDataView : UserControl
     {
         #region"Main"
 
@@ -38,7 +38,7 @@ namespace MongoGUIView
         /// <summary>
         ///     初始化
         /// </summary>
-        public ctlDataView()
+        public CtlDataView()
         {
             InitializeComponent();
         }
@@ -47,7 +47,7 @@ namespace MongoGUIView
         ///     初始化
         /// </summary>
         /// <param name="dataViewInfo"></param>
-        public ctlDataView(DataViewInfo dataViewInfo)
+        public CtlDataView(DataViewInfo dataViewInfo)
         {
             InitializeComponent();
             MDataViewInfo = dataViewInfo;
@@ -358,7 +358,7 @@ namespace MongoGUIView
             var strTitle = "Records";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.GetText(TextType.Main_Menu_DataView);
+                strTitle = GuiConfig.GetText(TextType.MainMenuDataView);
             }
             if (MDataViewInfo.CurrentCollectionTotalCnt == 0)
             {

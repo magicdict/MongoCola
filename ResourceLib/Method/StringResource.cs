@@ -9,19 +9,19 @@ namespace ResourceLib.Method
     public class StringResource
     {
         /// <summary>
+        ///     英语（默认语种）
+        /// </summary>
+        public const string LanguageEnglish = "English";
+
+        /// <summary>
         ///     国际化文字字典
         /// </summary>
-        public static Dictionary<string, string> _stringDic = new Dictionary<string, string>();
+        public static Dictionary<string, string> StringDic = new Dictionary<string, string>();
 
         /// <summary>
         ///     语种
         /// </summary>
         public static string LanguageType = string.Empty;
-
-        /// <summary>
-        ///     英语（默认语种）
-        /// </summary>
-        public const string LanguageEnglish = "English";
 
         /// <summary>
         ///     字符资源
@@ -32,7 +32,7 @@ namespace ResourceLib.Method
             var tag = string.Empty;
             var text = string.Empty;
             var reader = new XmlTextReader(languageFileName);
-            _stringDic.Clear();
+            StringDic.Clear();
             while (reader.Read())
             {
                 switch (reader.NodeType)
@@ -48,7 +48,7 @@ namespace ResourceLib.Method
                         text = reader.ReadInnerXml().Trim();
                         if (!string.IsNullOrEmpty(tag) && !string.IsNullOrEmpty(text))
                         {
-                            _stringDic.Add(tag, text);
+                            StringDic.Add(tag, text);
                         }
                         break;
                     default:

@@ -83,7 +83,7 @@ namespace FunctionForm.Misc
             }
             try
             {
-                EvalArgs args = new EvalArgs() { Args = Params.ToArray() , Code = js };
+                var args = new EvalArgs {Args = Params.ToArray(), Code = js};
                 var result = mongoDb.Eval(args);
                 MyMessageBox.ShowMessage("Result", "Result",
                     result.ToJson(MongoHelper.JsonWriterSettings), true);

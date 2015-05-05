@@ -12,7 +12,6 @@ namespace MongoUtility.Aggregation
     public static class QueryHelper
     {
         /// <summary>
-        ///     
         /// </summary>
         /// <returns></returns>
         public static string[] GetOutputFields(List<DataFilter.QueryFieldItem> fieldItemLst)
@@ -39,7 +38,6 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///    
         /// </summary>
         /// <returns></returns>
         public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> fieldItemLst)
@@ -47,7 +45,7 @@ namespace MongoUtility.Aggregation
             var sort = new SortByBuilder();
             var ascendingList = new List<string>();
             var descendingList = new List<string>();
-            
+
             foreach (var item in fieldItemLst)
             {
                 switch (item.SortType)
@@ -68,7 +66,6 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///     
         /// </summary>
         /// <returns></returns>
         public static IMongoQuery GetQuery(List<DataFilter.QueryConditionInputItem> queryCompareList)
@@ -120,7 +117,6 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///     
         /// </summary>
         /// <param name="conditionGroup"></param>
         /// <returns></returns>
@@ -142,7 +138,6 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///     
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>

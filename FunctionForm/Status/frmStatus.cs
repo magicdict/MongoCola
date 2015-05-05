@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Common;
 using MongoDB.Bson;
-using MongoGUICtl;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Basic;
 using MongoUtility.Core;
@@ -122,7 +121,7 @@ namespace FunctionForm.Status
                     break;
             }
             GuiConfig.Translateform(this);
-            UIHelper.FillDataToTreeView(strType, trvStatus, docStatus);
+            UiHelper.FillDataToTreeView(strType, trvStatus, docStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
 

@@ -5,9 +5,7 @@ using System.Windows.Forms;
 using Common;
 using FunctionForm.Operation;
 using MongoDB.Bson;
-using MongoGUICtl;
 using MongoGUICtl.ClientTree;
-using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using MongoUtility.ToolKit;
@@ -39,7 +37,7 @@ namespace FunctionForm.Aggregation
             var mCommandResult = CommandHelper.Aggregate(_aggrArray, RuntimeMongoDbContext.GetCurrentCollection().Name);
             if (mCommandResult.Ok)
             {
-                UIHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
+                UiHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
                 trvResult.DatatreeView.BeginUpdate();
                 trvResult.DatatreeView.ExpandAll();
                 trvResult.DatatreeView.EndUpdate();
@@ -101,7 +99,7 @@ namespace FunctionForm.Aggregation
             {
                 conditionList.Add(item);
             }
-            UIHelper.FillDataToTreeView("Aggregation", trvCondition, conditionList, 0);
+            UiHelper.FillDataToTreeView("Aggregation", trvCondition, conditionList, 0);
             trvCondition.DatatreeView.BeginUpdate();
             trvCondition.DatatreeView.ExpandAll();
             trvCondition.DatatreeView.EndUpdate();

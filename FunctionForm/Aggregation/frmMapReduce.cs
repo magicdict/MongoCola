@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoGUICtl;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
 using ResourceLib.Method;
@@ -66,7 +65,7 @@ namespace FunctionForm.Aggregation
             args.MapFunction = map;
             args.ReduceFunction = reduce;
             var mMapReduceResult = RuntimeMongoDbContext.GetCurrentCollection().MapReduce(args);
-            UIHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
+            UiHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();

@@ -21,7 +21,6 @@ namespace MongoUtility.Core
     public class MongoConnectionConfig
     {
         /// <summary>
-        ///     
         /// </summary>
         public static MongoConfig MongoConfig = new MongoConfig();
 

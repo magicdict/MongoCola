@@ -179,7 +179,11 @@ namespace MongoUtility.ToolKit
         /// <returns></returns>
         public static List<string> GetJsNameList()
         {
-            return GetCurrentJsCollection(RuntimeMongoDbContext.GetCurrentDataBase()).FindAllAs<BsonDocument>().Select(item => item.GetValue(ConstMgr.KeyId).ToString()).ToList();
+            return
+                GetCurrentJsCollection(RuntimeMongoDbContext.GetCurrentDataBase())
+                    .FindAllAs<BsonDocument>()
+                    .Select(item => item.GetValue(ConstMgr.KeyId).ToString())
+                    .ToList();
         }
 
         /// <summary>

@@ -49,21 +49,20 @@ namespace FunctionForm
             {
                 cmbWriteConcern.Text = MongoConnectionConfig.MongoConfig.WriteConcern;
             }
-            NumWTimeoutMS.Value = (decimal)MongoConnectionConfig.MongoConfig.WtimeoutMs;
+            NumWTimeoutMS.Value = (decimal) MongoConnectionConfig.MongoConfig.WtimeoutMs;
             NumWaitQueueSize.Value = MongoConnectionConfig.MongoConfig.WaitQueueSize;
         }
 
         /// <summary>
-        /// 保存配置
+        ///     保存配置
         /// </summary>
         public void SaveConfig()
         {
-            MongoConnectionConfig.MongoConfig.WtimeoutMs = (double)NumWTimeoutMS.Value;
-            MongoConnectionConfig.MongoConfig.WaitQueueSize = (int)NumWaitQueueSize.Value;
+            MongoConnectionConfig.MongoConfig.WtimeoutMs = (double) NumWTimeoutMS.Value;
+            MongoConnectionConfig.MongoConfig.WaitQueueSize = (int) NumWaitQueueSize.Value;
             MongoConnectionConfig.MongoConfig.WriteConcern = cmbWriteConcern.Text;
             MongoConnectionConfig.MongoConfig.ReadPreference = cmbReadPreference.Text;
-            MongoConnectionConfig.MongoConfig.SaveMongoConfig(); 
+            MongoConnectionConfig.MongoConfig.SaveMongoConfig();
         }
-
     }
 }

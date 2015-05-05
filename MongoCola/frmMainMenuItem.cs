@@ -1,4 +1,12 @@
-﻿using Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Common;
+using FunctionForm;
 using FunctionForm.Aggregation;
 using FunctionForm.Misc;
 using FunctionForm.Operation;
@@ -13,13 +21,6 @@ using MongoUtility.Extend;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MongoCola
 {
@@ -49,7 +50,7 @@ namespace MongoCola
                     statusStripMain.Items[0].Text =
                         GuiConfig.GetText(TextType.MainStatusBarTextReady);
                     tabSvrStatus.Text =
-                        GuiConfig.GetText(TextType.Main_Menu_Mangt_Status);
+                        GuiConfig.GetText(TextType.MainMenuMangtStatus);
                 }
             }
         }
@@ -108,7 +109,8 @@ namespace MongoCola
                 }
                 //RuntimeMongoDbContext.GetCurrentServer().Disconnect();
             }
-            RuntimeMongoDbContext.RemoveConnectionConfig(RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName);
+            RuntimeMongoDbContext.RemoveConnectionConfig(
+                RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName);
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             RefreshToolStripMenuItem_Click(sender, e);
         }
@@ -120,9 +122,10 @@ namespace MongoCola
         /// <param name="e"></param>
         private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var replSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :", GuiConfig.GetText("ReplSetName", TextType.ReplsetInitReplset));
+            var replSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
+                GuiConfig.GetText("ReplSetName", TextType.ReplsetInitReplset));
             if (replSetName == string.Empty) return;
-            string result = string.Empty;
+            var result = string.Empty;
             if (Operater.InitReplicaSet(replSetName, ref result))
             {
                 ServerStatusCtl.SetEnable(false);
@@ -194,10 +197,7 @@ namespace MongoCola
             {
                 var connectionTreeNodes = new List<TreeNode>();
                 await
-                    Task.Run(() =>
-                    {
-                        connectionTreeNodes = UIHelper.GetConnectionNodes();
-                    });
+                    Task.Run(() => { connectionTreeNodes = UiHelper.GetConnectionNodes(); });
                 //如果第一个节点的字节点不为空
                 if (connectionTreeNodes != null)
                 {
@@ -242,7 +242,7 @@ namespace MongoCola
         private void ExpandNode(TreeNode node)
         {
             if (node.Tag == null) return;
-            var strNodeType = Utility.GetTagType(node.Tag.ToString());
+            var strNodeType = TagInfo.GetTagType(node.Tag.ToString());
             if (strNodeType != ConstMgr.CollectionTag && strNodeType != ConstMgr.GridFileSystemTag)
             {
                 node.Expand();
@@ -305,7 +305,8 @@ namespace MongoCola
             {
                 try
                 {
-                    var strRusult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName, OperationHelper.Oprcode.Create);
+                    var strRusult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
+                        OperationHelper.Oprcode.Create);
                     if (string.IsNullOrEmpty(strRusult))
                     {
                         DisableAllOpr();
@@ -355,7 +356,7 @@ namespace MongoCola
                 MyMessageBox.ShowMessage(
                     GuiConfig.IsUseDefaultLanguage
                         ? "UserInformation"
-                        : GuiConfig.GetText(TextType.Main_Menu_Operation_Server_UserInfo),
+                        : GuiConfig.GetText(TextType.MainMenuOperationServerUserInfo),
                     "The User Information of：[" +
                     MongoConnectionConfig.MongoConfig.ConnectionList[connectionName].UserName + "]", info, true);
             }
@@ -407,8 +408,8 @@ namespace MongoCola
             else
             {
                 MyMessageBox.ShowMessage(
-                    GuiConfig.GetText(TextType.Main_Menu_Operation_Server_Properties),
-                    GuiConfig.GetText(TextType.Main_Menu_Operation_Server_Properties),
+                    GuiConfig.GetText(TextType.MainMenuOperationServerProperties),
+                    GuiConfig.GetText(TextType.MainMenuOperationServerProperties),
                     MongoHelper.GetCurrentSvrInfo(), true);
             }
         }
@@ -445,12 +446,13 @@ namespace MongoCola
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strDbName = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.DatabaseLv];
+            var strDbName = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.DatabaseLv];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
             }
-            var rtnResult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName, OperationHelper.Oprcode.Drop);
+            var rtnResult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
+                OperationHelper.Oprcode.Drop);
             if (string.IsNullOrEmpty(rtnResult))
             {
                 DisableAllOpr();
@@ -564,7 +566,7 @@ namespace MongoCola
             MongoHelper.InitGfs();
             DisableAllOpr();
             trvsrvlst.Nodes.Clear();
-            var connectNodes = UIHelper.GetConnectionNodes();
+            var connectNodes = UiHelper.GetConnectionNodes();
             foreach (var element in connectNodes)
             {
                 trvsrvlst.Nodes.Add(element);
@@ -610,8 +612,8 @@ namespace MongoCola
                 {
                     var jsNode = new TreeNode(strJsName)
                     {
-                        ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
-                        SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
+                        ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
+                        SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     var jsTag = RuntimeMongoDbContext.SelectTagData;
                     jsNode.Tag = ConstMgr.JavascriptDocTag + ":" + jsTag + "/" + strJsName;
@@ -638,8 +640,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void DelMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var strNodeData = Utility.GetTagData(trvsrvlst.SelectedNode.Tag.ToString());
-            if (!FunctionForm.Collection.DropCollection(trvsrvlst.SelectedNode)) return;
+            var strNodeData = TagInfo.GetTagData(trvsrvlst.SelectedNode.Tag.ToString());
+            if (!Collection.DropCollection(trvsrvlst.SelectedNode)) return;
             if (MultiTabManger.TabInfo.ContainsKey(strNodeData))
             {
                 var dataTab = MultiTabManger.TabInfo[strNodeData].Tab;
@@ -648,7 +650,6 @@ namespace MongoCola
             }
             trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
             DisableAllOpr();
-
         }
 
         /// <summary>
@@ -658,15 +659,15 @@ namespace MongoCola
         /// <param name="e"></param>
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var strOldNodeTag = Utility.GetTagData(trvsrvlst.SelectedNode.Tag.ToString());
-            if (!FunctionForm.Collection.RenameCollection(trvsrvlst.SelectedNode)) return;
+            var strOldNodeTag = TagInfo.GetTagData(trvsrvlst.SelectedNode.Tag.ToString());
+            if (!Collection.RenameCollection(trvsrvlst.SelectedNode)) return;
             var strNewCollectionName = string.Empty;
-            var strNewNodeTag = Utility.GetTagData(trvsrvlst.SelectedNode.Tag.ToString());
-            var strNewNodeData = Utility.GetTagData(strNewNodeTag);
+            var strNewNodeTag = TagInfo.GetTagData(trvsrvlst.SelectedNode.Tag.ToString());
+            var strNewNodeData = TagInfo.GetTagData(strNewNodeTag);
             if (MultiTabManger.TabInfo.ContainsKey(strOldNodeTag))
             {
                 var dataTab = MultiTabManger.TabInfo[strOldNodeTag].Tab;
-                dataTab.Text = Utility.GetNameFromNodeData(strNewNodeData);
+                dataTab.Text = TagInfo.GetNameFromNodeData(strNewNodeData);
                 dataTab.Tag = strNewNodeTag;
                 //Change trvsrvlst.SelectedNode
                 MultiTabManger.ChangeKey(strNewNodeData, strOldNodeTag);
@@ -677,7 +678,8 @@ namespace MongoCola
             trvsrvlst.SelectedNode.Tag = strNewNodeTag;
             trvsrvlst.SelectedNode.ToolTipText = strNewCollectionName + Environment.NewLine;
             trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" + RuntimeMongoDbContext.GetCurrentCollectionIsCapped();
-            statusStripMain.Items[0].Text = GuiConfig.GetText("selected Collection", TextType.SelectedCollection) + ":" + RuntimeMongoDbContext.SelectTagData;
+            statusStripMain.Items[0].Text = GuiConfig.GetText("selected Collection", TextType.SelectedCollection) + ":" +
+                                            RuntimeMongoDbContext.SelectTagData;
         }
 
         /// <summary>
@@ -718,7 +720,7 @@ namespace MongoCola
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
             var result = OperationHelper.DelJavascript(strCollection);
             if (string.IsNullOrEmpty(result))
             {
@@ -858,7 +860,7 @@ namespace MongoCola
             var strMessage = "Are you sure to Restore?";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.GetText(TextType.Main_Menu_Operation_BackupAndRestore_Restore);
+                strTitle = GuiConfig.GetText(TextType.MainMenuOperationBackupAndRestoreRestore);
                 strMessage = GuiConfig.GetText(TextType.RestoreConnectionConfirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
@@ -1004,7 +1006,8 @@ namespace MongoCola
             }
             else
             {
-                MyMessageBox.ShowMessage("Count", "Count[With DataView Filter]:" + QueryHelper.GetCurrentCollectionCount(query));
+                MyMessageBox.ShowMessage("Count",
+                    "Count[With DataView Filter]:" + QueryHelper.GetCurrentCollectionCount(query));
             }
         }
 

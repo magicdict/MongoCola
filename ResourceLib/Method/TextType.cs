@@ -11,7 +11,7 @@
         MainTabTable,
         MainTabText,
         MainStatusBarTextReady,
-        Main_Menu_Operation_Server_AddUserToAdmin,
+        MainMenuOperationServerAddUserToAdmin,
 
         AddConnectionTitle,
         AddConnectionConnectionName,
@@ -304,17 +304,17 @@
         CollectionNameUser,
         CollectionNameRole,
         CollectionNameSystemProfile,
-        Main_Menu_Mangt_Status,
-        Main_Menu_Operation_Database_AddUser,
-        Main_Menu_Operation_Server_UserInfo,
-        Main_Menu_Operation_FileSystem_DelFile,
-        Main_Menu_Operation_FileSystem_UploadFile,
-        Main_Menu_Operation_FileSystem_UploadFolder,
-        Main_Menu_Operation_FileSystem_Download,
-        Main_Menu_Operation_FileSystem_OpenFile,
-        Main_Menu_DataView,
-        Main_Menu_Operation_Database_DelUser,
-        Main_Menu_Operation_Server_Properties,
-        Main_Menu_Operation_BackupAndRestore_Restore
+        MainMenuMangtStatus,
+        MainMenuOperationDatabaseAddUser,
+        MainMenuOperationServerUserInfo,
+        MainMenuOperationFileSystemDelFile,
+        MainMenuOperationFileSystemUploadFile,
+        MainMenuOperationFileSystemUploadFolder,
+        MainMenuOperationFileSystemDownload,
+        MainMenuOperationFileSystemOpenFile,
+        MainMenuDataView,
+        MainMenuOperationDatabaseDelUser,
+        MainMenuOperationServerProperties,
+        MainMenuOperationBackupAndRestoreRestore
     }
 }

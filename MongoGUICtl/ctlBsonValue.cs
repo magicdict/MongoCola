@@ -7,6 +7,9 @@ namespace MongoGUICtl
 {
     public partial class CtlBsonValue : UserControl
     {
+        private BsonArray _mBsonArray = new BsonArray();
+        private BsonDocument _mBsonDocument = new BsonDocument();
+
         /// <summary>
         ///     获得一个新BSonArray的委托
         /// </summary>
@@ -16,9 +19,6 @@ namespace MongoGUICtl
         ///     获得一个新BSonDocument的委托
         /// </summary>
         public Func<BsonDocument> GetDocument;
-
-        private BsonArray _mBsonArray = new BsonArray();
-        private BsonDocument _mBsonDocument = new BsonDocument();
 
         /// <summary>
         ///     初始化，请确保 getArray 和 getDocument正确设定

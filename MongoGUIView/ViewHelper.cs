@@ -48,7 +48,7 @@ namespace MongoGUIView
                 }
                 if (control.GetType() == typeof (CtlTreeViewColumns))
                 {
-                    UIHelper.FillDataToTreeView(cp[(int) EnumMgr.PathLv.CollectionLv], (CtlTreeViewColumns) control,
+                    UiHelper.FillDataToTreeView(cp[(int) EnumMgr.PathLv.CollectionLv], (CtlTreeViewColumns) control,
                         dataList,
                         currentDataViewInfo.SkipCnt);
                 }

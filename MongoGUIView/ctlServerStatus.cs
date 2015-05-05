@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using MongoGUICtl;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
 using ResourceLib.Method;
@@ -9,7 +8,7 @@ using ResourceLib.Properties;
 
 namespace MongoGUIView
 {
-    public partial class ctlServerStatus : UserControl
+    public partial class CtlServerStatus : UserControl
     {
         /// <summary>
         ///     常规刷新
@@ -26,7 +25,7 @@ namespace MongoGUIView
         /// </summary>
         private bool _autoRefresh = true;
 
-        public ctlServerStatus()
+        public CtlServerStatus()
         {
             InitializeComponent();
         }
@@ -68,7 +67,6 @@ namespace MongoGUIView
             }
         }
 
-
         /// <summary>
         /// </summary>
         /// <param name="sender"></param>
@@ -86,7 +84,6 @@ namespace MongoGUIView
             _refreshTimer.Enabled = enable;
             _shortTimer.Enabled = enable;
         }
-
 
         /// <summary>
         ///     手动刷新所有状态

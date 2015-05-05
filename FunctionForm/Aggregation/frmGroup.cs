@@ -9,7 +9,6 @@ using MongoDB.Driver;
 using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
-using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;

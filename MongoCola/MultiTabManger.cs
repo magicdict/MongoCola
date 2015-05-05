@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using MongoUtility.Aggregation;
 using MongoGUIView;
+using MongoUtility.Aggregation;
 
 namespace MongoCola
 {
@@ -11,16 +11,17 @@ namespace MongoCola
     public static class MultiTabManger
     {
         /// <summary>
-        /// 显示文档的菜单
+        ///     显示文档的菜单
         /// </summary>
         public static ToolStripMenuItem ViewMenu = null;
+
         /// <summary>
-        /// 显示JS文档的菜单
+        ///     显示JS文档的菜单
         /// </summary>
         public static ToolStripMenuItem ViewJsMenu = null;
 
         /// <summary>
-        /// 显示文档的Tab容器
+        ///     显示文档的Tab容器
         /// </summary>
         public static TabControl ViewTabContain = null;
 
@@ -50,14 +51,13 @@ namespace MongoCola
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="key"></param>
         /// <param name="info"></param>
         /// <param name="tab"></param>
-        public static void AddView(string key, DataViewInfo info, ctlDataView view)
+        public static void AddView(string key, DataViewInfo info, CtlDataView view)
         {
-            TabPage p = new TabPage();
+            var p = new TabPage();
             view.Dock = DockStyle.Fill;
             p.Controls.Add(view);
             ViewTabContain.TabPages.Add(p);
@@ -75,9 +75,9 @@ namespace MongoCola
             TabInfo.Add(key, t);
         }
 
-        public static void AddView(string key, DataViewInfo info, ctlServerStatus view)
+        public static void AddView(string key, DataViewInfo info, CtlServerStatus view)
         {
-            TabPage p = new TabPage();
+            var p = new TabPage();
             view.Dock = DockStyle.Fill;
             p.Controls.Add(view);
             ViewTabContain.TabPages.Add(p);
@@ -120,23 +120,20 @@ namespace MongoCola
         }
 
         /// <summary>
-        /// 刷新菜单
+        ///     刷新菜单
         /// </summary>
         /// <param name="ViewMenu"></param>
-        static void RefreshMenuItem()
+        private static void RefreshMenuItem()
         {
             ViewMenu.DropDownItems.Clear();
-            foreach (string key in TabInfo.Keys)
+            foreach (var key in TabInfo.Keys)
             {
-                var menuItem = new ToolStripMenuItem()
+                var menuItem = new ToolStripMenuItem
                 {
                     Tag = key,
-                    Text = TabInfo[key].Tab.Text,
+                    Text = TabInfo[key].Tab.Text
                 };
-                menuItem.Click += (x, y) =>
-                {
-                    ViewTabContain.SelectedTab = TabInfo[key].Tab;
-                };
+                menuItem.Click += (x, y) => { ViewTabContain.SelectedTab = TabInfo[key].Tab; };
                 if (TabInfo[key].ContentType == "Javascript")
                 {
                     ViewJsMenu.DropDownItems.Add(menuItem);
@@ -154,18 +151,20 @@ namespace MongoCola
         public struct TabViewItem
         {
             /// <summary>
-            ///     过滤信息
-            /// </summary>
-            public DataViewInfo Info;
-            /// <summary>
-            ///     Tab页
-            /// </summary>
-            public TabPage Tab;
-            /// <summary>
             ///     内容类型：
             ///     Javascript/Collection/Status
             /// </summary>
             public string ContentType;
+
+            /// <summary>
+            ///     过滤信息
+            /// </summary>
+            public DataViewInfo Info;
+
+            /// <summary>
+            ///     Tab页
+            /// </summary>
+            public TabPage Tab;
         }
     }
 }
