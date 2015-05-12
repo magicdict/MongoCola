@@ -10,20 +10,15 @@ namespace MongoCola
     /// </summary>
     public static class MultiTabManger
     {
-        /// <summary>
-        ///     显示文档的菜单
-        /// </summary>
-        public static ToolStripMenuItem ViewMenu = null;
 
         /// <summary>
-        ///     显示JS文档的菜单
+        ///     菜单列表
         /// </summary>
-        public static ToolStripMenuItem ViewJsMenu = null;
-
-        /// <summary>
-        ///     显示文档的Tab容器
-        /// </summary>
-        public static TabControl ViewTabContain = null;
+        /// <remarks>
+        ///     Key:MenuKey 
+        ///     Value:MenuItem
+        /// </remarks>
+        public static Dictionary<string, ToolStripMenuItem> MenuItemList = new Dictionary<string, ToolStripMenuItem>();
 
         /// <summary>
         ///     多文档视图管理
@@ -35,12 +30,18 @@ namespace MongoCola
         public static Dictionary<string, TabViewItem> TabInfo = new Dictionary<string, TabViewItem>();
 
         /// <summary>
+        ///     显示文档的Tab容器
+        /// </summary>
+        public static TabControl ViewTabContain = null;
+
+
+        /// <summary>
         ///     新增一个视图
         /// </summary>
         /// <param name="key"></param>
         /// <param name="info"></param>
         /// <param name="tab"></param>
-        public static void AddTabInfo(string key, DataViewInfo info, TabPage tab)
+        public static void AddTabInfo(string key, DataViewInfo info, TabPage tab, string ParentMenuKey)
         {
             var t = new TabViewItem
             {
@@ -55,7 +56,7 @@ namespace MongoCola
         /// <param name="key"></param>
         /// <param name="info"></param>
         /// <param name="tab"></param>
-        public static void AddView(string key, DataViewInfo info, CtlDataView view)
+        public static void AddView(string key, DataViewInfo info, CtlDataView view, string ParentMenuKey)
         {
             var p = new TabPage();
             view.Dock = DockStyle.Fill;
@@ -74,7 +75,12 @@ namespace MongoCola
             };
             TabInfo.Add(key, t);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="info"></param>
+        /// <param name="view"></param>
         public static void AddView(string key, DataViewInfo info, CtlServerStatus view)
         {
             var p = new TabPage();
@@ -114,7 +120,7 @@ namespace MongoCola
         public static void ChangeKey(string strNewNodeData, string strOldNodeData)
         {
             var item = TabInfo[strOldNodeData];
-            AddTabInfo(strOldNodeData, item.Info, item.Tab);
+            AddTabInfo(strOldNodeData, item.Info, item.Tab, string.Empty);
             RemoveTabInfo(strOldNodeData);
             RefreshMenuItem();
         }
@@ -125,22 +131,26 @@ namespace MongoCola
         /// <param name="ViewMenu"></param>
         private static void RefreshMenuItem()
         {
-            ViewMenu.DropDownItems.Clear();
-            foreach (var key in TabInfo.Keys)
+            foreach (string MenuKey in MenuItemList.Keys)
             {
-                var menuItem = new ToolStripMenuItem
+                ToolStripMenuItem ViewMenu = MenuItemList[MenuKey];
+                ViewMenu.DropDownItems.Clear();
+                foreach (var key in TabInfo.Keys)
                 {
-                    Tag = key,
-                    Text = TabInfo[key].Tab.Text
-                };
-                menuItem.Click += (x, y) => { ViewTabContain.SelectedTab = TabInfo[key].Tab; };
-                if (TabInfo[key].ContentType == "Javascript")
-                {
-                    ViewJsMenu.DropDownItems.Add(menuItem);
-                }
-                else
-                {
-                    ViewMenu.DropDownItems.Add(menuItem);
+                    var menuItem = new ToolStripMenuItem
+                    {
+                        Tag = key,
+                        Text = TabInfo[key].Tab.Text
+                    };
+                    menuItem.Click += (x, y) => { ViewTabContain.SelectedTab = TabInfo[key].Tab; };
+                    if (TabInfo[key].ContentType == "Javascript")
+                    {
+                        //ViewJsMenu.DropDownItems.Add(menuItem);
+                    }
+                    else
+                    {
+                        ViewMenu.DropDownItems.Add(menuItem);
+                    }
                 }
             }
         }

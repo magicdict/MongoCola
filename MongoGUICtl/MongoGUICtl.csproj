@@ -141,12 +141,6 @@
     <Compile Include="ctlIndexCreate.Designer.cs">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlJsEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctlJsEditor.Designer.cs">
-      <DependentUpon>ctlJsEditor.cs</DependentUpon>
-    </Compile>
     <Compile Include="ctllogLv.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -229,9 +223,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctlJsEditor.resx">
-      <DependentUpon>ctlJsEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctllogLv.resx">
       <DependentUpon>ctllogLv.cs</DependentUpon>

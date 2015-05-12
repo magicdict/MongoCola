@@ -11,7 +11,7 @@ using ResourceLib.UI;
 
 namespace MongoGUIView
 {
-    public partial class CtlDataView : UserControl
+    public partial class CtlDataView : MultiTabControl
     {
         #region"Main"
 
@@ -67,11 +67,6 @@ namespace MongoGUIView
             }
             get { return _isDataView; }
         }
-
-        /// <summary>
-        ///     关闭Tab事件(主界面操作这个文档的时候用的事件)
-        /// </summary>
-        public event EventHandler CloseTab;
 
         /// <summary>
         ///     加载数据集控件
@@ -166,10 +161,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void CloseStripButton_Click(object sender, EventArgs e)
         {
-            if (CloseTab != null)
-            {
-                CloseTab(sender, e);
-            }
+            RaiseCloseTabEvent();
         }
 
         /// <summary>

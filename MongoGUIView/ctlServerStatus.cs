@@ -8,7 +8,7 @@ using ResourceLib.Properties;
 
 namespace MongoGUIView
 {
-    public partial class CtlServerStatus : UserControl
+    public partial class CtlServerStatus : MultiTabControl
     {
         /// <summary>
         ///     常规刷新
@@ -29,11 +29,6 @@ namespace MongoGUIView
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        ///     关闭Tab事件
-        /// </summary>
-        public event EventHandler CloseTab;
 
         /// <summary>
         ///     刷新状态，不包含当前操作状态
@@ -142,10 +137,7 @@ namespace MongoGUIView
         {
             _refreshTimer.Stop();
             _shortTimer.Stop();
-            if (CloseTab != null)
-            {
-                CloseTab(sender, e);
-            }
+            RaiseCloseTabEvent();
         }
 
         /// <summary>

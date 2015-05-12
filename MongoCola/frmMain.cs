@@ -101,8 +101,8 @@ namespace MongoCola
                 Application.DoEvents();
             };
             //多文档管理器的设定
-            MultiTabManger.ViewMenu = collectionToolStripMenuItem;
-            MultiTabManger.ViewJsMenu = JavaScriptStripMenuItem;
+            //MultiTabManger.ViewMenu = collectionToolStripMenuItem;
+            //MultiTabManger.ViewJsMenu = JavaScriptStripMenuItem;
             MultiTabManger.ViewTabContain = tabView;
         }
 
@@ -483,7 +483,7 @@ namespace MongoCola
                 };
                 JavaScriptStripMenuItem.DropDownItems.Add(dataMenuItem);
                 dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
-                MultiTabManger.AddTabInfo(RuntimeMongoDbContext.SelectTagData, null, dataTab);
+                MultiTabManger.AddTabInfo(RuntimeMongoDbContext.SelectTagData, null, dataTab,string.Empty);
                 jsEditor.CloseTab += (x, y) =>
                 {
                     tabView.Controls.Remove(dataTab);
@@ -565,7 +565,7 @@ namespace MongoCola
                 };
                 collectionToolStripMenuItem.DropDownItems.Add(dataMenuItem);
                 dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
-                MultiTabManger.AddTabInfo(dataKey, mDataViewInfo, dataTab);
+                MultiTabManger.AddTabInfo(dataKey, mDataViewInfo, dataTab,string.Empty);
 
                 dataViewctl.CloseTab += (x, y) =>
                 {

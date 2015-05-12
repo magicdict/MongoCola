@@ -6,10 +6,11 @@ using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Method;
 using ResourceLib.Properties;
+using MongoGUIView;
 
 namespace MongoGUICtl
 {
-    public partial class CtlJsEditor : UserControl
+    public partial class CtlJsEditor : MultiTabControl
     {
         /// <summary>
         /// </summary>
@@ -27,10 +28,6 @@ namespace MongoGUICtl
         /// </summary>
         public string JsName { set; get; }
 
-        /// <summary>
-        ///     关闭Tab事件
-        /// </summary>
-        public event EventHandler CloseTab;
 
         private void JsEditor_Load(object sender, EventArgs e)
         {
@@ -61,10 +58,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void CloseStripButton_Click(object sender, EventArgs e)
         {
-            if (CloseTab != null)
-            {
-                CloseTab(sender, e);
-            }
+            RaiseCloseTabEvent();
         }
 
         /// <summary>
