@@ -40,7 +40,7 @@ namespace FunctionForm.Aggregation
             this.lblLanguage = new System.Windows.Forms.Label();
             this.lblLimit = new System.Windows.Forms.Label();
             this.NUDLimit = new System.Windows.Forms.NumericUpDown();
-            this.trvResult = new CtlTreeViewColumns();
+            this.trvResult = new MongoGUICtl.CtlTreeViewColumns();
             this.lnkRef = new System.Windows.Forms.LinkLabel();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
@@ -51,34 +51,35 @@ namespace FunctionForm.Aggregation
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(14, 70);
+            this.lblResult.Location = new System.Drawing.Point(14, 65);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(37, 13);
+            this.lblResult.Size = new System.Drawing.Size(41, 12);
             this.lblResult.TabIndex = 18;
             this.lblResult.Text = "Result";
             // 
             // lblInput
             // 
             this.lblInput.AutoSize = true;
-            this.lblInput.Location = new System.Drawing.Point(14, 9);
+            this.lblInput.Location = new System.Drawing.Point(14, 8);
             this.lblInput.Name = "lblInput";
-            this.lblInput.Size = new System.Drawing.Size(62, 13);
+            this.lblInput.Size = new System.Drawing.Size(65, 12);
             this.lblInput.TabIndex = 20;
             this.lblInput.Text = "SearchKey:";
             // 
             // txtKey
             // 
-            this.txtKey.Location = new System.Drawing.Point(94, 9);
+            this.txtKey.Location = new System.Drawing.Point(94, 8);
             this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(443, 20);
+            this.txtKey.Size = new System.Drawing.Size(443, 21);
             this.txtKey.TabIndex = 21;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(555, 9);
+            this.btnSearch.Location = new System.Drawing.Point(555, 8);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(75, 21);
             this.btnSearch.TabIndex = 22;
+            this.btnSearch.Tag = "Common_Search";
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -86,32 +87,32 @@ namespace FunctionForm.Aggregation
             // cmbLanguage
             // 
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(94, 35);
+            this.cmbLanguage.Location = new System.Drawing.Point(94, 32);
             this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(137, 21);
+            this.cmbLanguage.Size = new System.Drawing.Size(137, 20);
             this.cmbLanguage.TabIndex = 23;
             // 
             // lblLanguage
             // 
             this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(14, 38);
+            this.lblLanguage.Location = new System.Drawing.Point(14, 35);
             this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(55, 13);
+            this.lblLanguage.Size = new System.Drawing.Size(53, 12);
             this.lblLanguage.TabIndex = 24;
             this.lblLanguage.Text = "Language";
             // 
             // lblLimit
             // 
             this.lblLimit.AutoSize = true;
-            this.lblLimit.Location = new System.Drawing.Point(254, 38);
+            this.lblLimit.Location = new System.Drawing.Point(254, 35);
             this.lblLimit.Name = "lblLimit";
-            this.lblLimit.Size = new System.Drawing.Size(28, 13);
+            this.lblLimit.Size = new System.Drawing.Size(35, 12);
             this.lblLimit.TabIndex = 25;
             this.lblLimit.Text = "Limit";
             // 
             // NUDLimit
             // 
-            this.NUDLimit.Location = new System.Drawing.Point(303, 36);
+            this.NUDLimit.Location = new System.Drawing.Point(303, 33);
             this.NUDLimit.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -123,7 +124,7 @@ namespace FunctionForm.Aggregation
             0,
             0});
             this.NUDLimit.Name = "NUDLimit";
-            this.NUDLimit.Size = new System.Drawing.Size(79, 20);
+            this.NUDLimit.Size = new System.Drawing.Size(79, 21);
             this.NUDLimit.TabIndex = 26;
             this.NUDLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NUDLimit.Value = new decimal(new int[] {
@@ -136,18 +137,18 @@ namespace FunctionForm.Aggregation
             // 
             this.trvResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
             this.trvResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.trvResult.Location = new System.Drawing.Point(12, 96);
+            this.trvResult.Location = new System.Drawing.Point(12, 89);
             this.trvResult.Name = "trvResult";
             this.trvResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvResult.Size = new System.Drawing.Size(710, 325);
+            this.trvResult.Size = new System.Drawing.Size(710, 300);
             this.trvResult.TabIndex = 19;
             // 
             // lnkRef
             // 
             this.lnkRef.AutoSize = true;
-            this.lnkRef.Location = new System.Drawing.Point(14, 435);
+            this.lnkRef.Location = new System.Drawing.Point(14, 402);
             this.lnkRef.Name = "lnkRef";
-            this.lnkRef.Size = new System.Drawing.Size(404, 13);
+            this.lnkRef.Size = new System.Drawing.Size(461, 12);
             this.lnkRef.TabIndex = 27;
             this.lnkRef.TabStop = true;
             this.lnkRef.Text = "http://docs.mongodb.org/manual/reference/command/text/#text-search-languages";
@@ -155,30 +156,32 @@ namespace FunctionForm.Aggregation
             // 
             // cmdSave
             // 
-            this.cmdSave.Location = new System.Drawing.Point(488, 449);
+            this.cmdSave.Location = new System.Drawing.Point(488, 414);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(105, 27);
+            this.cmdSave.Size = new System.Drawing.Size(105, 25);
             this.cmdSave.TabIndex = 29;
+            this.cmdSave.Tag = "Common_Save";
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(608, 449);
+            this.cmdClose.Location = new System.Drawing.Point(608, 414);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(114, 27);
+            this.cmdClose.Size = new System.Drawing.Size(114, 25);
             this.cmdClose.TabIndex = 28;
+            this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
-            // frmTextSearch
+            // FrmTextSearch
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(734, 498);
+            this.ClientSize = new System.Drawing.Size(734, 460);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.lnkRef);
