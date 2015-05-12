@@ -1,10 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
 using ResourceLib.Method;
+using System;
+using System.Windows.Forms;
 
 namespace FunctionForm.Aggregation
 {
@@ -25,29 +25,7 @@ namespace FunctionForm.Aggregation
         /// <param name="e"></param>
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                ctlMapFunction.Title =
-                    GuiConfig.GetText(TextType.MapReduceMapFunction);
-                ctlReduceFunction.Title =
-                    GuiConfig.GetText(TextType.MapReduceReduceFunction);
-                lblResult.Text = GuiConfig.GetText(TextType.MapReduceResult);
-                cmdRun.Text = GuiConfig.GetText(TextType.MapReduceRun);
-                cmdClose.Text = GuiConfig.GetText(TextType.CommonClose);
-            }
-            ctlMapFunction.Context =
-                @"function Map(){
-    emit(this.Age,1);
-}";
-            ctlReduceFunction.Context =
-                @"function Reduce(key, arr_values) {
-     var total = 0;
-     for(var i in arr_values){
-         temp = arr_values[i];
-         total += temp;
-     }
-     return total;
-}";
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>
@@ -64,11 +42,18 @@ namespace FunctionForm.Aggregation
             var args = new MapReduceArgs();
             args.MapFunction = map;
             args.ReduceFunction = reduce;
-            var mMapReduceResult = RuntimeMongoDbContext.GetCurrentCollection().MapReduce(args);
-            UiHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
-            trvResult.DatatreeView.BeginUpdate();
-            trvResult.DatatreeView.ExpandAll();
-            trvResult.DatatreeView.EndUpdate();
+            try
+            {
+                var mMapReduceResult = RuntimeMongoDbContext.GetCurrentCollection().MapReduce(args);
+                UiHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
+                trvResult.DatatreeView.BeginUpdate();
+                trvResult.DatatreeView.ExpandAll();
+                trvResult.DatatreeView.EndUpdate();
+            }
+            catch (Exception ex)
+            {
+                Common.Utility.ExceptionDeal(ex);                
+            }
         }
 
         /// <summary>

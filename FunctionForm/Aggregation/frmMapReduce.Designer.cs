@@ -34,9 +34,9 @@ namespace FunctionForm.Aggregation
         {
             this.lblResult = new System.Windows.Forms.Label();
             this.cmdRun = new System.Windows.Forms.Button();
-            this.ctlMapFunction = new CtlTextMgr();
-            this.trvResult  = new CtlTreeViewColumns();
-            this.ctlReduceFunction = new CtlTextMgr();
+            this.ctlMapFunction = new MongoGUICtl.CtlTextMgr();
+            this.trvResult = new MongoGUICtl.CtlTreeViewColumns();
+            this.ctlReduceFunction = new MongoGUICtl.CtlTextMgr();
             this.cmdClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -57,19 +57,20 @@ namespace FunctionForm.Aggregation
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(103, 30);
             this.cmdRun.TabIndex = 7;
+            this.cmdRun.Tag = "Common_Run";
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
             // ctlMapFunction
             // 
-            this.ctlMapFunction.Context = "function Map(){\r\n     emit(this.Age,1);\r\n     }\r\n";
+            this.ctlMapFunction.Context = "";
             this.ctlMapFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctlMapFunction.Location = new System.Drawing.Point(12, 12);
             this.ctlMapFunction.Name = "ctlMapFunction";
             this.ctlMapFunction.Size = new System.Drawing.Size(369, 214);
             this.ctlMapFunction.TabIndex = 20;
-            this.ctlMapFunction.Title = "Title";
+            this.ctlMapFunction.Title = "MapFunction";
             // 
             // trvResult
             // 
@@ -83,13 +84,13 @@ namespace FunctionForm.Aggregation
             // 
             // ctlReduceFunction
             // 
-            this.ctlReduceFunction.Context = "function Reduce(key, arr_values) {";
+            this.ctlReduceFunction.Context = "";
             this.ctlReduceFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctlReduceFunction.Location = new System.Drawing.Point(12, 232);
             this.ctlReduceFunction.Name = "ctlReduceFunction";
             this.ctlReduceFunction.Size = new System.Drawing.Size(369, 263);
             this.ctlReduceFunction.TabIndex = 21;
-            this.ctlReduceFunction.Title = "Title";
+            this.ctlReduceFunction.Title = "Reduce Function";
             // 
             // cmdClose
             // 
@@ -97,11 +98,12 @@ namespace FunctionForm.Aggregation
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(111, 30);
             this.cmdClose.TabIndex = 22;
+            this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
-            // frmMapReduce
+            // FrmMapReduce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

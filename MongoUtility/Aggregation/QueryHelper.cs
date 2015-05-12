@@ -172,6 +172,26 @@ namespace MongoUtility.Aggregation
             return query;
         }
 
+        public static List<BsonDocument> SearchText(string key, int limit, string Language = "")
+        {
+            //检索文法： 
+            //[Before2.6]http://docs.mongodb.org/manual/reference/command/text/#text-search-languages
+            //[After2.6]http://docs.mongodb.org/manual/reference/operator/query/text/#op._S_text
+            //检索关键字
+            IMongoQuery textSearchOption = null;
+            //语言
+            if (string.IsNullOrEmpty(Language))
+            {
+                textSearchOption = Query.Text(key);
+            }
+            else
+            {
+                textSearchOption = Query.Text(key, Language);
+            }
+            var _result = RuntimeMongoDbContext.GetCurrentCollection().FindAs<BsonDocument>(textSearchOption);
+            var ResultDocumentList = _result.SetLimit(limit).ToList<BsonDocument>();
+            return ResultDocumentList;
+        }
         /// <summary>
         ///     Is Exist by Key
         /// </summary>
