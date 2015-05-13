@@ -93,5 +93,10 @@ namespace MongoGUICtl
         {
             Gfs.SaveAndOpenStringAsFile(txtJavaScript.Text);
         }
+
+        public override void RefreshGUI()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

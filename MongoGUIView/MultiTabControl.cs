@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MongoGUIView
 {
-    public class MultiTabControl : UserControl
+    public abstract class MultiTabControl : UserControl
     {
         /// <summary>
         ///    关闭Tab事件(主界面操作这个文档的时候用的事件)
@@ -20,18 +20,26 @@ namespace MongoGUIView
             }
         }
         /// <summary>
-        ///     View的主键
+        ///     View的SelectObjectTag
         /// </summary>
-        public string ViewKey { set; get; }
+        public string SelectObjectTag { set; get; }
         /// <summary>
-        ///     父菜单的主键
+        ///     父菜单
         /// </summary>
-        public string ParentMenuKey { set; get; }
+        public ToolStripMenuItem ParentMenu { set; get; }
+
         /// <summary>
-        /// 是否为固定项目
-        /// （当不可见时，固定项目仍然保留菜单项目，只是Check标记为否定）
+        ///     固定菜单 
+        /// </summary>
+        public ToolStripMenuItem BindingMenu { set; get; }
+
+        /// <summary>
+        ///     是否为固定项目
+        ///     （当不可见时，固定项目仍然保留菜单项目，只是Check标记为否定）
         /// </summary>
         public bool IsFixedItem { set; get; }
 
+
+        public abstract void RefreshGUI();
     }
 }

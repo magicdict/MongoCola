@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MongoGUIView;
 using MongoUtility.Aggregation;
+using System;
 
 namespace MongoCola
 {
@@ -10,119 +11,109 @@ namespace MongoCola
     /// </summary>
     public static class MultiTabManger
     {
-
-        /// <summary>
-        ///     菜单列表
-        /// </summary>
-        /// <remarks>
-        ///     Key:MenuKey 
-        ///     Value:MenuItem
-        /// </remarks>
-        public static Dictionary<string, ToolStripMenuItem> MenuItemList = new Dictionary<string, ToolStripMenuItem>();
-
-        /// <summary>
-        ///     多文档视图管理
-        /// </summary>
-        /// <remarks>
-        ///     Key:Tag
-        ///     Value:TabViewItem
-        /// </remarks>
-        public static Dictionary<string, TabViewItem> TabInfo = new Dictionary<string, TabViewItem>();
+        /////////////////////////////////
+        //  说明：
+        //  TabControl
+        //      TabPage：
+        //              Tag = SelectObjTab
+        //          MultiTabControl:    
+        //              SelectObjTag
+        //              ParentMenu
+        //              IsFixedItem
+        /////////////////////////////////
 
         /// <summary>
         ///     显示文档的Tab容器
         /// </summary>
         public static TabControl ViewTabContain = null;
-
+        /// <summary>
+        /// Tab变更事件
+        /// </summary>
+        public static event EventHandler TabSelectIndexChanged;
+        /// <summary>
+        /// 固定菜单项目列表
+        /// </summary>
+        static Dictionary<string, ToolStripMenuItem> BindingMenuItems = new Dictionary<string, ToolStripMenuItem>();
+        /// <summary>
+        /// 父菜单列表
+        /// </summary>
+        public static List<ToolStripMenuItem> ParentMenuItems = new List<ToolStripMenuItem>();
+        /// <summary>
+        /// 已经存在的TabPage的字典
+        /// </summary>
+        static Dictionary<string, TabPage> ExistTabPage = new Dictionary<string, TabPage>();
 
         /// <summary>
-        ///     新增一个视图
+        /// 初始化
+        /// </summary>
+        public static void Init(TabControl mViewTabContain, List<ToolStripMenuItem> mParentMenuItems)
+        {
+            ViewTabContain = mViewTabContain;
+            //固定项目可以通过FixItem的Key获得，非固定项目ParentMenu则不能
+            ParentMenuItems = mParentMenuItems;
+            ViewTabContain.SelectedIndexChanged += (send, e) =>
+            {
+                if (TabSelectIndexChanged != null)
+                {
+                    TabSelectIndexChanged(send, e);
+                }
+            };
+        }
+
+        /// <summary>
+        /// 增加一个MultiTabControl
         /// </summary>
         /// <param name="key"></param>
         /// <param name="info"></param>
         /// <param name="tab"></param>
-        public static void AddTabInfo(string key, DataViewInfo info, TabPage tab, string ParentMenuKey)
+        public static void AddView(MultiTabControl view, string TabPageTitle)
         {
-            var t = new TabViewItem
+            string key = view.SelectObjectTag;
+            if (ExistTabPage.ContainsKey(key))
             {
-                Info = info,
-                Tab = tab
-            };
-            TabInfo.Add(key, t);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="info"></param>
-        /// <param name="tab"></param>
-        public static void AddView(string key, DataViewInfo info, CtlDataView view, string ParentMenuKey)
-        {
-            var p = new TabPage();
+                ViewTabContain.SelectedTab = ExistTabPage[key];
+                return;
+            }
+            var tabpage = new TabPage();
+            tabpage.Text = TabPageTitle;
+            tabpage.Tag = view.SelectObjectTag;
             view.Dock = DockStyle.Fill;
-            p.Controls.Add(view);
-            ViewTabContain.TabPages.Add(p);
-            var t = new TabViewItem
+            tabpage.Controls.Add(view);
+            ViewTabContain.TabPages.Add(tabpage);
+            ViewTabContain.SelectTab(tabpage);
+            if (view.IsFixedItem)
             {
-                Info = info,
-                Tab = p
-            };
-            view.CloseTab += (x, y) =>
-            {
-                RemoveTabInfo(key);
-                ViewTabContain.TabPages.Remove(p);
-                RefreshMenuItem();
-            };
-            TabInfo.Add(key, t);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="info"></param>
-        /// <param name="view"></param>
-        public static void AddView(string key, DataViewInfo info, CtlServerStatus view)
-        {
-            var p = new TabPage();
-            view.Dock = DockStyle.Fill;
-            p.Controls.Add(view);
-            ViewTabContain.TabPages.Add(p);
-            var t = new TabViewItem
-            {
-                Info = info,
-                Tab = p
-            };
-            view.CloseTab += (x, y) =>
-            {
-                RemoveTabInfo(key);
-                ViewTabContain.TabPages.Remove(p);
-                RefreshMenuItem();
-            };
-            TabInfo.Add(key, t);
-        }
-
-        /// <summary>
-        ///     去除一个视图
-        /// </summary>
-        /// <param name="key"></param>
-        public static void RemoveTabInfo(string key)
-        {
-            TabInfo.Remove(key);
-            ViewTabContain.TabPages.Remove(TabInfo[key].Tab);
+                if (!BindingMenuItems.ContainsKey(key))
+                {
+                    BindingMenuItems.Add(key, view.BindingMenu);
+                }
+            }
+            ExistTabPage.Add(key, tabpage);
             RefreshMenuItem();
         }
 
         /// <summary>
-        ///     主键变更
+        /// 删除一个视图
         /// </summary>
-        /// <param name="strNewNodeData"></param>
-        /// <param name="strOldNodeData"></param>
-        public static void ChangeKey(string strNewNodeData, string strOldNodeData)
+        /// <param name="SelectObjectTag"></param>
+        public static void RemoveView(string SelectObjectTag)
         {
-            var item = TabInfo[strOldNodeData];
-            AddTabInfo(strOldNodeData, item.Info, item.Tab, string.Empty);
-            RemoveTabInfo(strOldNodeData);
+            if (ExistTabPage.ContainsKey(SelectObjectTag))
+            {
+                ViewTabContain.TabPages.Remove(ExistTabPage[SelectObjectTag]);
+                ExistTabPage.Remove(SelectObjectTag);
+            }
             RefreshMenuItem();
+        }
+
+        /// <summary>
+        /// 刷新当前选中的Tab
+        /// </summary>
+        public static void RefreshSelectTab()
+        {
+            if (ExistTabPage.Count == 0) return;
+            MultiTabControl CurrentView = ViewTabContain.SelectedTab.Controls[0] as MultiTabControl;
+            CurrentView.RefreshGUI();
         }
 
         /// <summary>
@@ -131,50 +122,47 @@ namespace MongoCola
         /// <param name="ViewMenu"></param>
         private static void RefreshMenuItem()
         {
-            foreach (string MenuKey in MenuItemList.Keys)
+            foreach (ToolStripMenuItem item in BindingMenuItems.Values)
             {
-                ToolStripMenuItem ViewMenu = MenuItemList[MenuKey];
-                ViewMenu.DropDownItems.Clear();
-                foreach (var key in TabInfo.Keys)
+                item.Checked = false;
+            }
+            foreach (ToolStripMenuItem item in ParentMenuItems)
+            {
+                item.DropDownItems.Clear();
+            }
+            foreach (TabPage tabpage in ViewTabContain.TabPages)
+            {
+                MultiTabControl view = (MultiTabControl)tabpage.Controls[0];
+                if (view.IsFixedItem)
                 {
-                    var menuItem = new ToolStripMenuItem
-                    {
-                        Tag = key,
-                        Text = TabInfo[key].Tab.Text
-                    };
-                    menuItem.Click += (x, y) => { ViewTabContain.SelectedTab = TabInfo[key].Tab; };
-                    if (TabInfo[key].ContentType == "Javascript")
-                    {
-                        //ViewJsMenu.DropDownItems.Add(menuItem);
-                    }
-                    else
-                    {
-                        ViewMenu.DropDownItems.Add(menuItem);
-                    }
+                    view.BindingMenu.Checked = true;
+                }
+                else
+                {
+                    view.ParentMenu.DropDownItems.Add(ExistTabPage[tabpage.Tag.ToString()].Text);
                 }
             }
         }
+        
+        /// <summary>
+        ///     IsExist
+        /// </summary>
+        /// <param name="SelectObjectTag"></param>
+        /// <returns></returns>
+        public static bool IsExist(string SelectObjectTag)
+        {
+            return ExistTabPage.ContainsKey(SelectObjectTag);
+        }
 
         /// <summary>
-        ///     文档视图
+        ///     切换选中项
         /// </summary>
-        public struct TabViewItem
+        /// <param name="dataKey"></param>
+        public static void SelectTab(string dataKey)
         {
-            /// <summary>
-            ///     内容类型：
-            ///     Javascript/Collection/Status
-            /// </summary>
-            public string ContentType;
-
-            /// <summary>
-            ///     过滤信息
-            /// </summary>
-            public DataViewInfo Info;
-
-            /// <summary>
-            ///     Tab页
-            /// </summary>
-            public TabPage Tab;
+            ViewTabContain.SelectedTab = ExistTabPage[dataKey];
+            RefreshSelectTab();
         }
+
     }
 }

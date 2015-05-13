@@ -92,7 +92,7 @@ namespace MongoGUIView
         private void AddUserStripButton_Click(object sender, EventArgs e)
         {
             OpenAddNewUserForm();
-            RefreshGui();
+            RefreshGUI();
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace MongoGUIView
             {
                 RemoveUser();
             }
-            RefreshGui();
+            RefreshGUI();
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace MongoGUIView
                     User.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), true);
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
-                RefreshGui();
+                RefreshGUI();
             }
         }
 
@@ -175,7 +175,7 @@ namespace MongoGUIView
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RemoveUserToolStripMenuItem.Enabled = false;
-                RefreshGui();
+                RefreshGUI();
             }
         }
 
@@ -191,7 +191,7 @@ namespace MongoGUIView
             //                ? new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text)
             //                : new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text), true, true);
             OpenChangePasswordForm();
-            RefreshGui();
+            RefreshGUI();
         }
 
         #endregion

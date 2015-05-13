@@ -13,6 +13,7 @@ using PlugInPackage;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
+using System.Collections.Generic;
 
 namespace MongoCola
 {
@@ -36,7 +37,6 @@ namespace MongoCola
             {
                 //其他控件
                 statusStripMain.Items[0].Text = GuiConfig.GetText(TextType.MainStatusBarTextReady);
-                tabSvrStatus.Text = GuiConfig.GetText(TextType.MainMenuMangtStatus);
             }
             //Init ToolBar
             InitToolBar();
@@ -63,32 +63,32 @@ namespace MongoCola
             SetToolBarEnabled();
             //Open ConnectionManagement Form
             Utility.OpenForm(new FrmConnect(), true, true);
-            try
-            {
-                ServerStatusCtl.SetEnable(true);
-            }
-            catch (Exception ex)
-            {
-                Utility.ExceptionDeal(ex);
-            }
+
+            //多文档管理器的设定
+            List<ToolStripMenuItem> ParentMenuItems = new List<ToolStripMenuItem>();
+            ParentMenuItems.Add(ViewDataToolStripMenuItem);
+            ParentMenuItems.Add(JavaScriptStripMenuItem);
+            MultiTabManger.Init(tabView, ParentMenuItems);
+            //MultiTab固定项目的初始化
+            CtlServerStatus ServerStatusCtl = new CtlServerStatus();
+            ServerStatusCtl.IsFixedItem = true;
+            ServerStatusCtl.SelectObjectTag = "[ServerStatus]";
+            ServerStatusCtl.BindingMenu = StatusToolStripMenuItem;
+            MultiTabManger.AddView(ServerStatusCtl, "Status");
+
+            CtlJsEditor ctlShellCommandEditor = new CtlJsEditor();
+            ctlShellCommandEditor.IsFixedItem = true;
+            ctlShellCommandEditor.SelectObjectTag = "[ShellCommand]";
+            ctlShellCommandEditor.BindingMenu = commandShellToolStripMenuItem;
+            MultiTabManger.AddView(ctlShellCommandEditor, "ShellCommand");
+
+            //刷新
             RefreshToolStripMenuItem_Click(sender, e);
-            commandShellToolStripMenuItem.Checked = true;
-            statusToolStripMenuItem.Checked = true;
             //委托设置
             trvsrvlst.NodeMouseClick += trvsrvlst_NodeMouseClick;
             trvsrvlst.NodeMouseDoubleClick += (x, y) => ViewDataObj();
             ViewDataToolStripMenuItem.Click += (x, y) => ViewDataObj();
             trvsrvlst.KeyDown += trvsrvlst_KeyDown;
-            ServerStatusCtl.CloseTab += (x, y) =>
-            {
-                statusToolStripMenuItem.Checked = false;
-                tabView.Controls.Remove(tabSvrStatus);
-            };
-            ctlShellCommandEditor.CloseTab += (x, y) =>
-            {
-                commandShellToolStripMenuItem.Checked = false;
-                tabView.Controls.Remove(tabCommandShell);
-            };
             tabView.SelectedIndexChanged += tabView_SelectedIndexChanged;
             //CommandHelper.RunCommandComplete += CommandLog;
             //长时间操作时候，实时提示进度在状态栏中
@@ -100,10 +100,6 @@ namespace MongoCola
                 lblAction.Text = y.Message;
                 Application.DoEvents();
             };
-            //多文档管理器的设定
-            //MultiTabManger.ViewMenu = collectionToolStripMenuItem;
-            //MultiTabManger.ViewJsMenu = JavaScriptStripMenuItem;
-            MultiTabManger.ViewTabContain = tabView;
         }
 
         /// <summary>
@@ -354,7 +350,6 @@ namespace MongoCola
             ThanksToolStripMenuItem.Image = GetResource.GetImage(ImageType.Smile);
             UserGuideToolStripMenuItem.Image = GetResource.GetIcon(IconType.UserGuide).ToBitmap();
 
-            tabSvrStatus.ImageIndex = 0;
         }
 
         /// <summary>
@@ -457,41 +452,41 @@ namespace MongoCola
         {
             var dataList = RuntimeMongoDbContext.SelectTagData.Split("/".ToCharArray());
 
-            if (MultiTabManger.TabInfo.ContainsKey(RuntimeMongoDbContext.SelectTagData))
+            //if (MultiTabManger.TabInfo.ContainsKey(RuntimeMongoDbContext.SelectTagData))
+            //{
+            //    tabView.SelectTab(MultiTabManger.TabInfo[RuntimeMongoDbContext.SelectTagData].Tab);
+            //}
+            //else
+            //{
+            var jsName = dataList[(int)EnumMgr.PathLv.DocumentLv];
+            var jsEditor = new CtlJsEditor { StrDBtag = RuntimeMongoDbContext.SelectObjectTag };
+            var dataTab = new TabPage(jsName)
             {
-                tabView.SelectTab(MultiTabManger.TabInfo[RuntimeMongoDbContext.SelectTagData].Tab);
-            }
-            else
+                Tag = RuntimeMongoDbContext.SelectObjectTag,
+                ImageIndex = 1
+            };
+
+            jsEditor.JsName = jsName;
+            dataTab.Controls.Add(jsEditor);
+            jsEditor.Dock = DockStyle.Fill;
+            tabView.Controls.Add(dataTab);
+
+            var dataMenuItem = new ToolStripMenuItem(jsName)
             {
-                var jsName = dataList[(int) EnumMgr.PathLv.DocumentLv];
-                var jsEditor = new CtlJsEditor {StrDBtag = RuntimeMongoDbContext.SelectObjectTag};
-                var dataTab = new TabPage(jsName)
-                {
-                    Tag = RuntimeMongoDbContext.SelectObjectTag,
-                    ImageIndex = 1
-                };
-
-                jsEditor.JsName = jsName;
-                dataTab.Controls.Add(jsEditor);
-                jsEditor.Dock = DockStyle.Fill;
-                tabView.Controls.Add(dataTab);
-
-                var dataMenuItem = new ToolStripMenuItem(jsName)
-                {
-                    Tag = dataTab.Tag,
-                    Image = GetSystemIcon.TabViewImage.Images[1]
-                };
-                JavaScriptStripMenuItem.DropDownItems.Add(dataMenuItem);
-                dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
-                MultiTabManger.AddTabInfo(RuntimeMongoDbContext.SelectTagData, null, dataTab,string.Empty);
-                jsEditor.CloseTab += (x, y) =>
-                {
-                    tabView.Controls.Remove(dataTab);
-                    MultiTabManger.RemoveTabInfo(RuntimeMongoDbContext.SelectTagData);
-                    JavaScriptStripMenuItem.DropDownItems.Remove(dataMenuItem);
-                };
-                tabView.SelectTab(dataTab);
-            }
+                Tag = dataTab.Tag,
+                Image = GetSystemIcon.TabViewImage.Images[1]
+            };
+            JavaScriptStripMenuItem.DropDownItems.Add(dataMenuItem);
+            dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
+            //MultiTabManger.AddTabInfo(RuntimeMongoDbContext.SelectTagData, null, dataTab,string.Empty);
+            jsEditor.CloseTab += (x, y) =>
+            {
+                tabView.Controls.Remove(dataTab);
+                //MultiTabManger.RemoveTabInfo(RuntimeMongoDbContext.SelectTagData);
+                JavaScriptStripMenuItem.DropDownItems.Remove(dataMenuItem);
+            };
+            tabView.SelectTab(dataTab);
+            //}
         }
 
         /// <summary>
@@ -502,80 +497,39 @@ namespace MongoCola
             //由于Collection 和 Document 都可以触发这个事件，所以，先把Tag以前的标题头去掉
             //Collectiong:XXXX 和 Document:XXXX 都统一成 XXXX
             var dataKey = RuntimeMongoDbContext.SelectTagData;
-            if (MultiTabManger.TabInfo.ContainsKey(dataKey))
+            if (MultiTabManger.IsExist(dataKey))
             {
-                tabView.SelectTab(MultiTabManger.TabInfo[dataKey].Tab);
+                MultiTabManger.SelectTab(dataKey);
+                return;
             }
-            else
+
+            var mDataViewInfo = new DataViewInfo
             {
-                var mDataViewInfo = new DataViewInfo
-                {
-                    StrDbTag = RuntimeMongoDbContext.SelectObjectTag,
-                    IsUseFilter = false,
-                    IsReadOnly = RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly,
-                    MDataFilter = new DataFilter()
-                };
+                StrDbTag = RuntimeMongoDbContext.SelectObjectTag,
+                IsUseFilter = false,
+                IsReadOnly = RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly,
+                MDataFilter = new DataFilter()
+            };
 
-                //mDataViewInfo.IsSafeMode = config.IsSafeMode;
-
-                CtlDataView dataViewctl;
-                switch (RuntimeMongoDbContext.SelectTagType)
-                {
-                    case ConstMgr.GridFileSystemTag:
-                        dataViewctl = new CtlGfsView(mDataViewInfo);
-                        break;
-                    case ConstMgr.UserListTag:
-                        dataViewctl = new CtlUserView(mDataViewInfo);
-                        break;
-                    default:
-                        dataViewctl = new CtlDocumentView(mDataViewInfo);
-                        break;
-                }
-
-
-                dataViewctl.MDataViewInfo = mDataViewInfo;
-
-                var dataTab = new TabPage(RuntimeMongoDbContext.GetCurrentCollectionFullName())
-                {
-                    Tag = RuntimeMongoDbContext.SelectObjectTag,
-                    ToolTipText = RuntimeMongoDbContext.SelectObjectTag
-                };
-
-                switch (RuntimeMongoDbContext.SelectTagType)
-                {
-                    case ConstMgr.CollectionTag:
-                        dataTab.ImageIndex = 2;
-                        break;
-                    case ConstMgr.UserListTag:
-                        dataTab.ImageIndex = 3;
-                        break;
-                    default:
-                        dataTab.ImageIndex = 4;
-                        break;
-                }
-
-                dataTab.Controls.Add(dataViewctl);
-                dataViewctl.Dock = DockStyle.Fill;
-                tabView.Controls.Add(dataTab);
-
-                var dataMenuItem = new ToolStripMenuItem(RuntimeMongoDbContext.GetCurrentCollectionName())
-                {
-                    Tag = dataTab.Tag,
-                    Image = GetSystemIcon.TabViewImage.Images[dataTab.ImageIndex]
-                };
-                collectionToolStripMenuItem.DropDownItems.Add(dataMenuItem);
-                dataMenuItem.Click += (x, y) => tabView.SelectTab(dataTab);
-                MultiTabManger.AddTabInfo(dataKey, mDataViewInfo, dataTab,string.Empty);
-
-                dataViewctl.CloseTab += (x, y) =>
-                {
-                    MultiTabManger.RemoveTabInfo(dataKey);
-                    tabView.Controls.Remove(dataTab);
-                    collectionToolStripMenuItem.DropDownItems.Remove(dataMenuItem);
-                    dataTab = null;
-                };
-                tabView.SelectTab(dataTab);
+            CtlDataView dataViewctl;
+            switch (RuntimeMongoDbContext.SelectTagType)
+            {
+                case ConstMgr.GridFileSystemTag:
+                    dataViewctl = new CtlGfsView(mDataViewInfo);
+                    break;
+                case ConstMgr.UserListTag:
+                    dataViewctl = new CtlUserView(mDataViewInfo);
+                    break;
+                default:
+                    dataViewctl = new CtlDocumentView(mDataViewInfo);
+                    break;
             }
+
+            dataViewctl.MDataViewInfo = mDataViewInfo;
+            dataViewctl.SelectObjectTag = RuntimeMongoDbContext.SelectObjectTag;
+            dataViewctl.ParentMenu = collectionToolStripMenuItem;
+            MultiTabManger.AddView(dataViewctl, RuntimeMongoDbContext.GetCurrentCollectionName());
+  
         }
 
         /// <summary>
@@ -585,13 +539,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ViewRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabView.SelectedTab == null)
-                return;
-            var ctl = tabView.SelectedTab.Controls[0] as CtlDataView;
-            if (ctl != null)
-            {
-                ctl.RefreshGui();
-            }
+            MultiTabManger.RefreshSelectTab();
         }
 
         #endregion

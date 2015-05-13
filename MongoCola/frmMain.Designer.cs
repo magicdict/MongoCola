@@ -49,7 +49,7 @@ namespace MongoCola
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandShellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.collectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.JavaScriptStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,18 +127,11 @@ namespace MongoCola
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
-            this.tabSvrStatus = new System.Windows.Forms.TabPage();
-            this.ServerStatusCtl = new MongoGUIView.CtlServerStatus();
-            this.tabCommandShell = new System.Windows.Forms.TabPage();
-            this.ctlShellCommandEditor = new MongoGUICtl.CtlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tabView.SuspendLayout();
-            this.tabSvrStatus.SuspendLayout();
-            this.tabCommandShell.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStripMain
@@ -269,7 +262,7 @@ namespace MongoCola
             // ViewToolStripMenuItem
             // 
             this.ViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusToolStripMenuItem,
+            this.StatusToolStripMenuItem,
             this.commandShellToolStripMenuItem,
             this.collectionToolStripMenuItem,
             this.JavaScriptStripMenuItem,
@@ -280,20 +273,18 @@ namespace MongoCola
             this.ViewToolStripMenuItem.Tag = "Main_Menu_DataView";
             this.ViewToolStripMenuItem.Text = "&View";
             // 
-            // statusToolStripMenuItem
+            // StatusToolStripMenuItem
             // 
-            this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
-            this.statusToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.statusToolStripMenuItem.Tag = "Main_Menu_Mangt_Status";
-            this.statusToolStripMenuItem.Text = "Server Status";
-            this.statusToolStripMenuItem.Click += new System.EventHandler(this.statusToolStripMenuItem_Click);
+            this.StatusToolStripMenuItem.Name = "StatusToolStripMenuItem";
+            this.StatusToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.StatusToolStripMenuItem.Tag = "Main_Menu_Mangt_Status";
+            this.StatusToolStripMenuItem.Text = "Server Status";
             // 
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
             this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.commandShellToolStripMenuItem.Text = "Command Shell";
-            this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
             // collectionToolStripMenuItem
             // 
@@ -917,8 +908,6 @@ namespace MongoCola
             // 
             // tabView
             // 
-            this.tabView.Controls.Add(this.tabSvrStatus);
-            this.tabView.Controls.Add(this.tabCommandShell);
             this.tabView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabView.Location = new System.Drawing.Point(0, 0);
             this.tabView.Name = "tabView";
@@ -926,47 +915,6 @@ namespace MongoCola
             this.tabView.ShowToolTips = true;
             this.tabView.Size = new System.Drawing.Size(774, 674);
             this.tabView.TabIndex = 3;
-            // 
-            // tabSvrStatus
-            // 
-            this.tabSvrStatus.Controls.Add(this.ServerStatusCtl);
-            this.tabSvrStatus.Location = new System.Drawing.Point(4, 26);
-            this.tabSvrStatus.Name = "tabSvrStatus";
-            this.tabSvrStatus.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSvrStatus.Size = new System.Drawing.Size(766, 644);
-            this.tabSvrStatus.TabIndex = 0;
-            this.tabSvrStatus.Text = "Sever Status";
-            this.tabSvrStatus.UseVisualStyleBackColor = true;
-            // 
-            // ServerStatusCtl
-            // 
-            this.ServerStatusCtl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerStatusCtl.Location = new System.Drawing.Point(3, 3);
-            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ServerStatusCtl.Name = "ServerStatusCtl";
-            this.ServerStatusCtl.Size = new System.Drawing.Size(760, 638);
-            this.ServerStatusCtl.TabIndex = 2;
-            // 
-            // tabCommandShell
-            // 
-            this.tabCommandShell.Controls.Add(this.ctlShellCommandEditor);
-            this.tabCommandShell.Location = new System.Drawing.Point(4, 26);
-            this.tabCommandShell.Name = "tabCommandShell";
-            this.tabCommandShell.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCommandShell.Size = new System.Drawing.Size(766, 644);
-            this.tabCommandShell.TabIndex = 1;
-            this.tabCommandShell.Text = "Shell Command";
-            this.tabCommandShell.UseVisualStyleBackColor = true;
-            // 
-            // ctlShellCommandEditor
-            // 
-            this.ctlShellCommandEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlShellCommandEditor.JsName = null;
-            this.ctlShellCommandEditor.Location = new System.Drawing.Point(3, 3);
-            this.ctlShellCommandEditor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctlShellCommandEditor.Name = "ctlShellCommandEditor";
-            this.ctlShellCommandEditor.Size = new System.Drawing.Size(760, 638);
-            this.ctlShellCommandEditor.TabIndex = 0;
             // 
             // splitter1
             // 
@@ -976,7 +924,7 @@ namespace MongoCola
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // frmMain
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -997,9 +945,6 @@ namespace MongoCola
             this.menuStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.tabView.ResumeLayout(false);
-            this.tabSvrStatus.ResumeLayout(false);
-            this.tabCommandShell.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1067,18 +1012,13 @@ namespace MongoCola
         private Splitter splitter1;
         private ToolStripMenuItem UserGuideToolStripMenuItem;
         private ToolStripMenuItem CompactToolStripMenuItem;
-        private CtlServerStatus ServerStatusCtl;
-        private TabControl tabView;
-        private TabPage tabSvrStatus;
-        private TabPage tabCommandShell;
-        private ToolStripMenuItem statusToolStripMenuItem;
+        private ToolStripMenuItem StatusToolStripMenuItem;
         private ToolStripMenuItem commandShellToolStripMenuItem;
         private ToolStripMenuItem collectionToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem9;
         private ToolStripMenuItem ViewRefreshToolStripMenuItem;
         private ToolStripMenuItem InitGFSToolStripMenuItem;
         private ToolStripMenuItem JavaScriptStripMenuItem;
-        private CtlJsEditor ctlShellCommandEditor;
         private ToolStripMenuItem AggregationToolStripMenuItem;
         private ToolStripMenuItem countToolStripMenuItem;
         private ToolStripMenuItem distinctToolStripMenuItem;
@@ -1117,6 +1057,7 @@ namespace MongoCola
         private ToolStripMenuItem plugInToolStripMenuItem;
         private ToolStripMenuItem AddAdminCustomeRoleStripMenuItem;
         private ToolStripMenuItem AddDBCustomeRoleStripMenuItem;
+        private TabControl tabView;
     }
 }
 

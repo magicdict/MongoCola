@@ -65,31 +65,5 @@ namespace MongoUtility.Core
             var col = db.GetCollection<BsonDocument>(collectionName);
             return col;
         }
-
-        /// <summary>
-        ///     获得信息
-        /// </summary>
-        /// <param name="config"></param>
-        public static void GetInfo(MongoConnectionConfig config)
-        {
-            //OnlyTest Start
-            try
-            {
-                var client = RuntimeMongoDbContext.CreateMongoClient(ref config);
-                var list = GetDatabaseList(client);
-                foreach (var doc in list)
-                {
-                    var dbName = doc.GetElement("name").Value.ToString();
-                    foreach (var col in GetCollectionList(client, dbName))
-                    {
-                        col.GetElement("name").Value.ToString();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-            //OnlyTest End
-        }
     }
 }
