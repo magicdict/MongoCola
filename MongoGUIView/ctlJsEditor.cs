@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using MongoGUIView;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Method;
 using ResourceLib.Properties;
-using MongoGUIView;
 
 namespace MongoGUICtl
 {
@@ -27,7 +27,6 @@ namespace MongoGUICtl
         ///     Js名称
         /// </summary>
         public string JsName { set; get; }
-
 
         private void JsEditor_Load(object sender, EventArgs e)
         {
@@ -94,7 +93,7 @@ namespace MongoGUICtl
             Gfs.SaveAndOpenStringAsFile(txtJavaScript.Text);
         }
 
-        public override void RefreshGUI()
+        public override void RefreshGui()
         {
             throw new NotImplementedException();
         }

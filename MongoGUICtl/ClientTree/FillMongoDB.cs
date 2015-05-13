@@ -28,10 +28,6 @@ namespace MongoGUICtl.ClientTree
                 try
                 {
                     var mongoClient = mongoConnClientLst[mongoSvrKey];
-                    if (!RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).Health)
-                    {
-                        continue;
-                    }
                     //flydreamer提供的代码
                     // 感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
@@ -69,12 +65,6 @@ namespace MongoGUICtl.ClientTree
             foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
                 var mongoSvr = mongoConnSvrLst[mongoSvrKey];
-                //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                if (!RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
-                    !RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
-                {
-                    continue;
-                }
                 var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
                 foreach (var strDbName in databaseNameList)
                 {
@@ -97,12 +87,6 @@ namespace MongoGUICtl.ClientTree
             foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
                 var mongoSvr = mongoConnSvrLst[mongoSvrKey];
-                //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                if (!RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
-                    !RuntimeMongoDbContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
-                {
-                    continue;
-                }
                 var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
                 foreach (var strDbName in databaseNameList)
                 {

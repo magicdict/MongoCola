@@ -1,16 +1,12 @@
-﻿using Common;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using MongoGUICtl.ClientTree;
-using MongoUtility.Basic;
-using MongoUtility.Core;
-using MongoUtility.ToolKit;
-using ResourceLib.Method;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using Common;
+using MongoGUICtl.ClientTree;
+using MongoUtility.Aggregation;
+using MongoUtility.Basic;
+using ResourceLib.Method;
 
 namespace FunctionForm.Aggregation
 {
@@ -23,7 +19,7 @@ namespace FunctionForm.Aggregation
             //加载语言列表
             cmbLanguage.Items.Clear();
             cmbLanguage.Items.Add("None");
-            foreach (var item in Enum.GetValues(typeof(EnumMgr.TextSearchLanguage)))
+            foreach (var item in Enum.GetValues(typeof (EnumMgr.TextSearchLanguage)))
             {
                 cmbLanguage.Items.Add(item.ToString());
             }
@@ -38,7 +34,7 @@ namespace FunctionForm.Aggregation
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var result = MongoUtility.Aggregation.QueryHelper.SearchText(txtKey.Text, (int)NUDLimit.Value,
+            var result = QueryHelper.SearchText(txtKey.Text, (int) NUDLimit.Value,
                 (cmbLanguage.SelectedIndex == 0) ? "" : cmbLanguage.Text);
             //返回数限制
             try

@@ -107,7 +107,7 @@ namespace MongoGUIView
                 DelSelectRecordToolToolStripMenuItem.Enabled = false;
                 if (IsNeedRefresh)
                 {
-                    RefreshGUI();
+                    RefreshGui();
                 }
             };
         }
@@ -335,7 +335,7 @@ namespace MongoGUIView
             if (t != null)
             {
                 RuntimeMongoDbContext.GetCurrentCollection().Insert(t);
-                RefreshGUI();
+                RefreshGui();
             }
         }
 
@@ -402,7 +402,7 @@ namespace MongoGUIView
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 DelSelectRecordToolToolStripMenuItem.Enabled = false;
-                RefreshGUI();
+                RefreshGui();
             }
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using Common;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
@@ -10,7 +9,6 @@ namespace MongoGUIView
 {
     public partial class CtlServerStatus : MultiTabControl
     {
-
         public CtlServerStatus()
         {
             InitializeComponent();
@@ -44,7 +42,6 @@ namespace MongoGUIView
             GuiConfig.Translateform(Controls);
         }
 
-
         /// <summary>
         ///     手动刷新所有状态
         /// </summary>
@@ -62,7 +59,6 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-
         }
 
         public void ResetCtl()
@@ -99,7 +95,7 @@ namespace MongoGUIView
             trvSvrStatus.DatatreeView.EndUpdate();
         }
 
-        public override void RefreshGUI()
+        public override void RefreshGui()
         {
             RefreshStatus();
         }

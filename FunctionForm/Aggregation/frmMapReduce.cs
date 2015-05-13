@@ -1,10 +1,11 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Windows.Forms;
+using Common;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
 using ResourceLib.Method;
-using System;
-using System.Windows.Forms;
 
 namespace FunctionForm.Aggregation
 {
@@ -52,7 +53,7 @@ namespace FunctionForm.Aggregation
             }
             catch (Exception ex)
             {
-                Common.Utility.ExceptionDeal(ex);                
+                Utility.ExceptionDeal(ex);
             }
         }
 

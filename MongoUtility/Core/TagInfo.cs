@@ -73,5 +73,15 @@ namespace MongoUtility.Core
             var arr = nodeData.Split("/".ToCharArray());
             return arr[arr.Length - 1];
         }
+        /// <summary>
+        ///     修改最末节名称
+        /// </summary>
+        /// <param name="strOldTag"></param>
+        /// <param name="strNewName"></param>
+        /// <returns></returns>
+        public static string ChangeName(string strOldTag, string strNewName)
+        {
+            return strOldTag.Substring(0, strOldTag.LastIndexOf("/") + 1) + strNewName;
+        }
     }
 }

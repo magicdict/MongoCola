@@ -51,7 +51,7 @@ namespace MongoCola
             this.ViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandShellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.collectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.JavaScriptStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.ViewRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -264,7 +264,7 @@ namespace MongoCola
             this.ViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusToolStripMenuItem,
             this.commandShellToolStripMenuItem,
-            this.collectionToolStripMenuItem,
+            this.CollectionToolStripMenuItem,
             this.JavaScriptStripMenuItem,
             this.toolStripMenuItem9,
             this.ViewRefreshToolStripMenuItem});
@@ -286,12 +286,12 @@ namespace MongoCola
             this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.commandShellToolStripMenuItem.Text = "Command Shell";
             // 
-            // collectionToolStripMenuItem
+            // CollectionToolStripMenuItem
             // 
-            this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.collectionToolStripMenuItem.Tag = "Common_Collection";
-            this.collectionToolStripMenuItem.Text = "Collection Data";
+            this.CollectionToolStripMenuItem.Name = "CollectionToolStripMenuItem";
+            this.CollectionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.CollectionToolStripMenuItem.Tag = "Common_Collection";
+            this.CollectionToolStripMenuItem.Text = "Collection Data";
             // 
             // JavaScriptStripMenuItem
             // 
@@ -1014,7 +1014,7 @@ namespace MongoCola
         private ToolStripMenuItem CompactToolStripMenuItem;
         private ToolStripMenuItem StatusToolStripMenuItem;
         private ToolStripMenuItem commandShellToolStripMenuItem;
-        private ToolStripMenuItem collectionToolStripMenuItem;
+        private ToolStripMenuItem CollectionToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem9;
         private ToolStripMenuItem ViewRefreshToolStripMenuItem;
         private ToolStripMenuItem InitGFSToolStripMenuItem;

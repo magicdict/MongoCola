@@ -147,7 +147,6 @@ namespace MongoGUICtl.ClientTree
         }
 
         /// <summary>
-        ///     After Legacy
         ///     获取将Mongodb的服务器在树形控件中展示的TreeNodes
         /// </summary>
         /// <returns></returns>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Common;
@@ -13,7 +14,6 @@ using PlugInPackage;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
-using System.Collections.Generic;
 
 namespace MongoCola
 {
@@ -65,25 +65,29 @@ namespace MongoCola
             Utility.OpenForm(new FrmConnect(), true, true);
 
             //多文档管理器的设定
-            List<ToolStripMenuItem> ParentMenuItems = new List<ToolStripMenuItem>();
-            ParentMenuItems.Add(ViewDataToolStripMenuItem);
-            ParentMenuItems.Add(JavaScriptStripMenuItem);
-            MultiTabManger.Init(tabView, ParentMenuItems);
+            var parentMenuItems = new List<ToolStripMenuItem>();
+            parentMenuItems.Add(CollectionToolStripMenuItem);
+            parentMenuItems.Add(JavaScriptStripMenuItem);
+            MultiTabManger.Init(tabView, parentMenuItems);
             //MultiTab固定项目的初始化
-            CtlServerStatus ServerStatusCtl = new CtlServerStatus();
-            ServerStatusCtl.IsFixedItem = true;
-            ServerStatusCtl.SelectObjectTag = "[ServerStatus]";
-            ServerStatusCtl.BindingMenu = StatusToolStripMenuItem;
-            MultiTabManger.AddView(ServerStatusCtl, "Status");
+            var serverStatusCtl = new CtlServerStatus();
+            serverStatusCtl.IsFixedItem = true;
+            serverStatusCtl.SelectObjectTag = "[ServerStatus]";
+            serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
+            MultiTabManger.AddView(serverStatusCtl, "Status");
 
-            CtlJsEditor ctlShellCommandEditor = new CtlJsEditor();
+            var ctlShellCommandEditor = new CtlJsEditor();
             ctlShellCommandEditor.IsFixedItem = true;
             ctlShellCommandEditor.SelectObjectTag = "[ShellCommand]";
             ctlShellCommandEditor.BindingMenu = commandShellToolStripMenuItem;
             MultiTabManger.AddView(ctlShellCommandEditor, "ShellCommand");
 
+
             //刷新
             RefreshToolStripMenuItem_Click(sender, e);
+            serverStatusCtl.RefreshGui();
+            MultiTabManger.SelectTab("[ServerStatus]");
+
             //委托设置
             trvsrvlst.NodeMouseClick += trvsrvlst_NodeMouseClick;
             trvsrvlst.NodeMouseDoubleClick += (x, y) => ViewDataObj();
@@ -349,7 +353,6 @@ namespace MongoCola
 
             ThanksToolStripMenuItem.Image = GetResource.GetImage(ImageType.Smile);
             UserGuideToolStripMenuItem.Image = GetResource.GetIcon(IconType.UserGuide).ToBitmap();
-
         }
 
         /// <summary>
@@ -450,16 +453,15 @@ namespace MongoCola
         /// </summary>
         private void ViewJavascript()
         {
-            var dataList = RuntimeMongoDbContext.SelectTagData.Split("/".ToCharArray());
+            var tagArray = RuntimeMongoDbContext.SelectTagData.Split("/".ToCharArray());
+            var jsName = tagArray[(int) EnumMgr.PathLv.DocumentLv];
+            if (MultiTabManger.IsExist(RuntimeMongoDbContext.SelectTagData))
+            {
+                MultiTabManger.SelectTab(RuntimeMongoDbContext.SelectTagData);
+                return;
+            }
 
-            //if (MultiTabManger.TabInfo.ContainsKey(RuntimeMongoDbContext.SelectTagData))
-            //{
-            //    tabView.SelectTab(MultiTabManger.TabInfo[RuntimeMongoDbContext.SelectTagData].Tab);
-            //}
-            //else
-            //{
-            var jsName = dataList[(int)EnumMgr.PathLv.DocumentLv];
-            var jsEditor = new CtlJsEditor { StrDBtag = RuntimeMongoDbContext.SelectObjectTag };
+            var jsEditor = new CtlJsEditor {StrDBtag = RuntimeMongoDbContext.SelectObjectTag};
             var dataTab = new TabPage(jsName)
             {
                 Tag = RuntimeMongoDbContext.SelectObjectTag,
@@ -527,9 +529,8 @@ namespace MongoCola
 
             dataViewctl.MDataViewInfo = mDataViewInfo;
             dataViewctl.SelectObjectTag = RuntimeMongoDbContext.SelectObjectTag;
-            dataViewctl.ParentMenu = collectionToolStripMenuItem;
+            dataViewctl.ParentMenu = CollectionToolStripMenuItem;
             MultiTabManger.AddView(dataViewctl, RuntimeMongoDbContext.GetCurrentCollectionName());
-  
         }
 
         /// <summary>

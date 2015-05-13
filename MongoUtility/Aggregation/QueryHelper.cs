@@ -172,7 +172,7 @@ namespace MongoUtility.Aggregation
             return query;
         }
 
-        public static List<BsonDocument> SearchText(string key, int limit, string Language = "")
+        public static List<BsonDocument> SearchText(string key, int limit, string language = "")
         {
             //检索文法： 
             //[Before2.6]http://docs.mongodb.org/manual/reference/command/text/#text-search-languages
@@ -180,17 +180,17 @@ namespace MongoUtility.Aggregation
             //检索关键字
             IMongoQuery textSearchOption = null;
             //语言
-            if (string.IsNullOrEmpty(Language))
+            if (string.IsNullOrEmpty(language))
             {
                 textSearchOption = Query.Text(key);
             }
             else
             {
-                textSearchOption = Query.Text(key, Language);
+                textSearchOption = Query.Text(key, language);
             }
-            var _result = RuntimeMongoDbContext.GetCurrentCollection().FindAs<BsonDocument>(textSearchOption);
-            var ResultDocumentList = _result.SetLimit(limit).ToList<BsonDocument>();
-            return ResultDocumentList;
+            var result = RuntimeMongoDbContext.GetCurrentCollection().FindAs<BsonDocument>(textSearchOption);
+            var resultDocumentList = result.SetLimit(limit).ToList<BsonDocument>();
+            return resultDocumentList;
         }
         /// <summary>
         ///     Is Exist by Key

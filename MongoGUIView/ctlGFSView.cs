@@ -148,7 +148,7 @@ namespace MongoGUIView
                 opt.FileNameOpt = frm.Filename;
                 opt.IgnoreSubFolder = frm.IgnoreSubFolder;
                 Gfs.UpLoadFile(upfile.FileName, opt, null);
-                RefreshGUI();
+                RefreshGui();
             }
         }
 
@@ -173,7 +173,7 @@ namespace MongoGUIView
                 var count = 0;
                 UploadFolder(uploadDir, ref count, opt);
                 MyMessageBox.ShowMessage("Upload", "Upload Completed! Upload Files Count: " + count);
-                RefreshGUI();
+                RefreshGui();
             }
         }
 
@@ -234,7 +234,7 @@ namespace MongoGUIView
             {
                 Gfs.DownloadFile(downfile.FileName, strFileName, null);
             }
-            RefreshGUI();
+            RefreshGui();
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace MongoGUIView
                 {
                     Gfs.DelFile(item.Text, null);
                 }
-                RefreshGUI();
+                RefreshGui();
             }
         }
 

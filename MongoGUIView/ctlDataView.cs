@@ -88,7 +88,7 @@ namespace MongoGUIView
             //可能是太多的事情一起做，造成了一些诡异的位置计算问题。DoEvents暂停一下，然后再刷新一下
             Application.DoEvents();
             //数据导航
-            RefreshGUI();
+            RefreshGui();
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace MongoGUIView
         /// <summary>
         ///     Refresh Data
         /// </summary>
-        public override void RefreshGUI()
+        public override void RefreshGui()
         {
             Clear();
             MDataViewInfo.SkipCnt = 0;
@@ -422,7 +422,7 @@ namespace MongoGUIView
             FilterStripButton.Enabled = MDataViewInfo.IsUseFilter;
             FilterStripButton.Checked = MDataViewInfo.IsUseFilter;
             //重新展示数据
-            RefreshGUI();
+            RefreshGui();
         }
 
         /// <summary>
@@ -435,13 +435,13 @@ namespace MongoGUIView
             MDataViewInfo.IsUseFilter = !MDataViewInfo.IsUseFilter;
             FilterStripButton.Checked = MDataViewInfo.IsUseFilter;
             //过滤变更后，重新刷新
-            RefreshGUI();
+            RefreshGui();
         }
 
         //刷新
         private void RefreshStripButton_Click(object sender, EventArgs e)
         {
-            RefreshGUI();
+            RefreshGui();
         }
 
         #endregion
