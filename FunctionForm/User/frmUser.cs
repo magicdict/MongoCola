@@ -6,12 +6,11 @@ using MongoDB.Bson;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using MongoUtility.Security;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
 
-namespace FunctionForm.Misc
+namespace FunctionForm.User
 {
     public partial class FrmUser : Form
     {
@@ -78,7 +77,7 @@ namespace FunctionForm.Misc
                 return;
             }
             //MongoUser不能同时具备Password和userSource字段！
-            var user = new User
+            var user = new MongoUtility.Security.User
             {
                 Username = txtUserName.Text,
                 Password = txtUserName.Text,
@@ -101,7 +100,7 @@ namespace FunctionForm.Misc
             //简化逻辑，不论新建还是修改，AddUser都可以
             try
             {
-                User.AddUserToSystem(user, _isAdmin);
+                MongoUtility.Security.User.AddUserToSystem(user, _isAdmin);
             }
             catch (Exception ex)
             {

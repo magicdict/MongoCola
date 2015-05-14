@@ -11,7 +11,7 @@ using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
 
-namespace FunctionForm.Misc
+namespace FunctionForm.Extend
 {
     public partial class FrmShardingConfig : Form
     {

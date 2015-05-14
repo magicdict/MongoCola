@@ -8,7 +8,7 @@ using MongoDB.Driver.GridFS;
 using MongoUtility.EventArgs;
 using MongoUtility.ToolKit;
 
-namespace MongoUtility.Basic
+namespace MongoUtility.Command
 {
     public static class Gfs
     {
@@ -134,7 +134,7 @@ namespace MongoUtility.Basic
         public static UploadResult UpLoadFile(string strFileName, UpLoadFileOption option, MongoDatabase mongoDb)
         {
             var gfs = mongoDb.GetGridFS(new MongoGridFSSettings());
-            var remoteName = string.Empty;
+            string remoteName;
             if (option.FileNameOpt == EnumGfsFileName.Filename)
             {
                 remoteName = new FileInfo(strFileName).Name;

@@ -9,7 +9,7 @@ using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;
 
-namespace FunctionForm.Misc
+namespace FunctionForm.Extend
 {
     public partial class FrmReplsetMgr : Form
     {

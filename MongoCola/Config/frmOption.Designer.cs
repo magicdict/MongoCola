@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-using FunctionForm.Ctrl;
+using FunctionForm.Connection;
 using ResourceLib.UI;
 
 namespace MongoCola.Config
@@ -46,7 +46,7 @@ namespace MongoCola.Config
             this.radUTC = new System.Windows.Forms.RadioButton();
             this.ctlFilePickerMongoBinPath = new ResourceLib.UI.CtlFilePicker();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this._ctlReadWriteConfig1 = new FunctionForm.Ctrl.CtlReadWriteConfig();
+            this._ctlReadWriteConfig1 = new CtlReadWriteConfig();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
@@ -56,7 +56,7 @@ namespace MongoCola.Config
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(252, 78);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(438, 74);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -81,7 +81,7 @@ namespace MongoCola.Config
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(34, 80);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(243, 74);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
             this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(180, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
@@ -116,7 +116,7 @@ namespace MongoCola.Config
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Location = new System.Drawing.Point(281, 33);
+            this.lblLanguage.Location = new System.Drawing.Point(243, 31);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(63, 15);
             this.lblLanguage.TabIndex = 16;
@@ -126,7 +126,7 @@ namespace MongoCola.Config
             // cmbLanguage
             // 
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(350, 30);
+            this.cmbLanguage.Location = new System.Drawing.Point(319, 27);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(140, 23);
             this.cmbLanguage.TabIndex = 3;
@@ -163,7 +163,7 @@ namespace MongoCola.Config
             this.groupBox1.Controls.Add(this.radUTC);
             this.groupBox1.Location = new System.Drawing.Point(33, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 48);
+            this.groupBox1.Size = new System.Drawing.Size(200, 67);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DateTime";
@@ -196,7 +196,7 @@ namespace MongoCola.Config
             this.ctlFilePickerMongoBinPath.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerMongoBinPath.FileFilter = "";
             this.ctlFilePickerMongoBinPath.FileName = "";
-            this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(30, 108);
+            this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(33, 104);
             this.ctlFilePickerMongoBinPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
             this.ctlFilePickerMongoBinPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MongoGUICtl;
 
-namespace FunctionForm.Misc
+namespace FunctionForm.Extend
 {
     partial class FrmShardingConfig
     {

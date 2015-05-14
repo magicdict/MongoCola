@@ -96,71 +96,71 @@
     <Compile Include="Aggregation\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\CtlSSHConfig.cs">
+    <Compile Include="Connection\CtlSSHConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\CtlSSHConfig.Designer.cs">
+    <Compile Include="Connection\CtlSSHConfig.Designer.cs">
       <DependentUpon>CtlSSHConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ctrl\CtlSSLConfig.cs">
+    <Compile Include="Connection\CtlSSLConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\CtlSSLConfig.Designer.cs">
+    <Compile Include="Connection\CtlSSLConfig.Designer.cs">
       <DependentUpon>CtlSSLConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Operation\Collection.cs" />
-    <Compile Include="Ctrl\CtlReadWriteConfig.cs">
+    <Compile Include="Connection\CtlReadWriteConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\CtlReadWriteConfig.Designer.cs">
+    <Compile Include="Connection\CtlReadWriteConfig.Designer.cs">
       <DependentUpon>CtlReadWriteConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmAddRole.cs">
+    <Compile Include="User\frmAddRole.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\frmAddRole.Designer.cs">
+    <Compile Include="User\frmAddRole.Designer.cs">
       <DependentUpon>frmAddRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmEvalJS.cs">
+    <Compile Include="Extend\frmEvalJS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\frmEvalJS.Designer.cs">
+    <Compile Include="Extend\frmEvalJS.Designer.cs">
       <DependentUpon>frmEvalJS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmExport.cs">
+    <Compile Include="Extend\frmExport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\frmExport.Designer.cs">
+    <Compile Include="Extend\frmExport.Designer.cs">
       <DependentUpon>frmExport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmReplsetMgr.cs">
+    <Compile Include="Extend\frmReplsetMgr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\frmReplsetMgr.Designer.cs">
+    <Compile Include="Extend\frmReplsetMgr.Designer.cs">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmShardingConfig.cs">
+    <Compile Include="Extend\frmShardingConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\frmShardingConfig.Designer.cs">
+    <Compile Include="Extend\frmShardingConfig.Designer.cs">
       <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmUser.cs">
+    <Compile Include="User\frmUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\frmUser.Designer.cs">
+    <Compile Include="User\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmUserRole.cs">
+    <Compile Include="User\frmUserRole.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\frmUserRole.Designer.cs">
+    <Compile Include="User\frmUserRole.Designer.cs">
       <DependentUpon>frmUserRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\frmValidate.cs">
+    <Compile Include="Status\frmValidate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\frmValidate.Designer.cs">
+    <Compile Include="Status\frmValidate.Designer.cs">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </Compile>
     <Compile Include="Operation\frmArrayCreator.cs">
@@ -175,10 +175,10 @@
     <Compile Include="Operation\frmCollectionIndex.Designer.cs">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\frmConnectionMgr.cs">
+    <Compile Include="Connection\frmConnectionMgr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\frmConnectionMgr.Designer.cs">
+    <Compile Include="Connection\frmConnectionMgr.Designer.cs">
       <DependentUpon>frmConnectionMgr.cs</DependentUpon>
     </Compile>
     <Compile Include="Operation\frmCreateCollection.cs">
@@ -230,37 +230,37 @@
     <EmbeddedResource Include="Aggregation\frmTextSearch.resx">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\CtlReadWriteConfig.resx">
+    <EmbeddedResource Include="Connection\CtlReadWriteConfig.resx">
       <DependentUpon>CtlReadWriteConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\CtlSSHConfig.resx">
+    <EmbeddedResource Include="Connection\CtlSSHConfig.resx">
       <DependentUpon>CtlSSHConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\CtlSSLConfig.resx">
+    <EmbeddedResource Include="Connection\CtlSSLConfig.resx">
       <DependentUpon>CtlSSLConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmAddRole.resx">
+    <EmbeddedResource Include="User\frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmEvalJS.resx">
+    <EmbeddedResource Include="Extend\frmEvalJS.resx">
       <DependentUpon>frmEvalJS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmExport.resx">
+    <EmbeddedResource Include="Extend\frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmReplsetMgr.resx">
+    <EmbeddedResource Include="Extend\frmReplsetMgr.resx">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmShardingConfig.resx">
+    <EmbeddedResource Include="Extend\frmShardingConfig.resx">
       <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmUser.resx">
+    <EmbeddedResource Include="User\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmUserRole.resx">
+    <EmbeddedResource Include="User\frmUserRole.resx">
       <DependentUpon>frmUserRole.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\frmValidate.resx">
+    <EmbeddedResource Include="Status\frmValidate.resx">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmArrayCreator.resx">
@@ -269,7 +269,7 @@
     <EmbeddedResource Include="Operation\frmCollectionIndex.resx">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\frmConnectionMgr.resx">
+    <EmbeddedResource Include="Connection\frmConnectionMgr.resx">
       <DependentUpon>frmConnectionMgr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCreateCollection.resx">

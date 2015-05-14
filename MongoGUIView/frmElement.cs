@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;

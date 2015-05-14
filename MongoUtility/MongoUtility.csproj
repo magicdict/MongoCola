@@ -81,7 +81,7 @@
     <Compile Include="Command\Document.cs" />
     <Compile Include="Command\ReplicaSet.cs" />
     <Compile Include="ToolKit\MongodbDosCommand.cs" />
-    <Compile Include="Basic\GFS.cs" />
+    <Compile Include="Command\GFS.cs" />
     <Compile Include="ToolKit\MongodConfig.cs" />
     <Compile Include="ToolKit\MongoHelper.cs" />
     <Compile Include="Basic\ConstMgr.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="EventArgs\EventArgExtensions.cs" />
     <Compile Include="EventArgs\ActionDoneEventArgs.cs" />
     <Compile Include="Core\MongoConnectionConfig.cs" />
-    <Compile Include="Basic\ElementHelper.cs" />
+    <Compile Include="Command\ElementHelper.cs" />
     <Compile Include="Command\ExportImport.cs" />
     <Compile Include="EventArgs\RunCommandEventArgs.cs" />
     <Compile Include="Core\RuntimeMongoDBContext.cs" />
