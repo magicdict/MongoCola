@@ -2,6 +2,8 @@
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using System;
+using System.Collections.Generic;
 
 namespace MongoUtility.Command
 {
@@ -80,6 +82,120 @@ namespace MongoUtility.Command
         public static bool RenameCollection(string strOldCollectionName, string strNewCollectionName)
         {
             return RuntimeMongoDbContext.GetCurrentDataBase().RenameCollection(strOldCollectionName, strNewCollectionName).Ok;
+        }
+
+
+        public struct IndexOption
+        {
+            public bool IsBackground;
+
+            public bool IsDropDups;
+
+            public bool IsSparse;
+
+            public bool IsUnique;
+
+            public bool IsExpireData;
+
+            public int TTL;
+
+            public string IndexName;
+
+            public List<string> ascendingKey;
+
+            public List<string> descendingKey;
+
+            public string geoSpatialKey;
+
+            public string firstKey;
+
+            public string textKey;
+
+        }
+
+        public static bool CreateIndex(IndexOption UIOption, ref string strMessageTitle, ref string strMessageContent)
+        {
+            var Result = true;
+            var option = new IndexOptionsBuilder();
+            option.SetBackground(UIOption.IsBackground);
+            option.SetDropDups(UIOption.IsDropDups);
+            option.SetSparse(UIOption.IsSparse);
+            option.SetUnique(UIOption.IsUnique);
+
+            if (UIOption.IsExpireData)
+            {
+                //TTL的限制条件很多
+                //http://docs.mongodb.org/manual/tutorial/expire-data/
+                //不能是组合键
+                var canUseTtl = true;
+                if ((UIOption.ascendingKey.Count + UIOption.descendingKey.Count + (string.IsNullOrEmpty(UIOption.geoSpatialKey) ? 0 : 1)) != 1)
+                {
+                    strMessageTitle = "Can't Set TTL";
+                    strMessageContent = "the TTL index may not be compound (may not have multiple fields).";
+                    canUseTtl = false;
+                }
+                else
+                {
+                    //不能是_id
+                    if (UIOption.firstKey == ConstMgr.KeyId)
+                    {
+                        strMessageTitle = "Can't Set TTL";
+                        strMessageContent = "you cannot create this index on the _id field, or a field that already has an index.";
+                        canUseTtl = false;
+                    }
+                }
+                if (RuntimeMongoDbContext.GetCurrentCollection().IsCapped())
+                {
+                    strMessageTitle = "Can't Set TTL";
+                    strMessageContent = "you cannot use a TTL index on a capped collection, because MongoDB cannot remove documents from a capped collection.";
+                    canUseTtl = false;
+                }
+                if (canUseTtl)
+                {
+                    strMessageTitle = "Constraints Of TimeToLive";
+                    strMessageContent = "the indexed field must be a date BSON type. If the field does not have a date type, the data will not expire." +
+                        Environment.NewLine + "if the field holds an array, and there are multiple date-typed data in the index, the document will expire when the lowest (i.e. earliest) matches the expiration threshold.";
+                    option.SetTimeToLive(new TimeSpan(0, 0, UIOption.TTL));
+                }
+            }
+            var totalIndex = (UIOption.ascendingKey.Count + UIOption.descendingKey.Count +
+                             (string.IsNullOrEmpty(UIOption.geoSpatialKey) ? 0 : 1) +
+                             (string.IsNullOrEmpty(UIOption.textKey) ? 0 : 1));
+            if (UIOption.IndexName != string.Empty && !RuntimeMongoDbContext.GetCurrentCollection().IndexExists(UIOption.IndexName) && totalIndex != 0)
+            {
+                option.SetName(UIOption.IndexName);
+                try
+                {
+                    //暂时要求只能一个TextKey
+                    if (!string.IsNullOrEmpty(UIOption.textKey))
+                    {
+                        var textKeysDoc = new IndexKeysDocument { { UIOption.textKey, "text" } };
+                        RuntimeMongoDbContext.GetCurrentCollection().CreateIndex(textKeysDoc, option);
+                    }
+                    else
+                    {
+                        Operater.CreateMongoIndex(UIOption.ascendingKey.ToArray(), UIOption.descendingKey.ToArray(), UIOption.geoSpatialKey,
+                            option, RuntimeMongoDbContext.GetCurrentCollection());
+                    }
+                    strMessageTitle = "Index Add Completed!";
+                    strMessageContent = "IndexName:" + UIOption.IndexName + " is add to collection.";
+                }
+                catch (Exception ex)
+                {
+                    strMessageTitle = "Index Add Failed!";
+                    strMessageContent = "IndexName:" + UIOption.IndexName;
+                    Result = false;
+                }
+
+            }
+            else
+            {
+                strMessageTitle = "Index Add Failed!";
+                strMessageContent = "Please Check the index information.";
+                Result = false;
+
+            }
+            return Result;
         }
 
         /// <summary>

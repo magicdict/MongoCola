@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoDB.Driver;
 using MongoUtility.Core;
 
 namespace FunctionForm.Connection
@@ -29,27 +28,15 @@ namespace FunctionForm.Connection
             NumWTimeoutMS.GotFocus += (x, y) => NumWTimeoutMS.Select(0, 5);
             NumWaitQueueSize.GotFocus += (x, y) => NumWaitQueueSize.Select(0, 5);
 
-            //读策略
-            //http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options
-            //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/ReadPreference.cs
-            cmbReadPreference.Items.Add(ReadPreference.Primary.ToString());
-            cmbReadPreference.Items.Add(ReadPreference.PrimaryPreferred.ToString());
-            cmbReadPreference.Items.Add(ReadPreference.Secondary.ToString());
-            cmbReadPreference.Items.Add(ReadPreference.SecondaryPreferred.ToString());
-            cmbReadPreference.Items.Add(ReadPreference.Nearest.ToString());
+            foreach (var ReadPreferenceItem in ReadWrite.ReadPreferenceList)
+            {
+                cmbReadPreference.Items.Add(ReadPreferenceItem);
+            }
 
-            //写确认
-            //http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options
-            //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/WriteConcern.cs
-            //-1 – The driver will not acknowledge write operations and will suppress all network or socket errors.
-            cmbWriteConcern.Items.Add(WriteConcern.Unacknowledged.ToString());
-            //1   -  Provides basic acknowledgment of write operations.
-            cmbWriteConcern.Items.Add(WriteConcern.Acknowledged.ToString());
-            cmbWriteConcern.Items.Add(WriteConcern.W2.ToString());
-            cmbWriteConcern.Items.Add(WriteConcern.W3.ToString());
-            //cmbWriteConcern.Items.Add(WriteConcern.W4.ToString());
-            cmbWriteConcern.Items.Add(WriteConcern.WMajority.ToString());
-
+            foreach (var WriteConcernItem in ReadWrite.WriteConcernList)
+            {
+                cmbWriteConcern.Items.Add(WriteConcernItem);
+            }
 
             //ReadPreference和WriteConern不是Connection的属性,
             //而是读写策略

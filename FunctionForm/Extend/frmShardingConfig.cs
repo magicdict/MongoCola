@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
-using MongoDB.Bson;
-using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;

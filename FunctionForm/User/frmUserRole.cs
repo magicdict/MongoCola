@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoDB.Bson;
 using ResourceLib.Method;
 
 namespace FunctionForm.User
@@ -15,11 +14,7 @@ namespace FunctionForm.User
             Result = orgRoles;
             otherDBRolesPanel.SetRoles(Result);
             otherDBRolesPanel.IsAdmin = false;
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
-                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
-            }
+            GuiConfig.Translateform(this);
         }
 
         private void cmdOK_Click(object sender, EventArgs e)
