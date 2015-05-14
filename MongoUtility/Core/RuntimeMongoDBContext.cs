@@ -383,7 +383,8 @@ namespace MongoUtility.Core
                     return mongoConnSvrLst[strPath[0]];
                 }
                 //[Tag:Connection/Host@Port/DBName/Collection]
-                var strInstKey = strPath[(int) EnumMgr.PathLevel.Connection] + "/" + strPath[(int) EnumMgr.PathLevel.Instance];
+                var strInstKey = strPath[(int) EnumMgr.PathLevel.Connection] + "/" +
+                                 strPath[(int) EnumMgr.PathLevel.Instance];
                 if (MongoInstanceLst.ContainsKey(strInstKey))
                 {
                     return mongoConnSvrLst[strPath[0]];
@@ -419,7 +420,8 @@ namespace MongoUtility.Core
                     return mongoConnSvrLst[strPath[0]];
                 }
                 //[Tag:Connection/Host@Port/DBName/Collection]
-                var strInstKey = strPath[(int) EnumMgr.PathLevel.Connection] + "/" + strPath[(int) EnumMgr.PathLevel.Instance];
+                var strInstKey = strPath[(int) EnumMgr.PathLevel.Connection] + "/" +
+                                 strPath[(int) EnumMgr.PathLevel.Instance];
                 if (MongoInstanceLst.ContainsKey(strInstKey))
                 {
                     return mongoConnSvrLst[strPath[0]];

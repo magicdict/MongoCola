@@ -4,69 +4,77 @@ using MongoUtility.Basic;
 namespace MongoUtility.Core
 {
     /// <summary>
-    /// TagInfo
+    ///     TagInfo
     /// </summary>
     public class TagInfo
     {
         /// <summary>
-        ///     全路径
-        /// </summary>
-        string TagString = string.Empty;
-        /// <summary>
-        ///     除去表示类别的数据
-        /// </summary>
-        public string TagPath = string.Empty;
-        /// <summary>
         ///     对象名称
         /// </summary>
         public string ObjName = string.Empty;
-        /// <summary>
-        ///     类别(String)
-        /// </summary>
-        public string TagType = string.Empty;
+
         /// <summary>
         ///     类别(Enum)
         /// </summary>
         public EnumMgr.PathLevel PathLevel = EnumMgr.PathLevel.Document;
+
+        /// <summary>
+        ///     除去表示类别的数据
+        /// </summary>
+        public string TagPath = string.Empty;
+
+        /// <summary>
+        ///     全路径
+        /// </summary>
+        private string _tagString = string.Empty;
+
+        /// <summary>
+        ///     类别(String)
+        /// </summary>
+        public string TagType = string.Empty;
+
         /// <summary>
         ///     CreateTagInfo
         /// </summary>
-        /// <param name="ConnectionName"></param>
-        public static TagInfo CreateTagInfo(string ConnectionName)
+        /// <param name="connectionName"></param>
+        public static TagInfo CreateTagInfo(string connectionName)
         {
-            var TagString = ConstMgr.ConnectionTag + ":" + ConnectionName;
-            return GetMongoObj(TagString);
+            var tagString = ConstMgr.ConnectionTag + ":" + connectionName;
+            return GetMongoObj(tagString);
         }
+
         /// <summary>
-        /// CreateTagInfo
+        ///     CreateTagInfo
         /// </summary>
-        /// <param name="ConnectionName"></param>
-        /// <param name="DataBaseName"></param>
+        /// <param name="connectionName"></param>
+        /// <param name="dataBaseName"></param>
         /// <returns></returns>
-        public static TagInfo CreateTagInfo(string ConnectionName, string DataBaseName)
+        public static TagInfo CreateTagInfo(string connectionName, string dataBaseName)
         {
-            var TagString = ConstMgr.DatabaseTag + ":" + ConnectionName + "/" + DataBaseName;
-            return GetMongoObj(TagString);
+            var tagString = ConstMgr.DatabaseTag + ":" + connectionName + "/" + dataBaseName;
+            return GetMongoObj(tagString);
         }
+
         /// <summary>
-        /// CreateTagInfo
+        ///     CreateTagInfo
         /// </summary>
-        /// <param name="ConnectionName"></param>
-        /// <param name="DataBase"></param>
-        /// <param name="CollectionName"></param>
+        /// <param name="connectionName"></param>
+        /// <param name="dataBase"></param>
+        /// <param name="collectionName"></param>
         /// <returns></returns>
-        public static TagInfo CreateTagInfo(string ConnectionName, string DataBase, string CollectionName)
+        public static TagInfo CreateTagInfo(string connectionName, string dataBase, string collectionName)
         {
-            var TagString = ConstMgr.CollectionTag + ":" + ConnectionName + "/" + DataBase + "/" + CollectionName;
-            return GetMongoObj(TagString);
+            var tagString = ConstMgr.CollectionTag + ":" + connectionName + "/" + dataBase + "/" + collectionName;
+            return GetMongoObj(tagString);
         }
+
         /// <summary>
-        /// ToString
+        ///     ToString
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return TagString;
+            return _tagString;
         }
 
         /// <summary>
@@ -74,11 +82,11 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="strTag"></param>
         /// <returns></returns>
-        static TagInfo GetMongoObj(string strTag)
+        private static TagInfo GetMongoObj(string strTag)
         {
             var info = new TagInfo
             {
-                TagString = strTag,
+                _tagString = strTag,
                 TagPath = GetTagPath(strTag),
                 TagType = GetTagType(strTag),
                 ObjName = GetNameFromTag(strTag),
@@ -86,29 +94,29 @@ namespace MongoUtility.Core
             };
             return info;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="strTagType"></param>
         /// <returns></returns>
-        static EnumMgr.PathLevel TagType2PathLevel(string strTagType)
+        private static EnumMgr.PathLevel TagType2PathLevel(string strTagType)
         {
-            EnumMgr.PathLevel Level = EnumMgr.PathLevel.Document;
+            var level = EnumMgr.PathLevel.Document;
             switch (strTagType)
             {
                 case ConstMgr.ConnectionTag:
-                    Level = EnumMgr.PathLevel.Connection;
+                    level = EnumMgr.PathLevel.Connection;
                     break;
                 case ConstMgr.DatabaseTag:
-                    Level = EnumMgr.PathLevel.Database;
+                    level = EnumMgr.PathLevel.Database;
                     break;
                 case ConstMgr.CollectionTag:
-                    Level = EnumMgr.PathLevel.Collection;
+                    level = EnumMgr.PathLevel.Collection;
                     break;
                 default:
                     break;
             }
-            return Level;
+            return level;
         }
 
         /// <summary>
@@ -143,6 +151,7 @@ namespace MongoUtility.Core
             var arr = strTag.Split("/".ToCharArray());
             return arr[arr.Length - 1];
         }
+
         /// <summary>
         ///     修改最末节名称
         /// </summary>

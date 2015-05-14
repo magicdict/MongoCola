@@ -34,7 +34,6 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="strDbName"></param>
         /// <param name="errMessage"></param>
@@ -43,13 +42,14 @@ namespace MongoUtility.Command
         {
             return RuntimeMongoDbContext.GetCurrentServer().IsDatabaseNameValid(strDbName, out errMessage);
         }
+
         /// <summary>
-        /// 
         /// </summary>
         public static void RepairDb()
         {
             CommandHelper.ExecuteMongoCommand(CommandHelper.RepairDatabaseCommand);
         }
+
         /// <summary>
         ///     是否为系统数据库[无法删除]
         /// </summary>
@@ -118,6 +118,5 @@ namespace MongoUtility.Command
             }
             return rtnResult;
         }
-
-     }
+    }
 }

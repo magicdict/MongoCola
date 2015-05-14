@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-using MongoGUICtl;
-using MongoGUIView;
 
 namespace MongoCola
 {

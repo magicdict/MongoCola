@@ -38,9 +38,7 @@ namespace MongoUtility.Command
             //系统文件
             if (mongoColName.StartsWith("system."))
                 return true;
-            if (mongoColName.StartsWith("fs."))
-                return true;
-            return IsSystemDataBase(mongoDbName);
+            return mongoColName.StartsWith("fs.") || IsSystemDataBase(mongoDbName);
         }
 
         /// <summary>
@@ -62,6 +60,7 @@ namespace MongoUtility.Command
             mongoDb.CreateCollection(collectionName, option);
             return true;
         }
+
         /// <summary>
         ///     删除数据集
         /// </summary>
@@ -71,6 +70,7 @@ namespace MongoUtility.Command
         {
             return RuntimeMongoDbContext.GetCurrentDataBase().DropCollection(strCollection).Ok;
         }
+
         /// <summary>
         ///     重命名数据集
         /// </summary>
@@ -81,13 +81,14 @@ namespace MongoUtility.Command
         {
             return RuntimeMongoDbContext.GetCurrentDataBase().RenameCollection(strCollection, strNewCollectionName).Ok;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         public static void ReIndex()
         {
             RuntimeMongoDbContext.GetCurrentCollection().ReIndex();
         }
+
         /// <summary>
         ///     Create Collection
         /// </summary>

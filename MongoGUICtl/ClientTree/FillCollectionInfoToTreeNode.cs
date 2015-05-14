@@ -6,8 +6,8 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
-using ResourceLib.Method;
 using MongoUtility.Core;
+using ResourceLib.Method;
 
 namespace MongoGUICtl.ClientTree
 {
@@ -237,7 +237,8 @@ namespace MongoGUICtl.ClientTree
                                        col.CollectionNamespace.CollectionName;
                     break;
                 default:
-                    mongoColNode.Tag = TagInfo.CreateTagInfo(mongoConnSvrKey,databaseName,col.CollectionNamespace.CollectionName);
+                    mongoColNode.Tag = TagInfo.CreateTagInfo(mongoConnSvrKey, databaseName,
+                        col.CollectionNamespace.CollectionName);
                     break;
             }
 

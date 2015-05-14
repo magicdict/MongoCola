@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using Common;
 using MongoCola.Connection;
-using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;

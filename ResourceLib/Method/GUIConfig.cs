@@ -53,7 +53,7 @@ namespace ResourceLib.Method
         public static string GetText(string defaultText, TextType tag)
         {
             if (IsUseDefaultLanguage || tag == TextType.UseDefaultLanguage) return defaultText;
-            var strText = string.Empty;
+            string strText;
             StringResource.StringDic.TryGetValue(tag.ToString(), out strText);
             strText = string.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
             return strText;
@@ -65,7 +65,7 @@ namespace ResourceLib.Method
         /// <returns></returns>
         public static string GetText(string tag)
         {
-            var strText = string.Empty;
+            string strText;
             StringResource.StringDic.TryGetValue(tag, out strText);
             strText = string.IsNullOrEmpty(strText) ? tag : strText.Replace("&amp;", "&");
             return strText;
@@ -99,31 +99,33 @@ namespace ResourceLib.Method
             Translateform(frm.Controls);
         }
 
+
         public static void Translateform(ToolStripItemCollection controls)
         {
             foreach (ToolStripItem menuItem in controls)
             {
-                if (menuItem.GetType().FullName == typeof (ToolStripSeparator).FullName) continue;
-                if (menuItem.GetType().FullName == typeof (ToolStripMenuItem).FullName)
+                if (menuItem.GetType().FullName == typeof(ToolStripSeparator).FullName) continue;
+                if (menuItem.GetType().FullName == typeof(ToolStripMenuItem).FullName)
                 {
-                    if (((ToolStripMenuItem) menuItem).Tag == null) continue;
-                    var display = GetText(((ToolStripMenuItem) menuItem).Tag.ToString());
+                    if (((ToolStripMenuItem)menuItem).Tag == null) continue;
+                    var display = GetText(((ToolStripMenuItem)menuItem).Tag.ToString());
                     if (string.IsNullOrEmpty(display)) continue;
-                    ((ToolStripMenuItem) menuItem).Text = display;
-                    if (((ToolStripMenuItem) menuItem).DropDownItems.Count > 0)
-                        Translateform(((ToolStripMenuItem) menuItem).DropDownItems);
+                    ((ToolStripMenuItem)menuItem).Text = display;
+                    if (((ToolStripMenuItem)menuItem).DropDownItems.Count > 0)
+                        Translateform(((ToolStripMenuItem)menuItem).DropDownItems);
                 }
-                if (menuItem.GetType().FullName == typeof (ToolStripButton).FullName)
+                if (menuItem.GetType().FullName == typeof(ToolStripButton).FullName)
                 {
-                    if (((ToolStripButton) menuItem).Tag == null) continue;
-                    var display = GetText(((ToolStripButton) menuItem).Tag.ToString());
+                    if (((ToolStripButton)menuItem).Tag == null) continue;
+                    var display = GetText(((ToolStripButton)menuItem).Tag.ToString());
                     if (string.IsNullOrEmpty(display)) continue;
-                    ((ToolStripButton) menuItem).Text = display;
+                    ((ToolStripButton)menuItem).Text = display;
                 }
             }
         }
 
         /// <summary>
+        /// 
         /// </summary>
         /// <param name="controls"></param>
         public static void Translateform(Control.ControlCollection controls)
@@ -131,17 +133,17 @@ namespace ResourceLib.Method
             var display = string.Empty;
             foreach (Control ctrlItem in controls)
             {
-                if (ctrlItem.GetType().FullName == typeof (MenuStrip).FullName)
+                if (ctrlItem.GetType().FullName == typeof(MenuStrip).FullName)
                 {
-                    if (((MenuStrip) ctrlItem).Items.Count > 0) Translateform(((MenuStrip) ctrlItem).Items);
+                    if (((MenuStrip)ctrlItem).Items.Count > 0) Translateform(((MenuStrip)ctrlItem).Items);
                 }
-                if (ctrlItem.GetType().FullName == typeof (ToolStrip).FullName)
+                if (ctrlItem.GetType().FullName == typeof(ToolStrip).FullName)
                 {
-                    if (((ToolStrip) ctrlItem).Items.Count > 0) Translateform(((ToolStrip) ctrlItem).Items);
+                    if (((ToolStrip)ctrlItem).Items.Count > 0) Translateform(((ToolStrip)ctrlItem).Items);
                 }
-                if (ctrlItem.GetType().FullName == typeof (TabControl).FullName)
+                if (ctrlItem.GetType().FullName == typeof(TabControl).FullName)
                 {
-                    foreach (TabPage tab in ((TabControl) ctrlItem).TabPages)
+                    foreach (TabPage tab in ((TabControl)ctrlItem).TabPages)
                     {
                         if (tab.Tag != null)
                         {
@@ -151,40 +153,40 @@ namespace ResourceLib.Method
                         Translateform(tab.Controls);
                     }
                 }
-                if (ctrlItem.GetType().FullName == typeof (GroupBox).FullName)
+                if (ctrlItem.GetType().FullName == typeof(GroupBox).FullName)
                 {
-                    ((GroupBox) ctrlItem).Text = display;
+                    ((GroupBox)ctrlItem).Text = display;
                     Translateform(ctrlItem.Controls);
                 }
                 if (ctrlItem.Tag == null) continue;
                 display = GetText(ctrlItem.Tag.ToString());
                 if (string.IsNullOrEmpty(display)) continue;
 
-                if (ctrlItem.GetType().FullName == typeof (Label).FullName)
+                if (ctrlItem.GetType().FullName == typeof(Label).FullName)
                 {
-                    ((Label) ctrlItem).Text = display;
+                    ((Label)ctrlItem).Text = display;
                 }
-                if (ctrlItem.GetType().FullName == typeof (Button).FullName)
+                if (ctrlItem.GetType().FullName == typeof(Button).FullName)
                 {
-                    ((Button) ctrlItem).Text = display;
+                    ((Button)ctrlItem).Text = display;
                     if (ctrlItem.Tag.ToString() == TextType.CommonOk.ToString())
                     {
-                        ((Button) ctrlItem).BackColor = SuccessColor;
+                        ((Button)ctrlItem).BackColor = SuccessColor;
                     }
                     if (ctrlItem.Tag.ToString() == TextType.CommonNo.ToString() ||
                         ctrlItem.Tag.ToString() == TextType.CommonClose.ToString() ||
                         ctrlItem.Tag.ToString() == TextType.CommonCancel.ToString())
                     {
-                        ((Button) ctrlItem).BackColor = FailColor;
+                        ((Button)ctrlItem).BackColor = FailColor;
                     }
                 }
-                if (ctrlItem.GetType().FullName == typeof (CheckBox).FullName)
+                if (ctrlItem.GetType().FullName == typeof(CheckBox).FullName)
                 {
-                    ((CheckBox) ctrlItem).Text = display;
+                    ((CheckBox)ctrlItem).Text = display;
                 }
-                if (ctrlItem.GetType().FullName == typeof (RadioButton).FullName)
+                if (ctrlItem.GetType().FullName == typeof(RadioButton).FullName)
                 {
-                    ((RadioButton) ctrlItem).Text = display;
+                    ((RadioButton)ctrlItem).Text = display;
                 }
             }
         }

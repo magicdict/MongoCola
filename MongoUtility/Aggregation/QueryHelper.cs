@@ -189,9 +189,10 @@ namespace MongoUtility.Aggregation
                 textSearchOption = Query.Text(key, language);
             }
             var result = RuntimeMongoDbContext.GetCurrentCollection().FindAs<BsonDocument>(textSearchOption);
-            var resultDocumentList = result.SetLimit(limit).ToList<BsonDocument>();
+            var resultDocumentList = result.SetLimit(limit).ToList();
             return resultDocumentList;
         }
+
         /// <summary>
         ///     Is Exist by Key
         /// </summary>

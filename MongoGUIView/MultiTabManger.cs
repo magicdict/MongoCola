@@ -28,7 +28,7 @@ namespace MongoGUIView
         /// <summary>
         ///     固定菜单项目列表
         /// </summary>
-        private static readonly Dictionary<string, ToolStripMenuItem> _bindingMenuItems =
+        private static readonly Dictionary<string, ToolStripMenuItem> BindingMenuItems =
             new Dictionary<string, ToolStripMenuItem>();
 
         /// <summary>
@@ -39,12 +39,12 @@ namespace MongoGUIView
         /// <summary>
         ///     已经存在的TabPage的字典
         /// </summary>
-        private static readonly Dictionary<string, TabPage> _existTabPage = new Dictionary<string, TabPage>();
+        private static readonly Dictionary<string, TabPage> ExistTabPage = new Dictionary<string, TabPage>();
 
         /// <summary>
         ///     固定Tab的缓存
         /// </summary>
-        private static readonly Dictionary<string, TabPage> _fixItemCache = new Dictionary<string, TabPage>();
+        private static readonly Dictionary<string, TabPage> FixItemCache = new Dictionary<string, TabPage>();
 
         /// <summary>
         ///     Tab变更事件
@@ -77,25 +77,25 @@ namespace MongoGUIView
         public static void AddView(MultiTabControl view, string tabPageTitle)
         {
             var key = view.SelectObjectTag;
-            if (_existTabPage.ContainsKey(key))
+            if (ExistTabPage.ContainsKey(key))
             {
-                ViewTabContain.SelectedTab = _existTabPage[key];
+                ViewTabContain.SelectedTab = ExistTabPage[key];
                 return;
             }
             var tabpage = new TabPage();
             if (view.IsFixedItem)
             {
-                if (!_bindingMenuItems.ContainsKey(key))
+                if (!BindingMenuItems.ContainsKey(key))
                 {
-                    _bindingMenuItems.Add(key, view.BindingMenu);
+                    BindingMenuItems.Add(key, view.BindingMenu);
                 }
-                if (_fixItemCache.ContainsKey(key))
+                if (FixItemCache.ContainsKey(key))
                 {
-                    tabpage = _fixItemCache[key];
+                    tabpage = FixItemCache[key];
                 }
                 else
                 {
-                    _fixItemCache.Add(key, tabpage);
+                    FixItemCache.Add(key, tabpage);
                     //Fix项目的MenuItem事件的绑定
                     //注意，事件只能绑定一次
                     view.BindingMenu.Click += (x, y) =>
@@ -129,7 +129,7 @@ namespace MongoGUIView
             tabpage.Controls.Add(view);
             ViewTabContain.TabPages.Add(tabpage);
             ViewTabContain.SelectTab(tabpage);
-            _existTabPage.Add(key, tabpage);
+            ExistTabPage.Add(key, tabpage);
             RefreshMenuItem();
         }
 
@@ -139,10 +139,10 @@ namespace MongoGUIView
         /// <param name="selectObjectTag"></param>
         public static void RemoveView(string selectObjectTag)
         {
-            if (_existTabPage.ContainsKey(selectObjectTag))
+            if (ExistTabPage.ContainsKey(selectObjectTag))
             {
-                ViewTabContain.TabPages.Remove(_existTabPage[selectObjectTag]);
-                _existTabPage.Remove(selectObjectTag);
+                ViewTabContain.TabPages.Remove(ExistTabPage[selectObjectTag]);
+                ExistTabPage.Remove(selectObjectTag);
             }
             RefreshMenuItem();
         }
@@ -152,7 +152,7 @@ namespace MongoGUIView
         /// </summary>
         public static void RefreshSelectTab()
         {
-            if (_existTabPage.Count == 0) return;
+            if (ExistTabPage.Count == 0) return;
             var currentView = ViewTabContain.SelectedTab.Controls[0] as MultiTabControl;
             currentView.RefreshGui();
         }
@@ -163,7 +163,7 @@ namespace MongoGUIView
         /// <param name="ViewMenu"></param>
         private static void RefreshMenuItem()
         {
-            foreach (var item in _bindingMenuItems.Values)
+            foreach (var item in BindingMenuItems.Values)
             {
                 item.Checked = false;
             }
@@ -180,8 +180,8 @@ namespace MongoGUIView
                 }
                 else
                 {
-                    var menuItem = new ToolStripMenuItem(_existTabPage[tabpage.Tag.ToString()].Text);
-                    menuItem.Click += (x, y) => { ViewTabContain.SelectedTab = _existTabPage[tabpage.Tag.ToString()]; };
+                    var menuItem = new ToolStripMenuItem(ExistTabPage[tabpage.Tag.ToString()].Text);
+                    menuItem.Click += (x, y) => { ViewTabContain.SelectedTab = ExistTabPage[tabpage.Tag.ToString()]; };
                     view.ParentMenu.DropDownItems.Add(menuItem);
                 }
             }
@@ -194,7 +194,7 @@ namespace MongoGUIView
         /// <returns></returns>
         public static bool IsExist(string selectObjectTag)
         {
-            return _existTabPage.ContainsKey(selectObjectTag);
+            return ExistTabPage.ContainsKey(selectObjectTag);
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace MongoGUIView
         /// <param name="dataKey"></param>
         public static void SelectTab(string dataKey)
         {
-            ViewTabContain.SelectedTab = _existTabPage[dataKey];
+            ViewTabContain.SelectedTab = ExistTabPage[dataKey];
             RefreshSelectTab();
         }
 
@@ -214,13 +214,13 @@ namespace MongoGUIView
         {
             if (!IsExist(oldTag)) return;
             //修改TabPage和View，以及字典
-            var currentView = _existTabPage[oldTag].Controls[0] as MultiTabControl;
+            var currentView = ExistTabPage[oldTag].Controls[0] as MultiTabControl;
             currentView.SelectObjectTag = newTag;
-            var tabpage = _existTabPage[oldTag];
+            var tabpage = ExistTabPage[oldTag];
             tabpage.Tag = newTag;
             tabpage.Text = tabPageTitle;
-            _existTabPage.Remove(oldTag);
-            _existTabPage.Add(newTag, tabpage);
+            ExistTabPage.Remove(oldTag);
+            ExistTabPage.Add(newTag, tabpage);
             RefreshMenuItem();
         }
 
@@ -239,7 +239,7 @@ namespace MongoGUIView
         /// <param name="strTagPrefix"></param>
         public static void SelectObjectTagPrefixDeleted(string strTagPrefix)
         {
-            foreach (var tabkey in _existTabPage.Keys)
+            foreach (var tabkey in ExistTabPage.Keys)
             {
                 if (tabkey.StartsWith(strTagPrefix)) RemoveView(tabkey);
             }

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-using FunctionForm;
 using FunctionForm.Ctrl;
 using ResourceLib.UI;
 
@@ -44,7 +43,7 @@ namespace MongoCola.Config
             this.tabGerneric = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ctlFilePickerMongoBinPath = new ResourceLib.UI.CtlFilePicker();
-            this.ctlMongoConfig1 = new CtlMongoConfig();
+            this._ctlReadWriteConfig1 = new CtlReadWriteConfig();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
@@ -155,7 +154,7 @@ namespace MongoCola.Config
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.ctlMongoConfig1);
+            this.tabPage1.Controls.Add(this._ctlReadWriteConfig1);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -179,14 +178,14 @@ namespace MongoCola.Config
             this.ctlFilePickerMongoBinPath.TabIndex = 19;
             this.ctlFilePickerMongoBinPath.Title = "MongoBin";
             // 
-            // ctlMongoConfig1
+            // _ctlReadWriteConfig1
             // 
-            this.ctlMongoConfig1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlMongoConfig1.Location = new System.Drawing.Point(3, 3);
-            this.ctlMongoConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ctlMongoConfig1.Name = "ctlMongoConfig1";
-            this.ctlMongoConfig1.Size = new System.Drawing.Size(621, 184);
-            this.ctlMongoConfig1.TabIndex = 0;
+            this._ctlReadWriteConfig1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ctlReadWriteConfig1.Location = new System.Drawing.Point(3, 3);
+            this._ctlReadWriteConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._ctlReadWriteConfig1.Name = "_ctlReadWriteConfig1";
+            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(621, 184);
+            this._ctlReadWriteConfig1.TabIndex = 0;
             // 
             // FrmOption
             // 
@@ -227,7 +226,7 @@ namespace MongoCola.Config
         private TabPage tabGerneric;
         private TabPage tabPage1;
         private CtlFilePicker ctlFilePickerMongoBinPath;
-        private CtlMongoConfig ctlMongoConfig1;
+        private CtlReadWriteConfig _ctlReadWriteConfig1;
 
     }
 }

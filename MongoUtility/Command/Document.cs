@@ -45,7 +45,7 @@ namespace MongoUtility.Command
             //标准的JS库格式未知
             if (QueryHelper.IsExistByKey(jsName))
             {
-                var result = DropDocument(jsCol, (BsonString)jsName);
+                var result = DropDocument(jsCol, (BsonString) jsName);
                 if (string.IsNullOrEmpty(result))
                 {
                     CommandResult resultCommand;
@@ -77,7 +77,7 @@ namespace MongoUtility.Command
         public static string DelJavascript(string jsName)
         {
             var jsCol = RuntimeMongoDbContext.GetCurrentCollection();
-            return QueryHelper.IsExistByKey(jsName) ? DropDocument(jsCol, (BsonString)jsName) : string.Empty;
+            return QueryHelper.IsExistByKey(jsName) ? DropDocument(jsCol, (BsonString) jsName) : string.Empty;
         }
 
         /// <summary>
@@ -88,7 +88,9 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static string LoadJavascript(string jsName, MongoCollection jsCol)
         {
-            return QueryHelper.IsExistByKey(jsName) ? jsCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, jsName)).GetValue("value").ToString() : string.Empty;
+            return QueryHelper.IsExistByKey(jsName)
+                ? jsCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, jsName)).GetValue("value").ToString()
+                : string.Empty;
         }
 
         /// <summary>
@@ -106,7 +108,7 @@ namespace MongoUtility.Command
                 {
                     result =
                         new CommandResult(
-                            mongoCol.Remove(Query.EQ(ConstMgr.KeyId, (BsonValue)strKey), WriteConcern.Acknowledged)
+                            mongoCol.Remove(Query.EQ(ConstMgr.KeyId, (BsonValue) strKey), WriteConcern.Acknowledged)
                                 .Response);
                 }
                 catch (MongoCommandException ex)
@@ -134,7 +136,7 @@ namespace MongoUtility.Command
                     mongoCol.Insert(document, WriteConcern.Acknowledged);
                     return document.GetElement(ConstMgr.KeyId).Value;
                 }
-                catch 
+                catch
                 {
                     return BsonNull.Value;
                 }

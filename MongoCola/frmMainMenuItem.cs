@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Common;
-using FunctionForm;
 using FunctionForm.Aggregation;
 using FunctionForm.Misc;
 using FunctionForm.Operation;
@@ -837,15 +836,6 @@ namespace MongoCola
         /// <param name="e"></param>
         private void countToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var query = new DataFilter();
-            var colPath = RuntimeMongoDbContext.SelectTagData;
-            var isUseFilter = false;
-            //if (MultiTabManger.TabInfo.ContainsKey(colPath))
-            //{
-            //    //query = MultiTabManger.TabInfo[colPath].Info.MDataFilter;
-            //    //isUseFilter = MultiTabManger.TabInfo[colPath].Info.IsUseFilter;
-            //}
-
             MyMessageBox.ShowEasyMessage("Count", "Count Result : " + QueryHelper.GetCurrentCollectionCount(null));
         }
 
@@ -857,14 +847,7 @@ namespace MongoCola
         private void distinctToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var query = new DataFilter();
-            var colPath = RuntimeMongoDbContext.SelectTagData;
-            var isUseFilter = false;
-            //if (MultiTabManger.TabInfo.ContainsKey(colPath))
-            //{
-            //    //query = MultiTabManger.TabInfo[colPath].Info.MDataFilter;
-            //    //isUseFilter = MultiTabManger.TabInfo[colPath].Info.IsUseFilter;
-            //}
-            Utility.OpenForm(new FrmDistinct(query, isUseFilter), true, true);
+            Utility.OpenForm(new FrmDistinct(query, false), true, true);
         }
 
         /// <summary>
@@ -875,14 +858,7 @@ namespace MongoCola
         private void groupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var query = new DataFilter();
-            var colPath = RuntimeMongoDbContext.SelectTagData;
-            var isUseFilter = false;
-            //if (MultiTabManger.TabInfo.ContainsKey(colPath))
-            //{
-            //    //query = MultiTabManger.TabInfo[colPath].Info.MDataFilter;
-            //    //isUseFilter = MultiTabManger.TabInfo[colPath].Info.IsUseFilter;
-            //}
-            Utility.OpenForm(new FrmGroup(query, isUseFilter), true, true);
+            Utility.OpenForm(new FrmGroup(query, false), true, true);
         }
 
         /// <summary>

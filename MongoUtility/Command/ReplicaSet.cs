@@ -34,8 +34,8 @@ namespace MongoUtility.Command
             strMessage = result.ErrorMessage;
             return false;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="newConfig"></param>
         public static void ReplicaSet(MongoConnectionConfig newConfig)
@@ -65,6 +65,7 @@ namespace MongoUtility.Command
             }
             return shardInfo;
         }
+
         /// <summary>
         /// </summary>
         public static void ResyncCommand()
@@ -73,7 +74,6 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        /// 
         /// </summary>
         public static void Compact()
         {

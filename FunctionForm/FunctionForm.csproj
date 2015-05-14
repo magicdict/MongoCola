@@ -53,9 +53,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregation\frmAggregation.cs">
@@ -94,12 +96,24 @@
     <Compile Include="Aggregation\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\Collection.cs" />
-    <Compile Include="Ctrl\ctlMongoConfig.cs">
+    <Compile Include="Ctrl\CtlSSHConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ctrl\ctlMongoConfig.Designer.cs">
-      <DependentUpon>ctlMongoConfig.cs</DependentUpon>
+    <Compile Include="Ctrl\CtlSSHConfig.Designer.cs">
+      <DependentUpon>CtlSSHConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\CtlSSLConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\CtlSSLConfig.Designer.cs">
+      <DependentUpon>CtlSSLConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\Collection.cs" />
+    <Compile Include="Ctrl\CtlReadWriteConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\CtlReadWriteConfig.Designer.cs">
+      <DependentUpon>CtlReadWriteConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\frmAddRole.cs">
       <SubType>Form</SubType>
@@ -149,12 +163,6 @@
     <Compile Include="Misc\frmValidate.Designer.cs">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\frmConnectionMgr.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operation\frmConnectionMgr.Designer.cs">
-      <DependentUpon>frmConnectionMgr.cs</DependentUpon>
-    </Compile>
     <Compile Include="Operation\frmArrayCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +174,12 @@
     </Compile>
     <Compile Include="Operation\frmCollectionIndex.Designer.cs">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation\frmConnectionMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\frmConnectionMgr.Designer.cs">
+      <DependentUpon>frmConnectionMgr.cs</DependentUpon>
     </Compile>
     <Compile Include="Operation\frmCreateCollection.cs">
       <SubType>Form</SubType>
@@ -216,8 +230,14 @@
     <EmbeddedResource Include="Aggregation\frmTextSearch.resx">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ctrl\ctlMongoConfig.resx">
-      <DependentUpon>ctlMongoConfig.cs</DependentUpon>
+    <EmbeddedResource Include="Ctrl\CtlReadWriteConfig.resx">
+      <DependentUpon>CtlReadWriteConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\CtlSSHConfig.resx">
+      <DependentUpon>CtlSSHConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\CtlSSLConfig.resx">
+      <DependentUpon>CtlSSLConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>
@@ -243,14 +263,14 @@
     <EmbeddedResource Include="Misc\frmValidate.resx">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\frmConnectionMgr.resx">
-      <DependentUpon>frmConnectionMgr.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmArrayCreator.resx">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCollectionIndex.resx">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\frmConnectionMgr.resx">
+      <DependentUpon>frmConnectionMgr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCreateCollection.resx">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
