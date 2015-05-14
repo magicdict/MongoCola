@@ -155,7 +155,10 @@ namespace ResourceLib.Method
                 }
                 if (ctrlItem.GetType().FullName == typeof(GroupBox).FullName)
                 {
-                    ((GroupBox)ctrlItem).Text = display;
+                    if (!string.IsNullOrEmpty(display))
+                    {
+                        ((GroupBox)ctrlItem).Text = display;
+                    }
                     Translateform(ctrlItem.Controls);
                 }
                 if (ctrlItem.Tag == null) continue;

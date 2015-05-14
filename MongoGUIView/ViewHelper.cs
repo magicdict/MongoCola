@@ -18,6 +18,10 @@ namespace MongoGUIView
     public static class ViewHelper
     {
         #region"展示数据集内容[WebForm]"
+        /// <summary>
+        ///     DateTime:IsUTC
+        /// </summary>
+        public static bool IsUTC { set; get; } 
 
         /// <summary>
         ///     展示数据
@@ -93,11 +97,17 @@ namespace MongoGUIView
                 return bsonValue + "[Contains" + bsonValue.ToBsonDocument().ElementCount + "Documents]";
             }
             //时间
-            if (bsonValue.IsBsonDateTime)
+            if (bsonValue.IsValidDateTime)
             {
-                var bsonData = bsonValue.ToUniversalTime();
-                //@flydreamer提出的本地化时间要求
-                return bsonData.ToLocalTime().ToString();
+                if (IsUTC)
+                {
+                    return bsonValue.ToUniversalTime().ToString();
+                }
+                else
+                {
+                    //@flydreamer提出的本地化时间要求
+                    return bsonValue.ToLocalTime().ToString();
+                }
             }
 
             //字符

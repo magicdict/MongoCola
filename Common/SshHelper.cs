@@ -1,4 +1,5 @@
 ﻿using Renci.SshNet;
+
 namespace Common
 {
     public class SshHelper
@@ -15,6 +16,7 @@ namespace Common
             SshClient client = new SshClient(host, username, password);
             return client;
         }
+
         /// <summary>
         ///     GetSshClient
         /// </summary>

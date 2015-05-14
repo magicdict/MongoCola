@@ -10,6 +10,7 @@
 using System;
 using Common;
 using MongoUtility.Core;
+using MongoGUIView;
 
 namespace MongoCola.Config
 {
@@ -42,6 +43,11 @@ namespace MongoCola.Config
         public byte ConfigVer = 2;
 
         /// <summary>
+        ///     DateTime UTC
+        /// </summary>
+        public bool IsUTC = true;
+
+        /// <summary>
         ///     语言
         /// </summary>
         public string LanguageFileName = string.Empty;
@@ -71,6 +77,8 @@ namespace MongoCola.Config
                 MongoConnectionConfig.MongoConfig.SerializableConnectionList.Add(item);
             }
             Utility.SaveObjAsXml(AppPath + SystemConfigFilename, this);
+            MongoGUICtl.CtlTreeViewColumns.IsUTC = IsUTC;
+            ViewHelper.IsUTC = IsUTC;
         }
 
         /// <summary>
@@ -80,8 +88,9 @@ namespace MongoCola.Config
         public static void LoadFromConfigFile()
         {
             SystemManager.SystemConfig = Utility.LoadObjFromXml<SystemConfig>(AppPath + SystemConfigFilename);
+            MongoGUICtl.CtlTreeViewColumns.IsUTC = SystemManager.SystemConfig.IsUTC;
+            ViewHelper.IsUTC = SystemManager.SystemConfig.IsUTC;
         }
-
         #endregion
     }
 }

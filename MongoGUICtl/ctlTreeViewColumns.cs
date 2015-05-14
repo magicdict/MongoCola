@@ -15,6 +15,11 @@ namespace MongoGUICtl
     public partial class CtlTreeViewColumns : UserControl
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public static bool IsUTC {get;set;}
+
+        /// <summary>
         ///     初始化
         /// </summary>
         /// <param name="GUIConfig">UIPackage</param>
@@ -185,7 +190,21 @@ namespace MongoGUICtl
                         {
                             if (!mElement.Value.IsBsonDocument && !mElement.Value.IsBsonArray)
                             {
-                                strColumnText = mElement.Value.ToString();
+                                if (mElement.Value.IsValidDateTime)
+                                {
+                                    if (IsUTC)
+                                    {
+                                        strColumnText = mElement.Value.AsBsonDateTime.ToUniversalTime().ToString();
+                                    }
+                                    else
+                                    {
+                                        strColumnText = mElement.Value.AsBsonDateTime.ToLocalTime().ToString();
+                                    }
+                                }
+                                else
+                                {
+                                    strColumnText = mElement.Value.ToString();
+                                }
                             }
                         }
                         else

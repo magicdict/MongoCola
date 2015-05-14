@@ -64,22 +64,22 @@ namespace MongoUtility.Command
         /// <summary>
         ///     删除数据集
         /// </summary>
-        /// <param name="strCollection"></param>
+        /// <param name="strCollectionName"></param>
         /// <returns></returns>
-        public static bool DrapCollection(string strCollection)
+        public static bool DrapCollection(string strCollectionName)
         {
-            return RuntimeMongoDbContext.GetCurrentDataBase().DropCollection(strCollection).Ok;
+            return RuntimeMongoDbContext.GetCurrentDataBase().DropCollection(strCollectionName).Ok;
         }
 
         /// <summary>
         ///     重命名数据集
         /// </summary>
-        /// <param name="strCollection"></param>
+        /// <param name="strOldCollectionName"></param>
         /// <param name="strNewCollectionName"></param>
         /// <returns></returns>
-        public static bool RenameCollection(string strCollection, string strNewCollectionName)
+        public static bool RenameCollection(string strOldCollectionName, string strNewCollectionName)
         {
-            return RuntimeMongoDbContext.GetCurrentDataBase().RenameCollection(strCollection, strNewCollectionName).Ok;
+            return RuntimeMongoDbContext.GetCurrentDataBase().RenameCollection(strOldCollectionName, strNewCollectionName).Ok;
         }
 
         /// <summary>
