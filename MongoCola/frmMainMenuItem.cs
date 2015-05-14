@@ -12,10 +12,11 @@ using FunctionForm.Status;
 using MongoCola.Config;
 using MongoCola.Connection;
 using MongoGUICtl.ClientTree;
+using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
@@ -233,8 +234,8 @@ namespace MongoCola
             {
                 try
                 {
-                    var strRusult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
-                        OperationHelper.Oprcode.Create);
+                    var strRusult = Operater.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
+                        Operater.Oprcode.Create);
                     if (string.IsNullOrEmpty(strRusult))
                     {
                         DisableAllOpr();
@@ -378,8 +379,8 @@ namespace MongoCola
             {
                 trvsrvlst.SelectedNode = null;
             }
-            var rtnResult = OperationHelper.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
-                OperationHelper.Oprcode.Drop);
+            var rtnResult = Operater.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
+                Operater.Oprcode.Drop);
             if (string.IsNullOrEmpty(rtnResult))
             {
                 DisableAllOpr();
@@ -504,7 +505,7 @@ namespace MongoCola
             }
             else
             {
-                var result = OperationHelper.CreateNewJavascript(strJsName, string.Empty);
+                var result = Operater.CreateNewJavascript(strJsName, string.Empty);
                 if (string.IsNullOrEmpty(result))
                 {
                     var jsNode = new TreeNode(strJsName)
@@ -605,7 +606,7 @@ namespace MongoCola
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
             var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Collection];
-            var result = OperationHelper.DelJavascript(strCollection);
+            var result = Operater.DelJavascript(strCollection);
             if (string.IsNullOrEmpty(result))
             {
                 var strNodeData = RuntimeMongoDbContext.SelectTagData;

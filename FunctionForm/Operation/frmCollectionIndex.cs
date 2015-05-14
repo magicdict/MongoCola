@@ -7,8 +7,8 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoGUICtl;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using ResourceLib.Method;
 using ResourceLib.UI;
 
@@ -110,7 +110,7 @@ namespace FunctionForm.Operation
             }
             foreach (ListViewItem item in lstIndex.CheckedItems)
             {
-                OperationHelper.DropMongoIndex(item.SubItems[0].Text, RuntimeMongoDbContext.GetCurrentCollection());
+                Operater.DropMongoIndex(item.SubItems[0].Text, RuntimeMongoDbContext.GetCurrentCollection());
             }
             RefreshList();
         }
@@ -210,7 +210,7 @@ namespace FunctionForm.Operation
                     }
                     else
                     {
-                        OperationHelper.CreateMongoIndex(ascendingKey.ToArray(), descendingKey.ToArray(), geoSpatialKey,
+                        Operater.CreateMongoIndex(ascendingKey.ToArray(), descendingKey.ToArray(), geoSpatialKey,
                             option, RuntimeMongoDbContext.GetCurrentCollection());
                     }
                     MyMessageBox.ShowMessage("Index Add Completed!",

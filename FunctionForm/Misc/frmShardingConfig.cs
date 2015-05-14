@@ -5,8 +5,8 @@ using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
@@ -52,7 +52,7 @@ namespace FunctionForm.Misc
                     cmbShardKeyDB.Items.Add(item.GetValue(ConstMgr.KeyId));
                 }
             }
-            foreach (var lst in OperationHelper.GetShardInfo(_prmSvr, ConstMgr.KeyId))
+            foreach (var lst in Operater.GetShardInfo(_prmSvr, ConstMgr.KeyId))
             {
                 lstSharding.Items.Add(lst.Value);
             }
@@ -143,7 +143,7 @@ namespace FunctionForm.Misc
             MyMessageBox.ShowMessage("Add Sharding", "Result:" + (result.Ok ? "OK" : "Fail"),
                 MongoHelper.ConvertCommandResultlstToString(resultlst));
             lstSharding.Items.Clear();
-            foreach (var lst in OperationHelper.GetShardInfo(_prmSvr, "_id"))
+            foreach (var lst in Operater.GetShardInfo(_prmSvr, "_id"))
             {
                 lstSharding.Items.Add(lst.Value);
             }
@@ -288,7 +288,7 @@ namespace FunctionForm.Misc
                     MongoHelper.ConvertCommandResultlstToString(resultlst));
             }
             lstSharding.Items.Clear();
-            foreach (var lst in OperationHelper.GetShardInfo(_prmSvr, "_id"))
+            foreach (var lst in Operater.GetShardInfo(_prmSvr, "_id"))
             {
                 lstSharding.Items.Add(lst.Value);
             }

@@ -12,7 +12,7 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
-using MongoUtility.Extend;
+using MongoUtility.Command;
 using MongoUtility.ToolKit;
 
 namespace MongoUtility.Aggregation
@@ -108,7 +108,7 @@ namespace MongoUtility.Aggregation
             {
                 var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
                 var dataList = strNodeData.Split("/".ToCharArray());
-                return OperationHelper.IsSystemCollection(dataList[(int) EnumMgr.PathLevel.Database],
+                return Operater.IsSystemCollection(dataList[(int)EnumMgr.PathLevel.Database],
                     dataList[(int) EnumMgr.PathLevel.Collection]);
             }
         }

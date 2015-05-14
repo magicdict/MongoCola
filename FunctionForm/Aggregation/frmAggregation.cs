@@ -6,8 +6,8 @@ using Common;
 using FunctionForm.Operation;
 using MongoDB.Bson;
 using MongoGUICtl.ClientTree;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using MongoUtility.ToolKit;
 using ResourceLib.UI;
 
@@ -63,7 +63,7 @@ namespace FunctionForm.Aggregation
             {
                 _aggrArray =
                     (BsonArray)
-                        BsonDocument.Parse(OperationHelper.LoadJavascript(cmbForAggregatePipeline.Text,
+                        BsonDocument.Parse(Operater.LoadJavascript(cmbForAggregatePipeline.Text,
                             RuntimeMongoDbContext.GetCurrentCollection())).GetValue(0);
                 FillAggreationTreeview();
             };
@@ -137,7 +137,7 @@ namespace FunctionForm.Aggregation
                 return;
             var strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：",
                 "Save Aggregate Pipeline");
-            OperationHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _aggrArray).ToString());
+            Operater.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _aggrArray).ToString());
         }
 
         /// <summary>

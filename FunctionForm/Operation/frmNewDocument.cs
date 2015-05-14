@@ -3,8 +3,8 @@ using System.Windows.Forms;
 using Common;
 using MongoDB.Bson;
 using MongoGUICtl.ClientTree;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 
@@ -44,7 +44,7 @@ namespace FunctionForm.Operation
             {
                 try
                 {
-                    OperationHelper.InsertEmptyDocument(RuntimeMongoDbContext.GetCurrentCollection(), true);
+                    Operater.InsertEmptyDocument(RuntimeMongoDbContext.GetCurrentCollection(), true);
                     Close();
                 }
                 catch (Exception ex)

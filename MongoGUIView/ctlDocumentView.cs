@@ -6,8 +6,8 @@ using MongoDB.Driver.Builders;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using ResourceLib.Method;
 using ResourceLib.UI;
 
@@ -120,7 +120,7 @@ namespace MongoGUIView
         private void trvData_AfterSelect_NotTop()
         {
             //非顶层可以删除的节点
-            if (!OperationHelper.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()) &&
+            if (!Operater.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()) &&
                 !MDataViewInfo.IsReadOnly &&
                 !RuntimeMongoDbContext.GetCurrentCollection().IsCapped())
             {
@@ -234,7 +234,7 @@ namespace MongoGUIView
                 //顶层可以删除的节点
                 if (!MDataViewInfo.IsReadOnly)
                 {
-                    if (!OperationHelper.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()) &&
+                    if (!Operater.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()) &&
                         !RuntimeMongoDbContext.GetCurrentCollection().IsCapped())
                     {
                         //普通数据
@@ -372,7 +372,7 @@ namespace MongoGUIView
                         if (item.Tag != null)
                             //if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
                         {
-                            var result = OperationHelper.DropDocument(RuntimeMongoDbContext.GetCurrentCollection(),
+                            var result = Operater.DropDocument(RuntimeMongoDbContext.GetCurrentCollection(),
                                 item.Tag);
                             if (!string.IsNullOrEmpty(result))
                             {
@@ -391,7 +391,7 @@ namespace MongoGUIView
                         //if (trvData.DatatreeView.SelectedNode.Tag != null &&
                         //    ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
                     {
-                        var result = OperationHelper.DropDocument(RuntimeMongoDbContext.GetCurrentCollection(),
+                        var result = Operater.DropDocument(RuntimeMongoDbContext.GetCurrentCollection(),
                             trvData.DatatreeView.SelectedNode.Tag);
                         if (!string.IsNullOrEmpty(result))
                         {

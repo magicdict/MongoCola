@@ -6,7 +6,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUIView;
 using MongoUtility.Basic;
-using MongoUtility.Extend;
+using MongoUtility.Command;
 using MongoUtility.ToolKit;
 
 namespace PlugInPackage.ExportToExcel
@@ -77,7 +77,7 @@ namespace PlugInPackage.ExportToExcel
             foreach (var docItem in dataList)
             {
                 colCount = 1;
-                var isSystem = OperationHelper.IsSystemCollection(_processCollection);
+                var isSystem = Operater.IsSystemCollection(_processCollection);
                 if (!isSystem)
                 {
                     BsonElement id;

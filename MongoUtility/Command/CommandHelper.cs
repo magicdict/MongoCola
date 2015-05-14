@@ -9,7 +9,7 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.EventArgs;
 
-namespace MongoUtility.Extend
+namespace MongoUtility.Command
 {
     /// 注意，有些db.XXXX(xxx) 这样的函数需要 mongoDb.Eval方法才能做
     /// 有些RepairDatabase 这样的函数可以简单的执行

@@ -9,8 +9,8 @@
 
 using System.Windows.Forms;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using MongoUtility.Security;
 using PlugInPackage;
 using ResourceLib.Method;
@@ -256,7 +256,7 @@ namespace MongoCola
                     RuntimeMongoDbContext.SelectTagData;
             }
             //系统库不允许修改
-            if (!OperationHelper.IsSystemDataBase(RuntimeMongoDbContext.GetCurrentDataBaseName()))
+            if (!Operater.IsSystemDataBase(RuntimeMongoDbContext.GetCurrentDataBaseName()))
             {
                 if (RuntimeMongoDbContext.CurrentMongoConnectionconfig.AuthMode)
                 {
@@ -375,7 +375,7 @@ namespace MongoCola
                     RuntimeMongoDbContext.SelectTagData;
             }
             //解禁 删除数据集
-            if (!OperationHelper.IsSystemCollection())
+            if (!Operater.IsSystemCollection())
             {
                 //系统数据库无法删除！！
                 if (!RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
@@ -389,7 +389,7 @@ namespace MongoCola
                 ImportCollectionToolStripMenuItem.Enabled = true;
                 CompactToolStripMenuItem.Enabled = true;
             }
-            if (!OperationHelper.IsSystemCollection() &&
+            if (!Operater.IsSystemCollection() &&
                 !RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
             {
                 IndexManageToolStripMenuItem.Enabled = true;

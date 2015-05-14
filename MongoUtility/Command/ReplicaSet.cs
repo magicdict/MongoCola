@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using MongoDB.Driver;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 
-namespace MongoUtility.Extend
+namespace MongoUtility.Command
 {
-    public static class Operater
+    public static partial class Operater
     {
         public static bool InitReplicaSet(string replSetName, ref string strMessage)
         {
@@ -31,7 +34,10 @@ namespace MongoUtility.Extend
             strMessage = result.ErrorMessage;
             return false;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newConfig"></param>
         public static void ReplicaSet(MongoConnectionConfig newConfig)
         {
             MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
@@ -42,11 +48,23 @@ namespace MongoUtility.Extend
                 RuntimeMongoDbContext.CreateMongoServer(ref newConfig));
         }
 
-        public static bool IsDatabaseNameValid(string strDbName, out string errMessage)
+        /// <summary>
+        ///     获得Shard情报
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetShardInfo(MongoServer server, string key)
         {
-            return RuntimeMongoDbContext.GetCurrentServer().IsDatabaseNameValid(strDbName, out errMessage);
+            var shardInfo = new Dictionary<string, string>();
+            if (!server.DatabaseExists(ConstMgr.DatabaseNameConfig)) return shardInfo;
+            var configdb = server.GetDatabase(ConstMgr.DatabaseNameConfig);
+            if (!configdb.CollectionExists("shards")) return shardInfo;
+            foreach (var item in configdb.GetCollection("shards").FindAll().ToList())
+            {
+                shardInfo.Add(item.GetElement(ConstMgr.KeyId).Value.ToString(),
+                    item.GetElement(key).Value.ToString());
+            }
+            return shardInfo;
         }
-
         /// <summary>
         /// </summary>
         public static void ResyncCommand()
@@ -55,20 +73,7 @@ namespace MongoUtility.Extend
         }
 
         /// <summary>
-        /// </summary>
-        public static void RepairDb()
-        {
-            CommandHelper.ExecuteMongoCommand(CommandHelper.RepairDatabaseCommand);
-        }
-
-        /// <summary>
-        /// </summary>
-        public static void ReIndex()
-        {
-            RuntimeMongoDbContext.GetCurrentCollection().ReIndex();
-        }
-
-        /// <summary>
+        /// 
         /// </summary>
         public static void Compact()
         {

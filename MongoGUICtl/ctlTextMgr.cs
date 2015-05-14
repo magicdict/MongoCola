@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using MongoUtility.Extend;
+using MongoUtility.Command;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
@@ -43,7 +43,7 @@ namespace MongoGUICtl
                     cmbJsList.Items.Add(item);
                 }
                 cmbJsList.SelectedIndexChanged +=
-                    (x, y) => { txtContext.Text = OperationHelper.LoadJavascript(cmbJsList.Text, null); };
+                    (x, y) => { txtContext.Text = Operater.LoadJavascript(cmbJsList.Text, null); };
                 if (!GuiConfig.IsUseDefaultLanguage)
                 {
                     cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
@@ -66,7 +66,7 @@ namespace MongoGUICtl
             {
                 var strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]",
                     "Save Javascript");
-                OperationHelper.CreateNewJavascript(strJsName, txtContext.Text);
+                Operater.CreateNewJavascript(strJsName, txtContext.Text);
             }
         }
 

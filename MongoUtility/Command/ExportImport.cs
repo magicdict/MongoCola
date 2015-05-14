@@ -10,7 +10,7 @@ using MongoUtility.Basic;
 using MongoUtility.EventArgs;
 using MongoUtility.ToolKit;
 
-namespace MongoUtility.Extend
+namespace MongoUtility.Command
 {
     public static class ExportImport
     {

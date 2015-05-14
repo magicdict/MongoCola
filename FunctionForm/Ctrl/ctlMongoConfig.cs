@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoUtility.Core;
 
-namespace FunctionForm
+namespace FunctionForm.Ctrl
 {
     public partial class CtlMongoConfig : UserControl
     {

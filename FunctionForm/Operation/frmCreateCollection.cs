@@ -4,8 +4,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using Common;
 using MongoDB.Driver.Builders;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using ResourceLib.Method;
 using ResourceLib.UI;
 
@@ -83,12 +83,12 @@ namespace FunctionForm.Operation
                     option.SetMaxDocuments((long) numMaxDocument.Value);
                     //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                     option.SetAutoIndexId(chkIsAutoIndexId.Checked);
-                    Result = OperationHelper.CreateCollectionWithOptions(StrSvrPathWithTag, txtCollectionName.Text,
+                    Result = Operater.CreateCollectionWithOptions(StrSvrPathWithTag, txtCollectionName.Text,
                         option, RuntimeMongoDbContext.GetCurrentDataBase());
                 }
                 else
                 {
-                    Result = OperationHelper.CreateCollection(StrSvrPathWithTag, txtCollectionName.Text,
+                    Result = Operater.CreateCollection(StrSvrPathWithTag, txtCollectionName.Text,
                         RuntimeMongoDbContext.GetCurrentDataBase());
                 }
                 Close();

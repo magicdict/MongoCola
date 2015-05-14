@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 using FunctionForm;
+using FunctionForm.Ctrl;
 using ResourceLib.UI;
 
 namespace MongoCola.Config
@@ -43,7 +44,7 @@ namespace MongoCola.Config
             this.tabGerneric = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ctlFilePickerMongoBinPath = new ResourceLib.UI.CtlFilePicker();
-            this.ctlMongoConfig1 = new FunctionForm.CtlMongoConfig();
+            this.ctlMongoConfig1 = new CtlMongoConfig();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();

@@ -8,8 +8,8 @@ using MongoGUICtl;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 
@@ -165,7 +165,7 @@ namespace MongoGUIView
         {
             var columnlist = new List<string>();
             //可以让_id 不在第一位，昏过去了,很多逻辑需要调整
-            var isSystem = OperationHelper.IsSystemCollection(string.Empty, collectionName);
+            var isSystem = Operater.IsSystemCollection(string.Empty, collectionName);
             if (!isSystem)
             {
                 columnlist.Add(ConstMgr.KeyId);

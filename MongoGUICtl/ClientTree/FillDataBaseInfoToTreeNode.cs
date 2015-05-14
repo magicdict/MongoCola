@@ -3,8 +3,8 @@ using System.Windows.Forms;
 using Common;
 using MongoDB.Driver;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using ResourceLib.Method;
 
 namespace MongoGUICtl.ClientTree
@@ -106,7 +106,7 @@ namespace MongoGUICtl.ClientTree
                             mongoColNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Err;
                             Utility.ExceptionDeal(ex);
                         }
-                        if (OperationHelper.IsSystemCollection(strDbName, strColName))
+                        if (Operater.IsSystemCollection(strDbName, strColName))
                         {
                             switch (strColName)
                             {

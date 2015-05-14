@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MongoGUIView;
 
-namespace MongoCola
+namespace MongoGUIView
 {
     /// <summary>
     ///     多文档视图管理

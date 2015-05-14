@@ -1,14 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MongoGUIView;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Extend;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 
-namespace MongoGUICtl
+namespace MongoGUIView
 {
     public partial class CtlJsEditor : MultiTabControl
     {
@@ -35,7 +34,7 @@ namespace MongoGUICtl
             SaveStripButton.Image = Resources.save.ToBitmap();
             if (JsName != null && JsName != string.Empty)
             {
-                txtJavaScript.Text = OperationHelper.LoadJavascript(JsName, null);
+                txtJavaScript.Text = Operater.LoadJavascript(JsName, null);
                 txtJavaScript.Select(0, 0);
             }
             txtJavaScript.GotFocus += (x, y) => { RuntimeMongoDbContext.SelectObjectTag = StrDBtag; };
@@ -69,7 +68,7 @@ namespace MongoGUICtl
         {
             if (JsName != null && JsName != string.Empty)
             {
-                OperationHelper.SaveEditorJavascript(JsName, txtJavaScript.Text, null);
+                Operater.SaveEditorJavascript(JsName, txtJavaScript.Text, null);
             }
             else
             {

@@ -1,9 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace FunctionForm
+namespace FunctionForm.Ctrl
 {
     partial class CtlMongoConfig
     {
