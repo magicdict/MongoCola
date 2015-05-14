@@ -11,6 +11,7 @@ using System;
 using Common;
 using MongoUtility.Core;
 using MongoGUIView;
+using FunctionForm.Status;
 
 namespace MongoCola.Config
 {
@@ -79,6 +80,7 @@ namespace MongoCola.Config
             Utility.SaveObjAsXml(AppPath + SystemConfigFilename, this);
             MongoGUICtl.CtlTreeViewColumns.IsUTC = IsUTC;
             ViewHelper.IsUTC = IsUTC;
+            FrmServerMonitor.RefreshInterval = RefreshStatusTimer;
         }
 
         /// <summary>
@@ -90,6 +92,7 @@ namespace MongoCola.Config
             SystemManager.SystemConfig = Utility.LoadObjFromXml<SystemConfig>(AppPath + SystemConfigFilename);
             MongoGUICtl.CtlTreeViewColumns.IsUTC = SystemManager.SystemConfig.IsUTC;
             ViewHelper.IsUTC = SystemManager.SystemConfig.IsUTC;
+            FrmServerMonitor.RefreshInterval = SystemManager.SystemConfig.RefreshStatusTimer;
         }
         #endregion
     }

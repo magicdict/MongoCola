@@ -41,22 +41,22 @@ namespace MongoCola.Config
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGerneric = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radLocal = new System.Windows.Forms.RadioButton();
+            this.radUTC = new System.Windows.Forms.RadioButton();
             this.ctlFilePickerMongoBinPath = new ResourceLib.UI.CtlFilePicker();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this._ctlReadWriteConfig1 = new FunctionForm.Ctrl.CtlReadWriteConfig();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radUTC = new System.Windows.Forms.RadioButton();
-            this.radLocal = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(410, 77);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(252, 78);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -81,17 +81,17 @@ namespace MongoCola.Config
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(259, 79);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(34, 80);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
-            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(135, 15);
+            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(180, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
-            this.lblRefreshIntervalForStatus.Tag = "OptionRefreshInterval";
-            this.lblRefreshIntervalForStatus.Text = "Refresh Interval（sec）";
+            this.lblRefreshIntervalForStatus.Tag = "";
+            this.lblRefreshIntervalForStatus.Text = "Monitor Refresh Interval（sec）";
             // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(353, 240);
+            this.cmdCancel.Location = new System.Drawing.Point(557, 240);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 35);
             this.cmdCancel.TabIndex = 5;
@@ -103,7 +103,7 @@ namespace MongoCola.Config
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(125, 240);
+            this.cmdOK.Location = new System.Drawing.Point(464, 240);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 35);
             this.cmdOK.TabIndex = 4;
@@ -116,17 +116,17 @@ namespace MongoCola.Config
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Location = new System.Drawing.Point(30, 79);
+            this.lblLanguage.Location = new System.Drawing.Point(281, 33);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(63, 15);
             this.lblLanguage.TabIndex = 16;
-            this.lblLanguage.Tag = "OptionLanguage";
+            this.lblLanguage.Tag = "";
             this.lblLanguage.Text = "Language";
             // 
             // cmbLanguage
             // 
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(99, 76);
+            this.cmbLanguage.Location = new System.Drawing.Point(350, 30);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(140, 23);
             this.cmbLanguage.TabIndex = 3;
@@ -156,6 +156,39 @@ namespace MongoCola.Config
             this.tabGerneric.TabIndex = 1;
             this.tabGerneric.Text = "Gerneric";
             this.tabGerneric.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radLocal);
+            this.groupBox1.Controls.Add(this.radUTC);
+            this.groupBox1.Location = new System.Drawing.Point(33, 22);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 48);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "DateTime";
+            // 
+            // radLocal
+            // 
+            this.radLocal.AutoSize = true;
+            this.radLocal.Location = new System.Drawing.Point(101, 20);
+            this.radLocal.Name = "radLocal";
+            this.radLocal.Size = new System.Drawing.Size(55, 19);
+            this.radLocal.TabIndex = 1;
+            this.radLocal.Text = "Local";
+            this.radLocal.UseVisualStyleBackColor = true;
+            // 
+            // radUTC
+            // 
+            this.radUTC.AutoSize = true;
+            this.radUTC.Checked = true;
+            this.radUTC.Location = new System.Drawing.Point(24, 21);
+            this.radUTC.Name = "radUTC";
+            this.radUTC.Size = new System.Drawing.Size(49, 19);
+            this.radUTC.TabIndex = 0;
+            this.radUTC.TabStop = true;
+            this.radUTC.Text = "UTC";
+            this.radUTC.UseVisualStyleBackColor = true;
             // 
             // ctlFilePickerMongoBinPath
             // 
@@ -192,43 +225,9 @@ namespace MongoCola.Config
             this._ctlReadWriteConfig1.Size = new System.Drawing.Size(621, 184);
             this._ctlReadWriteConfig1.TabIndex = 0;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radLocal);
-            this.groupBox1.Controls.Add(this.radUTC);
-            this.groupBox1.Location = new System.Drawing.Point(33, 22);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 48);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DateTime";
-            // 
-            // radUTC
-            // 
-            this.radUTC.AutoSize = true;
-            this.radUTC.Checked = true;
-            this.radUTC.Location = new System.Drawing.Point(24, 21);
-            this.radUTC.Name = "radUTC";
-            this.radUTC.Size = new System.Drawing.Size(49, 19);
-            this.radUTC.TabIndex = 0;
-            this.radUTC.TabStop = true;
-            this.radUTC.Text = "UTC";
-            this.radUTC.UseVisualStyleBackColor = true;
-            // 
-            // radLocal
-            // 
-            this.radLocal.AutoSize = true;
-            this.radLocal.Location = new System.Drawing.Point(101, 20);
-            this.radLocal.Name = "radLocal";
-            this.radLocal.Size = new System.Drawing.Size(55, 19);
-            this.radLocal.TabIndex = 1;
-            this.radLocal.Text = "Local";
-            this.radLocal.UseVisualStyleBackColor = true;
-            // 
             // FrmOption
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(659, 287);
             this.Controls.Add(this.tabControl1);
@@ -247,9 +246,9 @@ namespace MongoCola.Config
             this.tabControl1.ResumeLayout(false);
             this.tabGerneric.ResumeLayout(false);
             this.tabGerneric.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

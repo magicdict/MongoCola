@@ -11,7 +11,12 @@ namespace FunctionForm.Status
 {
     public partial class FrmServerMonitor : Form
     {
-        private Timer _m;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static int RefreshInterval { set; get; }
+
+        private Timer mTime;
 
         public FrmServerMonitor()
         {
@@ -22,8 +27,8 @@ namespace FunctionForm.Status
         private void frmServerMonitor_Load(object sender, EventArgs e)
         {
             Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
-            _m = new Timer {Interval = 3000};
-            _m.Tick += M_Tick;
+            mTime = new Timer { Interval = RefreshInterval * 1000 };
+            mTime.Tick += M_Tick;
             var querySeries = new Series("Query")
             {
                 ChartType = SeriesChartType.Line,
@@ -39,8 +44,8 @@ namespace FunctionForm.Status
                 YValueType = ChartValueType.Int32
             };
             MonitorGrap.Series.Add(insertSeries);
-            FormClosing += (x, y) => _m.Stop();
-            _m.Start();
+            FormClosing += (x, y) => mTime.Stop();
+            mTime.Start();
         }
 
         private void M_Tick(object sender, EventArgs e)
@@ -62,7 +67,7 @@ namespace FunctionForm.Status
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            _m.Stop();
+            mTime.Stop();
             Close();
         }
     }
