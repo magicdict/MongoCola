@@ -159,7 +159,7 @@ namespace MongoCola
                 //选中节点的设置
                 trvsrvlst.SelectedNode = e.Node;
                 var strNodeType = TagInfo.GetTagType(e.Node.Tag.ToString());
-                var mongoSvrKey = TagInfo.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
+                var mongoSvrKey = TagInfo.GetTagPath(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
                 RuntimeMongoDbContext.CurrentMongoConnectionconfig =
                     MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey];
                 if (string.IsNullOrEmpty(RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName))
@@ -454,7 +454,7 @@ namespace MongoCola
         private void ViewJavascript()
         {
             var tagArray = RuntimeMongoDbContext.SelectTagData.Split("/".ToCharArray());
-            var jsName = tagArray[(int) EnumMgr.PathLv.DocumentLv];
+            var jsName = tagArray[(int) EnumMgr.PathLevel.Document];
             if (MultiTabManger.IsExist(RuntimeMongoDbContext.SelectTagData))
             {
                 MultiTabManger.SelectTab(RuntimeMongoDbContext.SelectTagData);

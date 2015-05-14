@@ -44,32 +44,32 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     路径阶层[考虑到以后可能阶层会变换]
         /// </summary>
-        public enum PathLv
+        public enum PathLevel
         {
             /// <summary>
             ///     连接/服务器
             /// </summary>
-            ConnectionLv = 0,
+            Connection = 0,
 
             /// <summary>
             ///     具体的实例
             /// </summary>
-            InstanceLv = 1,
+            Instance = 1,
 
             /// <summary>
             ///     数据库
             /// </summary>
-            DatabaseLv = 2,
+            Database = 2,
 
             /// <summary>
             ///     数据集
             /// </summary>
-            CollectionLv = 3,
+            Collection = 3,
 
             /// <summary>
             ///     数据文档
             /// </summary>
-            DocumentLv = 4
+            Document = 4
         }
 
         /// <summary>

@@ -21,6 +21,6 @@ namespace MongoUtility.EventArgs
         /// <summary>
         ///     Path Level
         /// </summary>
-        public EnumMgr.PathLv RunLevel;
+        public EnumMgr.PathLevel RunLevel;
     }
 }

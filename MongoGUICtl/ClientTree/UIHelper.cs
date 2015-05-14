@@ -172,7 +172,7 @@ namespace MongoGUICtl.ClientTree
                     var singleConnection = GetInstanceNode(mongoConnKey, ref config, mongoClient);
                     connectionNode.Nodes.Add(singleConnection);
                     config.ServerRole = MongoConnectionConfig.SvrRoleType.DataSvr;
-                    connectionNode.Tag = ConstMgr.ConnectionTag + ":" + config.ConnectionName;
+                    connectionNode.Tag = TagInfo.CreateTagInfo(config.ConnectionName);
                     //设定是否可用
                     config.Health = true;
                     mongoConConfigLst[mongoConnKey] = config;

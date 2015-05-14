@@ -106,7 +106,7 @@ namespace MongoUtility.Extend
         {
             var mongoSvr = RuntimeMongoDbContext.GetCurrentServer();
             var rtnResult = string.Empty;
-            TagInfo.GetTagData(strObjTag);
+            TagInfo.GetTagPath(strObjTag);
             if (mongoSvr == null) return rtnResult;
             switch (func)
             {

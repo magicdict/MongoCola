@@ -7,6 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using ResourceLib.Method;
+using MongoUtility.Core;
 
 namespace MongoGUICtl.ClientTree
 {
@@ -235,12 +236,8 @@ namespace MongoGUICtl.ClientTree
                     mongoColNode.Tag = ConstMgr.UserListTag + ":" + mongoConnSvrKey + "/" + databaseName + "/" +
                                        col.CollectionNamespace.CollectionName;
                     break;
-                //case COLLECTION_NAME_ROLE:
-                //    mongoColNode.Tag = USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + DatabaseName + "/" + strColName;
-                //    break;
                 default:
-                    mongoColNode.Tag = ConstMgr.CollectionTag + ":" + mongoConnSvrKey + "/" + databaseName + "/" +
-                                       col.CollectionNamespace.CollectionName;
+                    mongoColNode.Tag = TagInfo.CreateTagInfo(mongoConnSvrKey,databaseName,col.CollectionNamespace.CollectionName);
                     break;
             }
 

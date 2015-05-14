@@ -70,7 +70,7 @@ namespace MongoCola
             if (RuntimeMongoDbContext.SelectTagType == ConstMgr.ConnectionExceptionTag) return;
             //关闭相关的Tab
             var connectionTag = trvsrvlst.SelectedNode.Tag.ToString();
-            MultiTabManger.SelectObjectTagPrefixDeleted(ConstMgr.CollectionTag + ":" + TagInfo.GetTagData(connectionTag));
+            MultiTabManger.SelectObjectTagPrefixDeleted(ConstMgr.CollectionTag + ":" + TagInfo.GetTagPath(connectionTag));
             RuntimeMongoDbContext.RemoveConnectionConfig(
                 RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName);
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
@@ -372,8 +372,8 @@ namespace MongoCola
                     GuiConfig.GetText(TextType.DropDataBaseConfirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
-            var strTagPrefix = ConstMgr.CollectionTag + ":" + TagInfo.GetTagData(RuntimeMongoDbContext.SelectTagData);
-            var strDbName = strTagPrefix.Split("/".ToCharArray())[(int) EnumMgr.PathLv.DatabaseLv];
+            var strTagPrefix = ConstMgr.CollectionTag + ":" + TagInfo.GetTagPath(RuntimeMongoDbContext.SelectTagData);
+            var strDbName = strTagPrefix.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Database];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
@@ -604,7 +604,7 @@ namespace MongoCola
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Collection];
             var result = OperationHelper.DelJavascript(strCollection);
             if (string.IsNullOrEmpty(result))
             {

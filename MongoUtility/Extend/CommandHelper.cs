@@ -29,7 +29,7 @@ namespace MongoUtility.Extend
         ///     修复数据库
         ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
         /// </summary>
-        public static MongoCommand RepairDatabaseCommand = new MongoCommand("repairDatabase", EnumMgr.PathLv.DatabaseLv);
+        public static MongoCommand RepairDatabaseCommand = new MongoCommand("repairDatabase", EnumMgr.PathLevel.Database);
 
         #endregion
 
@@ -61,7 +61,7 @@ namespace MongoUtility.Extend
             {
                 switch (mMongoCommand.RunLevel)
                 {
-                    case EnumMgr.PathLv.CollectionLv:
+                    case EnumMgr.PathLevel.Collection:
                         if (string.IsNullOrEmpty(mMongoCommand.CommandString))
                         {
                             mCommandResult = ExecuteMongoColCommand(mMongoCommand.CmdDocument,
@@ -73,11 +73,11 @@ namespace MongoUtility.Extend
                                 RuntimeMongoDbContext.GetCurrentCollection());
                         }
                         break;
-                    case EnumMgr.PathLv.DatabaseLv:
+                    case EnumMgr.PathLevel.Database:
                         mCommandResult = ExecuteMongoDBCommand(mMongoCommand.CmdDocument,
                             RuntimeMongoDbContext.GetCurrentDataBase());
                         break;
-                    case EnumMgr.PathLv.InstanceLv:
+                    case EnumMgr.PathLevel.Instance:
                         mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.CmdDocument,
                             RuntimeMongoDbContext.GetCurrentServer());
                         break;
@@ -122,7 +122,7 @@ namespace MongoUtility.Extend
             var e = new RunCommandEventArgs
             {
                 CommandString = commandString,
-                RunLevel = EnumMgr.PathLv.CollectionLv,
+                RunLevel = EnumMgr.PathLevel.Collection,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -151,7 +151,7 @@ namespace MongoUtility.Extend
             var e = new RunCommandEventArgs
             {
                 CommandString = executeCommand.ToString(),
-                RunLevel = EnumMgr.PathLv.CollectionLv,
+                RunLevel = EnumMgr.PathLevel.Collection,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -178,7 +178,7 @@ namespace MongoUtility.Extend
             var e = new RunCommandEventArgs
             {
                 CommandString = cmdDoc.GetElement(0).Value.ToString(),
-                RunLevel = EnumMgr.PathLv.DatabaseLv,
+                RunLevel = EnumMgr.PathLevel.Database,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -205,7 +205,7 @@ namespace MongoUtility.Extend
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd,
-                RunLevel = EnumMgr.PathLv.DatabaseLv,
+                RunLevel = EnumMgr.PathLevel.Database,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -232,7 +232,7 @@ namespace MongoUtility.Extend
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd.ToString(),
-                RunLevel = EnumMgr.PathLv.DatabaseLv,
+                RunLevel = EnumMgr.PathLevel.Database,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -256,7 +256,7 @@ namespace MongoUtility.Extend
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd.ToString(),
-                RunLevel = EnumMgr.PathLv.DatabaseLv,
+                RunLevel = EnumMgr.PathLevel.Database,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -272,7 +272,7 @@ namespace MongoUtility.Extend
         public static CommandResult ExecuteMongoDBCommand(MongoCommand mMongoCommand, MongoDatabase mongoDb)
         {
             var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
-            if (mMongoCommand.RunLevel == EnumMgr.PathLv.DatabaseLv)
+            if (mMongoCommand.RunLevel == EnumMgr.PathLevel.Database)
             {
                 return ExecuteMongoDBCommand(command, mongoDb);
             }
@@ -299,7 +299,7 @@ namespace MongoUtility.Extend
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd,
-                RunLevel = EnumMgr.PathLv.InstanceLv,
+                RunLevel = EnumMgr.PathLevel.Instance,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -326,7 +326,7 @@ namespace MongoUtility.Extend
             var e = new RunCommandEventArgs
             {
                 CommandString = mCommandDocument.ToString(),
-                RunLevel = EnumMgr.PathLv.InstanceLv,
+                RunLevel = EnumMgr.PathLevel.Instance,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -342,7 +342,7 @@ namespace MongoUtility.Extend
         public static CommandResult ExecuteMongoSvrCommand(MongoCommand mMongoCommand, MongoServer mongosrv)
         {
             var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
-            if (mMongoCommand.RunLevel == EnumMgr.PathLv.DatabaseLv)
+            if (mMongoCommand.RunLevel == EnumMgr.PathLevel.Database)
             {
                 throw new Exception();
             }
@@ -366,14 +366,14 @@ namespace MongoUtility.Extend
             /// <summary>
             ///     对象等级
             /// </summary>
-            public EnumMgr.PathLv RunLevel;
+            public EnumMgr.PathLevel RunLevel;
 
             /// <summary>
             ///     初始化
             /// </summary>
             /// <param name="commandString"></param>
             /// <param name="runLevel"></param>
-            public MongoCommand(string commandString, EnumMgr.PathLv runLevel)
+            public MongoCommand(string commandString, EnumMgr.PathLevel runLevel)
             {
                 CommandString = commandString;
                 RunLevel = runLevel;
@@ -385,7 +385,7 @@ namespace MongoUtility.Extend
             /// </summary>
             /// <param name="commandDocument"></param>
             /// <param name="runLevel"></param>
-            public MongoCommand(CommandDocument commandDocument, EnumMgr.PathLv runLevel)
+            public MongoCommand(CommandDocument commandDocument, EnumMgr.PathLevel runLevel)
             {
                 CmdDocument = commandDocument;
                 RunLevel = runLevel;
@@ -447,7 +447,7 @@ namespace MongoUtility.Extend
         ///     Compact
         /// </summary>
         /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command" />
-        public static MongoCommand CompactCommand = new MongoCommand("compact", EnumMgr.PathLv.CollectionLv);
+        public static MongoCommand CompactCommand = new MongoCommand("compact", EnumMgr.PathLevel.Collection);
 
         /// <summary>
         ///     执行聚合
@@ -465,7 +465,7 @@ namespace MongoUtility.Extend
                     new BsonElement("aggregate", new BsonString(collectionName)),
                     new BsonElement("pipeline", aggregateDoc)
                 };
-                var aggregateCommand = new MongoCommand(agg, EnumMgr.PathLv.DatabaseLv);
+                var aggregateCommand = new MongoCommand(agg, EnumMgr.PathLevel.Database);
                 return ExecuteMongoCommand(aggregateCommand);
             }
             catch (Exception ex)
@@ -497,20 +497,20 @@ namespace MongoUtility.Extend
         ///     服务器状态
         ///     http://www.mongodb.org/display/DOCS/serverStatus+Command
         /// </summary>
-        public static MongoCommand ServerStatusCommand = new MongoCommand("serverStatus", EnumMgr.PathLv.InstanceLv);
+        public static MongoCommand ServerStatusCommand = new MongoCommand("serverStatus", EnumMgr.PathLevel.Instance);
 
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// <summary>
         ///     副本状态
         /// </summary>
         public static MongoCommand ReplSetGetStatusCommand = new MongoCommand("replSetGetStatus",
-            EnumMgr.PathLv.InstanceLv);
+            EnumMgr.PathLevel.Instance);
 
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// <summary>
         ///     Slave强制同步
         /// </summary>
-        public static MongoCommand ResyncCommand = new MongoCommand("resync", EnumMgr.PathLv.InstanceLv);
+        public static MongoCommand ResyncCommand = new MongoCommand("resync", EnumMgr.PathLevel.Instance);
 
         /// <summary>
         ///     增加服务器

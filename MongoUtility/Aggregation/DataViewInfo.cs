@@ -91,7 +91,7 @@ namespace MongoUtility.Aggregation
             {
                 var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
                 var dataList = strNodeData.Split("/".ToCharArray());
-                if (dataList[(int) EnumMgr.PathLv.DatabaseLv] == ConstMgr.DatabaseNameAdmin)
+                if (dataList[(int) EnumMgr.PathLevel.Database] == ConstMgr.DatabaseNameAdmin)
                 {
                     return true;
                 }
@@ -108,8 +108,8 @@ namespace MongoUtility.Aggregation
             {
                 var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
                 var dataList = strNodeData.Split("/".ToCharArray());
-                return OperationHelper.IsSystemCollection(dataList[(int) EnumMgr.PathLv.DatabaseLv],
-                    dataList[(int) EnumMgr.PathLv.CollectionLv]);
+                return OperationHelper.IsSystemCollection(dataList[(int) EnumMgr.PathLevel.Database],
+                    dataList[(int) EnumMgr.PathLevel.Collection]);
             }
         }
 
@@ -123,8 +123,8 @@ namespace MongoUtility.Aggregation
             var collectionPath = currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[1];
             var cp = collectionPath.Split("/".ToCharArray());
             MongoCollection mongoCol =
-                mServer.GetDatabase(cp[(int) EnumMgr.PathLv.DatabaseLv])
-                    .GetCollection(cp[(int) EnumMgr.PathLv.CollectionLv]);
+                mServer.GetDatabase(cp[(int) EnumMgr.PathLevel.Database])
+                    .GetCollection(cp[(int) EnumMgr.PathLevel.Collection]);
 
 
             MongoCursor<BsonDocument> cursor;

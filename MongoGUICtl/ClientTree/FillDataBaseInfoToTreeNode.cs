@@ -43,8 +43,7 @@ namespace MongoGUICtl.ClientTree
                 }
             }
             var mongoDbNode = new TreeNode(strShowDbName);
-            mongoDbNode.Tag = ConstMgr.DatabaseTag + ":" + mongoSvrKey + "/" + strDbName;
-            //var mongoDB = mongoSvr.GetDatabase(strDBName);
+            mongoDbNode.Tag = TagInfo.CreateTagInfo(mongoSvrKey,strDbName);
 
             var userNode = new TreeNode("User", (int) GetSystemIcon.MainTreeImageType.UserIcon,
                 (int) GetSystemIcon.MainTreeImageType.UserIcon);
