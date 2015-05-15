@@ -171,7 +171,7 @@ namespace FunctionForm.Operation
         private void RefreshList()
         {
             lstIndex.Items.Clear();
-            foreach (var item in _mongoCollection.GetIndexes())
+            foreach (var item in RuntimeMongoDbContext.GetCurrentCollection().GetIndexes())
             {
                 var listItem = new ListViewItem(item.Name);
                 listItem.SubItems.Add(item.Version.ToString(CultureInfo.InvariantCulture));

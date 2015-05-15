@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ResourceLib.Method;
+using MongoDB.Bson;
 
 namespace FunctionForm.User
 {

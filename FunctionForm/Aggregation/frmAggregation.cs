@@ -9,6 +9,7 @@ using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.UI;
+using MongoDB.Bson;
 
 namespace FunctionForm.Aggregation
 {

@@ -7,6 +7,7 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using MongoDB.Driver;
 
 namespace FunctionForm.Connection
 {

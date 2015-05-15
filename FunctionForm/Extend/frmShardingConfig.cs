@@ -8,6 +8,8 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace FunctionForm.Extend
 {

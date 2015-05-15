@@ -52,7 +52,7 @@ namespace FunctionForm.Status
             dialog.Filter = Utility.JsFilter;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MongoHelper.SaveResultToJSonFile(trvResult, Operater.Validate(chkFull.Checked), dialog.FileName);
+                MongoHelper.SaveResultToJSonFile(Operater.Validate(chkFull.Checked), dialog.FileName);
             }
         }
     }
