@@ -46,11 +46,11 @@ namespace FunctionForm.Operation
             this.chkIsSparse = new System.Windows.Forms.CheckBox();
             this.chkIsDroppedDups = new System.Windows.Forms.CheckBox();
             this.chkIsBackground = new System.Windows.Forms.CheckBox();
-            this.ctlIndexCreate5 = new CtlIndexCreate();
-            this.ctlIndexCreate4 = new CtlIndexCreate();
-            this.ctlIndexCreate3 = new CtlIndexCreate();
-            this.ctlIndexCreate2 = new CtlIndexCreate();
-            this.ctlIndexCreate1 = new CtlIndexCreate();
+            this.ctlIndexCreate5 = new MongoGUICtl.CtlIndexCreate();
+            this.ctlIndexCreate4 = new MongoGUICtl.CtlIndexCreate();
+            this.ctlIndexCreate3 = new MongoGUICtl.CtlIndexCreate();
+            this.ctlIndexCreate2 = new MongoGUICtl.CtlIndexCreate();
+            this.ctlIndexCreate1 = new MongoGUICtl.CtlIndexCreate();
             this.tabIndexMgr.SuspendLayout();
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();
@@ -64,6 +64,7 @@ namespace FunctionForm.Operation
             this.cmdAddIndex.Name = "cmdAddIndex";
             this.cmdAddIndex.Size = new System.Drawing.Size(126, 40);
             this.cmdAddIndex.TabIndex = 8;
+            this.cmdAddIndex.Tag = "Common_Add";
             this.cmdAddIndex.Text = "Create Index";
             this.cmdAddIndex.UseVisualStyleBackColor = false;
             this.cmdAddIndex.Click += new System.EventHandler(this.cmdAddIndex_Click);
@@ -75,6 +76,7 @@ namespace FunctionForm.Operation
             this.cmdDelIndex.Name = "cmdDelIndex";
             this.cmdDelIndex.Size = new System.Drawing.Size(132, 40);
             this.cmdDelIndex.TabIndex = 7;
+            this.cmdDelIndex.Tag = "DelIndex";
             this.cmdDelIndex.Text = "Delect Index";
             this.cmdDelIndex.UseVisualStyleBackColor = false;
             this.cmdDelIndex.Click += new System.EventHandler(this.cmdDelIndex_Click);
@@ -108,6 +110,7 @@ namespace FunctionForm.Operation
             this.tabCurrentIndex.Padding = new System.Windows.Forms.Padding(3);
             this.tabCurrentIndex.Size = new System.Drawing.Size(646, 299);
             this.tabCurrentIndex.TabIndex = 0;
+            this.tabCurrentIndex.Tag = "CollectionIndexTabCurrent";
             this.tabCurrentIndex.Text = "Current Index";
             this.tabCurrentIndex.UseVisualStyleBackColor = true;
             // 
@@ -133,6 +136,7 @@ namespace FunctionForm.Operation
             this.tabIndexManager.Padding = new System.Windows.Forms.Padding(3);
             this.tabIndexManager.Size = new System.Drawing.Size(646, 299);
             this.tabIndexManager.TabIndex = 1;
+            this.tabIndexManager.Tag = "CollectionIndexTabManager";
             this.tabIndexManager.Text = "Create Index";
             // 
             // numTTL
@@ -156,6 +160,7 @@ namespace FunctionForm.Operation
             this.chkExpireData.Name = "chkExpireData";
             this.chkExpireData.Size = new System.Drawing.Size(117, 19);
             this.chkExpireData.TabIndex = 20;
+            this.chkExpireData.Tag = "IndexExpireData";
             this.chkExpireData.Text = "Expire Data(sec)";
             this.chkExpireData.UseVisualStyleBackColor = true;
             this.chkExpireData.CheckedChanged += new System.EventHandler(this.chkTTL_CheckedChanged);
@@ -174,6 +179,7 @@ namespace FunctionForm.Operation
             this.lblIndexName.Name = "lblIndexName";
             this.lblIndexName.Size = new System.Drawing.Size(71, 15);
             this.lblIndexName.TabIndex = 18;
+            this.lblIndexName.Tag = "IndexName";
             this.lblIndexName.Text = "IndexName";
             // 
             // chkIsUnique
@@ -183,6 +189,7 @@ namespace FunctionForm.Operation
             this.chkIsUnique.Name = "chkIsUnique";
             this.chkIsUnique.Size = new System.Drawing.Size(99, 19);
             this.chkIsUnique.TabIndex = 16;
+            this.chkIsUnique.Tag = "IndexUnify";
             this.chkIsUnique.Text = "Unique Index";
             this.chkIsUnique.UseVisualStyleBackColor = true;
             // 
@@ -193,6 +200,7 @@ namespace FunctionForm.Operation
             this.chkIsSparse.Name = "chkIsSparse";
             this.chkIsSparse.Size = new System.Drawing.Size(98, 19);
             this.chkIsSparse.TabIndex = 15;
+            this.chkIsSparse.Tag = "IndexSparse";
             this.chkIsSparse.Text = "Sparse Index";
             this.chkIsSparse.UseVisualStyleBackColor = true;
             // 
@@ -203,6 +211,7 @@ namespace FunctionForm.Operation
             this.chkIsDroppedDups.Name = "chkIsDroppedDups";
             this.chkIsDroppedDups.Size = new System.Drawing.Size(136, 19);
             this.chkIsDroppedDups.TabIndex = 14;
+            this.chkIsDroppedDups.Tag = "IndexRepeatDel";
             this.chkIsDroppedDups.Text = "DroppedDups Index";
             this.chkIsDroppedDups.UseVisualStyleBackColor = true;
             // 
@@ -213,6 +222,7 @@ namespace FunctionForm.Operation
             this.chkIsBackground.Name = "chkIsBackground";
             this.chkIsBackground.Size = new System.Drawing.Size(127, 19);
             this.chkIsBackground.TabIndex = 13;
+            this.chkIsBackground.Tag = "IndexBackground";
             this.chkIsBackground.Text = "BackGround Index";
             this.chkIsBackground.UseVisualStyleBackColor = true;
             // 
@@ -256,7 +266,7 @@ namespace FunctionForm.Operation
             this.ctlIndexCreate1.Size = new System.Drawing.Size(592, 37);
             this.ctlIndexCreate1.TabIndex = 13;
             // 
-            // frmCollectionIndex
+            // FrmCollectionIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -269,6 +279,7 @@ namespace FunctionForm.Operation
             this.MinimizeBox = false;
             this.Name = "FrmCollectionIndex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "CollectionIndexTitle";
             this.Text = "Index Management";
             this.Load += new System.EventHandler(this.frmCollectionIndex_Load);
             this.tabIndexMgr.ResumeLayout(false);

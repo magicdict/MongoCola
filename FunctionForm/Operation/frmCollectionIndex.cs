@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Windows.Forms;
-using Common;
-using MongoGUICtl;
+﻿using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace FunctionForm.Operation
 {
@@ -28,44 +27,19 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
+
+            GuiConfig.Translateform(this);
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                Text = GuiConfig.GetText(TextType.CollectionIndexTitle);
-                tabCurrentIndex.Text =
-                    GuiConfig.GetText(TextType.CollectionIndexTabCurrent);
-                cmdDelIndex.Text =
-                    GuiConfig.GetText(
-                        TextType.CollectionIndexTabCurrentDel);
-                tabIndexManager.Text =
-                    GuiConfig.GetText(TextType.CollectionIndexTabManager);
-                cmdAddIndex.Text = GuiConfig.GetText(TextType.CommonAdd);
-
-                chkIsDroppedDups.Text =
-                    GuiConfig.GetText(TextType.IndexRepeatDel);
-                chkIsBackground.Text =
-                    GuiConfig.GetText(TextType.IndexBackground);
-                chkIsSparse.Text = GuiConfig.GetText(TextType.IndexSparse);
-                chkIsUnique.Text = GuiConfig.GetText(TextType.IndexUnify);
-
-                lblIndexName.Text = GuiConfig.GetText(TextType.IndexName);
-                chkExpireData.Text =
-                    GuiConfig.GetText(TextType.IndexExpireData);
-
                 lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexName));
-                lstIndex.Columns.Add(
-                    GuiConfig.GetText(TextType.IndexVersion));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexVersion));
                 lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexKeys));
-                lstIndex.Columns.Add(
-                    GuiConfig.GetText(TextType.IndexNameSpace));
-
-                lstIndex.Columns.Add(
-                    GuiConfig.GetText(TextType.IndexBackground));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexNameSpace));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexBackground));
                 lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexSparse));
                 lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexUnify));
-                lstIndex.Columns.Add(
-                    GuiConfig.GetText(TextType.IndexRepeatDel));
-                lstIndex.Columns.Add(
-                    GuiConfig.GetText(TextType.IndexExpireData));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexRepeatDel));
+                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexExpireData));
             }
             else
             {
@@ -122,7 +96,7 @@ namespace FunctionForm.Operation
             var textKey = string.Empty;
             for (var i = 0; i < 5; i++)
             {
-                var ctl = (CtlIndexCreate) Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
+                var ctl = (CtlIndexCreate)Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
                 if (ctl.KeyName == string.Empty) continue;
                 firstKey = ctl.KeyName.Trim();
                 switch (ctl.IndexKeyType)
@@ -143,24 +117,25 @@ namespace FunctionForm.Operation
                         break;
                 }
             }
-
-            var option = new Operater.IndexOption();
-            option.IsBackground = chkIsBackground.Checked;
-            option.IsDropDups = chkIsDroppedDups.Checked;
-            option.IsSparse = chkIsSparse.Checked;
-            option.IsUnique = chkIsUnique.Checked;
-            option.IsExpireData = chkExpireData.Checked;
-            option.TTL = (int)numTTL.Value;
-            option.ascendingKey = ascendingKey;
-            option.descendingKey = descendingKey;
-            option.geoSpatialKey = geoSpatialKey;
-            option.firstKey = firstKey;
-            option.textKey = textKey;
-            option.IndexName = txtIndexName.Text;
+            //Index UIOption
+            var UIOption = new Operater.IndexOption();
+            UIOption.IsBackground = chkIsBackground.Checked;
+            UIOption.IsDropDups = chkIsDroppedDups.Checked;
+            UIOption.IsSparse = chkIsSparse.Checked;
+            UIOption.IsUnique = chkIsUnique.Checked;
+            UIOption.IsExpireData = chkExpireData.Checked;
+            UIOption.TTL = (int)numTTL.Value;
+            UIOption.ascendingKey = ascendingKey;
+            UIOption.descendingKey = descendingKey;
+            UIOption.geoSpatialKey = geoSpatialKey;
+            UIOption.firstKey = firstKey;
+            UIOption.textKey = textKey;
+            UIOption.IndexName = txtIndexName.Text;
             var strMessageTitle = string.Empty;
             var strMessageContent = string.Empty;
-            if (Operater.CreateIndex(option, ref strMessageTitle, ref strMessageTitle)) { 
-                RefreshList(); 
+            if (Operater.CreateIndex(UIOption, ref strMessageTitle, ref strMessageTitle))
+            {
+                RefreshList();
             }
             MyMessageBox.ShowEasyMessage(strMessageTitle, strMessageContent);
         }

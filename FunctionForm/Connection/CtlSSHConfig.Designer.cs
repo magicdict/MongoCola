@@ -52,7 +52,7 @@ namespace FunctionForm.Connection
             // chkUserSSHTrunel
             // 
             this.chkUserSSHTrunel.AutoSize = true;
-            this.chkUserSSHTrunel.Location = new System.Drawing.Point(3, -1);
+            this.chkUserSSHTrunel.Location = new System.Drawing.Point(27, 18);
             this.chkUserSSHTrunel.Name = "chkUserSSHTrunel";
             this.chkUserSSHTrunel.Size = new System.Drawing.Size(108, 16);
             this.chkUserSSHTrunel.TabIndex = 0;
@@ -61,7 +61,7 @@ namespace FunctionForm.Connection
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(264, 22);
+            this.numPort.Location = new System.Drawing.Point(288, 41);
             this.numPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -76,7 +76,7 @@ namespace FunctionForm.Connection
             // 
             this.lblPort.AutoSize = true;
             this.lblPort.BackColor = System.Drawing.Color.Transparent;
-            this.lblPort.Location = new System.Drawing.Point(216, 27);
+            this.lblPort.Location = new System.Drawing.Point(240, 46);
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(29, 12);
             this.lblPort.TabIndex = 8;
@@ -85,7 +85,7 @@ namespace FunctionForm.Connection
             // 
             // txtHost
             // 
-            this.txtHost.Location = new System.Drawing.Point(83, 21);
+            this.txtHost.Location = new System.Drawing.Point(107, 40);
             this.txtHost.Name = "txtHost";
             this.txtHost.Size = new System.Drawing.Size(119, 21);
             this.txtHost.TabIndex = 5;
@@ -94,7 +94,7 @@ namespace FunctionForm.Connection
             // 
             this.lblHost.AutoSize = true;
             this.lblHost.BackColor = System.Drawing.Color.Transparent;
-            this.lblHost.Location = new System.Drawing.Point(1, 27);
+            this.lblHost.Location = new System.Drawing.Point(25, 46);
             this.lblHost.Name = "lblHost";
             this.lblHost.Size = new System.Drawing.Size(29, 12);
             this.lblHost.TabIndex = 6;
@@ -105,7 +105,7 @@ namespace FunctionForm.Connection
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.BackColor = System.Drawing.Color.Transparent;
-            this.lblUsername.Location = new System.Drawing.Point(409, 24);
+            this.lblUsername.Location = new System.Drawing.Point(433, 43);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(53, 12);
             this.lblUsername.TabIndex = 11;
@@ -116,7 +116,7 @@ namespace FunctionForm.Connection
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Location = new System.Drawing.Point(409, 65);
+            this.lblPassword.Location = new System.Drawing.Point(433, 84);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(53, 12);
             this.lblPassword.TabIndex = 12;
@@ -125,14 +125,14 @@ namespace FunctionForm.Connection
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(475, 21);
+            this.txtUsername.Location = new System.Drawing.Point(499, 40);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(119, 21);
             this.txtUsername.TabIndex = 9;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(475, 62);
+            this.txtPassword.Location = new System.Drawing.Point(499, 81);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(119, 21);
             this.txtPassword.TabIndex = 10;
@@ -142,7 +142,7 @@ namespace FunctionForm.Connection
             // 
             this.grpAuthMethod.Controls.Add(this.radPrivateKey);
             this.grpAuthMethod.Controls.Add(this.radPassword);
-            this.grpAuthMethod.Location = new System.Drawing.Point(3, 62);
+            this.grpAuthMethod.Location = new System.Drawing.Point(27, 81);
             this.grpAuthMethod.Name = "grpAuthMethod";
             this.grpAuthMethod.Size = new System.Drawing.Size(220, 46);
             this.grpAuthMethod.TabIndex = 13;
@@ -178,7 +178,7 @@ namespace FunctionForm.Connection
             this.ctlFilePicker1.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePicker1.FileFilter = "private key file|*.ppk";
             this.ctlFilePicker1.FileName = "";
-            this.ctlFilePicker1.Location = new System.Drawing.Point(3, 114);
+            this.ctlFilePicker1.Location = new System.Drawing.Point(27, 133);
             this.ctlFilePicker1.Name = "ctlFilePicker1";
             this.ctlFilePicker1.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.OpenFile;
             this.ctlFilePicker1.SelectedPathOrFileName = "";
@@ -200,7 +200,7 @@ namespace FunctionForm.Connection
             this.Controls.Add(this.lblHost);
             this.Controls.Add(this.chkUserSSHTrunel);
             this.Name = "CtlSshConfig";
-            this.Size = new System.Drawing.Size(607, 159);
+            this.Size = new System.Drawing.Size(634, 184);
             this.Load += new System.EventHandler(this.CtlSshConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             this.grpAuthMethod.ResumeLayout(false);

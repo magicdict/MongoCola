@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Windows.Forms;
+﻿using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace FunctionForm.Connection
 {
@@ -31,7 +30,11 @@ namespace FunctionForm.Connection
         public FrmConnectionMgr()
         {
             InitializeComponent();
-
+            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
+            {
+                cmbStorageEngine.Items.Add(item);
+                cmbStorageEngine.SelectedIndex = 0;
+            }
         }
 
         /// <summary>
@@ -41,32 +44,21 @@ namespace FunctionForm.Connection
         public FrmConnectionMgr(string connectionName)
         {
             InitializeComponent();
+            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
+            {
+                cmbStorageEngine.Items.Add(item);
+                cmbStorageEngine.SelectedIndex = 0;
+            }
             OldConnectionName = connectionName;
             //Modify Mode
             ModifyConn = MongoConnectionConfig.MongoConfig.ConnectionList[connectionName];
-
-            txtConnectionName.Text = ModifyConn.ConnectionName;
-
-            txtHost.Text = ModifyConn.Host;
-            numPort.Text = ModifyConn.Port.ToString(CultureInfo.InvariantCulture);
-            txtUsername.Text = ModifyConn.UserName;
-            txtPassword.Text = ModifyConn.Password;
-            txtDataBaseName.Text = ModifyConn.DataBaseName;
-            chkFsync.Checked = ModifyConn.Fsync;
-            chkJournal.Checked = ModifyConn.Journal;
-
-            NumSocketTimeOut.Value = (decimal) ModifyConn.SocketTimeoutMs;
-            NumConnectTimeOut.Value = (decimal) ModifyConn.ConnectTimeoutMs;
-
-            txtReplsetName.Text = ModifyConn.ReplSetName;
-            txtConnectionString.Text = ModifyConn.ConnectionString;
-
+            Common.UIBinding.TryUpdateForm(ModifyConn, this.Controls);
             foreach (var item in ModifyConn.ReplsetList)
             {
                 lstHost.Items.Add(item);
             }
             cmbStorageEngine.SelectedIndex = ModifyConn.StorageEngine == EnumMgr.StorageEngineType.MmaPv1 ? 0 : 1;
-            cmdAdd.Text = GuiConfig.IsUseDefaultLanguage? "Modify": GuiConfig.GetText(TextType.CommonModify);
+            cmdAdd.Text = GuiConfig.IsUseDefaultLanguage ? "Modify" : GuiConfig.GetText(TextType.CommonModify);
         }
 
         /// <summary>
@@ -76,16 +68,11 @@ namespace FunctionForm.Connection
         /// <param name="e"></param>
         private void frmAddConnection_Load(object sender, EventArgs e)
         {
-            foreach (var item in Enum.GetValues(typeof (EnumMgr.StorageEngineType)))
-            {
-                cmbStorageEngine.Items.Add(item);
-                cmbStorageEngine.SelectedIndex = 0;
-            }
             cmdCancel.Click += (x, y) => Close();
-            numPort.GotFocus += (x, y) => numPort.Select(0, 5);
+            intPort.GotFocus += (x, y) => intPort.Select(0, 5);
             NumReplPort.GotFocus += (x, y) => NumReplPort.Select(0, 5);
-            NumSocketTimeOut.GotFocus += (x, y) => NumSocketTimeOut.Select(0, 5);
-            NumConnectTimeOut.GotFocus += (x, y) => NumConnectTimeOut.Select(0, 5);
+            dblSocketTimeOut.GotFocus += (x, y) => dblSocketTimeOut.Select(0, 5);
+            dblConnectTimeOut.GotFocus += (x, y) => dblConnectTimeOut.Select(0, 5);
             //Color
             cmdTest.BackColor = GuiConfig.ActionColor;
             cmdAdd.BackColor = GuiConfig.SuccessColor;
@@ -189,7 +176,9 @@ namespace FunctionForm.Connection
         /// </summary>
         private void CreateConnection()
         {
-            ModifyConn.ConnectionName = txtConnectionName.Text;
+            //更新数据模型
+            Common.UIBinding.TryUpdateModel(ModifyConn, this.Controls);
+
             //感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
             ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != string.Empty)
@@ -202,12 +191,6 @@ namespace FunctionForm.Connection
             }
             else
             {
-                ModifyConn.Host = txtHost.Text;
-                ModifyConn.Port = numPort.Text != string.Empty ? Convert.ToInt32(numPort.Text) : 0;
-                ModifyConn.UserName = txtUsername.Text;
-                ModifyConn.Password = txtPassword.Text;
-                ModifyConn.DataBaseName = txtDataBaseName.Text;
-
                 //仅有用户名或密码
                 if (txtUsername.Text != string.Empty && txtPassword.Text == string.Empty)
                 {
@@ -229,8 +212,6 @@ namespace FunctionForm.Connection
                         return;
                     }
                 }
-
-                //ModifyConn.IsUseDefaultSetting = chkUseDefault.Checked;
                 if (ModifyConn.IsUseDefaultSetting)
                 {
                     ModifyConn.WtimeoutMs = MongoConnectionConfig.MongoConfig.WtimeoutMs;
@@ -238,19 +219,6 @@ namespace FunctionForm.Connection
                     ModifyConn.WriteConcern = MongoConnectionConfig.MongoConfig.WriteConcern;
                     ModifyConn.ReadPreference = MongoConnectionConfig.MongoConfig.ReadPreference;
                 }
-                else
-                {
-                    //ModifyConn.WtimeoutMs = (double) NumWTimeoutMS.Value;
-                    //ModifyConn.WaitQueueSize = (int) NumWaitQueueSize.Value;
-                    //ModifyConn.WriteConcern = cmbWriteConcern.Text;
-                    //ModifyConn.ReadPreference = cmbReadPreference.Text;
-                }
-
-                ModifyConn.SocketTimeoutMs = (double) NumSocketTimeOut.Value;
-                ModifyConn.ConnectTimeoutMs = (double) NumConnectTimeOut.Value;
-                ModifyConn.Journal = chkJournal.Checked;
-                ModifyConn.Fsync = chkFsync.Checked;
-                ModifyConn.ReplSetName = txtReplsetName.Text;
                 ModifyConn.ReplsetList = new List<string>();
                 if (cmbStorageEngine.SelectedIndex == 0)
                 {

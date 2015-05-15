@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UIBinding.cs" />
     <Compile Include="Excel.cs" />
     <Compile Include="ExceptionDeal.cs" />
     <Compile Include="FileFilter.cs" />
