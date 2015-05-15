@@ -12,7 +12,7 @@ namespace FunctionForm.Connection
 
         private void CtlSSLConfig_Load(object sender, EventArgs e)
         {
-            ctlFilePicker1.FileFilter = Common.Utility.PemFilter;
+            fileSslCertificateFile.FileFilter = Common.Utility.PemFilter;
         }
     }
 }

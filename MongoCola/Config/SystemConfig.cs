@@ -34,29 +34,29 @@ namespace MongoCola.Config
         public static string AppPath = string.Empty;
 
         /// <summary>
-        ///     MongoBin的路径，用于Dos命令
-        /// </summary>
-        public string MongoBinPath = string.Empty;
-
-        /// <summary>
         ///     Config Format Version
         /// </summary>
         public byte ConfigVer = 2;
 
+
+
+        /// <summary>
+        ///     MongoBin的路径，用于Dos命令
+        /// </summary>
+        public string MongoBinPath { set; get; }
+
         /// <summary>
         ///     DateTime UTC
         /// </summary>
-        public bool IsUTC = true;
+        public bool IsUTC { set; get; }
 
-        /// <summary>
-        ///     语言
-        /// </summary>
-        public string LanguageFileName = string.Empty;
+        [NonSerialized]
+        public int DefaultRefreshStatusTimer = 30;
 
         /// <summary>
         ///     状态刷新间隔时间
         /// </summary>
-        public int RefreshStatusTimer = 30;
+        public int RefreshStatusTimer { set; get; }
 
         /// <summary>
         ///     是否使用默认语言
@@ -66,6 +66,11 @@ namespace MongoCola.Config
         {
             return (LanguageFileName == "English.xml" || string.IsNullOrEmpty(LanguageFileName));
         }
+
+        /// <summary>
+        ///     语言
+        /// </summary>
+        public string LanguageFileName { set; get; }
 
         /// <summary>
         ///     写入配置

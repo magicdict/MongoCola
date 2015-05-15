@@ -32,45 +32,45 @@ namespace FunctionForm.Connection
         /// </summary>
         private void InitializeComponent()
         {
-            this.chkUserSSHTrunel = new System.Windows.Forms.CheckBox();
-            this.numPort = new System.Windows.Forms.NumericUpDown();
+            this.chkUseSsh = new System.Windows.Forms.CheckBox();
+            this.intSshPort = new System.Windows.Forms.NumericUpDown();
             this.lblPort = new System.Windows.Forms.Label();
-            this.txtHost = new System.Windows.Forms.TextBox();
+            this.txtSshHost = new System.Windows.Forms.TextBox();
             this.lblHost = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtSshUser = new System.Windows.Forms.TextBox();
+            this.txtSshPassword = new System.Windows.Forms.TextBox();
             this.grpAuthMethod = new System.Windows.Forms.GroupBox();
             this.radPrivateKey = new System.Windows.Forms.RadioButton();
             this.radPassword = new System.Windows.Forms.RadioButton();
-            this.ctlFilePicker1 = new ResourceLib.UI.CtlFilePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
+            this.fileSshPrivateKeyFile = new ResourceLib.UI.CtlFilePicker();
+            ((System.ComponentModel.ISupportInitialize)(this.intSshPort)).BeginInit();
             this.grpAuthMethod.SuspendLayout();
             this.SuspendLayout();
             // 
-            // chkUserSSHTrunel
+            // chkUseSsh
             // 
-            this.chkUserSSHTrunel.AutoSize = true;
-            this.chkUserSSHTrunel.Location = new System.Drawing.Point(27, 18);
-            this.chkUserSSHTrunel.Name = "chkUserSSHTrunel";
-            this.chkUserSSHTrunel.Size = new System.Drawing.Size(108, 16);
-            this.chkUserSSHTrunel.TabIndex = 0;
-            this.chkUserSSHTrunel.Text = "Use SSH tunnel";
-            this.chkUserSSHTrunel.UseVisualStyleBackColor = true;
+            this.chkUseSsh.AutoSize = true;
+            this.chkUseSsh.Location = new System.Drawing.Point(27, 18);
+            this.chkUseSsh.Name = "chkUseSsh";
+            this.chkUseSsh.Size = new System.Drawing.Size(108, 16);
+            this.chkUseSsh.TabIndex = 0;
+            this.chkUseSsh.Text = "Use SSH tunnel";
+            this.chkUseSsh.UseVisualStyleBackColor = true;
             // 
-            // numPort
+            // intSshPort
             // 
-            this.numPort.Location = new System.Drawing.Point(288, 41);
-            this.numPort.Maximum = new decimal(new int[] {
+            this.intSshPort.Location = new System.Drawing.Point(288, 41);
+            this.intSshPort.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.numPort.Name = "numPort";
-            this.numPort.Size = new System.Drawing.Size(118, 21);
-            this.numPort.TabIndex = 7;
-            this.numPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.intSshPort.Name = "intSshPort";
+            this.intSshPort.Size = new System.Drawing.Size(118, 21);
+            this.intSshPort.TabIndex = 7;
+            this.intSshPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblPort
             // 
@@ -83,12 +83,12 @@ namespace FunctionForm.Connection
             this.lblPort.Tag = "Common_Port";
             this.lblPort.Text = "Port";
             // 
-            // txtHost
+            // txtSshHost
             // 
-            this.txtHost.Location = new System.Drawing.Point(107, 40);
-            this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(119, 21);
-            this.txtHost.TabIndex = 5;
+            this.txtSshHost.Location = new System.Drawing.Point(107, 40);
+            this.txtSshHost.Name = "txtSshHost";
+            this.txtSshHost.Size = new System.Drawing.Size(119, 21);
+            this.txtSshHost.TabIndex = 5;
             // 
             // lblHost
             // 
@@ -123,20 +123,20 @@ namespace FunctionForm.Connection
             this.lblPassword.Tag = "Common_Password";
             this.lblPassword.Text = "Password";
             // 
-            // txtUsername
+            // txtSshUser
             // 
-            this.txtUsername.Location = new System.Drawing.Point(499, 40);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(119, 21);
-            this.txtUsername.TabIndex = 9;
+            this.txtSshUser.Location = new System.Drawing.Point(499, 40);
+            this.txtSshUser.Name = "txtSshUser";
+            this.txtSshUser.Size = new System.Drawing.Size(119, 21);
+            this.txtSshUser.TabIndex = 9;
             // 
-            // txtPassword
+            // txtSshPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(499, 81);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(119, 21);
-            this.txtPassword.TabIndex = 10;
-            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtSshPassword.Location = new System.Drawing.Point(499, 81);
+            this.txtSshPassword.Name = "txtSshPassword";
+            this.txtSshPassword.Size = new System.Drawing.Size(119, 21);
+            this.txtSshPassword.TabIndex = 10;
+            this.txtSshPassword.UseSystemPasswordChar = true;
             // 
             // grpAuthMethod
             // 
@@ -172,37 +172,37 @@ namespace FunctionForm.Connection
             this.radPassword.Text = "Password";
             this.radPassword.UseVisualStyleBackColor = true;
             // 
-            // ctlFilePicker1
+            // fileSshPrivateKeyFile
             // 
-            this.ctlFilePicker1.AutoSize = true;
-            this.ctlFilePicker1.BackColor = System.Drawing.Color.Transparent;
-            this.ctlFilePicker1.FileFilter = "private key file|*.ppk";
-            this.ctlFilePicker1.FileName = "";
-            this.ctlFilePicker1.Location = new System.Drawing.Point(27, 133);
-            this.ctlFilePicker1.Name = "ctlFilePicker1";
-            this.ctlFilePicker1.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.OpenFile;
-            this.ctlFilePicker1.SelectedPathOrFileName = "";
-            this.ctlFilePicker1.Size = new System.Drawing.Size(588, 38);
-            this.ctlFilePicker1.TabIndex = 14;
-            this.ctlFilePicker1.Title = "Private Key";
+            this.fileSshPrivateKeyFile.AutoSize = true;
+            this.fileSshPrivateKeyFile.BackColor = System.Drawing.Color.Transparent;
+            this.fileSshPrivateKeyFile.FileFilter = "private key file|*.ppk";
+            this.fileSshPrivateKeyFile.FileName = "";
+            this.fileSshPrivateKeyFile.Location = new System.Drawing.Point(27, 133);
+            this.fileSshPrivateKeyFile.Name = "fileSshPrivateKeyFile";
+            this.fileSshPrivateKeyFile.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.OpenFile;
+            this.fileSshPrivateKeyFile.SelectedPathOrFileName = "";
+            this.fileSshPrivateKeyFile.Size = new System.Drawing.Size(588, 38);
+            this.fileSshPrivateKeyFile.TabIndex = 14;
+            this.fileSshPrivateKeyFile.Title = "Private Key";
             // 
             // CtlSshConfig
             // 
-            this.Controls.Add(this.ctlFilePicker1);
+            this.Controls.Add(this.fileSshPrivateKeyFile);
             this.Controls.Add(this.grpAuthMethod);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.numPort);
+            this.Controls.Add(this.txtSshUser);
+            this.Controls.Add(this.txtSshPassword);
+            this.Controls.Add(this.intSshPort);
             this.Controls.Add(this.lblPort);
-            this.Controls.Add(this.txtHost);
+            this.Controls.Add(this.txtSshHost);
             this.Controls.Add(this.lblHost);
-            this.Controls.Add(this.chkUserSSHTrunel);
+            this.Controls.Add(this.chkUseSsh);
             this.Name = "CtlSshConfig";
             this.Size = new System.Drawing.Size(634, 184);
             this.Load += new System.EventHandler(this.CtlSshConfig_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intSshPort)).EndInit();
             this.grpAuthMethod.ResumeLayout(false);
             this.grpAuthMethod.PerformLayout();
             this.ResumeLayout(false);
@@ -212,18 +212,18 @@ namespace FunctionForm.Connection
 
         #endregion
 
-        private CheckBox chkUserSSHTrunel;
-        private NumericUpDown numPort;
+        private CheckBox chkUseSsh;
+        private NumericUpDown intSshPort;
         private Label lblPort;
-        private TextBox txtHost;
+        private TextBox txtSshHost;
         private Label lblHost;
         private Label lblUsername;
         private Label lblPassword;
-        private TextBox txtUsername;
-        private TextBox txtPassword;
+        private TextBox txtSshUser;
+        private TextBox txtSshPassword;
         private GroupBox grpAuthMethod;
         private RadioButton radPrivateKey;
         private RadioButton radPassword;
-        private CtlFilePicker ctlFilePicker1;
+        private CtlFilePicker fileSshPrivateKeyFile;
     }
 }

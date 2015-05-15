@@ -14,7 +14,7 @@ namespace MongoCola.Config
 
         private void frmOption_Load(object sender, EventArgs e)
         {
-            ctlFilePickerMongoBinPath.SelectedPathOrFileName = SystemManager.SystemConfig.MongoBinPath;
+            fileMongoBinPath.SelectedPathOrFileName = SystemManager.SystemConfig.MongoBinPath;
             if (SystemManager.SystemConfig.IsUTC)
             {
                 radUTC.Checked = true;
@@ -23,7 +23,7 @@ namespace MongoCola.Config
             {
                 radLocal.Checked = true;
             }
-            numRefreshForStatus.Value = SystemManager.SystemConfig.RefreshStatusTimer;
+            intRefreshStatusTimer.Value = SystemManager.SystemConfig.RefreshStatusTimer;
             cmbLanguage.Items.Add(StringResource.LanguageEnglish);
             if (Directory.Exists("Language"))
             {
@@ -64,8 +64,8 @@ namespace MongoCola.Config
         {
             _ctlReadWriteConfig1.SaveConfig();
             SystemManager.SystemConfig.IsUTC = radUTC.Checked;
-            SystemManager.SystemConfig.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPathOrFileName;
-            SystemManager.SystemConfig.RefreshStatusTimer = (int) numRefreshForStatus.Value;
+            SystemManager.SystemConfig.MongoBinPath = fileMongoBinPath.SelectedPathOrFileName;
+            SystemManager.SystemConfig.RefreshStatusTimer = (int) intRefreshStatusTimer.Value;
             SystemManager.SystemConfig.LanguageFileName = cmbLanguage.Text + ".xml";
             SystemManager.SystemConfig.SaveSystemConfig();
             Close();

@@ -116,7 +116,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     使用SSL初始化连接
         /// </summary>
-        public bool UseSsl;
+        public bool UseSsl { set; get; }
         /// <summary>
         ///     SSL认证文件
         /// </summary>
@@ -124,23 +124,23 @@ namespace MongoUtility.Core
         /// <summary>
         /// 
         /// </summary>
-        public bool UseSsh;
+        public bool UseSsh { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public string SshHost;
+        public string SshHost { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public string SshPort;
+        public int SshPort { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public string SshUser;
+        public string SshUser { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public string SshPassword;
+        public string SshPassword { set; get; }
         /// <summary>
         /// 
         /// </summary>

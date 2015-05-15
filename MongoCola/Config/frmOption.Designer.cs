@@ -33,7 +33,7 @@ namespace MongoCola.Config
         /// </summary>
         private void InitializeComponent()
         {
-            this.numRefreshForStatus = new System.Windows.Forms.NumericUpDown();
+            this.intRefreshStatusTimer = new System.Windows.Forms.NumericUpDown();
             this.lblRefreshIntervalForStatus = new System.Windows.Forms.Label();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -44,34 +44,34 @@ namespace MongoCola.Config
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radLocal = new System.Windows.Forms.RadioButton();
             this.radUTC = new System.Windows.Forms.RadioButton();
-            this.ctlFilePickerMongoBinPath = new ResourceLib.UI.CtlFilePicker();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this._ctlReadWriteConfig1 = new CtlReadWriteConfig();
-            ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
+            this.fileMongoBinPath = new ResourceLib.UI.CtlFilePicker();
+            this._ctlReadWriteConfig1 = new FunctionForm.Connection.CtlReadWriteConfig();
+            ((System.ComponentModel.ISupportInitialize)(this.intRefreshStatusTimer)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // numRefreshForStatus
+            // intRefreshStatusTimer
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(438, 74);
-            this.numRefreshForStatus.Maximum = new decimal(new int[] {
+            this.intRefreshStatusTimer.Location = new System.Drawing.Point(438, 63);
+            this.intRefreshStatusTimer.Maximum = new decimal(new int[] {
             180,
             0,
             0,
             0});
-            this.numRefreshForStatus.Minimum = new decimal(new int[] {
+            this.intRefreshStatusTimer.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numRefreshForStatus.Name = "numRefreshForStatus";
-            this.numRefreshForStatus.Size = new System.Drawing.Size(77, 21);
-            this.numRefreshForStatus.TabIndex = 2;
-            this.numRefreshForStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numRefreshForStatus.Value = new decimal(new int[] {
+            this.intRefreshStatusTimer.Name = "intRefreshStatusTimer";
+            this.intRefreshStatusTimer.Size = new System.Drawing.Size(77, 21);
+            this.intRefreshStatusTimer.TabIndex = 2;
+            this.intRefreshStatusTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.intRefreshStatusTimer.Value = new decimal(new int[] {
             30,
             0,
             0,
@@ -81,7 +81,7 @@ namespace MongoCola.Config
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(243, 74);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(243, 63);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
             this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(180, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
@@ -144,11 +144,11 @@ namespace MongoCola.Config
             // tabGerneric
             // 
             this.tabGerneric.Controls.Add(this.groupBox1);
-            this.tabGerneric.Controls.Add(this.ctlFilePickerMongoBinPath);
+            this.tabGerneric.Controls.Add(this.fileMongoBinPath);
             this.tabGerneric.Controls.Add(this.cmbLanguage);
             this.tabGerneric.Controls.Add(this.lblRefreshIntervalForStatus);
             this.tabGerneric.Controls.Add(this.lblLanguage);
-            this.tabGerneric.Controls.Add(this.numRefreshForStatus);
+            this.tabGerneric.Controls.Add(this.intRefreshStatusTimer);
             this.tabGerneric.Location = new System.Drawing.Point(4, 24);
             this.tabGerneric.Name = "tabGerneric";
             this.tabGerneric.Padding = new System.Windows.Forms.Padding(3);
@@ -161,9 +161,9 @@ namespace MongoCola.Config
             // 
             this.groupBox1.Controls.Add(this.radLocal);
             this.groupBox1.Controls.Add(this.radUTC);
-            this.groupBox1.Location = new System.Drawing.Point(33, 22);
+            this.groupBox1.Location = new System.Drawing.Point(31, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 67);
+            this.groupBox1.Size = new System.Drawing.Size(200, 56);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DateTime";
@@ -190,31 +190,31 @@ namespace MongoCola.Config
             this.radUTC.Text = "UTC";
             this.radUTC.UseVisualStyleBackColor = true;
             // 
-            // ctlFilePickerMongoBinPath
-            // 
-            this.ctlFilePickerMongoBinPath.AutoSize = true;
-            this.ctlFilePickerMongoBinPath.BackColor = System.Drawing.Color.Transparent;
-            this.ctlFilePickerMongoBinPath.FileFilter = "";
-            this.ctlFilePickerMongoBinPath.FileName = "";
-            this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(33, 104);
-            this.ctlFilePickerMongoBinPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
-            this.ctlFilePickerMongoBinPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
-            this.ctlFilePickerMongoBinPath.SelectedPathOrFileName = "";
-            this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(578, 49);
-            this.ctlFilePickerMongoBinPath.TabIndex = 19;
-            this.ctlFilePickerMongoBinPath.Title = "MongoBin";
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this._ctlReadWriteConfig1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(627, 190);
+            this.tabPage1.Size = new System.Drawing.Size(627, 192);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Read Write";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // fileMongoBinPath
+            // 
+            this.fileMongoBinPath.AutoSize = true;
+            this.fileMongoBinPath.BackColor = System.Drawing.Color.Transparent;
+            this.fileMongoBinPath.FileFilter = "";
+            this.fileMongoBinPath.FileName = "";
+            this.fileMongoBinPath.Location = new System.Drawing.Point(33, 104);
+            this.fileMongoBinPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.fileMongoBinPath.Name = "fileMongoBinPath";
+            this.fileMongoBinPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
+            this.fileMongoBinPath.SelectedPathOrFileName = "";
+            this.fileMongoBinPath.Size = new System.Drawing.Size(578, 47);
+            this.fileMongoBinPath.TabIndex = 19;
+            this.fileMongoBinPath.Title = "MongoBin";
             // 
             // _ctlReadWriteConfig1
             // 
@@ -222,7 +222,7 @@ namespace MongoCola.Config
             this._ctlReadWriteConfig1.Location = new System.Drawing.Point(3, 3);
             this._ctlReadWriteConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ctlReadWriteConfig1.Name = "_ctlReadWriteConfig1";
-            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(621, 184);
+            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(621, 186);
             this._ctlReadWriteConfig1.TabIndex = 0;
             // 
             // FrmOption
@@ -242,7 +242,7 @@ namespace MongoCola.Config
             this.Tag = "OptionTitle";
             this.Text = "Option";
             this.Load += new System.EventHandler(this.frmOption_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intRefreshStatusTimer)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabGerneric.ResumeLayout(false);
             this.tabGerneric.PerformLayout();
@@ -255,7 +255,7 @@ namespace MongoCola.Config
 
         #endregion
 
-        private NumericUpDown numRefreshForStatus;
+        private NumericUpDown intRefreshStatusTimer;
         private Label lblRefreshIntervalForStatus;
         private Button cmdCancel;
         private Button cmdOK;
@@ -264,7 +264,7 @@ namespace MongoCola.Config
         private TabControl tabControl1;
         private TabPage tabGerneric;
         private TabPage tabPage1;
-        private CtlFilePicker ctlFilePickerMongoBinPath;
+        private CtlFilePicker fileMongoBinPath;
         private CtlReadWriteConfig _ctlReadWriteConfig1;
         private GroupBox groupBox1;
         private RadioButton radLocal;

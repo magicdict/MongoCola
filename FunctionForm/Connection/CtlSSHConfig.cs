@@ -11,7 +11,7 @@ namespace FunctionForm.Connection
 
         private void CtlSshConfig_Load(object sender, System.EventArgs e)
         {
-            ctlFilePicker1.FileFilter = Common.Utility.PpkFilter;
+            fileSshPrivateKeyFile.FileFilter = Common.Utility.PpkFilter;
         }
     }
 }

@@ -52,7 +52,7 @@ namespace FunctionForm.Connection
             OldConnectionName = connectionName;
             //Modify Mode
             ModifyConn = MongoConnectionConfig.MongoConfig.ConnectionList[connectionName];
-            Common.UIBinding.TryUpdateForm(ModifyConn, this.Controls);
+            UIBinding.TryUpdateForm(ModifyConn, this.Controls);
             foreach (var item in ModifyConn.ReplsetList)
             {
                 lstHost.Items.Add(item);
@@ -177,7 +177,7 @@ namespace FunctionForm.Connection
         private void CreateConnection()
         {
             //更新数据模型
-            Common.UIBinding.TryUpdateModel(ModifyConn, this.Controls);
+            UIBinding.TryUpdateModel(ModifyConn, this.Controls);
 
             //感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
             ModifyConn.ConnectionString = txtConnectionString.Text;

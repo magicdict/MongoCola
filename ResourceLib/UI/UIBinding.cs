@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace Common
+namespace ResourceLib.UI
 {
     public static class UIBinding
     {
@@ -10,6 +11,10 @@ namespace Common
         /// String
         /// </summary>
         private const string StringPrefix = "txt";
+        /// <summary>
+        /// String
+        /// </summary>
+        private const string FilePicker = "file";
         /// <summary>
         /// Integer
         /// </summary>
@@ -33,18 +38,25 @@ namespace Common
             Type modelType = model.GetType();
             PropertyInfo[] property = modelType.GetProperties();
             string ControlName = string.Empty;
+            List<string> ControlNameList = new List<string>();
             Control Controller = null;
             foreach (PropertyInfo info in property)
             {
                 //字符
                 if (info.PropertyType == typeof(string))
                 {
-                    ControlName = StringPrefix + info.Name;
-                    Controller =GetUniqueControl(ControlName, Controls);
+                    ControlNameList.Clear();
+                    ControlNameList.Add(StringPrefix + info.Name);
+                    ControlNameList.Add(FilePicker + info.Name);
+                    Controller = GetUniqueControl(ControlNameList,Controls);
                     if (Controller == null) continue;
                     if (Controller.GetType().FullName == typeof(TextBox).FullName)
                     {
                         info.SetValue(model, ((TextBox)Controller).Text); 
+                    }
+                    if (Controller.GetType().FullName == typeof(CtlFilePicker).FullName)
+                    {
+                        info.SetValue(model, ((CtlFilePicker)Controller).Text);
                     }
                 }
                 //数字
@@ -79,7 +91,6 @@ namespace Common
                         info.SetValue(model, ((CheckBox)Controller).Checked);
                     }
                 }
-
             }
         }
 
@@ -98,6 +109,20 @@ namespace Common
              }
              return null;
         }
+
+        public static Control GetUniqueControl(List<string> ControlName, Control.ControlCollection Controls)
+        {
+            foreach (var name in ControlName)
+            {
+                var controls = Controls.Find(name, true);
+                if (controls.Length > 0)
+                {
+                    return controls[0];
+                }
+            }
+            return null;
+        }
+
 
         /// <summary>
         /// 
