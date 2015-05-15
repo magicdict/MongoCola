@@ -43,6 +43,8 @@
 /TemplatePackage/obj
 /SystemUtility/bin
 /SystemUtility/obj
+/FunctionForm/bin
+/FunctionForm/obj
 /DesignDocument
 /ServerLoader
 !readme.txt
@@ -65,4 +67,4 @@ Thumbs.db
 /packages/MongoDB.Driver.2.0.0/lib/net45
 /packages/MongoDB.Driver.Core.2.0.0
 /packages/MongoDB.Driver.2.0.0/MongoDB.Driver.2.0.0.nupkg
-/FunctionForm
+

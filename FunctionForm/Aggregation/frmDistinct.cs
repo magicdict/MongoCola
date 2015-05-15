@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
@@ -75,30 +74,7 @@ namespace FunctionForm.Aggregation
                 MyMessageBox.ShowMessage("Distinct", "Pick the field");
                 return;
             }
-            var resultArray =
-                (BsonArray)
-                    RuntimeMongoDbContext.GetCurrentCollection()
-                        .Distinct(strKey, QueryHelper.GetQuery(DistinctConditionList));
-            var resultList = new List<BsonValue>();
-            foreach (var item in resultArray)
-            {
-                resultList.Add(item);
-            }
-            //防止错误的条件造成的海量数据
-            var count = 0;
-            var strResult = string.Empty;
-            resultList.Sort();
-            foreach (var item in resultList)
-            {
-                if (count == 1000)
-                {
-                    strResult = "Too many result,Display first 1000 records" + Environment.NewLine + strResult;
-                    break;
-                }
-                strResult += item.ToJson(MongoHelper.JsonWriterSettings) + Environment.NewLine;
-                count++;
-            }
-            strResult = "Distinct Count: " + resultList.Count + Environment.NewLine + Environment.NewLine + strResult;
+            var strResult = AggregationHelper.Distinct(strKey, DistinctConditionList);
             MyMessageBox.ShowMessage("Distinct", "Distinct:" + strKey, strResult, true);
         }
 
