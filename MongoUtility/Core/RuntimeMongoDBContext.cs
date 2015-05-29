@@ -101,7 +101,7 @@ namespace MongoUtility.Core
                         };
                     }
                 }
-                if (config.ReplSetName != string.Empty)
+                if (!string.IsNullOrEmpty(config.ReplSetName))
                 {
                     mongoClientSetting.ReplicaSetName = config.ReplSetName;
                     config.ServerRole = MongoConnectionConfig.SvrRoleType.ReplsetSvr;

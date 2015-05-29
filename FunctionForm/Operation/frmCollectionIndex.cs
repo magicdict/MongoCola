@@ -27,32 +27,16 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
-
             GuiConfig.Translateform(this);
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexName));
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexVersion));
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexKeys));
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexNameSpace));
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexBackground));
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexSparse));
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexUnify));
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexRepeatDel));
-                lstIndex.Columns.Add(GuiConfig.GetText(TextType.IndexExpireData));
-            }
-            else
-            {
-                lstIndex.Columns.Add("Name");
-                lstIndex.Columns.Add("Version");
-                lstIndex.Columns.Add("IndexKey");
-                lstIndex.Columns.Add("NameSpace");
-                lstIndex.Columns.Add("BackGround");
-                lstIndex.Columns.Add("Sparse");
-                lstIndex.Columns.Add("Unify");
-                lstIndex.Columns.Add("DroppedDups");
-                lstIndex.Columns.Add("Expire Data");
-            }
+            lstIndex.Columns.Add(GuiConfig.GetText("Name", TextType.IndexName));
+            lstIndex.Columns.Add(GuiConfig.GetText("Version", TextType.IndexVersion));
+            lstIndex.Columns.Add(GuiConfig.GetText("IndexKey", TextType.IndexKeys));
+            lstIndex.Columns.Add(GuiConfig.GetText("NameSpace", TextType.IndexNameSpace));
+            lstIndex.Columns.Add(GuiConfig.GetText("BackGround", TextType.IndexBackground));
+            lstIndex.Columns.Add(GuiConfig.GetText("Sparse", TextType.IndexSparse));
+            lstIndex.Columns.Add(GuiConfig.GetText("Unify", TextType.IndexUnify));
+            lstIndex.Columns.Add(GuiConfig.GetText("DroppedDups", TextType.IndexRepeatDel));
+            lstIndex.Columns.Add(GuiConfig.GetText("Expire Data", TextType.IndexExpireData));
             //2.2.2 开始支持TTL索引
             if (RuntimeMongoDbContext.GetCurrentServer().BuildInfo.Version < new Version(2, 2, 2, 0))
             {
@@ -133,7 +117,7 @@ namespace FunctionForm.Operation
             UIOption.IndexName = txtIndexName.Text;
             var strMessageTitle = string.Empty;
             var strMessageContent = string.Empty;
-            if (Operater.CreateIndex(UIOption, ref strMessageTitle, ref strMessageTitle))
+            if (Operater.CreateIndex(UIOption, ref strMessageTitle, ref strMessageContent))
             {
                 RefreshList();
             }
