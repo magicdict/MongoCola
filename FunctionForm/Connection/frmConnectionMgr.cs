@@ -30,6 +30,7 @@ namespace FunctionForm.Connection
         public FrmConnectionMgr()
         {
             InitializeComponent();
+            NumPort.Value = ConstMgr.MongodDefaultPort;
             foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
             {
                 cmbStorageEngine.Items.Add(item);
@@ -69,7 +70,7 @@ namespace FunctionForm.Connection
         private void frmAddConnection_Load(object sender, EventArgs e)
         {
             cmdCancel.Click += (x, y) => Close();
-            intPort.GotFocus += (x, y) => intPort.Select(0, 5);
+            NumPort.GotFocus += (x, y) => NumPort.Select(0, 5);
             NumReplPort.GotFocus += (x, y) => NumReplPort.Select(0, 5);
             dblSocketTimeOut.GotFocus += (x, y) => dblSocketTimeOut.Select(0, 5);
             dblConnectTimeOut.GotFocus += (x, y) => dblConnectTimeOut.Select(0, 5);

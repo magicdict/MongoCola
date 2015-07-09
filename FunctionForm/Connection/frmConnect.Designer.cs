@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace MongoCola.Connection
+namespace FunctionForm.Connection
 {
     partial class FrmConnect
     {

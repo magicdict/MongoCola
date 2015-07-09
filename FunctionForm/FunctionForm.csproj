@@ -109,6 +109,12 @@
     <Compile Include="Connection\CtlSSLConfig.Designer.cs">
       <DependentUpon>CtlSSLConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connection\frmConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connection\frmConnect.Designer.cs">
+      <DependentUpon>frmConnect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operation\Collection.cs" />
     <Compile Include="Connection\CtlReadWriteConfig.cs">
       <SubType>UserControl</SubType>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Connection\CtlSSLConfig.resx">
       <DependentUpon>CtlSSLConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Connection\frmConnect.resx">
+      <DependentUpon>frmConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>

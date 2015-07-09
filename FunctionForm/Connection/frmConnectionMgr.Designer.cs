@@ -46,7 +46,7 @@ namespace FunctionForm.Connection
             this.txtDataBaseName = new System.Windows.Forms.TextBox();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.lblConnectionString = new System.Windows.Forms.Label();
-            this.intPort = new System.Windows.Forms.NumericUpDown();
+            this.NumPort = new System.Windows.Forms.NumericUpDown();
             this.cmdTest = new System.Windows.Forms.Button();
             this.tabConnection = new System.Windows.Forms.TabControl();
             this.tabBasic = new System.Windows.Forms.TabPage();
@@ -64,6 +64,7 @@ namespace FunctionForm.Connection
             this.txtReplsetName = new System.Windows.Forms.TextBox();
             this.tabConnString = new System.Windows.Forms.TabPage();
             this.tabReadWrite = new System.Windows.Forms.TabPage();
+            this.ConnectionReadWrite = new FunctionForm.Connection.CtlReadWriteConfig();
             this.tabOptional = new System.Windows.Forms.TabPage();
             this.cmbStorageEngine = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -77,11 +78,10 @@ namespace FunctionForm.Connection
             this.lblsocketTimeout = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tabSSH = new System.Windows.Forms.TabPage();
-            this.tabSSL = new System.Windows.Forms.TabPage();
-            this.ConnectionReadWrite = new FunctionForm.Connection.CtlReadWriteConfig();
             this.ctlSSHConfig1 = new FunctionForm.Connection.CtlSshConfig();
+            this.tabSSL = new System.Windows.Forms.TabPage();
             this.ctlSSLConfig1 = new FunctionForm.Connection.CtlSSLConfig();
-            ((System.ComponentModel.ISupportInitialize)(this.intPort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
             this.tabReplicaSet.SuspendLayout();
@@ -238,18 +238,18 @@ namespace FunctionForm.Connection
             this.lblConnectionString.Tag = "AddConnection_ConnectionString";
             this.lblConnectionString.Text = "Use ConnectionString Directly:";
             // 
-            // intPort
+            // NumPort
             // 
-            this.intPort.Location = new System.Drawing.Point(501, 27);
-            this.intPort.Maximum = new decimal(new int[] {
+            this.NumPort.Location = new System.Drawing.Point(501, 27);
+            this.NumPort.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.intPort.Name = "intPort";
-            this.intPort.Size = new System.Drawing.Size(118, 21);
-            this.intPort.TabIndex = 2;
-            this.intPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumPort.Name = "NumPort";
+            this.NumPort.Size = new System.Drawing.Size(118, 21);
+            this.NumPort.TabIndex = 2;
+            this.NumPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cmdTest
             // 
@@ -280,7 +280,7 @@ namespace FunctionForm.Connection
             // tabBasic
             // 
             this.tabBasic.Controls.Add(this.lblAttentionPassword);
-            this.tabBasic.Controls.Add(this.intPort);
+            this.tabBasic.Controls.Add(this.NumPort);
             this.tabBasic.Controls.Add(this.lblConnectionName);
             this.tabBasic.Controls.Add(this.txtDataBaseName);
             this.tabBasic.Controls.Add(this.lblPort);
@@ -455,6 +455,14 @@ namespace FunctionForm.Connection
             this.tabReadWrite.Text = "Read Write";
             this.tabReadWrite.UseVisualStyleBackColor = true;
             // 
+            // ConnectionReadWrite
+            // 
+            this.ConnectionReadWrite.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConnectionReadWrite.Location = new System.Drawing.Point(3, 3);
+            this.ConnectionReadWrite.Name = "ConnectionReadWrite";
+            this.ConnectionReadWrite.Size = new System.Drawing.Size(659, 185);
+            this.ConnectionReadWrite.TabIndex = 0;
+            // 
             // tabOptional
             // 
             this.tabOptional.Controls.Add(this.cmbStorageEngine);
@@ -600,6 +608,15 @@ namespace FunctionForm.Connection
             this.tabSSH.Text = "SSH";
             this.tabSSH.UseVisualStyleBackColor = true;
             // 
+            // ctlSSHConfig1
+            // 
+            this.ctlSSHConfig1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctlSSHConfig1.Location = new System.Drawing.Point(3, 3);
+            this.ctlSSHConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ctlSSHConfig1.Name = "ctlSSHConfig1";
+            this.ctlSSHConfig1.Size = new System.Drawing.Size(659, 185);
+            this.ctlSSHConfig1.TabIndex = 0;
+            // 
             // tabSSL
             // 
             this.tabSSL.Controls.Add(this.ctlSSLConfig1);
@@ -610,23 +627,6 @@ namespace FunctionForm.Connection
             this.tabSSL.TabIndex = 7;
             this.tabSSL.Text = "SSL";
             this.tabSSL.UseVisualStyleBackColor = true;
-            // 
-            // ConnectionReadWrite
-            // 
-            this.ConnectionReadWrite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConnectionReadWrite.Location = new System.Drawing.Point(3, 3);
-            this.ConnectionReadWrite.Name = "ConnectionReadWrite";
-            this.ConnectionReadWrite.Size = new System.Drawing.Size(659, 185);
-            this.ConnectionReadWrite.TabIndex = 0;
-            // 
-            // ctlSSHConfig1
-            // 
-            this.ctlSSHConfig1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlSSHConfig1.Location = new System.Drawing.Point(3, 3);
-            this.ctlSSHConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ctlSSHConfig1.Name = "ctlSSHConfig1";
-            this.ctlSSHConfig1.Size = new System.Drawing.Size(659, 185);
-            this.ctlSSHConfig1.TabIndex = 0;
             // 
             // ctlSSLConfig1
             // 
@@ -655,7 +655,7 @@ namespace FunctionForm.Connection
             this.Tag = "AddConnection_Title";
             this.Text = "Server Connection";
             this.Load += new System.EventHandler(this.frmAddConnection_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.intPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumPort)).EndInit();
             this.tabConnection.ResumeLayout(false);
             this.tabBasic.ResumeLayout(false);
             this.tabBasic.PerformLayout();
@@ -695,7 +695,7 @@ namespace FunctionForm.Connection
         private Label lblDataBaseName;
         private Label lblConnectionString;
         private TextBox txtConnectionString;
-        private NumericUpDown intPort;
+        private NumericUpDown NumPort;
         private Button cmdTest;
         private TabControl tabConnection;
         private TabPage tabBasic;

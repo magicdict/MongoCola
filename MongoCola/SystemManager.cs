@@ -4,7 +4,6 @@ using System.IO;
 using System.Windows.Forms;
 using Common;
 using MongoCola.Config;
-using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;

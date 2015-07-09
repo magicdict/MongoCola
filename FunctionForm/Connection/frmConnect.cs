@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
-using FunctionForm.Connection;
-using FunctionForm.Operation;
 using MongoUtility.Core;
 using ResourceLib.Method;
 
-namespace MongoCola.Connection
+namespace FunctionForm.Connection
 {
     public partial class FrmConnect : Form
     {

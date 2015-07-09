@@ -10,7 +10,6 @@ using FunctionForm.Operation;
 using FunctionForm.Status;
 using FunctionForm.User;
 using MongoCola.Config;
-using MongoCola.Connection;
 using MongoGUICtl.ClientTree;
 using MongoGUIView;
 using MongoUtility.Aggregation;
@@ -20,6 +19,7 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using FunctionForm.Connection;
 
 namespace MongoCola
 {

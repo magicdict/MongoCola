@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Connection;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
@@ -13,6 +12,7 @@ using PlugInPackage;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
+using FunctionForm.Connection;
 
 namespace MongoCola
 {
