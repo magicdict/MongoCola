@@ -15,7 +15,7 @@ namespace MongoGUICtl
     public partial class CtlTreeViewColumns : UserControl
     {
         /// <summary>
-        /// 
+        ///     是否实用UTC表示时间
         /// </summary>
         public static bool IsUTC {get;set;}
 

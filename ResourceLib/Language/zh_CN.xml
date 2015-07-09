@@ -286,7 +286,7 @@
   <GFS_length>文件大小</GFS_length>
   <GFS_chunkSize>存储空间</GFS_chunkSize>
   <GFS_uploadDate>日期</GFS_uploadDate>
-  <GFS_md5>md5</GFS_md5>
+  <GFS_md5>MD5</GFS_md5>
 
   <GFS_Insert_Option_RemoteFileName>服务器端的文件名</GFS_Insert_Option_RemoteFileName>
   <GFS_Insert_Option_OnlyFilename>仅文件名(例如，readme.txt)</GFS_Insert_Option_OnlyFilename>
@@ -360,6 +360,7 @@
   <Common_Name>名称</Common_Name>
   <Common_Value>值</Common_Value>
   <Common_Type>类型</Common_Type>
+  <Common_User>用户</Common_User>
   <Common_Roles>角色</Common_Roles>
   <Common_Validate>验证</Common_Validate>
   <Common_Search>检索</Common_Search>

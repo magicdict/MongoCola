@@ -91,26 +91,31 @@ namespace MongoCola.Connection
             // 
             // colName
             // 
+            this.colName.Tag = "Common_Name";
             this.colName.Text = "Name";
             this.colName.Width = 79;
             // 
             // colHost
             // 
+            this.colHost.Tag = "Common_Host";
             this.colHost.Text = "Host";
             this.colHost.Width = 132;
             // 
             // colPort
             // 
+            this.colPort.Tag = "Common_Port";
             this.colPort.Text = "Port";
             this.colPort.Width = 93;
             // 
             // colUser
             // 
+            this.colUser.Tag = "Common_User";
             this.colUser.Text = "User";
             this.colUser.Width = 71;
             // 
             // colReplsetMember
             // 
+            this.colReplsetMember.Tag = "Common_ReplsetMember";
             this.colReplsetMember.Text = "ReplsetMember";
             this.colReplsetMember.Width = 249;
             // 
@@ -159,7 +164,7 @@ namespace MongoCola.Connection
             this.cmdDelCon.Text = "Drop";
             this.cmdDelCon.Click += new System.EventHandler(this.cmdDelCon_Click);
             // 
-            // frmConnect
+            // FrmConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

@@ -23,14 +23,17 @@ namespace ResourceLib.Method
         public static Color SuccessColor = Color.LightGreen;
 
         /// <summary>
+        ///     失败提示色
         /// </summary>
         public static Color FailColor = Color.Pink;
 
         /// <summary>
+        ///     动作提示色
         /// </summary>
         public static Color ActionColor = Color.LightBlue;
 
         /// <summary>
+        ///     警告提示色
         /// </summary>
         public static Color WarningColor = Color.LightYellow;
 
@@ -47,37 +50,39 @@ namespace ResourceLib.Method
         /// <summary>
         ///     获得文字
         /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static string GetText(TextType tag) => GetText(tag.ToString());
+
+        /// <summary>
+        ///     获得文字
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static string GetText(string tag) => GetText(tag, tag);
+
+        /// <summary>
+        ///     获得文字
+        /// </summary>
         /// <param name="defaultText"></param>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static string GetText(string defaultText, TextType tag)
-        {
-            if (IsUseDefaultLanguage || tag == TextType.UseDefaultLanguage) return defaultText;
-            string strText;
-            StringResource.StringDic.TryGetValue(tag.ToString(), out strText);
-            strText = string.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
-            return strText;
-        }
+        public static string GetText(string defaultText, TextType tag) => GetText(defaultText, tag.ToString());
 
         /// <summary>
+        ///     获得文字
         /// </summary>
+        /// <param name="defaultText"></param>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static string GetText(string tag)
+        public static string GetText(string defaultText, string tag)
         {
-            string strText;
+            if (IsUseDefaultLanguage) return defaultText;
+            tag = tag.Replace("_", string.Empty);
+            string strText = string.Empty;
             StringResource.StringDic.TryGetValue(tag, out strText);
-            strText = string.IsNullOrEmpty(strText) ? tag : strText.Replace("&amp;", "&");
+            strText = string.IsNullOrEmpty(strText) ? defaultText : strText.Replace("&amp;", "&");
             return strText;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public static string GetText(TextType tag)
-        {
-            return GetText(tag.ToString());
         }
 
         /// <summary>
@@ -99,7 +104,10 @@ namespace ResourceLib.Method
             Translateform(frm.Controls);
         }
 
-
+        /// <summary>
+        ///     控件多语言化
+        /// </summary>
+        /// <param name="controls"></param>
         public static void Translateform(ToolStripItemCollection controls)
         {
             foreach (ToolStripItem menuItem in controls)
@@ -107,25 +115,25 @@ namespace ResourceLib.Method
                 if (menuItem.GetType().FullName == typeof(ToolStripSeparator).FullName) continue;
                 if (menuItem.GetType().FullName == typeof(ToolStripMenuItem).FullName)
                 {
-                    if (((ToolStripMenuItem)menuItem).Tag == null) continue;
-                    var display = GetText(((ToolStripMenuItem)menuItem).Tag.ToString());
+                    if (menuItem.Tag == null) continue;
+                    var display = GetText(menuItem.Tag.ToString());
                     if (string.IsNullOrEmpty(display)) continue;
-                    ((ToolStripMenuItem)menuItem).Text = display;
+                    menuItem.Text = display;
                     if (((ToolStripMenuItem)menuItem).DropDownItems.Count > 0)
                         Translateform(((ToolStripMenuItem)menuItem).DropDownItems);
                 }
                 if (menuItem.GetType().FullName == typeof(ToolStripButton).FullName)
                 {
-                    if (((ToolStripButton)menuItem).Tag == null) continue;
-                    var display = GetText(((ToolStripButton)menuItem).Tag.ToString());
+                    if (menuItem.Tag == null) continue;
+                    var display = GetText(menuItem.Tag.ToString());
                     if (string.IsNullOrEmpty(display)) continue;
-                    ((ToolStripButton)menuItem).Text = display;
+                    menuItem.Text = display;
                 }
             }
         }
 
         /// <summary>
-        /// 
+        ///     控件多语言化
         /// </summary>
         /// <param name="controls"></param>
         public static void Translateform(Control.ControlCollection controls)
@@ -133,14 +141,18 @@ namespace ResourceLib.Method
             var display = string.Empty;
             foreach (Control ctrlItem in controls)
             {
+                //System.Diagnostics.Debug.WriteLine(ctrlItem.GetType().FullName);
+                //复合控件
                 if (ctrlItem.GetType().FullName == typeof(MenuStrip).FullName)
                 {
                     if (((MenuStrip)ctrlItem).Items.Count > 0) Translateform(((MenuStrip)ctrlItem).Items);
                 }
+                //ToolStrip
                 if (ctrlItem.GetType().FullName == typeof(ToolStrip).FullName)
                 {
                     if (((ToolStrip)ctrlItem).Items.Count > 0) Translateform(((ToolStrip)ctrlItem).Items);
                 }
+                //Tab
                 if (ctrlItem.GetType().FullName == typeof(TabControl).FullName)
                 {
                     foreach (TabPage tab in ((TabControl)ctrlItem).TabPages)
@@ -153,6 +165,7 @@ namespace ResourceLib.Method
                         Translateform(tab.Controls);
                     }
                 }
+                //GroupBox
                 if (ctrlItem.GetType().FullName == typeof(GroupBox).FullName)
                 {
                     if (!string.IsNullOrEmpty(display))
@@ -161,14 +174,28 @@ namespace ResourceLib.Method
                     }
                     Translateform(ctrlItem.Controls);
                 }
+                //列表控件
+                if (ctrlItem.GetType().FullName == typeof(ListView).FullName)
+                {
+                    ListView lst = (ListView)ctrlItem;
+                    foreach (ColumnHeader header in lst.Columns)
+                    {
+                        if (header.Tag != null)
+                        {
+                            header.Text = GetText(header.Text, header.Tag.ToString());
+                        }
+                    }
+                }
+                //单一控件
                 if (ctrlItem.Tag == null) continue;
                 display = GetText(ctrlItem.Tag.ToString());
                 if (string.IsNullOrEmpty(display)) continue;
-
+                //标签
                 if (ctrlItem.GetType().FullName == typeof(Label).FullName)
                 {
                     ((Label)ctrlItem).Text = display;
                 }
+                //按钮
                 if (ctrlItem.GetType().FullName == typeof(Button).FullName)
                 {
                     ((Button)ctrlItem).Text = display;
@@ -183,10 +210,12 @@ namespace ResourceLib.Method
                         ((Button)ctrlItem).BackColor = FailColor;
                     }
                 }
+                //复选框
                 if (ctrlItem.GetType().FullName == typeof(CheckBox).FullName)
                 {
                     ((CheckBox)ctrlItem).Text = display;
                 }
+                //单选框
                 if (ctrlItem.GetType().FullName == typeof(RadioButton).FullName)
                 {
                     ((RadioButton)ctrlItem).Text = display;
