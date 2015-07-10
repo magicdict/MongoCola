@@ -78,7 +78,7 @@ namespace ResourceLib.Method
         public static string GetText(string defaultText, string tag)
         {
             if (IsUseDefaultLanguage) return defaultText;
-            tag = tag.Replace("_", string.Empty);
+            tag = tag.Replace("_", string.Empty).ToUpper();
             string strText = string.Empty;
             StringResource.StringDic.TryGetValue(tag, out strText);
             strText = string.IsNullOrEmpty(strText) ? defaultText : strText.Replace("&amp;", "&");
@@ -188,18 +188,16 @@ namespace ResourceLib.Method
                 }
                 //单一控件
                 if (ctrlItem.Tag == null) continue;
-                display = GetText(ctrlItem.Tag.ToString());
-                if (string.IsNullOrEmpty(display)) continue;
                 //标签
                 if (ctrlItem.GetType().FullName == typeof(Label).FullName)
                 {
-                    ((Label)ctrlItem).Text = display;
+                    ((Label)ctrlItem).Text = GetText(((Label)ctrlItem).Text, ctrlItem.Tag.ToString());
                 }
                 //按钮
                 if (ctrlItem.GetType().FullName == typeof(Button).FullName)
                 {
-                    ((Button)ctrlItem).Text = display;
-                    if (ctrlItem.Tag.ToString() == TextType.CommonOk.ToString())
+                    ((Button)ctrlItem).Text = GetText(((Button)ctrlItem).Text, ctrlItem.Tag.ToString());
+                    if (ctrlItem.Tag.ToString() == TextType.CommonOK.ToString())
                     {
                         ((Button)ctrlItem).BackColor = SuccessColor;
                     }
@@ -213,12 +211,12 @@ namespace ResourceLib.Method
                 //复选框
                 if (ctrlItem.GetType().FullName == typeof(CheckBox).FullName)
                 {
-                    ((CheckBox)ctrlItem).Text = display;
+                    ((CheckBox)ctrlItem).Text = GetText(((CheckBox)ctrlItem).Text, ctrlItem.Tag.ToString());
                 }
                 //单选框
                 if (ctrlItem.GetType().FullName == typeof(RadioButton).FullName)
                 {
-                    ((RadioButton)ctrlItem).Text = display;
+                    ((RadioButton)ctrlItem).Text = GetText(((RadioButton)ctrlItem).Text, ctrlItem.Tag.ToString());
                 }
             }
         }

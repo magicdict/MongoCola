@@ -32,7 +32,7 @@ namespace FunctionForm.Operation
                         TextType.CollectionStatusCollectionName);
                 chkAdvance.Text =
                     GuiConfig.GetText(TextType.CommonAdvanceOption);
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
+                cmdOK.Text = GuiConfig.GetText(TextType.CommonOK);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
                 chkIsCapped.Text =
                     GuiConfig.GetText(TextType.CollectionStatusIsCapped);

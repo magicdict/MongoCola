@@ -48,7 +48,7 @@ namespace FunctionForm.Aggregation
             if (GuiConfig.IsUseDefaultLanguage) return;
             cmdQuery.Text =
                 GuiConfig.GetText(TextType.DistinctActionLoadQuery);
-            cmdRun.Text = GuiConfig.GetText(TextType.CommonOk);
+            cmdRun.Text = GuiConfig.GetText(TextType.CommonOK);
             lblSelectField.Text =
                 GuiConfig.GetText(TextType.DistinctSelectField);
         }

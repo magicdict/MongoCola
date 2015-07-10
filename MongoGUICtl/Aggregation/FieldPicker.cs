@@ -7,6 +7,7 @@ using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
+using ResourceLib.Method;
 
 namespace MongoGUICtl.Aggregation
 {
@@ -20,6 +21,11 @@ namespace MongoGUICtl.Aggregation
         public FieldPicker()
         {
             InitializeComponent();
+        }
+
+        private void FieldPicker_Load(object sender, EventArgs e)
+        {
+            GuiConfig.Translateform(this.Controls);
         }
 
         public CtlFieldInfo.FieldMode FieldListMode { get; set; }
@@ -39,6 +45,7 @@ namespace MongoGUICtl.Aggregation
         }
 
         /// <summary>
+        /// 
         /// </summary>
         /// <returns></returns>
         public List<DataFilter.QueryFieldItem> GetQueryFieldList()
@@ -170,6 +177,7 @@ namespace MongoGUICtl.Aggregation
                 ctrItem.Location = conditionPos;
                 ctrItem.IsIdProtect = IsIdProtect;
                 ctrItem.QueryFieldItem = queryFieldItem;
+                ctrItem.Width = 450;
                 Controls.Add(ctrItem);
                 //纵向位置的累加
                 conditionPos.Y += ctrItem.Height;
@@ -224,5 +232,7 @@ namespace MongoGUICtl.Aggregation
             id.Add("_id", member);
             return id;
         }
+
+
     }
 }

@@ -150,7 +150,7 @@
         //Controller
         CtlIndexCreateIndex,
         CtlIndexCreateDescription,
-        CtlFieldInfoShow,
+        ctlFieldInfoShow,
 
         //GFS
         GfsFilename,
@@ -232,7 +232,7 @@
         CommonPassword,
         CommonChangePassword,
         CommonReadOnly,
-        CommonOk,
+        CommonOK,
         CommonConfirmPassword,
         CommonClose,
         CommonCancel,

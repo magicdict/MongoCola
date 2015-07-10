@@ -343,6 +343,7 @@
   <Common_No>否</Common_No>
   <Common_Detail>细节</Common_Detail>
   <Common_Save>保存</Common_Save>
+  <Common_Load>加载</Common_Load>
   <Common_Save_Local>本地保存</Common_Save_Local>
   <Common_Edit>编辑</Common_Edit>
   <Common_Modify>修改</Common_Modify>
@@ -365,6 +366,9 @@
   <Common_Roles>角色</Common_Roles>
   <Common_Validate>验证</Common_Validate>
   <Common_Search>检索</Common_Search>
+
+  <Common_SelectAll>全选</Common_SelectAll>
+  <Common_UnSelectAll>全不选</Common_UnSelectAll>
 
   <Common_Browse>浏览</Common_Browse>
   <Common_Clear>清除</Common_Clear>

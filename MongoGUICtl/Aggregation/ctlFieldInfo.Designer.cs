@@ -37,6 +37,8 @@ namespace MongoGUICtl.Aggregation
             this.radSortAcs = new System.Windows.Forms.RadioButton();
             this.radSortDes = new System.Windows.Forms.RadioButton();
             this.txtProject = new System.Windows.Forms.TextBox();
+            this.NumIndexOrder = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.NumIndexOrder)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFieldName
@@ -44,16 +46,16 @@ namespace MongoGUICtl.Aggregation
             this.lblFieldName.AutoSize = true;
             this.lblFieldName.Location = new System.Drawing.Point(7, 4);
             this.lblFieldName.Name = "lblFieldName";
-            this.lblFieldName.Size = new System.Drawing.Size(57, 13);
+            this.lblFieldName.Size = new System.Drawing.Size(59, 12);
             this.lblFieldName.TabIndex = 0;
             this.lblFieldName.Text = "FieldName";
             // 
             // chkIsShow
             // 
             this.chkIsShow.AutoSize = true;
-            this.chkIsShow.Location = new System.Drawing.Point(116, 3);
+            this.chkIsShow.Location = new System.Drawing.Point(72, 4);
             this.chkIsShow.Name = "chkIsShow";
-            this.chkIsShow.Size = new System.Drawing.Size(60, 17);
+            this.chkIsShow.Size = new System.Drawing.Size(66, 16);
             this.chkIsShow.TabIndex = 1;
             this.chkIsShow.Text = "Display";
             this.chkIsShow.UseVisualStyleBackColor = true;
@@ -61,9 +63,9 @@ namespace MongoGUICtl.Aggregation
             // radNoSort
             // 
             this.radNoSort.AutoSize = true;
-            this.radNoSort.Location = new System.Drawing.Point(182, 2);
+            this.radNoSort.Location = new System.Drawing.Point(260, 4);
             this.radNoSort.Name = "radNoSort";
-            this.radNoSort.Size = new System.Drawing.Size(39, 17);
+            this.radNoSort.Size = new System.Drawing.Size(35, 16);
             this.radNoSort.TabIndex = 2;
             this.radNoSort.TabStop = true;
             this.radNoSort.Text = "No";
@@ -72,9 +74,9 @@ namespace MongoGUICtl.Aggregation
             // radSortAcs
             // 
             this.radSortAcs.AutoSize = true;
-            this.radSortAcs.Location = new System.Drawing.Point(237, 3);
+            this.radSortAcs.Location = new System.Drawing.Point(315, 5);
             this.radSortAcs.Name = "radSortAcs";
-            this.radSortAcs.Size = new System.Drawing.Size(43, 17);
+            this.radSortAcs.Size = new System.Drawing.Size(41, 16);
             this.radSortAcs.TabIndex = 3;
             this.radSortAcs.TabStop = true;
             this.radSortAcs.Text = "Asc";
@@ -83,9 +85,9 @@ namespace MongoGUICtl.Aggregation
             // radSortDes
             // 
             this.radSortDes.AutoSize = true;
-            this.radSortDes.Location = new System.Drawing.Point(288, 3);
+            this.radSortDes.Location = new System.Drawing.Point(366, 5);
             this.radSortDes.Name = "radSortDes";
-            this.radSortDes.Size = new System.Drawing.Size(44, 17);
+            this.radSortDes.Size = new System.Drawing.Size(41, 16);
             this.radSortDes.TabIndex = 4;
             this.radSortDes.TabStop = true;
             this.radSortDes.Text = "Des";
@@ -93,15 +95,24 @@ namespace MongoGUICtl.Aggregation
             // 
             // txtProject
             // 
-            this.txtProject.Location = new System.Drawing.Point(347, 3);
+            this.txtProject.Location = new System.Drawing.Point(144, 1);
             this.txtProject.Name = "txtProject";
-            this.txtProject.Size = new System.Drawing.Size(100, 20);
+            this.txtProject.Size = new System.Drawing.Size(100, 21);
             this.txtProject.TabIndex = 5;
             // 
-            // ctlFieldInfo
+            // NumIndexOrder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.NumIndexOrder.Location = new System.Drawing.Point(413, 2);
+            this.NumIndexOrder.Name = "NumIndexOrder";
+            this.NumIndexOrder.Size = new System.Drawing.Size(35, 21);
+            this.NumIndexOrder.TabIndex = 6;
+            this.NumIndexOrder.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // CtlFieldInfo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.NumIndexOrder);
             this.Controls.Add(this.txtProject);
             this.Controls.Add(this.radSortDes);
             this.Controls.Add(this.radSortAcs);
@@ -109,7 +120,8 @@ namespace MongoGUICtl.Aggregation
             this.Controls.Add(this.chkIsShow);
             this.Controls.Add(this.lblFieldName);
             this.Name = "CtlFieldInfo";
-            this.Size = new System.Drawing.Size(457, 26);
+            this.Size = new System.Drawing.Size(451, 24);
+            ((System.ComponentModel.ISupportInitialize)(this.NumIndexOrder)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,5 +135,6 @@ namespace MongoGUICtl.Aggregation
         private RadioButton radSortAcs;
         private RadioButton radSortDes;
         private TextBox txtProject;
+        private NumericUpDown NumIndexOrder;
     }
 }

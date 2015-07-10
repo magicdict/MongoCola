@@ -51,7 +51,7 @@ namespace MongoGUICtl.Aggregation
                 radSortDes.Text = GuiConfig.GetText(TextType.IndexDesc);
                 radNoSort.Text = GuiConfig.GetText(TextType.IndexNoSort);
                 chkIsShow.Text =
-                    GuiConfig.GetText(TextType.CtlFieldInfoShow);
+                    GuiConfig.GetText(TextType.ctlFieldInfoShow);
             }
         }
 
@@ -67,36 +67,30 @@ namespace MongoGUICtl.Aggregation
                 {
                     case FieldMode.Field:
                         chkIsShow.Visible = true;
-                        radNoSort.Visible = false;
-                        radSortAcs.Visible = false;
-                        radSortDes.Visible = false;
                         txtProject.Visible = false;
+                        radNoSort.Visible = false;
                         break;
                     case FieldMode.FiledSort:
                         chkIsShow.Visible = true;
                         radNoSort.Visible = true;
-                        radSortAcs.Visible = true;
-                        radSortDes.Visible = true;
                         txtProject.Visible = false;
                         break;
                     case FieldMode.FieldProject:
                         chkIsShow.Visible = true;
-                        radNoSort.Visible = false;
-                        radSortAcs.Visible = false;
-                        radSortDes.Visible = false;
                         txtProject.Visible = true;
-                        txtProject.Left = radNoSort.Left;
+                        radNoSort.Visible = false;
                         break;
                     case FieldMode.Full:
                         chkIsShow.Visible = true;
-                        radNoSort.Visible = true;
-                        radSortAcs.Visible = true;
-                        radSortDes.Visible = true;
                         txtProject.Visible = true;
+                        radNoSort.Visible = true;
                         break;
                     default:
                         break;
                 }
+                radSortAcs.Visible = radNoSort.Visible; 
+                radSortDes.Visible = radNoSort.Visible; 
+                NumIndexOrder.Visible = radNoSort.Visible;
             }
             get { return _mMode; }
         }
@@ -173,6 +167,7 @@ namespace MongoGUICtl.Aggregation
                     default:
                         break;
                 }
+                NumIndexOrder.Value = value.SortOrder;
             }
             get
             {
@@ -192,6 +187,7 @@ namespace MongoGUICtl.Aggregation
                 {
                     rtnQueryFieldItem.SortType = DataFilter.SortType.Descending;
                 }
+                rtnQueryFieldItem.SortOrder = (int)NumIndexOrder.Value;
                 return rtnQueryFieldItem;
             }
         }

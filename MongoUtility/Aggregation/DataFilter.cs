@@ -172,6 +172,7 @@ namespace MongoUtility.Aggregation
             public bool IsShow;
 
             /// <summary>
+            ///     重命名
             /// </summary>
             public string ProjectName;
 
@@ -179,6 +180,10 @@ namespace MongoUtility.Aggregation
             ///     排序类型
             /// </summary>
             public SortType SortType;
+            /// <summary>
+            ///     排序顺位
+            /// </summary>
+            public int SortOrder;
 
             /// <summary>
             ///     构造器
@@ -190,6 +195,7 @@ namespace MongoUtility.Aggregation
                 ColName = mColName;
                 IsShow = false;
                 SortType = SortType.NoSort;
+                SortOrder = 0;
             }
         }
     }

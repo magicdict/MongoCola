@@ -33,39 +33,42 @@ namespace MongoGUICtl.Aggregation
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSelectAll = new Button();
-            this.btnUnSelectAll = new Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnUnSelectAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSelectAll
             // 
-            this.btnSelectAll.Location = new Point(37, 3);
+            this.btnSelectAll.Location = new System.Drawing.Point(192, 3);
             this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new Size(75, 23);
+            this.btnSelectAll.Size = new System.Drawing.Size(75, 25);
             this.btnSelectAll.TabIndex = 0;
+            this.btnSelectAll.Tag = "Common_SelectAll";
             this.btnSelectAll.Text = "Select All";
             this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new EventHandler(this.btnSelectAll_Click);
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // btnUnSelectAll
             // 
-            this.btnUnSelectAll.Location = new Point(118, 3);
+            this.btnUnSelectAll.Location = new System.Drawing.Point(273, 3);
             this.btnUnSelectAll.Name = "btnUnSelectAll";
-            this.btnUnSelectAll.Size = new Size(75, 23);
+            this.btnUnSelectAll.Size = new System.Drawing.Size(75, 25);
             this.btnUnSelectAll.TabIndex = 1;
+            this.btnUnSelectAll.Tag = "Common_UnSelectAll";
             this.btnUnSelectAll.Text = "UnSelect All";
             this.btnUnSelectAll.UseVisualStyleBackColor = true;
-            this.btnUnSelectAll.Click += new EventHandler(this.btnUnSelectAll_Click);
+            this.btnUnSelectAll.Click += new System.EventHandler(this.btnUnSelectAll_Click);
             // 
             // FieldPicker
             // 
-            this.AutoScaleDimensions = new SizeF(6F, 13F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = Color.White;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btnUnSelectAll);
             this.Controls.Add(this.btnSelectAll);
             this.Name = "FieldPicker";
-            this.Size = new Size(552, 375);
+            this.Size = new System.Drawing.Size(552, 346);
+            this.Load += new System.EventHandler(this.FieldPicker_Load);
             this.ResumeLayout(false);
 
         }

@@ -160,7 +160,7 @@ namespace FunctionForm.User
                 colRoles.Text = GuiConfig.GetText(TextType.CommonRoles);
                 colDataBase.Text =
                     GuiConfig.GetText(TextType.CommonDataBase);
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
+                cmdOK.Text = GuiConfig.GetText(TextType.CommonOK);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             }
         }

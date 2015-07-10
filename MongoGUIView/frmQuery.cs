@@ -25,7 +25,15 @@ namespace MongoGUIView
             _currentDataViewInfo = mDataViewInfo;
             RuntimeMongoDbContext.SelectObjectTag = mDataViewInfo.StrDbTag;
         }
-
+        /// <summary>
+        ///     直接关闭窗体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
         /// <summary>
         ///     输出配置字典
         /// </summary>
@@ -50,17 +58,8 @@ namespace MongoGUIView
                 //不使用过滤：字段初始化
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
-            if (GuiConfig.IsUseDefaultLanguage) return;
-            Text = GuiConfig.GetText(TextType.QueryTitle);
-            tabFieldInfo.Text = GuiConfig.GetText(TextType.QueryFieldInfo);
-            tabCondition.Text = GuiConfig.GetText(TextType.QueryFilter);
-            tabSql.Text = GuiConfig.GetText(TextType.ConvertSqlTitle);
-            cmdAddCondition.Text =
-                GuiConfig.GetText(TextType.QueryFilterAddCondition);
-            cmdLoad.Text = GuiConfig.GetText(TextType.QueryActionLoad);
-            cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
-            cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
-            cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
+            //多国语言
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>
@@ -105,15 +104,7 @@ namespace MongoGUIView
             Close();
         }
 
-        /// <summary>
-        ///     直接关闭窗体
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+
 
         /// <summary>
         ///     保存
@@ -122,7 +113,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = Utility.XmlFilter};
+            var savefile = new SaveFileDialog { Filter = Utility.XmlFilter };
             if (savefile.ShowDialog() != DialogResult.OK) return;
             // 设置DataFilter
             if (string.IsNullOrEmpty(txtSql.Text))
@@ -158,10 +149,11 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void cmdLoad_Click(object sender, EventArgs e)
         {
-            var openFile = new OpenFileDialog {Filter = Utility.XmlFilter};
+            var openFile = new OpenFileDialog { Filter = Utility.XmlFilter };
             if (openFile.ShowDialog() != DialogResult.OK) return;
             var newDataFilter = DataFilter.LoadFilter(openFile.FileName);
             _currentDataViewInfo.MDataFilter = newDataFilter;
+            QueryFieldPicker.SetQueryFieldList(_currentDataViewInfo.MDataFilter.QueryFieldList);
         }
     }
 }

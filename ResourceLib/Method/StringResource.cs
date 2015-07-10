@@ -44,7 +44,7 @@ namespace ResourceLib.Method
                             LanguageType = reader.GetAttribute("Type");
                             continue;
                         }
-                        tag = reader.Name.Trim().Replace("_","");
+                        tag = reader.Name.Trim().Replace("_","").ToUpper();
                         text = reader.ReadInnerXml().Trim();
                         if (!string.IsNullOrEmpty(tag) && !string.IsNullOrEmpty(text))
                         {

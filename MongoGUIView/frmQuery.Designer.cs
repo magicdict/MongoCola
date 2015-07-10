@@ -37,13 +37,13 @@ namespace MongoGUIView
             this.cmdOK = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFieldInfo = new System.Windows.Forms.TabPage();
-            this.QueryFieldPicker = new FieldPicker();
+            this.QueryFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
             this.tabCondition = new System.Windows.Forms.TabPage();
-            this.btnClear = new System.Windows.Forms.Button();
+            this.cmdClear = new System.Windows.Forms.Button();
             this.panFilter = new System.Windows.Forms.Panel();
-            this.ConditionPan = new ConditionPanel();
+            this.ConditionPan = new MongoGUICtl.Aggregation.ConditionPanel();
             this.tabGeoNear = new System.Windows.Forms.TabPage();
-            this.GeoNear = new CtlGeoNear();
+            this.GeoNear = new MongoGUICtl.CtlGeoNear();
             this.tabSql = new System.Windows.Forms.TabPage();
             this.lblAttentionSelectOnly = new System.Windows.Forms.Label();
             this.txtSql = new System.Windows.Forms.TextBox();
@@ -65,6 +65,7 @@ namespace MongoGUIView
             this.cmdAddCondition.Name = "cmdAddCondition";
             this.cmdAddCondition.Size = new System.Drawing.Size(96, 36);
             this.cmdAddCondition.TabIndex = 14;
+            this.cmdAddCondition.Tag = "Common_Add";
             this.cmdAddCondition.Text = "Add Filter";
             this.cmdAddCondition.UseVisualStyleBackColor = false;
             this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
@@ -72,10 +73,11 @@ namespace MongoGUIView
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(396, 514);
+            this.cmdOK.Location = new System.Drawing.Point(382, 514);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(88, 33);
+            this.cmdOK.Size = new System.Drawing.Size(99, 33);
             this.cmdOK.TabIndex = 12;
+            this.cmdOK.Tag = "Common_OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -109,7 +111,7 @@ namespace MongoGUIView
             this.QueryFieldPicker.AutoScroll = true;
             this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
             this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = CtlFieldInfo.FieldMode.FiledSort;
+            this.QueryFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Full;
             this.QueryFieldPicker.IsIdProtect = true;
             this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
             this.QueryFieldPicker.Name = "QueryFieldPicker";
@@ -118,7 +120,7 @@ namespace MongoGUIView
             // 
             // tabCondition
             // 
-            this.tabCondition.Controls.Add(this.btnClear);
+            this.tabCondition.Controls.Add(this.cmdClear);
             this.tabCondition.Controls.Add(this.panFilter);
             this.tabCondition.Controls.Add(this.cmdAddCondition);
             this.tabCondition.Location = new System.Drawing.Point(4, 24);
@@ -129,15 +131,16 @@ namespace MongoGUIView
             this.tabCondition.Text = "Condition";
             this.tabCondition.UseVisualStyleBackColor = true;
             // 
-            // btnClear
+            // cmdClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(328, 393);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(96, 36);
-            this.btnClear.TabIndex = 16;
-            this.btnClear.Text = "Clear Filter";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.cmdClear.Location = new System.Drawing.Point(328, 393);
+            this.cmdClear.Name = "cmdClear";
+            this.cmdClear.Size = new System.Drawing.Size(96, 36);
+            this.cmdClear.TabIndex = 16;
+            this.cmdClear.Tag = "Common_Clear";
+            this.cmdClear.Text = "Clear Filter";
+            this.cmdClear.UseVisualStyleBackColor = true;
+            this.cmdClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // panFilter
             // 
@@ -213,8 +216,9 @@ namespace MongoGUIView
             this.cmdLoad.BackColor = System.Drawing.Color.Transparent;
             this.cmdLoad.Location = new System.Drawing.Point(168, 514);
             this.cmdLoad.Name = "cmdLoad";
-            this.cmdLoad.Size = new System.Drawing.Size(117, 33);
+            this.cmdLoad.Size = new System.Drawing.Size(99, 33);
             this.cmdLoad.TabIndex = 13;
+            this.cmdLoad.Tag = "Common_Load";
             this.cmdLoad.Text = "Load Query";
             this.cmdLoad.UseVisualStyleBackColor = false;
             this.cmdLoad.Click += new System.EventHandler(this.cmdLoad_Click);
@@ -222,25 +226,27 @@ namespace MongoGUIView
             // cmdSave
             // 
             this.cmdSave.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSave.Location = new System.Drawing.Point(291, 514);
+            this.cmdSave.Location = new System.Drawing.Point(275, 514);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(99, 33);
             this.cmdSave.TabIndex = 14;
+            this.cmdSave.Tag = "Common_Save";
             this.cmdSave.Text = "Save Query";
             this.cmdSave.UseVisualStyleBackColor = false;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(490, 514);
+            this.cmdCancel.Location = new System.Drawing.Point(489, 514);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(108, 33);
+            this.cmdCancel.Size = new System.Drawing.Size(99, 33);
             this.cmdCancel.TabIndex = 15;
+            this.cmdCancel.Tag = "Common_Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
-            // frmQuery
+            // FrmQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -257,6 +263,7 @@ namespace MongoGUIView
             this.MinimizeBox = false;
             this.Name = "FrmQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "Query_Title";
             this.Text = "Query";
             this.Load += new System.EventHandler(this.frmQuery_Load);
             this.tabControl.ResumeLayout(false);
@@ -287,7 +294,7 @@ namespace MongoGUIView
         private TextBox txtSql;
         private TabPage tabFieldInfo;
         private FieldPicker QueryFieldPicker;
-        private Button btnClear;
+        private Button cmdClear;
         private ConditionPanel ConditionPan;
     }
 }

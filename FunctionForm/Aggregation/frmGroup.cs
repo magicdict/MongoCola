@@ -152,7 +152,7 @@ namespace FunctionForm.Aggregation
                 GuiConfig.GetText(TextType.GroupTabInitColumn);
             lblResult.Text = GuiConfig.GetText(TextType.GroupTabResult);
             cmdQuery.Text = GuiConfig.GetText(TextType.GroupLoadQuery);
-            cmdRun.Text = GuiConfig.GetText(TextType.CommonOk);
+            cmdRun.Text = GuiConfig.GetText(TextType.CommonOK);
         }
 
         /// <summary>

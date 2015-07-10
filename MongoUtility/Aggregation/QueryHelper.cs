@@ -12,6 +12,7 @@ namespace MongoUtility.Aggregation
     public static class QueryHelper
     {
         /// <summary>
+        /// 获得输出列表
         /// </summary>
         /// <returns></returns>
         public static string[] GetOutputFields(List<DataFilter.QueryFieldItem> fieldItemLst)
@@ -26,7 +27,11 @@ namespace MongoUtility.Aggregation
             }
             return outputFieldLst.ToArray();
         }
-
+        /// <summary>
+        /// 获得当前数据集包含记录数
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public static long GetCurrentCollectionCount(DataFilter query)
         {
             if (query == null)
@@ -38,34 +43,34 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
+        /// 获得排序
         /// </summary>
         /// <returns></returns>
         public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> fieldItemLst)
         {
             var sort = new SortByBuilder();
-            var ascendingList = new List<string>();
-            var descendingList = new List<string>();
-
+            //排序
+            fieldItemLst.Sort((x, y) => { return x.SortOrder - y.SortOrder; });
             foreach (var item in fieldItemLst)
             {
+                if (item.SortOrder == 0) continue;
                 switch (item.SortType)
                 {
                     case DataFilter.SortType.NoSort:
                         break;
                     case DataFilter.SortType.Ascending:
-                        ascendingList.Add(item.ColName);
+                        sort.Ascending(item.ColName);
                         break;
                     case DataFilter.SortType.Descending:
-                        descendingList.Add(item.ColName);
+                        sort.Descending(item.ColName);
                         break;
                 }
             }
-            sort.Ascending(ascendingList.ToArray());
-            sort.Descending(descendingList.ToArray());
             return sort;
         }
 
         /// <summary>
+        ///     获得查询
         /// </summary>
         /// <returns></returns>
         public static IMongoQuery GetQuery(List<DataFilter.QueryConditionInputItem> queryCompareList)
@@ -117,6 +122,7 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
+        ///     获得条件
         /// </summary>
         /// <param name="conditionGroup"></param>
         /// <returns></returns>
@@ -138,6 +144,7 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
+        ///     获得查询
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -171,7 +178,13 @@ namespace MongoUtility.Aggregation
             }
             return query;
         }
-
+        /// <summary>
+        ///     全文检索
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="limit"></param>
+        /// <param name="language"></param>
+        /// <returns></returns>
         public static List<BsonDocument> SearchText(string key, int limit, string language = "")
         {
             //检索文法： 
