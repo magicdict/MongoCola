@@ -6,6 +6,9 @@ using System.Windows.Forms.VisualStyles;
 using MongoDB.Bson;
 using MongoUtility.Basic;
 using ResourceLib.Method;
+using System.Collections.Generic;
+using System.IO;
+using MongoUtility.ToolKit;
 
 namespace MongoGUICtl
 {
@@ -18,6 +21,8 @@ namespace MongoGUICtl
         ///     是否实用UTC表示时间
         /// </summary>
         public static bool IsUTC {get;set;}
+
+        public List<BsonDocument> ContentData= null;
 
         /// <summary>
         ///     初始化
@@ -279,5 +284,16 @@ namespace MongoGUICtl
                 colType.Text = GuiConfig.GetText(TextType.CommonType);
             }
         }
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void Save(string fileName)
+        {
+            var writer = new StreamWriter(fileName, false);
+            writer.Write(ContentData.ToJson(MongoHelper.JsonWriterSettings));
+            writer.Close();
+        }
+
     }
 }

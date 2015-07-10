@@ -15,6 +15,7 @@
 *.doc
 *.xml
 *.scc
+*.bk
 /MongoCola/.localhistory
 /MongoCola/MongoCola.sln.ide
 /MongoGUICtl/bin

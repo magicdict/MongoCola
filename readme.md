@@ -9,3 +9,30 @@ MongoCola工具立志于成为专业的MongoDB的DBMS工具。
 感谢billmoling的加入  国际化功能
   
 GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
+
+版本号：
+Ver 1.5(Alpha)
+
+开发和测试环境
+
+操作系统：
+Windows 7
+Windows 10
+
+运行时：
+NET Framework 4.5
+MongoDB 3.1.5
+
+驱动程序
+CSharp Mongo Driver 2.0.1
+
+========================================================================
+发布履历
+========================================================================
+Ver 1.5(Alpha)  2015/07/09 @ Shanghai China
+重构代码，Mongo业务代码和界面代码分开
+新代码尽可能适配MongoDriver2.0.1
+MongoServer尽可能用MongoClient代替
+窗体TabPage管理功能的独立化
+TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
+各种Status改用树型结构表示

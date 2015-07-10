@@ -37,6 +37,7 @@ namespace MongoGUICtl.ClientTree
         public static void FillDataToTreeView(string collectionName, CtlTreeViewColumns trvData,
             List<BsonDocument> dataList, int mSkip)
         {
+            trvData.ContentData = dataList;
             trvData.DatatreeView.BeginUpdate();
             trvData.DatatreeView.Nodes.Clear();
             var skipCnt = mSkip;

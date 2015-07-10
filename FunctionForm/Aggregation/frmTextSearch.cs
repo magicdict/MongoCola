@@ -34,14 +34,14 @@ namespace FunctionForm.Aggregation
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var result = QueryHelper.SearchText(txtKey.Text, (int) NUDLimit.Value,
-                (cmbLanguage.SelectedIndex == 0) ? "" : cmbLanguage.Text);
-            //返回数限制
             try
             {
+                //返回数限制
+                var result = QueryHelper.SearchText(txtKey.Text, (int)NUDLimit.Value,
+                    (cmbLanguage.SelectedIndex == 0) ? "" : cmbLanguage.Text);
                 UiHelper.FillDataToTreeView("Text Search Result", trvResult, result, 0);
                 MessageBox.Show("找到符合条件的结果数：" + result.Count());
-                //cmdSave.Enabled = true;
+                cmdSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -64,10 +64,7 @@ namespace FunctionForm.Aggregation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void cmdClose_Click(object sender, EventArgs e) => Close();
 
         /// <summary>
         ///     保存
@@ -77,10 +74,10 @@ namespace FunctionForm.Aggregation
         private void cmdSave_Click(object sender, EventArgs e)
         {
             var dialog = new SaveFileDialog();
-            dialog.Filter = Utility.JsFilter;
+            dialog.Filter = Utility.XmlFilter;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                //MongoHelper.SaveResultToJSonFile(_result, dialog.FileName);
+                trvResult.Save(dialog.FileName);
             }
         }
     }

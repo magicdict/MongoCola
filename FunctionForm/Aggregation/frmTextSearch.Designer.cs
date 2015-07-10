@@ -77,7 +77,7 @@ namespace FunctionForm.Aggregation
             // 
             this.btnSearch.Location = new System.Drawing.Point(555, 8);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 21);
+            this.btnSearch.Size = new System.Drawing.Size(105, 27);
             this.btnSearch.TabIndex = 22;
             this.btnSearch.Tag = "Common_Search";
             this.btnSearch.Text = "Search";
@@ -156,9 +156,9 @@ namespace FunctionForm.Aggregation
             // 
             // cmdSave
             // 
-            this.cmdSave.Location = new System.Drawing.Point(488, 414);
+            this.cmdSave.Location = new System.Drawing.Point(488, 412);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(105, 25);
+            this.cmdSave.Size = new System.Drawing.Size(105, 27);
             this.cmdSave.TabIndex = 29;
             this.cmdSave.Tag = "Common_Save";
             this.cmdSave.Text = "Save";
@@ -167,9 +167,9 @@ namespace FunctionForm.Aggregation
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(608, 414);
+            this.cmdClose.Location = new System.Drawing.Point(608, 412);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(114, 25);
+            this.cmdClose.Size = new System.Drawing.Size(105, 27);
             this.cmdClose.TabIndex = 28;
             this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
