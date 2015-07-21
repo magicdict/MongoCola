@@ -46,14 +46,14 @@ namespace FunctionForm.Connection
             this.txtDataBaseName = new System.Windows.Forms.TextBox();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.lblConnectionString = new System.Windows.Forms.Label();
-            this.NumPort = new System.Windows.Forms.NumericUpDown();
+            this.intPort = new System.Windows.Forms.NumericUpDown();
             this.cmdTest = new System.Windows.Forms.Button();
             this.tabConnection = new System.Windows.Forms.TabControl();
             this.tabBasic = new System.Windows.Forms.TabPage();
             this.lblAttentionPassword = new System.Windows.Forms.Label();
             this.tabReplicaSet = new System.Windows.Forms.TabPage();
             this.cmdRemoveHost = new System.Windows.Forms.Button();
-            this.NumReplPort = new System.Windows.Forms.NumericUpDown();
+            this.intReplPort = new System.Windows.Forms.NumericUpDown();
             this.lblReplPort = new System.Windows.Forms.Label();
             this.txtReplHost = new System.Windows.Forms.TextBox();
             this.lblReplHost = new System.Windows.Forms.Label();
@@ -81,11 +81,11 @@ namespace FunctionForm.Connection
             this.ctlSSHConfig1 = new FunctionForm.Connection.CtlSshConfig();
             this.tabSSL = new System.Windows.Forms.TabPage();
             this.ctlSSLConfig1 = new FunctionForm.Connection.CtlSSLConfig();
-            ((System.ComponentModel.ISupportInitialize)(this.NumPort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
             this.tabReplicaSet.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intReplPort)).BeginInit();
             this.tabConnString.SuspendLayout();
             this.tabReadWrite.SuspendLayout();
             this.tabOptional.SuspendLayout();
@@ -238,18 +238,18 @@ namespace FunctionForm.Connection
             this.lblConnectionString.Tag = "AddConnection_ConnectionString";
             this.lblConnectionString.Text = "Use ConnectionString Directly:";
             // 
-            // NumPort
+            // intPort
             // 
-            this.NumPort.Location = new System.Drawing.Point(501, 27);
-            this.NumPort.Maximum = new decimal(new int[] {
+            this.intPort.Location = new System.Drawing.Point(501, 27);
+            this.intPort.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.NumPort.Name = "NumPort";
-            this.NumPort.Size = new System.Drawing.Size(118, 21);
-            this.NumPort.TabIndex = 2;
-            this.NumPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.intPort.Name = "intPort";
+            this.intPort.Size = new System.Drawing.Size(118, 21);
+            this.intPort.TabIndex = 2;
+            this.intPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cmdTest
             // 
@@ -280,7 +280,7 @@ namespace FunctionForm.Connection
             // tabBasic
             // 
             this.tabBasic.Controls.Add(this.lblAttentionPassword);
-            this.tabBasic.Controls.Add(this.NumPort);
+            this.tabBasic.Controls.Add(this.intPort);
             this.tabBasic.Controls.Add(this.lblConnectionName);
             this.tabBasic.Controls.Add(this.txtDataBaseName);
             this.tabBasic.Controls.Add(this.lblPort);
@@ -315,7 +315,7 @@ namespace FunctionForm.Connection
             // tabReplicaSet
             // 
             this.tabReplicaSet.Controls.Add(this.cmdRemoveHost);
-            this.tabReplicaSet.Controls.Add(this.NumReplPort);
+            this.tabReplicaSet.Controls.Add(this.intReplPort);
             this.tabReplicaSet.Controls.Add(this.lblReplPort);
             this.tabReplicaSet.Controls.Add(this.txtReplHost);
             this.tabReplicaSet.Controls.Add(this.lblReplHost);
@@ -342,18 +342,18 @@ namespace FunctionForm.Connection
             this.cmdRemoveHost.UseVisualStyleBackColor = true;
             this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
             // 
-            // NumReplPort
+            // intReplPort
             // 
-            this.NumReplPort.Location = new System.Drawing.Point(94, 112);
-            this.NumReplPort.Maximum = new decimal(new int[] {
+            this.intReplPort.Location = new System.Drawing.Point(94, 112);
+            this.intReplPort.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.NumReplPort.Name = "NumReplPort";
-            this.NumReplPort.Size = new System.Drawing.Size(118, 21);
-            this.NumReplPort.TabIndex = 2;
-            this.NumReplPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.intReplPort.Name = "intReplPort";
+            this.intReplPort.Size = new System.Drawing.Size(118, 21);
+            this.intReplPort.TabIndex = 2;
+            this.intReplPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblReplPort
             // 
@@ -655,13 +655,13 @@ namespace FunctionForm.Connection
             this.Tag = "AddConnection_Title";
             this.Text = "Server Connection";
             this.Load += new System.EventHandler(this.frmAddConnection_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.NumPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intPort)).EndInit();
             this.tabConnection.ResumeLayout(false);
             this.tabBasic.ResumeLayout(false);
             this.tabBasic.PerformLayout();
             this.tabReplicaSet.ResumeLayout(false);
             this.tabReplicaSet.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intReplPort)).EndInit();
             this.tabConnString.ResumeLayout(false);
             this.tabConnString.PerformLayout();
             this.tabReadWrite.ResumeLayout(false);
@@ -695,7 +695,7 @@ namespace FunctionForm.Connection
         private Label lblDataBaseName;
         private Label lblConnectionString;
         private TextBox txtConnectionString;
-        private NumericUpDown NumPort;
+        private NumericUpDown intPort;
         private Button cmdTest;
         private TabControl tabConnection;
         private TabPage tabBasic;
@@ -706,7 +706,7 @@ namespace FunctionForm.Connection
         private Label lblReplsetNameDescription;
         private ListBox lstHost;
         private Button cmdAddHost;
-        private NumericUpDown NumReplPort;
+        private NumericUpDown intReplPort;
         private Label lblReplPort;
         private TextBox txtReplHost;
         private Label lblReplHost;

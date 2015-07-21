@@ -67,7 +67,6 @@ namespace ResourceLib.UI
             this.txtPathName.BackColor = System.Drawing.Color.White;
             this.txtPathName.Location = new System.Drawing.Point(50, 14);
             this.txtPathName.Name = "txtPathName";
-            this.txtPathName.ReadOnly = true;
             this.txtPathName.Size = new System.Drawing.Size(238, 21);
             this.txtPathName.TabIndex = 8;
             // 

@@ -238,7 +238,7 @@ namespace MongoCola
                         Operater.Oprcode.Create);
                     if (string.IsNullOrEmpty(strRusult))
                     {
-                        DisableAllOpr();
+                        RefreshToolStripMenuItem_Click(sender, e);
                     }
                     else
                     {
@@ -373,7 +373,7 @@ namespace MongoCola
                     GuiConfig.GetText(TextType.DropDataBaseConfirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
-            var strTagPrefix = ConstMgr.CollectionTag + ":" + TagInfo.GetTagPath(RuntimeMongoDbContext.SelectTagData);
+            var strTagPrefix = TagInfo.GetTagPath(ConstMgr.CollectionTag + ":" + RuntimeMongoDbContext.SelectTagData);
             var strDbName = strTagPrefix.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Database];
             if (trvsrvlst.SelectedNode == null)
             {
@@ -383,7 +383,7 @@ namespace MongoCola
                 Operater.Oprcode.Drop);
             if (string.IsNullOrEmpty(rtnResult))
             {
-                DisableAllOpr();
+                RefreshToolStripMenuItem_Click(sender, e);
                 //关闭所有的相关视图
                 MultiTabManger.SelectObjectTagPrefixDeleted(strTagPrefix);
             }

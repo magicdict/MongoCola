@@ -81,7 +81,7 @@ namespace MongoUtility.Command
         {
             var mongoSvr = RuntimeMongoDbContext.GetCurrentServer();
             var rtnResult = string.Empty;
-            TagInfo.GetTagPath(strObjTag);
+            var tag = TagInfo.GetTagPath(strObjTag);
             if (mongoSvr == null) return rtnResult;
             switch (func)
             {
@@ -94,7 +94,10 @@ namespace MongoUtility.Command
                         //clusterAdmin能创建数据库但是不能访问数据库。
                         try
                         {
-                            mongoSvr.GetDatabase(dbName);
+                            //Driver 2.0.1 
+                            //如果没有后续对于db的操作，则数据库无法新建
+                            var db = mongoSvr.GetDatabase(dbName);
+                            db.CreateCollection("demo");
                         }
                         catch (Exception ex)
                         {

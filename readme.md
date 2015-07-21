@@ -3,6 +3,9 @@
 MongoCola工具立志于成为专业的MongoDB的DBMS工具。     
 任何对这个项目感兴趣的朋友，熟悉C#的Winform开发的朋友，都可以申请加入这个项目的开发。	 
 如果有兴趣作为项目开发的协助者，请使用GitHub的站内消息和我联系。  
+
+可执行版本[需要 NET Framework 4.6] 更新时间:2015/07/21 16:00
+下载地址:  <http://files.cnblogs.com/files/TextEditor/ReleaseVersion.zip>
   
  
 感谢s021368   的加入  代码规范
@@ -20,7 +23,7 @@ Windows 7
 Windows 10
 
 运行时：
-NET Framework 4.5
+NET Framework 4.6
 MongoDB 3.1.5
 
 驱动程序
@@ -36,3 +39,7 @@ MongoServer尽可能用MongoClient代替
 窗体TabPage管理功能的独立化
 TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
 各种Status改用树型结构表示
+新建数据库无效,删除数据库错误等问题.
+
+BUG:
+1.新建数据库时,必须要新建一个数据集.
