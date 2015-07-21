@@ -23,6 +23,10 @@ namespace MongoCola.Config
             {
                 radLocal.Checked = true;
             }
+            if (SystemManager.SystemConfig.RefreshStatusTimer == 0)
+            {
+                SystemManager.SystemConfig.RefreshStatusTimer = SystemManager.SystemConfig.DefaultRefreshStatusTimer;
+            }
             intRefreshStatusTimer.Value = SystemManager.SystemConfig.RefreshStatusTimer;
             cmbLanguage.Items.Add(StringResource.LanguageEnglish);
             if (Directory.Exists("Language"))
@@ -65,7 +69,7 @@ namespace MongoCola.Config
             _ctlReadWriteConfig1.SaveConfig();
             SystemManager.SystemConfig.IsUTC = radUTC.Checked;
             SystemManager.SystemConfig.MongoBinPath = fileMongoBinPath.SelectedPathOrFileName;
-            SystemManager.SystemConfig.RefreshStatusTimer = (int) intRefreshStatusTimer.Value;
+            SystemManager.SystemConfig.RefreshStatusTimer = (int)intRefreshStatusTimer.Value;
             SystemManager.SystemConfig.LanguageFileName = cmbLanguage.Text + ".xml";
             SystemManager.SystemConfig.SaveSystemConfig();
             Close();
