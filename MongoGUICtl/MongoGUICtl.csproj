@@ -141,30 +141,6 @@
     <Compile Include="ctlIndexCreate.Designer.cs">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctllogLv.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctllogLv.Designer.cs">
-      <DependentUpon>ctllogLv.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ctlMongod.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctlMongod.Designer.cs">
-      <DependentUpon>ctlMongod.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ctlMongodump.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctlMongodump.Designer.cs">
-      <DependentUpon>ctlMongodump.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ctlMongoImportExport.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctlMongoImportExport.Designer.cs">
-      <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
-    </Compile>
     <Compile Include="ctlQueryCondition.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -223,18 +199,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctllogLv.resx">
-      <DependentUpon>ctllogLv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctlMongod.resx">
-      <DependentUpon>ctlMongod.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctlMongodump.resx">
-      <DependentUpon>ctlMongodump.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctlMongoImportExport.resx">
-      <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctlQueryCondition.resx">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>

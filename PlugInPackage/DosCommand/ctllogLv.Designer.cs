@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace MongoGUICtl
+namespace PlugInPackage
 {
     partial class CtllogLv
     {

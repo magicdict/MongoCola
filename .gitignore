@@ -3,6 +3,7 @@
 *.resources
 *.pdf
 *.xls
+*.xlsx
 *.pidb
 *.rar
 *.zip
@@ -16,6 +17,7 @@
 *.xml
 *.scc
 *.bk
+*.bak
 /MongoCola/.localhistory
 /MongoCola/MongoCola.sln.ide
 /MongoGUICtl/bin

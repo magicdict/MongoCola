@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ResourceLib.UI;
 
-namespace MongoGUICtl
+namespace PlugInPackage
 {
     partial class CtlMongod
     {
@@ -34,7 +34,7 @@ namespace MongoGUICtl
         {
             this.grpLog = new System.Windows.Forms.GroupBox();
             this.chkSmallfiles = new System.Windows.Forms.CheckBox();
-            this.ctllogLvT = new MongoGUICtl.CtllogLv();
+            this.ctllogLvT = new PlugInPackage.CtllogLv();
             this.chkIsAppend = new System.Windows.Forms.CheckBox();
             this.ctlFilePickerLogPath = new ResourceLib.UI.CtlFilePicker();
             this.lblPort = new System.Windows.Forms.Label();
@@ -111,7 +111,7 @@ namespace MongoGUICtl
             // lblPort
             // 
             this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(41, 16);
+            this.lblPort.Location = new System.Drawing.Point(22, 16);
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(41, 12);
             this.lblPort.TabIndex = 7;
@@ -119,7 +119,7 @@ namespace MongoGUICtl
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(88, 10);
+            this.numPort.Location = new System.Drawing.Point(69, 10);
             this.numPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -173,7 +173,7 @@ namespace MongoGUICtl
             // 
             this.radNormal.AutoSize = true;
             this.radNormal.Checked = true;
-            this.radNormal.Location = new System.Drawing.Point(193, 12);
+            this.radNormal.Location = new System.Drawing.Point(163, 14);
             this.radNormal.Name = "radNormal";
             this.radNormal.Size = new System.Drawing.Size(59, 16);
             this.radNormal.TabIndex = 19;
@@ -185,7 +185,7 @@ namespace MongoGUICtl
             // radMaster
             // 
             this.radMaster.AutoSize = true;
-            this.radMaster.Location = new System.Drawing.Point(257, 12);
+            this.radMaster.Location = new System.Drawing.Point(228, 12);
             this.radMaster.Name = "radMaster";
             this.radMaster.Size = new System.Drawing.Size(59, 16);
             this.radMaster.TabIndex = 20;
@@ -196,7 +196,7 @@ namespace MongoGUICtl
             // radSlave
             // 
             this.radSlave.AutoSize = true;
-            this.radSlave.Location = new System.Drawing.Point(320, 12);
+            this.radSlave.Location = new System.Drawing.Point(305, 12);
             this.radSlave.Name = "radSlave";
             this.radSlave.Size = new System.Drawing.Size(53, 16);
             this.radSlave.TabIndex = 21;

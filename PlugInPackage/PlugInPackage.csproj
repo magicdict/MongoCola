@@ -87,6 +87,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DosCommand\ctllogLv.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DosCommand\ctllogLv.Designer.cs">
+      <DependentUpon>ctllogLv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DosCommand\ctlMongod.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DosCommand\ctlMongod.Designer.cs">
+      <DependentUpon>ctlMongod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DosCommand\ctlMongodump.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DosCommand\ctlMongodump.Designer.cs">
+      <DependentUpon>ctlMongodump.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DosCommand\ctlMongoImportExport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DosCommand\ctlMongoImportExport.Designer.cs">
+      <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
+    </Compile>
     <Compile Include="DosCommand\DosCommand.cs" />
     <Compile Include="DosCommand\frmDosCommand.cs">
       <SubType>Form</SubType>
@@ -136,6 +160,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DosCommand\ctllogLv.resx">
+      <DependentUpon>ctllogLv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DosCommand\ctlMongod.resx">
+      <DependentUpon>ctlMongod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DosCommand\ctlMongodump.resx">
+      <DependentUpon>ctlMongodump.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DosCommand\ctlMongoImportExport.resx">
+      <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DosCommand\frmDosCommand.resx">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
     </EmbeddedResource>

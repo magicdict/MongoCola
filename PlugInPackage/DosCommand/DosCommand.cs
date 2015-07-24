@@ -16,11 +16,12 @@ namespace PlugInPackage.DosCommand
     /// </summary>
     public class DosCommand : PlugInBase
     {
+
         public DosCommand()
         {
             RunLv = PathLv.Misc;
             PlugName = "DosCommand";
-            PlugFunction = "DosCommand";
+            PlugFunction = "Dos Command Editor";
         }
 
         #region implemented abstract members of PlugInBase
@@ -28,7 +29,7 @@ namespace PlugInPackage.DosCommand
         public override int Run()
         {
             Utility.OpenForm(new FrmDosCommand(), true, true);
-            return 0;
+            return Success;
         }
 
         #endregion

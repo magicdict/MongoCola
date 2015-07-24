@@ -5,7 +5,7 @@ using MongoUtility.EventArgs;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 
-namespace MongoGUICtl
+namespace PlugInPackage
 {
     public partial class CtlMongod : UserControl
     {

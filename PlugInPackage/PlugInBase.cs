@@ -60,6 +60,8 @@ namespace PlugInPackage
         /// </summary>
         public PathLv RunLv = PathLv.ConnectionLv;
 
+        public const int Success = 0;
+
         /// <summary>
         ///     运行
         /// </summary>

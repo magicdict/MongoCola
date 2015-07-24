@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ResourceLib.UI;
 
-namespace MongoGUICtl
+namespace PlugInPackage
 {
     partial class CtlMongodump
     {
@@ -32,7 +32,7 @@ namespace MongoGUICtl
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctllogLvT = new MongoGUICtl.CtllogLv();
+            this.ctllogLvT = new PlugInPackage.CtllogLv();
             this.ctlFilePickerOutput = new ResourceLib.UI.CtlFilePicker();
             this.lblHostAddr = new System.Windows.Forms.Label();
             this.txtHostAddr = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@ namespace MongoGUICtl
             // ctllogLvT
             // 
             this.ctllogLvT.BackColor = System.Drawing.Color.Transparent;
-            this.ctllogLvT.Location = new System.Drawing.Point(39, 134);
+            this.ctllogLvT.Location = new System.Drawing.Point(37, 134);
             this.ctllogLvT.Name = "ctllogLvT";
             this.ctllogLvT.Size = new System.Drawing.Size(312, 30);
             this.ctllogLvT.TabIndex = 0;
@@ -59,7 +59,7 @@ namespace MongoGUICtl
             this.ctlFilePickerOutput.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerOutput.FileFilter = "";
             this.ctlFilePickerOutput.FileName = "";
-            this.ctlFilePickerOutput.Location = new System.Drawing.Point(31, 83);
+            this.ctlFilePickerOutput.Location = new System.Drawing.Point(37, 83);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
             this.ctlFilePickerOutput.SelectedPathOrFileName = "";

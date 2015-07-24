@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 
-namespace MongoGUICtl
+namespace PlugInPackage
 {
     public partial class CtllogLv : UserControl
     {
