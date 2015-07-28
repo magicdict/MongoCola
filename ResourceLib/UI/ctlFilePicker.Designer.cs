@@ -31,7 +31,7 @@ namespace ResourceLib.UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmdClearPath = new System.Windows.Forms.Button();
+            this.cmdClear = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtPathName = new System.Windows.Forms.TextBox();
             this.cmdBrowse = new System.Windows.Forms.Button();
@@ -39,16 +39,16 @@ namespace ResourceLib.UI
             // 
             // cmdClearPath
             // 
-            this.cmdClearPath.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cmdClearPath.BackColor = System.Drawing.Color.Transparent;
-            this.cmdClearPath.Location = new System.Drawing.Point(375, 12);
-            this.cmdClearPath.Name = "cmdClearPath";
-            this.cmdClearPath.Size = new System.Drawing.Size(75, 23);
-            this.cmdClearPath.TabIndex = 10;
-            this.cmdClearPath.Tag = "Common_Clear";
-            this.cmdClearPath.Text = "Clear";
-            this.cmdClearPath.UseVisualStyleBackColor = false;
-            this.cmdClearPath.Click += new System.EventHandler(this.cmdClearPath_Click);
+            this.cmdClear.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cmdClear.BackColor = System.Drawing.Color.Transparent;
+            this.cmdClear.Location = new System.Drawing.Point(375, 12);
+            this.cmdClear.Name = "cmdClearPath";
+            this.cmdClear.Size = new System.Drawing.Size(75, 23);
+            this.cmdClear.TabIndex = 10;
+            this.cmdClear.Tag = "Common_Clear";
+            this.cmdClear.Text = "Clear";
+            this.cmdClear.UseVisualStyleBackColor = false;
+            this.cmdClear.Click += new System.EventHandler(this.cmdClearPath_Click);
             // 
             // lblTitle
             // 
@@ -89,7 +89,7 @@ namespace ResourceLib.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.cmdClearPath);
+            this.Controls.Add(this.cmdClear);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtPathName);
             this.Controls.Add(this.cmdBrowse);
@@ -104,7 +104,7 @@ namespace ResourceLib.UI
 
         #endregion
 
-        private Button cmdClearPath;
+        private Button cmdClear;
         private Label lblTitle;
         private TextBox txtPathName;
         private Button cmdBrowse;

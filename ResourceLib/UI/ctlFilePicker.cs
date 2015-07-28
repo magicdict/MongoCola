@@ -13,11 +13,22 @@ namespace ResourceLib.UI
         /// </summary>
         public enum DialogType
         {
+            /// <summary>
+            /// 打开
+            /// </summary>
             OpenFile,
+            /// <summary>
+            /// 保存
+            /// </summary>
             SaveFile,
+            /// <summary>
+            /// 目录
+            /// </summary>
             Directory
         }
-
+        /// <summary>
+        ///     类型
+        /// </summary>
         private DialogType _dialogType = DialogType.Directory;
         private string _fileFilter = string.Empty;
         private string _fileName = string.Empty;
@@ -59,6 +70,33 @@ namespace ResourceLib.UI
         }
 
         /// <summary>
+        ///     cmdBrowse按钮文字
+        /// </summary>
+        public string Browse
+        {
+            get { return cmdBrowse.Text; }
+            set
+            {
+                cmdBrowse.Text = value;
+                ResizeControl(null, null);
+            }
+        }
+
+        /// <summary>
+        ///     cmdClear按钮文字
+        /// </summary>
+        public string Clear
+        {
+            get { return cmdClear.Text; }
+            set
+            {
+                cmdClear.Text = value;
+                ResizeControl(null, null);
+            }
+        }
+
+
+        /// <summary>
         ///     选择类型
         /// </summary>
         public DialogType PickerType
@@ -88,7 +126,7 @@ namespace ResourceLib.UI
             switch (_dialogType)
             {
                 case DialogType.OpenFile:
-                    var openFile = new OpenFileDialog {FileName = _fileName};
+                    var openFile = new OpenFileDialog { FileName = _fileName };
                     if (_fileFilter != string.Empty)
                     {
                         openFile.Filter = _fileFilter;
@@ -99,7 +137,7 @@ namespace ResourceLib.UI
                     }
                     break;
                 case DialogType.SaveFile:
-                    var saveFile = new SaveFileDialog {FileName = _fileName};
+                    var saveFile = new SaveFileDialog { FileName = _fileName };
                     if (_fileFilter != string.Empty)
                     {
                         saveFile.Filter = _fileFilter;
@@ -151,9 +189,9 @@ namespace ResourceLib.UI
         private void ResizeControl(object sender, EventArgs e)
         {
             txtPathName.Left = lblTitle.Right + 4;
-            txtPathName.Width = Width - cmdBrowse.Width - lblTitle.Width - cmdClearPath.Width - 30;
-            cmdClearPath.Left = Width - cmdClearPath.Width;
-            cmdBrowse.Left = Width - cmdClearPath.Width - cmdBrowse.Width - 4;
+            txtPathName.Width = Width - cmdBrowse.Width - lblTitle.Width - cmdClear.Width - 30;
+            cmdClear.Left = Width - cmdClear.Width;
+            cmdBrowse.Left = Width - cmdClear.Width - cmdBrowse.Width - 4;
         }
     }
 }

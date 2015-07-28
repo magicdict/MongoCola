@@ -5,6 +5,7 @@ namespace MongoUtility.Basic
 {
     public static class EnumMgr
     {
+
         /// <summary>
         ///     导出类型
         /// </summary>
@@ -87,7 +88,28 @@ namespace MongoUtility.Basic
             /// </summary>
             WiredTiger
         }
-
+        /// <summary>
+        ///     MongoDB版本
+        /// </summary>
+        public enum PrimaryVersion
+        {
+            /// <summary>
+            ///     全版本       
+            /// </summary>
+            V000 = 000,
+            /// <summary>
+            ///     Version 2.4.0
+            /// </summary>
+            V240 = 240,
+            /// <summary>
+            ///     Version 2.6.0
+            /// </summary>
+            V260 = 260,
+            /// <summary>
+            ///     Version 3.0.0
+            /// </summary>
+            V300 = 300
+        }
         /// <summary>
         ///     Text Search 时候能指定的语言枚举
         /// </summary>

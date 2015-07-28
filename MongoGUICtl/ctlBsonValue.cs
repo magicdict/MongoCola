@@ -8,6 +8,7 @@ namespace MongoGUICtl
     public partial class CtlBsonValue : UserControl
     {
         private BsonArray _mBsonArray = new BsonArray();
+
         private BsonDocument _mBsonDocument = new BsonDocument();
 
         /// <summary>

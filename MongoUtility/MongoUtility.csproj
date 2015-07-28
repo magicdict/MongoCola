@@ -76,6 +76,7 @@
     <Compile Include="Aggregation\AggregationHelper.cs" />
     <Compile Include="Aggregation\DataFilter.cs" />
     <Compile Include="Aggregation\DataViewInfo.cs" />
+    <Compile Include="Core\ConfigurationFileOption.cs" />
     <Compile Include="Core\ReadWrite.cs" />
     <Compile Include="Core\TagInfo.cs" />
     <Compile Include="Command\Collection.cs" />

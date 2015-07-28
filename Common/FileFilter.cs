@@ -3,8 +3,9 @@ namespace Common
 {
     public static partial class Utility
     {
+
         /// <summary>
-        /// 
+        ///     JavaScript
         /// </summary>
         public static string JsFilter = "*.js(JavaScript Files)|*.js";
 
