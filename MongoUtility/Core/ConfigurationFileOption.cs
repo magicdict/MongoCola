@@ -85,6 +85,15 @@ namespace MongoUtility.Core
             ///     可用值列表
             /// </summary>
             public List<string> OptionValueList;
+
+            /// <summary>
+            ///     整型上限
+            /// </summary>
+            public int RangeMax;
+            /// <summary>
+            ///     整型下限
+            /// </summary>
+            public int RangeMin;
             /// <summary>
             ///     默认值字面量
             /// </summary>

@@ -80,6 +80,7 @@
             this.radTrue.TabStop = true;
             this.radTrue.Text = "True";
             this.radTrue.UseVisualStyleBackColor = true;
+            this.radTrue.Visible = false;
             // 
             // radFalse
             // 
@@ -91,6 +92,7 @@
             this.radFalse.TabStop = true;
             this.radFalse.Text = "False";
             this.radFalse.UseVisualStyleBackColor = true;
+            this.radFalse.Visible = false;
             // 
             // lblBoolean
             // 
@@ -100,6 +102,7 @@
             this.lblBoolean.Size = new System.Drawing.Size(41, 12);
             this.lblBoolean.TabIndex = 3;
             this.lblBoolean.Text = "布尔型";
+            this.lblBoolean.Visible = false;
             // 
             // lblString
             // 
@@ -109,6 +112,7 @@
             this.lblString.Size = new System.Drawing.Size(41, 12);
             this.lblString.TabIndex = 3;
             this.lblString.Text = "字符型";
+            this.lblString.Visible = false;
             // 
             // txtValue
             // 
@@ -116,6 +120,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(196, 21);
             this.txtValue.TabIndex = 4;
+            this.txtValue.Visible = false;
             // 
             // lblInteger
             // 
@@ -125,6 +130,7 @@
             this.lblInteger.Size = new System.Drawing.Size(41, 12);
             this.lblInteger.TabIndex = 3;
             this.lblInteger.Text = "数字型";
+            this.lblInteger.Visible = false;
             // 
             // intValue
             // 
@@ -138,6 +144,7 @@
             this.intValue.Size = new System.Drawing.Size(73, 21);
             this.intValue.TabIndex = 5;
             this.intValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.intValue.Visible = false;
             // 
             // lblValueType
             // 
@@ -156,6 +163,7 @@
             this.lblList.Size = new System.Drawing.Size(41, 12);
             this.lblList.TabIndex = 3;
             this.lblList.Text = "可选值";
+            this.lblList.Visible = false;
             // 
             // cmbValue
             // 
@@ -164,6 +172,7 @@
             this.cmbValue.Name = "cmbValue";
             this.cmbValue.Size = new System.Drawing.Size(121, 20);
             this.cmbValue.TabIndex = 6;
+            this.cmbValue.Visible = false;
             // 
             // ctlConfigItem
             // 
