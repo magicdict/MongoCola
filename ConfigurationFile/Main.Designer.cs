@@ -30,7 +30,7 @@
         {
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.btnSave = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.ctlConfFile = new ResourceLib.UI.CtlFilePicker();
             this.configEditor = new ConfigurationFile.ctlConfigItem();
             this.SuspendLayout();
@@ -52,14 +52,15 @@
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnOK
             // 
-            this.button1.Location = new System.Drawing.Point(584, 275);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 25);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "确定";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnOK.Location = new System.Drawing.Point(584, 275);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(100, 25);
+            this.btnOK.TabIndex = 3;
+            this.btnOK.Text = "确定";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // ctlConfFile
             // 
@@ -92,7 +93,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(698, 381);
             this.Controls.Add(this.ctlConfFile);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.configEditor);
             this.Controls.Add(this.treeView1);
@@ -109,7 +110,7 @@
         private System.Windows.Forms.TreeView treeView1;
         private ctlConfigItem configEditor;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOK;
         private ResourceLib.UI.CtlFilePicker ctlConfFile;
     }
 }

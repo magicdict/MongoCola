@@ -20,13 +20,17 @@ namespace ConfigurationFile
         /// <summary>
         ///     从外部文件中获取Options列表
         /// </summary>
-        /// <param name="xmlfilename"></param>
         public static void LoadDefines()
         {
-            List<ConfigurationFileOption.Define> lst = new List<ConfigurationFileOption.Define>();
-            lst = Utility.LoadObjFromXml<List<ConfigurationFileOption.Define>>(xmlfilename);
-            foreach (var item in lst)
+            List<ConfigurationFileOption.Define> Definelist = new List<ConfigurationFileOption.Define>();
+            Definelist = Utility.LoadObjFromXml<List<ConfigurationFileOption.Define>>(xmlfilename);
+            Definelist.Sort((x, y) => { return x.Path.CompareTo(y.Path); });
+            //Root Node
+            var Root = new CTreeNode(string.Empty);
+            foreach (var item in Definelist)
             {
+                System.Diagnostics.Debug.WriteLine(item.Path);
+                CTreeNode.AddToRootNode(Root,item.Path);
                 ConfigurationItemDictionary.Add(item.Path, item);
             }
         }
@@ -34,7 +38,6 @@ namespace ConfigurationFile
         /// <summary>
         ///     将列表存储到外部文件中
         /// </summary>
-        /// <param name="xmlfilename"></param>
         public static void SaveDefines()
         {
             List<ConfigurationFileOption.Define> lst = new List<ConfigurationFileOption.Define>();
@@ -90,11 +93,5 @@ namespace ConfigurationFile
             });
             Utility.SaveObjAsXml(xmlfilename, lst);
         }
-
-        public static void Parse()
-        {
-            //数型结构的准备，按照Path进行排序即可
-        }
-
     }
 }

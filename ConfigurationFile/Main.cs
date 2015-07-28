@@ -14,11 +14,14 @@ namespace ConfigurationFile
             //选择器初始化
             ctlConfFile.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;
             ctlConfFile.FileFilter = Common.Utility.ConfFilter;
-
             ConfigItemDefine.SaveDefines();
             ConfigItemDefine.LoadDefines();
-            ConfigItemDefine.Parse();
             configEditor.ItemDefine = ConfigItemDefine.ConfigurationItemDictionary["systemLog.verbosity"];
+        }
+
+        private void btnOK_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }
