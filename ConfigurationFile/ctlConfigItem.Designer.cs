@@ -41,6 +41,7 @@
             this.lblValueType = new System.Windows.Forms.Label();
             this.lblList = new System.Windows.Forms.Label();
             this.cmbValue = new System.Windows.Forms.ComboBox();
+            this.fileValue = new ResourceLib.UI.CtlFilePicker();
             ((System.ComponentModel.ISupportInitialize)(this.intValue)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +67,7 @@
             // 
             this.lblDescription.Location = new System.Drawing.Point(9, 89);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(313, 108);
+            this.lblDescription.Size = new System.Drawing.Size(519, 108);
             this.lblDescription.TabIndex = 0;
             this.lblDescription.Text = "*描述*";
             // 
@@ -174,10 +175,27 @@
             this.cmbValue.TabIndex = 6;
             this.cmbValue.Visible = false;
             // 
+            // fileValue
+            // 
+            this.fileValue.AutoSize = true;
+            this.fileValue.BackColor = System.Drawing.Color.Transparent;
+            this.fileValue.Browse = "浏览";
+            this.fileValue.Clear = "清空";
+            this.fileValue.FileFilter = "";
+            this.fileValue.InitFileName = "";
+            this.fileValue.Location = new System.Drawing.Point(27, 30);
+            this.fileValue.Name = "fileValue";
+            this.fileValue.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
+            this.fileValue.SelectedPathOrFileName = "";
+            this.fileValue.Size = new System.Drawing.Size(477, 38);
+            this.fileValue.TabIndex = 7;
+            this.fileValue.Title = "";
+            // 
             // ctlConfigItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.fileValue);
             this.Controls.Add(this.cmbValue);
             this.Controls.Add(this.intValue);
             this.Controls.Add(this.txtValue);
@@ -192,7 +210,7 @@
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblPrimaryVersion);
             this.Name = "ctlConfigItem";
-            this.Size = new System.Drawing.Size(322, 238);
+            this.Size = new System.Drawing.Size(558, 238);
             ((System.ComponentModel.ISupportInitialize)(this.intValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -214,5 +232,6 @@
         private System.Windows.Forms.Label lblValueType;
         private System.Windows.Forms.Label lblList;
         private System.Windows.Forms.ComboBox cmbValue;
+        private ResourceLib.UI.CtlFilePicker fileValue;
     }
 }

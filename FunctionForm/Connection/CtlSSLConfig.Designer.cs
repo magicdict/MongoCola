@@ -47,7 +47,7 @@
             this.fileSslCertificateFile.AutoSize = true;
             this.fileSslCertificateFile.BackColor = System.Drawing.Color.Transparent;
             this.fileSslCertificateFile.FileFilter = "SSL Certificate File|*.pem";
-            this.fileSslCertificateFile.FileName = "";
+            this.fileSslCertificateFile.InitFileName = "";
             this.fileSslCertificateFile.Location = new System.Drawing.Point(15, 47);
             this.fileSslCertificateFile.Name = "fileSslCertificateFile";
             this.fileSslCertificateFile.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.OpenFile;

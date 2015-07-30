@@ -99,7 +99,7 @@ namespace PlugInPackage
             this.ctlFilePickerLogPath.AutoSize = true;
             this.ctlFilePickerLogPath.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerLogPath.FileFilter = "";
-            this.ctlFilePickerLogPath.FileName = "";
+            this.ctlFilePickerLogPath.InitFileName = "";
             this.ctlFilePickerLogPath.Location = new System.Drawing.Point(7, 16);
             this.ctlFilePickerLogPath.Name = "ctlFilePickerLogPath";
             this.ctlFilePickerLogPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;
@@ -220,7 +220,7 @@ namespace PlugInPackage
             this.ctlFilePickerDBPath.AutoSize = true;
             this.ctlFilePickerDBPath.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerDBPath.FileFilter = "";
-            this.ctlFilePickerDBPath.FileName = "";
+            this.ctlFilePickerDBPath.InitFileName = "";
             this.ctlFilePickerDBPath.Location = new System.Drawing.Point(20, 30);
             this.ctlFilePickerDBPath.Name = "ctlFilePickerDBPath";
             this.ctlFilePickerDBPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;

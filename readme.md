@@ -33,28 +33,40 @@ CSharp Mongo Driver 2.0.1
 =  计划
 ========================================================================
 0.Fix Bug
-	解决所有发现的Bug 
-1.Config Options
+	解决所有发现的Bug
+	 
+1.Config Options(开发中)
 	一个MongoService用Config File文件的生成工具 
+
 2.扩大Model.TryUpdate的使用范围
 	Winform使用了MVC的概念，自动将Model和UI双向绑定
 	已经在frmConnnection/frmOption里面尝试了
+
 3.MutliLanguage
 	进一步改进多语言系统
+
 4.User System
 	用户系统
 
 ========================================================================
-发布履历
+= 发布履历
 ========================================================================
 Ver 1.5(Alpha)  2015/07/09 @ Shanghai China
+
 重构代码，Mongo业务代码和界面代码分开
+
 新代码尽可能适配MongoDriver2.0.1
+
 MongoServer尽可能用MongoClient代替
+
 窗体TabPage管理功能的独立化
+
 TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
+
 各种Status改用树型结构表示
+
 新建数据库无效,删除数据库错误等问题.
 
 BUG:
+
 1.新建数据库时,必须要新建一个数据集.

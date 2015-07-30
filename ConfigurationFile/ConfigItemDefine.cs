@@ -1,6 +1,7 @@
 ﻿using MongoUtility.Core;
 using System.Collections.Generic;
 using Common;
+using System;
 
 namespace ConfigurationFile
 {
@@ -18,17 +19,81 @@ namespace ConfigurationFile
         public static Dictionary<string, ConfigurationFileOption.ConfigValue> SelectedConfigurationValueDictionary = new Dictionary<string, ConfigurationFileOption.ConfigValue>();
 
         /// <summary>
-        ///     xml文件名称
+        ///     OptionDefines文件名称
         /// </summary>
-        public static string xmlfilename = @"OptionDefines.xml";
+        public static string DefineFilename = @"OptionDefines.xml";
+        /// <summary>
+        ///     OptionValue文件名称
+        /// </summary>
+        public static string ValueFilename = @"OptionValue.xml";
 
+        /// <summary>
+        ///     更新Value
+        /// </summary>
+        /// <param name="OptionValue"></param>
+        public static void UpdateValue(ConfigurationFileOption.ConfigValue OptionValue)
+        {
+            if (SelectedConfigurationValueDictionary.ContainsKey(OptionValue.Path))
+            {
+                SelectedConfigurationValueDictionary.Remove(OptionValue.Path);
+            }
+            SelectedConfigurationValueDictionary.Add(OptionValue.Path, OptionValue);
+        }
+        internal static void RemoveValue(string key)
+        {
+            if (SelectedConfigurationValueDictionary.ContainsKey(key))
+            {
+                SelectedConfigurationValueDictionary.Remove(key);
+            }
+        }
+        /// <summary>
+        ///     保存为XML文件
+        /// </summary>
+        public static void LoadValues()
+        {
+            List<ConfigurationFileOption.ConfigValue> ValueList = Utility.LoadObjFromXml<List<ConfigurationFileOption.ConfigValue>>(ValueFilename);
+            foreach (var item in ValueList)
+            {
+                SelectedConfigurationValueDictionary.Add(item.Path, item);
+            }
+        }
+
+        /// <summary>
+        ///     保存为XML文件
+        /// </summary>
+        public static void SaveValues()
+        {
+            List<ConfigurationFileOption.ConfigValue> ValueList = new List<ConfigurationFileOption.ConfigValue>();
+            foreach (var item in SelectedConfigurationValueDictionary.Values)
+            {
+                ValueList.Add(item);
+            }
+            Utility.SaveObjAsXml(ValueFilename, ValueList);
+        }
+        /// <summary>
+        ///     保存为Conf文件
+        /// </summary>
+        /// <param name="ConfFilename"></param>
+        public static void SaveAsYMAL(string ConfFilename)
+        {
+            List<ConfigurationFileOption.ConfigValue> ValueList = new List<ConfigurationFileOption.ConfigValue>();
+            List<string> strValueList = new List<string>();
+            foreach (var item in SelectedConfigurationValueDictionary.Values)
+            {
+                ValueList.Add(item);
+                strValueList.Add(item.Path + ": " + item.ValueLiteral.Replace(".",YamlHelper.PointChar));
+            }
+            //YMAL的做成
+            if (string.IsNullOrEmpty(ConfFilename)) ConfFilename = @"MongoService.conf";
+            YamlHelper.CreateFile(ConfFilename, strValueList);
+        }
         /// <summary>
         ///     从外部文件中获取Options列表
         /// </summary>
         public static CTreeNode LoadDefines()
         {
             List<ConfigurationFileOption.Define> Definelist = new List<ConfigurationFileOption.Define>();
-            Definelist = Utility.LoadObjFromXml<List<ConfigurationFileOption.Define>>(xmlfilename);
+            Definelist = Utility.LoadObjFromXml<List<ConfigurationFileOption.Define>>(DefineFilename);
             Definelist.Sort((x, y) => { return x.Path.CompareTo(y.Path); });
             //Root Node
             var Root = new CTreeNode(string.Empty);
@@ -40,6 +105,8 @@ namespace ConfigurationFile
             }
             return Root;
         }
+
+
 
         /// <summary>
         ///     将列表存储到外部文件中
@@ -157,13 +224,24 @@ namespace ConfigurationFile
             lst.Add(new ConfigurationFileOption.Define()
             {
                 Path = "processManagement.pidFilePath",
-                ValueType = ConfigurationFileOption.MetaType.DirName,
+                ValueType = ConfigurationFileOption.MetaType.PathName,
                 Description = "Specifies a file location to hold the process ID of the mongos or mongod process where mongos or mongod will write its PID. This is useful for tracking the mongos or mongod process in combination with the --fork option. Without a specified processManagement.pidFilePath option, the process creates no PID file.",
             });
 
             #endregion
 
-            Utility.SaveObjAsXml(xmlfilename, lst);
+            #region storage 
+            lst.Add(new ConfigurationFileOption.Define()
+            {
+                Path = "storage.dbPath",
+                ValueType = ConfigurationFileOption.MetaType.PathName,
+                Description = "The directory where the mongod instance stores its data.",
+            });
+            #endregion
+
+            Utility.SaveObjAsXml(DefineFilename, lst);
         }
+
+
     }
 }

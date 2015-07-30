@@ -32,7 +32,7 @@ namespace FunctionForm.Extend
             //Excel文件过滤器
             ctlExportFilePicker.FileFilter = Utility.ExcelFilter;
             _exportType = EnumMgr.ExportType.Excel;
-            ctlExportFilePicker.FileName = RuntimeMongoDbContext.GetCurrentCollection().Name;
+            ctlExportFilePicker.InitFileName = RuntimeMongoDbContext.GetCurrentCollection().Name;
             optExcel.CheckedChanged += optExportType_CheckedChanged;
             optText.CheckedChanged += optExportType_CheckedChanged;
             optXML.CheckedChanged += optExportType_CheckedChanged;

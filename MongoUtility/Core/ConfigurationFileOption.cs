@@ -28,7 +28,7 @@ namespace MongoUtility.Core
             /// <summary>
             ///     目录
             /// </summary>
-            DirName,
+            PathName,
             /// <summary>
             ///     文件
             /// </summary>

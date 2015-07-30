@@ -177,7 +177,7 @@ namespace FunctionForm.Connection
             this.fileSshPrivateKeyFile.AutoSize = true;
             this.fileSshPrivateKeyFile.BackColor = System.Drawing.Color.Transparent;
             this.fileSshPrivateKeyFile.FileFilter = "private key file|*.ppk";
-            this.fileSshPrivateKeyFile.FileName = "";
+            this.fileSshPrivateKeyFile.InitFileName = "";
             this.fileSshPrivateKeyFile.Location = new System.Drawing.Point(27, 133);
             this.fileSshPrivateKeyFile.Name = "fileSshPrivateKeyFile";
             this.fileSshPrivateKeyFile.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.OpenFile;

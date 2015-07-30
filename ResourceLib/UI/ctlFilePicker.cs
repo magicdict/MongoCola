@@ -48,12 +48,21 @@ namespace ResourceLib.UI
         }
 
         /// <summary>
-        ///     文件名称
+        ///     初始文件名称
         /// </summary>
-        public string FileName
+        public string InitFileName
         {
             get { return _fileName; }
             set { _fileName = value; }
+        }
+
+        /// <summary>
+        ///     选中路径
+        /// </summary>
+        public string SelectedPathOrFileName
+        {
+            get { return txtPathName.Text; }
+            set { txtPathName.Text = value; }
         }
 
         /// <summary>
@@ -105,14 +114,7 @@ namespace ResourceLib.UI
             set { _dialogType = value; }
         }
 
-        /// <summary>
-        ///     选中路径
-        /// </summary>
-        public string SelectedPathOrFileName
-        {
-            get { return txtPathName.Text; }
-            set { txtPathName.Text = value; }
-        }
+
 
         public event PathChangedHandler PathChanged;
 

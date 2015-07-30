@@ -192,7 +192,7 @@ namespace PlugInPackage
             this.ctlFilePickerOutput.AutoSize = true;
             this.ctlFilePickerOutput.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerOutput.FileFilter = "";
-            this.ctlFilePickerOutput.FileName = "";
+            this.ctlFilePickerOutput.InitFileName = "";
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 99);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;

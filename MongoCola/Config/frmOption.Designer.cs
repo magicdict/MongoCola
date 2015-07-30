@@ -206,7 +206,7 @@ namespace MongoCola.Config
             this.fileMongoBinPath.AutoSize = true;
             this.fileMongoBinPath.BackColor = System.Drawing.Color.Transparent;
             this.fileMongoBinPath.FileFilter = "";
-            this.fileMongoBinPath.FileName = "";
+            this.fileMongoBinPath.InitFileName = "";
             this.fileMongoBinPath.Location = new System.Drawing.Point(33, 104);
             this.fileMongoBinPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fileMongoBinPath.Name = "fileMongoBinPath";

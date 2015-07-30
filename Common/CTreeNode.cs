@@ -61,7 +61,7 @@ namespace Common
         /// 子节点挂载到Root节点
         /// </summary>
         /// <param name="FullPath"></param>
-        public static void AddToRootNode(CTreeNode Root, string FullPath)
+        public static void AddToRootNode(CTreeNode Root, string FullPath,object Tag = null)
         {
             //分割路径
             var PathArray = FullPath.Split(".".ToCharArray());
@@ -75,6 +75,7 @@ namespace Common
                 var HitNode = SearchNode.IsChildContains(PathArray[i]);
                 if (HitNode == null) {
                     var NewChild = new CTreeNode(NewPath);
+                    NewChild.Parent = SearchNode;
                     SearchNode.Children.Add(NewChild);
                     SearchNode = NewChild;
                 }
@@ -83,6 +84,8 @@ namespace Common
                     SearchNode = HitNode;
                 }
             }
+            //给节点赋予Tag
+            SearchNode.Tag = Tag;
         }
     }
 }

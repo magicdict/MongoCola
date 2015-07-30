@@ -82,6 +82,7 @@
     <Compile Include="CTreeNode.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="YAMLHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

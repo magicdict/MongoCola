@@ -42,7 +42,7 @@ namespace PlugInPackage.ImportAccessDB
         	// 
         	this.AccessPicker.BackColor = System.Drawing.Color.Transparent;
         	this.AccessPicker.FileFilter = "";
-        	this.AccessPicker.FileName = "";
+        	this.AccessPicker.InitFileName = "";
         	this.AccessPicker.Location = new System.Drawing.Point(35, 20);
         	this.AccessPicker.Name = "AccessPicker";
         	this.AccessPicker.PickerType = CtlFilePicker.DialogType.OpenFile;

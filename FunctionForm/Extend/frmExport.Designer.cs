@@ -103,7 +103,7 @@ namespace FunctionForm.Extend
             // 
             this.ctlExportFilePicker.BackColor = System.Drawing.Color.Transparent;
             this.ctlExportFilePicker.FileFilter = "";
-            this.ctlExportFilePicker.FileName = "";
+            this.ctlExportFilePicker.InitFileName = "";
             this.ctlExportFilePicker.Location = new System.Drawing.Point(12, 20);
             this.ctlExportFilePicker.Name = "ctlExportFilePicker";
             this.ctlExportFilePicker.PickerType = CtlFilePicker.DialogType.SaveFile;
