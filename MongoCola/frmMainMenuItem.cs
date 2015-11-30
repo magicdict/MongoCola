@@ -26,7 +26,15 @@ namespace MongoCola
     public partial class FrmMain
     {
         #region"工具"
-
+        /// <summary>
+        ///     Config File Create
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfigfileMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("ConfigurationFile.exe");
+        }
         /// <summary>
         ///     Options
         /// </summary>
@@ -905,7 +913,7 @@ namespace MongoCola
         {
             MyMessageBox.ShowMessage("About", "MagicCola",
                 GetResource.GetImage(ImageType.Smile),
-                new StreamReader("Release Note.txt").ReadToEnd());
+                new StreamReader("Release Note.txt",Encoding.UTF8).ReadToEnd());
         }
 
         /// <summary>

@@ -126,6 +126,7 @@ namespace MongoCola
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.ConfigfileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -801,6 +802,7 @@ namespace MongoCola
             // 
             this.ToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.plugInToolStripMenuItem,
+            this.ConfigfileMenuItem,
             this.toolStripMenuItem7,
             this.OptionsToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
@@ -811,18 +813,18 @@ namespace MongoCola
             // plugInToolStripMenuItem
             // 
             this.plugInToolStripMenuItem.Name = "plugInToolStripMenuItem";
-            this.plugInToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.plugInToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.plugInToolStripMenuItem.Text = "PlugIn";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(119, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(149, 6);
             // 
             // OptionsToolStripMenuItem
             // 
             this.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem";
-            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.OptionsToolStripMenuItem.Tag = "Main_Menu_Tool_Setting";
             this.OptionsToolStripMenuItem.Text = "&Options";
             this.OptionsToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
@@ -922,6 +924,13 @@ namespace MongoCola
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
+            // ConfigfileMenuItem
+            // 
+            this.ConfigfileMenuItem.Name = "ConfigfileMenuItem";
+            this.ConfigfileMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ConfigfileMenuItem.Text = "ConfigFile";
+            this.ConfigfileMenuItem.Click += new System.EventHandler(this.ConfigfileMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -932,7 +941,7 @@ namespace MongoCola
             this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.toolStripMain);
             this.Controls.Add(this.menuStripMain);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mongo-Cola";
@@ -1056,6 +1065,7 @@ namespace MongoCola
         private ToolStripMenuItem AddAdminCustomeRoleStripMenuItem;
         private ToolStripMenuItem AddDBCustomeRoleStripMenuItem;
         private TabControl tabView;
+        private ToolStripMenuItem ConfigfileMenuItem;
     }
 }
 

@@ -39,7 +39,11 @@ namespace ConfigurationFile
             }
             SelectedConfigurationValueDictionary.Add(OptionValue.Path, OptionValue);
         }
-        internal static void RemoveValue(string key)
+        /// <summary>
+        /// 删除Value
+        /// </summary>
+        /// <param name="key"></param>
+        public static void RemoveValue(string key)
         {
             if (SelectedConfigurationValueDictionary.ContainsKey(key))
             {
@@ -47,7 +51,7 @@ namespace ConfigurationFile
             }
         }
         /// <summary>
-        ///     保存为XML文件
+        ///     加载XML文件
         /// </summary>
         public static void LoadValues()
         {

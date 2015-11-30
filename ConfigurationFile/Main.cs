@@ -15,10 +15,9 @@ namespace ConfigurationFile
         {
             //选择器初始化
             ConfigItemDefine.SaveDefines();
-
             ctlConfFile.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;
             ctlConfFile.FileFilter = Utility.ConfFilter;
-            ConfigItemDefine.LoadValues();
+            if (System.IO.File.Exists(ConfigItemDefine.ValueFilename)) ConfigItemDefine.LoadValues();
             RefreshSelectItemList();
             var CRoot = ConfigItemDefine.LoadDefines();
             TreeNode RootTreeNode = new TreeNode("Config");
