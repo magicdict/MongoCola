@@ -51,22 +51,24 @@ CSharp Mongo Driver 2.0.1
 ========================================================================
 = 发布履历
 ========================================================================
-Ver 1.5(Alpha)  2015/07/09 @ Shanghai China
+=============================================
+=                  发布履历
+=============================================
+Ver 1.5(Beta)  2015/11/30 @ Shanghai China
+MongoDB 3.2.0 新功能对应版本
+1.Text Search V3 的对应：大小写敏感   
+2.Partial Index 的创建   
+3.独立外部工具 Configuration Creator 初版   
+4.创建Collection时候可以设定DocumentValidation参数   
+5.MongoDump 增加 --gzip --archive    
 
-重构代码，Mongo业务代码和界面代码分开
-
-新代码尽可能适配MongoDriver2.0.1
-
-MongoServer尽可能用MongoClient代替
-
-窗体TabPage管理功能的独立化
-
-TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
-
-各种Status改用树型结构表示
-
-新建数据库无效,删除数据库错误等问题.
-
-BUG:
-
-1.新建数据库时,必须要新建一个数据集.
+Ver 1.5(Alpha)  2015/07/09 @ Shanghai China   
+重构代码，Mongo业务代码和界面代码分开   
+新代码尽可能适配MongoDriver2.0.1   
+MongoServer尽可能用MongoClient代替   
+窗体TabPage管理功能的独立化   
+TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）   
+各种Status改用树型结构表示  
+新建数据库无效,删除数据库错误等问题.   
+BUG:   
+1.新建数据库时,必须要新建一个数据集.   

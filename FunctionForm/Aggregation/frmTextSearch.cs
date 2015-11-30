@@ -23,6 +23,11 @@ namespace FunctionForm.Aggregation
             {
                 cmbLanguage.Items.Add(item.ToString());
             }
+            cmbLanguage.Items.Add("====Enterprise Only====");
+            foreach (var item in Enum.GetValues(typeof(EnumMgr.TextSearchLanguageForEnterprise)))
+            {
+                cmbLanguage.Items.Add(item.ToString());
+            }
             cmbLanguage.SelectedIndex = 0;
             cmdSave.Enabled = false;
         }

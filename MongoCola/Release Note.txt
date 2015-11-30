@@ -52,7 +52,8 @@ MongoDB 3.2.0 新功能对应版本
 1.Text Search V3 的对应：大小写敏感
 2.Partial Index 的创建  
 3.独立外部工具 Configuration Creator 初版
-4.创建Collection时候可以设定DocumentValidation参数 
+4.创建Collection时候可以设定DocumentValidation参数
+5.MongoDump 增加 --gzip --archive 
 
 =============================================
 Ver 1.5(Alpha)  2015/07/09 @ Shanghai China

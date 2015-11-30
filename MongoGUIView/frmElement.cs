@@ -37,7 +37,6 @@ namespace MongoGUIView
         {
             InitializeComponent();
             _isUpdateMode = isUpdateMode;
-            //TODO:
             _fullPath = selectNode.FullPath;
             _selectNode = selectNode;
             _isElement = isElement;

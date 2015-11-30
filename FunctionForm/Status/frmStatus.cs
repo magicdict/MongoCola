@@ -70,6 +70,7 @@ namespace FunctionForm.Status
                     }
                     break;
                 case ConstMgr.CollectionTag:
+                    //TODO:这里无法看到Collection的Document Validation信息。
                     docStatus = RuntimeMongoDbContext.GetCurrentCollection().GetStats().Response.ToBsonDocument();
                     //图形化初始化
                     chartResult.Visible = true;

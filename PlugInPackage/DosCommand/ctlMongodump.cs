@@ -74,12 +74,49 @@ namespace PlugInPackage
             OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
-            _mongodumpCommand.Port = (int) numPort.Value;
+            _mongodumpCommand.Port = (int)numPort.Value;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkGZip_CheckedChanged(object sender, EventArgs e)
+        {
+            _mongodumpCommand.IsGZip = (chkGZip.Checked);
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
+              MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkArchive_CheckedChanged(object sender, EventArgs e)
+        {
+            _mongodumpCommand.IsArchive = chkArchive.Checked;
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
+            MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtArchive_TextChanged(object sender, EventArgs e)
+        {
+            _mongodumpCommand.ArchiveFilename = txtArchive.Text;
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
+            MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
     }
 }

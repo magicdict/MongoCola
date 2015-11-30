@@ -133,6 +133,18 @@ namespace MongoUtility.Basic
         }
 
         /// <summary>
+        ///     Text Search 时候能指定的语言枚举
+        ///     Since 3.2.0 Enterprise Version
+        /// </summary>
+        public enum TextSearchLanguageForEnterprise {
+            Arabic,
+            Farsi,
+            Urdu,
+            Simplified_Chinese,
+            Traditional_Chinese
+        }
+
+        /// <summary>
         ///     Key String
         /// </summary>
         /// <param name="keys"></param>

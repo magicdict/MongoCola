@@ -22,7 +22,7 @@ namespace MongoUtility.ToolKit
         /// <summary>
         ///     主机端口
         /// </summary>
-        public Int32 Port = ConstMgr.MongodDefaultPort;
+        public int Port = ConstMgr.MongodDefaultPort;
 
         /// <summary>
         ///     获得恢复的配置

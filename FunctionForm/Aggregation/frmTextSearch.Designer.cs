@@ -181,7 +181,7 @@ namespace FunctionForm.Aggregation
             // chkDiacriticSensitive
             // 
             this.chkDiacriticSensitive.AutoSize = true;
-            this.chkDiacriticSensitive.Location = new System.Drawing.Point(441, 60);
+            this.chkDiacriticSensitive.Location = new System.Drawing.Point(208, 61);
             this.chkDiacriticSensitive.Name = "chkDiacriticSensitive";
             this.chkDiacriticSensitive.Size = new System.Drawing.Size(138, 16);
             this.chkDiacriticSensitive.TabIndex = 30;
@@ -191,7 +191,7 @@ namespace FunctionForm.Aggregation
             // chkCaseSensitive
             // 
             this.chkCaseSensitive.AutoSize = true;
-            this.chkCaseSensitive.Location = new System.Drawing.Point(441, 38);
+            this.chkCaseSensitive.Location = new System.Drawing.Point(94, 61);
             this.chkCaseSensitive.Name = "chkCaseSensitive";
             this.chkCaseSensitive.Size = new System.Drawing.Size(108, 16);
             this.chkCaseSensitive.TabIndex = 31;

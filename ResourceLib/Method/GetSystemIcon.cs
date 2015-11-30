@@ -42,7 +42,7 @@ namespace ResourceLib.Method
         /// <summary>
         ///     扩展名和图片下标关联
         /// </summary>
-        public static Dictionary<string, Int32> IconList = new Dictionary<string, Int32>();
+        public static Dictionary<string, int> IconList = new Dictionary<string, int>();
 
         /// <summary>
         ///     图片数组
@@ -156,7 +156,7 @@ namespace ResourceLib.Method
         /// <param name="fileName"></param>
         /// <param name="isLarge"></param>
         /// <returns></returns>
-        public static Int32 GetIconIndexByFileName(string fileName, bool isLarge)
+        public static int GetIconIndexByFileName(string fileName, bool isLarge)
         {
             var getIcon = new FileInfo(fileName).Extension;
             if (IconList.ContainsKey(getIcon))
@@ -253,7 +253,7 @@ namespace ResourceLib.Method
                     //调用API方法读取图标
                     var phiconLarge = new int[1];
                     var phiconSmall = new int[1];
-                    Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
+                    Win32.ExtractIconEx(fileIcon[0], int.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
                     var iconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
                     resultIcon = Icon.FromHandle(iconHnd);
                 }
@@ -273,7 +273,7 @@ namespace ResourceLib.Method
                         //调用API方法读取图标
                         var phiconLarge = new int[1];
                         var phiconSmall = new int[1];
-                        Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
+                        Win32.ExtractIconEx(fileIcon[0], int.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
                         var iconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
                         resultIcon = Icon.FromHandle(iconHnd);
                     }

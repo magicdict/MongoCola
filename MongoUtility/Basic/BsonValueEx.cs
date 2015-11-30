@@ -25,7 +25,7 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     Int32
         /// </summary>
-        public Int32 MBsonInt32;
+        public int MBsonInt32;
 
         /// <summary>
         ///     文字值

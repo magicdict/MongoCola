@@ -42,6 +42,9 @@ namespace PlugInPackage
             this.txtDBName = new System.Windows.Forms.TextBox();
             this.lblCollectionName = new System.Windows.Forms.Label();
             this.txtCollectionName = new System.Windows.Forms.TextBox();
+            this.chkGZip = new System.Windows.Forms.CheckBox();
+            this.chkArchive = new System.Windows.Forms.CheckBox();
+            this.txtArchive = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,6 +60,8 @@ namespace PlugInPackage
             // 
             this.ctlFilePickerOutput.AutoSize = true;
             this.ctlFilePickerOutput.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerOutput.Browse = "Browse...";
+            this.ctlFilePickerOutput.Clear = "Clear";
             this.ctlFilePickerOutput.FileFilter = "";
             this.ctlFilePickerOutput.InitFileName = "";
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(37, 83);
@@ -151,11 +156,44 @@ namespace PlugInPackage
             this.txtCollectionName.TabIndex = 13;
             this.txtCollectionName.TextChanged += new System.EventHandler(this.txtCollectionName_TextChanged);
             // 
+            // chkGZip
+            // 
+            this.chkGZip.AutoSize = true;
+            this.chkGZip.Location = new System.Drawing.Point(306, 134);
+            this.chkGZip.Name = "chkGZip";
+            this.chkGZip.Size = new System.Drawing.Size(48, 16);
+            this.chkGZip.TabIndex = 14;
+            this.chkGZip.Text = "GZIP";
+            this.chkGZip.UseVisualStyleBackColor = true;
+            this.chkGZip.CheckedChanged += new System.EventHandler(this.chkGZip_CheckedChanged);
+            // 
+            // chkArchive
+            // 
+            this.chkArchive.AutoSize = true;
+            this.chkArchive.Location = new System.Drawing.Point(381, 134);
+            this.chkArchive.Name = "chkArchive";
+            this.chkArchive.Size = new System.Drawing.Size(66, 16);
+            this.chkArchive.TabIndex = 15;
+            this.chkArchive.Text = "Archive";
+            this.chkArchive.UseVisualStyleBackColor = true;
+            this.chkArchive.CheckedChanged += new System.EventHandler(this.chkArchive_CheckedChanged);
+            // 
+            // txtArchive
+            // 
+            this.txtArchive.Location = new System.Drawing.Point(472, 134);
+            this.txtArchive.Name = "txtArchive";
+            this.txtArchive.Size = new System.Drawing.Size(100, 21);
+            this.txtArchive.TabIndex = 16;
+            this.txtArchive.TextChanged += new System.EventHandler(this.txtArchive_TextChanged);
+            // 
             // CtlMongodump
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.txtArchive);
+            this.Controls.Add(this.chkArchive);
+            this.Controls.Add(this.chkGZip);
             this.Controls.Add(this.txtCollectionName);
             this.Controls.Add(this.lblCollectionName);
             this.Controls.Add(this.txtDBName);
@@ -187,5 +225,8 @@ namespace PlugInPackage
         private TextBox txtDBName;
         private Label lblCollectionName;
         private TextBox txtCollectionName;
+        private CheckBox chkGZip;
+        private CheckBox chkArchive;
+        private TextBox txtArchive;
     }
 }

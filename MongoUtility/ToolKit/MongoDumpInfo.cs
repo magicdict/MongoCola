@@ -9,6 +9,9 @@ namespace MongoUtility.ToolKit
     /// </summary>
     public class MongoDumpInfo
     {
+        //https://docs.mongodb.org/master/reference/program/mongodump/#mongodump-example-archive-file
+
+
         /// <summary>
         ///     数据集名称
         /// </summary>
@@ -37,7 +40,22 @@ namespace MongoUtility.ToolKit
         /// <summary>
         ///     主机端口
         /// </summary>
-        public Int32 Port = ConstMgr.MongodDefaultPort;
+        public int Port = ConstMgr.MongodDefaultPort;
+
+        /// <summary>
+        ///     Compresses the output.(Since 3.2.0)
+        /// </summary>
+        public bool IsGZip = false;
+
+        /// <summary>
+        ///    Writes the output to a single archive file or to the standard output (stdout).
+        ///   (Since 3.2.0)
+        /// </summary>
+        public bool IsArchive = false;
+        /// <summary>
+        ///     
+        /// </summary>
+        public string ArchiveFilename = string.Empty;
 
         /// <summary>
         ///     获得备份的配置
@@ -61,6 +79,18 @@ namespace MongoUtility.ToolKit
                 //3.0.0 RC10 不允许带有空格的路径了?
                 //dosCommand += " --out \"" + mongoDump.OutPutPath + "\"";
                 dosCommand += " --out " + mongoDump.OutPutPath;
+            }
+            if (mongoDump.IsGZip) {
+                //Since 3.2.0
+                dosCommand += " --gzip";    
+            }
+            if (mongoDump.IsArchive)
+            {
+                //Since 3.2.0
+                dosCommand += " --archive";
+                if (!String.IsNullOrEmpty(mongoDump.ArchiveFilename)) {
+                    dosCommand += "=" + mongoDump.ArchiveFilename;
+                }
             }
             return dosCommand;
         }

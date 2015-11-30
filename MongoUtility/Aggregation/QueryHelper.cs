@@ -200,19 +200,17 @@ namespace MongoUtility.Aggregation
             //      $diacriticSensitive: < boolean >
             //    }
             //}
-
             //检索关键字
-            IMongoQuery textSearchOption = null;
+            TextSearchOptions textSearchOption = new TextSearchOptions();
+            textSearchOption.CaseSensitive = caseSensitive;
+            textSearchOption.DiacriticSensitive = diacriticSensitive;
             //语言
             if (string.IsNullOrEmpty(language))
             {
-                textSearchOption = Query.Text(key);
+                textSearchOption.Language = language;
             }
-            else
-            {
-                textSearchOption = Query.Text(key, language);
-            }
-            var result = RuntimeMongoDbContext.GetCurrentCollection().FindAs<BsonDocument>(textSearchOption);
+            IMongoQuery textSearchQuery = Query.Text(key,textSearchOption);
+            var result = RuntimeMongoDbContext.GetCurrentCollection().FindAs<BsonDocument>(textSearchQuery);
             var resultDocumentList = result.SetLimit(limit).ToList();
             return resultDocumentList;
         }
