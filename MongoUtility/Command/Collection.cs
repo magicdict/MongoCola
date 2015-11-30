@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Core;
@@ -84,7 +85,9 @@ namespace MongoUtility.Command
             return RuntimeMongoDbContext.GetCurrentDataBase().RenameCollection(strOldCollectionName, strNewCollectionName).Ok;
         }
 
-
+        /// <summary>
+        /// 索引选项
+        /// </summary>
         public struct IndexOption
         {
             public bool IsBackground;
@@ -94,6 +97,10 @@ namespace MongoUtility.Command
             public bool IsSparse;
 
             public bool IsUnique;
+            /// <summary>
+            /// 是否为 Partial Indexes
+            /// </summary>
+            public bool IsPartial;
 
             public bool IsExpireData;
 
@@ -110,9 +117,19 @@ namespace MongoUtility.Command
             public string firstKey;
 
             public string textKey;
+            /// <summary>
+            /// Partial Indexes 的条件
+            /// </summary>
+            public string PartialCondition;
 
         }
-
+        /// <summary>
+        /// 新建索引
+        /// </summary>
+        /// <param name="UIOption"></param>
+        /// <param name="strMessageTitle"></param>
+        /// <param name="strMessageContent"></param>
+        /// <returns></returns>
         public static bool CreateIndex(IndexOption UIOption, ref string strMessageTitle, ref string strMessageContent)
         {
             var Result = true;
@@ -121,7 +138,10 @@ namespace MongoUtility.Command
             option.SetDropDups(UIOption.IsDropDups);
             option.SetSparse(UIOption.IsSparse);
             option.SetUnique(UIOption.IsUnique);
-
+            if (UIOption.IsPartial) {
+                IMongoQuery query = (QueryDocument)BsonDocument.Parse(UIOption.PartialCondition);
+                option.SetPartialFilterExpression(query);
+            }
             if (UIOption.IsExpireData)
             {
                 //TTL的限制条件很多

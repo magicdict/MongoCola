@@ -108,6 +108,8 @@ namespace FunctionForm.Operation
             UIOption.IsSparse = chkIsSparse.Checked;
             UIOption.IsUnique = chkIsUnique.Checked;
             UIOption.IsExpireData = chkExpireData.Checked;
+            //Partial Indexes
+            UIOption.IsPartial = chkPartialIndexes.Checked;
             UIOption.TTL = (int)numTTL.Value;
             UIOption.ascendingKey = ascendingKey;
             UIOption.descendingKey = descendingKey;
@@ -115,6 +117,8 @@ namespace FunctionForm.Operation
             UIOption.firstKey = firstKey;
             UIOption.textKey = textKey;
             UIOption.IndexName = txtIndexName.Text;
+            //Partial Indexes
+            UIOption.PartialCondition = txtPartialIndexes.Text;
             var strMessageTitle = string.Empty;
             var strMessageContent = string.Empty;
             if (Operater.CreateIndex(UIOption, ref strMessageTitle, ref strMessageContent))
@@ -156,5 +160,7 @@ namespace FunctionForm.Operation
         {
             numTTL.Enabled = chkExpireData.Checked;
         }
+
+
     }
 }

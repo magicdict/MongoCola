@@ -44,6 +44,8 @@ namespace FunctionForm.Aggregation
             this.lnkRef = new System.Windows.Forms.LinkLabel();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
+            this.chkDiacriticSensitive = new System.Windows.Forms.CheckBox();
+            this.chkCaseSensitive = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.NUDLimit)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,12 +178,34 @@ namespace FunctionForm.Aggregation
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
+            // chkDiacriticSensitive
+            // 
+            this.chkDiacriticSensitive.AutoSize = true;
+            this.chkDiacriticSensitive.Location = new System.Drawing.Point(441, 60);
+            this.chkDiacriticSensitive.Name = "chkDiacriticSensitive";
+            this.chkDiacriticSensitive.Size = new System.Drawing.Size(138, 16);
+            this.chkDiacriticSensitive.TabIndex = 30;
+            this.chkDiacriticSensitive.Text = "Diacritic Sensitive";
+            this.chkDiacriticSensitive.UseVisualStyleBackColor = true;
+            // 
+            // chkCaseSensitive
+            // 
+            this.chkCaseSensitive.AutoSize = true;
+            this.chkCaseSensitive.Location = new System.Drawing.Point(441, 38);
+            this.chkCaseSensitive.Name = "chkCaseSensitive";
+            this.chkCaseSensitive.Size = new System.Drawing.Size(108, 16);
+            this.chkCaseSensitive.TabIndex = 31;
+            this.chkCaseSensitive.Text = "Case Sensitive";
+            this.chkCaseSensitive.UseVisualStyleBackColor = true;
+            // 
             // FrmTextSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(734, 460);
+            this.Controls.Add(this.chkCaseSensitive);
+            this.Controls.Add(this.chkDiacriticSensitive);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.lnkRef);
@@ -216,5 +240,7 @@ namespace FunctionForm.Aggregation
         private LinkLabel lnkRef;
         private Button cmdSave;
         private Button cmdClose;
+        private CheckBox chkDiacriticSensitive;
+        private CheckBox chkCaseSensitive;
     }
 }

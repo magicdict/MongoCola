@@ -48,6 +48,8 @@
 /SystemUtility/obj
 /FunctionForm/bin
 /FunctionForm/obj
+/ConfigurationFile/bin
+/ConfigurationFile/obj
 /DesignDocument
 /ServerLoader
 !readme.txt

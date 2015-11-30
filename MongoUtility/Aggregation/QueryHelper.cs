@@ -185,11 +185,22 @@ namespace MongoUtility.Aggregation
         /// <param name="limit"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public static List<BsonDocument> SearchText(string key, int limit, string language = "")
+        public static List<BsonDocument> SearchText(string key, bool caseSensitive, bool diacriticSensitive,int limit, string language = "")
         {
             //检索文法： 
             //[Before2.6]http://docs.mongodb.org/manual/reference/command/text/#text-search-languages
-            //[After2.6]http://docs.mongodb.org/manual/reference/operator/query/text/#op._S_text
+            //[After 2.6]http://docs.mongodb.org/manual/reference/operator/query/text/#op._S_text
+            //[From  3.2]https://docs.mongodb.org/master/reference/operator/query/text/
+            //{
+            //  $text:
+            //    {
+            //      $search: < string >,
+            //      $language: < string >,
+            //      $caseSensitive: < boolean >,
+            //      $diacriticSensitive: < boolean >
+            //    }
+            //}
+
             //检索关键字
             IMongoQuery textSearchOption = null;
             //语言

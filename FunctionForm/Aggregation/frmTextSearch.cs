@@ -37,8 +37,8 @@ namespace FunctionForm.Aggregation
             try
             {
                 //返回数限制
-                var result = QueryHelper.SearchText(txtKey.Text, (int)NUDLimit.Value,
-                    (cmbLanguage.SelectedIndex == 0) ? "" : cmbLanguage.Text);
+                var result = QueryHelper.SearchText(txtKey.Text, chkCaseSensitive.Checked,chkDiacriticSensitive.Checked,
+                    (int)NUDLimit.Value,(cmbLanguage.SelectedIndex == 0) ? "" : cmbLanguage.Text);
                 UiHelper.FillDataToTreeView("Text Search Result", trvResult, result, 0);
                 MessageBox.Show("找到符合条件的结果数：" + result.Count());
                 cmdSave.Enabled = true;
@@ -80,5 +80,7 @@ namespace FunctionForm.Aggregation
                 trvResult.Save(dialog.FileName);
             }
         }
+
+
     }
 }
