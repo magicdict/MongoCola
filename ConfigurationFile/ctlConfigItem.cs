@@ -52,6 +52,7 @@ namespace ConfigurationFile
             }
             return rtnValue;
         }
+
         /// <summary>
         ///     
         /// </summary>
@@ -65,7 +66,7 @@ namespace ConfigurationFile
                     txtValue.Text = value.ValueLiteral;
                     break;
                 case ConfigurationFileOption.MetaType.PathName:
-                    fileValue.SelectedPathOrFileName = value.ValueLiteral; 
+                    fileValue.SelectedPathOrFileName = value.ValueLiteral;
                     break;
                 case ConfigurationFileOption.MetaType.FileName:
                     fileValue.SelectedPathOrFileName = value.ValueLiteral;
@@ -141,7 +142,7 @@ namespace ConfigurationFile
                     break;
                 case ConfigurationFileOption.MetaType.PathName:
                     fileValue.Visible = true;
-                    fileValue.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory; 
+                    fileValue.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
                     break;
                 case ConfigurationFileOption.MetaType.FileName:
                     fileValue.Visible = true;
