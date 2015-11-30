@@ -49,9 +49,11 @@ CSharp Mongo Driver 2.2.0-RC0
 =============================================
 Ver 1.5(Beta)  2015/11/30 @ Shanghai China
 MongoDB 3.2.0 新功能对应版本
-1.Text Search V3
-2.Partial Index   
-3.Configuration Creator First Version As Exteral Tool
+1.Text Search V3 的对应：大小写敏感
+2.Partial Index 的创建  
+3.独立外部工具 Configuration Creator 初版
+4.创建Collection时候可以设定DocumentValidation参数 
+
 =============================================
 Ver 1.5(Alpha)  2015/07/09 @ Shanghai China
 重构代码，Mongo业务代码和界面代码分开

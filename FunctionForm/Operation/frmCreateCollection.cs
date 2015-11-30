@@ -8,6 +8,8 @@ using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;
 using MongoDB.Driver.Builders;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace FunctionForm.Operation
 {
@@ -83,6 +85,19 @@ namespace FunctionForm.Operation
                     option.SetMaxDocuments((long) numMaxDocument.Value);
                     //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                     option.SetAutoIndexId(chkIsAutoIndexId.Checked);
+
+                    if (chkValidation.Checked) {
+                        //Start From MongoDB 3.2.0
+                        option.SetValidator((QueryDocument)BsonDocument.Parse(txtValidation.Text));
+                        //Validation Level
+                        if (radLevel_off.Checked) option.SetValidationLevel(DocumentValidationLevel.Off);
+                        if (radLevel_strict.Checked) option.SetValidationLevel(DocumentValidationLevel.Strict);
+                        if (radLevel_moderate.Checked) option.SetValidationLevel(DocumentValidationLevel.Moderate);
+                        //Validation Action
+                        if (radAction_error.Checked) option.SetValidationAction(DocumentValidationAction.Error);
+                        if (radAction_warn.Checked) option.SetValidationAction(DocumentValidationAction.Warn);
+                    }
+
                     Result = Operater.CreateCollectionWithOptions(StrSvrPathWithTag, txtCollectionName.Text,
                         option, RuntimeMongoDbContext.GetCurrentDataBase());
                 }
