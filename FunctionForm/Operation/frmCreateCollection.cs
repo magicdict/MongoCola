@@ -18,7 +18,7 @@ namespace FunctionForm.Operation
         public bool Result;
         public string StrSvrPathWithTag;
         public TreeNode TreeNode;
-
+        public string CollectionName;
         public FrmCreateCollection()
         {
             InitializeComponent();
@@ -68,6 +68,7 @@ namespace FunctionForm.Operation
             //SERVER-4412已经在2013/03解决了
             //collection names are limited to 121 bytes after converting to UTF-8. 
             if (txtCollectionName.Text == string.Empty) return;
+            CollectionName = txtCollectionName.Text;
             try
             {
                 string errMessage;

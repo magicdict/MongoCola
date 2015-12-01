@@ -20,6 +20,7 @@ using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
 using FunctionForm.Connection;
+using MongoDB.Bson;
 
 namespace MongoCola
 {
@@ -418,6 +419,19 @@ namespace MongoCola
             Utility.OpenForm(frm, true, true);
             if (frm.Result)
             {
+                //这里表示： Client / Server  一个Client 可能连结复数Server  
+                string srvkey = RuntimeMongoDbContext.GetCurrentServerKey() + "/" + RuntimeMongoDbContext.GetCurrentServerKey();
+                TreeNode newCol = UiHelper.FillCollectionInfoToTreeNode(RuntimeMongoDbContext.GetCurrentIMongoDataBase().GetCollection<BsonDocument>(frm.CollectionName), srvkey);
+                foreach (TreeNode item in trvsrvlst.SelectedNode.Nodes)
+                {
+                    var strNodeType = TagInfo.GetTagType(item.Tag.ToString());
+                    if (strNodeType == ConstMgr.CollectionListTag)
+                    {
+                        //自己添加的Collection不是SystemCollection
+                        item.Nodes.Add(newCol);
+                        break;
+                    }
+                }
                 DisableAllOpr();
             }
         }

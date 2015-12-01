@@ -14,7 +14,7 @@ MongoCola工具立志于成为专业的MongoDB的DBMS工具。
 GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 
 版本号：
-Ver 1.5(Alpha)
+Ver 1.5(Beta)
 
 开发和测试环境
 
@@ -53,7 +53,8 @@ MongoDB 3.2.0 新功能对应版本
 2.Partial Index 的创建  
 3.独立外部工具 Configuration Creator 初版
 4.创建Collection时候可以设定DocumentValidation参数
-5.MongoDump 增加 --gzip --archive 
+5.MongoDump 增加 --gzip --archive
+6.修复添加Collection后UI没有实时更新的BUG 
 
 =============================================
 Ver 1.5(Alpha)  2015/07/09 @ Shanghai China

@@ -249,8 +249,26 @@ namespace MongoUtility.Core
         {
             return GetMongoServerBySvrPath(SelectObjectTag, MongoConnSvrLst);
         }
+        /// <summary>
+        ///     获得当前客户端
+        /// </summary>
+        /// <returns></returns>
+        public static MongoClient GetCurrentClient() {
+            return GetMongoClientBySvrPath(SelectObjectTag, MongoConnClientLst);
+        }
 
         /// <summary>
+        /// 获得ServerKey
+        /// </summary>
+        /// <returns></returns>
+        public static string GetCurrentServerKey() {
+            var strSvrPath = TagInfo.GetTagPath(SelectObjectTag);
+            var strPath = strSvrPath.Split("/".ToCharArray());
+            return strPath[0];
+        }
+
+        /// <summary>
+        ///     移除Connection
         /// </summary>
         /// <param name="connectionName"></param>
         public static void RemoveConnectionConfig(string connectionName)
@@ -266,7 +284,17 @@ namespace MongoUtility.Core
         {
             return GetMongoDBBySvrPath(SelectObjectTag, GetCurrentServer());
         }
-
+        /// <summary>
+        ///     当前IMongoDatabase
+        /// </summary>
+        /// <returns></returns>
+        public static IMongoDatabase GetCurrentIMongoDataBase() {
+            return GetIMongoDBBySvrPath(SelectObjectTag, GetCurrentClient());
+        }
+        /// <summary>
+        ///     当前数据库名称
+        /// </summary>
+        /// <returns></returns>
         public static string GetCurrentDataBaseName()
         {
             return GetMongoDBBySvrPath(SelectObjectTag, GetCurrentServer()).Name;
@@ -282,6 +310,7 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     当前数据集是否为Capped
         /// </summary>
         /// <returns></returns>
         public static bool GetCurrentCollectionIsCapped()
@@ -446,6 +475,26 @@ namespace MongoUtility.Core
                 if (strPathArray.Length > (int) EnumMgr.PathLevel.Database)
                 {
                     rtnMongoDb = mongoSvr.GetDatabase(strPathArray[(int) EnumMgr.PathLevel.Database]);
+                }
+            }
+            return rtnMongoDb;
+        }
+        /// <summary>
+        ///     根据路径字符获得IMongoDatabase
+        /// </summary>
+        /// <param name="strObjTag"></param>
+        /// <param name="mongoClient"></param>
+        /// <returns></returns>
+        public static IMongoDatabase GetIMongoDBBySvrPath(string strObjTag, MongoClient mongoClient)
+        {
+            IMongoDatabase rtnMongoDb = null;
+            if (mongoClient != null)
+            {
+                var strSvrPath = TagInfo.GetTagPath(strObjTag);
+                var strPathArray = strSvrPath.Split("/".ToCharArray());
+                if (strPathArray.Length > (int)EnumMgr.PathLevel.Database)
+                {
+                    rtnMongoDb = mongoClient.GetDatabase(strPathArray[(int)EnumMgr.PathLevel.Database]);
                 }
             }
             return rtnMongoDb;
