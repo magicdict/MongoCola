@@ -107,7 +107,7 @@ namespace FunctionForm.Aggregation
                 txtResult.Select(0, 0);
                 //图形化加载
                 chartResult.Series.Add(seriesResult);
-                chartResult.Titles.Add(chartTite);
+				chartResult.Titles.Add(new Title(chartTite));
                 tabGroup.SelectedIndex = 4;
             }
             catch (Exception ex)

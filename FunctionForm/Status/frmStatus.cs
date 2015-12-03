@@ -108,7 +108,7 @@ namespace FunctionForm.Status
 
                     seriesResult.ChartType = SeriesChartType.Pie;
                     chartResult.Series.Add(seriesResult);
-                    chartResult.Titles.Add("Usage");
+				chartResult.Titles.Add(new Title("Usage"));
 
                     break;
                 default:
@@ -208,7 +208,7 @@ namespace FunctionForm.Status
 
             seriesResult.ChartType = SeriesChartType.Pie;
             chartResult.Series.Add(seriesResult);
-            chartResult.Titles.Add(strField);
+			chartResult.Titles.Add(new Title(strField));
         }
 
         private void btnClose_Click(object sender, EventArgs e)

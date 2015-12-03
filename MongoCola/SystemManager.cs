@@ -39,9 +39,10 @@ namespace MongoCola
         public static void Init()
         {
             //MongoDB驱动版本的取得
-            var info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Driver.dll");
+			System.Diagnostics.Debug.Print(Path.DirectorySeparatorChar.ToString());
+			var info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar.ToString() + "MongoDB.Driver.dll");
             MongoHelper.MongoDbDriverVersion = info.ProductVersion;
-            info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Bson.dll");
+			info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar.ToString() + "MongoDB.Bson.dll");
             MongoHelper.MongoDbBsonVersion = info.ProductVersion;
             //版本设定
             Version = Application.ProductVersion;
@@ -53,9 +54,9 @@ namespace MongoCola
             Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + MongoHelper.MongoDbBsonVersion +
                                            Environment.NewLine;
             //config
-            SystemConfig.AppPath = Application.StartupPath + "\\";
-            MongoConfig.AppPath = Application.StartupPath + "\\";
-            var localconfigfile = Application.StartupPath + "\\" + SystemConfig.SystemConfigFilename;
+			SystemConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
+			MongoConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
+			var localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar + SystemConfig.SystemConfigFilename;
             if (File.Exists(localconfigfile))
             {
                 SystemConfig.LoadFromConfigFile();
@@ -72,7 +73,7 @@ namespace MongoCola
                 frmOption.ShowDialog();
                 SystemConfig.SaveSystemConfig();
             }
-            localconfigfile = Application.StartupPath + "\\" + MongoConfig.MongoConfigFilename;
+			localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar + MongoConfig.MongoConfigFilename;
             if (File.Exists(localconfigfile))
             {
                 MongoConfig.LoadFromConfigFile();
@@ -95,7 +96,7 @@ namespace MongoCola
             //语言的初始化
             if (!SystemConfig.IsUseDefaultLanguage())
             {
-                var languageFile = "Language" + Path.DirectorySeparatorChar + SystemConfig.LanguageFileName;
+				var languageFile = "Language" + Path.DirectorySeparatorChar + SystemConfig.LanguageFileName;
                 if (File.Exists(languageFile))
                 {
                     StringResource.InitLanguage(languageFile);
