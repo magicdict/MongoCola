@@ -4,33 +4,34 @@ namespace Common
 {
     public class CTreeNode
     {
-        public bool IsRoot { set; get; } = false;
+        public bool IsRoot { set; get; } 
         /// <summary>
         ///     父节点
         /// </summary>
-        public CTreeNode Parent { set; get; } = null;
+        public CTreeNode Parent { set; get; }
         /// <summary>
         ///     子节点
         /// </summary>
-        public List<CTreeNode> Children { set; get; } = new List<CTreeNode>();
+        public List<CTreeNode> Children { set; get; } 
         /// <summary>
         ///     全路径
         /// </summary>
-        public string Path { set; get; } = string.Empty;
+        public string Path { set; get; } 
         /// <summary>
         ///     文本信息
         /// </summary>
-        public string Text { set; get; } = string.Empty;
+        public string Text { set; get; }
         /// <summary>
         ///     Tag
         /// </summary>
-        public object Tag { set; get; } = null;
+        public object Tag { set; get; } 
         /// <summary>
         ///     新建一个节点
         /// </summary>
         /// <param name="Path">用.连接的全路径</param>
         public CTreeNode(string FullPath)
         {
+			Children = new List<CTreeNode> ();
             Path = FullPath;
             if (FullPath.Equals(string.Empty))
             {

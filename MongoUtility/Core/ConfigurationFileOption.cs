@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using static MongoUtility.Basic.EnumMgr;
+using MongoUtility.Basic;
 
 namespace MongoUtility.Core
 {
@@ -14,7 +14,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     目标数据库版本
         /// </summary>
-        public PrimaryVersion TargetVersion = PrimaryVersion.V000;
+		public EnumMgr.PrimaryVersion TargetVersion = EnumMgr.PrimaryVersion.V000;
 
         /// <summary>
         ///     元数据类型
@@ -72,11 +72,11 @@ namespace MongoUtility.Core
             /// <summary>
             ///     从哪个版本开始支持
             /// </summary>
-            public PrimaryVersion NewSinceVersion;
+			public EnumMgr.PrimaryVersion NewSinceVersion;
             /// <summary>
             ///     从哪个版本开始过时
             /// </summary>
-            public PrimaryVersion DeprecatedSinceversion;
+			public EnumMgr.PrimaryVersion DeprecatedSinceversion;
             /// <summary>
             ///     值的类型
             /// </summary>

@@ -69,7 +69,7 @@ namespace FunctionForm.Aggregation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdClose_Click(object sender, EventArgs e) => Close();
+		private void cmdClose_Click(object sender, EventArgs e) { Close();}
 
         /// <summary>
         ///     保存

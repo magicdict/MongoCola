@@ -52,14 +52,14 @@ namespace ResourceLib.Method
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static string GetText(TextType tag) => GetText(tag.ToString());
+		public static string GetText(TextType tag) { return GetText(tag.ToString());}
 
         /// <summary>
         ///     获得文字
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static string GetText(string tag) => GetText(tag, tag);
+		public static string GetText(string tag) {return GetText(tag, tag);}
 
         /// <summary>
         ///     获得文字
@@ -67,7 +67,7 @@ namespace ResourceLib.Method
         /// <param name="defaultText"></param>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static string GetText(string defaultText, TextType tag) => GetText(defaultText, tag.ToString());
+		public static string GetText(string defaultText, TextType tag) {return GetText(defaultText, tag.ToString());}
 
         /// <summary>
         ///     获得文字

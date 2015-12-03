@@ -33,7 +33,7 @@ namespace MongoGUIView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdCancel_Click(object sender, EventArgs e) => Close();
+		private void cmdCancel_Click(object sender, EventArgs e) {Close();}
 
         /// <summary>
         ///     输出配置字典
@@ -68,14 +68,14 @@ namespace MongoGUIView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdAddCondition_Click(object sender, EventArgs e) => ConditionPan.AddCondition();
+		private void cmdAddCondition_Click(object sender, EventArgs e) { ConditionPan.AddCondition();}
 
         /// <summary>
         ///     清空条件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnClear_Click(object sender, EventArgs e) => ConditionPan.ClearCondition();
+		private void btnClear_Click(object sender, EventArgs e) { ConditionPan.ClearCondition();}
 
 
         /// <summary>
