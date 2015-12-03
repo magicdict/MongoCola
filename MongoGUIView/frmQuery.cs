@@ -10,6 +10,8 @@ namespace MongoGUIView
 {
     public partial class FrmQuery : Form
     {
+        //Query 不支持$project操作和其他复杂操作！
+
         /// <summary>
         ///     当前DataViewInfo
         /// </summary>
@@ -147,5 +149,6 @@ namespace MongoGUIView
             _currentDataViewInfo.MDataFilter = newDataFilter;
             QueryFieldPicker.SetQueryFieldList(_currentDataViewInfo.MDataFilter.QueryFieldList);
         }
+
     }
 }

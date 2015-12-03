@@ -84,7 +84,7 @@ namespace MongoUtility.Basic
             MmaPv1,
 
             /// <summary>
-            ///     WiredTiger
+            ///     WiredTiger(Default Since 3.2.0)
             /// </summary>
             WiredTiger
         }
@@ -108,7 +108,11 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     Version 3.0.0
             /// </summary>
-            V300 = 300
+            V300 = 300,
+            /// <summary>
+            ///     Version 3.2.0
+            /// </summary>
+            V320 = 320
         }
         /// <summary>
         ///     Text Search 时候能指定的语言枚举

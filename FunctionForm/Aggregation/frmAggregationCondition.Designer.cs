@@ -86,7 +86,7 @@ namespace FunctionForm.Aggregation
             this.QueryFieldPicker.AutoScroll = true;
             this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
             this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = CtlFieldInfo.FieldMode.FieldProject;
+            this.QueryFieldPicker.FieldListMode = CtlFieldInfo.FieldMode.Aggregation;
             this.QueryFieldPicker.IsIdProtect = false;
             this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
             this.QueryFieldPicker.Name = "QueryFieldPicker";
@@ -165,7 +165,7 @@ namespace FunctionForm.Aggregation
             // 
             this.GroupFieldPicker.AutoScroll = true;
             this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
-            this.GroupFieldPicker.FieldListMode = CtlFieldInfo.FieldMode.FieldProject;
+            this.GroupFieldPicker.FieldListMode = CtlFieldInfo.FieldMode.Aggregation;
             this.GroupFieldPicker.IsIdProtect = false;
             this.GroupFieldPicker.Location = new System.Drawing.Point(6, 30);
             this.GroupFieldPicker.Name = "GroupFieldPicker";

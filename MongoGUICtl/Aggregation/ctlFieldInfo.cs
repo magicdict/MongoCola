@@ -20,12 +20,12 @@ namespace MongoGUICtl.Aggregation
             /// <summary>
             ///     字段加排序
             /// </summary>
-            FiledSort,
+            Query,
 
             /// <summary>
             ///     字段加Project
             /// </summary>
-            FieldProject,
+            Aggregation,
 
             /// <summary>
             ///     完整模式
@@ -47,11 +47,18 @@ namespace MongoGUICtl.Aggregation
             {
                 lblFieldName.Text =
                     GuiConfig.GetText(TextType.CtlIndexCreateIndex);
-                radSortAcs.Text = GuiConfig.GetText(TextType.IndexAsce);
-                radSortDes.Text = GuiConfig.GetText(TextType.IndexDesc);
-                radNoSort.Text = GuiConfig.GetText(TextType.IndexNoSort);
+                cmbSort.Items.Clear();
+                cmbSort.Items.Add(GuiConfig.GetText(TextType.IndexNoSort));
+                cmbSort.Items.Add(GuiConfig.GetText(TextType.IndexAsce));
+                cmbSort.Items.Add(GuiConfig.GetText(TextType.IndexDesc));
                 chkIsShow.Text =
                     GuiConfig.GetText(TextType.ctlFieldInfoShow);
+            }
+            else {
+                cmbSort.Items.Clear();
+                cmbSort.Items.Add("None Sort");
+                cmbSort.Items.Add("Asce");
+                cmbSort.Items.Add("Desc");
             }
         }
 
@@ -68,29 +75,32 @@ namespace MongoGUICtl.Aggregation
                     case FieldMode.Field:
                         chkIsShow.Visible = true;
                         txtProject.Visible = false;
-                        radNoSort.Visible = false;
+                        cmbSort.Visible = false;
+                        NumIndexOrder.Visible = false;
                         break;
-                    case FieldMode.FiledSort:
+                    case FieldMode.Query:
                         chkIsShow.Visible = true;
-                        radNoSort.Visible = true;
                         txtProject.Visible = false;
+                        cmbSort.Visible = true;
+                        cmbSort.Left = chkIsShow.Left + chkIsShow.Width + 10;
+                        NumIndexOrder.Visible = false;
                         break;
-                    case FieldMode.FieldProject:
+                    case FieldMode.Aggregation:
                         chkIsShow.Visible = true;
                         txtProject.Visible = true;
-                        radNoSort.Visible = false;
+                        cmbSort.Visible = false;
+                        NumIndexOrder.Visible = false;
                         break;
                     case FieldMode.Full:
                         chkIsShow.Visible = true;
                         txtProject.Visible = true;
-                        radNoSort.Visible = true;
+                        cmbSort.Visible = true;
+                        NumIndexOrder.Visible = true;
                         break;
                     default:
                         break;
                 }
-                radSortAcs.Visible = radNoSort.Visible; 
-                radSortDes.Visible = radNoSort.Visible; 
-                NumIndexOrder.Visible = radNoSort.Visible;
+                
             }
             get { return _mMode; }
         }
@@ -156,13 +166,13 @@ namespace MongoGUICtl.Aggregation
                 switch (value.SortType)
                 {
                     case DataFilter.SortType.NoSort:
-                        radNoSort.Checked = true;
+                        cmbSort.SelectedIndex = 0;
                         break;
                     case DataFilter.SortType.Ascending:
-                        radSortAcs.Checked = true;
+                        cmbSort.SelectedIndex = 1;
                         break;
                     case DataFilter.SortType.Descending:
-                        radSortDes.Checked = true;
+                        cmbSort.SelectedIndex = 2;
                         break;
                     default:
                         break;
@@ -175,15 +185,15 @@ namespace MongoGUICtl.Aggregation
                 rtnQueryFieldItem.IsShow = chkIsShow.Checked;
                 rtnQueryFieldItem.ColName = lblFieldName.Text;
                 rtnQueryFieldItem.ProjectName = txtProject.Text;
-                if (radNoSort.Checked)
+                if (cmbSort.SelectedIndex == 0)
                 {
                     rtnQueryFieldItem.SortType = DataFilter.SortType.NoSort;
                 }
-                if (radSortAcs.Checked)
+                if (cmbSort.SelectedIndex == 1)
                 {
                     rtnQueryFieldItem.SortType = DataFilter.SortType.Ascending;
                 }
-                if (radSortDes.Checked)
+                if (cmbSort.SelectedIndex == 2)
                 {
                     rtnQueryFieldItem.SortType = DataFilter.SortType.Descending;
                 }
