@@ -44,8 +44,8 @@ namespace MongoCola.Config
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radLocal = new System.Windows.Forms.RadioButton();
             this.radUTC = new System.Windows.Forms.RadioButton();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.fileMongoBinPath = new ResourceLib.UI.CtlFilePicker();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this._ctlReadWriteConfig1 = new FunctionForm.Connection.CtlReadWriteConfig();
             ((System.ComponentModel.ISupportInitialize)(this.intRefreshStatusTimer)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -83,10 +83,10 @@ namespace MongoCola.Config
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
             this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(243, 63);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
-            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(180, 15);
+            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(167, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
             this.lblRefreshIntervalForStatus.Tag = "";
-            this.lblRefreshIntervalForStatus.Text = "Monitor Refresh Interval（sec）";
+            this.lblRefreshIntervalForStatus.Text = "Monitor Refresh Interval (sec)";
             // 
             // cmdCancel
             // 
@@ -190,6 +190,23 @@ namespace MongoCola.Config
             this.radUTC.Text = "UTC";
             this.radUTC.UseVisualStyleBackColor = true;
             // 
+            // fileMongoBinPath
+            // 
+            this.fileMongoBinPath.AutoSize = true;
+            this.fileMongoBinPath.BackColor = System.Drawing.Color.Transparent;
+            this.fileMongoBinPath.Browse = "Browse...";
+            this.fileMongoBinPath.Clear = "Clear";
+            this.fileMongoBinPath.FileFilter = "";
+            this.fileMongoBinPath.InitFileName = "";
+            this.fileMongoBinPath.Location = new System.Drawing.Point(33, 104);
+            this.fileMongoBinPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.fileMongoBinPath.Name = "fileMongoBinPath";
+            this.fileMongoBinPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
+            this.fileMongoBinPath.SelectedPathOrFileName = "";
+            this.fileMongoBinPath.Size = new System.Drawing.Size(578, 49);
+            this.fileMongoBinPath.TabIndex = 19;
+            this.fileMongoBinPath.Title = "MongoBin";
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this._ctlReadWriteConfig1);
@@ -200,21 +217,6 @@ namespace MongoCola.Config
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Read Write";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // fileMongoBinPath
-            // 
-            this.fileMongoBinPath.AutoSize = true;
-            this.fileMongoBinPath.BackColor = System.Drawing.Color.Transparent;
-            this.fileMongoBinPath.FileFilter = "";
-            this.fileMongoBinPath.InitFileName = "";
-            this.fileMongoBinPath.Location = new System.Drawing.Point(33, 104);
-            this.fileMongoBinPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.fileMongoBinPath.Name = "fileMongoBinPath";
-            this.fileMongoBinPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
-            this.fileMongoBinPath.SelectedPathOrFileName = "";
-            this.fileMongoBinPath.Size = new System.Drawing.Size(578, 47);
-            this.fileMongoBinPath.TabIndex = 19;
-            this.fileMongoBinPath.Title = "MongoBin";
             // 
             // _ctlReadWriteConfig1
             // 
