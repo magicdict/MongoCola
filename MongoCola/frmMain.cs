@@ -363,14 +363,16 @@ namespace MongoCola
             CollapseAllConnectionToolStripButton = CollapseAllConnectionToolStripMenuItem.CloneFromMenuItem();
             RefreshToolStripButton = RefreshToolStripMenuItem.CloneFromMenuItem();
             ExitToolStripButton = ExitToolStripMenuItem.CloneFromMenuItem();
-
             OptionToolStripButton = OptionsToolStripMenuItem.CloneFromMenuItem();
             UserGuideToolStripButton = UserGuideToolStripMenuItem.CloneFromMenuItem();
-            //暂时不对应MONO
+
             if (SystemManager.MonoMode)
             {
+				ExpandAllConnectionToolStripButton.Click += ExpandAllToolStripMenuItem_Click;
+				CollapseAllConnectionToolStripButton.Click += CollapseAllToolStripMenuItem_Click;
                 RefreshToolStripButton.Click += RefreshToolStripMenuItem_Click;
-                OptionToolStripButton.Click += OptionToolStripMenuItem_Click;
+				ExitToolStripButton.Click += ExitToolStripMenuItem_Click;
+				OptionToolStripButton.Click += OptionToolStripMenuItem_Click;
                 UserGuideToolStripButton.Click += userGuideToolStripMenuItem_Click;
             }
             //Main ToolTip

@@ -48,6 +48,7 @@ namespace MongoCola
             Version = Application.ProductVersion;
             DebugMode = false;
             MonoMode = Type.GetType("Mono.Runtime") != null;
+			GuiConfig.IsMono = MonoMode;
             //异常处理器的初始化
             Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + MongoHelper.MongoDbDriverVersion +
                                           Environment.NewLine;

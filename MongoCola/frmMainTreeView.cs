@@ -210,7 +210,10 @@ namespace MongoCola
                 }
             }
         }
-
+		/// <summary>
+		/// Singles the DB server handler.
+		/// </summary>
+		/// <param name="e">E.</param>
         private void SingleDBServerHandler(TreeNodeMouseClickEventArgs e)
         {
             //单数据库模式,禁止所有服务器操作
@@ -239,7 +242,11 @@ namespace MongoCola
             statusStripMain.Items[0].Text = "Selected Server[Single Database]:" +
                                             RuntimeMongoDbContext.SelectTagData;
         }
-
+		/// <summary>
+		/// Datas the base handler.
+		/// </summary>
+		/// <param name="strNodeType">String node type.</param>
+		/// <param name="e">E.</param>
         private void DataBaseHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
         {
             RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
@@ -361,7 +368,10 @@ namespace MongoCola
                 contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
             }
         }
-
+		/// <summary>
+		/// Collections the handler.
+		/// </summary>
+		/// <param name="e">E.</param>
         private void CollectionHandler(TreeNodeMouseClickEventArgs e)
         {
             if (GuiConfig.IsUseDefaultLanguage)

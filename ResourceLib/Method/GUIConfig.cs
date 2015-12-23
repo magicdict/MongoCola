@@ -42,6 +42,11 @@ namespace ResourceLib.Method
         /// </summary>
         public static bool IsUseDefaultLanguage = false;
 
+		/// <summary>
+		/// 	是否为Mono
+		/// </summary>
+		public static bool IsMono = false;
+
         /// <summary>
         ///     字符串
         /// </summary>
@@ -103,6 +108,28 @@ namespace ResourceLib.Method
             //遍历所有控件
             Translateform(frm.Controls);
         }
+
+		/// <summary>
+		/// Mono 
+		/// </summary>
+		/// <param name="frm">Frm.</param>
+		public static void MonoCompactControl(Control.ControlCollection controls){
+			if (!IsMono)
+				return;
+			foreach (Control ctrlItem in controls){
+				if (ctrlItem.GetType ().FullName == typeof(NumericUpDown).FullName) {
+					//TextAlign
+					((NumericUpDown)ctrlItem).TextAlign = HorizontalAlignment.Left;
+				}
+				if (ctrlItem.GetType().FullName == typeof(TabControl).FullName)
+				{
+					foreach (TabPage tab in ((TabControl)ctrlItem).TabPages)
+					{
+						MonoCompactControl(tab.Controls);
+					}
+				}
+			}
+		}
 
         /// <summary>
         ///     控件多语言化

@@ -11,7 +11,11 @@ namespace MongoCola.Config
         {
             InitializeComponent();
         }
-
+		/// <summary>
+		/// Load
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
         private void frmOption_Load(object sender, EventArgs e)
         {
             fileMongoBinPath.SelectedPathOrFileName = SystemManager.SystemConfig.MongoBinPath;
@@ -57,6 +61,7 @@ namespace MongoCola.Config
                 cmbLanguage.Text = StringResource.LanguageEnglish;
             }
             GuiConfig.Translateform(this);
+			GuiConfig.MonoCompactControl (this.Controls);
         }
 
         /// <summary>

@@ -79,6 +79,7 @@ namespace FunctionForm.Connection
             cmdAdd.BackColor = GuiConfig.SuccessColor;
             cmdCancel.BackColor = GuiConfig.FailColor;
             GuiConfig.Translateform(this);
+			GuiConfig.MonoCompactControl (this.Controls);
         }
 
         /// <summary>
