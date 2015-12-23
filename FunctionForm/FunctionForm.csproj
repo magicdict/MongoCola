@@ -52,6 +52,9 @@
     <Reference Include="MongoDB.Driver.Legacy">
       <HintPath>..\packages\mongocsharpdriver.2.2.0\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
     </Reference>
+    <Reference Include="ZedGraph">
+      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregation\frmAggregation.cs">
@@ -310,6 +313,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="packages.config" />
+    <Compile Include="Status\frmStatusMono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Status\frmStatusMono.resx">
+      <DependentUpon>frmStatusMono.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Status\frmStatusMono.Designer.cs">
+      <DependentUpon>frmStatusMono.cs</DependentUpon>
+    </Compile>
+    <None Include="License-LGPL.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

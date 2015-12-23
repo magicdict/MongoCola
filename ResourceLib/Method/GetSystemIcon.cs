@@ -72,7 +72,7 @@ namespace ResourceLib.Method
             var bmp = new Bitmap(orgImg);
             var h = bmp.GetHicon();
             var icon = Icon.FromHandle(h);
-            // 释放IntPtr
+            // 释放IntPtr  Mono...Crash
             DeleteObject(h);
             return icon;
         }

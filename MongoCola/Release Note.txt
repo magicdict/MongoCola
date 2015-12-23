@@ -1,6 +1,6 @@
 ﻿Release Note
        
-可执行版本[需要 NET Framework 4.6] 更新时间:2015/12/01 16:00
+可执行版本[需要 NET Framework 4.6] 更新时间:2015/12/30 16:00
 下载地址:  <http://files.cnblogs.com/files/TextEditor/ReleaseVersion.zip>
 GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 版本号：Ver 1.5(Beta)
@@ -9,14 +9,15 @@ GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 
 操作系统：
 Windows 7
-Windows 10
+Mac OSX 10.11.2
 
 运行时：
 NET Framework 4.6
-MongoDB 3.2.0 RC4
+Mono 4.5
+MongoDB 3.2.0 
 
 驱动程序
-CSharp Mongo Driver 2.2.0-RC0
+CSharp Mongo Driver 2.2.0
 
 =============================================
 =                  计划
@@ -36,7 +37,7 @@ CSharp Mongo Driver 2.2.0-RC0
 =============================================
 =                  发布履历
 =============================================
-Ver 1.5(Beta)  2015/11/30 @ Shanghai China
+Ver 1.5(Beta)  2015/12/30 @ Shanghai China
 MongoDB 3.2.0 新功能对应版本
 1.Text Search V3 的对应：大小写敏感
 2.Partial Index 的创建  
@@ -59,3 +60,5 @@ TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
 =                  已知BUG
 =============================================
 1.新建数据库时,必须要新建一个数据集.
+2.MONO  Windows API Crash!
+3.ZedGraph For Mono Chart

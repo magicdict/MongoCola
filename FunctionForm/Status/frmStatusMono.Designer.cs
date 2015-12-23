@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using MongoGUICtl;
 
 namespace FunctionForm.Status
 {
-    partial class FrmStatus
+	partial class frmStatusMono
     {
         /// <summary>
         /// Required designer variable.
@@ -33,15 +32,10 @@ namespace FunctionForm.Status
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbChartField = new System.Windows.Forms.ComboBox();
             this.btnOpCnt = new System.Windows.Forms.Button();
             this.trvStatus = new MongoGUICtl.CtlTreeViewColumns();
-			((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdClose
@@ -54,22 +48,7 @@ namespace FunctionForm.Status
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // chartResult
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.chartResult.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartResult.Legends.Add(legend2);
-            this.chartResult.Location = new System.Drawing.Point(14, 251);
-            this.chartResult.Name = "chartResult";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartResult.Series.Add(series2);
-            this.chartResult.Size = new System.Drawing.Size(469, 241);
-            this.chartResult.TabIndex = 29;
+  
             // 
             // cmbChartField
             // 
@@ -108,7 +87,6 @@ namespace FunctionForm.Status
             this.ClientSize = new System.Drawing.Size(498, 537);
             this.Controls.Add(this.btnOpCnt);
             this.Controls.Add(this.cmbChartField);
-            this.Controls.Add(this.chartResult);
             this.Controls.Add(this.trvStatus);
             this.Controls.Add(this.cmdClose);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -116,7 +94,6 @@ namespace FunctionForm.Status
             this.Tag = "Main_Menu_Mangt_Status";
             this.Text = "Status";
             this.Load += new System.EventHandler(this.frmStatus_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -125,7 +102,6 @@ namespace FunctionForm.Status
 
         private Button cmdClose;
         private CtlTreeViewColumns trvStatus;
-        private Chart chartResult;
         private ComboBox cmbChartField;
         private Button btnOpCnt;
     }

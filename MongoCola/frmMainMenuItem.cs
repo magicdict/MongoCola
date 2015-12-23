@@ -359,7 +359,11 @@ namespace MongoCola
         /// <param name="e"></param>
         private void SvrStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmStatus(), true, true);
+			if (SystemManager.MonoMode) {
+				Utility.OpenForm(new frmStatusMono(), true, true);
+			} else {
+				Utility.OpenForm(new FrmStatus(), true, true);
+			}
         }
 
         #endregion
@@ -504,12 +508,17 @@ namespace MongoCola
         }
 
         /// <summary>
+		/// 	
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DBStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmStatus(), true, true);
+			if (SystemManager.MonoMode) {
+				Utility.OpenForm(new frmStatusMono(), true, true);
+			} else {
+				Utility.OpenForm(new FrmStatus(), true, true);
+			}
         }
 
         /// <summary>
@@ -662,7 +671,11 @@ namespace MongoCola
         /// <param name="e"></param>
         private void CollectionStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmStatus(), true, true);
+			if (SystemManager.MonoMode) {
+				Utility.OpenForm(new frmStatusMono(), true, true);
+			} else {
+				Utility.OpenForm(new FrmStatus(), true, true);
+			}
         }
 
         /// <summary>
