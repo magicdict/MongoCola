@@ -194,13 +194,13 @@ namespace MongoUtility.Command
                     }
                     else
                     {
-                        Operater.CreateMongoIndex(UIOption.ascendingKey.ToArray(), UIOption.descendingKey.ToArray(), UIOption.geoSpatialKey,
+                        CreateMongoIndex(UIOption.ascendingKey.ToArray(), UIOption.descendingKey.ToArray(), UIOption.geoSpatialKey,
                             option, RuntimeMongoDbContext.GetCurrentCollection());
                     }
                     strMessageTitle = "Index Add Completed!";
                     strMessageContent = "IndexName:" + UIOption.IndexName + " is add to collection.";
                 }
-                catch (Exception ex)
+                catch 
                 {
                     strMessageTitle = "Index Add Failed!";
                     strMessageContent = "IndexName:" + UIOption.IndexName;

@@ -322,7 +322,6 @@
     <Compile Include="Status\frmStatusMono.Designer.cs">
       <DependentUpon>frmStatusMono.cs</DependentUpon>
     </Compile>
-    <None Include="License-LGPL.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

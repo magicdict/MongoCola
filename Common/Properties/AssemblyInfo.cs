@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Shanghai Chuwa Software co.ltd")]
 [assembly: AssemblyProduct("Common")]
 [assembly: AssemblyCopyright("Copyright 2015")]
 [assembly: AssemblyTrademark("")]

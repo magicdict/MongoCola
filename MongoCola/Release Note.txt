@@ -62,3 +62,4 @@ TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
 1.新建数据库时,必须要新建一个数据集.
 2.MONO  Windows API Crash!
 3.ZedGraph For Mono Chart
+4.Status里面的列无效，MMVP和WireTiger数据集状态不同

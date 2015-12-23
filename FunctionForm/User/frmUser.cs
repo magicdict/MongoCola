@@ -143,11 +143,11 @@ namespace FunctionForm.User
                     Text = GuiConfig.GetText(_isAdmin
                         ? TextType.MainMenuOperationServerAddUserToAdmin
                         : TextType.MainMenuOperationDatabaseAddUser);
-                    Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
+                    if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else
                 {
-                    Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
+                    if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
                     Text = GuiConfig.GetText(TextType.CommonChangePassword);
                 }
                 lblUserName.Text =

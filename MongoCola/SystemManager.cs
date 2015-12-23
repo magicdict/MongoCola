@@ -39,7 +39,7 @@ namespace MongoCola
         public static void Init()
         {
             //MongoDB驱动版本的取得
-			System.Diagnostics.Debug.Print(Path.DirectorySeparatorChar.ToString());
+            Debug.Print(Path.DirectorySeparatorChar.ToString());
 			var info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar.ToString() + "MongoDB.Driver.dll");
             MongoHelper.MongoDbDriverVersion = info.ProductVersion;
 			info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar.ToString() + "MongoDB.Bson.dll");

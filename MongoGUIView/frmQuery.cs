@@ -40,7 +40,7 @@ namespace MongoGUIView
         /// </summary>
         private void frmQuery_Load(object sender, EventArgs e)
         {
-            Icon = GetSystemIcon.ConvertImgToIcon(GetResource.GetImage(ImageType.Query));
+            if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(GetResource.GetImage(ImageType.Query));
             var fieldList = new List<DataFilter.QueryFieldItem>();
             fieldList = _currentDataViewInfo.MDataFilter.QueryFieldList;
             //增加第一个条件

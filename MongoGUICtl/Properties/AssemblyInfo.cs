@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MongoGUICtl")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Shanghai Chuwa Software co.ltd")]
 [assembly: AssemblyProduct("MongoGUICtl")]
 [assembly: AssemblyCopyright("Copyright 2015")]
 [assembly: AssemblyTrademark("")]

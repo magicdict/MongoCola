@@ -33,14 +33,12 @@ namespace FunctionForm.Status
         private void InitializeComponent()
         {
             this.cmdClose = new System.Windows.Forms.Button();
-            this.cmbChartField = new System.Windows.Forms.ComboBox();
-            this.btnOpCnt = new System.Windows.Forms.Button();
             this.trvStatus = new MongoGUICtl.CtlTreeViewColumns();
             this.SuspendLayout();
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(358, 498);
+            this.cmdClose.Location = new System.Drawing.Point(358, 240);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(125, 28);
             this.cmdClose.TabIndex = 1;
@@ -48,27 +46,6 @@ namespace FunctionForm.Status
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.btnClose_Click);
-  
-            // 
-            // cmbChartField
-            // 
-            this.cmbChartField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbChartField.FormattingEnabled = true;
-            this.cmbChartField.Location = new System.Drawing.Point(41, 222);
-            this.cmbChartField.Name = "cmbChartField";
-            this.cmbChartField.Size = new System.Drawing.Size(200, 23);
-            this.cmbChartField.TabIndex = 30;
-            this.cmbChartField.SelectedIndexChanged += new System.EventHandler(this.cmbChartField_SelectedIndexChanged);
-            // 
-            // btnOpCnt
-            // 
-            this.btnOpCnt.Location = new System.Drawing.Point(227, 498);
-            this.btnOpCnt.Name = "btnOpCnt";
-            this.btnOpCnt.Size = new System.Drawing.Size(125, 28);
-            this.btnOpCnt.TabIndex = 31;
-            this.btnOpCnt.Text = "Operate Counter";
-            this.btnOpCnt.UseVisualStyleBackColor = true;
-            this.btnOpCnt.Click += new System.EventHandler(this.btnOpCnt_Click);
             // 
             // trvStatus
             // 
@@ -79,18 +56,16 @@ namespace FunctionForm.Status
             this.trvStatus.Size = new System.Drawing.Size(469, 202);
             this.trvStatus.TabIndex = 2;
             // 
-            // frmStatus
+            // frmStatusMono
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(498, 537);
-            this.Controls.Add(this.btnOpCnt);
-            this.Controls.Add(this.cmbChartField);
+            this.ClientSize = new System.Drawing.Size(498, 287);
             this.Controls.Add(this.trvStatus);
             this.Controls.Add(this.cmdClose);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "FrmStatus";
+            this.Name = "frmStatusMono";
             this.Tag = "Main_Menu_Mangt_Status";
             this.Text = "Status";
             this.Load += new System.EventHandler(this.frmStatus_Load);
@@ -102,7 +77,5 @@ namespace FunctionForm.Status
 
         private Button cmdClose;
         private CtlTreeViewColumns trvStatus;
-        private ComboBox cmbChartField;
-        private Button btnOpCnt;
     }
 }

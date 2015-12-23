@@ -21,7 +21,7 @@ namespace FunctionForm.Status
 
         private void frmStatus_Load(object sender, EventArgs e)
         {
-            Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
+            if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
             var strType = RuntimeMongoDbContext.SelectTagType;
             var docStatus = new BsonDocument();
             cmbChartField.Visible = false;
@@ -48,17 +48,28 @@ namespace FunctionForm.Status
                     docStatus = RuntimeMongoDbContext.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
                     cmbChartField.Visible = true;
                     chartResult.Visible = true;
-
-                    cmbChartField.Items.Add("AverageObjectSize");
-                    cmbChartField.Items.Add("DataSize");
-                    cmbChartField.Items.Add("ExtentCount");
-                    cmbChartField.Items.Add("IndexCount");
-                    cmbChartField.Items.Add("LastExtentSize");
+                    //{{ "db" : "aaaa", 
+                    //   "collections" : 8, 
+                    //   "objects" : 0, 
+                    //   "avgObjSize" : 0.0, 
+                    //   "dataSize" : 0.0, 
+                    //   "storageSize" : 32768.0, 
+                    //   "numExtents" : 0, 
+                    //   "indexes" : 8, 
+                    //   "indexSize" : 32768.0, 
+                    //   "ok" : 1.0 }}
+                    var statuspoint = docStatus.AsBsonDocument;
+                    //这里其实应该看Collection的Status，不同的引擎所拥有的状态不一样
+                    if (statuspoint.Contains("avgObjSize")) cmbChartField.Items.Add("AverageObjectSize");
+                    if (statuspoint.Contains("dataSize")) cmbChartField.Items.Add("DataSize");
+                    if (statuspoint.Contains("extentCount")) cmbChartField.Items.Add("ExtentCount");
+                    if (statuspoint.Contains("indexes")) cmbChartField.Items.Add("IndexCount");
+                    if (statuspoint.Contains("lastExtentSize")) cmbChartField.Items.Add("LastExtentSize");
                     //MaxDocuments仅在CapedCollection时候有效
-                    //cmbChartField.Items.Add("MaxDocuments");
-                    cmbChartField.Items.Add("ObjectCount");
-                    cmbChartField.Items.Add("PaddingFactor");
-                    cmbChartField.Items.Add("StorageSize");
+                    if (statuspoint.Contains("MaxDocuments")) cmbChartField.Items.Add("MaxDocuments");
+                    if (statuspoint.Contains("ObjectCount")) cmbChartField.Items.Add("ObjectCount");
+                    if (statuspoint.Contains("PaddingFactor")) cmbChartField.Items.Add("PaddingFactor");
+                    if (statuspoint.Contains("storageSize")) cmbChartField.Items.Add("StorageSize");
                     cmbChartField.SelectedIndex = 0;
                     try
                     {
@@ -177,10 +188,11 @@ namespace FunctionForm.Status
                         colPoint = new DataPoint(0,
                             RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
                         break;
-                    //case "MaxDocuments":
+                    case "MaxDocuments":
                     //    仅在CappedCollection时候有效 
-                    //    ColPoint = new DataPoint(0, MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
-                    //    break;
+                        colPoint = new DataPoint(0, 
+                            RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
+                        break;
                     case "ObjectCount":
                         colPoint = new DataPoint(0,
                             RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().ObjectCount);

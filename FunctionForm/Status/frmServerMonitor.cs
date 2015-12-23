@@ -26,7 +26,7 @@ namespace FunctionForm.Status
 
         private void frmServerMonitor_Load(object sender, EventArgs e)
         {
-            Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
+            if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
             mTime = new Timer { Interval = RefreshInterval * 1000 };
             mTime.Tick += M_Tick;
             var querySeries = new Series("Query")

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ResourceLib")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("IBM")]
+[assembly: AssemblyCompany("Shanghai Chuwa Software co.ltd")]
 [assembly: AssemblyProduct("ResourceLib")]
 [assembly: AssemblyCopyright("Copyright © IBM 2014")]
 [assembly: AssemblyTrademark("")]
