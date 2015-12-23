@@ -102,12 +102,23 @@ namespace ResourceLib.Method
                 var display = GetText(frm.Tag.ToString());
                 if (!string.IsNullOrEmpty(display))
                 {
-                    frm.Text = display;
+					//Window Title'font can't be modify
+					if (!IsMono)frm.Text = display;
+					if (IsMono) frm.Font = getMonoFont (frm.Font);
                 }
             }
             //遍历所有控件
             Translateform(frm.Controls);
         }
+		/// <summary>
+		/// ChangeFont
+		/// </summary>
+		/// <returns>The mono font.</returns>
+		/// <param name="orgFont">Org font.</param>
+		public static Font getMonoFont(Font orgFont){
+			Font MacFont = new Font ("苹方-简",orgFont.Size,orgFont.Style);
+			return MacFont;
+		} 
 
 		/// <summary>
 		/// Mono 
@@ -146,7 +157,8 @@ namespace ResourceLib.Method
                     var display = GetText(menuItem.Tag.ToString());
                     if (string.IsNullOrEmpty(display)) continue;
                     menuItem.Text = display;
-                    if (((ToolStripMenuItem)menuItem).DropDownItems.Count > 0)
+					if (IsMono) menuItem.Font = getMonoFont (menuItem.Font);
+					if (((ToolStripMenuItem)menuItem).DropDownItems.Count > 0)
                         Translateform(((ToolStripMenuItem)menuItem).DropDownItems);
                 }
                 if (menuItem.GetType().FullName == typeof(ToolStripButton).FullName)
@@ -155,6 +167,7 @@ namespace ResourceLib.Method
                     var display = GetText(menuItem.Tag.ToString());
                     if (string.IsNullOrEmpty(display)) continue;
                     menuItem.Text = display;
+					if (IsMono) menuItem.Font = getMonoFont (menuItem.Font);
                 }
             }
         }
@@ -168,8 +181,8 @@ namespace ResourceLib.Method
             var display = string.Empty;
             foreach (Control ctrlItem in controls)
             {
-                //System.Diagnostics.Debug.WriteLine(ctrlItem.GetType().FullName);
-                //复合控件
+				if (IsMono) ctrlItem.Font = getMonoFont (ctrlItem.Font);
+				//复合控件
                 if (ctrlItem.GetType().FullName == typeof(MenuStrip).FullName)
                 {
                     if (((MenuStrip)ctrlItem).Items.Count > 0) Translateform(((MenuStrip)ctrlItem).Items);
@@ -182,12 +195,14 @@ namespace ResourceLib.Method
                 //Tab
                 if (ctrlItem.GetType().FullName == typeof(TabControl).FullName)
                 {
+					if (IsMono) ctrlItem.Font = getMonoFont (ctrlItem.Font);
                     foreach (TabPage tab in ((TabControl)ctrlItem).TabPages)
                     {
                         if (tab.Tag != null)
                         {
                             display = GetText(tab.Tag.ToString());
                             tab.Text = display;
+							if (IsMono) tab.Font = getMonoFont (tab.Font);
                         }
                         Translateform(tab.Controls);
                     }
@@ -198,6 +213,7 @@ namespace ResourceLib.Method
                     if (!string.IsNullOrEmpty(display))
                     {
                         ((GroupBox)ctrlItem).Text = display;
+						if (IsMono) ctrlItem.Font = getMonoFont (ctrlItem.Font);
                     }
                     Translateform(ctrlItem.Controls);
                 }
@@ -205,6 +221,7 @@ namespace ResourceLib.Method
                 if (ctrlItem.GetType().FullName == typeof(ListView).FullName)
                 {
                     ListView lst = (ListView)ctrlItem;
+					if (IsMono) lst.Font = getMonoFont (lst.Font);
                     foreach (ColumnHeader header in lst.Columns)
                     {
                         if (header.Tag != null)
@@ -219,11 +236,13 @@ namespace ResourceLib.Method
                 if (ctrlItem.GetType().FullName == typeof(Label).FullName)
                 {
                     ((Label)ctrlItem).Text = GetText(((Label)ctrlItem).Text, ctrlItem.Tag.ToString());
+					if (IsMono) ctrlItem.Font = getMonoFont (ctrlItem.Font);
                 }
                 //按钮
                 if (ctrlItem.GetType().FullName == typeof(Button).FullName)
                 {
                     ((Button)ctrlItem).Text = GetText(((Button)ctrlItem).Text, ctrlItem.Tag.ToString());
+					if (IsMono) ctrlItem.Font = getMonoFont (ctrlItem.Font);
                     if (ctrlItem.Tag.ToString() == TextType.CommonOK.ToString())
                     {
                         ((Button)ctrlItem).BackColor = SuccessColor;
@@ -239,11 +258,13 @@ namespace ResourceLib.Method
                 if (ctrlItem.GetType().FullName == typeof(CheckBox).FullName)
                 {
                     ((CheckBox)ctrlItem).Text = GetText(((CheckBox)ctrlItem).Text, ctrlItem.Tag.ToString());
+					if (IsMono) ctrlItem.Font = getMonoFont (ctrlItem.Font);
                 }
                 //单选框
                 if (ctrlItem.GetType().FullName == typeof(RadioButton).FullName)
                 {
                     ((RadioButton)ctrlItem).Text = GetText(((RadioButton)ctrlItem).Text, ctrlItem.Tag.ToString());
+					if (IsMono) ctrlItem.Font = getMonoFont (ctrlItem.Font);
                 }
             }
         }

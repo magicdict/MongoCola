@@ -47,6 +47,9 @@ namespace ResourceLib.UI
             }
 //            }
             cloneMenuItem.Text = orgMenuItem.Text;
+			if (ResourceLib.Method.GuiConfig.IsMono) {
+				cloneMenuItem.Font = ResourceLib.Method.GuiConfig.getMonoFont(cloneMenuItem.Font);
+			}
             cloneMenuItem.Enabled = orgMenuItem.Enabled;
             cloneMenuItem.BackgroundImage = orgMenuItem.BackgroundImage;
             cloneMenuItem.Image = orgMenuItem.Image;
