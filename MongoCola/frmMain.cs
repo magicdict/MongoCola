@@ -237,9 +237,9 @@ namespace MongoCola
                             contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MonoMode)
                             {
-                                var t8 = ViewDataToolStripMenuItem.Clone();
-                                t8.Click += (x, y) => ViewDataObj();
-                                contextMenuStripMain.Items.Add(t8);
+							var ViewDataTool = ViewDataToolStripMenuItem.Clone();
+                                ViewDataTool.Click += (x, y) => ViewDataObj();
+                                contextMenuStripMain.Items.Add(ViewDataTool);
                             }
                             else
                             {
@@ -260,9 +260,9 @@ namespace MongoCola
                             contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MonoMode)
                             {
-                                var t8 = ViewDataToolStripMenuItem.Clone();
-                                t8.Click += (x, y) => ViewDataObj();
-                                contextMenuStripMain.Items.Add(t8);
+							var ViewData = ViewDataToolStripMenuItem.Clone();
+                                ViewData.Click += (x, y) => ViewDataObj();
+                                contextMenuStripMain.Items.Add(ViewData);
                             }
                             else
                             {
@@ -284,9 +284,9 @@ namespace MongoCola
                             contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MonoMode)
                             {
-                                var t8 = creatJavaScriptToolStripMenuItem.Clone();
-                                t8.Click += creatJavaScriptToolStripMenuItem_Click;
-                                contextMenuStripMain.Items.Add(t8);
+							var creatJavaScript = creatJavaScriptToolStripMenuItem.Clone();
+                                creatJavaScript.Click += creatJavaScriptToolStripMenuItem_Click;
+                                contextMenuStripMain.Items.Add(creatJavaScript);
                             }
                             else
                             {
@@ -307,12 +307,12 @@ namespace MongoCola
                             contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MonoMode)
                             {
-                                var t1 = ViewDataToolStripMenuItem.Clone();
-                                t1.Click += (x, y) => ViewDataObj();
-                                contextMenuStripMain.Items.Add(t1);
-                                var t8 = dropJavascriptToolStripMenuItem.Clone();
-                                t8.Click += dropJavascriptToolStripMenuItem_Click;
-                                contextMenuStripMain.Items.Add(t8);
+							var ViewData = ViewDataToolStripMenuItem.Clone();
+                                ViewData.Click += (x, y) => ViewDataObj();
+                                contextMenuStripMain.Items.Add(ViewData);
+							var dropJavascript = dropJavascriptToolStripMenuItem.Clone();
+                                dropJavascript.Click += dropJavascriptToolStripMenuItem_Click;
+                                contextMenuStripMain.Items.Add(dropJavascript);
                             }
                             else
                             {
@@ -359,6 +359,7 @@ namespace MongoCola
         /// </summary>
         private void InitToolBar()
         {
+			
             ExpandAllConnectionToolStripButton = ExpandAllConnectionToolStripMenuItem.CloneFromMenuItem();
             CollapseAllConnectionToolStripButton = CollapseAllConnectionToolStripMenuItem.CloneFromMenuItem();
             RefreshToolStripButton = RefreshToolStripMenuItem.CloneFromMenuItem();

@@ -91,6 +91,9 @@ namespace ResourceLib.UI
             cloneButton.Image = orgMenuItem.Image;
             cloneButton.Enabled = orgMenuItem.Enabled;
             cloneButton.Text = orgMenuItem.Text;
+			if (ResourceLib.Method.GuiConfig.IsMono) {
+				cloneButton.Font = ResourceLib.Method.GuiConfig.getMonoFont(cloneButton.Font);
+			}
             cloneButton.Checked = orgMenuItem.Checked;
             cloneButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             return cloneButton;

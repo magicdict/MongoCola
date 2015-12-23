@@ -72,6 +72,12 @@ namespace MongoCola.Config
         /// </summary>
         public string LanguageFileName { set; get; }
 
+		/// <summary>
+		/// Font Use For Mac System
+		/// </summary>
+		/// <value>The user interface font.</value>
+		public string UIFontFamily{ get; set;}
+
         /// <summary>
         ///     写入配置
         /// </summary>
