@@ -33,6 +33,11 @@ namespace MongoCola
         /// </summary>
         public static bool MonoMode;
 
+		/// <summary>
+		/// 	OSVersion
+		/// </summary>
+		public static String OSVersion = System.Environment.OSVersion.ToString();
+
         /// <summary>
         ///     初始化
         /// </summary>
@@ -45,10 +50,11 @@ namespace MongoCola
 			info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar.ToString() + "MongoDB.Bson.dll");
             MongoHelper.MongoDbBsonVersion = info.ProductVersion;
             //版本设定
-            Version = Application.ProductVersion;
+			Version = Application.ProductVersion;
             DebugMode = false;
             MonoMode = Type.GetType("Mono.Runtime") != null;
 			GuiConfig.IsMono = MonoMode;
+			//Can't know for OSVersion to diff Mac or Unix....
             //异常处理器的初始化
             Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + MongoHelper.MongoDbDriverVersion +
                                           Environment.NewLine;

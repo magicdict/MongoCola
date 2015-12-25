@@ -60,21 +60,21 @@ namespace MongoCola
                 contextMenuStripMain = new ContextMenuStrip();
                 if (SystemManager.MonoMode)
                 {
-                    var t1 = DisconnectToolStripMenuItem.Clone();
-                    t1.Click += DisconnectToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t1);
+					var Disconnect = DisconnectToolStripMenuItem.Clone();
+                    Disconnect.Click += DisconnectToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(Disconnect);
 
-                    var t2 = InitReplsetToolStripMenuItem.Clone();
-                    t2.Click += InitReplsetToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t2);
+					var InitReplset = InitReplsetToolStripMenuItem.Clone();
+                    InitReplset.Click += InitReplsetToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(InitReplset);
 
-                    var t3 = ReplicaSetToolStripMenuItem.Clone();
-                    t3.Click += ReplicaSetToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t3);
+					var ReplicaSet = ReplicaSetToolStripMenuItem.Clone();
+                    ReplicaSet.Click += ReplicaSetToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ReplicaSet);
 
-                    var t4 = ShardingConfigToolStripMenuItem.Clone();
-                    t4.Click += ShardingConfigToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t4);
+					var ShardingConfig = ShardingConfigToolStripMenuItem.Clone();
+                    ShardingConfig.Click += ShardingConfigToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ShardingConfig);
 
                     //var t5 = ShutDownToolStripMenuItem.Clone();
                     //t5.Click += ShutDownToolStripMenuItem_Click;
@@ -108,9 +108,9 @@ namespace MongoCola
                 if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
-                    var t1 = DisconnectToolStripMenuItem.Clone();
-                    t1.Click += DisconnectToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t1);
+					var Disconnect = DisconnectToolStripMenuItem.Clone();
+                    Disconnect.Click += DisconnectToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(Disconnect);
                 }
                 else
                 {
@@ -163,29 +163,29 @@ namespace MongoCola
                 if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
-                    var t1 = CreateMongoDBToolStripMenuItem.Clone();
-                    t1.Click += CreateMongoDBToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t1);
+					var CreateMongoDB = CreateMongoDBToolStripMenuItem.Clone();
+                    CreateMongoDB.Click += CreateMongoDBToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(CreateMongoDB);
 
-                    var t2 = AddUserToAdminToolStripMenuItem.Clone();
-                    t2.Click += AddUserToAdminToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t2);
+					var AddUserToAdmin = AddUserToAdminToolStripMenuItem.Clone();
+                    AddUserToAdmin.Click += AddUserToAdminToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(AddUserToAdmin);
 
-                    var t3 = RestoreMongoToolStripMenuItem.Clone();
-                    t3.Click += RestoreMongoToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t3);
+					var RestoreMongo = RestoreMongoToolStripMenuItem.Clone();
+                    RestoreMongo.Click += RestoreMongoToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(RestoreMongo);
 
-                    var t6 = slaveResyncToolStripMenuItem.Clone();
-                    t6.Click += slaveResyncToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t6);
+					var slaveResync = slaveResyncToolStripMenuItem.Clone();
+                    slaveResync.Click += slaveResyncToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(slaveResync);
 
-                    var t9 = ServePropertyToolStripMenuItem.Clone();
-                    t9.Click += ServePropertyToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t9);
+					var ServeProperty = ServePropertyToolStripMenuItem.Clone();
+                    ServeProperty.Click += ServePropertyToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ServeProperty);
 
-                    var t10 = ServerStatusToolStripMenuItem.Clone();
-                    t10.Click += SvrStatusToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t10);
+					var ServerStatus = ServerStatusToolStripMenuItem.Clone();
+                    ServerStatus.Click += SvrStatusToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ServerStatus);
                 }
                 else
                 {
@@ -224,12 +224,12 @@ namespace MongoCola
                 if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
-                    var t1 = DisconnectToolStripMenuItem.Clone();
-                    t1.Click += DisconnectToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t1);
-                    var t2 = ServerStatusToolStripMenuItem.Clone();
-                    t2.Click += SvrStatusToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t2);
+					var Disconnect = DisconnectToolStripMenuItem.Clone();
+                    Disconnect.Click += DisconnectToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(Disconnect);
+					var ServerStatus = ServerStatusToolStripMenuItem.Clone();
+                    ServerStatus.Click += SvrStatusToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ServerStatus);
                 }
                 else
                 {
@@ -305,49 +305,49 @@ namespace MongoCola
                 if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
-                    var t1 = DelMongoDBToolStripMenuItem.Clone();
-                    t1.Click += DelMongoDBToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t1);
+					var DelMongoDB = DelMongoDBToolStripMenuItem.Clone();
+                    DelMongoDB.Click += DelMongoDBToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(DelMongoDB);
 
-                    var t2 = CreateMongoCollectionToolStripMenuItem.Clone();
-                    t2.Click += CreateMongoCollectionToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t2);
+					var CreateMongoCollection = CreateMongoCollectionToolStripMenuItem.Clone();
+                    CreateMongoCollection.Click += CreateMongoCollectionToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(CreateMongoCollection);
 
-                    var t3 = AddUserToolStripMenuItem.Clone();
-                    t3.Click += AddUserToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t3);
+					var AddUser = AddUserToolStripMenuItem.Clone();
+                    AddUser.Click += AddUserToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(AddUser);
 
-                    var t4 = EvalJSToolStripMenuItem.Clone();
-                    t4.Click += evalJSToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t4);
+					var EvalJS = EvalJSToolStripMenuItem.Clone();
+                    EvalJS.Click += evalJSToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(EvalJS);
 
-                    var t5 = RepairDBToolStripMenuItem.Clone();
-                    t5.Click += RepairDBToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t5);
+					var RepairDB = RepairDBToolStripMenuItem.Clone();
+                    RepairDB.Click += RepairDBToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(RepairDB);
 
 
-                    var t6 = InitGFSToolStripMenuItem.Clone();
-                    t6.Click += InitGFSToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t6);
+					var InitGFS = InitGFSToolStripMenuItem.Clone();
+                    InitGFS.Click += InitGFSToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(InitGFS);
 
-                    var t7 = DumpDatabaseToolStripMenuItem.Clone();
-                    t7.Click += DumpDatabaseToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t7);
+					var DumpDatabase = DumpDatabaseToolStripMenuItem.Clone();
+                    DumpDatabase.Click += DumpDatabaseToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(DumpDatabase);
 
-                    var t8 = RestoreMongoToolStripMenuItem.Clone();
-                    t8.Click += RestoreMongoToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t8);
+					var RestoreMongo = RestoreMongoToolStripMenuItem.Clone();
+                    RestoreMongo.Click += RestoreMongoToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(RestoreMongo);
 
 
                     contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
-                    var t10 = ProfillingLevelToolStripMenuItem.Clone();
-                    t10.Click += profillingLevelToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t10);
+					var ProfillingLevel = ProfillingLevelToolStripMenuItem.Clone();
+                    ProfillingLevel.Click += profillingLevelToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ProfillingLevel);
 
-                    var t11 = DBStatusToolStripMenuItem.Clone();
-                    t11.Click += DBStatusToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t11);
+					var DBStatus = DBStatusToolStripMenuItem.Clone();
+                    DBStatus.Click += DBStatusToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(DBStatus);
                 }
                 else
                 {
@@ -418,75 +418,75 @@ namespace MongoCola
                 if (SystemManager.MonoMode)
                 {
                     //悲催MONO不支持
-                    var t1 = DelMongoCollectionToolStripMenuItem.Clone();
-                    t1.Click += DelMongoCollectionToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t1);
+					var DelMongoCollection = DelMongoCollectionToolStripMenuItem.Clone();
+                    DelMongoCollection.Click += DelMongoCollectionToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(DelMongoCollection);
 
-                    var t2 = RenameCollectionToolStripMenuItem.Clone();
-                    t2.Click += RenameCollectionToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t2);
+					var RenameCollection = RenameCollectionToolStripMenuItem.Clone();
+                    RenameCollection.Click += RenameCollectionToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(RenameCollection);
 
-                    var t3 = DumpCollectionToolStripMenuItem.Clone();
-                    t3.Click += DumpCollectionToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t3);
+					var DumpCollection = DumpCollectionToolStripMenuItem.Clone();
+                    DumpCollection.Click += DumpCollectionToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(DumpCollection);
 
-                    var t4 = RestoreMongoToolStripMenuItem.Clone();
-                    t4.Click += RestoreMongoToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t4);
+					var RestoreMongo = RestoreMongoToolStripMenuItem.Clone();
+                    RestoreMongo.Click += RestoreMongoToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(RestoreMongo);
 
-                    var t5 = ImportCollectionToolStripMenuItem.Clone();
-                    t5.Click += ImportCollectionToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t5);
+					var ImportCollection = ImportCollectionToolStripMenuItem.Clone();
+                    ImportCollection.Click += ImportCollectionToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ImportCollection);
 
-                    var t6 = ExportCollectionToolStripMenuItem.Clone();
-                    t6.Click += ExportCollectionToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t6);
+					var ExportCollection = ExportCollectionToolStripMenuItem.Clone();
+                    ExportCollection.Click += ExportCollectionToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ExportCollection);
 
-                    var t7 = CompactToolStripMenuItem.Clone();
-                    t7.Click += CompactToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t7);
+					var Compact = CompactToolStripMenuItem.Clone();
+                    Compact.Click += CompactToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(Compact);
 
                     contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
-                    var t8 = ViewDataToolStripMenuItem.Clone();
-                    t8.Click += (x, y) => ViewDataObj();
-                    contextMenuStripMain.Items.Add(t8);
+					var ViewData = ViewDataToolStripMenuItem.Clone();
+                    ViewData.Click += (x, y) => ViewDataObj();
+                    contextMenuStripMain.Items.Add(ViewData);
 
                     var aggregationMenu = AggregationToolStripMenuItem.Clone();
 
-                    var t9 = countToolStripMenuItem.Clone();
-                    t9.Click += countToolStripMenuItem_Click;
-                    aggregationMenu.DropDownItems.Add(t9);
+					var count = countToolStripMenuItem.Clone();
+                    count.Click += countToolStripMenuItem_Click;
+                    aggregationMenu.DropDownItems.Add(count);
 
-                    var t10 = distinctToolStripMenuItem.Clone();
-                    t10.Click += distinctToolStripMenuItem_Click;
-                    aggregationMenu.DropDownItems.Add(t10);
+					var distinct = distinctToolStripMenuItem.Clone();
+                    distinct.Click += distinctToolStripMenuItem_Click;
+                    aggregationMenu.DropDownItems.Add(distinct);
 
 
-                    var t11 = groupToolStripMenuItem.Clone();
-                    t11.Click += groupToolStripMenuItem_Click;
-                    aggregationMenu.DropDownItems.Add(t11);
+					var group = groupToolStripMenuItem.Clone();
+                    group.Click += groupToolStripMenuItem_Click;
+                    aggregationMenu.DropDownItems.Add(group);
 
-                    var t12 = mapReduceToolStripMenuItem.Clone();
-                    t12.Click += mapReduceToolStripMenuItem_Click;
-                    aggregationMenu.DropDownItems.Add(t12);
+					var mapReduce = mapReduceToolStripMenuItem.Clone();
+                    mapReduce.Click += mapReduceToolStripMenuItem_Click;
+                    aggregationMenu.DropDownItems.Add(mapReduce);
 
                     contextMenuStripMain.Items.Add(aggregationMenu);
                     contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
-                    var t13 = IndexManageToolStripMenuItem.Clone();
-                    t13.Click += IndexManageToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t13);
+					var IndexManage = IndexManageToolStripMenuItem.Clone();
+                    IndexManage.Click += IndexManageToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(IndexManage);
 
-                    var t14 = ReIndexToolStripMenuItem.Clone();
-                    t14.Click += ReIndexToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t14);
+					var ReIndex = ReIndexToolStripMenuItem.Clone();
+                    ReIndex.Click += ReIndexToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(ReIndex);
 
                     contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
-                    var t15 = CollectionStatusToolStripMenuItem.Clone();
-                    t15.Click += CollectionStatusToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t15);
+					var CollectionStatus = CollectionStatusToolStripMenuItem.Clone();
+                    CollectionStatus.Click += CollectionStatusToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(CollectionStatus);
                 }
                 else
                 {

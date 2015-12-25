@@ -63,3 +63,6 @@ TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
 2.MONO  Windows API Crash!
 3.ZedGraph For Mono Chart
 4.Status里面的列无效，MMVP和WireTiger数据集状态不同
+5.MongoBin没有设置的时候，非Windows的时候，Cmd命令无法执行的问题
+6.User命令未完成
+7.JS文件等不应该保存到Mongo数据库中，如果没有获得客户允许的时候

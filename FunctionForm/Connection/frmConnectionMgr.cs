@@ -137,7 +137,7 @@ namespace FunctionForm.Connection
             catch (MongoAuthenticationException ex)
             {
                 //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                if (!GuiConfig.IsUseDefaultLanguage)
+				if (!GuiConfig.IsUseDefaultLanguage && !GuiConfig.IsMono)
                 {
                     MyMessageBox.ShowMessage(
                         GuiConfig.GetText(
@@ -157,7 +157,7 @@ namespace FunctionForm.Connection
                 //无法连接的理由：
                 //1.服务器没有启动
                 //2.认证模式不正确
-                if (!GuiConfig.IsUseDefaultLanguage)
+				if (!GuiConfig.IsUseDefaultLanguage && !GuiConfig.IsMono)
                 {
                     MyMessageBox.ShowMessage(
                         GuiConfig.GetText(TextType.ExceptionNotConnected),
