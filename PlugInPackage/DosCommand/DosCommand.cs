@@ -16,7 +16,6 @@ namespace PlugInPackage.DosCommand
     /// </summary>
     public class DosCommand : PlugInBase
     {
-
         public DosCommand()
         {
             RunLv = PathLv.Misc;

@@ -58,6 +58,7 @@ namespace MongoGUICtl.ClientTree
         ///     Fill Database status to ListView
         /// </summary>
         /// <param name="lstSvr"></param>
+        /// <param name="mongoConnSvrLst"></param>
         public static void FillDataBaseStatusToList(CtlTreeViewColumns lstSvr,
             Dictionary<string, MongoServer> mongoConnSvrLst)
         {
@@ -80,6 +81,7 @@ namespace MongoGUICtl.ClientTree
         ///     fill Collection status to ListView
         /// </summary>
         /// <param name="lstData"></param>
+        /// <param name="mongoConnSvrLst"></param>
         public static void FillCollectionStatusToList(CtlTreeViewColumns lstData,
             Dictionary<string, MongoServer> mongoConnSvrLst)
         {

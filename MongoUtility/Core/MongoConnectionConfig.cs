@@ -113,36 +113,38 @@ namespace MongoUtility.Core
         #endregion
 
         #region Certificate
+
         /// <summary>
         ///     使用SSL初始化连接
         /// </summary>
         public bool UseSsl { set; get; }
+
         /// <summary>
         ///     SSL认证文件
         /// </summary>
         public string SslCertificateFile;
+
         /// <summary>
-        /// 
         /// </summary>
         public bool UseSsh { set; get; }
+
         /// <summary>
-        /// 
         /// </summary>
         public string SshHost { set; get; }
+
         /// <summary>
-        /// 
         /// </summary>
         public int SshPort { set; get; }
+
         /// <summary>
-        /// 
         /// </summary>
         public string SshUser { set; get; }
+
         /// <summary>
-        /// 
         /// </summary>
         public string SshPassword { set; get; }
+
         /// <summary>
-        /// 
         /// </summary>
         public string SshPrivateKeyFile;
 
@@ -184,38 +186,32 @@ namespace MongoUtility.Core
         /// <summary>
         ///     只读[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore]
-        public bool IsReadOnly;
+        [XmlIgnore] public bool IsReadOnly;
 
         /// <summary>
         ///     当前连接是否可以使用[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore]
-        public bool Health;
+        [XmlIgnore] public bool Health;
 
         /// <summary>
         ///     作为Admin登陆[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore]
-        public bool LoginAsAdmin;
+        [XmlIgnore] public bool LoginAsAdmin;
 
         /// <summary>
         ///     当前连接的MongoDB版本[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore]
-        public Version MongoDbVersion;
+        [XmlIgnore] public Version MongoDbVersion;
 
         /// <summary>
         ///     认证模式[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore]
-        public bool AuthMode;
+        [XmlIgnore] public bool AuthMode;
 
         /// <summary>
         ///     服务器角色[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore]
-        public SvrRoleType ServerRole;
+        [XmlIgnore] public SvrRoleType ServerRole;
 
         #endregion
 

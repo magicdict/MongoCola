@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Common;
+using ResourceLib.UI;
 
 namespace ConfigurationFile
 {
@@ -11,39 +13,40 @@ namespace ConfigurationFile
             InitializeComponent();
         }
 
-        private void Main_Load(object sender, System.EventArgs e)
+        private void Main_Load(object sender, EventArgs e)
         {
             //选择器初始化
             ConfigItemDefine.SaveDefines();
-            ctlConfFile.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;
+            ctlConfFile.PickerType = CtlFilePicker.DialogType.SaveFile;
             ctlConfFile.FileFilter = Utility.ConfFilter;
-            if (System.IO.File.Exists(ConfigItemDefine.ValueFilename)) ConfigItemDefine.LoadValues();
+            if (File.Exists(ConfigItemDefine.ValueFilename)) ConfigItemDefine.LoadValues();
             RefreshSelectItemList();
-            var CRoot = ConfigItemDefine.LoadDefines();
-            TreeNode RootTreeNode = new TreeNode("Config");
-            FillTreeView(CRoot, RootTreeNode);
-            trvConfig.Nodes.Add(RootTreeNode);
+            var cRoot = ConfigItemDefine.LoadDefines();
+            var rootTreeNode = new TreeNode("Config");
+            FillTreeView(cRoot, rootTreeNode);
+            trvConfig.Nodes.Add(rootTreeNode);
             trvConfig.ExpandAll();
         }
 
         /// <summary>
         ///     数型目录的装配
         /// </summary>
-        /// <param name="CRoot"></param>
-        /// <param name="RootTreeNode"></param>
-        private void FillTreeView(CTreeNode CRoot, TreeNode RootTreeNode)
+        /// <param name="cRoot"></param>
+        /// <param name="rootTreeNode"></param>
+        private void FillTreeView(CTreeNode cRoot, TreeNode rootTreeNode)
         {
-            foreach (var child in CRoot.Children)
+            foreach (var child in cRoot.Children)
             {
-                TreeNode ChildTreeNode = new TreeNode(child.Text);
+                var childTreeNode = new TreeNode(child.Text);
                 if (child.Children.Count == 0)
                 {
-                    ChildTreeNode.Tag = child.Path;
+                    childTreeNode.Tag = child.Path;
                 }
-                FillTreeView(child, ChildTreeNode);
-                RootTreeNode.Nodes.Add(ChildTreeNode);
+                FillTreeView(child, childTreeNode);
+                rootTreeNode.Nodes.Add(childTreeNode);
             }
         }
+
         /// <summary>
         ///     展示配置项目
         /// </summary>
@@ -56,12 +59,13 @@ namespace ConfigurationFile
                 configEditor.SetItemDefine(ConfigItemDefine.ConfigurationItemDictionary[e.Node.Tag.ToString()]);
             }
         }
+
         /// <summary>
         ///     添加一个配置项目
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnOK_Click(object sender, System.EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
             ConfigItemDefine.UpdateValue(configEditor.GetItemValue());
             RefreshSelectItemList();
@@ -84,11 +88,12 @@ namespace ConfigurationFile
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSave_Click(object sender, System.EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             ConfigItemDefine.SaveValues();
-            ConfigItemDefine.SaveAsYMAL(ctlConfFile.SelectedPathOrFileName);
+            ConfigItemDefine.SaveAsYmal(ctlConfFile.SelectedPathOrFileName);
         }
+
         /// <summary>
         ///     选中项目
         /// </summary>
@@ -96,16 +101,17 @@ namespace ConfigurationFile
         /// <param name="e"></param>
         private void lstConfigValue_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var key = ((ListBox)sender).SelectedItems[0].ToString().Split(":".ToCharArray())[0];
+            var key = ((ListBox) sender).SelectedItems[0].ToString().Split(":".ToCharArray())[0];
             configEditor.SetItemDefine(ConfigItemDefine.ConfigurationItemDictionary[key]);
             configEditor.SetItemValue(ConfigItemDefine.SelectedConfigurationValueDictionary[key]);
         }
 
         private void btnServiceCommand_Click(object sender, EventArgs e)
         {
-            string Temp = "sc.exe create MongoDB binPath= \"" + ctlMongoBin.SelectedPathOrFileName + 
-                          "\\mongod.exe --service --config =\\\""  + ctlConfFile.SelectedPathOrFileName + "\\\"\" DisplayName= \"MongoDB\" start= \"auto\"";
-            txtServiceCommand.Text = Temp;
+            var temp = "sc.exe create MongoDB binPath= \"" + ctlMongoBin.SelectedPathOrFileName +
+                       "\\mongod.exe --service --config =\\\"" + ctlConfFile.SelectedPathOrFileName +
+                       "\\\"\" DisplayName= \"MongoDB\" start= \"auto\"";
+            txtServiceCommand.Text = temp;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

@@ -8,7 +8,7 @@ namespace MongoGUIView
 {
     public partial class FrmGfsOption : Form
     {
-        public Char DirectorySeparatorChar = Path.PathSeparator;
+        public char DirectorySeparatorChar = Path.PathSeparator;
         public Gfs.EnumGfsFileName Filename;
         public bool IgnoreSubFolder;
         public Gfs.EnumGfsAlready Option;

@@ -28,14 +28,14 @@ namespace FunctionForm.Connection
             NumWTimeoutMS.GotFocus += (x, y) => NumWTimeoutMS.Select(0, 5);
             NumWaitQueueSize.GotFocus += (x, y) => NumWaitQueueSize.Select(0, 5);
 
-            foreach (var ReadPreferenceItem in ReadWrite.ReadPreferenceList)
+            foreach (var readPreferenceItem in ReadWrite.ReadPreferenceList)
             {
-                cmbReadPreference.Items.Add(ReadPreferenceItem);
+                cmbReadPreference.Items.Add(readPreferenceItem);
             }
 
-            foreach (var WriteConcernItem in ReadWrite.WriteConcernList)
+            foreach (var writeConcernItem in ReadWrite.WriteConcernList)
             {
-                cmbWriteConcern.Items.Add(WriteConcernItem);
+                cmbWriteConcern.Items.Add(writeConcernItem);
             }
 
             //ReadPreference和WriteConern不是Connection的属性,
@@ -48,7 +48,7 @@ namespace FunctionForm.Connection
             {
                 cmbWriteConcern.Text = MongoConnectionConfig.MongoConfig.WriteConcern;
             }
-            NumWTimeoutMS.Value = (decimal)MongoConnectionConfig.MongoConfig.WtimeoutMs;
+            NumWTimeoutMS.Value = (decimal) MongoConnectionConfig.MongoConfig.WtimeoutMs;
             NumWaitQueueSize.Value = MongoConnectionConfig.MongoConfig.WaitQueueSize;
         }
     }

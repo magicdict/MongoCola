@@ -9,7 +9,7 @@ namespace MongoUtility.Command
     {
         /// <summary>
         /// </summary>
-        public static Object ClipElement;
+        public static object ClipElement;
 
         /// <summary>
         /// </summary>
@@ -20,7 +20,7 @@ namespace MongoUtility.Command
         /// </summary>
         public static bool CanPasteAsValue
         {
-            get { return (ClipElement != null && !IsElementClip); }
+            get { return ClipElement != null && !IsElementClip; }
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace MongoUtility.Command
         /// </summary>
         public static bool CanPasteAsElement
         {
-            get { return (ClipElement != null && IsElementClip); }
+            get { return ClipElement != null && IsElementClip; }
         }
 
         //http://www.mongodb.org/display/DOCS/Capped+Collections#CappedCollections-UsageandRestrictions
@@ -143,6 +143,7 @@ namespace MongoUtility.Command
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="addElement"></param>
+        /// <param name="currentDocument"></param>
         /// <param name="currentCollection"></param>
         public static string AddElement(string elementPath, BsonElement addElement, BsonDocument currentDocument,
             MongoCollection currentCollection)
@@ -172,6 +173,7 @@ namespace MongoUtility.Command
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="addValue"></param>
+        /// <param name="currentDocument"></param>
         /// <param name="currentCollection"></param>
         public static void AddArrayValue(string elementPath, BsonValue addValue, BsonDocument currentDocument,
             MongoCollection currentCollection)
@@ -193,6 +195,8 @@ namespace MongoUtility.Command
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="el"></param>
+        /// <param name="currentDocument"></param>
+        /// <param name="currentCollection"></param>
         public static void DropElement(string elementPath, BsonElement el, BsonDocument currentDocument,
             MongoCollection currentCollection)
         {
@@ -206,10 +210,12 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        ///     Drop A Value of Array
+        /// Drop A Value of Array
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="valueIndex"></param>
+        /// <param name="currentDocument"></param>
+        /// <param name="currentCollection"></param>
         public static void DropArrayValue(string elementPath, int valueIndex, BsonDocument currentDocument,
             MongoCollection currentCollection)
         {
@@ -226,11 +232,13 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        ///     Modify Element
+        /// Modify Element
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="newValue"></param>
         /// <param name="el"></param>
+        /// <param name="currentDocument"></param>
+        /// <param name="currentCollection"></param>
         public static void ModifyElement(string elementPath, BsonValue newValue, BsonElement el,
             BsonDocument currentDocument, MongoCollection currentCollection)
         {
@@ -247,11 +255,13 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        ///     Modify A Value of Array
+        /// Modify A Value of Array
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="newValue"></param>
         /// <param name="valueIndex"></param>
+        /// <param name="currentDocument"></param>
+        /// <param name="currentCollection"></param>
         public static void ModifyArrayValue(string elementPath, BsonValue newValue, int valueIndex,
             BsonDocument currentDocument, MongoCollection currentCollection)
         {

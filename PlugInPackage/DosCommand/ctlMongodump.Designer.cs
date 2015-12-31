@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ResourceLib.UI;
 
-namespace PlugInPackage
+namespace PlugInPackage.DosCommand
 {
     partial class CtlMongodump
     {
@@ -32,7 +32,7 @@ namespace PlugInPackage
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctllogLvT = new PlugInPackage.CtllogLv();
+            this.ctllogLvT = new CtllogLv();
             this.ctlFilePickerOutput = new ResourceLib.UI.CtlFilePicker();
             this.lblHostAddr = new System.Windows.Forms.Label();
             this.txtHostAddr = new System.Windows.Forms.TextBox();

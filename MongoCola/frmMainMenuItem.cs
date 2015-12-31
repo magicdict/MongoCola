@@ -5,11 +5,13 @@ using System.Text;
 using System.Windows.Forms;
 using Common;
 using FunctionForm.Aggregation;
+using FunctionForm.Connection;
 using FunctionForm.Extend;
 using FunctionForm.Operation;
 using FunctionForm.Status;
 using FunctionForm.User;
 using MongoCola.Config;
+using MongoDB.Bson;
 using MongoGUICtl.ClientTree;
 using MongoGUIView;
 using MongoUtility.Aggregation;
@@ -19,14 +21,13 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using FunctionForm.Connection;
-using MongoDB.Bson;
 
 namespace MongoCola
 {
     public partial class FrmMain
     {
         #region"工具"
+
         /// <summary>
         ///     Config File Create
         /// </summary>
@@ -36,6 +37,17 @@ namespace MongoCola
         {
             Process.Start("ConfigurationFile.exe");
         }
+
+        /// <summary>
+        ///     Multi Language Editor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MultiLanguageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("MultiLanEditor.exe");
+        }
+
         /// <summary>
         ///     Options
         /// </summary>
@@ -359,11 +371,14 @@ namespace MongoCola
         /// <param name="e"></param>
         private void SvrStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			if (SystemManager.MonoMode) {
-				Utility.OpenForm(new frmStatusMono(), true, true);
-			} else {
-				Utility.OpenForm(new FrmStatus(), true, true);
-			}
+            if (SystemManager.MonoMode)
+            {
+                Utility.OpenForm(new FrmStatusMono(), true, true);
+            }
+            else
+            {
+                Utility.OpenForm(new FrmStatus(), true, true);
+            }
         }
 
         #endregion
@@ -424,8 +439,12 @@ namespace MongoCola
             if (frm.Result)
             {
                 //这里表示： Client / Server  一个Client 可能连结复数Server  
-                string srvkey = RuntimeMongoDbContext.GetCurrentServerKey() + "/" + RuntimeMongoDbContext.GetCurrentServerKey();
-                TreeNode newCol = UiHelper.FillCollectionInfoToTreeNode(RuntimeMongoDbContext.GetCurrentIMongoDataBase().GetCollection<BsonDocument>(frm.CollectionName), srvkey);
+                var srvkey = RuntimeMongoDbContext.GetCurrentServerKey() + "/" +
+                             RuntimeMongoDbContext.GetCurrentServerKey();
+                var newCol =
+                    UiHelper.FillCollectionInfoToTreeNode(
+                        RuntimeMongoDbContext.GetCurrentIMongoDataBase().GetCollection<BsonDocument>(frm.CollectionName),
+                        srvkey);
                 foreach (TreeNode item in trvsrvlst.SelectedNode.Nodes)
                 {
                     var strNodeType = TagInfo.GetTagType(item.Tag.ToString());
@@ -508,17 +527,19 @@ namespace MongoCola
         }
 
         /// <summary>
-		/// 	
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DBStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			if (SystemManager.MonoMode) {
-				Utility.OpenForm(new frmStatusMono(), true, true);
-			} else {
-				Utility.OpenForm(new FrmStatus(), true, true);
-			}
+            if (SystemManager.MonoMode)
+            {
+                Utility.OpenForm(new FrmStatusMono(), true, true);
+            }
+            else
+            {
+                Utility.OpenForm(new FrmStatus(), true, true);
+            }
         }
 
         /// <summary>
@@ -671,11 +692,14 @@ namespace MongoCola
         /// <param name="e"></param>
         private void CollectionStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			if (SystemManager.MonoMode) {
-				Utility.OpenForm(new frmStatusMono(), true, true);
-			} else {
-				Utility.OpenForm(new FrmStatus(), true, true);
-			}
+            if (SystemManager.MonoMode)
+            {
+                Utility.OpenForm(new FrmStatusMono(), true, true);
+            }
+            else
+            {
+                Utility.OpenForm(new FrmStatus(), true, true);
+            }
         }
 
         /// <summary>
@@ -929,7 +953,7 @@ namespace MongoCola
 
         #endregion
 
-        #region "Help"
+        #region "帮助"
 
         /// <summary>
         ///     About
@@ -938,9 +962,9 @@ namespace MongoCola
         /// <param name="e"></param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MyMessageBox.ShowMessage("About", "MagicCola",
+            MyMessageBox.ShowMessage("About", "MongoCola",
                 GetResource.GetImage(ImageType.Smile),
-                new StreamReader("Release Note.txt",Encoding.UTF8).ReadToEnd());
+                new StreamReader("Release Note.txt", Encoding.UTF8).ReadToEnd());
         }
 
         /// <summary>
@@ -956,7 +980,7 @@ namespace MongoCola
             strThanks += "感谢MoLing同志的国际化" + Environment.NewLine;
             strThanks += "感谢Cnblogs的各位网友的帮助" + Environment.NewLine;
             strThanks += "Thanks Robert Stam for C# driver support" + Environment.NewLine;
-            MyMessageBox.ShowMessage("Thanks", "MagicCola",
+            MyMessageBox.ShowMessage("Thanks", "MongoCola",
                 GetResource.GetImage(ImageType.Smile),
                 strThanks);
         }

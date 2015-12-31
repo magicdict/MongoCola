@@ -1,6 +1,6 @@
 ﻿namespace FunctionForm.Connection
 {
-    partial class CtlSSLConfig
+    partial class CtlSslConfig
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -61,7 +61,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.fileSslCertificateFile);
             this.Controls.Add(this.chkUseSsl);
-            this.Name = "CtlSSLConfig";
+            this.Name = "CtlSslConfig";
             this.Size = new System.Drawing.Size(579, 112);
             this.Load += new System.EventHandler(this.CtlSSLConfig_Load);
             this.ResumeLayout(false);

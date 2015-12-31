@@ -24,7 +24,7 @@ namespace FunctionForm.Aggregation
                 cmbLanguage.Items.Add(item.ToString());
             }
             cmbLanguage.Items.Add("====Enterprise Only====");
-            foreach (var item in Enum.GetValues(typeof(EnumMgr.TextSearchLanguageForEnterprise)))
+            foreach (var item in Enum.GetValues(typeof (EnumMgr.TextSearchLanguageForEnterprise)))
             {
                 cmbLanguage.Items.Add(item.ToString());
             }
@@ -42,8 +42,8 @@ namespace FunctionForm.Aggregation
             try
             {
                 //返回数限制
-                var result = QueryHelper.SearchText(txtKey.Text, chkCaseSensitive.Checked,chkDiacriticSensitive.Checked,
-                    (int)NUDLimit.Value,(cmbLanguage.SelectedIndex == 0) ? "" : cmbLanguage.Text);
+                var result = QueryHelper.SearchText(txtKey.Text, chkCaseSensitive.Checked, chkDiacriticSensitive.Checked,
+                    (int) NUDLimit.Value, cmbLanguage.SelectedIndex == 0 ? "" : cmbLanguage.Text);
                 UiHelper.FillDataToTreeView("Text Search Result", trvResult, result, 0);
                 MessageBox.Show("找到符合条件的结果数：" + result.Count());
                 cmdSave.Enabled = true;
@@ -69,7 +69,10 @@ namespace FunctionForm.Aggregation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-		private void cmdClose_Click(object sender, EventArgs e) { Close();}
+        private void cmdClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         /// <summary>
         ///     保存
@@ -85,7 +88,5 @@ namespace FunctionForm.Aggregation
                 trvResult.Save(dialog.FileName);
             }
         }
-
-
     }
 }

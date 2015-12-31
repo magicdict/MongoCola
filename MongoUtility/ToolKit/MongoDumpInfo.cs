@@ -8,6 +8,10 @@ namespace MongoUtility.ToolKit
     /// </summary>
     public class MongoDumpInfo
     {
+        /// <summary>
+        /// </summary>
+        public string ArchiveFilename = string.Empty;
+
         //https://docs.mongodb.org/master/reference/program/mongodump/#mongodump-example-archive-file
 
 
@@ -27,6 +31,17 @@ namespace MongoUtility.ToolKit
         public string HostAddr = string.Empty;
 
         /// <summary>
+        ///     Writes the output to a single archive file or to the standard output (stdout).
+        ///     (Since 3.2.0)
+        /// </summary>
+        public bool IsArchive = false;
+
+        /// <summary>
+        ///     Compresses the output.(Since 3.2.0)
+        /// </summary>
+        public bool IsGZip = false;
+
+        /// <summary>
         ///     日志等级
         /// </summary>
         public MongodbDosCommand.MongologLevel LogLv = MongodbDosCommand.MongologLevel.Quiet;
@@ -40,21 +55,6 @@ namespace MongoUtility.ToolKit
         ///     主机端口
         /// </summary>
         public int Port = ConstMgr.MongodDefaultPort;
-
-        /// <summary>
-        ///     Compresses the output.(Since 3.2.0)
-        /// </summary>
-        public bool IsGZip = false;
-
-        /// <summary>
-        ///    Writes the output to a single archive file or to the standard output (stdout).
-        ///   (Since 3.2.0)
-        /// </summary>
-        public bool IsArchive = false;
-        /// <summary>
-        ///     
-        /// </summary>
-        public string ArchiveFilename = string.Empty;
 
         /// <summary>
         ///     获得备份的配置
@@ -79,15 +79,17 @@ namespace MongoUtility.ToolKit
                 //dosCommand += " --out \"" + mongoDump.OutPutPath + "\"";
                 dosCommand += " --out " + mongoDump.OutPutPath;
             }
-            if (mongoDump.IsGZip) {
+            if (mongoDump.IsGZip)
+            {
                 //Since 3.2.0
-                dosCommand += " --gzip";    
+                dosCommand += " --gzip";
             }
             if (mongoDump.IsArchive)
             {
                 //Since 3.2.0
                 dosCommand += " --archive";
-                if (!string.IsNullOrEmpty(mongoDump.ArchiveFilename)) {
+                if (!string.IsNullOrEmpty(mongoDump.ArchiveFilename))
+                {
                     dosCommand += "=" + mongoDump.ArchiveFilename;
                 }
             }

@@ -14,24 +14,25 @@ namespace ResourceLib.UI
         public enum DialogType
         {
             /// <summary>
-            /// 打开
+            ///     打开
             /// </summary>
             OpenFile,
+
             /// <summary>
-            /// 保存
+            ///     保存
             /// </summary>
             SaveFile,
+
             /// <summary>
-            /// 目录
+            ///     目录
             /// </summary>
             Directory
         }
+
         /// <summary>
         ///     类型
         /// </summary>
         private DialogType _dialogType = DialogType.Directory;
-        private string _fileFilter = string.Empty;
-        private string _fileName = string.Empty;
 
         public CtlFilePicker()
         {
@@ -41,20 +42,12 @@ namespace ResourceLib.UI
         /// <summary>
         ///     文件过滤
         /// </summary>
-        public string FileFilter
-        {
-            get { return _fileFilter; }
-            set { _fileFilter = value; }
-        }
+        public string FileFilter { get; set; } = string.Empty;
 
         /// <summary>
         ///     初始文件名称
         /// </summary>
-        public string InitFileName
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
+        public string InitFileName { get; set; } = string.Empty;
 
         /// <summary>
         ///     选中路径
@@ -115,7 +108,6 @@ namespace ResourceLib.UI
         }
 
 
-
         public event PathChangedHandler PathChanged;
 
         /// <summary>
@@ -128,10 +120,10 @@ namespace ResourceLib.UI
             switch (_dialogType)
             {
                 case DialogType.OpenFile:
-                    var openFile = new OpenFileDialog { FileName = _fileName };
-                    if (_fileFilter != string.Empty)
+                    var openFile = new OpenFileDialog {FileName = InitFileName};
+                    if (FileFilter != string.Empty)
                     {
-                        openFile.Filter = _fileFilter;
+                        openFile.Filter = FileFilter;
                     }
                     if (openFile.ShowDialog() == DialogResult.OK)
                     {
@@ -139,10 +131,10 @@ namespace ResourceLib.UI
                     }
                     break;
                 case DialogType.SaveFile:
-                    var saveFile = new SaveFileDialog { FileName = _fileName };
-                    if (_fileFilter != string.Empty)
+                    var saveFile = new SaveFileDialog {FileName = InitFileName};
+                    if (FileFilter != string.Empty)
                     {
-                        saveFile.Filter = _fileFilter;
+                        saveFile.Filter = FileFilter;
                     }
                     if (saveFile.ShowDialog() == DialogResult.OK)
                     {

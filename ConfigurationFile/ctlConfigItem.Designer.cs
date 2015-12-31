@@ -1,6 +1,6 @@
 ﻿namespace ConfigurationFile
 {
-    partial class ctlConfigItem
+    partial class CtlConfigItem
     {
         /// <summary> 
         /// Required designer variable.
@@ -209,7 +209,7 @@
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblPrimaryVersion);
-            this.Name = "ctlConfigItem";
+            this.Name = "CtlConfigItem";
             this.Size = new System.Drawing.Size(558, 238);
             ((System.ComponentModel.ISupportInitialize)(this.intValue)).EndInit();
             this.ResumeLayout(false);

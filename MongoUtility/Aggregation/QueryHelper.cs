@@ -12,7 +12,7 @@ namespace MongoUtility.Aggregation
     public static class QueryHelper
     {
         /// <summary>
-        /// 获得输出列表
+        ///     获得输出列表
         /// </summary>
         /// <returns></returns>
         public static string[] GetOutputFields(List<DataFilter.QueryFieldItem> fieldItemLst)
@@ -27,8 +27,9 @@ namespace MongoUtility.Aggregation
             }
             return outputFieldLst.ToArray();
         }
+
         /// <summary>
-        /// 获得当前数据集包含记录数
+        ///     获得当前数据集包含记录数
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -43,7 +44,7 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        /// 获得排序
+        ///     获得排序
         /// </summary>
         /// <returns></returns>
         public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> fieldItemLst)
@@ -178,14 +179,18 @@ namespace MongoUtility.Aggregation
             }
             return query;
         }
+
         /// <summary>
-        ///     全文检索
+        /// 全文检索
         /// </summary>
         /// <param name="key"></param>
+        /// <param name="caseSensitive"></param>
+        /// <param name="diacriticSensitive"></param>
         /// <param name="limit"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public static List<BsonDocument> SearchText(string key, bool caseSensitive, bool diacriticSensitive,int limit, string language = "")
+        public static List<BsonDocument> SearchText(string key, bool caseSensitive, bool diacriticSensitive, int limit,
+            string language = "")
         {
             //检索文法： 
             //[Before2.6]http://docs.mongodb.org/manual/reference/command/text/#text-search-languages
@@ -201,7 +206,7 @@ namespace MongoUtility.Aggregation
             //    }
             //}
             //检索关键字
-            TextSearchOptions textSearchOption = new TextSearchOptions();
+            var textSearchOption = new TextSearchOptions();
             textSearchOption.CaseSensitive = caseSensitive;
             textSearchOption.DiacriticSensitive = diacriticSensitive;
             //语言
@@ -209,7 +214,7 @@ namespace MongoUtility.Aggregation
             {
                 textSearchOption.Language = language;
             }
-            IMongoQuery textSearchQuery = Query.Text(key,textSearchOption);
+            var textSearchQuery = Query.Text(key, textSearchOption);
             var result = RuntimeMongoDbContext.GetCurrentCollection().FindAs<BsonDocument>(textSearchQuery);
             var resultDocumentList = result.SetLimit(limit).ToList();
             return resultDocumentList;
@@ -218,13 +223,12 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     Is Exist by Key
         /// </summary>
-        /// <param name="mongoCol">Collection</param>
         /// <param name="keyValue">KeyValue</param>
         /// <returns></returns>
         public static bool IsExistByKey(string keyValue)
         {
             var mongoCol = MongoHelper.GetCurrentJsCollection(RuntimeMongoDbContext.GetCurrentDataBase());
-            return mongoCol.FindAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, keyValue)).Count() > 0;
+            return mongoCol.FindAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, keyValue)).Any();
         }
     }
 }

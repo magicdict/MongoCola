@@ -9,9 +9,9 @@ using ResourceLib.Method;
 
 namespace FunctionForm.Status
 {
-    public partial class frmStatusMono : Form
+    public partial class FrmStatusMono : Form
     {
-		public frmStatusMono()
+        public FrmStatusMono()
         {
             InitializeComponent();
         }
@@ -51,12 +51,12 @@ namespace FunctionForm.Status
                     }
                     break;
             }
-			GuiConfig.Translateform(this);
+            GuiConfig.Translateform(this);
             UiHelper.FillDataToTreeView(strType, trvStatus, docStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
 
-         private void btnClose_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }

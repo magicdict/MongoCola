@@ -10,8 +10,6 @@ namespace FunctionForm.Status
 {
     public partial class FrmValidate : Form
     {
-
-
         public FrmValidate()
         {
             InitializeComponent();
@@ -26,7 +24,7 @@ namespace FunctionForm.Status
         /// <param name="e"></param>
         private void cmdValidate_Click(object sender, EventArgs e)
         {
-            UiHelper.FillDataToTreeView("Validate Result", trvResult,Operater.Validate(chkFull.Checked));
+            UiHelper.FillDataToTreeView("Validate Result", trvResult, Operater.Validate(chkFull.Checked));
             cmdSave.Enabled = true;
         }
 

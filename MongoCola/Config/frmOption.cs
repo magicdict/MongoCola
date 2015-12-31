@@ -11,15 +11,16 @@ namespace MongoCola.Config
         {
             InitializeComponent();
         }
-		/// <summary>
-		/// Load
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		/// <param name="e">E.</param>
+
+        /// <summary>
+        ///     Load
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
         private void frmOption_Load(object sender, EventArgs e)
         {
             fileMongoBinPath.SelectedPathOrFileName = SystemManager.SystemConfig.MongoBinPath;
-            if (SystemManager.SystemConfig.IsUTC)
+            if (SystemManager.SystemConfig.IsUtc)
             {
                 radUTC.Checked = true;
             }
@@ -32,12 +33,13 @@ namespace MongoCola.Config
                 SystemManager.SystemConfig.RefreshStatusTimer = SystemManager.SystemConfig.DefaultRefreshStatusTimer;
             }
             intRefreshStatusTimer.Value = SystemManager.SystemConfig.RefreshStatusTimer;
-            if (string.IsNullOrEmpty(SystemManager.SystemConfig.UIFontFamily))
+            if (string.IsNullOrEmpty(SystemManager.SystemConfig.UiFontFamily))
             {
                 lblCurrentFont.Text = Font.FontFamily.Name;
             }
-            else {
-                lblCurrentFont.Text = SystemManager.SystemConfig.UIFontFamily;
+            else
+            {
+                lblCurrentFont.Text = SystemManager.SystemConfig.UiFontFamily;
             }
             cmbLanguage.Items.Add(StringResource.LanguageEnglish);
             if (Directory.Exists("Language"))
@@ -68,8 +70,9 @@ namespace MongoCola.Config
                 cmbLanguage.Text = StringResource.LanguageEnglish;
             }
             GuiConfig.Translateform(this);
-			GuiConfig.MonoCompactControl (Controls);
+            GuiConfig.MonoCompactControl(Controls);
         }
+
         /// <summary>
         ///     Font
         /// </summary>
@@ -79,10 +82,11 @@ namespace MongoCola.Config
         {
             if (fontDialog1.ShowDialog() == DialogResult.OK)
             {
-                SystemManager.SystemConfig.UIFontFamily = fontDialog1.Font.FontFamily.Name;
-                lblCurrentFont.Text = SystemManager.SystemConfig.UIFontFamily;
+                SystemManager.SystemConfig.UiFontFamily = fontDialog1.Font.FontFamily.Name;
+                lblCurrentFont.Text = SystemManager.SystemConfig.UiFontFamily;
             }
         }
+
         /// <summary>
         ///     OK
         /// </summary>
@@ -91,9 +95,9 @@ namespace MongoCola.Config
         private void cmdOK_Click(object sender, EventArgs e)
         {
             _ctlReadWriteConfig1.SaveConfig();
-            SystemManager.SystemConfig.IsUTC = radUTC.Checked;
+            SystemManager.SystemConfig.IsUtc = radUTC.Checked;
             SystemManager.SystemConfig.MongoBinPath = fileMongoBinPath.SelectedPathOrFileName;
-            SystemManager.SystemConfig.RefreshStatusTimer = (int)intRefreshStatusTimer.Value;
+            SystemManager.SystemConfig.RefreshStatusTimer = (int) intRefreshStatusTimer.Value;
             SystemManager.SystemConfig.LanguageFileName = cmbLanguage.Text + ".xml";
             SystemManager.SystemConfig.SaveSystemConfig();
             Close();
@@ -108,6 +112,5 @@ namespace MongoCola.Config
         {
             Close();
         }
-
     }
 }

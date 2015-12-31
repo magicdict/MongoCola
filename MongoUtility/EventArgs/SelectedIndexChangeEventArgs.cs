@@ -5,23 +5,14 @@ namespace MongoUtility.EventArgs
     /// </summary>
     public class SelectedIndexChangeEventArgs : System.EventArgs
     {
-        private readonly int _newIndex;
-        private readonly int _oldIndex;
-
         public SelectedIndexChangeEventArgs(int oldIndex, int newIndex)
         {
-            _oldIndex = oldIndex;
-            _newIndex = newIndex;
+            OldIndex = oldIndex;
+            NewIndex = newIndex;
         }
 
-        public int OldIndex
-        {
-            get { return _oldIndex; }
-        }
+        public int OldIndex { get; }
 
-        public int NewIndex
-        {
-            get { return _newIndex; }
-        }
+        public int NewIndex { get; }
     }
 }

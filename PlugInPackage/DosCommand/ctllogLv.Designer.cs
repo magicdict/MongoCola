@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace PlugInPackage
+namespace PlugInPackage.DosCommand
 {
     partial class CtllogLv
     {

@@ -23,17 +23,17 @@ namespace MongoGUICtl.Aggregation
             InitializeComponent();
         }
 
-        private void FieldPicker_Load(object sender, EventArgs e)
-        {
-            GuiConfig.Translateform(Controls);
-        }
-
         public CtlFieldInfo.FieldMode FieldListMode { get; set; }
 
         /// <summary>
         ///     ID的显示属性是否可变
         /// </summary>
         public bool IsIdProtect { set; get; }
+
+        private void FieldPicker_Load(object sender, EventArgs e)
+        {
+            GuiConfig.Translateform(Controls);
+        }
 
         /// <summary>
         ///     QueryFieldList
@@ -45,7 +45,6 @@ namespace MongoGUICtl.Aggregation
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         public List<DataFilter.QueryFieldItem> GetQueryFieldList()
@@ -232,7 +231,5 @@ namespace MongoGUICtl.Aggregation
             id.Add("_id", member);
             return id;
         }
-
-
     }
 }

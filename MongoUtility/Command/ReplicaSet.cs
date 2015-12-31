@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using MongoDB.Bson;
 
 namespace MongoUtility.Command
 {
@@ -81,15 +81,14 @@ namespace MongoUtility.Command
             CommandHelper.ExecuteMongoCommand(CommandHelper.CompactCommand);
         }
 
-        public static BsonDocument Validate(bool IsFull)
+        public static BsonDocument Validate(bool isFull)
         {
-             BsonDocument _result;
-             var textSearchOption = new BsonDocument().Add(new BsonElement("full", IsFull.ToString()));
-             var searchResult = CommandHelper.ExecuteMongoColCommand("validate",
-                 RuntimeMongoDbContext.GetCurrentCollection(), textSearchOption);
-             _result = searchResult.Response;
-             return _result;
+            BsonDocument result;
+            var textSearchOption = new BsonDocument().Add(new BsonElement("full", isFull.ToString()));
+            var searchResult = CommandHelper.ExecuteMongoColCommand("validate",
+                RuntimeMongoDbContext.GetCurrentCollection(), textSearchOption);
+            result = searchResult.Response;
+            return result;
         }
-
     }
 }

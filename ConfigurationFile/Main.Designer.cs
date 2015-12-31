@@ -38,7 +38,7 @@
             this.txtServiceCommand = new System.Windows.Forms.TextBox();
             this.btnServiceCommand = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.configEditor = new ConfigurationFile.ctlConfigItem();
+            this.configEditor = new ConfigurationFile.CtlConfigItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -200,7 +200,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAdd;
         private ResourceLib.UI.CtlFilePicker ctlConfFile;
-        private ctlConfigItem configEditor;
+        private CtlConfigItem configEditor;
         private System.Windows.Forms.ListBox lstConfigValue;
         private ResourceLib.UI.CtlFilePicker ctlMongoBin;
         private System.Windows.Forms.TextBox txtServiceCommand;

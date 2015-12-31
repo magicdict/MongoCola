@@ -59,7 +59,7 @@ namespace MongoUtility.ToolKit
             ///     Verb * 5
             /// </summary>
             Vvvvv
-        };
+        }
 
         /// <summary>
         ///     Mongo Bin Paht

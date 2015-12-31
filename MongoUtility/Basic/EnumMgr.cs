@@ -5,7 +5,6 @@ namespace MongoUtility.Basic
 {
     public static class EnumMgr
     {
-
         /// <summary>
         ///     导出类型
         /// </summary>
@@ -74,6 +73,37 @@ namespace MongoUtility.Basic
         }
 
         /// <summary>
+        ///     MongoDB版本
+        /// </summary>
+        public enum PrimaryVersion
+        {
+            /// <summary>
+            ///     全版本
+            /// </summary>
+            V000 = 000,
+
+            /// <summary>
+            ///     Version 2.4.0
+            /// </summary>
+            V240 = 240,
+
+            /// <summary>
+            ///     Version 2.6.0
+            /// </summary>
+            V260 = 260,
+
+            /// <summary>
+            ///     Version 3.0.0
+            /// </summary>
+            V300 = 300,
+
+            /// <summary>
+            ///     Version 3.2.0
+            /// </summary>
+            V320 = 320
+        }
+
+        /// <summary>
         ///     存储引擎
         /// </summary>
         public enum StorageEngineType
@@ -88,32 +118,7 @@ namespace MongoUtility.Basic
             /// </summary>
             WiredTiger
         }
-        /// <summary>
-        ///     MongoDB版本
-        /// </summary>
-        public enum PrimaryVersion
-        {
-            /// <summary>
-            ///     全版本       
-            /// </summary>
-            V000 = 000,
-            /// <summary>
-            ///     Version 2.4.0
-            /// </summary>
-            V240 = 240,
-            /// <summary>
-            ///     Version 2.6.0
-            /// </summary>
-            V260 = 260,
-            /// <summary>
-            ///     Version 3.0.0
-            /// </summary>
-            V300 = 300,
-            /// <summary>
-            ///     Version 3.2.0
-            /// </summary>
-            V320 = 320
-        }
+
         /// <summary>
         ///     Text Search 时候能指定的语言枚举
         /// </summary>
@@ -140,12 +145,13 @@ namespace MongoUtility.Basic
         ///     Text Search 时候能指定的语言枚举
         ///     Since 3.2.0 Enterprise Version
         /// </summary>
-        public enum TextSearchLanguageForEnterprise {
+        public enum TextSearchLanguageForEnterprise
+        {
             Arabic,
             Farsi,
             Urdu,
-            Simplified_Chinese,
-            Traditional_Chinese
+            SimplifiedChinese,
+            TraditionalChinese
         }
 
         /// <summary>
@@ -172,8 +178,6 @@ namespace MongoUtility.Basic
                         break;
                     case "text":
                         keyString += IndexType.Text.ToString();
-                        break;
-                    default:
                         break;
                 }
                 keyString += ";";

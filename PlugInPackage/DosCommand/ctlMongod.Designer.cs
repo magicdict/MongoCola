@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ResourceLib.UI;
 
-namespace PlugInPackage
+namespace PlugInPackage.DosCommand
 {
     partial class CtlMongod
     {
@@ -34,7 +34,7 @@ namespace PlugInPackage
         {
             this.grpLog = new System.Windows.Forms.GroupBox();
             this.chkSmallfiles = new System.Windows.Forms.CheckBox();
-            this.ctllogLvT = new PlugInPackage.CtllogLv();
+            this.ctllogLvT = new CtllogLv();
             this.chkIsAppend = new System.Windows.Forms.CheckBox();
             this.ctlFilePickerLogPath = new ResourceLib.UI.CtlFilePicker();
             this.lblPort = new System.Windows.Forms.Label();

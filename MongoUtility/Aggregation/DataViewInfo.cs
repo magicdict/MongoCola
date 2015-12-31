@@ -173,7 +173,7 @@ namespace MongoUtility.Aggregation
         public static void SetPageEnable(ref DataViewInfo mDataViewInfo)
         {
             mDataViewInfo.HasPrePage = mDataViewInfo.SkipCnt != 0;
-            mDataViewInfo.HasNextPage = (mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt) <
+            mDataViewInfo.HasNextPage = mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt <
                                         mDataViewInfo.CurrentCollectionTotalCnt;
         }
     }

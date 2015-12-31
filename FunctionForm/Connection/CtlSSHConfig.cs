@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using Common;
 
 namespace FunctionForm.Connection
 {
@@ -9,9 +11,9 @@ namespace FunctionForm.Connection
             InitializeComponent();
         }
 
-        private void CtlSshConfig_Load(object sender, System.EventArgs e)
+        private void CtlSshConfig_Load(object sender, EventArgs e)
         {
-            fileSshPrivateKeyFile.FileFilter = Common.Utility.PpkFilter;
+            fileSshPrivateKeyFile.FileFilter = Utility.PpkFilter;
         }
     }
 }

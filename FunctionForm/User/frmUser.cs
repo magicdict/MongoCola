@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
+using MongoDB.Bson;
+using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
-using MongoDB.Bson;
-using MongoDB.Driver.Builders;
 
 namespace FunctionForm.User
 {
@@ -160,7 +160,7 @@ namespace FunctionForm.User
                 colRoles.Text = GuiConfig.GetText(TextType.CommonRoles);
                 colDataBase.Text =
                     GuiConfig.GetText(TextType.CommonDataBase);
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOK);
+                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             }
         }

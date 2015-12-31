@@ -52,9 +52,10 @@ namespace MongoGUICtl.Aggregation
                 cmbSort.Items.Add(GuiConfig.GetText(TextType.IndexAsce));
                 cmbSort.Items.Add(GuiConfig.GetText(TextType.IndexDesc));
                 chkIsShow.Text =
-                    GuiConfig.GetText(TextType.ctlFieldInfoShow);
+                    GuiConfig.GetText(TextType.CtlFieldInfoShow);
             }
-            else {
+            else
+            {
                 cmbSort.Items.Clear();
                 cmbSort.Items.Add("None Sort");
                 cmbSort.Items.Add("Asce");
@@ -100,7 +101,6 @@ namespace MongoGUICtl.Aggregation
                     default:
                         break;
                 }
-                
             }
             get { return _mMode; }
         }
@@ -161,7 +161,7 @@ namespace MongoGUICtl.Aggregation
                 if (value.ColName == ConstMgr.KeyId)
                 {
                     chkIsShow.Checked = true;
-                    chkIsShow.Enabled = !(_mIdProtectMode);
+                    chkIsShow.Enabled = !_mIdProtectMode;
                 }
                 switch (value.SortType)
                 {
@@ -197,7 +197,7 @@ namespace MongoGUICtl.Aggregation
                 {
                     rtnQueryFieldItem.SortType = DataFilter.SortType.Descending;
                 }
-                rtnQueryFieldItem.SortOrder = (int)NumIndexOrder.Value;
+                rtnQueryFieldItem.SortOrder = (int) NumIndexOrder.Value;
                 return rtnQueryFieldItem;
             }
         }

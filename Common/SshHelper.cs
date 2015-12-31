@@ -13,7 +13,7 @@ namespace Common
         /// <returns></returns>
         public static SshClient GetSshClient(string host, string username, string password)
         {
-            SshClient client = new SshClient(host, username, password);
+            var client = new SshClient(host, username, password);
             return client;
         }
 
@@ -27,8 +27,8 @@ namespace Common
         /// <returns></returns>
         public static SshClient GetSshClient(string host, string username, string password, string ppkFilename)
         {
-            PrivateKeyFile ppkFile = new PrivateKeyFile(ppkFilename);
-            SshClient client = new SshClient(host, username, new PrivateKeyFile[] { ppkFile });
+            var ppkFile = new PrivateKeyFile(ppkFilename);
+            var client = new SshClient(host, username, ppkFile);
             return client;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-using MongoGUICtl;
+using PlugInPackage.DosCommand;
 
 namespace PlugInPackage.GenerateConfigIni
 {

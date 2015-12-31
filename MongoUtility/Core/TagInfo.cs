@@ -9,6 +9,11 @@ namespace MongoUtility.Core
     public class TagInfo
     {
         /// <summary>
+        ///     全路径
+        /// </summary>
+        private string _tagString = string.Empty;
+
+        /// <summary>
         ///     对象名称
         /// </summary>
         public string ObjName = string.Empty;
@@ -22,11 +27,6 @@ namespace MongoUtility.Core
         ///     除去表示类别的数据
         /// </summary>
         public string TagPath = string.Empty;
-
-        /// <summary>
-        ///     全路径
-        /// </summary>
-        private string _tagString = string.Empty;
 
         /// <summary>
         ///     类别(String)
@@ -112,8 +112,6 @@ namespace MongoUtility.Core
                     break;
                 case ConstMgr.CollectionTag:
                     level = EnumMgr.PathLevel.Collection;
-                    break;
-                default:
                     break;
             }
             return level;

@@ -81,7 +81,7 @@ namespace MongoUtility.Command
         {
             var mongoSvr = RuntimeMongoDbContext.GetCurrentServer();
             var rtnResult = string.Empty;
-            var tag = TagInfo.GetTagPath(strObjTag);
+            TagInfo.GetTagPath(strObjTag);
             if (mongoSvr == null) return rtnResult;
             switch (func)
             {

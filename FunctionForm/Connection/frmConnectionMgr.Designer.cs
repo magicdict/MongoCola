@@ -80,7 +80,7 @@ namespace FunctionForm.Connection
             this.tabSSH = new System.Windows.Forms.TabPage();
             this.ctlSSHConfig1 = new FunctionForm.Connection.CtlSshConfig();
             this.tabSSL = new System.Windows.Forms.TabPage();
-            this.ctlSSLConfig1 = new FunctionForm.Connection.CtlSSLConfig();
+            this.ctlSSLConfig1 = new FunctionForm.Connection.CtlSslConfig();
             ((System.ComponentModel.ISupportInitialize)(this.intPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -728,7 +728,7 @@ namespace FunctionForm.Connection
         private TabPage tabSSH;
         private CtlSshConfig ctlSSHConfig1;
         private TabPage tabSSL;
-        private CtlSSLConfig ctlSSLConfig1;
+        private CtlSslConfig ctlSSLConfig1;
         private Label lblAttentionPassword;
     }
 }

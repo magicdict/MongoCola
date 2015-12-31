@@ -9,9 +9,10 @@
 
 using System;
 using Common;
-using MongoUtility.Core;
-using MongoGUIView;
 using FunctionForm.Status;
+using MongoGUICtl;
+using MongoGUIView;
+using MongoUtility.Core;
 
 namespace MongoCola.Config
 {
@@ -39,7 +40,6 @@ namespace MongoCola.Config
         public byte ConfigVer = 2;
 
 
-
         /// <summary>
         ///     MongoBin的路径，用于Dos命令
         /// </summary>
@@ -48,10 +48,9 @@ namespace MongoCola.Config
         /// <summary>
         ///     DateTime UTC
         /// </summary>
-        public bool IsUTC { set; get; }
+        public bool IsUtc { set; get; }
 
-        [NonSerialized]
-        public int DefaultRefreshStatusTimer = 30;
+        [NonSerialized] public int DefaultRefreshStatusTimer = 30;
 
         /// <summary>
         ///     状态刷新间隔时间
@@ -64,7 +63,7 @@ namespace MongoCola.Config
         /// <returns></returns>
         public bool IsUseDefaultLanguage()
         {
-            return (LanguageFileName == "English.xml" || string.IsNullOrEmpty(LanguageFileName));
+            return LanguageFileName == "English.xml" || string.IsNullOrEmpty(LanguageFileName);
         }
 
         /// <summary>
@@ -72,11 +71,11 @@ namespace MongoCola.Config
         /// </summary>
         public string LanguageFileName { set; get; }
 
-		/// <summary>
-		/// Font Use For Mac System
-		/// </summary>
-		/// <value>The user interface font.</value>
-		public string UIFontFamily{ get; set;}
+        /// <summary>
+        ///     Font Use For Mac System
+        /// </summary>
+        /// <value>The user interface font.</value>
+        public string UiFontFamily { get; set; }
 
         /// <summary>
         ///     写入配置
@@ -89,8 +88,8 @@ namespace MongoCola.Config
                 MongoConnectionConfig.MongoConfig.SerializableConnectionList.Add(item);
             }
             Utility.SaveObjAsXml(AppPath + SystemConfigFilename, this);
-            MongoGUICtl.CtlTreeViewColumns.IsUTC = IsUTC;
-            ViewHelper.IsUTC = IsUTC;
+            CtlTreeViewColumns.IsUtc = IsUtc;
+            ViewHelper.IsUtc = IsUtc;
             FrmServerMonitor.RefreshInterval = RefreshStatusTimer;
         }
 
@@ -101,10 +100,11 @@ namespace MongoCola.Config
         public static void LoadFromConfigFile()
         {
             SystemManager.SystemConfig = Utility.LoadObjFromXml<SystemConfig>(AppPath + SystemConfigFilename);
-            MongoGUICtl.CtlTreeViewColumns.IsUTC = SystemManager.SystemConfig.IsUTC;
-            ViewHelper.IsUTC = SystemManager.SystemConfig.IsUTC;
+            CtlTreeViewColumns.IsUtc = SystemManager.SystemConfig.IsUtc;
+            ViewHelper.IsUtc = SystemManager.SystemConfig.IsUtc;
             FrmServerMonitor.RefreshInterval = SystemManager.SystemConfig.RefreshStatusTimer;
         }
+
         #endregion
     }
 }

@@ -33,10 +33,10 @@ namespace MongoCola
         /// </summary>
         public static bool MonoMode;
 
-		/// <summary>
-		/// 	OSVersion
-		/// </summary>
-		public static string OSVersion = System.Environment.OSVersion.ToString();
+        /// <summary>
+        ///     OSVersion
+        /// </summary>
+        public static string OsVersion = Environment.OSVersion.ToString();
 
         /// <summary>
         ///     初始化
@@ -45,25 +45,30 @@ namespace MongoCola
         {
             //MongoDB驱动版本的取得
             Debug.Print(Path.DirectorySeparatorChar.ToString());
-			var info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar.ToString() + "MongoDB.Driver.dll");
+            var info =
+                FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar +
+                                               "MongoDB.Driver.dll");
             MongoHelper.MongoDbDriverVersion = info.ProductVersion;
-			info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar.ToString() + "MongoDB.Bson.dll");
+            info =
+                FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar +
+                                               "MongoDB.Bson.dll");
             MongoHelper.MongoDbBsonVersion = info.ProductVersion;
             //版本设定
-			Version = Application.ProductVersion;
+            Version = Application.ProductVersion;
             DebugMode = false;
             MonoMode = Type.GetType("Mono.Runtime") != null;
-			GuiConfig.IsMono = MonoMode;
-			//Can't know for OSVersion to diff Mac or Unix....
+            GuiConfig.IsMono = MonoMode;
+            //Can't know for OSVersion to diff Mac or Unix....
             //异常处理器的初始化
             Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + MongoHelper.MongoDbDriverVersion +
                                           Environment.NewLine;
             Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + MongoHelper.MongoDbBsonVersion +
                                            Environment.NewLine;
             //config
-			SystemConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
-			MongoConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
-			var localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar + SystemConfig.SystemConfigFilename;
+            SystemConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
+            MongoConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
+            var localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar +
+                                  SystemConfig.SystemConfigFilename;
             if (File.Exists(localconfigfile))
             {
                 SystemConfig.LoadFromConfigFile();
@@ -80,7 +85,7 @@ namespace MongoCola
                 frmOption.ShowDialog();
                 SystemConfig.SaveSystemConfig();
             }
-			localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar + MongoConfig.MongoConfigFilename;
+            localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar + MongoConfig.MongoConfigFilename;
             if (File.Exists(localconfigfile))
             {
                 MongoConfig.LoadFromConfigFile();
@@ -103,7 +108,7 @@ namespace MongoCola
             //语言的初始化
             if (!SystemConfig.IsUseDefaultLanguage())
             {
-				var languageFile = "Language" + Path.DirectorySeparatorChar + SystemConfig.LanguageFileName;
+                var languageFile = "Language" + Path.DirectorySeparatorChar + SystemConfig.LanguageFileName;
                 if (File.Exists(languageFile))
                 {
                     StringResource.InitLanguage(languageFile);

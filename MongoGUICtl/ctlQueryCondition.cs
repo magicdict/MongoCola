@@ -17,7 +17,7 @@ namespace MongoGUICtl
 
         public bool IsSeted
         {
-            get { return (cmbCompareOpr.SelectedIndex != -1); }
+            get { return cmbCompareOpr.SelectedIndex != -1; }
         }
 
         public DataFilter.QueryConditionInputItem ConditionItem

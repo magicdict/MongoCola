@@ -41,7 +41,6 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        /// 
         /// </summary>
         public enum EnumGfsAlready
         {
@@ -204,7 +203,7 @@ namespace MongoUtility.Command
         public struct UpLoadFileOption
         {
             public EnumGfsAlready AlreadyOpt;
-            public Char DirectorySeparatorChar;
+            public char DirectorySeparatorChar;
             public EnumGfsFileName FileNameOpt;
             public bool IgnoreSubFolder;
         }

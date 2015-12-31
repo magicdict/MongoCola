@@ -4,14 +4,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Common;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace FunctionForm.Aggregation
 {
@@ -107,7 +107,7 @@ namespace FunctionForm.Aggregation
                 txtResult.Select(0, 0);
                 //图形化加载
                 chartResult.Series.Add(seriesResult);
-				chartResult.Titles.Add(new Title(chartTite));
+                chartResult.Titles.Add(new Title(chartTite));
                 tabGroup.SelectedIndex = 4;
             }
             catch (Exception ex)
@@ -152,7 +152,7 @@ namespace FunctionForm.Aggregation
                 GuiConfig.GetText(TextType.GroupTabInitColumn);
             lblResult.Text = GuiConfig.GetText(TextType.GroupTabResult);
             cmdQuery.Text = GuiConfig.GetText(TextType.GroupLoadQuery);
-            cmdRun.Text = GuiConfig.GetText(TextType.CommonOK);
+            cmdRun.Text = GuiConfig.GetText(TextType.CommonOk);
         }
 
         /// <summary>

@@ -63,7 +63,7 @@ namespace MongoGUICtl.ClientTree
                         //这里是为了操作顶层节点的删除，修改用的，所以必须要放item.GetElement(0).Value;
                         BsonElement id;
                         item.TryGetElement(ConstMgr.KeyId, out id);
-                        dataNode.Tag = (id.Value != null) ? id.Value : item.GetElement(0).Value;
+                        dataNode.Tag = id.Value != null ? id.Value : item.GetElement(0).Value;
                         break;
                 }
                 AddBsonDocToTreeNode(dataNode, item);
@@ -358,7 +358,7 @@ namespace MongoGUICtl.ClientTree
             svrInstanceNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
             svrInstanceNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
             svrInstanceNode.Text = "Server";
-            if (!string.IsNullOrEmpty(config.UserName) & (!string.IsNullOrEmpty(config.Password)))
+            if (!string.IsNullOrEmpty(config.UserName) & !string.IsNullOrEmpty(config.Password))
             {
                 //是否是认证模式，应该取决于服务器！
                 config.AuthMode = true;

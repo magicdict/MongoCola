@@ -2,13 +2,12 @@
 using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
+using ResourceLib.Method;
 
 namespace ResourceLib.UI
 {
     public static class CloneMeunToolItem
     {
-
-
         /// <summary>
         ///     复制菜单项目
         /// </summary>
@@ -37,9 +36,10 @@ namespace ResourceLib.UI
             }
 //            }
             cloneMenuItem.Text = orgMenuItem.Text;
-			if (Method.GuiConfig.IsMono) {
-				cloneMenuItem.Font = Method.GuiConfig.getMonoFont(cloneMenuItem.Font);
-			}
+            if (GuiConfig.IsMono)
+            {
+                cloneMenuItem.Font = GuiConfig.GetMonoFont(cloneMenuItem.Font);
+            }
             cloneMenuItem.Enabled = orgMenuItem.Enabled;
             cloneMenuItem.BackgroundImage = orgMenuItem.BackgroundImage;
             cloneMenuItem.Image = orgMenuItem.Image;
@@ -81,9 +81,10 @@ namespace ResourceLib.UI
             cloneButton.Image = orgMenuItem.Image;
             cloneButton.Enabled = orgMenuItem.Enabled;
             cloneButton.Text = orgMenuItem.Text;
-			if (Method.GuiConfig.IsMono) {
-				cloneButton.Font = Method.GuiConfig.getMonoFont(cloneButton.Font);
-			}
+            if (GuiConfig.IsMono)
+            {
+                cloneButton.Font = GuiConfig.GetMonoFont(cloneButton.Font);
+            }
             cloneButton.Checked = orgMenuItem.Checked;
             cloneButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             return cloneButton;

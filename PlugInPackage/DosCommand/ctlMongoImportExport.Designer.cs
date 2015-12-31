@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ResourceLib.UI;
 
-namespace PlugInPackage
+namespace PlugInPackage.DosCommand
 {
     partial class CtlMongoImportExport
     {
@@ -46,7 +46,7 @@ namespace PlugInPackage
             this.radExport = new System.Windows.Forms.RadioButton();
             this.radImport = new System.Windows.Forms.RadioButton();
             this.ctlFilePickerOutput = new ResourceLib.UI.CtlFilePicker();
-            this.ctllogLvT = new PlugInPackage.CtllogLv();
+            this.ctllogLvT = new CtllogLv();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.grpDirect.SuspendLayout();
             this.SuspendLayout();

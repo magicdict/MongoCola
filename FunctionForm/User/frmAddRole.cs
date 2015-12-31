@@ -122,8 +122,8 @@ namespace FunctionForm.User
             var actionlst = new MongoDbAction.ActionType[chklstAction.CheckedItems.Count];
             for (var i = 0; i < chklstAction.CheckedItems.Count; i++)
             {
-                actionlst[i] = ((MongoDbAction.ActionType) Enum.Parse(typeof (MongoDbAction.ActionType),
-                    cmbActionGroup.Text.Replace(" ", string.Empty) + "_" + chklstAction.CheckedItems[i]));
+                actionlst[i] = (MongoDbAction.ActionType) Enum.Parse(typeof (MongoDbAction.ActionType),
+                    cmbActionGroup.Text.Replace(" ", string.Empty) + "_" + chklstAction.CheckedItems[i]);
             }
             _privilegeList.Add(new Role.Privilege
             {

@@ -32,7 +32,7 @@ namespace MongoUtility.Core
         ///     获得数据集列表
         /// </summary>
         /// <param name="client"></param>
-        /// <param name="DataBaseDoc"></param>
+        /// <param name="dbName"></param>
         /// <returns></returns>
         public static List<BsonDocument> GetCollectionList(MongoClient client, string dbName)
         {

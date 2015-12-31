@@ -1,6 +1,6 @@
 ﻿namespace MultiLanEditor
 {
-    partial class frmEditor
+    partial class FrmEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -91,7 +91,7 @@
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.ctlMultiLanFolder);
-            this.Name = "frmEditor";
+            this.Name = "FrmEditor";
             this.Text = "多语言编辑器";
             this.Load += new System.EventHandler(this.frmEditor_Load);
             this.ResumeLayout(false);

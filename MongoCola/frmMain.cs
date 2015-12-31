@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Common;
+using FunctionForm.Connection;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
@@ -12,7 +13,6 @@ using PlugInPackage;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
-using FunctionForm.Connection;
 
 namespace MongoCola
 {
@@ -237,9 +237,9 @@ namespace MongoCola
                             contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MonoMode)
                             {
-							var ViewDataTool = ViewDataToolStripMenuItem.Clone();
-                                ViewDataTool.Click += (x, y) => ViewDataObj();
-                                contextMenuStripMain.Items.Add(ViewDataTool);
+                                var viewDataTool = ViewDataToolStripMenuItem.Clone();
+                                viewDataTool.Click += (x, y) => ViewDataObj();
+                                contextMenuStripMain.Items.Add(viewDataTool);
                             }
                             else
                             {
@@ -260,9 +260,9 @@ namespace MongoCola
                             contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MonoMode)
                             {
-							var ViewData = ViewDataToolStripMenuItem.Clone();
-                                ViewData.Click += (x, y) => ViewDataObj();
-                                contextMenuStripMain.Items.Add(ViewData);
+                                var viewData = ViewDataToolStripMenuItem.Clone();
+                                viewData.Click += (x, y) => ViewDataObj();
+                                contextMenuStripMain.Items.Add(viewData);
                             }
                             else
                             {
@@ -284,7 +284,7 @@ namespace MongoCola
                             contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MonoMode)
                             {
-							var creatJavaScript = creatJavaScriptToolStripMenuItem.Clone();
+                                var creatJavaScript = creatJavaScriptToolStripMenuItem.Clone();
                                 creatJavaScript.Click += creatJavaScriptToolStripMenuItem_Click;
                                 contextMenuStripMain.Items.Add(creatJavaScript);
                             }
@@ -307,10 +307,10 @@ namespace MongoCola
                             contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MonoMode)
                             {
-							var ViewData = ViewDataToolStripMenuItem.Clone();
-                                ViewData.Click += (x, y) => ViewDataObj();
-                                contextMenuStripMain.Items.Add(ViewData);
-							var dropJavascript = dropJavascriptToolStripMenuItem.Clone();
+                                var viewData = ViewDataToolStripMenuItem.Clone();
+                                viewData.Click += (x, y) => ViewDataObj();
+                                contextMenuStripMain.Items.Add(viewData);
+                                var dropJavascript = dropJavascriptToolStripMenuItem.Clone();
                                 dropJavascript.Click += dropJavascriptToolStripMenuItem_Click;
                                 contextMenuStripMain.Items.Add(dropJavascript);
                             }
@@ -359,7 +359,6 @@ namespace MongoCola
         /// </summary>
         private void InitToolBar()
         {
-			
             ExpandAllConnectionToolStripButton = ExpandAllConnectionToolStripMenuItem.CloneFromMenuItem();
             CollapseAllConnectionToolStripButton = CollapseAllConnectionToolStripMenuItem.CloneFromMenuItem();
             RefreshToolStripButton = RefreshToolStripMenuItem.CloneFromMenuItem();
@@ -369,11 +368,11 @@ namespace MongoCola
 
             if (SystemManager.MonoMode)
             {
-				ExpandAllConnectionToolStripButton.Click += ExpandAllToolStripMenuItem_Click;
-				CollapseAllConnectionToolStripButton.Click += CollapseAllToolStripMenuItem_Click;
+                ExpandAllConnectionToolStripButton.Click += ExpandAllToolStripMenuItem_Click;
+                CollapseAllConnectionToolStripButton.Click += CollapseAllToolStripMenuItem_Click;
                 RefreshToolStripButton.Click += RefreshToolStripMenuItem_Click;
-				ExitToolStripButton.Click += ExitToolStripMenuItem_Click;
-				OptionToolStripButton.Click += OptionToolStripMenuItem_Click;
+                ExitToolStripButton.Click += ExitToolStripMenuItem_Click;
+                OptionToolStripButton.Click += OptionToolStripMenuItem_Click;
                 UserGuideToolStripButton.Click += userGuideToolStripMenuItem_Click;
             }
             //Main ToolTip
@@ -546,7 +545,5 @@ namespace MongoCola
         }
 
         #endregion
-
-
     }
 }

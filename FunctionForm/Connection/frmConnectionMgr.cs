@@ -1,12 +1,12 @@
-﻿using MongoDB.Driver;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace FunctionForm.Connection
 {
@@ -31,7 +31,7 @@ namespace FunctionForm.Connection
         {
             InitializeComponent();
             intPort.Value = ConstMgr.MongodDefaultPort;
-            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
+            foreach (var item in Enum.GetValues(typeof (EnumMgr.StorageEngineType)))
             {
                 cmbStorageEngine.Items.Add(item);
                 cmbStorageEngine.SelectedIndex = 0;
@@ -45,7 +45,7 @@ namespace FunctionForm.Connection
         public FrmConnectionMgr(string connectionName)
         {
             InitializeComponent();
-            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
+            foreach (var item in Enum.GetValues(typeof (EnumMgr.StorageEngineType)))
             {
                 cmbStorageEngine.Items.Add(item);
                 cmbStorageEngine.SelectedIndex = 0;
@@ -53,7 +53,7 @@ namespace FunctionForm.Connection
             OldConnectionName = connectionName;
             //Modify Mode
             ModifyConn = MongoConnectionConfig.MongoConfig.ConnectionList[connectionName];
-            UIBinding.TryUpdateForm(ModifyConn, Controls);
+            UiBinding.TryUpdateForm(ModifyConn, Controls);
             foreach (var item in ModifyConn.ReplsetList)
             {
                 lstHost.Items.Add(item);
@@ -79,7 +79,7 @@ namespace FunctionForm.Connection
             cmdAdd.BackColor = GuiConfig.SuccessColor;
             cmdCancel.BackColor = GuiConfig.FailColor;
             GuiConfig.Translateform(this);
-			GuiConfig.MonoCompactControl (Controls);
+            GuiConfig.MonoCompactControl(Controls);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace FunctionForm.Connection
             catch (MongoAuthenticationException ex)
             {
                 //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-				if (!GuiConfig.IsUseDefaultLanguage && !GuiConfig.IsMono)
+                if (!GuiConfig.IsUseDefaultLanguage && !GuiConfig.IsMono)
                 {
                     MyMessageBox.ShowMessage(
                         GuiConfig.GetText(
@@ -157,7 +157,7 @@ namespace FunctionForm.Connection
                 //无法连接的理由：
                 //1.服务器没有启动
                 //2.认证模式不正确
-				if (!GuiConfig.IsUseDefaultLanguage && !GuiConfig.IsMono)
+                if (!GuiConfig.IsUseDefaultLanguage && !GuiConfig.IsMono)
                 {
                     MyMessageBox.ShowMessage(
                         GuiConfig.GetText(TextType.ExceptionNotConnected),
@@ -179,7 +179,7 @@ namespace FunctionForm.Connection
         private void CreateConnection()
         {
             //更新数据模型
-            UIBinding.TryUpdateModel(ModifyConn, Controls);
+            UiBinding.TryUpdateModel(ModifyConn, Controls);
 
             //感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
             ModifyConn.ConnectionString = txtConnectionString.Text;

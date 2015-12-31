@@ -89,7 +89,7 @@ namespace MongoUtility.Security
             {
                 var singleroles = role.Roles[i];
                 roleCommand += "{ role: '" + singleroles.MRole + "', db: '" + singleroles.Db + "' }" +
-                               ((i == role.Roles.Length - 1) ? "" : ",") + Environment.NewLine;
+                               (i == role.Roles.Length - 1 ? "" : ",") + Environment.NewLine;
             }
             roleCommand += "     ],";
             //privileges
@@ -100,7 +100,7 @@ namespace MongoUtility.Security
                 var singleprivileges = role.Privileges[i];
                 roleCommand += "{" + singleprivileges.Resource.GetJsCode() + "," +
                                MongoDbAction.GetActionListJs(singleprivileges.Actions) + "}" +
-                               ((i == role.Privileges.Length - 1) ? "" : ",") + Environment.NewLine;
+                               (i == role.Privileges.Length - 1 ? "" : ",") + Environment.NewLine;
             }
             roleCommand += "     ],";
             //

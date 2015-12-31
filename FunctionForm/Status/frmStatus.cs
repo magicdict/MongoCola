@@ -119,7 +119,7 @@ namespace FunctionForm.Status
 
                     seriesResult.ChartType = SeriesChartType.Pie;
                     chartResult.Series.Add(seriesResult);
-				chartResult.Titles.Add(new Title("Usage"));
+                    chartResult.Titles.Add(new Title("Usage"));
 
                     break;
                 default:
@@ -189,8 +189,8 @@ namespace FunctionForm.Status
                             RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
                         break;
                     case "MaxDocuments":
-                    //    仅在CappedCollection时候有效 
-                        colPoint = new DataPoint(0, 
+                        //    仅在CappedCollection时候有效 
+                        colPoint = new DataPoint(0,
                             RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
                         break;
                     case "ObjectCount":
@@ -220,7 +220,7 @@ namespace FunctionForm.Status
 
             seriesResult.ChartType = SeriesChartType.Pie;
             chartResult.Series.Add(seriesResult);
-			chartResult.Titles.Add(new Title(strField));
+            chartResult.Titles.Add(new Title(strField));
         }
 
         private void btnClose_Click(object sender, EventArgs e)

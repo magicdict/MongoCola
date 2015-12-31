@@ -56,7 +56,7 @@ namespace MongoGUICtl
             {
                 foreach (string item in value)
                 {
-                    ((CheckBox) (grpRoles.Controls.Find("chk" + item, true)[0])).Checked = true;
+                    ((CheckBox) grpRoles.Controls.Find("chk" + item, true)[0]).Checked = true;
                 }
             }
         }

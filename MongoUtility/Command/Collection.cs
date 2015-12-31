@@ -1,10 +1,10 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using System;
-using System.Collections.Generic;
 
 namespace MongoUtility.Command
 {
@@ -82,73 +82,40 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static bool RenameCollection(string strOldCollectionName, string strNewCollectionName)
         {
-            return RuntimeMongoDbContext.GetCurrentDataBase().RenameCollection(strOldCollectionName, strNewCollectionName).Ok;
+            return
+                RuntimeMongoDbContext.GetCurrentDataBase()
+                    .RenameCollection(strOldCollectionName, strNewCollectionName)
+                    .Ok;
         }
 
         /// <summary>
-        /// 索引选项
+        /// 
         /// </summary>
-        public struct IndexOption
-        {
-            public bool IsBackground;
-
-            public bool IsDropDups;
-
-            public bool IsSparse;
-
-            public bool IsUnique;
-            /// <summary>
-            /// 是否为 Partial Indexes
-            /// </summary>
-            public bool IsPartial;
-
-            public bool IsExpireData;
-
-            public int TTL;
-
-            public string IndexName;
-
-            public List<string> ascendingKey;
-
-            public List<string> descendingKey;
-
-            public string geoSpatialKey;
-
-            public string firstKey;
-
-            public string textKey;
-            /// <summary>
-            /// Partial Indexes 的条件
-            /// </summary>
-            public string PartialCondition;
-
-        }
-        /// <summary>
-        /// 新建索引
-        /// </summary>
-        /// <param name="UIOption"></param>
+        /// <param name="uiOption"></param>
         /// <param name="strMessageTitle"></param>
         /// <param name="strMessageContent"></param>
         /// <returns></returns>
-        public static bool CreateIndex(IndexOption UIOption, ref string strMessageTitle, ref string strMessageContent)
+        public static bool CreateIndex(IndexOption uiOption, ref string strMessageTitle, ref string strMessageContent)
         {
-            var Result = true;
+            var result = true;
             var option = new IndexOptionsBuilder();
-            option.SetBackground(UIOption.IsBackground);
-            option.SetDropDups(UIOption.IsDropDups);
-            option.SetSparse(UIOption.IsSparse);
-            option.SetUnique(UIOption.IsUnique);
-            if (UIOption.IsPartial) {
-                IMongoQuery query = (QueryDocument)BsonDocument.Parse(UIOption.PartialCondition);
+            option.SetBackground(uiOption.IsBackground);
+            option.SetDropDups(uiOption.IsDropDups);
+            option.SetSparse(uiOption.IsSparse);
+            option.SetUnique(uiOption.IsUnique);
+            if (uiOption.IsPartial)
+            {
+                IMongoQuery query = (QueryDocument) BsonDocument.Parse(uiOption.PartialCondition);
                 option.SetPartialFilterExpression(query);
             }
-            if (UIOption.IsExpireData)
+            if (uiOption.IsExpireData)
             {
                 //TTL的限制条件很多
                 //http://docs.mongodb.org/manual/tutorial/expire-data/
                 //不能是组合键
                 var canUseTtl = true;
-                if ((UIOption.ascendingKey.Count + UIOption.descendingKey.Count + (string.IsNullOrEmpty(UIOption.geoSpatialKey) ? 0 : 1)) != 1)
+                if (uiOption.AscendingKey.Count + uiOption.DescendingKey.Count +
+                    (string.IsNullOrEmpty(uiOption.GeoSpatialKey) ? 0 : 1) != 1)
                 {
                     strMessageTitle = "Can't Set TTL";
                     strMessageContent = "the TTL index may not be compound (may not have multiple fields).";
@@ -157,65 +124,69 @@ namespace MongoUtility.Command
                 else
                 {
                     //不能是_id
-                    if (UIOption.firstKey == ConstMgr.KeyId)
+                    if (uiOption.FirstKey == ConstMgr.KeyId)
                     {
                         strMessageTitle = "Can't Set TTL";
-                        strMessageContent = "you cannot create this index on the _id field, or a field that already has an index.";
+                        strMessageContent =
+                            "you cannot create this index on the _id field, or a field that already has an index.";
                         canUseTtl = false;
                     }
                 }
                 if (RuntimeMongoDbContext.GetCurrentCollection().IsCapped())
                 {
                     strMessageTitle = "Can't Set TTL";
-                    strMessageContent = "you cannot use a TTL index on a capped collection, because MongoDB cannot remove documents from a capped collection.";
+                    strMessageContent =
+                        "you cannot use a TTL index on a capped collection, because MongoDB cannot remove documents from a capped collection.";
                     canUseTtl = false;
                 }
                 if (canUseTtl)
                 {
                     strMessageTitle = "Constraints Of TimeToLive";
-                    strMessageContent = "the indexed field must be a date BSON type. If the field does not have a date type, the data will not expire." +
-                        Environment.NewLine + "if the field holds an array, and there are multiple date-typed data in the index, the document will expire when the lowest (i.e. earliest) matches the expiration threshold.";
-                    option.SetTimeToLive(new TimeSpan(0, 0, UIOption.TTL));
+                    strMessageContent =
+                        "the indexed field must be a date BSON type. If the field does not have a date type, the data will not expire." +
+                        Environment.NewLine +
+                        "if the field holds an array, and there are multiple date-typed data in the index, the document will expire when the lowest (i.e. earliest) matches the expiration threshold.";
+                    option.SetTimeToLive(new TimeSpan(0, 0, uiOption.Ttl));
                 }
             }
-            var totalIndex = (UIOption.ascendingKey.Count + UIOption.descendingKey.Count +
-                             (string.IsNullOrEmpty(UIOption.geoSpatialKey) ? 0 : 1) +
-                             (string.IsNullOrEmpty(UIOption.textKey) ? 0 : 1));
-            if (UIOption.IndexName != string.Empty && !RuntimeMongoDbContext.GetCurrentCollection().IndexExists(UIOption.IndexName) && totalIndex != 0)
+            var totalIndex = uiOption.AscendingKey.Count + uiOption.DescendingKey.Count +
+                             (string.IsNullOrEmpty(uiOption.GeoSpatialKey) ? 0 : 1) +
+                             (string.IsNullOrEmpty(uiOption.TextKey) ? 0 : 1);
+            if (uiOption.IndexName != string.Empty &&
+                !RuntimeMongoDbContext.GetCurrentCollection().IndexExists(uiOption.IndexName) && totalIndex != 0)
             {
-                option.SetName(UIOption.IndexName);
+                option.SetName(uiOption.IndexName);
                 try
                 {
                     //暂时要求只能一个TextKey
-                    if (!string.IsNullOrEmpty(UIOption.textKey))
+                    if (!string.IsNullOrEmpty(uiOption.TextKey))
                     {
-                        var textKeysDoc = new IndexKeysDocument { { UIOption.textKey, "text" } };
+                        var textKeysDoc = new IndexKeysDocument {{uiOption.TextKey, "text"}};
                         RuntimeMongoDbContext.GetCurrentCollection().CreateIndex(textKeysDoc, option);
                     }
                     else
                     {
-                        CreateMongoIndex(UIOption.ascendingKey.ToArray(), UIOption.descendingKey.ToArray(), UIOption.geoSpatialKey,
+                        CreateMongoIndex(uiOption.AscendingKey.ToArray(), uiOption.DescendingKey.ToArray(),
+                            uiOption.GeoSpatialKey,
                             option, RuntimeMongoDbContext.GetCurrentCollection());
                     }
                     strMessageTitle = "Index Add Completed!";
-                    strMessageContent = "IndexName:" + UIOption.IndexName + " is add to collection.";
+                    strMessageContent = "IndexName:" + uiOption.IndexName + " is add to collection.";
                 }
-                catch 
+                catch
                 {
                     strMessageTitle = "Index Add Failed!";
-                    strMessageContent = "IndexName:" + UIOption.IndexName;
-                    Result = false;
+                    strMessageContent = "IndexName:" + uiOption.IndexName;
+                    result = false;
                 }
-
             }
             else
             {
                 strMessageTitle = "Index Add Failed!";
                 strMessageContent = "Please Check the index information.";
-                Result = false;
-
+                result = false;
             }
-            return Result;
+            return result;
         }
 
         /// <summary>
@@ -284,6 +255,46 @@ namespace MongoUtility.Command
                 mongoCol.DropIndexByName(indexName);
             }
             return true;
+        }
+
+        /// <summary>
+        ///     索引选项
+        /// </summary>
+        public struct IndexOption
+        {
+            public bool IsBackground;
+
+            public bool IsDropDups;
+
+            public bool IsSparse;
+
+            public bool IsUnique;
+
+            /// <summary>
+            ///     是否为 Partial Indexes
+            /// </summary>
+            public bool IsPartial;
+
+            public bool IsExpireData;
+
+            public int Ttl;
+
+            public string IndexName;
+
+            public List<string> AscendingKey;
+
+            public List<string> DescendingKey;
+
+            public string GeoSpatialKey;
+
+            public string FirstKey;
+
+            public string TextKey;
+
+            /// <summary>
+            ///     Partial Indexes 的条件
+            /// </summary>
+            public string PartialCondition;
         }
     }
 }

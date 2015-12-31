@@ -80,7 +80,7 @@ namespace MongoUtility.Core
                 //                    mongoClientSetting.WaitQueueSize = SystemConfig.configHelperInstance.WaitQueueSize;
                 //                }
                 //运行时LoginAsAdmin的设定
-                config.LoginAsAdmin = (config.DataBaseName == string.Empty);
+                config.LoginAsAdmin = config.DataBaseName == string.Empty;
                 if (!(string.IsNullOrEmpty(config.UserName) || string.IsNullOrEmpty(config.Password)))
                 {
                     //认证的设定:注意，这里的密码是明文
@@ -141,11 +141,11 @@ namespace MongoUtility.Core
                 mongoClientSetting = MongoClientSettings.FromUrl(MongoUrl.Create(config.ConnectionString));
             }
             //为了避免出现无法读取数据库结构的问题，将读权限都设置为Preferred
-            if (mongoClientSetting.ReadPreference == ReadPreference.Primary)
+            if (Equals(mongoClientSetting.ReadPreference, ReadPreference.Primary))
             {
                 mongoClientSetting.ReadPreference = ReadPreference.PrimaryPreferred;
             }
-            if (mongoClientSetting.ReadPreference == ReadPreference.Secondary)
+            if (Equals(mongoClientSetting.ReadPreference, ReadPreference.Secondary))
             {
                 mongoClientSetting.ReadPreference = ReadPreference.SecondaryPreferred;
             }
@@ -249,19 +249,22 @@ namespace MongoUtility.Core
         {
             return GetMongoServerBySvrPath(SelectObjectTag, MongoConnSvrLst);
         }
+
         /// <summary>
         ///     获得当前客户端
         /// </summary>
         /// <returns></returns>
-        public static MongoClient GetCurrentClient() {
+        public static MongoClient GetCurrentClient()
+        {
             return GetMongoClientBySvrPath(SelectObjectTag, MongoConnClientLst);
         }
 
         /// <summary>
-        /// 获得ServerKey
+        ///     获得ServerKey
         /// </summary>
         /// <returns></returns>
-        public static string GetCurrentServerKey() {
+        public static string GetCurrentServerKey()
+        {
             var strSvrPath = TagInfo.GetTagPath(SelectObjectTag);
             var strPath = strSvrPath.Split("/".ToCharArray());
             return strPath[0];
@@ -284,13 +287,16 @@ namespace MongoUtility.Core
         {
             return GetMongoDBBySvrPath(SelectObjectTag, GetCurrentServer());
         }
+
         /// <summary>
         ///     当前IMongoDatabase
         /// </summary>
         /// <returns></returns>
-        public static IMongoDatabase GetCurrentIMongoDataBase() {
-            return GetIMongoDBBySvrPath(SelectObjectTag, GetCurrentClient());
+        public static IMongoDatabase GetCurrentIMongoDataBase()
+        {
+            return GetIMongoDbBySvrPath(SelectObjectTag, GetCurrentClient());
         }
+
         /// <summary>
         ///     当前数据库名称
         /// </summary>
@@ -479,22 +485,23 @@ namespace MongoUtility.Core
             }
             return rtnMongoDb;
         }
+
         /// <summary>
         ///     根据路径字符获得IMongoDatabase
         /// </summary>
         /// <param name="strObjTag"></param>
         /// <param name="mongoClient"></param>
         /// <returns></returns>
-        public static IMongoDatabase GetIMongoDBBySvrPath(string strObjTag, MongoClient mongoClient)
+        public static IMongoDatabase GetIMongoDbBySvrPath(string strObjTag, MongoClient mongoClient)
         {
             IMongoDatabase rtnMongoDb = null;
             if (mongoClient != null)
             {
                 var strSvrPath = TagInfo.GetTagPath(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int)EnumMgr.PathLevel.Database)
+                if (strPathArray.Length > (int) EnumMgr.PathLevel.Database)
                 {
-                    rtnMongoDb = mongoClient.GetDatabase(strPathArray[(int)EnumMgr.PathLevel.Database]);
+                    rtnMongoDb = mongoClient.GetDatabase(strPathArray[(int) EnumMgr.PathLevel.Database]);
                 }
             }
             return rtnMongoDb;
@@ -525,6 +532,7 @@ namespace MongoUtility.Core
         ///     通过路径获得数据集
         /// </summary>
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
+        /// <param name="mongoDb"></param>
         /// <returns></returns>
         public static MongoCollection GetMongoCollectionBySvrPath(string strObjTag, MongoDatabase mongoDb)
         {

@@ -356,7 +356,7 @@
   <Common_Host>主机</Common_Host>
   <Common_Port>端口</Common_Port>
   <Common_ReplsetMember>副本成员</Common_ReplsetMember>
-  
+
   <Common_Collapse>折叠</Common_Collapse>
   <Common_Expansion>展开</Common_Expansion>
   <Common_Name>名称</Common_Name>

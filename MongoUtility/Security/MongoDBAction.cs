@@ -143,7 +143,7 @@ namespace MongoUtility.Security
             for (var i = 0; i < actionList.Length; i++)
             {
                 result += "'" + actionList[i].ToString().Substring(actionList[i].ToString().IndexOf("_") + 1) + "'" +
-                          ((i == actionList.Length - 1) ? "" : ",");
+                          (i == actionList.Length - 1 ? "" : ",");
             }
             result += " ]";
             return result;

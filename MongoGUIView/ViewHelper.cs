@@ -18,10 +18,11 @@ namespace MongoGUIView
     public static class ViewHelper
     {
         #region"展示数据集内容[WebForm]"
+
         /// <summary>
         ///     DateTime:IsUTC
         /// </summary>
-        public static bool IsUTC { set; get; } 
+        public static bool IsUtc { set; get; }
 
         /// <summary>
         ///     展示数据
@@ -99,15 +100,12 @@ namespace MongoGUIView
             //时间
             if (bsonValue.IsValidDateTime)
             {
-                if (IsUTC)
+                if (IsUtc)
                 {
                     return bsonValue.ToUniversalTime().ToString();
                 }
-                else
-                {
-                    //@flydreamer提出的本地化时间要求
-                    return bsonValue.ToLocalTime().ToString();
-                }
+                //@flydreamer提出的本地化时间要求
+                return bsonValue.ToLocalTime().ToString();
             }
 
             //字符

@@ -29,10 +29,10 @@ namespace MongoGUICtl
         private void cmdGeoNear_Click(object sender, EventArgs e)
         {
             var geoOption = new GeoNearArgs();
-            geoOption.DistanceMultiplier = (double.Parse(NumDistanceMultiplier.Text));
-            geoOption.MaxDistance = (double.Parse(NumMaxDistance.Text));
-            geoOption.Spherical = (chkSpherical.Checked);
-            geoOption.Limit = (int) (NumResultCount.Value);
+            geoOption.DistanceMultiplier = double.Parse(NumDistanceMultiplier.Text);
+            geoOption.MaxDistance = double.Parse(NumMaxDistance.Text);
+            geoOption.Spherical = chkSpherical.Checked;
+            geoOption.Limit = (int) NumResultCount.Value;
             geoOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
             try
             {

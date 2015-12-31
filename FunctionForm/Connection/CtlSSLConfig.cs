@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common;
 
 namespace FunctionForm.Connection
 {
-    public partial class CtlSSLConfig : UserControl
+    public partial class CtlSslConfig : UserControl
     {
-        public CtlSSLConfig()
+        public CtlSslConfig()
         {
             InitializeComponent();
         }
 
         private void CtlSSLConfig_Load(object sender, EventArgs e)
         {
-            fileSslCertificateFile.FileFilter = Common.Utility.PemFilter;
+            fileSslCertificateFile.FileFilter = Utility.PemFilter;
         }
     }
 }

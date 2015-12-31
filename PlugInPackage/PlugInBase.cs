@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PlugInPackage
+﻿namespace PlugInPackage
 {
     public abstract class PlugInBase
     {
@@ -40,6 +38,8 @@ namespace PlugInPackage
             Misc = 9
         }
 
+        public const int Success = 0;
+
         /// <summary>
         ///     插件功能简述
         /// </summary>
@@ -53,14 +53,12 @@ namespace PlugInPackage
         /// <summary>
         ///     处理对象
         /// </summary>
-        public Object PlugObj;
+        public object PlugObj;
 
         /// <summary>
         ///     对象层次
         /// </summary>
         public PathLv RunLv = PathLv.ConnectionLv;
-
-        public const int Success = 0;
 
         /// <summary>
         ///     运行

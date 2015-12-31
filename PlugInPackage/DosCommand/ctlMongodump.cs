@@ -4,7 +4,7 @@ using MongoUtility.EventArgs;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 
-namespace PlugInPackage
+namespace PlugInPackage.DosCommand
 {
     public partial class CtlMongodump : UserControl
     {
@@ -74,30 +74,30 @@ namespace PlugInPackage
             OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
-            _mongodumpCommand.Port = (int)numPort.Value;
+            _mongodumpCommand.Port = (int) numPort.Value;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void chkGZip_CheckedChanged(object sender, EventArgs e)
         {
-            _mongodumpCommand.IsGZip = (chkGZip.Checked);
+            _mongodumpCommand.IsGZip = chkGZip.Checked;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-              MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -105,10 +105,10 @@ namespace PlugInPackage
         {
             _mongodumpCommand.IsArchive = chkArchive.Checked;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-            MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -116,7 +116,7 @@ namespace PlugInPackage
         {
             _mongodumpCommand.ArchiveFilename = txtArchive.Text;
             OnCommandChange(new TextChangeEventArgs(string.Empty,
-            MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
+                MongoDumpInfo.GetMongodumpCommandLine(_mongodumpCommand)));
         }
     }
 }

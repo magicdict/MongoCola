@@ -1,12 +1,13 @@
 ﻿using System.Windows.Forms;
+using MongoUtility.Basic;
 using MongoUtility.Core;
+using ResourceLib.UI;
 
 namespace ConfigurationFile
 {
-    public partial class ctlConfigItem : UserControl
+    public partial class CtlConfigItem : UserControl
     {
-
-        public ctlConfigItem()
+        public CtlConfigItem()
         {
             InitializeComponent();
         }
@@ -16,9 +17,8 @@ namespace ConfigurationFile
         /// </summary>
         public ConfigurationFileOption.ConfigValue GetItemValue()
         {
-
             var rtnOptionItem = ConfigItemDefine.ConfigurationItemDictionary[lblPath.Text];
-            ConfigurationFileOption.ConfigValue rtnValue = new ConfigurationFileOption.ConfigValue();
+            var rtnValue = new ConfigurationFileOption.ConfigValue();
             rtnValue.Path = lblPath.Text;
             switch (rtnOptionItem.ValueType)
             {
@@ -54,7 +54,6 @@ namespace ConfigurationFile
         }
 
         /// <summary>
-        ///     
         /// </summary>
         /// <param name="value"></param>
         public void SetItemValue(ConfigurationFileOption.ConfigValue value)
@@ -97,15 +96,14 @@ namespace ConfigurationFile
         /// </summary>
         public void SetItemDefine(ConfigurationFileOption.Define value)
         {
-
             //版本检查
             lblPrimaryVersion.Text = string.Empty;
-            if (value.NewSinceVersion != MongoUtility.Basic.EnumMgr.PrimaryVersion.V000)
+            if (value.NewSinceVersion != EnumMgr.PrimaryVersion.V000)
             {
                 //新版本
                 lblPrimaryVersion.Text = "New Since " + value.NewSinceVersion;
             }
-            if (value.DeprecatedSinceversion != MongoUtility.Basic.EnumMgr.PrimaryVersion.V000)
+            if (value.DeprecatedSinceversion != EnumMgr.PrimaryVersion.V000)
             {
                 //过时版本
                 lblPrimaryVersion.Text = "Deprecated Since " + value.DeprecatedSinceversion;
@@ -136,17 +134,17 @@ namespace ConfigurationFile
                     txtValue.Visible = true;
                     if (ConfigItemDefine.SelectedConfigurationValueDictionary.ContainsKey(value.Path))
                     {
-                        var SelectValue = ConfigItemDefine.SelectedConfigurationValueDictionary[value.Path];
-                        txtValue.Text = SelectValue.ValueLiteral;
+                        var selectValue = ConfigItemDefine.SelectedConfigurationValueDictionary[value.Path];
+                        txtValue.Text = selectValue.ValueLiteral;
                     }
                     break;
                 case ConfigurationFileOption.MetaType.PathName:
                     fileValue.Visible = true;
-                    fileValue.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
+                    fileValue.PickerType = CtlFilePicker.DialogType.Directory;
                     break;
                 case ConfigurationFileOption.MetaType.FileName:
                     fileValue.Visible = true;
-                    fileValue.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;
+                    fileValue.PickerType = CtlFilePicker.DialogType.SaveFile;
                     break;
                 case ConfigurationFileOption.MetaType.Int:
                     intValue.Visible = true;
@@ -158,8 +156,8 @@ namespace ConfigurationFile
                     }
                     if (ConfigItemDefine.SelectedConfigurationValueDictionary.ContainsKey(value.Path))
                     {
-                        var SelectValue = ConfigItemDefine.SelectedConfigurationValueDictionary[value.Path];
-                        intValue.Text = SelectValue.ValueLiteral;
+                        var selectValue = ConfigItemDefine.SelectedConfigurationValueDictionary[value.Path];
+                        intValue.Text = selectValue.ValueLiteral;
                     }
                     break;
                 case ConfigurationFileOption.MetaType.Boolean:
@@ -168,8 +166,8 @@ namespace ConfigurationFile
                     radTrue.Visible = true;
                     if (ConfigItemDefine.SelectedConfigurationValueDictionary.ContainsKey(value.Path))
                     {
-                        var SelectValue = ConfigItemDefine.SelectedConfigurationValueDictionary[value.Path];
-                        if (SelectValue.ValueLiteral == true.ToString())
+                        var selectValue = ConfigItemDefine.SelectedConfigurationValueDictionary[value.Path];
+                        if (selectValue.ValueLiteral == true.ToString())
                         {
                             radTrue.Checked = true;
                         }
@@ -184,14 +182,14 @@ namespace ConfigurationFile
                     cmbValue.Visible = true;
                     //Load ValueList
                     cmbValue.Items.Clear();
-                    foreach (var OptionalValue in value.OptionValueList)
+                    foreach (var optionalValue in value.OptionValueList)
                     {
-                        cmbValue.Items.Add(OptionalValue);
+                        cmbValue.Items.Add(optionalValue);
                     }
                     if (ConfigItemDefine.SelectedConfigurationValueDictionary.ContainsKey(value.Path))
                     {
-                        var SelectValue = ConfigItemDefine.SelectedConfigurationValueDictionary[value.Path];
-                        cmbValue.Text = SelectValue.ValueLiteral;
+                        var selectValue = ConfigItemDefine.SelectedConfigurationValueDictionary[value.Path];
+                        cmbValue.Text = selectValue.ValueLiteral;
                     }
                     break;
                 default:

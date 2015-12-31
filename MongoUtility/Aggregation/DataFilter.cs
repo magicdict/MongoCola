@@ -180,6 +180,7 @@ namespace MongoUtility.Aggregation
             ///     排序类型
             /// </summary>
             public SortType SortType;
+
             /// <summary>
             ///     排序顺位
             /// </summary>

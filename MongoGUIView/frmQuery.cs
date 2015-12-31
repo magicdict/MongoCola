@@ -33,7 +33,10 @@ namespace MongoGUIView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-		private void cmdCancel_Click(object sender, EventArgs e) {Close();}
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         /// <summary>
         ///     输出配置字典
@@ -68,14 +71,20 @@ namespace MongoGUIView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-		private void cmdAddCondition_Click(object sender, EventArgs e) { ConditionPan.AddCondition();}
+        private void cmdAddCondition_Click(object sender, EventArgs e)
+        {
+            ConditionPan.AddCondition();
+        }
 
         /// <summary>
         ///     清空条件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-		private void btnClear_Click(object sender, EventArgs e) { ConditionPan.ClearCondition();}
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ConditionPan.ClearCondition();
+        }
 
 
         /// <summary>
@@ -107,7 +116,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog { Filter = Utility.XmlFilter };
+            var savefile = new SaveFileDialog {Filter = Utility.XmlFilter};
             if (savefile.ShowDialog() != DialogResult.OK) return;
             // 设置DataFilter
             if (string.IsNullOrEmpty(txtSql.Text))
@@ -143,12 +152,11 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void cmdLoad_Click(object sender, EventArgs e)
         {
-            var openFile = new OpenFileDialog { Filter = Utility.XmlFilter };
+            var openFile = new OpenFileDialog {Filter = Utility.XmlFilter};
             if (openFile.ShowDialog() != DialogResult.OK) return;
             var newDataFilter = DataFilter.LoadFilter(openFile.FileName);
             _currentDataViewInfo.MDataFilter = newDataFilter;
             QueryFieldPicker.SetQueryFieldList(_currentDataViewInfo.MDataFilter.QueryFieldList);
         }
-
     }
 }

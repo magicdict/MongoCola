@@ -1,118 +1,118 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ResourceLib.UI
 {
-    public static class UIBinding
+    public static class UiBinding
     {
         /// <summary>
-        /// String
+        ///     String
         /// </summary>
         private const string StringPrefix = "txt";
+
         /// <summary>
-        /// String
+        ///     String
         /// </summary>
         private const string FilePicker = "file";
+
         /// <summary>
-        /// Integer
+        ///     Integer
         /// </summary>
         private const string IntPrefix = "int";
+
         /// <summary>
-        /// Double
+        ///     Double
         /// </summary>
         private const string DoublePrefix = "dbl";
+
         /// <summary>
-        /// Boolean 
+        ///     Boolean
         /// </summary>
         private const string BooleanPrefix = "chk";
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="Controls"></param>
-        public static void TryUpdateModel(Object model, Control.ControlCollection Controls)
+        /// <param name="controls"></param>
+        public static void TryUpdateModel(object model, Control.ControlCollection controls)
         {
-            Type modelType = model.GetType();
-            PropertyInfo[] property = modelType.GetProperties();
-            string ControlName = string.Empty;
-            List<string> ControlNameList = new List<string>();
-            Control Controller = null;
-            foreach (PropertyInfo info in property)
+            var modelType = model.GetType();
+            var property = modelType.GetProperties();
+            var controlName = string.Empty;
+            var controlNameList = new List<string>();
+            Control controller = null;
+            foreach (var info in property)
             {
                 //字符
-                if (info.PropertyType == typeof(string))
+                if (info.PropertyType == typeof (string))
                 {
-                    ControlNameList.Clear();
-                    ControlNameList.Add(StringPrefix + info.Name);
-                    ControlNameList.Add(FilePicker + info.Name);
-                    Controller = GetUniqueControl(ControlNameList,Controls);
-                    if (Controller == null) continue;
-                    if (Controller.GetType().FullName == typeof(TextBox).FullName)
+                    controlNameList.Clear();
+                    controlNameList.Add(StringPrefix + info.Name);
+                    controlNameList.Add(FilePicker + info.Name);
+                    controller = GetUniqueControl(controlNameList, controls);
+                    if (controller == null) continue;
+                    if (controller.GetType().FullName == typeof (TextBox).FullName)
                     {
-                        info.SetValue(model, ((TextBox)Controller).Text); 
+                        info.SetValue(model, ((TextBox) controller).Text);
                     }
-                    if (Controller.GetType().FullName == typeof(CtlFilePicker).FullName)
+                    if (controller.GetType().FullName == typeof (CtlFilePicker).FullName)
                     {
-                        info.SetValue(model, ((CtlFilePicker)Controller).Text);
+                        info.SetValue(model, ((CtlFilePicker) controller).Text);
                     }
                 }
                 //数字
-                if (info.PropertyType == typeof(int))
+                if (info.PropertyType == typeof (int))
                 {
-                    ControlName = IntPrefix + info.Name;
-                    Controller = GetUniqueControl(ControlName, Controls);
-                    if (Controller == null) continue;
-                    if (Controller.GetType().FullName == typeof(NumericUpDown).FullName)
+                    controlName = IntPrefix + info.Name;
+                    controller = GetUniqueControl(controlName, controls);
+                    if (controller == null) continue;
+                    if (controller.GetType().FullName == typeof (NumericUpDown).FullName)
                     {
-                        info.SetValue(model, (int)((NumericUpDown)Controller).Value);
+                        info.SetValue(model, (int) ((NumericUpDown) controller).Value);
                     }
                 }
-                if (info.PropertyType == typeof(double))
+                if (info.PropertyType == typeof (double))
                 {
-                    ControlName = DoublePrefix + info.Name;
-                    Controller = GetUniqueControl(ControlName, Controls);
-                    if (Controller == null) continue;
-                    if (Controller.GetType().FullName == typeof(NumericUpDown).FullName)
+                    controlName = DoublePrefix + info.Name;
+                    controller = GetUniqueControl(controlName, controls);
+                    if (controller == null) continue;
+                    if (controller.GetType().FullName == typeof (NumericUpDown).FullName)
                     {
-                        info.SetValue(model, (double)((NumericUpDown)Controller).Value);
+                        info.SetValue(model, (double) ((NumericUpDown) controller).Value);
                     }
                 }
                 //布尔
-                if (info.PropertyType == typeof(bool))
+                if (info.PropertyType == typeof (bool))
                 {
-                    ControlName = BooleanPrefix + info.Name;
-                    Controller = GetUniqueControl(ControlName, Controls);
-                    if (Controller == null) continue;
-                    if (Controller.GetType().FullName == typeof(CheckBox).FullName)
+                    controlName = BooleanPrefix + info.Name;
+                    controller = GetUniqueControl(controlName, controls);
+                    if (controller == null) continue;
+                    if (controller.GetType().FullName == typeof (CheckBox).FullName)
                     {
-                        info.SetValue(model, ((CheckBox)Controller).Checked);
+                        info.SetValue(model, ((CheckBox) controller).Checked);
                     }
                 }
             }
         }
 
         /// <summary>
-        /// 
         /// </summary>
-        /// <param name="ControlName"></param>
+        /// <param name="controlName"></param>
         /// <param name="Controls"></param>
         /// <returns></returns>
-        public static Control GetUniqueControl(string ControlName, Control.ControlCollection Controls)
+        public static Control GetUniqueControl(string controlName, Control.ControlCollection Controls)
         {
-             var controls = Controls.Find(ControlName, true);
-             if (controls.Length > 0)
-             {
-                 return controls[0];
-             }
-             return null;
+            var controls = Controls.Find(controlName, true);
+            if (controls.Length > 0)
+            {
+                return controls[0];
+            }
+            return null;
         }
 
-        public static Control GetUniqueControl(List<string> ControlName, Control.ControlCollection Controls)
+        public static Control GetUniqueControl(List<string> controlName, Control.ControlCollection Controls)
         {
-            foreach (var name in ControlName)
+            foreach (var name in controlName)
             {
                 var controls = Controls.Find(name, true);
                 if (controls.Length > 0)
@@ -125,62 +125,60 @@ namespace ResourceLib.UI
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="Controls"></param>
-        public static void TryUpdateForm(Object model, Control.ControlCollection Controls)
+        /// <param name="controls"></param>
+        public static void TryUpdateForm(object model, Control.ControlCollection controls)
         {
-            Type modelType = model.GetType();
-            PropertyInfo[] property = modelType.GetProperties();
-            string ControlName = string.Empty;
-            Control Controller = null;
-            foreach (PropertyInfo info in property)
+            var modelType = model.GetType();
+            var property = modelType.GetProperties();
+            var controlName = string.Empty;
+            Control controller = null;
+            foreach (var info in property)
             {
                 //字符
-                if (info.PropertyType == typeof(string))
+                if (info.PropertyType == typeof (string))
                 {
-                    ControlName = StringPrefix + info.Name;
-                    Controller = GetUniqueControl(ControlName, Controls);
-                    if (Controller == null) continue;
-                    if (Controller.GetType().FullName == typeof(TextBox).FullName)
+                    controlName = StringPrefix + info.Name;
+                    controller = GetUniqueControl(controlName, controls);
+                    if (controller == null) continue;
+                    if (controller.GetType().FullName == typeof (TextBox).FullName)
                     {
-                        ((TextBox)Controller).Text = (string)info.GetValue(model);
+                        ((TextBox) controller).Text = (string) info.GetValue(model);
                     }
                 }
                 //数字
-                if (info.PropertyType == typeof(int))
+                if (info.PropertyType == typeof (int))
                 {
-                    ControlName = IntPrefix + info.Name;
-                    Controller = GetUniqueControl(ControlName, Controls);
-                    if (Controller == null) continue;
-                    if (Controller.GetType().FullName == typeof(NumericUpDown).FullName)
+                    controlName = IntPrefix + info.Name;
+                    controller = GetUniqueControl(controlName, controls);
+                    if (controller == null) continue;
+                    if (controller.GetType().FullName == typeof (NumericUpDown).FullName)
                     {
-                        ((NumericUpDown)Controller).Value = (int)info.GetValue(model);
+                        ((NumericUpDown) controller).Value = (int) info.GetValue(model);
                     }
                 }
-                if (info.PropertyType == typeof(double))
+                if (info.PropertyType == typeof (double))
                 {
-                    ControlName = DoublePrefix + info.Name;
-                    Controller = GetUniqueControl(ControlName, Controls);
-                    if (Controller == null) continue;
-                    if (Controller.GetType().FullName == typeof(NumericUpDown).FullName)
+                    controlName = DoublePrefix + info.Name;
+                    controller = GetUniqueControl(controlName, controls);
+                    if (controller == null) continue;
+                    if (controller.GetType().FullName == typeof (NumericUpDown).FullName)
                     {
-                        ((NumericUpDown)Controller).Value = (decimal)((double)info.GetValue(model));
+                        ((NumericUpDown) controller).Value = (decimal) (double) info.GetValue(model);
                     }
                 }
                 //布尔
-                if (info.PropertyType == typeof(bool))
+                if (info.PropertyType == typeof (bool))
                 {
-                    ControlName = BooleanPrefix + info.Name;
-                    Controller = GetUniqueControl(ControlName, Controls);
-                    if (Controller == null) continue;
-                    if (Controller.GetType().FullName == typeof(CheckBox).FullName)
+                    controlName = BooleanPrefix + info.Name;
+                    controller = GetUniqueControl(controlName, controls);
+                    if (controller == null) continue;
+                    if (controller.GetType().FullName == typeof (CheckBox).FullName)
                     {
-                        ((CheckBox)Controller).Checked = (bool)info.GetValue(model);
+                        ((CheckBox) controller).Checked = (bool) info.GetValue(model);
                     }
                 }
-
             }
         }
     }

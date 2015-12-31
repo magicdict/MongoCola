@@ -37,8 +37,6 @@ namespace MongoGUICtl.ClientTree
                         case "config":
                             strShowDbName = "配置(config)";
                             break;
-                        default:
-                            break;
                     }
                 }
             }
@@ -93,7 +91,7 @@ namespace MongoGUICtl.ClientTree
                         //}
                         break;
                     default:
-                        var mongoColNode = new TreeNode();
+                        TreeNode mongoColNode;
                         try
                         {
                             var col = GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName);

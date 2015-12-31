@@ -321,7 +321,7 @@ namespace ResourceLib.Method
             public uint dwAttributes;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] public string szDisplayName;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)] public string szTypeName;
-        };
+        }
 
         /// 定义调用的API方法
         private static class Win32

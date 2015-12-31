@@ -9,9 +9,9 @@ namespace MongoUtility.Core
         //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/ReadPreference.cs
 
         /// <summary>
-        /// 
         /// </summary>
-        public static string[] ReadPreferenceList = new string[]{
+        public static string[] ReadPreferenceList =
+        {
             ReadPreference.Primary.ToString(),
             ReadPreference.PrimaryPreferred.ToString(),
             ReadPreference.Secondary.ToString(),
@@ -23,13 +23,13 @@ namespace MongoUtility.Core
         //http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options
         //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/WriteConcern.cs
 
-        public static string[] WriteConcernList = new string[]{
+        public static string[] WriteConcernList =
+        {
             WriteConcern.Unacknowledged.ToString(),
             WriteConcern.Acknowledged.ToString(),
             WriteConcern.W2.ToString(),
             WriteConcern.W3.ToString(),
             WriteConcern.WMajority.ToString()
         };
-
     }
 }

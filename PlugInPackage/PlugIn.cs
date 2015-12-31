@@ -48,11 +48,11 @@ namespace PlugInPackage
         /// </summary>
         private static void LoadPlugIn()
         {
-			foreach (var mFile in Directory.GetFiles(Application.StartupPath + Path.DirectorySeparatorChar, "*.dll"))
+            foreach (var mFile in Directory.GetFiles(Application.StartupPath + Path.DirectorySeparatorChar, "*.dll"))
             {
                 try
                 {
-					var fileName = mFile.Replace(Application.StartupPath + Path.DirectorySeparatorChar, string.Empty);
+                    var fileName = mFile.Replace(Application.StartupPath + Path.DirectorySeparatorChar, string.Empty);
                     //正式版本中，应该不会有这些
                     if (fileName != "PlugInPackage.dll") continue;
                     var mAssem = Assembly.LoadFile(mFile);

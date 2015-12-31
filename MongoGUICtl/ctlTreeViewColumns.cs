@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using MongoDB.Bson;
 using MongoUtility.Basic;
-using ResourceLib.Method;
-using System.Collections.Generic;
-using System.IO;
 using MongoUtility.ToolKit;
+using ResourceLib.Method;
 
 namespace MongoGUICtl
 {
@@ -17,12 +17,7 @@ namespace MongoGUICtl
     /// </summary>
     public partial class CtlTreeViewColumns : UserControl
     {
-        /// <summary>
-        ///     是否实用UTC表示时间
-        /// </summary>
-        public static bool IsUTC {get;set;}
-
-        public List<BsonDocument> ContentData= null;
+        public List<BsonDocument> ContentData = null;
 
         /// <summary>
         ///     初始化
@@ -34,6 +29,11 @@ namespace MongoGUICtl
             BackColor = VisualStyleInformation.TextControlBorder;
             Padding = new Padding(1);
         }
+
+        /// <summary>
+        ///     是否实用UTC表示时间
+        /// </summary>
+        public static bool IsUtc { get; set; }
 
         [Description("TreeView associated with the control"), Category("Behavior")]
         public TreeView TreeView
@@ -136,7 +136,7 @@ namespace MongoGUICtl
                 e.Graphics.DrawString(treeNameString, Font, new SolidBrush(Color.Black), stringRect);
             }
             //CSHARP-1066: Change BsonElement from a class to a struct. 
-            BsonElement mElement;
+            BsonElement mElement = new BsonElement();
             if (e.Node.Tag != null)
             {
                 if (e.Node.Tag.GetType() != typeof (BsonElement))
@@ -197,7 +197,7 @@ namespace MongoGUICtl
                             {
                                 if (mElement.Value.IsValidDateTime)
                                 {
-                                    if (IsUTC)
+                                    if (IsUtc)
                                     {
                                         strColumnText = mElement.Value.AsBsonDateTime.ToUniversalTime().ToString();
                                     }
@@ -284,8 +284,9 @@ namespace MongoGUICtl
                 colType.Text = GuiConfig.GetText(TextType.CommonType);
             }
         }
+
         /// <summary>
-        /// 保存
+        ///     保存
         /// </summary>
         /// <param name="fileName"></param>
         public void Save(string fileName)
@@ -294,6 +295,5 @@ namespace MongoGUICtl
             writer.Write(ContentData.ToJson(MongoHelper.JsonWriterSettings));
             writer.Close();
         }
-
     }
 }

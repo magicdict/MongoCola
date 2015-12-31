@@ -35,16 +35,16 @@ namespace FunctionForm.Connection
                 if (item.ReplSetName == string.Empty)
                 {
                     var t = new ListViewItem(item.ConnectionName);
-                    t.SubItems.Add((item.Host == string.Empty ? "localhost" : item.Host));
-                    t.SubItems.Add((item.Port == 0 ? string.Empty : item.Port.ToString()));
+                    t.SubItems.Add(item.Host == string.Empty ? "localhost" : item.Host);
+                    t.SubItems.Add(item.Port == 0 ? string.Empty : item.Port.ToString());
                     t.SubItems.Add(item.UserName);
                     lstConnection.Items.Add(t);
                 }
                 else
                 {
                     var t = new ListViewItem(item.ConnectionName);
-                    t.SubItems.Add((item.Host == string.Empty ? "localhost" : item.Host));
-                    t.SubItems.Add((item.Port == 0 ? string.Empty : item.Port.ToString()));
+                    t.SubItems.Add(item.Host == string.Empty ? "localhost" : item.Host);
+                    t.SubItems.Add(item.Port == 0 ? string.Empty : item.Port.ToString());
                     t.SubItems.Add(string.Empty);
                     var replArray = string.Empty;
                     foreach (var repl in item.ReplsetList)

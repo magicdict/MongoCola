@@ -9,7 +9,7 @@ namespace MongoUtility.EventArgs
     public static class EventArgExtensions
     {
         public static void Raise<TEventArgs>(this TEventArgs e,
-            Object sender, ref EventHandler<TEventArgs> eventDelegate)
+            object sender, ref EventHandler<TEventArgs> eventDelegate)
             where TEventArgs : System.EventArgs
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety

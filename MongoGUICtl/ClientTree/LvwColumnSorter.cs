@@ -49,8 +49,8 @@ namespace MongoGUICtl.ClientTree
         /// <returns></returns>
         public int Compare(object x, object y)
         {
-            var lstX = (ListViewItem) x;
-            var lstY = (ListViewItem) y;
+            var lstX = (ListViewItem)x;
+            var lstY = (ListViewItem)y;
             var rtnCompare = 0;
             switch (CompareMethod)
             {
@@ -65,18 +65,19 @@ namespace MongoGUICtl.ClientTree
                              Utility.ReconvSize(lstY.SubItems[SortColumn].Text));
                     break;
                 case SortMethod.NumberCompare:
-                    //当两个数字相减小于1时，(int)的强制转换会将结果变成0，所以不能使用减法来获得Ret。。。
-                    if (Convert.ToDouble(lstX.SubItems[SortColumn].Text) >
-                        Convert.ToDouble(lstY.SubItems[SortColumn].Text))
+
+                    if (lstX.SubItems[SortColumn].Text.Equals(lstY.SubItems[SortColumn].Text))
                     {
-                        rtnCompare = 1;
+                        //直接比较字符串
+                        rtnCompare = 0;
                     }
                     else
-                    {
-                        if (Convert.ToDouble(lstX.SubItems[SortColumn].Text) ==
-                            Convert.ToDouble(lstY.SubItems[SortColumn].Text))
+                    {   
+                        //当两个数字相减小于1时，(int)的强制转换会将结果变成0，所以不能使用减法来获得Ret。。。
+                        if (Convert.ToDouble(lstX.SubItems[SortColumn].Text) >
+                        Convert.ToDouble(lstY.SubItems[SortColumn].Text))
                         {
-                            rtnCompare = 0;
+                            rtnCompare = 1;
                         }
                         else
                         {
@@ -87,7 +88,7 @@ namespace MongoGUICtl.ClientTree
             }
             if (Order == SortOrder.Descending)
             {
-                rtnCompare = rtnCompare*-1;
+                rtnCompare = rtnCompare * -1;
             }
             return rtnCompare;
         }

@@ -64,7 +64,6 @@ namespace MongoUtility.Core
         /// <summary>
         ///     写入配置
         /// </summary>
-        /// <param name="configFileName"></param>
         public void SaveMongoConfig()
         {
             MongoConnectionConfig.MongoConfig.SerializableConnectionList.Clear();

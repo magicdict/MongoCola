@@ -6,6 +6,7 @@ namespace Common
     public static partial class Utility
     {
         #region "Misc"
+
         /// <summary>
         ///     是否为数字
         /// </summary>
@@ -70,7 +71,7 @@ namespace Common
                     unitOrder++;
                 }
             }
-            return string.Format("{0:F2}", tempSize) + " " + unit[unitOrder];
+            return $"{tempSize:F2}" + " " + unit[unitOrder];
         }
 
         /// <summary>
@@ -93,7 +94,7 @@ namespace Common
                 if (size.EndsWith(unit[i]))
                 {
                     size = size.Replace(unit[i], string.Empty).Trim();
-                    return (long) (Convert.ToDouble(size)*Math.Pow(2, (i*10)));
+                    return (long) (Convert.ToDouble(size)*Math.Pow(2, i*10));
                 }
             }
             return 0;

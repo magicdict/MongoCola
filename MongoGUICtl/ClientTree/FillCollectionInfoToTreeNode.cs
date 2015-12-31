@@ -213,8 +213,6 @@ namespace MongoGUICtl.ClientTree
                                 TextType.CollectionNameSystemProfile) +
                             "(" + strShowColName + ")";
                         break;
-                    default:
-                        break;
                 }
             }
             //Collection件数的表示
@@ -252,15 +250,14 @@ namespace MongoGUICtl.ClientTree
                 async () => { indexCursor = await col.Indexes.ListAsync(); }
                 );
             task.Wait();
-            List<BsonDocument> IndexDoc = null;
+            List<BsonDocument> indexDocs = null;
             task = Task.Run(
-                async () => { IndexDoc = await indexCursor.ToListAsync(); }
+                async () => { indexDocs = await indexCursor.ToListAsync(); }
                 );
             task.Wait();
-            foreach (var indexDoc in IndexDoc)
+            foreach (var indexDoc in indexDocs)
             {
-                var mongoIndexes = new TreeNode();
-                mongoIndexes.Text = indexDoc.GetElement("name").Value.ToString();
+                var mongoIndexes = new TreeNode {Text = indexDoc.GetElement("name").Value.ToString()};
                 foreach (var item in indexDoc.Elements)
                 {
                     mongoIndexes.Nodes.Add(string.Empty, item.Name + ":" + item.Value,

@@ -1,4 +1,8 @@
-﻿using Common;
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Windows.Forms;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -6,19 +10,16 @@ using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace FunctionForm.Operation
 {
     public partial class FrmCreateCollection : Form
     {
+        public string CollectionName;
         public bool Result;
         public string StrSvrPathWithTag;
         public TreeNode TreeNode;
-        public string CollectionName;
+
         public FrmCreateCollection()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace FunctionForm.Operation
                         TextType.CollectionStatusCollectionName);
                 chkAdvance.Text =
                     GuiConfig.GetText(TextType.CommonAdvanceOption);
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOK);
+                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
                 chkIsCapped.Text =
                     GuiConfig.GetText(TextType.CollectionStatusIsCapped);
@@ -87,9 +88,10 @@ namespace FunctionForm.Operation
                     //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                     option.SetAutoIndexId(chkIsAutoIndexId.Checked);
 
-                    if (chkValidation.Checked) {
+                    if (chkValidation.Checked)
+                    {
                         //Start From MongoDB 3.2.0
-                        option.SetValidator((QueryDocument)BsonDocument.Parse(txtValidation.Text));
+                        option.SetValidator((QueryDocument) BsonDocument.Parse(txtValidation.Text));
                         //Validation Level
                         if (radLevel_off.Checked) option.SetValidationLevel(DocumentValidationLevel.Off);
                         if (radLevel_strict.Checked) option.SetValidationLevel(DocumentValidationLevel.Strict);

@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Common;
 using FunctionForm.Operation;
+using MongoDB.Bson;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.UI;
-using MongoDB.Bson;
 
 namespace FunctionForm.Aggregation
 {
@@ -61,7 +61,10 @@ namespace FunctionForm.Aggregation
             }
             cmbForAggregatePipeline.SelectedIndexChanged += (x, y) =>
             {
-                _aggrArray = (BsonArray)BsonDocument.Parse(Operater.LoadJavascript(cmbForAggregatePipeline.Text, RuntimeMongoDbContext.GetCurrentCollection())).GetValue(0);
+                _aggrArray =
+                    (BsonArray)
+                        BsonDocument.Parse(Operater.LoadJavascript(cmbForAggregatePipeline.Text,
+                            RuntimeMongoDbContext.GetCurrentCollection())).GetValue(0);
                 FillAggreationTreeview();
             };
         }

@@ -50,7 +50,6 @@ namespace MongoUtility.Command
         ///     当前对象的MONGO命令
         /// </summary>
         /// <param name="mMongoCommand">命令对象</param>
-        /// <param name="Obj"></param>
         /// <returns></returns>
         public static CommandResult ExecuteMongoCommand(MongoCommand mMongoCommand)
         {
@@ -81,8 +80,6 @@ namespace MongoUtility.Command
                         mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.CmdDocument,
                             RuntimeMongoDbContext.GetCurrentServer());
                         break;
-                    default:
-                        break;
                 }
                 resultCommandList.Add(mCommandResult);
             }
@@ -108,7 +105,7 @@ namespace MongoUtility.Command
         public static CommandResult ExecuteMongoColCommand(string commandString, MongoCollection mongoCol)
         {
             CommandResult mCommandResult;
-            var baseCommand = new BsonDocument { { commandString, mongoCol.Name } };
+            var baseCommand = new BsonDocument {{commandString, mongoCol.Name}};
             var mongoCmd = new CommandDocument();
             mongoCmd.AddRange(baseCommand);
             try
@@ -239,6 +236,12 @@ namespace MongoUtility.Command
             return mCommandResult;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mongoCmd"></param>
+        /// <param name="mongoDb"></param>
+        /// <returns></returns>
         public static CommandResult ExecuteMongoDBCommand(CommandDocument mongoCmd, IMongoDatabase mongoDb)
         {
             CommandResult mCommandResult = null;
@@ -271,7 +274,7 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult ExecuteMongoDBCommand(MongoCommand mMongoCommand, MongoDatabase mongoDb)
         {
-            var command = new CommandDocument { { mMongoCommand.CommandString, 1 } };
+            var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
             if (mMongoCommand.RunLevel == EnumMgr.PathLevel.Database)
             {
                 return ExecuteMongoDBCommand(command, mongoDb);
@@ -341,7 +344,7 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult ExecuteMongoSvrCommand(MongoCommand mMongoCommand, MongoServer mongosrv)
         {
-            var command = new CommandDocument { { mMongoCommand.CommandString, 1 } };
+            var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
             if (mMongoCommand.RunLevel == EnumMgr.PathLevel.Database)
             {
                 throw new Exception();
@@ -377,7 +380,7 @@ namespace MongoUtility.Command
             {
                 CommandString = commandString;
                 RunLevel = runLevel;
-                CmdDocument = new CommandDocument { { commandString, 1 } };
+                CmdDocument = new CommandDocument {{commandString, 1}};
             }
 
             /// <summary>
@@ -593,19 +596,19 @@ namespace MongoUtility.Command
         /// <remarks>注意：有个命令可能只能用在mongos上面</remarks>
         /// <returns></returns>
         public static CommandResult AddSharding(MongoServer routeSvr, string replicaSetName, List<string> lstAddress,
-            string name, Decimal maxSize)
+            string name, decimal maxSize)
         {
             // replset/host:port,host:port
-            var cmdPara = replicaSetName == string.Empty ? string.Empty : (replicaSetName + "/");
+            var cmdPara = replicaSetName == string.Empty ? string.Empty : replicaSetName + "/";
             foreach (var item in lstAddress)
             {
                 cmdPara += item + ",";
             }
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
-            var mongoCmd = new CommandDocument { { "addshard", cmdPara } };
+            var mongoCmd = new CommandDocument {{"addshard", cmdPara}};
             if (maxSize != 0)
             {
-                mongoCmd.Add("maxSize", (BsonValue)maxSize);
+                mongoCmd.Add("maxSize", (BsonValue) maxSize);
             }
             if (name != string.Empty)
             {
@@ -695,7 +698,7 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult RemoveSharding(MongoServer routeSvr, string shardName)
         {
-            var mongoCmd = new CommandDocument { { "removeshard", shardName } };
+            var mongoCmd = new CommandDocument {{"removeshard", shardName}};
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -708,7 +711,7 @@ namespace MongoUtility.Command
         public static CommandResult EnableSharding(MongoServer routeSvr, string shardingDb)
         {
             var mongoCmd = new CommandDocument();
-            mongoCmd = new CommandDocument { { "enablesharding", shardingDb } };
+            mongoCmd = new CommandDocument {{"enablesharding", shardingDb}};
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -722,7 +725,7 @@ namespace MongoUtility.Command
         public static CommandResult ShardCollection(MongoServer routeSvr, string sharingCollection,
             BsonDocument shardingKey)
         {
-            var mongoCmd = new CommandDocument { { "shardCollection", sharingCollection }, { "key", shardingKey } };
+            var mongoCmd = new CommandDocument {{"shardCollection", sharingCollection}, {"key", shardingKey}};
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 

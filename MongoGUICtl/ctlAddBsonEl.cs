@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MongoDB.Bson;
 
 namespace MongoGUICtl
@@ -56,7 +55,7 @@ namespace MongoGUICtl
         ///     Set Element or Bsonvalue
         /// </summary>
         /// <param name="value"></param>
-        public void SetElement(Object value)
+        public void SetElement(object value)
         {
             if (value.GetType() == typeof (BsonElement))
             {

@@ -1,20 +1,20 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
-using System;
-using System.Collections.Generic;
+
 namespace MongoUtility.Aggregation
 {
     public static class AggregationHelper
     {
-
-        public static string Distinct(string strKey, List<DataFilter.QueryConditionInputItem> DistinctConditionList)
+        public static string Distinct(string strKey, List<DataFilter.QueryConditionInputItem> distinctConditionList)
         {
             var strResult = string.Empty;
             var resultArray =
                 (BsonArray)
                     RuntimeMongoDbContext.GetCurrentCollection()
-                        .Distinct(strKey, QueryHelper.GetQuery(DistinctConditionList));
+                        .Distinct(strKey, QueryHelper.GetQuery(distinctConditionList));
             var resultList = new List<BsonValue>();
             foreach (var item in resultArray)
             {

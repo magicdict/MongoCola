@@ -1,13 +1,13 @@
-﻿using MongoGUICtl;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Windows.Forms;
+using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Windows.Forms;
 
 namespace FunctionForm.Operation
 {
@@ -80,7 +80,7 @@ namespace FunctionForm.Operation
             var textKey = string.Empty;
             for (var i = 0; i < 5; i++)
             {
-                var ctl = (CtlIndexCreate)Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
+                var ctl = (CtlIndexCreate) Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
                 if (ctl.KeyName == string.Empty) continue;
                 firstKey = ctl.KeyName.Trim();
                 switch (ctl.IndexKeyType)
@@ -102,26 +102,26 @@ namespace FunctionForm.Operation
                 }
             }
             //Index UIOption
-            var UIOption = new Operater.IndexOption();
-            UIOption.IsBackground = chkIsBackground.Checked;
-            UIOption.IsDropDups = chkIsDroppedDups.Checked;
-            UIOption.IsSparse = chkIsSparse.Checked;
-            UIOption.IsUnique = chkIsUnique.Checked;
-            UIOption.IsExpireData = chkExpireData.Checked;
+            var uiOption = new Operater.IndexOption();
+            uiOption.IsBackground = chkIsBackground.Checked;
+            uiOption.IsDropDups = chkIsDroppedDups.Checked;
+            uiOption.IsSparse = chkIsSparse.Checked;
+            uiOption.IsUnique = chkIsUnique.Checked;
+            uiOption.IsExpireData = chkExpireData.Checked;
             //Partial Indexes
-            UIOption.IsPartial = chkPartialIndexes.Checked;
-            UIOption.TTL = (int)numTTL.Value;
-            UIOption.ascendingKey = ascendingKey;
-            UIOption.descendingKey = descendingKey;
-            UIOption.geoSpatialKey = geoSpatialKey;
-            UIOption.firstKey = firstKey;
-            UIOption.textKey = textKey;
-            UIOption.IndexName = txtIndexName.Text;
+            uiOption.IsPartial = chkPartialIndexes.Checked;
+            uiOption.Ttl = (int) numTTL.Value;
+            uiOption.AscendingKey = ascendingKey;
+            uiOption.DescendingKey = descendingKey;
+            uiOption.GeoSpatialKey = geoSpatialKey;
+            uiOption.FirstKey = firstKey;
+            uiOption.TextKey = textKey;
+            uiOption.IndexName = txtIndexName.Text;
             //Partial Indexes
-            UIOption.PartialCondition = txtPartialIndexes.Text;
+            uiOption.PartialCondition = txtPartialIndexes.Text;
             var strMessageTitle = string.Empty;
             var strMessageContent = string.Empty;
-            if (Operater.CreateIndex(UIOption, ref strMessageTitle, ref strMessageContent))
+            if (Operater.CreateIndex(uiOption, ref strMessageTitle, ref strMessageContent))
             {
                 RefreshList();
             }
@@ -160,7 +160,5 @@ namespace FunctionForm.Operation
         {
             numTTL.Enabled = chkExpireData.Checked;
         }
-
-
     }
 }

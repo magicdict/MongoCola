@@ -1,81 +1,81 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System;
+using System.Text;
 
 namespace Common
 {
     public static class YamlHelper
     {
         public const string PointChar = "$POINT$";
+
         /// <summary>
         ///     生成YAML文件
         /// </summary>
         /// <param name="fileName"></param>
-        /// <param name="Items"></param>
-        public static void CreateFile(string fileName, List<string> Items)
+        /// <param name="items"></param>
+        public static void CreateFile(string fileName, List<string> items)
         {
             //假定Items的格式为Path：Value
             //Value为字符串（可以带有双引号）
-            StreamWriter YamlDoc = new StreamWriter(fileName, false, Encoding.UTF8);
-            Items.Sort((x, y) => { return x.CompareTo(y); });
-            for (int i = 0; i < Items.Count; i++)
+            var yamlDoc = new StreamWriter(fileName, false, Encoding.UTF8);
+            items.Sort((x, y) => String.Compare(x, y, StringComparison.Ordinal));
+            for (var i = 0; i < items.Count; i++)
             {
                 if (i == 0)
                 {
                     //第一个项目
-                    PrintYaml(YamlDoc, 0, Items[i]);
+                    PrintYaml(yamlDoc, 0, items[i]);
                     continue;
                 }
                 //从后一个字符串
-                var Last = Items[i].Split(".".ToCharArray());
-                var Pre = Items[i - 1].Split(".".ToCharArray());
+                var last = items[i].Split(".".ToCharArray());
+                var pre = items[i - 1].Split(".".ToCharArray());
                 //表示相同段数
-                int SameSegment = 0;
-                for (int j = 0; j < Math.Min(Last.Length, Pre.Length); j++)
+                var sameSegment = 0;
+                for (var j = 0; j < Math.Min(last.Length, pre.Length); j++)
                 {
-                    if (Last[j] != Pre[j])
+                    if (last[j] != pre[j])
                     {
-                        SameSegment = j;
+                        sameSegment = j;
                         break;
                     }
                 }
                 //Items[i]去掉相同的字符首
-                string RemovedItems = string.Empty;
-                for (int k = SameSegment; k < Last.Length; k++)
+                var removedItems = string.Empty;
+                for (var k = sameSegment; k < last.Length; k++)
                 {
-                    if (k!= Last.Length - 1)
+                    if (k != last.Length - 1)
                     {
-                        RemovedItems += Last[k] + ".";
+                        removedItems += last[k] + ".";
                     }
                     else
                     {
-                        RemovedItems += Last[k];
+                        removedItems += last[k];
                     }
                 }
-                PrintYaml(YamlDoc, SameSegment, RemovedItems);
+                PrintYaml(yamlDoc, sameSegment, removedItems);
             }
-            YamlDoc.Close();
+            yamlDoc.Close();
         }
 
-        private static void PrintYaml(StreamWriter YamlDoc, int IndentLevel, string Item)
+        private static void PrintYaml(StreamWriter yamlDoc, int indentLevel, string item)
         {
-            int Indent = IndentLevel * 3;
+            var indent = indentLevel*3;
 
-            var ItemArray = Item.Split(".".ToCharArray());
-            for (int i = 0; i < ItemArray.Length; i++)
+            var itemArray = item.Split(".".ToCharArray());
+            for (var i = 0; i < itemArray.Length; i++)
             {
-                if (i != (ItemArray.Length - 1))
+                if (i != itemArray.Length - 1)
                 {
-                    YamlDoc.WriteLine(new string(" ".ToCharArray()[0], Indent) + ItemArray[i] + ": ");
-                    Indent += 3;
+                    yamlDoc.WriteLine(new string(" ".ToCharArray()[0], indent) + itemArray[i] + ": ");
+                    indent += 3;
                 }
                 else
                 {
-                    YamlDoc.WriteLine(new string(" ".ToCharArray()[0], Indent) + ItemArray[i].Replace(PointChar,"."));
+                    yamlDoc.WriteLine(new string(" ".ToCharArray()[0], indent) + itemArray[i].Replace(PointChar, "."));
                 }
             }
         }
-
     }
 }
