@@ -36,7 +36,7 @@ namespace MongoCola
 		/// <summary>
 		/// 	OSVersion
 		/// </summary>
-		public static String OSVersion = System.Environment.OSVersion.ToString();
+		public static string OSVersion = System.Environment.OSVersion.ToString();
 
         /// <summary>
         ///     初始化

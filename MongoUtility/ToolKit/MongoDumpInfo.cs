@@ -1,5 +1,4 @@
-﻿using System;
-using MongoUtility.Basic;
+﻿using MongoUtility.Basic;
 using MongoUtility.Core;
 
 namespace MongoUtility.ToolKit
@@ -88,7 +87,7 @@ namespace MongoUtility.ToolKit
             {
                 //Since 3.2.0
                 dosCommand += " --archive";
-                if (!String.IsNullOrEmpty(mongoDump.ArchiveFilename)) {
+                if (!string.IsNullOrEmpty(mongoDump.ArchiveFilename)) {
                     dosCommand += "=" + mongoDump.ArchiveFilename;
                 }
             }

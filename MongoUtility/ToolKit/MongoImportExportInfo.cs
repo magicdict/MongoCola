@@ -1,5 +1,4 @@
-﻿using System;
-using MongoUtility.Basic;
+﻿using MongoUtility.Basic;
 using MongoUtility.Core;
 
 namespace MongoUtility.ToolKit
@@ -25,12 +24,12 @@ namespace MongoUtility.ToolKit
         /// <summary>
         ///     数据集名称
         /// </summary>
-        public string CollectionName = String.Empty;
+        public string CollectionName = string.Empty;
 
         /// <summary>
         ///     数据库名称
         /// </summary>
-        public string DbName = String.Empty;
+        public string DbName = string.Empty;
 
         /// <summary>
         ///     导入导出标志
@@ -40,17 +39,17 @@ namespace MongoUtility.ToolKit
         /// <summary>
         ///     字段列表
         /// </summary>
-        public string FieldList = String.Empty;
+        public string FieldList = string.Empty;
 
         /// <summary>
         ///     文件名称
         /// </summary>
-        public string FileName = String.Empty;
+        public string FileName = string.Empty;
 
         /// <summary>
         ///     主机地址
         /// </summary>
-        public string HostAddr = String.Empty;
+        public string HostAddr = string.Empty;
 
         /// <summary>
         ///     日志等级
@@ -74,11 +73,11 @@ namespace MongoUtility.ToolKit
             if (mongoImprotExport.Direct == ImprotExport.Import)
             {
                 dosCommand = @"mongoimport -h @hostaddr:@port -d @dbname";
-                if (mongoImprotExport.FieldList != String.Empty)
+                if (mongoImprotExport.FieldList != string.Empty)
                 {
                     dosCommand += " --fields " + mongoImprotExport.FieldList;
                 }
-                if (mongoImprotExport.FileName != String.Empty)
+                if (mongoImprotExport.FileName != string.Empty)
                 {
                     dosCommand += " --file \"" + mongoImprotExport.FileName + "\"";
                 }
@@ -86,7 +85,7 @@ namespace MongoUtility.ToolKit
             else
             {
                 dosCommand = @"mongoexport -h @hostaddr:@port -d @dbname";
-                if (mongoImprotExport.FileName != String.Empty)
+                if (mongoImprotExport.FileName != string.Empty)
                 {
                     dosCommand += " --out \"" + mongoImprotExport.FileName + "\"";
                 }
@@ -94,7 +93,7 @@ namespace MongoUtility.ToolKit
             dosCommand = dosCommand.Replace("@hostaddr", mongoImprotExport.HostAddr);
             dosCommand = dosCommand.Replace("@port", mongoImprotExport.Port.ToString());
             dosCommand = dosCommand.Replace("@dbname", mongoImprotExport.DbName);
-            if (mongoImprotExport.CollectionName != String.Empty)
+            if (mongoImprotExport.CollectionName != string.Empty)
             {
                 //-c CollectionName Or --collection CollectionName
                 dosCommand += " --collection " + mongoImprotExport.CollectionName;

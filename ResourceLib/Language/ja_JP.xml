@@ -50,7 +50,7 @@
   <Main_Menu_Operation_DataCollection_CreateJavaScript>Javascriptの新規</Main_Menu_Operation_DataCollection_CreateJavaScript>
   <Main_Menu_Operation_DataCollection_DropJavaScript>Javascriptの削除</Main_Menu_Operation_DataCollection_DropJavaScript>
   <Main_Menu_Operation_DataCollection_View>ビュー</Main_Menu_Operation_DataCollection_View>
-  <Main_Menu_Operation_DataCollection_ExportToFile>导出到文件</Main_Menu_Operation_DataCollection_ExportToFile>
+  <Main_Menu_Operation_DataCollection_ExportToFile>ファイルにエクスポート</Main_Menu_Operation_DataCollection_ExportToFile>
 
   <Main_Menu_Operation_DataDocument>ドキュメント</Main_Menu_Operation_DataDocument>
   <Main_Menu_Operation_DataDocument_AddElement>エレメントの追加</Main_Menu_Operation_DataDocument_AddElement>
@@ -311,7 +311,7 @@
   <Index_NameSpace>NameSpace</Index_NameSpace>
   <Index_Asce>昇順</Index_Asce>
   <Index_Desc>降順 </Index_Desc>
-  <Index_NoSort>None</Index_NoSort>
+  <Index_NoSort>なし</Index_NoSort>
 
   <!--Exception-->
   <Exception_NotConnected>未接続</Exception_NotConnected>
@@ -359,7 +359,7 @@
   <Common_Name>名称</Common_Name>
   <Common_Value>値</Common_Value>
   <Common_Type>タイプ</Common_Type>
-  <Common_Roles>角色</Common_Roles>
+  <Common_Roles>ロール</Common_Roles>
   <Common_Validate>立証</Common_Validate>
   <Common_Search>检索</Common_Search>
 

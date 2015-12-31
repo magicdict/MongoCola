@@ -125,7 +125,7 @@ namespace MongoUtility.Core
         /// <returns></returns>
         public static string GetTagType(string objectTag)
         {
-            return objectTag == String.Empty ? String.Empty : objectTag.Split(":".ToCharArray())[0];
+            return objectTag == string.Empty ? string.Empty : objectTag.Split(":".ToCharArray())[0];
         }
 
         /// <summary>
@@ -134,11 +134,11 @@ namespace MongoUtility.Core
         /// <returns></returns>
         public static string GetTagPath(string objectTag)
         {
-            if (objectTag == String.Empty)
+            if (objectTag == string.Empty)
             {
-                return String.Empty;
+                return string.Empty;
             }
-            return objectTag.Split(":".ToCharArray()).Length == 2 ? objectTag.Split(":".ToCharArray())[1] : String.Empty;
+            return objectTag.Split(":".ToCharArray()).Length == 2 ? objectTag.Split(":".ToCharArray())[1] : string.Empty;
         }
 
         /// <summary>

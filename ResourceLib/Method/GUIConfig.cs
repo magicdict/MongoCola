@@ -48,6 +48,12 @@ namespace ResourceLib.Method
 		public static bool IsMono = false;
 
         /// <summary>
+        /// Mac默认中文字体
+        /// 中/日
+        /// </summary>
+        public static string MacFontFamilyName = "苹方-简";
+
+        /// <summary>
         ///     字符串
         /// </summary>
         public static StringResource MStringResource = new StringResource();
@@ -116,7 +122,7 @@ namespace ResourceLib.Method
 		/// <returns>The mono font.</returns>
 		/// <param name="orgFont">Org font.</param>
 		public static Font getMonoFont(Font orgFont){
-			Font MacFont = new Font ("苹方-简",orgFont.Size,orgFont.Style);
+			Font MacFont = new Font (MacFontFamilyName, orgFont.Size,orgFont.Style);
 			return MacFont;
 		} 
 

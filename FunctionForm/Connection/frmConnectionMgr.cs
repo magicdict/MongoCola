@@ -53,7 +53,7 @@ namespace FunctionForm.Connection
             OldConnectionName = connectionName;
             //Modify Mode
             ModifyConn = MongoConnectionConfig.MongoConfig.ConnectionList[connectionName];
-            UIBinding.TryUpdateForm(ModifyConn, this.Controls);
+            UIBinding.TryUpdateForm(ModifyConn, Controls);
             foreach (var item in ModifyConn.ReplsetList)
             {
                 lstHost.Items.Add(item);
@@ -79,7 +79,7 @@ namespace FunctionForm.Connection
             cmdAdd.BackColor = GuiConfig.SuccessColor;
             cmdCancel.BackColor = GuiConfig.FailColor;
             GuiConfig.Translateform(this);
-			GuiConfig.MonoCompactControl (this.Controls);
+			GuiConfig.MonoCompactControl (Controls);
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace FunctionForm.Connection
         private void CreateConnection()
         {
             //更新数据模型
-            UIBinding.TryUpdateModel(ModifyConn, this.Controls);
+            UIBinding.TryUpdateModel(ModifyConn, Controls);
 
             //感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
             ModifyConn.ConnectionString = txtConnectionString.Text;

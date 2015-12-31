@@ -25,7 +25,7 @@ namespace MongoGUICtl.Aggregation
 
         private void FieldPicker_Load(object sender, EventArgs e)
         {
-            GuiConfig.Translateform(this.Controls);
+            GuiConfig.Translateform(Controls);
         }
 
         public CtlFieldInfo.FieldMode FieldListMode { get; set; }

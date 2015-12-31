@@ -32,6 +32,13 @@ namespace MongoCola.Config
                 SystemManager.SystemConfig.RefreshStatusTimer = SystemManager.SystemConfig.DefaultRefreshStatusTimer;
             }
             intRefreshStatusTimer.Value = SystemManager.SystemConfig.RefreshStatusTimer;
+            if (string.IsNullOrEmpty(SystemManager.SystemConfig.UIFontFamily))
+            {
+                lblCurrentFont.Text = Font.FontFamily.Name;
+            }
+            else {
+                lblCurrentFont.Text = SystemManager.SystemConfig.UIFontFamily;
+            }
             cmbLanguage.Items.Add(StringResource.LanguageEnglish);
             if (Directory.Exists("Language"))
             {
@@ -61,9 +68,21 @@ namespace MongoCola.Config
                 cmbLanguage.Text = StringResource.LanguageEnglish;
             }
             GuiConfig.Translateform(this);
-			GuiConfig.MonoCompactControl (this.Controls);
+			GuiConfig.MonoCompactControl (Controls);
         }
-
+        /// <summary>
+        ///     Font
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFont_Click(object sender, EventArgs e)
+        {
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                SystemManager.SystemConfig.UIFontFamily = fontDialog1.Font.FontFamily.Name;
+                lblCurrentFont.Text = SystemManager.SystemConfig.UIFontFamily;
+            }
+        }
         /// <summary>
         ///     OK
         /// </summary>
@@ -89,5 +108,6 @@ namespace MongoCola.Config
         {
             Close();
         }
+
     }
 }

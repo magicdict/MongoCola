@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
-using ZedGraph;
-using Common;
 using MongoDB.Bson;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
-using ResourceLib.Properties;
 
 namespace FunctionForm.Status
 {
-	public partial class frmStatusMono : Form
+    public partial class frmStatusMono : Form
     {
 		public frmStatusMono()
         {

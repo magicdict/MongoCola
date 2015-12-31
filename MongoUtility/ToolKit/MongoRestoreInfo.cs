@@ -1,5 +1,4 @@
-﻿using System;
-using MongoUtility.Basic;
+﻿using MongoUtility.Basic;
 using MongoUtility.Core;
 
 namespace MongoUtility.ToolKit

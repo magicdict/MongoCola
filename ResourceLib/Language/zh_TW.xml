@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <!--frmMain-->
-<Language Type="Chinese">
+<Language Type="TranditionalChinese">
   <Main_Menu_Mangt>管理(&amp;M)</Main_Menu_Mangt>
   <Main_Menu_Mangt_AddConnection>新增連接(&amp;A)</Main_Menu_Mangt_AddConnection>
   <Main_Menu_Mangt_Disconnect>切斷連接</Main_Menu_Mangt_Disconnect>

@@ -1,10 +1,22 @@
 ﻿using System;
+using System.Linq;
 
 namespace Common
 {
     public static partial class Utility
     {
         #region "Misc"
+        /// <summary>
+        ///     是否为数字
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsNumeric(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return false;
+            return str.All(char.IsNumber);
+        }
 
         /// <summary>
         ///     获得字符枚举值

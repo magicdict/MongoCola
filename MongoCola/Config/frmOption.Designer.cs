@@ -47,6 +47,10 @@ namespace MongoCola.Config
             this.fileMongoBinPath = new ResourceLib.UI.CtlFilePicker();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this._ctlReadWriteConfig1 = new FunctionForm.Connection.CtlReadWriteConfig();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.lblFont = new System.Windows.Forms.Label();
+            this.btnFont = new System.Windows.Forms.Button();
+            this.lblCurrentFont = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.intRefreshStatusTimer)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
@@ -56,7 +60,7 @@ namespace MongoCola.Config
             // 
             // intRefreshStatusTimer
             // 
-            this.intRefreshStatusTimer.Location = new System.Drawing.Point(438, 63);
+            this.intRefreshStatusTimer.Location = new System.Drawing.Point(203, 94);
             this.intRefreshStatusTimer.Maximum = new decimal(new int[] {
             180,
             0,
@@ -81,7 +85,7 @@ namespace MongoCola.Config
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(243, 63);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(30, 94);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
             this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(167, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
@@ -143,6 +147,9 @@ namespace MongoCola.Config
             // 
             // tabGerneric
             // 
+            this.tabGerneric.Controls.Add(this.lblCurrentFont);
+            this.tabGerneric.Controls.Add(this.btnFont);
+            this.tabGerneric.Controls.Add(this.lblFont);
             this.tabGerneric.Controls.Add(this.groupBox1);
             this.tabGerneric.Controls.Add(this.fileMongoBinPath);
             this.tabGerneric.Controls.Add(this.cmbLanguage);
@@ -198,7 +205,7 @@ namespace MongoCola.Config
             this.fileMongoBinPath.Clear = "Clear";
             this.fileMongoBinPath.FileFilter = "";
             this.fileMongoBinPath.InitFileName = "";
-            this.fileMongoBinPath.Location = new System.Drawing.Point(33, 104);
+            this.fileMongoBinPath.Location = new System.Drawing.Point(33, 115);
             this.fileMongoBinPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fileMongoBinPath.Name = "fileMongoBinPath";
             this.fileMongoBinPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
@@ -226,6 +233,34 @@ namespace MongoCola.Config
             this._ctlReadWriteConfig1.Name = "_ctlReadWriteConfig1";
             this._ctlReadWriteConfig1.Size = new System.Drawing.Size(621, 186);
             this._ctlReadWriteConfig1.TabIndex = 0;
+            // 
+            // lblFont
+            // 
+            this.lblFont.AutoSize = true;
+            this.lblFont.Location = new System.Drawing.Point(245, 59);
+            this.lblFont.Name = "lblFont";
+            this.lblFont.Size = new System.Drawing.Size(31, 15);
+            this.lblFont.TabIndex = 21;
+            this.lblFont.Text = "Font";
+            // 
+            // btnFont
+            // 
+            this.btnFont.Location = new System.Drawing.Point(471, 59);
+            this.btnFont.Name = "btnFont";
+            this.btnFont.Size = new System.Drawing.Size(109, 23);
+            this.btnFont.TabIndex = 22;
+            this.btnFont.Text = "Change Font";
+            this.btnFont.UseVisualStyleBackColor = true;
+            this.btnFont.Click += new System.EventHandler(this.btnFont_Click);
+            // 
+            // lblCurrentFont
+            // 
+            this.lblCurrentFont.AutoSize = true;
+            this.lblCurrentFont.Location = new System.Drawing.Point(316, 61);
+            this.lblCurrentFont.Name = "lblCurrentFont";
+            this.lblCurrentFont.Size = new System.Drawing.Size(71, 15);
+            this.lblCurrentFont.TabIndex = 23;
+            this.lblCurrentFont.Text = "SystemFont";
             // 
             // FrmOption
             // 
@@ -271,6 +306,9 @@ namespace MongoCola.Config
         private GroupBox groupBox1;
         private RadioButton radLocal;
         private RadioButton radUTC;
-
+        private Label lblFont;
+        private FontDialog fontDialog1;
+        private Label lblCurrentFont;
+        private Button btnFont;
     }
 }

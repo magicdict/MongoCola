@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ConfigurationFile")]
-[assembly: AssemblyDescription("Mongodb Configuration File Creator")]
+[assembly: AssemblyTitle("MultiLanEditor")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shanghai Chuwa Software co.ltd")]
-[assembly: AssemblyProduct("ConfigurationFile")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("MultiLanEditor")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c2578125-fe64-43a0-b43b-9830714c988a")]
+[assembly: Guid("a57b7879-6935-4c45-aec0-8b2c2e7ab5ef")]
 
 // Version information for an assembly consists of the following four values:
 //
