@@ -43,6 +43,7 @@ CSharp Mongo Driver 2.2.0
 	进一步改进多语言系统
 4. User System  
 	用户系统
+
 ***
 
 # 发布履历
@@ -55,6 +56,7 @@ CSharp Mongo Driver 2.2.0
 4. 创建Collection时候可以设定DocumentValidation参数
 5. MongoDump 增加 --gzip --archive
 6. 修复添加Collection后UI没有实时更新的BUG 
+
 ***
 
 ##Ver 1.5(Alpha)  2015/07/09 @ Shanghai China
@@ -65,6 +67,7 @@ CSharp Mongo Driver 2.2.0
 5. TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
 6. 各种Status改用树型结构表示
 7. 新建数据库无效,删除数据库错误等问题.
+
 ***
 
 # 已知BUG
