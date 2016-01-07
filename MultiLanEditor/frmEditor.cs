@@ -24,7 +24,12 @@ namespace MultiLanEditor
 
         private void frmEditor_Load(object sender, EventArgs e)
         {
-        }
+			var MonoMode = Type.GetType("Mono.Runtime") != null;
+			if (MonoMode) {
+				this.Font = GuiConfig.GetMonoFont (this.Font);
+				this.Text = "Multi Language Editor";
+			}
+		}
 
         private void btnImport_Click(object sender, EventArgs e)
         {

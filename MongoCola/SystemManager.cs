@@ -108,7 +108,7 @@ namespace MongoCola
             //语言的初始化
             if (!SystemConfig.IsUseDefaultLanguage())
             {
-                var languageFile = "Language" + Path.DirectorySeparatorChar + SystemConfig.LanguageFileName;
+				var languageFile = SystemConfig.AppPath + "Language" + Path.DirectorySeparatorChar + SystemConfig.LanguageFileName;
                 if (File.Exists(languageFile))
                 {
                     StringResource.InitLanguage(languageFile);

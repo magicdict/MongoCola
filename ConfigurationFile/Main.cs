@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Common;
 using ResourceLib.UI;
+using ResourceLib.Method;
 
 namespace ConfigurationFile
 {
@@ -26,6 +27,11 @@ namespace ConfigurationFile
             FillTreeView(cRoot, rootTreeNode);
             trvConfig.Nodes.Add(rootTreeNode);
             trvConfig.ExpandAll();
+			var MonoMode = Type.GetType("Mono.Runtime") != null;
+			if (MonoMode) {
+				this.Text = "Configuration File";
+				this.Font = GuiConfig.GetMonoFont (this.Font);
+			}
         }
 
         /// <summary>
