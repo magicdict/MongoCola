@@ -183,6 +183,7 @@ namespace MongoUtility.ToolKit
                 GetCurrentJsCollection(RuntimeMongoDbContext.GetCurrentDataBase())
                     .FindAllAs<BsonDocument>()
                     .Select(item => item.GetValue(ConstMgr.KeyId).ToString())
+                    .OrderBy(item => item)
                     .ToList();
         }
 
@@ -218,7 +219,7 @@ namespace MongoUtility.ToolKit
                     }
                 }
             }
-            return columnList;
+            return columnList.OrderBy(info=>info).ToList();
         }
 
         /// <summary>
@@ -243,7 +244,7 @@ namespace MongoUtility.ToolKit
                     columnList.Add(docName + (docName != string.Empty ? "." : string.Empty) + strName);
                 }
             }
-            return columnList;
+            return columnList.OrderBy(info => info).ToList();
         }
 
         /// <summary>

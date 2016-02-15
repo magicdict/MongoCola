@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -395,6 +396,42 @@ namespace MongoGUICtl.ClientTree
             }
             //End Data
             return mongoColNode;
+        }
+
+        /// <summary>
+        ///     将数据集放入Node
+        /// </summary>
+        /// <param name="jsNode"></param>
+        /// <param name="col"></param>
+        /// <param name="mongoConnSvrKey"></param>
+        /// <param name="strDbName"></param>
+        /// <returns></returns>
+        public static void FillJavaScriptInfoToTreeNode(TreeNode jsNode, IMongoCollection<BsonDocument> col,
+            string mongoConnSvrKey,string strDbName)
+        {
+            var tag = ConstMgr.JavascriptDocTag + ":" + mongoConnSvrKey + "/" + strDbName + "/" +
+                      col.CollectionNamespace.CollectionName;
+            var server = RuntimeMongoDbContext.GetMongoServerBySvrPath(tag, RuntimeMongoDbContext.MongoConnSvrLst);
+            var db = RuntimeMongoDbContext.GetMongoDBBySvrPath(tag, server);
+            MongoCollection mongoJsCol = db.GetCollection(ConstMgr.CollectionNameJavascript);
+            var list = mongoJsCol.FindAllAs<BsonDocument>()
+                    .Select(item => item.GetValue(ConstMgr.KeyId).ToString())
+                    .OrderBy(item => item)
+                    .ToList();
+
+            foreach (var name in list)
+            {
+                var node = new TreeNode(name)
+                {
+                    ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
+                    SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
+                    Tag = tag + "/" + name
+                };
+                jsNode.Nodes.Add(node);
+            }
+
+            jsNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Collection;
+            jsNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Collection;
         }
     }
 }

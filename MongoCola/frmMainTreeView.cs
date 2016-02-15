@@ -274,6 +274,7 @@ namespace MongoCola
                         MongoDbAction.ActionType.ServerAdministrationActionsDropDatabase);
                     CreateMongoCollectionToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
                         MongoDbAction.ActionType.DatabaseManagementActionsCreateCollection);
+                    CopyDatabasetoolStripMenuItem.Enabled = true;
                     InitGFSToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
                         MongoDbAction.ActionType.MiscInitGfs);
                     AddUserToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
@@ -286,12 +287,21 @@ namespace MongoCola
                 {
                     DelMongoDBToolStripMenuItem.Enabled = true;
                     CreateMongoCollectionToolStripMenuItem.Enabled = true;
+                    CopyDatabasetoolStripMenuItem.Enabled = true;
                     InitGFSToolStripMenuItem.Enabled = true;
                     AddUserToolStripMenuItem.Enabled = true;
                     RepairDBToolStripMenuItem.Enabled = true;
                 }
-                EvalJSToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
-                    MongoDbAction.ActionType.MiscEvalJs);
+                if (roles.Count == 0)
+                {
+                    EvalJSToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    EvalJSToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
+                        MongoDbAction.ActionType.MiscEvalJs);
+                }
+                
             }
             //备份数据库
             DumpDatabaseToolStripMenuItem.Enabled = true;
@@ -355,6 +365,7 @@ namespace MongoCola
                 {
                     contextMenuStripMain.Items.Add(DelMongoDBToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(CreateMongoCollectionToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(CopyDatabasetoolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(AddUserToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(AddDBCustomeRoleStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(EvalJSToolStripMenuItem.Clone());

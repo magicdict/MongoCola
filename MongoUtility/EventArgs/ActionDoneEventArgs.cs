@@ -7,6 +7,6 @@
             Message = message;
         }
 
-        public string Message { get; }
+        public string Message { get; set; }
     }
 }

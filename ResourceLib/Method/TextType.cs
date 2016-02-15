@@ -198,6 +198,8 @@
         CollectionStopAutoRefresh,
 
         //Index
+        CopyIndex,
+
         IndexAsce,
         IndexDesc,
         IndexNoSort,

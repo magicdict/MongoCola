@@ -316,6 +316,15 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     获得当前数据集
+        /// </summary>
+        /// <returns></returns>
+        public static MongoCollection GetCurrentJavaScript()
+        {
+            return GetMongoJavaScript(GetCurrentDataBase());
+        }
+
+        /// <summary>
         ///     当前数据集是否为Capped
         /// </summary>
         /// <returns></returns>
@@ -545,6 +554,21 @@ namespace MongoUtility.Core
                 {
                     rtnMongoCollection = mongoDb.GetCollection(strPathArray[(int) EnumMgr.PathLevel.Collection]);
                 }
+            }
+            return rtnMongoCollection;
+        }
+
+        /// <summary>
+        ///     获得JavaScript数据集
+        /// </summary>
+        /// <param name="mongoDb"></param>
+        /// <returns></returns>
+        public static MongoCollection GetMongoJavaScript(MongoDatabase mongoDb)
+        {
+            MongoCollection rtnMongoCollection = null;
+            if (mongoDb != null)
+            {
+                rtnMongoCollection = mongoDb.GetCollection("system.js");
             }
             return rtnMongoCollection;
         }

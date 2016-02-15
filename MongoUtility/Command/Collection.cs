@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -295,6 +296,46 @@ namespace MongoUtility.Command
             ///     Partial Indexes 的条件
             /// </summary>
             public string PartialCondition;
+        }
+
+        /// <summary>
+        /// 复制表
+        /// </summary>
+        /// <param name="fromDb">数据来源</param>
+        /// <param name="toDb">数据去向</param>
+        /// <param name="collectionName">表名</param>
+        /// <param name="isIndex">是否连同索引一起复制</param>
+        /// <returns></returns>
+        public static Boolean CopyCollection(MongoDatabase fromDb, MongoDatabase toDb, String collectionName,
+            Boolean isIndex)
+        {
+            try
+            {
+                var fromCollection = fromDb.GetCollection(collectionName);
+                var toCollection = toDb.GetCollection(collectionName);
+                toCollection.RemoveAll();
+                var result = toCollection.InsertBatch(fromCollection.FindAll()).ToList();
+                if (isIndex)
+                {
+                    //toCollection.DropAllIndexes();
+                    //foreach (var index in fromCollection.GetIndexes())
+                    //{
+                    //    toCollection.CreateIndex(index.)
+                    //}
+                }
+                return result.Count > 0 && (result[0].Response.Contains("ok") && result[0].Response["ok"] == 1);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            //var result = toDb.RunCommand(new CommandDocument()
+            //{
+            //    {"cloneCollection", dbName + "." + collectionName},
+            //    {"from", fromDb},
+            //    {"copyIndexes", isIndex}
+            //});
+            //return result.Response.Contains("ok") && result.Response["ok"] == 1;
         }
     }
 }

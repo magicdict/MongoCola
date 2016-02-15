@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoUtility.Aggregation;
@@ -166,17 +167,19 @@ namespace MongoGUICtl.Aggregation
             Controls.Clear();
             Controls.Add(btnSelectAll);
             Controls.Add(btnUnSelectAll);
-
-            foreach (var queryFieldItem in _mQueryFieldList)
+            var i = 0;
+            foreach (var queryFieldItem in _mQueryFieldList.OrderBy(info=>info.ColName))
             {
                 //动态加载控件
-                var ctrItem = new CtlFieldInfo();
-                ctrItem.Mode = FieldListMode;
-                ctrItem.Name = queryFieldItem.ColName;
-                ctrItem.Location = conditionPos;
-                ctrItem.IsIdProtect = IsIdProtect;
-                ctrItem.QueryFieldItem = queryFieldItem;
-                ctrItem.Width = 450;
+                var ctrItem = new CtlFieldInfo
+                {
+                    Mode = FieldListMode,
+                    Name = queryFieldItem.ColName,
+                    Location = conditionPos,
+                    IsIdProtect = IsIdProtect,
+                    QueryFieldItem = queryFieldItem,
+                    Width = 450,
+                };
                 Controls.Add(ctrItem);
                 //纵向位置的累加
                 conditionPos.Y += ctrItem.Height;

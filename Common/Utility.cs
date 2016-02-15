@@ -71,7 +71,7 @@ namespace Common
                     unitOrder++;
                 }
             }
-            return $"{tempSize:F2}" + " " + unit[unitOrder];
+            return tempSize.ToString("F2") + " " + unit[unitOrder]; //$"{tempSize:F2}" + " " + unit[unitOrder];
         }
 
         /// <summary>

@@ -31,8 +31,9 @@
   <Main_Menu_Operation_Server_Properties>服务器属性</Main_Menu_Operation_Server_Properties>
 
   <Main_Menu_Operation_Database>数据库</Main_Menu_Operation_Database>
-  <Main_Menu_Operation_Database_DelDB>删除数据库</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddDC>添加数据集</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_CopyDB>复制数据库</Main_Menu_Operation_Database_CopyDB>
+  <Main_Menu_Operation_Database_DelDB>删除数据库</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddUser>添加用户</Main_Menu_Operation_Database_AddUser>
   <Main_Menu_Operation_Database_DelUser>删除用户</Main_Menu_Operation_Database_DelUser>
   <Main_Menu_Operation_Database_EvalJs>实行JavaScript</Main_Menu_Operation_Database_EvalJs>
@@ -419,4 +420,6 @@
   <COLLECTION_NAME_USER>用户列表</COLLECTION_NAME_USER>
   <COLLECTION_NAME_ROLE>角色</COLLECTION_NAME_ROLE>
   <COLLECTION_NAME_SYSTEM_PROFILE>日志</COLLECTION_NAME_SYSTEM_PROFILE>
+
+  <CopyIndex>复制索引</CopyIndex>
 </Language>

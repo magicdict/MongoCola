@@ -59,39 +59,39 @@ namespace MongoGUIView
             // 
             // tabDataShower
             // 
-            this.tabDataShower.Size = new System.Drawing.Size(917, 391);
+            this.tabDataShower.Size = new System.Drawing.Size(917, 366);
             // 
             // tabTreeView
             // 
-            this.tabTreeView.Size = new System.Drawing.Size(909, 366);
+            this.tabTreeView.Size = new System.Drawing.Size(909, 340);
             // 
             // tabTableView
             // 
-            this.tabTableView.Size = new System.Drawing.Size(909, 366);
+            this.tabTableView.Size = new System.Drawing.Size(909, 340);
             // 
             // trvData
             // 
-            this.trvData.Size = new System.Drawing.Size(903, 360);
+            this.trvData.Size = new System.Drawing.Size(903, 334);
             // 
             // lstData
             // 
-            this.lstData.Size = new System.Drawing.Size(903, 360);
+            this.lstData.Size = new System.Drawing.Size(903, 334);
             this.lstData.SelectedIndexChanged += new System.EventHandler(this.lstData_SelectedIndexChanged);
             // 
             // tabTextView
             // 
-            this.tabTextView.Size = new System.Drawing.Size(909, 366);
+            this.tabTextView.Size = new System.Drawing.Size(909, 340);
             // 
             // txtData
             // 
-            this.txtData.Size = new System.Drawing.Size(903, 360);
+            this.txtData.Size = new System.Drawing.Size(903, 334);
             // 
             // toolStripContainer1
             // 
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(917, 391);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(917, 366);
             // 
             // NewDocumentStripButton
             // 
@@ -106,7 +106,7 @@ namespace MongoGUIView
             // DelSelectRecordToolStripButton
             // 
             this.DelSelectRecordToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DelSelectRecordToolStripButton.Image = global::ResourceLib.Properties.Resources.DeleteDoc;
+            this.DelSelectRecordToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DelSelectRecordToolStripButton.Image")));
             this.DelSelectRecordToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DelSelectRecordToolStripButton.Name = "DelSelectRecordToolStripButton";
             this.DelSelectRecordToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -152,7 +152,7 @@ namespace MongoGUIView
             // 
             // NewDocumentToolStripMenuItem
             // 
-            this.NewDocumentToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.NewDocument;
+            this.NewDocumentToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("NewDocumentToolStripMenuItem.Image")));
             this.NewDocumentToolStripMenuItem.Name = "NewDocumentToolStripMenuItem";
             this.NewDocumentToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.NewDocumentToolStripMenuItem.Text = "Add Document";
@@ -160,7 +160,7 @@ namespace MongoGUIView
             // 
             // OpenDocInEditorToolStripMenuItem
             // 
-            this.OpenDocInEditorToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.Edit;
+            this.OpenDocInEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OpenDocInEditorToolStripMenuItem.Image")));
             this.OpenDocInEditorToolStripMenuItem.Name = "OpenDocInEditorToolStripMenuItem";
             this.OpenDocInEditorToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.OpenDocInEditorToolStripMenuItem.Text = "Open Doc In Editor";
@@ -225,7 +225,7 @@ namespace MongoGUIView
             this.PasteElementToolStripMenuItem.Text = "Paste Element";
             this.PasteElementToolStripMenuItem.Click += new System.EventHandler(this.PasteElementToolStripMenuItem_Click);
             // 
-            // ctlDocumentView
+            // CtlDocumentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

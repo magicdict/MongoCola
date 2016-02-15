@@ -31,8 +31,9 @@
   <Main_Menu_Operation_Server_Properties>属性</Main_Menu_Operation_Server_Properties>
 
   <Main_Menu_Operation_Database>データベース</Main_Menu_Operation_Database>
-  <Main_Menu_Operation_Database_DelDB>削除</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddDC>コレクションの新規</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_CopyDB>複製データベース</Main_Menu_Operation_Database_CopyDB>
+  <Main_Menu_Operation_Database_DelDB>削除</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddUser>ユーザーの新規</Main_Menu_Operation_Database_AddUser>
   <Main_Menu_Operation_Database_DelUser>ユーザーの削除</Main_Menu_Operation_Database_DelUser>
   <Main_Menu_Operation_Database_EvalJs>JavaScript実行</Main_Menu_Operation_Database_EvalJs>
@@ -412,4 +413,6 @@
   <COLLECTION_NAME_USER>ユーザーリスト</COLLECTION_NAME_USER>
   <COLLECTION_NAME_ROLE>ロール</COLLECTION_NAME_ROLE>
   <COLLECTION_NAME_SYSTEM_PROFILE>ログ</COLLECTION_NAME_SYSTEM_PROFILE>
+
+  <CopyIndex>複製索引</CopyIndex>
 </Language>

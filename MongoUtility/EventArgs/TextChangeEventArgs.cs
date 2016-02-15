@@ -11,8 +11,8 @@ namespace MongoUtility.EventArgs
             NewString = newString;
         }
 
-        public string OldString { get; }
+        public string OldString { get; set; }
 
-        public string NewString { get; }
+        public string NewString { get; set; }
     }
 }

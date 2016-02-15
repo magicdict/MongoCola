@@ -373,7 +373,7 @@ namespace MongoGUIView
                             //if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
                         {
                             var result = Operater.DropDocument(RuntimeMongoDbContext.GetCurrentCollection(),
-                                item.Tag);
+                                item.Tag.ToString());
                             if (!string.IsNullOrEmpty(result))
                             {
                                 strErrormsg = "Delete Error Key is:" + item.Tag;
@@ -392,7 +392,7 @@ namespace MongoGUIView
                         //    ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
                     {
                         var result = Operater.DropDocument(RuntimeMongoDbContext.GetCurrentCollection(),
-                            trvData.DatatreeView.SelectedNode.Tag);
+                            trvData.DatatreeView.SelectedNode.Tag.ToString());
                         if (!string.IsNullOrEmpty(result))
                         {
                             strErrormsg = "Delete Error Key is:" + trvData.DatatreeView.SelectedNode.Tag;

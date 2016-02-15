@@ -37,17 +37,19 @@ namespace ResourceLib.UI
         public CtlFilePicker()
         {
             InitializeComponent();
+            FileFilter = String.Empty;
+            InitFileName = String.Empty;
         }
 
         /// <summary>
         ///     文件过滤
         /// </summary>
-        public string FileFilter { get; set; } = string.Empty;
+        public string FileFilter { get; set; } 
 
         /// <summary>
         ///     初始文件名称
         /// </summary>
-        public string InitFileName { get; set; } = string.Empty;
+        public string InitFileName { get; set; } 
 
         /// <summary>
         ///     选中路径

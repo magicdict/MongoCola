@@ -114,6 +114,7 @@ namespace MongoCola
             this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plugInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigfileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MultiLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,7 +128,6 @@ namespace MongoCola
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.MultiLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -492,6 +492,7 @@ namespace MongoCola
             // 
             this.CopyDatabasetoolStripMenuItem.Name = "CopyDatabasetoolStripMenuItem";
             this.CopyDatabasetoolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.CopyDatabasetoolStripMenuItem.Tag = "Main_Menu_Operation_Database_CopyDB";
             this.CopyDatabasetoolStripMenuItem.Text = "Copy Database";
             this.CopyDatabasetoolStripMenuItem.Click += new System.EventHandler(this.CopyDatabasetoolStripMenuItem_Click);
             // 
@@ -825,6 +826,13 @@ namespace MongoCola
             this.ConfigfileMenuItem.Text = "ConfigFile";
             this.ConfigfileMenuItem.Click += new System.EventHandler(this.ConfigfileMenuItem_Click);
             // 
+            // MultiLanguageToolStripMenuItem
+            // 
+            this.MultiLanguageToolStripMenuItem.Name = "MultiLanguageToolStripMenuItem";
+            this.MultiLanguageToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.MultiLanguageToolStripMenuItem.Text = "MultiLanguage";
+            this.MultiLanguageToolStripMenuItem.Click += new System.EventHandler(this.MultiLanguageToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
@@ -933,13 +941,6 @@ namespace MongoCola
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // MultiLanguageToolStripMenuItem
-            // 
-            this.MultiLanguageToolStripMenuItem.Name = "MultiLanguageToolStripMenuItem";
-            this.MultiLanguageToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.MultiLanguageToolStripMenuItem.Text = "MultiLanguage";
-            this.MultiLanguageToolStripMenuItem.Click += new System.EventHandler(this.MultiLanguageToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -950,7 +951,7 @@ namespace MongoCola
             this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.toolStripMain);
             this.Controls.Add(this.menuStripMain);
-            this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MongoCola";

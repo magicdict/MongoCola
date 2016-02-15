@@ -84,7 +84,8 @@ namespace MongoGUICtl.Aggregation
                         txtProject.Visible = false;
                         cmbSort.Visible = true;
                         cmbSort.Left = chkIsShow.Left + chkIsShow.Width + 10;
-                        NumIndexOrder.Visible = false;
+                        NumIndexOrder.Visible = true;
+                        NumIndexOrder.Left = cmbSort.Left + cmbSort.Width + 10;
                         break;
                     case FieldMode.Aggregation:
                         chkIsShow.Visible = true;

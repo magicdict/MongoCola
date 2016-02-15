@@ -31,8 +31,9 @@
   <Main_Menu_Operation_Server_Properties>服務器屬性</Main_Menu_Operation_Server_Properties>
 
   <Main_Menu_Operation_Database>數據庫</Main_Menu_Operation_Database>
-  <Main_Menu_Operation_Database_DelDB>刪除數據庫</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddDC>新增數據集</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_CopyDB>複製數據庫</Main_Menu_Operation_Database_CopyDB>
+  <Main_Menu_Operation_Database_DelDB>刪除數據庫</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddUser>新增用戶</Main_Menu_Operation_Database_AddUser>
   <Main_Menu_Operation_Database_DelUser>刪除用戶</Main_Menu_Operation_Database_DelUser>
   <Main_Menu_Operation_Database_EvalJs>實行JavaScript</Main_Menu_Operation_Database_EvalJs>
@@ -414,4 +415,6 @@
   <COLLECTION_NAME_USER>用戶列表</COLLECTION_NAME_USER>
   <COLLECTION_NAME_ROLE>角色</COLLECTION_NAME_ROLE>
   <COLLECTION_NAME_SYSTEM_PROFILE>日志</COLLECTION_NAME_SYSTEM_PROFILE>
+
+  <CopyIndex>複製索引</CopyIndex>
 </Language>

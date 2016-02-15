@@ -75,11 +75,11 @@ namespace MongoCola
             serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
             MultiTabManger.AddView(serverStatusCtl, "Status");
 
-            var ctlShellCommandEditor = new CtlJsEditor();
-            ctlShellCommandEditor.IsFixedItem = true;
-            ctlShellCommandEditor.SelectObjectTag = "[ShellCommand]";
-            ctlShellCommandEditor.BindingMenu = commandShellToolStripMenuItem;
-            MultiTabManger.AddView(ctlShellCommandEditor, "ShellCommand");
+            //var ctlShellCommandEditor = new CtlJsEditor();
+            //ctlShellCommandEditor.IsFixedItem = true;
+            //ctlShellCommandEditor.SelectObjectTag = "[ShellCommand]";
+            //ctlShellCommandEditor.BindingMenu = commandShellToolStripMenuItem;
+            //MultiTabManger.AddView(ctlShellCommandEditor, "ShellCommand");
 
 
             //刷新
@@ -430,6 +430,7 @@ namespace MongoCola
                         break;
                     case ConstMgr.JavascriptTag:
                         MongoHelper.InitJavascript();
+                        //ViewJavascriptName();
                         break;
                     case ConstMgr.JavascriptDocTag:
                         ViewJavascript();
@@ -543,6 +544,45 @@ namespace MongoCola
         {
             MultiTabManger.RefreshSelectTab();
         }
+
+        #endregion
+
+        #region 临时添加treeview数据（js）
+
+        //private delegate void EventsHandlerAddJsName();
+
+        ///// <summary>
+        ///// 显示js数据
+        ///// </summary>
+        //private void ViewJavascriptName()
+        //{
+        //    if (trvsrvlst.InvokeRequired)
+        //    {
+        //        trvsrvlst.Invoke(new EventsHandlerAddJsName(ViewJavascriptName));
+        //    }
+        //    else
+        //    {
+        //        var node = trvsrvlst.SelectedNode;
+        //        if (node != null && node.Text == @"JavaScript")
+        //        {
+        //            node.Nodes.Clear();
+        //            var list = MongoHelper.GetJsNameList();
+        //            foreach (var name in list)
+        //            {
+        //                var jsNode = new TreeNode(name)
+        //                {
+        //                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
+        //                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
+        //                };
+        //                var jsTag = RuntimeMongoDbContext.SelectTagData;
+        //                jsNode.Tag = ConstMgr.JavascriptDocTag + ":" + jsTag + "/" + name;
+        //                node.Nodes.Add(jsNode);
+        //                RuntimeMongoDbContext.SelectObjectTag = jsNode.Tag.ToString();
+        //            }
+        //            trvsrvlst.Refresh();
+        //        }
+        //    }
+        //}
 
         #endregion
     }

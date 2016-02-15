@@ -89,6 +89,10 @@ namespace MongoGUICtl.ClientTree
                         //             ConstMgr.COLLECTION_NAME_JAVASCRIPT + "/" + doc.GetValue(ConstMgr.KEY_ID);
                         //    JsNode.Nodes.Add(js);
                         //}
+
+                        FillJavaScriptInfoToTreeNode(jsNode,
+                            GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName), mongoSvrKey, strDbName);
+
                         break;
                     default:
                         TreeNode mongoColNode;

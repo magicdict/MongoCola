@@ -12,6 +12,7 @@ using FunctionForm.Status;
 using FunctionForm.User;
 using MongoCola.Config;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoGUICtl.ClientTree;
 using MongoGUIView;
 using MongoUtility.Aggregation;
@@ -288,6 +289,8 @@ namespace MongoCola
             //MongoDBHelper.ExecuteMongoDBCommand("copyDatabase", MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase());
             //CommandDocument copy = new CommandDocument();
             //MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().RunCommand("copyDatabase");
+
+            Utility.OpenForm(new FrmCopyDataBase(), true, true);
         }
 
         /// <summary>
@@ -657,7 +660,7 @@ namespace MongoCola
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Collection];
+            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Collection + 1];
             var result = Operater.DelJavascript(strCollection);
             if (string.IsNullOrEmpty(result))
             {

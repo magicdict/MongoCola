@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Aggregation;
@@ -30,7 +31,11 @@ namespace MongoUtility.Command
             {
                 result = new CommandResult(ex.Result);
             }
-            return result.Response["err"] == BsonNull.Value ? string.Empty : result.Response["err"].ToString();
+            return  result.Response.Contains("ok")
+                    ? result.Response["ok"] == 1 ? String.Empty : "err"
+                    : "err";
+
+            //result.Response["err"] == BsonNull.Value ? string.Empty : result.Response["err"].ToString()
         }
 
         /// <summary>
@@ -45,26 +50,26 @@ namespace MongoUtility.Command
             //标准的JS库格式未知
             if (QueryHelper.IsExistByKey(jsName))
             {
-                var result = DropDocument(jsCol, (BsonString) jsName);
-                if (string.IsNullOrEmpty(result))
-                {
+                //var result = DropDocument(jsCol, (BsonString) jsName);
+                //if (string.IsNullOrEmpty(result))
+                //{
                     CommandResult resultCommand;
                     try
                     {
                         resultCommand = new CommandResult(
-                            jsCol.Insert(new BsonDocument().Add(ConstMgr.KeyId, jsName).Add("value", jsCode)).Response);
+                            jsCol.Save(new BsonDocument().Add(ConstMgr.KeyId, jsName).Add("value", BsonJavaScript.Create(jsCode))).Response);
                     }
                     catch (MongoCommandException ex)
                     {
                         resultCommand = new CommandResult(ex.Result);
                     }
-                    if (resultCommand.Response["err"] == BsonNull.Value)
+                    if (resultCommand.Response["ok"] == 1)
                     {
                         return string.Empty;
                     }
-                    return resultCommand.Response["err"].ToString();
-                }
-                return result;
+                return resultCommand.Response.Contains("err")?resultCommand.Response["err"].ToString():string.Empty;
+                //}
+                //return result;
             }
             return string.Empty;
         }
@@ -77,7 +82,7 @@ namespace MongoUtility.Command
         public static string DelJavascript(string jsName)
         {
             var jsCol = RuntimeMongoDbContext.GetCurrentCollection();
-            return QueryHelper.IsExistByKey(jsName) ? DropDocument(jsCol, (BsonString) jsName) : string.Empty;
+            return QueryHelper.IsExistByKey(jsName) ? DropJsDocument(jsCol, (BsonString) jsName) : string.Empty;
         }
 
         /// <summary>
@@ -88,18 +93,26 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static string LoadJavascript(string jsName, MongoCollection jsCol)
         {
-            return QueryHelper.IsExistByKey(jsName)
-                ? jsCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, jsName)).GetValue("value").ToString()
-                : string.Empty;
+            if (QueryHelper.IsExistByKey(jsName))
+            {
+                var js = jsCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, jsName)).GetValue("value").ToString();
+                return js.IndexOf("new ", StringComparison.Ordinal) != -1 ? js.Substring(20, js.Length - 22) : js;
+            }
+            else
+                return string.Empty;
+
+            //var js = delegate(IMongoQuery query)
+            //{ return jsCol.FindOneAs<BsonDocument>(query).GetValue("value").ToString();
+            //};
         }
 
         /// <summary>
-        ///     删除数据
+        ///     删除js数据
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <param name="strKey"></param>
         /// <returns></returns>
-        public static string DropDocument(MongoCollection mongoCol, object strKey)
+        public static string DropJsDocument(MongoCollection mongoCol, object strKey)
         {
             var result = new CommandResult(new BsonDocument());
             if (QueryHelper.IsExistByKey(strKey.ToString()))
@@ -115,6 +128,30 @@ namespace MongoUtility.Command
                 {
                     result = new CommandResult(ex.Result);
                 }
+            }
+            BsonElement err;
+            return !result.Response.TryGetElement("err", out err) ? string.Empty : err.ToString();
+        }
+
+        /// <summary>
+        /// 删除单条数据
+        /// </summary>
+        /// <param name="mongoCol">表对象</param>
+        /// <param name="objectId">ObjectId</param>
+        /// <returns></returns>
+        public static String DropDocument(MongoCollection mongoCol, String objectId)
+        {
+            CommandResult result;
+            try
+            {
+                result =
+                    new CommandResult(
+                        mongoCol.Remove(Query.EQ(ConstMgr.KeyId, ObjectId.Parse(objectId)), WriteConcern.Acknowledged)
+                            .Response);
+            }
+            catch (MongoCommandException ex)
+            {
+                result = new CommandResult(ex.Result);
             }
             BsonElement err;
             return !result.Response.TryGetElement("err", out err) ? string.Empty : err.ToString();

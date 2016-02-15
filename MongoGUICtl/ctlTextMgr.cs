@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Common;
 using MongoUtility.Command;
+using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
@@ -43,7 +44,7 @@ namespace MongoGUICtl
                     cmbJsList.Items.Add(item);
                 }
                 cmbJsList.SelectedIndexChanged +=
-                    (x, y) => { txtContext.Text = Operater.LoadJavascript(cmbJsList.Text, null); };
+                    (x, y) => { txtContext.Text = Operater.LoadJavascript(cmbJsList.Text, RuntimeMongoDbContext.GetCurrentJavaScript()); };
                 if (!GuiConfig.IsUseDefaultLanguage)
                 {
                     cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
