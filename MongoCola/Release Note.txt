@@ -52,10 +52,10 @@ CSharp Mongo Driver 2.2.3
 
 ##Ver 1.5(Beta2)  2015/02/15 @ Shanghai China 
 ###感谢的贡献 张鹏 zp11qm12#hotmail.com
-1.修复了collection中数据删除不掉的bug（id应强转为ObjectId）
-2.修改了ctlJsEditor界面，现可直接执行已经保存的javascript代码（我的团队需要这个功能）
-3.添加了复制数据库的功能（其实是复制表，目的是为了同步javascript代码）
-4.CSharp Mongo Driver 2.2.3
+1. 修复了collection中数据删除不掉的bug（id应强转为ObjectId）
+2. 修改了ctlJsEditor界面，现可直接执行已经保存的javascript代码（我的团队需要这个功能）
+3. 添加了复制数据库的功能（其实是复制表，目的是为了同步javascript代码）
+4. CSharp Mongo Driver 2.2.3
 
 ***
 
