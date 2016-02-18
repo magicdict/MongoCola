@@ -147,7 +147,7 @@ namespace MongoGUIView
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
                 opt.FileNameOpt = frm.Filename;
                 opt.IgnoreSubFolder = frm.IgnoreSubFolder;
-                Gfs.UpLoadFile(upfile.FileName, opt, null);
+                Gfs.UpLoadFile(upfile.FileName, opt, RuntimeMongoDbContext.GetCurrentDataBase());
                 RefreshGui();
             }
         }
@@ -232,7 +232,7 @@ namespace MongoGUIView
                     ];
             if (downfile.ShowDialog() == DialogResult.OK)
             {
-                Gfs.DownloadFile(downfile.FileName, strFileName, null);
+                Gfs.DownloadFile(downfile.FileName, strFileName, RuntimeMongoDbContext.GetCurrentDataBase());
             }
             RefreshGui();
         }
@@ -245,7 +245,7 @@ namespace MongoGUIView
             if (lstData.SelectedItems.Count == 1)
             {
                 var strFileName = lstData.SelectedItems[0].Text;
-                Gfs.OpenFile(strFileName, null);
+                Gfs.OpenFile(strFileName, RuntimeMongoDbContext.GetCurrentDataBase());
             }
         }
 
@@ -265,7 +265,7 @@ namespace MongoGUIView
             {
                 foreach (ListViewItem item in lstData.SelectedItems)
                 {
-                    Gfs.DelFile(item.Text, null);
+                    Gfs.DelFile(item.Text, RuntimeMongoDbContext.GetCurrentDataBase());
                 }
                 RefreshGui();
             }
