@@ -37,8 +37,8 @@ namespace ResourceLib.UI
         public CtlFilePicker()
         {
             InitializeComponent();
-            FileFilter = String.Empty;
-            InitFileName = String.Empty;
+            FileFilter = string.Empty;
+            InitFileName = string.Empty;
         }
 
         /// <summary>

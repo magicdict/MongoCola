@@ -32,7 +32,7 @@ namespace MongoUtility.Command
                 result = new CommandResult(ex.Result);
             }
             return  result.Response.Contains("ok")
-                    ? result.Response["ok"] == 1 ? String.Empty : "err"
+                    ? result.Response["ok"] == 1 ? string.Empty : "err"
                     : "err";
 
             //result.Response["err"] == BsonNull.Value ? string.Empty : result.Response["err"].ToString()
@@ -139,15 +139,30 @@ namespace MongoUtility.Command
         /// <param name="mongoCol">表对象</param>
         /// <param name="objectId">ObjectId</param>
         /// <returns></returns>
-        public static String DropDocument(MongoCollection mongoCol, String objectId)
+        public static string DropDocument(MongoCollection mongoCol, string objectId)
         {
             CommandResult result;
             try
             {
-                result =
-                    new CommandResult(
-                        mongoCol.Remove(Query.EQ(ConstMgr.KeyId, ObjectId.Parse(objectId)), WriteConcern.Acknowledged)
-                            .Response);
+                //有时候在序列化的过程中，objectId是由某个字段带上[id]特性客串的，所以无法转换为ObjectId对象
+                //这里先尝试转换，如果可以转换，则转换
+                ObjectId seekId;
+                if (ObjectId.TryParse(objectId, out seekId))
+                {
+                    //如果可以转换，则转换
+                    result =
+                        new CommandResult(
+                            mongoCol.Remove(Query.EQ(ConstMgr.KeyId, seekId), WriteConcern.Acknowledged)
+                                .Response);
+                }
+                else
+                {
+                    //不能转换则保持原状
+                    result =
+                        new CommandResult(
+                            mongoCol.Remove(Query.EQ(ConstMgr.KeyId, objectId), WriteConcern.Acknowledged)
+                                .Response);
+                }
             }
             catch (MongoCommandException ex)
             {

@@ -42,7 +42,7 @@ namespace MongoCola.Config
                 lblCurrentFont.Text = SystemManager.SystemConfig.UiFontFamily;
             }
             cmbLanguage.Items.Add(StringResource.LanguageEnglish);
-			String LanguagePath = Application.StartupPath + Path.DirectorySeparatorChar + "Language";
+            string LanguagePath = Application.StartupPath + Path.DirectorySeparatorChar + "Language";
 			if (Directory.Exists(LanguagePath))
             {
 					foreach (var fileName in Directory.GetFiles(LanguagePath))

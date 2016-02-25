@@ -210,7 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="clody.ico" />
-    <Content Include="Release Note.txt">
+    <Content Include="Release Note_Ver1.5.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Release Note_Ver1.X.txt">

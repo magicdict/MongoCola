@@ -157,7 +157,7 @@ namespace FunctionForm.Operation
         /// <summary>
         /// 选中的表名
         /// </summary>
-        List<String> _selectCollection = new List<String>();
+        List<string> _selectCollection = new List<string>();
 
         #endregion
 

@@ -19,7 +19,7 @@ namespace Common
             //假定Items的格式为Path：Value
             //Value为字符串（可以带有双引号）
             var yamlDoc = new StreamWriter(fileName, false, Encoding.UTF8);
-            items.Sort((x, y) => String.Compare(x, y, StringComparison.Ordinal));
+            items.Sort((x, y) => string.Compare(x, y, StringComparison.Ordinal));
             for (var i = 0; i < items.Count; i++)
             {
                 if (i == 0)

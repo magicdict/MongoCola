@@ -306,7 +306,7 @@ namespace MongoUtility.Command
         /// <param name="collectionName">表名</param>
         /// <param name="isIndex">是否连同索引一起复制</param>
         /// <returns></returns>
-        public static Boolean CopyCollection(MongoDatabase fromDb, MongoDatabase toDb, String collectionName,
+        public static Boolean CopyCollection(MongoDatabase fromDb, MongoDatabase toDb, string collectionName,
             Boolean isIndex)
         {
             try

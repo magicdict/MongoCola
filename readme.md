@@ -1,9 +1,9 @@
 #Release Note
        
-* 可执行版本[需要 NET Framework 4.6] 更新时间:2015/02/15 16:00
+* 可执行版本[需要 NET Framework 4.6] 更新时间:2015/02/18 16:00
 * 下载地址:  <http://files.cnblogs.com/files/TextEditor/ReleaseVersion.zip>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
-* 版本号：Ver 1.5(Beta2)
+* 版本号：Ver 1.5(Beta2.1)
  
 ***
 
@@ -17,7 +17,7 @@
 ## 运行时：
 * NET Framework 4.6
 * Mono 4.5
-* MongoDB 3.2.0 
+* MongoDB 3.2.3 
 
 ***
 
@@ -50,12 +50,13 @@ CSharp Mongo Driver 2.2.3
 
 # 发布履历
 
-##Ver 1.5(Beta2)  2015/02/15 @ Shanghai China 
-###感谢的贡献 张鹏 zp11qm12#hotmail.com
+##Ver 1.5(Beta2)  2015/02/17 @ Shanghai China 
+###感谢 张鹏 zp11qm12#hotmail.com 对于1，2，3点的贡献
 1. 修复了collection中数据删除不掉的bug（id应强转为ObjectId）
 2. 修改了ctlJsEditor界面，现可直接执行已经保存的javascript代码（我的团队需要这个功能）
 3. 添加了复制数据库的功能（其实是复制表，目的是为了同步javascript代码）
 4. CSharp Mongo Driver 2.2.3
+5. GFS修复重构后没有处理的功能
 
 ***
 
@@ -88,4 +89,4 @@ CSharp Mongo Driver 2.2.3
 4. Status里面的列无效，MMVP和WireTiger数据集状态不同
 5. MongoBin没有设置的时候，非Windows的时候，Cmd命令无法执行的问题
 6. User命令未完成
-7. JS文件等不应该保存到Mongo数据库中，如果没有获得客户允许的时候
+[Fixed]7. JS文件等不应该保存到Mongo数据库中，如果没有获得客户允许的时候（张鹏修复了这个问题）
