@@ -321,7 +321,7 @@ namespace MongoGUIView
 
         #region"管理：元素操作"
 
-        private readonly Func<BsonDocument> _getDocument = null;
+        public static Func<BsonDocument> _getDocument = null;
 
         /// <summary>
         ///     Add New Document

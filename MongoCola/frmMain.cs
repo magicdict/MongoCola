@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using FunctionForm.Connection;
+using FunctionForm.Operation;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
@@ -13,6 +10,10 @@ using PlugInPackage;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace MongoCola
 {
@@ -45,6 +46,13 @@ namespace MongoCola
             {
                 Text += " MONO";
             }
+            //新建文档的文档获得方法注入
+            CtlDocumentView._getDocument = () =>
+            {
+                var frmInsertDoc = new FrmNewDocument();
+                Utility.OpenForm(frmInsertDoc, false, true);
+                return frmInsertDoc.MBsonDocument;
+            };
         }
 
         /// <summary>
