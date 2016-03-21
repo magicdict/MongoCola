@@ -168,7 +168,7 @@ namespace MongoGUICtl.Aggregation
             Controls.Add(btnSelectAll);
             Controls.Add(btnUnSelectAll);
             var i = 0;
-            foreach (var queryFieldItem in _mQueryFieldList.OrderBy(info=>info.ColName))
+            foreach (var queryFieldItem in _mQueryFieldList.OrderBy(info => info.ColName))
             {
                 //动态加载控件
                 var ctrItem = new CtlFieldInfo
@@ -178,7 +178,7 @@ namespace MongoGUICtl.Aggregation
                     Location = conditionPos,
                     IsIdProtect = IsIdProtect,
                     QueryFieldItem = queryFieldItem,
-                    Width = 450,
+                    Width = 450
                 };
                 Controls.Add(ctrItem);
                 //纵向位置的累加

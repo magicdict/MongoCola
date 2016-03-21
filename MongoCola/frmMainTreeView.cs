@@ -301,7 +301,6 @@ namespace MongoCola
                     EvalJSToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
                         MongoDbAction.ActionType.MiscEvalJs);
                 }
-                
             }
             //备份数据库
             DumpDatabaseToolStripMenuItem.Enabled = true;

@@ -1,4 +1,8 @@
-﻿using Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using Common;
 using FunctionForm.Connection;
 using FunctionForm.Operation;
 using MongoGUIView;
@@ -10,10 +14,6 @@ using PlugInPackage;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace MongoCola
 {

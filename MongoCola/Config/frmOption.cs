@@ -50,10 +50,10 @@ namespace MongoCola.Config
                 lblCurrentFont.Text = SystemManager.SystemConfig.UiFontFamily;
             }
             cmbLanguage.Items.Add(StringResource.LanguageEnglish);
-            string LanguagePath = Application.StartupPath + Path.DirectorySeparatorChar + "Language";
-			if (Directory.Exists(LanguagePath))
+            var LanguagePath = Application.StartupPath + Path.DirectorySeparatorChar + "Language";
+            if (Directory.Exists(LanguagePath))
             {
-					foreach (var fileName in Directory.GetFiles(LanguagePath))
+                foreach (var fileName in Directory.GetFiles(LanguagePath))
                 {
                     cmbLanguage.Items.Add(new FileInfo(fileName).Name.Substring(0,
                         new FileInfo(fileName).Name.Length - 4));

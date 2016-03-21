@@ -77,7 +77,7 @@ namespace MongoGUIView
                 if (_isElement)
                 {
                     ElementHelper.ModifyElement(_fullPath, AddBsonElement.GetElement().Value,
-                        (BsonElement)_selectNode.Tag,
+                        (BsonElement) _selectNode.Tag,
                         RuntimeMongoDbContext.CurrentDocument,
                         RuntimeMongoDbContext.GetCurrentCollection());
                     //元素的场合，Tag直接放入元素
@@ -93,7 +93,6 @@ namespace MongoGUIView
                 _selectNode.Text = string.IsNullOrEmpty(AddBsonElement.GetElement().Name)
                     ? string.Empty
                     : AddBsonElement.GetElement().Name;
-
             }
             else
             {

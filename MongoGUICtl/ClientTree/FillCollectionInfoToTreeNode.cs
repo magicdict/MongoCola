@@ -407,7 +407,7 @@ namespace MongoGUICtl.ClientTree
         /// <param name="strDbName"></param>
         /// <returns></returns>
         public static void FillJavaScriptInfoToTreeNode(TreeNode jsNode, IMongoCollection<BsonDocument> col,
-            string mongoConnSvrKey,string strDbName)
+            string mongoConnSvrKey, string strDbName)
         {
             var tag = ConstMgr.JavascriptDocTag + ":" + mongoConnSvrKey + "/" + strDbName + "/" +
                       col.CollectionNamespace.CollectionName;
@@ -415,9 +415,9 @@ namespace MongoGUICtl.ClientTree
             var db = RuntimeMongoDbContext.GetMongoDBBySvrPath(tag, server);
             MongoCollection mongoJsCol = db.GetCollection(ConstMgr.CollectionNameJavascript);
             var list = mongoJsCol.FindAllAs<BsonDocument>()
-                    .Select(item => item.GetValue(ConstMgr.KeyId).ToString())
-                    .OrderBy(item => item)
-                    .ToList();
+                .Select(item => item.GetValue(ConstMgr.KeyId).ToString())
+                .OrderBy(item => item)
+                .ToList();
 
             foreach (var name in list)
             {

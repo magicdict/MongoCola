@@ -168,7 +168,7 @@ namespace ResourceLib.Method
         /// <param name="controls"></param>
         public static void Translateform(ToolStripItemCollection controls)
         {
-			if (IsUseDefaultLanguage) return;
+            if (IsUseDefaultLanguage) return;
             foreach (ToolStripItem menuItem in controls)
             {
                 if (menuItem.GetType().FullName == typeof (ToolStripSeparator).FullName) continue;
@@ -199,7 +199,7 @@ namespace ResourceLib.Method
         /// <param name="controls"></param>
         public static void Translateform(Control.ControlCollection controls)
         {
-			if (IsUseDefaultLanguage) return;
+            if (IsUseDefaultLanguage) return;
             var display = string.Empty;
             foreach (Control ctrlItem in controls)
             {

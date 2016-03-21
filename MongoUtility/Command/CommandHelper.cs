@@ -237,7 +237,6 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="mongoCmd"></param>
         /// <param name="mongoDb"></param>

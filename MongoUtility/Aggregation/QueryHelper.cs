@@ -181,7 +181,7 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        /// 全文检索
+        ///     全文检索
         /// </summary>
         /// <param name="key"></param>
         /// <param name="caseSensitive"></param>

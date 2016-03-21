@@ -49,6 +49,7 @@ namespace MongoCola.Config
         ///     DateTime UTC
         /// </summary>
         public bool IsUtc { set; get; }
+
         /// <summary>
         ///     数字使用K系统表示
         /// </summary>

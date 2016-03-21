@@ -1,24 +1,15 @@
 ﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using Common;
-using ICSharpCode.TextEditor.Document;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.Properties;
-using ResourceLib.UI;
 
 namespace MongoGUIView
 {
@@ -54,8 +45,8 @@ namespace MongoGUIView
 //            }
 //            txtEditJavaScript.GotFocus += (x, y) => { RuntimeMongoDbContext.SelectObjectTag = StrDBtag; };
 
-            
-             if (!string.IsNullOrEmpty(JsName))
+
+            if (!string.IsNullOrEmpty(JsName))
             {
                 txtEditJavaScript.Text = Operater.LoadJavascript(JsName, RuntimeMongoDbContext.GetCurrentCollection());
             }
@@ -89,7 +80,8 @@ namespace MongoGUIView
         {
             if (!string.IsNullOrEmpty(JsName))
             {
-                var str = Operater.SaveEditorJavascript(JsName, txtEditJavaScript.Text, RuntimeMongoDbContext.GetCurrentCollection());
+                var str = Operater.SaveEditorJavascript(JsName, txtEditJavaScript.Text,
+                    RuntimeMongoDbContext.GetCurrentCollection());
                 if (string.IsNullOrEmpty(str))
                     txtEvalJavaScript.Text = "保存成功\r\n";
             }
@@ -148,7 +140,7 @@ namespace MongoGUIView
         }
 
         /// <summary>
-        /// 打开文件夹路径
+        ///     打开文件夹路径
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -162,7 +154,7 @@ namespace MongoGUIView
         }
 
         /// <summary>
-        /// 执行js
+        ///     执行js
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -170,10 +162,10 @@ namespace MongoGUIView
         {
             var mongoDb = RuntimeMongoDbContext.GetCurrentDataBase();
             var js = new BsonJavaScript(txtParameter.Text);
-            
+
             try
             {
-                var args = new EvalArgs { Code = js };
+                var args = new EvalArgs {Code = js};
                 var result = mongoDb.Eval(args);
                 txtEvalJavaScript.Text = ToJson(result);
             }
@@ -184,7 +176,7 @@ namespace MongoGUIView
         }
 
         /// <summary>
-        /// 快捷键
+        ///     快捷键
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -193,7 +185,7 @@ namespace MongoGUIView
         }
 
         /// <summary>
-        /// 快捷键
+        ///     快捷键
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -210,26 +202,28 @@ namespace MongoGUIView
             string result;
             using (var stringWriter = new StringWriter())
             {
-                using (var mJsonWriter = new JsonWriter(stringWriter,new JsonWriterSettings(){}))
+                using (var mJsonWriter = new JsonWriter(stringWriter, new JsonWriterSettings()))
                 {
-                    BsonSerializer.Serialize<T>(mJsonWriter, obj, null);
+                    BsonSerializer.Serialize(mJsonWriter, obj, null);
                 }
                 result = stringWriter.ToString();
             }
             return result;
         }
+
         #endregion
 
         #region 实现窗体内的控件拖动
+
         //用法：在Form初始化或者Form_Load时先执行
         //DragComponent a = new DragComponent();
         //a.initProperty(groupBox1);
         //将界面groupBox1上的所有控件都绑定MyMouseDown、MyMouseLeave、MyMouseMove事件。 
 
         private Control control;
-        const int Band = 5;
-        const int MinWidth = 10;
-        const int MinHeight = 10;
+        private const int Band = 5;
+        private const int MinWidth = 10;
+        private const int MinHeight = 10;
         private EnumMousePointPosition m_MousePointPosition;
         private Point p, p1;
 
@@ -247,7 +241,7 @@ namespace MongoGUIView
             MouseDrag = 9 // '鼠标拖动
         }
 
-        private void MyMouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void MyMouseDown(object sender, MouseEventArgs e)
         {
             p.X = e.X;
             p.Y = e.Y;
@@ -255,13 +249,13 @@ namespace MongoGUIView
             p1.Y = e.Y;
         }
 
-        private void MyMouseLeave(object sender, System.EventArgs e)
+        private void MyMouseLeave(object sender, EventArgs e)
         {
             m_MousePointPosition = EnumMousePointPosition.MouseSizeNone;
             control.Cursor = Cursors.Arrow;
         }
 
-        private EnumMousePointPosition MousePointPosition(Size size, System.Windows.Forms.MouseEventArgs e)
+        private EnumMousePointPosition MousePointPosition(Size size, MouseEventArgs e)
         {
             return (e.X >= -1*Band) | (e.X <= size.Width) | (e.Y >= -1*Band) | (e.Y <= size.Height)
                 ? (e.X < Band
@@ -284,9 +278,9 @@ namespace MongoGUIView
                 : EnumMousePointPosition.MouseSizeNone;
         }
 
-        private void MyMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void MyMouseMove(object sender, MouseEventArgs e)
         {
-            Control lCtrl = (sender as Control);
+            var lCtrl = sender as Control;
             if (e.Button == MouseButtons.Left)
             {
                 switch (m_MousePointPosition)
@@ -352,35 +346,35 @@ namespace MongoGUIView
                 switch (m_MousePointPosition) //'改变光标
                 {
                     case EnumMousePointPosition.MouseSizeNone:
-                        control.Cursor = Cursors.Arrow;       //'箭头
+                        control.Cursor = Cursors.Arrow; //'箭头
                         break;
 
                     case EnumMousePointPosition.MouseDrag:
-                        control.Cursor = Cursors.SizeAll;     //'四方向
+                        control.Cursor = Cursors.SizeAll; //'四方向
                         break;
                     case EnumMousePointPosition.MouseSizeBottom:
-                        control.Cursor = Cursors.SizeNS;      //'南北
+                        control.Cursor = Cursors.SizeNS; //'南北
                         break;
                     case EnumMousePointPosition.MouseSizeTop:
-                        control.Cursor = Cursors.SizeNS;      //'南北
+                        control.Cursor = Cursors.SizeNS; //'南北
                         break;
                     case EnumMousePointPosition.MouseSizeLeft:
-                        control.Cursor = Cursors.SizeWE;      //'东西
+                        control.Cursor = Cursors.SizeWE; //'东西
                         break;
                     case EnumMousePointPosition.MouseSizeRight:
-                        control.Cursor = Cursors.SizeWE;      //'东西
+                        control.Cursor = Cursors.SizeWE; //'东西
                         break;
                     case EnumMousePointPosition.MouseSizeBottomLeft:
-                        control.Cursor = Cursors.SizeNESW;    //'东北到南西
+                        control.Cursor = Cursors.SizeNESW; //'东北到南西
                         break;
                     case EnumMousePointPosition.MouseSizeBottomRight:
-                        control.Cursor = Cursors.SizeNWSE;    //'东南到西北
+                        control.Cursor = Cursors.SizeNWSE; //'东南到西北
                         break;
                     case EnumMousePointPosition.MouseSizeTopLeft:
-                        control.Cursor = Cursors.SizeNWSE;    //'东南到西北
+                        control.Cursor = Cursors.SizeNWSE; //'东南到西北
                         break;
                     case EnumMousePointPosition.MouseSizeTopRight:
-                        control.Cursor = Cursors.SizeNESW;    //'东北到南西
+                        control.Cursor = Cursors.SizeNESW; //'东北到南西
                         break;
                     default:
                         break;
@@ -391,25 +385,22 @@ namespace MongoGUIView
         public void InitProperty(Control ctl)
         {
             control = ctl;
-            for (int i = 0; i < control.Controls.Count; i++)
+            for (var i = 0; i < control.Controls.Count; i++)
             {
-                control.Controls[i].MouseDown += new System.Windows.Forms.MouseEventHandler(MyMouseDown);
-                control.Controls[i].MouseLeave += new System.EventHandler(MyMouseLeave);
-                control.Controls[i].MouseMove += new System.Windows.Forms.MouseEventHandler(MyMouseMove);
+                control.Controls[i].MouseDown += MyMouseDown;
+                control.Controls[i].MouseLeave += MyMouseLeave;
+                control.Controls[i].MouseMove += MyMouseMove;
             }
         }
 
         public void InitProperty()
         {
             control = this;
-            groupEditJavaScript.MouseDown += new System.Windows.Forms.MouseEventHandler(MyMouseDown);
-            groupEditJavaScript.MouseLeave += new System.EventHandler(MyMouseLeave);
-            groupEditJavaScript.MouseMove += new System.Windows.Forms.MouseEventHandler(MyMouseMove);
+            groupEditJavaScript.MouseDown += MyMouseDown;
+            groupEditJavaScript.MouseLeave += MyMouseLeave;
+            groupEditJavaScript.MouseMove += MyMouseMove;
         }
 
-
         #endregion
-
-
     }
 }

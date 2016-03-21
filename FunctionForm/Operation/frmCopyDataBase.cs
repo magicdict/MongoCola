@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
-using ResourceLib.Properties;
-using System.Threading;
 
 namespace FunctionForm.Operation
 {
     public partial class FrmCopyDataBase : Form
     {
+        #region 变量
+
+        /// <summary>
+        ///     选中的表名
+        /// </summary>
+        private readonly List<string> _selectCollection = new List<string>();
+
+        #endregion
+
         public FrmCopyDataBase()
         {
             InitializeComponent();
@@ -25,15 +28,16 @@ namespace FunctionForm.Operation
 
         #region 委托操作
 
-        private delegate void EventsHandlerEnable(Boolean isEnable);
+        private delegate void EventsHandlerEnable(bool isEnable);
+
         /// <summary>
-        /// 按钮限制
+        ///     按钮限制
         /// </summary>
         /// <param name="isEnable"></param>
-        private void ChangeEnable(Boolean isEnable)
+        private void ChangeEnable(bool isEnable)
         {
             if (InvokeRequired)
-                Invoke(new EventsHandlerEnable(ChangeEnable), new object[] {isEnable});
+                Invoke(new EventsHandlerEnable(ChangeEnable), isEnable);
             else
             {
                 cmdCancel.Enabled = isEnable;
@@ -44,14 +48,15 @@ namespace FunctionForm.Operation
         }
 
         private delegate void EventsHandlerTreeNodeBind(TreeNode treeNode);
+
         /// <summary>
-        /// 来源表数据绑定
+        ///     来源表数据绑定
         /// </summary>
         /// <param name="treeNode"></param>
         private void TreeNodeBind(TreeNode treeNode)
         {
             if (treeViewCollection.InvokeRequired)
-                treeViewCollection.Invoke(new EventsHandlerTreeNodeBind(TreeNodeBind), new object[] {treeNode});
+                treeViewCollection.Invoke(new EventsHandlerTreeNodeBind(TreeNodeBind), treeNode);
             else
             {
                 treeViewCollection.Nodes.Clear();
@@ -61,15 +66,16 @@ namespace FunctionForm.Operation
         }
 
         private delegate void EventsHandlerComboxBind(ComboBox comboBox, object data);
+
         /// <summary>
-        /// combox数据绑定
+        ///     combox数据绑定
         /// </summary>
         /// <param name="comboBox"></param>
         /// <param name="data"></param>
         private void ComboxBind(ComboBox comboBox, object data)
         {
             if (comboBox.InvokeRequired)
-                comboBox.Invoke(new EventsHandlerComboxBind(ComboxBind), new object[] {comboBox, data});
+                comboBox.Invoke(new EventsHandlerComboxBind(ComboxBind), comboBox, data);
             else
             {
                 var bs = new BindingSource {DataSource = data};
@@ -81,14 +87,15 @@ namespace FunctionForm.Operation
         }
 
         private delegate void EventsHandlerChangeProgress(int value);
+
         /// <summary>
-        /// 进度条显示
+        ///     进度条显示
         /// </summary>
         /// <param name="value"></param>
         private void ChangeProgress(int value)
         {
             if (progressBar1.InvokeRequired)
-                progressBar1.Invoke(new EventsHandlerChangeProgress(ChangeProgress), new object[] {value});
+                progressBar1.Invoke(new EventsHandlerChangeProgress(ChangeProgress), value);
             else
                 progressBar1.Value = value;
         }
@@ -98,7 +105,7 @@ namespace FunctionForm.Operation
         #region 线程
 
         /// <summary>
-        /// 数据绑定
+        ///     数据绑定
         /// </summary>
         private void DataBind()
         {
@@ -116,7 +123,6 @@ namespace FunctionForm.Operation
                 TreeNodeBind(treeNode);
 
                 ComboxBind(comboBoxServer, RuntimeMongoDbContext.MongoConnSvrLst);
-
             }
             catch (Exception exception)
             {
@@ -127,7 +133,7 @@ namespace FunctionForm.Operation
         }
 
         /// <summary>
-        /// 复制
+        ///     复制
         /// </summary>
         private void Copy(MongoDatabase toDb)
         {
@@ -135,7 +141,7 @@ namespace FunctionForm.Operation
             try
             {
                 //获取选中的表
-                for (int index = 0; index < _selectCollection.Count; index++)
+                for (var index = 0; index < _selectCollection.Count; index++)
                 {
                     var name = _selectCollection[index];
                     Operater.CopyCollection(RuntimeMongoDbContext.GetCurrentDataBase(), toDb, name, false);
@@ -152,16 +158,8 @@ namespace FunctionForm.Operation
 
         #endregion
 
-        #region 变量
-
-        /// <summary>
-        /// 选中的表名
-        /// </summary>
-        List<string> _selectCollection = new List<string>();
-
-        #endregion
-
         #region 控件
+
         private void FrmCopyDataBase_Load(object sender, EventArgs e)
         {
             if (!GuiConfig.IsUseDefaultLanguage)
@@ -177,11 +175,11 @@ namespace FunctionForm.Operation
                 cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             }
-            new Thread(new ThreadStart(DataBind)) { IsBackground = true }.Start();
+            new Thread(DataBind) {IsBackground = true}.Start();
         }
 
         /// <summary>
-        /// Cancel
+        ///     Cancel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -191,7 +189,7 @@ namespace FunctionForm.Operation
         }
 
         /// <summary>
-        /// 选中
+        ///     选中
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -204,7 +202,7 @@ namespace FunctionForm.Operation
         }
 
         /// <summary>
-        /// 选中子节点
+        ///     选中子节点
         /// </summary>
         /// <param name="treeNode"></param>
         /// <param name="nodeChecked"></param>
@@ -229,7 +227,7 @@ namespace FunctionForm.Operation
         }
 
         /// <summary>
-        /// 服务器选中
+        ///     服务器选中
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -245,7 +243,7 @@ namespace FunctionForm.Operation
         }
 
         /// <summary>
-        /// 复制数据
+        ///     复制数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -266,10 +264,11 @@ namespace FunctionForm.Operation
             var server = comboBoxServer.SelectedValue as MongoServer;
             if (server == null) return;
             var db = server.GetDatabase(comboBoxDataBase.Text);
-            if(db == null)return;
+            if (db == null) return;
             ThreadStart ts = () => Copy(db);
             new Thread(ts) {IsBackground = true}.Start();
-        } 
+        }
+
         #endregion
     }
 }

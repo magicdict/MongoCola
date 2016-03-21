@@ -44,7 +44,11 @@ namespace MongoGUICtl
                     cmbJsList.Items.Add(item);
                 }
                 cmbJsList.SelectedIndexChanged +=
-                    (x, y) => { txtContext.Text = Operater.LoadJavascript(cmbJsList.Text, RuntimeMongoDbContext.GetCurrentJavaScript()); };
+                    (x, y) =>
+                    {
+                        txtContext.Text = Operater.LoadJavascript(cmbJsList.Text,
+                            RuntimeMongoDbContext.GetCurrentJavaScript());
+                    };
                 if (!GuiConfig.IsUseDefaultLanguage)
                 {
                     cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);

@@ -3,28 +3,30 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Common;
 using MongoDB.Bson;
+using MongoGUICtl;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.Properties;
-using MongoGUICtl;
 
 namespace FunctionForm.Status
 {
     public partial class FrmStatus : Form
     {
+        /// <summary>
+        ///     初始状态退避
+        /// </summary>
+        private bool tempIsDisplayNumberWithKSystem = true;
+
         public FrmStatus()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// 初始状态退避
-        /// </summary>
-        bool tempIsDisplayNumberWithKSystem = true;
-        /// <summary>
-        /// 窗体初始化
+        ///     窗体初始化
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -47,7 +49,7 @@ namespace FunctionForm.Status
                         docStatus =
                             CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
-                        trvStatus.Height = trvStatus.Height * 2;
+                        trvStatus.Height = trvStatus.Height*2;
                     }
                     if (strType == ConstMgr.ServerTag)
                     {
@@ -139,7 +141,7 @@ namespace FunctionForm.Status
                         docStatus =
                             CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
-                        trvStatus.Height = trvStatus.Height * 2;
+                        trvStatus.Height = trvStatus.Height*2;
                     }
                     break;
             }
@@ -147,8 +149,9 @@ namespace FunctionForm.Status
             UiHelper.FillDataToTreeView(strType, trvStatus, docStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
+
         /// <summary>
-        /// 系统监视
+        ///     系统监视
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -172,7 +175,7 @@ namespace FunctionForm.Status
                         try
                         {
                             if (RuntimeMongoDbContext.GetCurrentDataBase()
-                                    .GetCollection(colName).GetStats().ObjectCount > 0)
+                                .GetCollection(colName).GetStats().ObjectCount > 0)
                             {
                                 //如果没有任何对象的时候，平均值无法取得
                                 colPoint = new DataPoint(0,
@@ -268,8 +271,8 @@ namespace FunctionForm.Status
                     break;
             }
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -44,12 +44,12 @@ namespace ResourceLib.UI
         /// <summary>
         ///     文件过滤
         /// </summary>
-        public string FileFilter { get; set; } 
+        public string FileFilter { get; set; }
 
         /// <summary>
         ///     初始文件名称
         /// </summary>
-        public string InitFileName { get; set; } 
+        public string InitFileName { get; set; }
 
         /// <summary>
         ///     选中路径

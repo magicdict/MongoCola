@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using Common;
 using MongoDB.Bson;
 using MongoUtility.Basic;
 using MongoUtility.ToolKit;
@@ -18,7 +19,7 @@ namespace MongoGUICtl
     public partial class CtlTreeViewColumns : UserControl
     {
         /// <summary>
-        /// 展示文档
+        ///     展示文档
         /// </summary>
         public List<BsonDocument> ContentData = null;
 
@@ -37,6 +38,7 @@ namespace MongoGUICtl
         ///     是否实用UTC表示时间
         /// </summary>
         public static bool IsUtc { get; set; }
+
         /// <summary>
         ///     是否使用千，百万系统表示数字
         /// </summary>
@@ -118,7 +120,7 @@ namespace MongoGUICtl
             {
                 e.Graphics.FillRectangle(Brushes.White, rect);
             }
-            var indentWidth = DatatreeView.Indent * e.Node.Level + 25;
+            var indentWidth = DatatreeView.Indent*e.Node.Level + 25;
             e.Graphics.DrawRectangle(SystemPens.Control, rect);
             var stringRect = new Rectangle(e.Bounds.X + indentWidth, e.Bounds.Y, colName.Width - indentWidth,
                 e.Bounds.Height);
@@ -144,16 +146,16 @@ namespace MongoGUICtl
                 e.Graphics.DrawString(treeNameString, Font, new SolidBrush(Color.Black), stringRect);
             }
             //CSHARP-1066: Change BsonElement from a class to a struct. 
-            BsonElement mElement = new BsonElement();
+            var mElement = new BsonElement();
             if (e.Node.Tag != null)
             {
-                if (e.Node.Tag.GetType() != typeof(BsonElement))
+                if (e.Node.Tag.GetType() != typeof (BsonElement))
                 {
-                    mElement = new BsonElement("", (BsonValue)e.Node.Tag);
+                    mElement = new BsonElement("", (BsonValue) e.Node.Tag);
                 }
                 else
                 {
-                    mElement = (BsonElement)e.Node.Tag;
+                    mElement = (BsonElement) e.Node.Tag;
                 }
             }
             var mValue = e.Node.Tag as BsonValue;
@@ -257,8 +259,9 @@ namespace MongoGUICtl
                 }
             }
         }
+
         /// <summary>
-        /// 获得值的表示文字
+        ///     获得值的表示文字
         /// </summary>
         /// <param name="mElement"></param>
         /// <returns></returns>
@@ -288,15 +291,15 @@ namespace MongoGUICtl
                     {
                         if (mElement.Value.IsInt32)
                         {
-                            strColumnText = Common.Utility.GetKSystemInt32(mElement.Value.AsInt32);
+                            strColumnText = Utility.GetKSystemInt32(mElement.Value.AsInt32);
                         }
                         if (mElement.Value.IsInt64)
                         {
-                            strColumnText = Common.Utility.GetKSystemInt64(mElement.Value.AsInt64);
+                            strColumnText = Utility.GetKSystemInt64(mElement.Value.AsInt64);
                         }
                         if (mElement.Value.IsDouble)
                         {
-                            strColumnText = Common.Utility.GetKSystemDouble(mElement.Value.AsDouble);
+                            strColumnText = Utility.GetKSystemDouble(mElement.Value.AsDouble);
                         }
                     }
                     else
@@ -319,9 +322,9 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void Control_SizeChanged(object sender, EventArgs e)
         {
-            colName.Width = Convert.ToInt32(Width * 0.3);
-            colValue.Width = Convert.ToInt32(Width * 0.45);
-            colType.Width = Convert.ToInt32(Width * 0.2);
+            colName.Width = Convert.ToInt32(Width*0.3);
+            colValue.Width = Convert.ToInt32(Width*0.45);
+            colType.Width = Convert.ToInt32(Width*0.2);
         }
 
         private void CtlTreeViewColumnsLoad(object sender, EventArgs e)

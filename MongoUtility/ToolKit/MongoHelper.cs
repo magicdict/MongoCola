@@ -219,7 +219,7 @@ namespace MongoUtility.ToolKit
                     }
                 }
             }
-            return columnList.OrderBy(info=>info).ToList();
+            return columnList.OrderBy(info => info).ToList();
         }
 
         /// <summary>

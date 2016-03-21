@@ -12,7 +12,6 @@ using FunctionForm.Status;
 using FunctionForm.User;
 using MongoCola.Config;
 using MongoDB.Bson;
-using MongoDB.Driver;
 using MongoGUICtl.ClientTree;
 using MongoGUIView;
 using MongoUtility.Aggregation;
@@ -162,6 +161,7 @@ namespace MongoCola
                 {
                     trvsrvlst.Nodes.Add(element);
                 }
+                ExpandAllToolStripMenuItem_Click(sender, e);
             }
             catch (Exception)
             {
