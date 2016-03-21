@@ -116,6 +116,7 @@ namespace FunctionForm.Status
             this.Name = "FrmStatus";
             this.Tag = "Main_Menu_Mangt_Status";
             this.Text = "Status";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmStatus_Closing);
             this.Load += new System.EventHandler(this.frmStatus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartResult)).EndInit();
             this.ResumeLayout(false);

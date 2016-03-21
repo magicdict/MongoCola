@@ -32,7 +32,7 @@ namespace Common
                 return Default;
             try
             {
-                var enumValue = (T) Enum.Parse(typeof (T), strEnum);
+                var enumValue = (T)Enum.Parse(typeof(T), strEnum);
                 return enumValue;
             }
             catch (Exception)
@@ -40,7 +40,102 @@ namespace Common
                 return Default;
             }
         }
-
+        /// <summary>
+        /// 32位整型
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static string GetKSystemInt32(int size)
+        {
+            string[] unit =
+            {
+                "", "K", "M", "G", "T"
+            };
+            if (size == 0)
+            {
+                return "0";
+            }
+            byte unitOrder = 2;
+            var tempSize = size / Math.Pow(2, 20);
+            while (!(tempSize > 0.1 & tempSize < 1000))
+            {
+                if (tempSize < 0.1)
+                {
+                    tempSize = tempSize * 1024;
+                    unitOrder--;
+                }
+                else
+                {
+                    tempSize = tempSize / 1024;
+                    unitOrder++;
+                }
+            }
+            return tempSize.ToString() + " " + unit[unitOrder];
+        }
+        /// <summary>
+        /// 64位整型
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static string GetKSystemInt64(long size)
+        {
+            string[] unit =
+            {
+                "", "K", "M", "G", "T"
+            };
+            if (size == 0)
+            {
+                return "0";
+            }
+            byte unitOrder = 2;
+            var tempSize = size / Math.Pow(2, 20);
+            while (!(tempSize > 0.1 & tempSize < 1000))
+            {
+                if (tempSize < 0.1)
+                {
+                    tempSize = tempSize * 1024;
+                    unitOrder--;
+                }
+                else
+                {
+                    tempSize = tempSize / 1024;
+                    unitOrder++;
+                }
+            }
+            return tempSize.ToString() + " " + unit[unitOrder];
+        }
+        /// <summary>
+        /// 64位整型
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static string GetKSystemDouble(double size)
+        {
+            string[] unit =
+            {
+                "", "K", "M", "G", "T"
+            };
+            if (size == 0)
+            {
+                return "0";
+            }
+            byte unitOrder = 2;
+            var tempSize = size / Math.Pow(2, 20);
+            while (!(tempSize > 0.1 & tempSize < 1000))
+            {
+                if (tempSize < 0.1)
+                {
+                    tempSize = tempSize * 1024;
+                    unitOrder--;
+                }
+                else
+                {
+                    tempSize = tempSize / 1024;
+                    unitOrder++;
+                }
+            }
+            return tempSize.ToString() + " " + unit[unitOrder];
+        }
         /// <summary>
         ///     Size的文字表达
         /// </summary>
@@ -57,17 +152,17 @@ namespace Common
                 return "0 Byte";
             }
             byte unitOrder = 2;
-            var tempSize = size/Math.Pow(2, 20);
+            var tempSize = size / Math.Pow(2, 20);
             while (!(tempSize > 0.1 & tempSize < 1000))
             {
                 if (tempSize < 0.1)
                 {
-                    tempSize = tempSize*1024;
+                    tempSize = tempSize * 1024;
                     unitOrder--;
                 }
                 else
                 {
-                    tempSize = tempSize/1024;
+                    tempSize = tempSize / 1024;
                     unitOrder++;
                 }
             }
@@ -94,7 +189,7 @@ namespace Common
                 if (size.EndsWith(unit[i]))
                 {
                     size = size.Replace(unit[i], string.Empty).Trim();
-                    return (long) (Convert.ToDouble(size)*Math.Pow(2, i*10));
+                    return (long)(Convert.ToDouble(size) * Math.Pow(2, i * 10));
                 }
             }
             return 0;

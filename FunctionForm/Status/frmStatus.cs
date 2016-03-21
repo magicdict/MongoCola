@@ -9,6 +9,7 @@ using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.Properties;
+using MongoGUICtl;
 
 namespace FunctionForm.Status
 {
@@ -18,7 +19,15 @@ namespace FunctionForm.Status
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 初始状态退避
+        /// </summary>
+        bool tempIsDisplayNumberWithKSystem = true;
+        /// <summary>
+        /// 窗体初始化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmStatus_Load(object sender, EventArgs e)
         {
             if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
@@ -27,6 +36,8 @@ namespace FunctionForm.Status
             cmbChartField.Visible = false;
             chartResult.Visible = false;
             btnOpCnt.Visible = false;
+            tempIsDisplayNumberWithKSystem = CtlTreeViewColumns.IsDisplayNumberWithKSystem;
+            CtlTreeViewColumns.IsDisplayNumberWithKSystem = true;
             switch (strType)
             {
                 case ConstMgr.ServerTag:
@@ -256,6 +267,16 @@ namespace FunctionForm.Status
                     }
                     break;
             }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmStatus_Closing(object sender, FormClosingEventArgs e)
+        {
+            //修改为初始状态
+            CtlTreeViewColumns.IsDisplayNumberWithKSystem = tempIsDisplayNumberWithKSystem;
         }
     }
 }

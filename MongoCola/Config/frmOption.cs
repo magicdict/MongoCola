@@ -28,6 +28,14 @@ namespace MongoCola.Config
             {
                 radLocal.Checked = true;
             }
+            if (SystemManager.SystemConfig.IsDisplayNumberWithKSystem)
+            {
+                chkIsDisplayNumberWithKSystem.Checked = true;
+            }
+            else
+            {
+                chkIsDisplayNumberWithKSystem.Checked = false;
+            }
             if (SystemManager.SystemConfig.RefreshStatusTimer == 0)
             {
                 SystemManager.SystemConfig.RefreshStatusTimer = SystemManager.SystemConfig.DefaultRefreshStatusTimer;
@@ -97,6 +105,7 @@ namespace MongoCola.Config
         {
             _ctlReadWriteConfig1.SaveConfig();
             SystemManager.SystemConfig.IsUtc = radUTC.Checked;
+            SystemManager.SystemConfig.IsDisplayNumberWithKSystem = chkIsDisplayNumberWithKSystem.Checked;
             SystemManager.SystemConfig.MongoBinPath = fileMongoBinPath.SelectedPathOrFileName;
             SystemManager.SystemConfig.RefreshStatusTimer = (int) intRefreshStatusTimer.Value;
             SystemManager.SystemConfig.LanguageFileName = cmbLanguage.Text + ".xml";

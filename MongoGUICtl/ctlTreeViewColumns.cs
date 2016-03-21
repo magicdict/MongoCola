@@ -17,6 +17,9 @@ namespace MongoGUICtl
     /// </summary>
     public partial class CtlTreeViewColumns : UserControl
     {
+        /// <summary>
+        /// 展示文档
+        /// </summary>
         public List<BsonDocument> ContentData = null;
 
         /// <summary>
@@ -34,6 +37,11 @@ namespace MongoGUICtl
         ///     是否实用UTC表示时间
         /// </summary>
         public static bool IsUtc { get; set; }
+        /// <summary>
+        ///     是否使用千，百万系统表示数字
+        /// </summary>
+        public static bool IsDisplayNumberWithKSystem { get; set; }
+
 
         [Description("TreeView associated with the control"), Category("Behavior")]
         public TreeView TreeView
@@ -110,7 +118,7 @@ namespace MongoGUICtl
             {
                 e.Graphics.FillRectangle(Brushes.White, rect);
             }
-            var indentWidth = DatatreeView.Indent*e.Node.Level + 25;
+            var indentWidth = DatatreeView.Indent * e.Node.Level + 25;
             e.Graphics.DrawRectangle(SystemPens.Control, rect);
             var stringRect = new Rectangle(e.Bounds.X + indentWidth, e.Bounds.Y, colName.Width - indentWidth,
                 e.Bounds.Height);
@@ -139,13 +147,13 @@ namespace MongoGUICtl
             BsonElement mElement = new BsonElement();
             if (e.Node.Tag != null)
             {
-                if (e.Node.Tag.GetType() != typeof (BsonElement))
+                if (e.Node.Tag.GetType() != typeof(BsonElement))
                 {
-                    mElement = new BsonElement("", (BsonValue) e.Node.Tag);
+                    mElement = new BsonElement("", (BsonValue)e.Node.Tag);
                 }
                 else
                 {
-                    mElement = (BsonElement) e.Node.Tag;
+                    mElement = (BsonElement)e.Node.Tag;
                 }
             }
             var mValue = e.Node.Tag as BsonValue;
@@ -195,21 +203,7 @@ namespace MongoGUICtl
                         {
                             if (!mElement.Value.IsBsonDocument && !mElement.Value.IsBsonArray)
                             {
-                                if (mElement.Value.IsValidDateTime)
-                                {
-                                    if (IsUtc)
-                                    {
-                                        strColumnText = mElement.Value.AsBsonDateTime.ToUniversalTime().ToString();
-                                    }
-                                    else
-                                    {
-                                        strColumnText = mElement.Value.AsBsonDateTime.ToLocalTime().ToString();
-                                    }
-                                }
-                                else
-                                {
-                                    strColumnText = mElement.Value.ToString();
-                                }
+                                strColumnText = GetDisplayString(ref mElement);
                             }
                         }
                         else
@@ -222,7 +216,7 @@ namespace MongoGUICtl
                                     if (e.Node.Level > 0)
                                     {
                                         //根节点有Value，可能是ID，用来取得选中节点的信息
-                                        strColumnText = mValue.ToString();
+                                        strColumnText = GetDisplayString(ref mElement);
                                     }
                                 }
                             }
@@ -263,6 +257,61 @@ namespace MongoGUICtl
                 }
             }
         }
+        /// <summary>
+        /// 获得值的表示文字
+        /// </summary>
+        /// <param name="mElement"></param>
+        /// <returns></returns>
+        private static string GetDisplayString(ref BsonElement mElement)
+        {
+            string strColumnText;
+            try
+            {
+                strColumnText = mElement.Value.ToString();
+                //日期型处理
+                if (mElement.Value.IsValidDateTime)
+                {
+                    if (IsUtc)
+                    {
+                        strColumnText = mElement.Value.AsBsonDateTime.ToUniversalTime().ToString();
+                    }
+                    else
+                    {
+                        strColumnText = mElement.Value.AsBsonDateTime.ToLocalTime().ToString();
+                    }
+                    return strColumnText;
+                }
+                //数字型处理
+                if (mElement.Value.IsNumeric)
+                {
+                    if (IsDisplayNumberWithKSystem)
+                    {
+                        if (mElement.Value.IsInt32)
+                        {
+                            strColumnText = Common.Utility.GetKSystemInt32(mElement.Value.AsInt32);
+                        }
+                        if (mElement.Value.IsInt64)
+                        {
+                            strColumnText = Common.Utility.GetKSystemInt64(mElement.Value.AsInt64);
+                        }
+                        if (mElement.Value.IsDouble)
+                        {
+                            strColumnText = Common.Utility.GetKSystemDouble(mElement.Value.AsDouble);
+                        }
+                    }
+                    else
+                    {
+                        strColumnText = mElement.Value.ToString();
+                    }
+                    return strColumnText;
+                }
+            }
+            catch (Exception)
+            {
+                strColumnText = mElement.Value.ToString();
+            }
+            return strColumnText;
+        }
 
         /// <summary>
         /// </summary>
@@ -270,9 +319,9 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void Control_SizeChanged(object sender, EventArgs e)
         {
-            colName.Width = Convert.ToInt32(Width*0.3);
-            colValue.Width = Convert.ToInt32(Width*0.45);
-            colType.Width = Convert.ToInt32(Width*0.2);
+            colName.Width = Convert.ToInt32(Width * 0.3);
+            colValue.Width = Convert.ToInt32(Width * 0.45);
+            colType.Width = Convert.ToInt32(Width * 0.2);
         }
 
         private void CtlTreeViewColumnsLoad(object sender, EventArgs e)

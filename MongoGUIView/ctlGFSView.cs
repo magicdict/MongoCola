@@ -247,6 +247,10 @@ namespace MongoGUIView
                 var strFileName = lstData.SelectedItems[0].Text;
                 Gfs.OpenFile(strFileName, RuntimeMongoDbContext.GetCurrentDataBase());
             }
+            else
+            {
+                MessageBox.Show("请选择一个文件");
+            }
         }
 
         /// <summary>

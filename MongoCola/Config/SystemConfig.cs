@@ -49,6 +49,11 @@ namespace MongoCola.Config
         ///     DateTime UTC
         /// </summary>
         public bool IsUtc { set; get; }
+        /// <summary>
+        ///     数字使用K系统表示
+        /// </summary>
+        public bool IsDisplayNumberWithKSystem { set; get; }
+
 
         [NonSerialized] public int DefaultRefreshStatusTimer = 30;
 
@@ -89,7 +94,9 @@ namespace MongoCola.Config
             }
             Utility.SaveObjAsXml(AppPath + SystemConfigFilename, this);
             CtlTreeViewColumns.IsUtc = IsUtc;
+            CtlTreeViewColumns.IsDisplayNumberWithKSystem = IsDisplayNumberWithKSystem;
             ViewHelper.IsUtc = IsUtc;
+            ViewHelper.IsDisplayNumberWithKSystem = IsDisplayNumberWithKSystem;
             FrmServerMonitor.RefreshInterval = RefreshStatusTimer;
         }
 
@@ -101,7 +108,9 @@ namespace MongoCola.Config
         {
             SystemManager.SystemConfig = Utility.LoadObjFromXml<SystemConfig>(AppPath + SystemConfigFilename);
             CtlTreeViewColumns.IsUtc = SystemManager.SystemConfig.IsUtc;
+            CtlTreeViewColumns.IsDisplayNumberWithKSystem = SystemManager.SystemConfig.IsDisplayNumberWithKSystem;
             ViewHelper.IsUtc = SystemManager.SystemConfig.IsUtc;
+            ViewHelper.IsDisplayNumberWithKSystem = SystemManager.SystemConfig.IsDisplayNumberWithKSystem;
             FrmServerMonitor.RefreshInterval = SystemManager.SystemConfig.RefreshStatusTimer;
         }
 

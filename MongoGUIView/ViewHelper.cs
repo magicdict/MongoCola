@@ -23,6 +23,10 @@ namespace MongoGUIView
         ///     DateTime:IsUTC
         /// </summary>
         public static bool IsUtc { set; get; }
+        /// <summary>
+        ///     数字使用K系统表示
+        /// </summary>
+        public static bool IsDisplayNumberWithKSystem { set; get; }
 
         /// <summary>
         ///     展示数据

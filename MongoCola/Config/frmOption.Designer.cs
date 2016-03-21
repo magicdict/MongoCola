@@ -41,6 +41,9 @@ namespace MongoCola.Config
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGerneric = new System.Windows.Forms.TabPage();
+            this.lblCurrentFont = new System.Windows.Forms.Label();
+            this.btnFont = new System.Windows.Forms.Button();
+            this.lblFont = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radLocal = new System.Windows.Forms.RadioButton();
             this.radUTC = new System.Windows.Forms.RadioButton();
@@ -48,9 +51,7 @@ namespace MongoCola.Config
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this._ctlReadWriteConfig1 = new FunctionForm.Connection.CtlReadWriteConfig();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.lblFont = new System.Windows.Forms.Label();
-            this.btnFont = new System.Windows.Forms.Button();
-            this.lblCurrentFont = new System.Windows.Forms.Label();
+            this.chkIsDisplayNumberWithKSystem = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.intRefreshStatusTimer)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
@@ -147,6 +148,7 @@ namespace MongoCola.Config
             // 
             // tabGerneric
             // 
+            this.tabGerneric.Controls.Add(this.chkIsDisplayNumberWithKSystem);
             this.tabGerneric.Controls.Add(this.lblCurrentFont);
             this.tabGerneric.Controls.Add(this.btnFont);
             this.tabGerneric.Controls.Add(this.lblFont);
@@ -163,6 +165,34 @@ namespace MongoCola.Config
             this.tabGerneric.TabIndex = 1;
             this.tabGerneric.Text = "Gerneric";
             this.tabGerneric.UseVisualStyleBackColor = true;
+            // 
+            // lblCurrentFont
+            // 
+            this.lblCurrentFont.AutoSize = true;
+            this.lblCurrentFont.Location = new System.Drawing.Point(316, 61);
+            this.lblCurrentFont.Name = "lblCurrentFont";
+            this.lblCurrentFont.Size = new System.Drawing.Size(71, 15);
+            this.lblCurrentFont.TabIndex = 23;
+            this.lblCurrentFont.Text = "SystemFont";
+            // 
+            // btnFont
+            // 
+            this.btnFont.Location = new System.Drawing.Point(471, 59);
+            this.btnFont.Name = "btnFont";
+            this.btnFont.Size = new System.Drawing.Size(109, 23);
+            this.btnFont.TabIndex = 22;
+            this.btnFont.Text = "Change Font";
+            this.btnFont.UseVisualStyleBackColor = true;
+            this.btnFont.Click += new System.EventHandler(this.btnFont_Click);
+            // 
+            // lblFont
+            // 
+            this.lblFont.AutoSize = true;
+            this.lblFont.Location = new System.Drawing.Point(245, 59);
+            this.lblFont.Name = "lblFont";
+            this.lblFont.Size = new System.Drawing.Size(31, 15);
+            this.lblFont.TabIndex = 21;
+            this.lblFont.Text = "Font";
             // 
             // groupBox1
             // 
@@ -234,33 +264,15 @@ namespace MongoCola.Config
             this._ctlReadWriteConfig1.Size = new System.Drawing.Size(621, 186);
             this._ctlReadWriteConfig1.TabIndex = 0;
             // 
-            // lblFont
+            // chkIsDisplayNumberWithKSystem
             // 
-            this.lblFont.AutoSize = true;
-            this.lblFont.Location = new System.Drawing.Point(245, 59);
-            this.lblFont.Name = "lblFont";
-            this.lblFont.Size = new System.Drawing.Size(31, 15);
-            this.lblFont.TabIndex = 21;
-            this.lblFont.Text = "Font";
-            // 
-            // btnFont
-            // 
-            this.btnFont.Location = new System.Drawing.Point(471, 59);
-            this.btnFont.Name = "btnFont";
-            this.btnFont.Size = new System.Drawing.Size(109, 23);
-            this.btnFont.TabIndex = 22;
-            this.btnFont.Text = "Change Font";
-            this.btnFont.UseVisualStyleBackColor = true;
-            this.btnFont.Click += new System.EventHandler(this.btnFont_Click);
-            // 
-            // lblCurrentFont
-            // 
-            this.lblCurrentFont.AutoSize = true;
-            this.lblCurrentFont.Location = new System.Drawing.Point(316, 61);
-            this.lblCurrentFont.Name = "lblCurrentFont";
-            this.lblCurrentFont.Size = new System.Drawing.Size(71, 15);
-            this.lblCurrentFont.TabIndex = 23;
-            this.lblCurrentFont.Text = "SystemFont";
+            this.chkIsDisplayNumberWithKSystem.AutoSize = true;
+            this.chkIsDisplayNumberWithKSystem.Location = new System.Drawing.Point(319, 96);
+            this.chkIsDisplayNumberWithKSystem.Name = "chkIsDisplayNumberWithKSystem";
+            this.chkIsDisplayNumberWithKSystem.Size = new System.Drawing.Size(191, 19);
+            this.chkIsDisplayNumberWithKSystem.TabIndex = 19;
+            this.chkIsDisplayNumberWithKSystem.Text = "Display Number  With K,M,G,T";
+            this.chkIsDisplayNumberWithKSystem.UseVisualStyleBackColor = true;
             // 
             // FrmOption
             // 
@@ -310,5 +322,6 @@ namespace MongoCola.Config
         private FontDialog fontDialog1;
         private Label lblCurrentFont;
         private Button btnFont;
+        private CheckBox chkIsDisplayNumberWithKSystem;
     }
 }
