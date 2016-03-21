@@ -36,7 +36,7 @@ namespace FunctionForm.Status
                         docStatus =
                             CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
-                        trvStatus.Height = trvStatus.Height*2;
+                        trvStatus.Height = trvStatus.Height * 2;
                     }
                     if (strType == ConstMgr.ServerTag)
                     {
@@ -128,7 +128,7 @@ namespace FunctionForm.Status
                         docStatus =
                             CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
-                        trvStatus.Height = trvStatus.Height*2;
+                        trvStatus.Height = trvStatus.Height * 2;
                     }
                     break;
             }
@@ -136,7 +136,11 @@ namespace FunctionForm.Status
             UiHelper.FillDataToTreeView(strType, trvStatus, docStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
-
+        /// <summary>
+        /// 系统监视
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOpCnt_Click(object sender, EventArgs e)
         {
             Utility.OpenForm(new FrmServerMonitor(), true, true);
@@ -150,22 +154,29 @@ namespace FunctionForm.Status
             var seriesResult = new Series(strField);
             foreach (var colName in RuntimeMongoDbContext.GetCurrentDataBase().GetCollectionNames())
             {
-                DataPoint colPoint;
+                DataPoint colPoint = null;
                 switch (strField)
                 {
                     case "AverageObjectSize":
                         try
                         {
-                            //如果没有任何对象的时候，平均值无法取得
-                            colPoint = new DataPoint(0,
-                                RuntimeMongoDbContext.GetCurrentDataBase()
-                                    .GetCollection(colName)
-                                    .GetStats()
-                                    .AverageObjectSize);
+                            if (RuntimeMongoDbContext.GetCurrentDataBase()
+                                    .GetCollection(colName).GetStats().ObjectCount > 0)
+                            {
+                                //如果没有任何对象的时候，平均值无法取得
+                                colPoint = new DataPoint(0,
+                                    RuntimeMongoDbContext.GetCurrentDataBase()
+                                        .GetCollection(colName)
+                                        .GetStats()
+                                        .AverageObjectSize);
+                            }
+                            else
+                            {
+                                colPoint = new DataPoint(0, 0);
+                            }
                         }
                         catch (Exception ex)
                         {
-                            colPoint = new DataPoint(0, 0);
                             Utility.ExceptionDeal(ex);
                         }
                         break;

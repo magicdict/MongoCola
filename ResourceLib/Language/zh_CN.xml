@@ -349,7 +349,7 @@
   <Common_Edit>编辑</Common_Edit>
   <Common_Modify>修改</Common_Modify>
   <Common_Add>添加</Common_Add>
-
+  <Common_OpCnt>操作计数器</Common_OpCnt>
   <Common_Server>服务器</Common_Server>
   <Common_DataBase>数据库</Common_DataBase>
   <Common_Connect>连接</Common_Connect>

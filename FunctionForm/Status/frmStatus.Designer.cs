@@ -33,15 +33,15 @@ namespace FunctionForm.Status
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.cmdClose = new System.Windows.Forms.Button();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbChartField = new System.Windows.Forms.ComboBox();
             this.btnOpCnt = new System.Windows.Forms.Button();
             this.trvStatus = new MongoGUICtl.CtlTreeViewColumns();
-			((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdClose
@@ -57,17 +57,17 @@ namespace FunctionForm.Status
             // 
             // chartResult
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartResult.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartResult.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartResult.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartResult.Legends.Add(legend1);
             this.chartResult.Location = new System.Drawing.Point(14, 251);
             this.chartResult.Name = "chartResult";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartResult.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartResult.Series.Add(series1);
             this.chartResult.Size = new System.Drawing.Size(469, 241);
             this.chartResult.TabIndex = 29;
             // 
@@ -87,6 +87,7 @@ namespace FunctionForm.Status
             this.btnOpCnt.Name = "btnOpCnt";
             this.btnOpCnt.Size = new System.Drawing.Size(125, 28);
             this.btnOpCnt.TabIndex = 31;
+            this.btnOpCnt.Tag = "Common_OpCnt";
             this.btnOpCnt.Text = "Operate Counter";
             this.btnOpCnt.UseVisualStyleBackColor = true;
             this.btnOpCnt.Click += new System.EventHandler(this.btnOpCnt_Click);
@@ -100,7 +101,7 @@ namespace FunctionForm.Status
             this.trvStatus.Size = new System.Drawing.Size(469, 202);
             this.trvStatus.TabIndex = 2;
             // 
-            // frmStatus
+            // FrmStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

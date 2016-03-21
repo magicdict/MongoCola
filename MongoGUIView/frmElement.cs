@@ -77,20 +77,23 @@ namespace MongoGUIView
                 if (_isElement)
                 {
                     ElementHelper.ModifyElement(_fullPath, AddBsonElement.GetElement().Value,
-                        (BsonElement) _selectNode.Tag,
+                        (BsonElement)_selectNode.Tag,
                         RuntimeMongoDbContext.CurrentDocument,
                         RuntimeMongoDbContext.GetCurrentCollection());
+                    //元素的场合，Tag直接放入元素
+                    _selectNode.Tag = AddBsonElement.GetElement();
                 }
                 else
                 {
                     ElementHelper.ModifyArrayValue(_fullPath, AddBsonElement.GetElement().Value, _selectNode.Index,
                         RuntimeMongoDbContext.CurrentDocument,
                         RuntimeMongoDbContext.GetCurrentCollection());
+                    _selectNode.Tag = AddBsonElement.GetElement().Value;
                 }
                 _selectNode.Text = string.IsNullOrEmpty(AddBsonElement.GetElement().Name)
                     ? string.Empty
                     : AddBsonElement.GetElement().Name;
-                _selectNode.Tag = AddBsonElement.GetElement().Value;
+
             }
             else
             {
