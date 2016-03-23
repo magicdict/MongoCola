@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
-
+using System.Linq;
 namespace MongoUtility.Aggregation
 {
     public static class AggregationHelper
@@ -11,15 +11,8 @@ namespace MongoUtility.Aggregation
         public static string Distinct(string strKey, List<DataFilter.QueryConditionInputItem> distinctConditionList)
         {
             var strResult = string.Empty;
-            var resultArray =
-                (BsonArray)
-                    RuntimeMongoDbContext.GetCurrentCollection()
-                        .Distinct(strKey, QueryHelper.GetQuery(distinctConditionList));
-            var resultList = new List<BsonValue>();
-            foreach (var item in resultArray)
-            {
-                resultList.Add(item);
-            }
+            var resultList = RuntimeMongoDbContext.GetCurrentCollection()
+                        .Distinct(strKey, QueryHelper.GetQuery(distinctConditionList)).ToList();
             resultList.Sort();
             //防止错误的条件造成的海量数据
             var count = 0;
