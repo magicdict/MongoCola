@@ -71,6 +71,10 @@ namespace MongoGUICtl.ClientTree
                 (int) GetSystemIcon.MainTreeImageType.CollectionList);
             mongoColListNode.Tag = ConstMgr.CollectionListTag + ":" + mongoSvrKey + "/" + strDbName;
             var colNameList = GetConnectionInfo.GetCollectionList(client, strDbName);
+            //Collection按照名称排序
+            colNameList.Sort((x, y) => {
+                return x.GetElement("name").Value.ToString().CompareTo(y.GetElement("name").Value.ToString());
+            });
             foreach (var colDoc in colNameList)
             {
                 var strColName = colDoc.GetElement("name").Value.ToString();

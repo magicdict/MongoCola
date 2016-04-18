@@ -28,6 +28,7 @@ namespace FunctionForm.Status
             if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
             _mTime = new Timer {Interval = RefreshInterval*1000};
             _mTime.Tick += M_Tick;
+
             var querySeries = new Series("Query")
             {
                 ChartType = SeriesChartType.Line,
@@ -43,6 +44,25 @@ namespace FunctionForm.Status
                 YValueType = ChartValueType.Int32
             };
             MonitorGrap.Series.Add(insertSeries);
+
+
+            var updateSeries = new Series("Update")
+            {
+                ChartType = SeriesChartType.Line,
+                XValueType = ChartValueType.String,
+                YValueType = ChartValueType.Int32
+            };
+            MonitorGrap.Series.Add(updateSeries);
+
+            var deleteSeries = new Series("Delete")
+            {
+                ChartType = SeriesChartType.Line,
+                XValueType = ChartValueType.String,
+                YValueType = ChartValueType.Int32
+            };
+            MonitorGrap.Series.Add(deleteSeries);
+
+
             FormClosing += (x, y) => _mTime.Stop();
             _mTime.Start();
         }
@@ -62,6 +82,20 @@ namespace FunctionForm.Status
             insertPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),
                 docStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("insert").Value);
             MonitorGrap.Series[1].Points.Add(insertPoint);
+
+
+            var updatePoint = new DataPoint();
+            updatePoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                docStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("update").Value);
+            MonitorGrap.Series[2].Points.Add(updatePoint);
+
+            var deletePoint = new DataPoint();
+            deletePoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                docStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("delete").Value);
+            MonitorGrap.Series[3].Points.Add(deletePoint);
+
+
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
