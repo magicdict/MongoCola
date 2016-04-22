@@ -86,7 +86,7 @@ namespace FunctionForm.Operation
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 13);
+            this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(209, 16);
             this.label1.TabIndex = 4;
@@ -98,6 +98,7 @@ namespace FunctionForm.Operation
             this.cmdPreview.Name = "cmdPreview";
             this.cmdPreview.Size = new System.Drawing.Size(82, 25);
             this.cmdPreview.TabIndex = 5;
+            this.cmdPreview.Tag = "Common_Preview";
             this.cmdPreview.Text = "Preview";
             this.cmdPreview.UseVisualStyleBackColor = true;
             this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
@@ -114,7 +115,7 @@ namespace FunctionForm.Operation
             this.cmdSaveAggregate.UseVisualStyleBackColor = false;
             this.cmdSaveAggregate.Click += new System.EventHandler(this.cmdSaveDocument_Click);
             // 
-            // frmNewDocument
+            // FrmNewDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

@@ -44,16 +44,17 @@ namespace FunctionForm.Aggregation
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(413, 18);
+            this.lblResult.Location = new System.Drawing.Point(407, 12);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(42, 15);
             this.lblResult.TabIndex = 15;
+            this.lblResult.Tag = "";
             this.lblResult.Text = "Result";
             // 
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(607, 492);
+            this.cmdRun.Location = new System.Drawing.Point(607, 501);
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(103, 30);
             this.cmdRun.TabIndex = 7;
@@ -68,7 +69,7 @@ namespace FunctionForm.Aggregation
             this.ctlMapFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctlMapFunction.Location = new System.Drawing.Point(12, 12);
             this.ctlMapFunction.Name = "ctlMapFunction";
-            this.ctlMapFunction.Size = new System.Drawing.Size(369, 214);
+            this.ctlMapFunction.Size = new System.Drawing.Size(369, 245);
             this.ctlMapFunction.TabIndex = 20;
             this.ctlMapFunction.Title = "MapFunction";
             // 
@@ -76,25 +77,25 @@ namespace FunctionForm.Aggregation
             // 
             this.trvResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
             this.trvResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.trvResult.Location = new System.Drawing.Point(410, 47);
+            this.trvResult.Location = new System.Drawing.Point(410, 30);
             this.trvResult.Name = "trvResult";
             this.trvResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvResult.Size = new System.Drawing.Size(417, 432);
+            this.trvResult.Size = new System.Drawing.Size(417, 460);
             this.trvResult.TabIndex = 17;
             // 
             // ctlReduceFunction
             // 
             this.ctlReduceFunction.Context = "";
             this.ctlReduceFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctlReduceFunction.Location = new System.Drawing.Point(12, 232);
+            this.ctlReduceFunction.Location = new System.Drawing.Point(12, 263);
             this.ctlReduceFunction.Name = "ctlReduceFunction";
-            this.ctlReduceFunction.Size = new System.Drawing.Size(369, 263);
+            this.ctlReduceFunction.Size = new System.Drawing.Size(369, 227);
             this.ctlReduceFunction.TabIndex = 21;
             this.ctlReduceFunction.Title = "Reduce Function";
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(716, 492);
+            this.cmdClose.Location = new System.Drawing.Point(716, 501);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(111, 30);
             this.cmdClose.TabIndex = 22;

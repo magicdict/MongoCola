@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<!--frmMain-->
 <Language Type="SimplifiedChinese">
+  <!--frmMain-->
   <Main_Menu_Mangt>管理(&amp;M)</Main_Menu_Mangt>
   <Main_Menu_Mangt_AddConnection>添加连接(&amp;A)</Main_Menu_Mangt_AddConnection>
   <Main_Menu_Mangt_Disconnect>切断连接</Main_Menu_Mangt_Disconnect>
@@ -10,12 +10,12 @@
   <Main_Menu_Mangt_Exit>退出</Main_Menu_Mangt_Exit>
 
   <Main_Menu_DataView>数据视图</Main_Menu_DataView>
-  <Main_Menu_DataView_Previous>前一页</Main_Menu_DataView_Previous>
-  <Main_Menu_DataView_Next>后一页</Main_Menu_DataView_Next>
+  <Main_Menu_DataView_Previous>上一页</Main_Menu_DataView_Previous>
+  <Main_Menu_DataView_Next>下一页</Main_Menu_DataView_Next>
   <Main_Menu_DataView_First>第一页</Main_Menu_DataView_First>
   <Main_Menu_DataView_Last>最后一页</Main_Menu_DataView_Last>
   <Main_Menu_DataView_Query>查询</Main_Menu_DataView_Query>
-  <Main_Menu_DataView_ConvertSql>Sql转换</Main_Menu_DataView_ConvertSql>
+  <Main_Menu_DataView_ConvertSql>SQL转换</Main_Menu_DataView_ConvertSql>
   <Main_Menu_DataView_Aggregation>聚合</Main_Menu_DataView_Aggregation>
   <Main_Menu_DataView_DataFilter>数据过滤</Main_Menu_DataView_DataFilter>
 
@@ -24,8 +24,8 @@
   <Main_Menu_Operation_Server>服务器</Main_Menu_Operation_Server>
   <Main_Menu_Operation_Server_NewDB>新建数据库</Main_Menu_Operation_Server_NewDB>
   <Main_Menu_Operation_Server_UserInfo>用户信息</Main_Menu_Operation_Server_UserInfo>
-  <Main_Menu_Operation_Server_AddUserToAdmin>添加Admin用户</Main_Menu_Operation_Server_AddUserToAdmin>
-  <Main_Menu_Operation_Server_DelFromAdmin>删除Admin用户</Main_Menu_Operation_Server_DelFromAdmin>
+  <Main_Menu_Operation_Server_AddUserToAdmin>添加管理员(Admin)用户</Main_Menu_Operation_Server_AddUserToAdmin>
+  <Main_Menu_Operation_Server_DelFromAdmin>删除管理员(Admin)用户</Main_Menu_Operation_Server_DelFromAdmin>
   <Main_Menu_Operation_Server_SlaveResync>主从同步</Main_Menu_Operation_Server_SlaveResync>
   <Main_Menu_Operation_Server_CloseServer>关闭服务器</Main_Menu_Operation_Server_CloseServer>
   <Main_Menu_Operation_Server_Properties>服务器属性</Main_Menu_Operation_Server_Properties>
@@ -102,12 +102,12 @@
   <AddConnection_Title>连接管理</AddConnection_Title>
   <AddConnection_ConnectionName>连接名称</AddConnection_ConnectionName>
   <AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
-  <AddConnection_Host_Description>Host or Ip</AddConnection_Host_Description>
-  <AddConnection_Port_Description>Server Port</AddConnection_Port_Description>
+  <AddConnection_Host_Description>域名或IP</AddConnection_Host_Description>
+  <AddConnection_Port_Description>端口</AddConnection_Port_Description>
   <AddConnection_DBName>数据库名称</AddConnection_DBName>
-  <AddConnection_DBName_Description>Database Name(Option)</AddConnection_DBName_Description>
+  <AddConnection_DBName_Description>Database Name(可选)</AddConnection_DBName_Description>
   <AddConnection_MainReplsetName>副本名称</AddConnection_MainReplsetName>
-  <AddConnection_MainReplsetName_Description>ReplaceSet Name(Option)</AddConnection_MainReplsetName_Description>
+  <AddConnection_MainReplsetName_Description>ReplaceSet Name(可选)</AddConnection_MainReplsetName_Description>
   <AddConnection_Priority>优先度</AddConnection_Priority>
   <AddConnection_SocketTimeOut>Socket超时(ms)</AddConnection_SocketTimeOut>
   <AddConnection_ConnectionTimeOut>Connection超时(ms)</AddConnection_ConnectionTimeOut>
@@ -123,7 +123,7 @@
 
   <AddConnection_Region_ReplaceSet>副本</AddConnection_Region_ReplaceSet>
   <AddConnection_Region_ReplaceSetName>副本名称</AddConnection_Region_ReplaceSetName>
-  <AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_Region_ReplaceSetName_Description>
+  <AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(可选)</AddConnection_Region_ReplaceSetName_Description>
   <AddConnection_Region_ReplaceSetList>服务器列表</AddConnection_Region_ReplaceSetList>
   <AddConnection_Region_AddHost>添加主机</AddConnection_Region_AddHost>
   <AddConnection_Region_RemoveHost>移除主机</AddConnection_Region_RemoveHost>
@@ -144,7 +144,7 @@
   <Connect_Action_Del>删除</Connect_Action_Del>
 
   <!--ConvertSql-->
-  <ConvertSql_Title>Sql文转换</ConvertSql_Title>
+  <ConvertSql_Title>SQL转换</ConvertSql_Title>
 
   <!--frmDistinct-->
   <Distinct_Action_LoadQuery>加载查询</Distinct_Action_LoadQuery>
@@ -375,6 +375,9 @@
   <Common_Clear>清除</Common_Clear>
   <Common_Test>测试</Common_Test>
   <Common_Advance_Option>高级选项</Common_Advance_Option>
+  
+  <Common_Preview>预览</Common_Preview>
+  <Common_Run>运行</Common_Run>
 
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
