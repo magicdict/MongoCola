@@ -377,7 +377,7 @@
   <Common_Advance_Option>高级选项</Common_Advance_Option>
   
   <Common_Preview>预览</Common_Preview>
-  <Command_Run>运行</Command_Run>
+  <Common_Run>运行</Common_Run>
 
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
