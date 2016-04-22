@@ -5,14 +5,14 @@ using ResourceLib.UI;
 
 namespace FunctionForm.Aggregation
 {
-    public partial class FrmAggregationCondition : Form
+    public partial class FrmStageBuilder : Form
     {
         /// <summary>
         ///     聚合数组
         /// </summary>
         public BsonArray Aggregation = new BsonArray();
 
-        public FrmAggregationCondition()
+        public FrmStageBuilder()
         {
             InitializeComponent();
             txtLimit.Enabled = chkLimit.Checked;

@@ -18,7 +18,7 @@ namespace FunctionForm.Aggregation
         /// <summary>
         ///     聚合数组
         /// </summary>
-        private BsonArray _aggrArray = new BsonArray();
+        private BsonArray stages = new BsonArray();
 
         public FrmAggregation()
         {
@@ -32,13 +32,13 @@ namespace FunctionForm.Aggregation
         /// <param name="e"></param>
         private void cmdRun_Click(object sender, EventArgs e)
         {
-            if (_aggrArray.Count <= 0)
+            if (stages.Count <= 0)
                 return;
-            var mCommandResult = CommandHelper.Aggregate(_aggrArray, RuntimeMongoDbContext.GetCurrentCollection().Name);
+            var mCommandResult = CommandHelper.Aggregate(stages, RuntimeMongoDbContext.GetCurrentCollection().Name);
             if (mCommandResult.Ok)
             {
-                UiHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
                 trvResult.DatatreeView.BeginUpdate();
+                UiHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
                 trvResult.DatatreeView.ExpandAll();
                 trvResult.DatatreeView.EndUpdate();
             }
@@ -61,11 +61,11 @@ namespace FunctionForm.Aggregation
             }
             cmbForAggregatePipeline.SelectedIndexChanged += (x, y) =>
             {
-                _aggrArray =
+                stages =
                     (BsonArray)
                         BsonDocument.Parse(Operater.LoadJavascript(cmbForAggregatePipeline.Text,
                             RuntimeMongoDbContext.GetCurrentCollection())).GetValue(0);
-                FillAggreationTreeview();
+                FillStagesTreeview();
             };
         }
 
@@ -78,10 +78,12 @@ namespace FunctionForm.Aggregation
         {
             try
             {
-                var frmInsertDoc = new FrmNewDocument();
-                Utility.OpenForm(frmInsertDoc, false, true);
-                _aggrArray.Add(frmInsertDoc.MBsonDocument);
-                FillAggreationTreeview();
+                var frmAddStage = new FrmAddStage();
+                Utility.OpenForm(frmAddStage, false, true);
+                if (frmAddStage.DialogResult == DialogResult.OK) {
+                    stages.AddRange(frmAddStage.BsonDocumentList);
+                    FillStagesTreeview();
+                }
             }
             catch (Exception ex)
             {
@@ -92,28 +94,28 @@ namespace FunctionForm.Aggregation
         /// <summary>
         ///     将聚合条件放入可视化控件
         /// </summary>
-        private void FillAggreationTreeview()
+        private void FillStagesTreeview()
         {
-            var conditionList = new List<BsonDocument>();
-            foreach (BsonDocument item in _aggrArray)
+            var list = new List<BsonDocument>();
+            foreach (BsonDocument item in stages)
             {
-                conditionList.Add(item);
+                list.Add(item);
             }
-            UiHelper.FillDataToTreeView("Aggregation", trvCondition, conditionList, 0);
             trvCondition.DatatreeView.BeginUpdate();
+            UiHelper.FillDataToTreeView("stages", trvCondition, list, 0);
             trvCondition.DatatreeView.ExpandAll();
             trvCondition.DatatreeView.EndUpdate();
         }
 
         /// <summary>
-        ///     清除条件啊
+        ///     清除条件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdClear_Click(object sender, EventArgs e)
         {
-            _aggrArray.Clear();
-            trvCondition.TreeView.Nodes.Clear();
+            stages.Clear();
+            FillStagesTreeview();
         }
 
         /// <summary>
@@ -133,11 +135,11 @@ namespace FunctionForm.Aggregation
         /// <param name="e"></param>
         private void cmdSaveAggregatePipeline_Click(object sender, EventArgs e)
         {
-            if (_aggrArray.Count == 0)
+            if (stages.Count == 0)
                 return;
             var strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：",
                 "Save Aggregate Pipeline");
-            Operater.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _aggrArray).ToString());
+            Operater.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", stages).ToString());
         }
 
         /// <summary>
@@ -147,13 +149,13 @@ namespace FunctionForm.Aggregation
         /// <param name="e"></param>
         private void btnAggrBuilder_Click(object sender, EventArgs e)
         {
-            var frmAggregationBuilder = new FrmAggregationCondition();
+            var frmAggregationBuilder = new FrmStageBuilder();
             Utility.OpenForm(frmAggregationBuilder, false, true);
             foreach (var item in frmAggregationBuilder.Aggregation)
             {
-                _aggrArray.Add(item);
+                stages.Add(item);
             }
-            FillAggreationTreeview();
+            FillStagesTreeview();
         }
     }
 }

@@ -40,48 +40,49 @@ namespace FunctionForm.Aggregation
             this.lblAggregatePipeline = new System.Windows.Forms.Label();
             this.cmbForAggregatePipeline = new System.Windows.Forms.ComboBox();
             this.cmdClear = new System.Windows.Forms.Button();
-            this.trvCondition  = new CtlTreeViewColumns();
-            this.trvResult = new CtlTreeViewColumns();
             this.btnAggrBuilder = new System.Windows.Forms.Button();
+            this.trvCondition = new MongoGUICtl.CtlTreeViewColumns();
+            this.trvResult = new MongoGUICtl.CtlTreeViewColumns();
             this.SuspendLayout();
             // 
             // lblResult
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(434, 27);
+            this.lblResult.Location = new System.Drawing.Point(430, 23);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(37, 13);
+            this.lblResult.Size = new System.Drawing.Size(41, 12);
             this.lblResult.TabIndex = 20;
             this.lblResult.Text = "Result";
             // 
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(735, 388);
+            this.cmdRun.Location = new System.Drawing.Point(735, 358);
             this.cmdRun.Name = "cmdRun";
-            this.cmdRun.Size = new System.Drawing.Size(82, 25);
+            this.cmdRun.Size = new System.Drawing.Size(82, 23);
             this.cmdRun.TabIndex = 21;
+            this.cmdRun.Tag = "Command_Run";
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
             // cmdAddCondition
             // 
-            this.cmdAddCondition.Location = new System.Drawing.Point(181, 389);
+            this.cmdAddCondition.Location = new System.Drawing.Point(181, 358);
             this.cmdAddCondition.Name = "cmdAddCondition";
-            this.cmdAddCondition.Size = new System.Drawing.Size(136, 24);
+            this.cmdAddCondition.Size = new System.Drawing.Size(136, 22);
             this.cmdAddCondition.TabIndex = 23;
-            this.cmdAddCondition.Text = "Add Aggregation";
+            this.cmdAddCondition.Text = "Add Stage(s)";
             this.cmdAddCondition.UseVisualStyleBackColor = true;
             this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
             // 
             // lnkReference
             // 
             this.lnkReference.AutoSize = true;
-            this.lnkReference.Location = new System.Drawing.Point(430, 9);
+            this.lnkReference.Location = new System.Drawing.Point(430, 8);
             this.lnkReference.Name = "lnkReference";
-            this.lnkReference.Size = new System.Drawing.Size(172, 13);
+            this.lnkReference.Size = new System.Drawing.Size(191, 12);
             this.lnkReference.TabIndex = 24;
             this.lnkReference.TabStop = true;
             this.lnkReference.Text = "Aggregation Framework Reference";
@@ -89,11 +90,11 @@ namespace FunctionForm.Aggregation
             // 
             // cmdSaveAggregatePipeline
             // 
-            this.cmdSaveAggregatePipeline.Location = new System.Drawing.Point(581, 388);
+            this.cmdSaveAggregatePipeline.Location = new System.Drawing.Point(581, 358);
             this.cmdSaveAggregatePipeline.Name = "cmdSaveAggregatePipeline";
-            this.cmdSaveAggregatePipeline.Size = new System.Drawing.Size(148, 25);
+            this.cmdSaveAggregatePipeline.Size = new System.Drawing.Size(148, 23);
             this.cmdSaveAggregatePipeline.TabIndex = 25;
-            this.cmdSaveAggregatePipeline.Text = "Save Aggregate Pipeline";
+            this.cmdSaveAggregatePipeline.Text = "Save Stages";
             this.cmdSaveAggregatePipeline.UseVisualStyleBackColor = true;
             this.cmdSaveAggregatePipeline.Click += new System.EventHandler(this.cmdSaveAggregatePipeline_Click);
             // 
@@ -101,64 +102,64 @@ namespace FunctionForm.Aggregation
             // 
             this.lblAggregatePipeline.AutoSize = true;
             this.lblAggregatePipeline.BackColor = System.Drawing.Color.Transparent;
-            this.lblAggregatePipeline.Location = new System.Drawing.Point(13, 25);
+            this.lblAggregatePipeline.Location = new System.Drawing.Point(13, 23);
             this.lblAggregatePipeline.Name = "lblAggregatePipeline";
-            this.lblAggregatePipeline.Size = new System.Drawing.Size(96, 13);
+            this.lblAggregatePipeline.Size = new System.Drawing.Size(41, 12);
             this.lblAggregatePipeline.TabIndex = 26;
-            this.lblAggregatePipeline.Text = "Aggregate Pipeline";
+            this.lblAggregatePipeline.Text = "Stages";
             // 
             // cmbForAggregatePipeline
             // 
             this.cmbForAggregatePipeline.FormattingEnabled = true;
-            this.cmbForAggregatePipeline.Location = new System.Drawing.Point(127, 22);
+            this.cmbForAggregatePipeline.Location = new System.Drawing.Point(60, 20);
             this.cmbForAggregatePipeline.Name = "cmbForAggregatePipeline";
-            this.cmbForAggregatePipeline.Size = new System.Drawing.Size(278, 21);
+            this.cmbForAggregatePipeline.Size = new System.Drawing.Size(345, 20);
             this.cmbForAggregatePipeline.TabIndex = 27;
             // 
             // cmdClear
             // 
-            this.cmdClear.Location = new System.Drawing.Point(323, 388);
+            this.cmdClear.Location = new System.Drawing.Point(323, 358);
             this.cmdClear.Name = "cmdClear";
-            this.cmdClear.Size = new System.Drawing.Size(82, 24);
+            this.cmdClear.Size = new System.Drawing.Size(82, 22);
             this.cmdClear.TabIndex = 29;
-            this.cmdClear.Text = "Clear ";
+            this.cmdClear.Text = "Clear";
             this.cmdClear.UseVisualStyleBackColor = true;
             this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
+            // 
+            // btnAggrBuilder
+            // 
+            this.btnAggrBuilder.Location = new System.Drawing.Point(40, 358);
+            this.btnAggrBuilder.Name = "btnAggrBuilder";
+            this.btnAggrBuilder.Size = new System.Drawing.Size(135, 21);
+            this.btnAggrBuilder.TabIndex = 30;
+            this.btnAggrBuilder.Text = "Stage Builder";
+            this.btnAggrBuilder.UseVisualStyleBackColor = true;
+            this.btnAggrBuilder.Click += new System.EventHandler(this.btnAggrBuilder_Click);
             // 
             // trvCondition
             // 
             this.trvCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvCondition.Location = new System.Drawing.Point(12, 49);
+            this.trvCondition.Location = new System.Drawing.Point(12, 45);
             this.trvCondition.Name = "trvCondition";
             this.trvCondition.Padding = new System.Windows.Forms.Padding(1);
-            this.trvCondition.Size = new System.Drawing.Size(393, 329);
+            this.trvCondition.Size = new System.Drawing.Size(393, 304);
             this.trvCondition.TabIndex = 22;
             // 
             // trvResult
             // 
             this.trvResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvResult.Location = new System.Drawing.Point(433, 45);
+            this.trvResult.Location = new System.Drawing.Point(433, 42);
             this.trvResult.Name = "trvResult";
             this.trvResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvResult.Size = new System.Drawing.Size(385, 333);
+            this.trvResult.Size = new System.Drawing.Size(385, 307);
             this.trvResult.TabIndex = 0;
             // 
-            // btnAggrBuilder
+            // FrmAggregation
             // 
-            this.btnAggrBuilder.Location = new System.Drawing.Point(31, 390);
-            this.btnAggrBuilder.Name = "btnAggrBuilder";
-            this.btnAggrBuilder.Size = new System.Drawing.Size(135, 23);
-            this.btnAggrBuilder.TabIndex = 30;
-            this.btnAggrBuilder.Text = "Aggregation Builder";
-            this.btnAggrBuilder.UseVisualStyleBackColor = true;
-            this.btnAggrBuilder.Click += new System.EventHandler(this.btnAggrBuilder_Click);
-            // 
-            // frmAggregation
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(829, 423);
+            this.ClientSize = new System.Drawing.Size(829, 390);
             this.Controls.Add(this.btnAggrBuilder);
             this.Controls.Add(this.cmdClear);
             this.Controls.Add(this.cmbForAggregatePipeline);
@@ -171,7 +172,7 @@ namespace FunctionForm.Aggregation
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.trvResult);
             this.Name = "FrmAggregation";
-            this.Text = "frmAggregation";
+            this.Text = "Aggregation";
             this.Load += new System.EventHandler(this.frmAggregation_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
