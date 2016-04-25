@@ -977,7 +977,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ThanksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var strThanks = "感谢皮肤控件的作者：qianlifeng" + Environment.NewLine;
+            var strThanks = "感谢 QiQi https://github.com/1354092549" + Environment.NewLine;
+            strThanks += "感谢 张鹏 zp11qm12#hotmail.com " + Environment.NewLine;
             strThanks += "感谢10gen的C# Driver开发者的技术支持" + Environment.NewLine;
             strThanks += "感谢Dragon同志的测试和代码规范化" + Environment.NewLine;
             strThanks += "感谢MoLing同志的国际化" + Environment.NewLine;
@@ -995,7 +996,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var strUrl = @"UserGuide\index.html";
+            var strUrl = @"UserGuide\Chinese\index.html";
             Process.Start(strUrl);
         }
 

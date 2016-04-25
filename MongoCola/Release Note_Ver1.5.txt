@@ -1,9 +1,9 @@
 ﻿#Release Note
        
-* 可执行版本[需要 NET Framework 4.6] 更新时间:2015/02/18 16:00
+* 可执行版本[需要 NET Framework 4.6] 更新时间:2015/04/25 16:00
 * 下载地址:  <http://files.cnblogs.com/files/TextEditor/ReleaseVersion.zip>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
-* 版本号：Ver 1.5(Beta2.1)
+* 版本号：Ver 1.5(Beta3)
  
 ***
 
@@ -49,6 +49,15 @@ CSharp Mongo Driver 2.2.3
 ***
 
 # 发布履历
+Ver 1.5 (Beta3) 2016/04/25
+
+以下 更新来自于 QiQi https://github.com/1354092549
+
+优化聚合功能
+对齐组件，更美观
+优化聚合管道（Aggregate）相关功能，和Mongodb官方统一，使用名词stage
+Add Stage（应用第2条前的Add Aggregate）支持提供数组，用于一次添加多个stage
+优化中文语言包
 
 ##Ver 1.5(Beta2)  2015/02/17 @ Shanghai China 
 ###感谢 张鹏 zp11qm12#hotmail.com 对于1，2，3点的贡献
