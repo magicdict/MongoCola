@@ -50,7 +50,14 @@ CSharp Mongo Driver 2.2.3
 
 # 发布履历
 
-##Ver 1.5(Beta2)  2015/02/17 @ Shanghai China 
+#Ver 1.5 (Beta3)  2016/04/25
+1. 优化聚合功能
+-  对齐组件，更美观
+-  优化聚合管道（Aggregate）相关功能，和Mongodb官方统一，使用名词stage
+-  Add Stage（应用第2条前的Add Aggregate）支持提供数组，用于一次添加多个stage
+2. 优化中文语言包
+
+##Ver 1.5(Beta2)  2016/02/17 @ Shanghai China 
 ###感谢 张鹏 zp11qm12#hotmail.com 对于1，2，3点的贡献
 1. 修复了collection中数据删除不掉的bug（id应强转为ObjectId）
 2. 修改了ctlJsEditor界面，现可直接执行已经保存的javascript代码（我的团队需要这个功能）
