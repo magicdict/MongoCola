@@ -50,7 +50,10 @@ CSharp Mongo Driver 2.2.3
 
 # 发布履历
 
-#Ver 1.5 (Beta3)  2016/04/25
+##Ver 1.5 (Beta3)  2016/04/25
+以下 更新来自于   QiQi  https://github.com/1354092549
+
+
 1. 优化聚合功能
 -  对齐组件，更美观
 -  优化聚合管道（Aggregate）相关功能，和Mongodb官方统一，使用名词stage
