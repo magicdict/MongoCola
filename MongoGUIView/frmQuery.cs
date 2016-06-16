@@ -46,46 +46,22 @@ namespace MongoGUIView
             if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(GetResource.GetImage(ImageType.Query));
             var fieldList = new List<DataFilter.QueryFieldItem>();
             fieldList = _currentDataViewInfo.MDataFilter.QueryFieldList;
-            //增加第一个条件
-            ConditionPan.AddCondition();
-            if (_currentDataViewInfo.IsUseFilter)
+            if (fieldList.Count != 0)
             {
                 //使用过滤：字段和条件的设定
+                ConditionPan.PutQueryToUi(_currentDataViewInfo.MDataFilter);
                 QueryFieldPicker.SetQueryFieldList(fieldList);
-                if (_currentDataViewInfo.MDataFilter.QueryConditionList.Count > 0)
-                {
-                    ConditionPan.PutQueryToUi(_currentDataViewInfo.MDataFilter);
-                }
             }
             else
             {
+                //增加第一个条件
+                ConditionPan.AddCondition();
                 //不使用过滤：字段初始化
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
             //多国语言
             GuiConfig.Translateform(this);
         }
-
-        /// <summary>
-        ///     添加条件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdAddCondition_Click(object sender, EventArgs e)
-        {
-            ConditionPan.AddCondition();
-        }
-
-        /// <summary>
-        ///     清空条件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            ConditionPan.ClearCondition();
-        }
-
 
         /// <summary>
         ///     确定
@@ -97,10 +73,12 @@ namespace MongoGUIView
             // 设置DataFilter
             if (string.IsNullOrEmpty(txtSql.Text))
             {
-                SetCurrDataFilter();
+                //No Sql
+                SetCurrentDataFilter();
             }
             else
             {
+                SetCurrentDataFilter();
                 _currentDataViewInfo.MDataFilter = SqlHelper.ConvertQuerySql(txtSql.Text,
                     RuntimeMongoDbContext.GetCurrentCollection());
             }
@@ -116,16 +94,17 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = Utility.XmlFilter};
+            var savefile = new SaveFileDialog { Filter = Utility.XmlFilter };
             if (savefile.ShowDialog() != DialogResult.OK) return;
             // 设置DataFilter
             if (string.IsNullOrEmpty(txtSql.Text))
             {
                 //设置DataFilter
-                SetCurrDataFilter();
+                SetCurrentDataFilter();
             }
             else
             {
+                //使用SQL
                 _currentDataViewInfo.MDataFilter = SqlHelper.ConvertQuerySql(txtSql.Text,
                     RuntimeMongoDbContext.GetCurrentCollection());
             }
@@ -135,14 +114,23 @@ namespace MongoGUIView
         /// <summary>
         ///     设置DataFilter
         /// </summary>
-        private void SetCurrDataFilter()
+        private void SetCurrentDataFilter()
         {
             //清除以前的结果和内部变量，重要！
-            _currentDataViewInfo.MDataFilter.Clear();
+            //FieldList 和 FieldPicker 是引用关系，所以这里Clear掉之后FieldPicker也会被清除掉。GetQueryFieldList就会始终为空！
+            _currentDataViewInfo.MDataFilter.QueryConditionList.Clear();
             _currentDataViewInfo.MDataFilter.DbName = RuntimeMongoDbContext.GetCurrentDataBase().Name;
             _currentDataViewInfo.MDataFilter.CollectionName = RuntimeMongoDbContext.GetCurrentCollection().Name;
             _currentDataViewInfo.MDataFilter.QueryFieldList = QueryFieldPicker.GetQueryFieldList();
             ConditionPan.SetCurrDataFilter(_currentDataViewInfo);
+            if (RuntimeMongoDbContext.CollectionFilter.ContainsKey(RuntimeMongoDbContext.GetCurrentCollectionName()))
+            {
+                RuntimeMongoDbContext.CollectionFilter[RuntimeMongoDbContext.GetCurrentCollectionName()] = _currentDataViewInfo.MDataFilter;
+            }
+            else
+            {
+                RuntimeMongoDbContext.CollectionFilter.Add(RuntimeMongoDbContext.GetCurrentCollectionName(), _currentDataViewInfo.MDataFilter);
+            }
         }
 
         /// <summary>
@@ -152,7 +140,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void cmdLoad_Click(object sender, EventArgs e)
         {
-            var openFile = new OpenFileDialog {Filter = Utility.XmlFilter};
+            var openFile = new OpenFileDialog { Filter = Utility.XmlFilter };
             if (openFile.ShowDialog() != DialogResult.OK) return;
             var newDataFilter = DataFilter.LoadFilter(openFile.FileName);
             _currentDataViewInfo.MDataFilter = newDataFilter;

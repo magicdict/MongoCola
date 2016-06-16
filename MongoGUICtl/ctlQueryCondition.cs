@@ -70,5 +70,27 @@ namespace MongoGUICtl
                 cmbCompareOpr.Items.Add(item);
             }
         }
+
+        public delegate void ItemChanged(object sender);
+        public event ItemChanged ItemRemoved;
+        public event ItemChanged ItemAdded;
+        /// <summary>
+        /// 触发Remove事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            ItemRemoved(this);
+        }
+        /// <summary>
+        /// 触发Add事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ItemAdded(this);
+        }
     }
 }

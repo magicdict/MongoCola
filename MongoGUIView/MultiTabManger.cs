@@ -61,10 +61,7 @@ namespace MongoGUIView
             ParentMenuItems = mParentMenuItems;
             ViewTabContain.SelectedIndexChanged += (send, e) =>
             {
-                if (TabSelectIndexChanged != null)
-                {
-                    TabSelectIndexChanged(send, e);
-                }
+                TabSelectIndexChanged?.Invoke(send, e);
             };
         }
 

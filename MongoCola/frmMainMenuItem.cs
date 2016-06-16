@@ -21,6 +21,7 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using FunctionForm.MachineLearning;
 
 namespace MongoCola
 {
@@ -405,7 +406,7 @@ namespace MongoCola
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             var strTagPrefix = TagInfo.GetTagPath(ConstMgr.CollectionTag + ":" + RuntimeMongoDbContext.SelectTagData);
-            var strDbName = strTagPrefix.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Database];
+            var strDbName = strTagPrefix.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.Database];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
@@ -565,8 +566,8 @@ namespace MongoCola
                 {
                     var jsNode = new TreeNode(strJsName)
                     {
-                        ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
-                        SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
+                        ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
+                        SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     var jsTag = RuntimeMongoDbContext.SelectTagData;
                     jsNode.Tag = ConstMgr.JavascriptDocTag + ":" + jsTag + "/" + strJsName;
@@ -660,7 +661,7 @@ namespace MongoCola
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Collection + 1];
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.Collection + 1];
             var result = Operater.DelJavascript(strCollection);
             if (string.IsNullOrEmpty(result))
             {
@@ -723,9 +724,7 @@ namespace MongoCola
         private void ExportToFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var colPath = RuntimeMongoDbContext.SelectTagData;
-            //Utility.OpenForm(!MultiTabManger.TabInfo.ContainsKey(colPath)
-            //    ? new FrmExport()
-            //    : new FrmExport(MultiTabManger.TabInfo[colPath].Info), true, true);
+            MessageBox.Show("Please Use Export To Excel PlugIn!");
         }
 
         #endregion
@@ -783,6 +782,10 @@ namespace MongoCola
             {
                 mongoRestore.DirectoryPerDb = dumpFile.SelectedPath;
             }
+            else
+            {
+                return;
+            }
             var dosCommand = MongoRestoreInfo.GetMongoRestoreCommandLine(mongoRestore);
             RunCommand(dosCommand);
             RefreshToolStripMenuItem_Click(null, null);
@@ -805,6 +808,10 @@ namespace MongoCola
             {
                 mongoDump.OutPutPath = dumpFile.SelectedPath;
             }
+            else
+            {
+                return;
+            }
             var dosCommand = MongoDumpInfo.GetMongodumpCommandLine(mongoDump);
             RunCommand(dosCommand);
         }
@@ -825,6 +832,10 @@ namespace MongoCola
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
                 mongoDump.OutPutPath = dumpFile.SelectedPath;
+            }
+            else
+            {
+                return;
             }
             var dosCommand = MongoDumpInfo.GetMongodumpCommandLine(mongoDump);
             RunCommand(dosCommand);
@@ -851,6 +862,10 @@ namespace MongoCola
             if (exportCol.ShowDialog() == DialogResult.OK)
             {
                 mongoImportExport.FileName = exportCol.FileName;
+            }
+            else
+            {
+                return;
             }
             mongoImportExport.Direct = MongoImportExportInfo.ImprotExport.Export;
             var dosCommand = MongoImportExportInfo.GetMongoImportExportCommandLine(mongoImportExport);
@@ -882,6 +897,10 @@ namespace MongoCola
             if (importCol.ShowDialog() == DialogResult.OK)
             {
                 mongoImportExport.FileName = importCol.FileName;
+            }
+            else
+            {
+                return;
             }
             mongoImportExport.Direct = MongoImportExportInfo.ImprotExport.Import;
             var dosCommand = MongoImportExportInfo.GetMongoImportExportCommandLine(mongoImportExport);
@@ -956,6 +975,17 @@ namespace MongoCola
 
         #endregion
 
+        #region MahcineLearning
+        /// <summary>
+        /// 回归
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void regressionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.OpenForm(new frmRegression(), true, true);
+        }
+        #endregion
         #region "帮助"
 
         /// <summary>
@@ -997,7 +1027,14 @@ namespace MongoCola
         private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strUrl = @"UserGuide\Chinese\index.html";
-            Process.Start(strUrl);
+            try
+            {
+                Process.Start(strUrl);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("HelpFile Error!");
+            }
         }
 
         #endregion

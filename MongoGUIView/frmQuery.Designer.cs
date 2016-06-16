@@ -33,42 +33,26 @@ namespace MongoGUIView
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmdAddCondition = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFieldInfo = new System.Windows.Forms.TabPage();
+            this.QueryFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
             this.tabCondition = new System.Windows.Forms.TabPage();
-            this.cmdClear = new System.Windows.Forms.Button();
-            this.panFilter = new System.Windows.Forms.Panel();
+            this.ConditionPan = new MongoGUICtl.Aggregation.ConditionPanel();
             this.tabGeoNear = new System.Windows.Forms.TabPage();
+            this.GeoNear = new MongoGUICtl.CtlGeoNear();
             this.tabSql = new System.Windows.Forms.TabPage();
             this.lblAttentionSelectOnly = new System.Windows.Forms.Label();
             this.txtSql = new System.Windows.Forms.TextBox();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
-            this.QueryFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
-            this.ConditionPan = new MongoGUICtl.Aggregation.ConditionPanel();
-            this.GeoNear = new MongoGUICtl.CtlGeoNear();
             this.tabControl.SuspendLayout();
             this.tabFieldInfo.SuspendLayout();
             this.tabCondition.SuspendLayout();
-            this.panFilter.SuspendLayout();
             this.tabGeoNear.SuspendLayout();
             this.tabSql.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // cmdAddCondition
-            // 
-            this.cmdAddCondition.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddCondition.Location = new System.Drawing.Point(445, 393);
-            this.cmdAddCondition.Name = "cmdAddCondition";
-            this.cmdAddCondition.Size = new System.Drawing.Size(96, 36);
-            this.cmdAddCondition.TabIndex = 14;
-            this.cmdAddCondition.Tag = "Common_Add";
-            this.cmdAddCondition.Text = "Add Filter";
-            this.cmdAddCondition.UseVisualStyleBackColor = false;
-            this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
             // 
             // cmdOK
             // 
@@ -91,7 +75,7 @@ namespace MongoGUIView
             this.tabControl.Location = new System.Drawing.Point(6, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(595, 496);
+            this.tabControl.Size = new System.Drawing.Size(704, 496);
             this.tabControl.TabIndex = 0;
             // 
             // tabFieldInfo
@@ -101,44 +85,42 @@ namespace MongoGUIView
             this.tabFieldInfo.Location = new System.Drawing.Point(4, 24);
             this.tabFieldInfo.Name = "tabFieldInfo";
             this.tabFieldInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFieldInfo.Size = new System.Drawing.Size(587, 468);
+            this.tabFieldInfo.Size = new System.Drawing.Size(696, 468);
             this.tabFieldInfo.TabIndex = 0;
             this.tabFieldInfo.Text = "Output Fields";
             this.tabFieldInfo.UseVisualStyleBackColor = true;
             // 
+            // QueryFieldPicker
+            // 
+            this.QueryFieldPicker.AutoScroll = true;
+            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
+            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Query;
+            this.QueryFieldPicker.IsIdProtect = true;
+            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
+            this.QueryFieldPicker.Name = "QueryFieldPicker";
+            this.QueryFieldPicker.Size = new System.Drawing.Size(690, 462);
+            this.QueryFieldPicker.TabIndex = 0;
+            // 
             // tabCondition
             // 
-            this.tabCondition.Controls.Add(this.cmdClear);
-            this.tabCondition.Controls.Add(this.panFilter);
-            this.tabCondition.Controls.Add(this.cmdAddCondition);
+            this.tabCondition.Controls.Add(this.ConditionPan);
             this.tabCondition.Location = new System.Drawing.Point(4, 24);
             this.tabCondition.Name = "tabCondition";
             this.tabCondition.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCondition.Size = new System.Drawing.Size(587, 468);
+            this.tabCondition.Size = new System.Drawing.Size(696, 468);
             this.tabCondition.TabIndex = 1;
             this.tabCondition.Text = "Condition";
             this.tabCondition.UseVisualStyleBackColor = true;
             // 
-            // cmdClear
+            // ConditionPan
             // 
-            this.cmdClear.Location = new System.Drawing.Point(328, 393);
-            this.cmdClear.Name = "cmdClear";
-            this.cmdClear.Size = new System.Drawing.Size(96, 36);
-            this.cmdClear.TabIndex = 16;
-            this.cmdClear.Tag = "Common_Clear";
-            this.cmdClear.Text = "Clear Filter";
-            this.cmdClear.UseVisualStyleBackColor = true;
-            this.cmdClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // panFilter
-            // 
-            this.panFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panFilter.Controls.Add(this.ConditionPan);
-            this.panFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panFilter.Location = new System.Drawing.Point(3, 3);
-            this.panFilter.Name = "panFilter";
-            this.panFilter.Size = new System.Drawing.Size(581, 383);
-            this.panFilter.TabIndex = 15;
+            this.ConditionPan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConditionPan.Location = new System.Drawing.Point(3, 3);
+            this.ConditionPan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ConditionPan.Name = "ConditionPan";
+            this.ConditionPan.Size = new System.Drawing.Size(690, 462);
+            this.ConditionPan.TabIndex = 0;
             // 
             // tabGeoNear
             // 
@@ -146,10 +128,18 @@ namespace MongoGUIView
             this.tabGeoNear.Location = new System.Drawing.Point(4, 24);
             this.tabGeoNear.Name = "tabGeoNear";
             this.tabGeoNear.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeoNear.Size = new System.Drawing.Size(587, 468);
+            this.tabGeoNear.Size = new System.Drawing.Size(696, 468);
             this.tabGeoNear.TabIndex = 2;
             this.tabGeoNear.Text = "GeoNear";
             this.tabGeoNear.UseVisualStyleBackColor = true;
+            // 
+            // GeoNear
+            // 
+            this.GeoNear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GeoNear.Location = new System.Drawing.Point(3, 3);
+            this.GeoNear.Name = "GeoNear";
+            this.GeoNear.Size = new System.Drawing.Size(690, 462);
+            this.GeoNear.TabIndex = 0;
             // 
             // tabSql
             // 
@@ -158,7 +148,7 @@ namespace MongoGUIView
             this.tabSql.Location = new System.Drawing.Point(4, 24);
             this.tabSql.Name = "tabSql";
             this.tabSql.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSql.Size = new System.Drawing.Size(587, 468);
+            this.tabSql.Size = new System.Drawing.Size(696, 468);
             this.tabSql.TabIndex = 3;
             this.tabSql.Text = "SqlHelper";
             this.tabSql.UseVisualStyleBackColor = true;
@@ -180,7 +170,7 @@ namespace MongoGUIView
             this.txtSql.Location = new System.Drawing.Point(9, 15);
             this.txtSql.Multiline = true;
             this.txtSql.Name = "txtSql";
-            this.txtSql.Size = new System.Drawing.Size(558, 391);
+            this.txtSql.Size = new System.Drawing.Size(681, 391);
             this.txtSql.TabIndex = 45;
             // 
             // cmdLoad
@@ -218,40 +208,12 @@ namespace MongoGUIView
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
-            // QueryFieldPicker
-            // 
-            this.QueryFieldPicker.AutoScroll = true;
-            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
-            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Query;
-            this.QueryFieldPicker.IsIdProtect = true;
-            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
-            this.QueryFieldPicker.Name = "QueryFieldPicker";
-            this.QueryFieldPicker.Size = new System.Drawing.Size(581, 462);
-            this.QueryFieldPicker.TabIndex = 0;
-            // 
-            // ConditionPan
-            // 
-            this.ConditionPan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConditionPan.Location = new System.Drawing.Point(0, 0);
-            this.ConditionPan.Name = "ConditionPan";
-            this.ConditionPan.Size = new System.Drawing.Size(579, 381);
-            this.ConditionPan.TabIndex = 0;
-            // 
-            // GeoNear
-            // 
-            this.GeoNear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GeoNear.Location = new System.Drawing.Point(3, 3);
-            this.GeoNear.Name = "GeoNear";
-            this.GeoNear.Size = new System.Drawing.Size(581, 464);
-            this.GeoNear.TabIndex = 0;
-            // 
             // FrmQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(613, 554);
+            this.ClientSize = new System.Drawing.Size(722, 554);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdLoad);
@@ -269,7 +231,6 @@ namespace MongoGUIView
             this.tabControl.ResumeLayout(false);
             this.tabFieldInfo.ResumeLayout(false);
             this.tabCondition.ResumeLayout(false);
-            this.panFilter.ResumeLayout(false);
             this.tabGeoNear.ResumeLayout(false);
             this.tabSql.ResumeLayout(false);
             this.tabSql.PerformLayout();
@@ -278,14 +239,11 @@ namespace MongoGUIView
         }
 
         #endregion
-
-        private Button cmdAddCondition;
         private Button cmdOK;
         private TabControl tabControl;
         private TabPage tabCondition;
         private Button cmdSave;
         private Button cmdLoad;
-        private Panel panFilter;
         private Button cmdCancel;
         private TabPage tabGeoNear;
         private CtlGeoNear GeoNear;
@@ -294,7 +252,6 @@ namespace MongoGUIView
         private TextBox txtSql;
         private TabPage tabFieldInfo;
         private FieldPicker QueryFieldPicker;
-        private Button cmdClear;
         private ConditionPanel ConditionPan;
     }
 }

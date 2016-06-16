@@ -104,6 +104,8 @@ namespace MongoCola
             this.CollectionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ValidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExportToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.machineLearningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.regressionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DumpAndRestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestoreMongoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DumpDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -595,7 +597,8 @@ namespace MongoCola
             this.dropJavascriptToolStripMenuItem,
             this.CollectionStatusToolStripMenuItem,
             this.ValidateToolStripMenuItem,
-            this.ExportToFileToolStripMenuItem});
+            this.ExportToFileToolStripMenuItem,
+            this.machineLearningToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
             this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.DataCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection";
@@ -663,42 +666,42 @@ namespace MongoCola
             // countToolStripMenuItem
             // 
             this.countToolStripMenuItem.Name = "countToolStripMenuItem";
-            this.countToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.countToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.countToolStripMenuItem.Text = "Count";
             this.countToolStripMenuItem.Click += new System.EventHandler(this.countToolStripMenuItem_Click);
             // 
             // distinctToolStripMenuItem
             // 
             this.distinctToolStripMenuItem.Name = "distinctToolStripMenuItem";
-            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.distinctToolStripMenuItem.Text = "Distinct";
             this.distinctToolStripMenuItem.Click += new System.EventHandler(this.distinctToolStripMenuItem_Click);
             // 
             // groupToolStripMenuItem
             // 
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.groupToolStripMenuItem.Text = "Group";
             this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
             // aggregateToolStripMenuItem
             // 
             this.aggregateToolStripMenuItem.Name = "aggregateToolStripMenuItem";
-            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aggregateToolStripMenuItem.Text = "Aggregate";
             this.aggregateToolStripMenuItem.Click += new System.EventHandler(this.aggregateToolStripMenuItem_Click);
             // 
             // textSearchToolStripMenuItem
             // 
             this.textSearchToolStripMenuItem.Name = "textSearchToolStripMenuItem";
-            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.textSearchToolStripMenuItem.Text = "TextSearch";
             this.textSearchToolStripMenuItem.Click += new System.EventHandler(this.textSearchToolStripMenuItem_Click);
             // 
@@ -740,6 +743,21 @@ namespace MongoCola
             this.ExportToFileToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_ExportToFile";
             this.ExportToFileToolStripMenuItem.Text = "ExportImport To File";
             this.ExportToFileToolStripMenuItem.Click += new System.EventHandler(this.ExportToFileToolStripMenuItem_Click);
+            // 
+            // machineLearningToolStripMenuItem
+            // 
+            this.machineLearningToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.regressionToolStripMenuItem});
+            this.machineLearningToolStripMenuItem.Name = "machineLearningToolStripMenuItem";
+            this.machineLearningToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.machineLearningToolStripMenuItem.Text = "Machine Learning";
+            // 
+            // regressionToolStripMenuItem
+            // 
+            this.regressionToolStripMenuItem.Name = "regressionToolStripMenuItem";
+            this.regressionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.regressionToolStripMenuItem.Text = "Regression";
+            this.regressionToolStripMenuItem.Click += new System.EventHandler(this.regressionToolStripMenuItem_Click);
             // 
             // DumpAndRestoreToolStripMenuItem
             // 
@@ -1077,6 +1095,8 @@ namespace MongoCola
         private TabControl tabView;
         private ToolStripMenuItem ConfigfileMenuItem;
         private ToolStripMenuItem MultiLanguageToolStripMenuItem;
+        private ToolStripMenuItem machineLearningToolStripMenuItem;
+        private ToolStripMenuItem regressionToolStripMenuItem;
     }
 }
 

@@ -60,6 +60,7 @@ namespace MongoCola
             ValidateToolStripMenuItem.Enabled = false;
             ExportToFileToolStripMenuItem.Enabled = false;
             ProfillingLevelToolStripMenuItem.Enabled = false;
+            machineLearningToolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
             DumpDatabaseToolStripMenuItem.Enabled = false;

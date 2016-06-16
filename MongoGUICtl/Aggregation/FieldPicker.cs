@@ -167,6 +167,7 @@ namespace MongoGUICtl.Aggregation
             Controls.Clear();
             Controls.Add(btnSelectAll);
             Controls.Add(btnUnSelectAll);
+            Controls.Add(lblSortOrder);
             foreach (var queryFieldItem in _mQueryFieldList.OrderBy(info => info.ColName))
             {
                 //动态加载控件

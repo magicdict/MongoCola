@@ -424,6 +424,7 @@ namespace MongoCola
             ViewDataToolStripMenuItem.Enabled = true;
             CollectionStatusToolStripMenuItem.Enabled = true;
             ValidateToolStripMenuItem.Enabled = true;
+            machineLearningToolStripMenuItem.Enabled = true;
             ExportToFileToolStripMenuItem.Enabled = true;
             if (e.Button == MouseButtons.Right)
             {
@@ -520,6 +521,7 @@ namespace MongoCola
                     contextMenuStripMain.Items.Add(new ToolStripSeparator());
                     contextMenuStripMain.Items.Add(CollectionStatusToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ValidateToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(machineLearningToolStripMenuItem.Clone());
                 }
                 e.Node.ContextMenuStrip = contextMenuStripMain;
                 contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));

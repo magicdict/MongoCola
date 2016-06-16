@@ -14,6 +14,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Security;
+using MongoUtility.Aggregation;
 
 namespace MongoUtility.Core
 {
@@ -240,6 +241,12 @@ namespace MongoUtility.Core
         ///     用户列表
         /// </summary>
         public static Dictionary<string, EachDatabaseUser> MongoUserLst = new Dictionary<string, EachDatabaseUser>();
+
+        /// <summary>
+        ///     数据过滤器
+        /// </summary>
+        public static Dictionary<string, DataFilter> CollectionFilter = new Dictionary<string, DataFilter>();
+
 
         /// <summary>
         ///     获得当前服务器

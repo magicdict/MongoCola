@@ -103,20 +103,20 @@ namespace MongoUtility.Aggregation
             for (var i = 0; i < conditiongrpList.Count - 1; i++)
             {
                 var joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
-                if (joinMark == ConstMgr.EndMarkAndT)
+                if (joinMark == ConstMgr.EndMarkAndT || joinMark == ConstMgr.EndMarkAnd)
                 {
                     rtnQuery =
                         Query.And(i == 0
-                            ? new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])}
-                            : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
+                            ? new[] { GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1]) }
+                            : new[] { rtnQuery, GetGroupQuery(conditiongrpList[i + 1]) });
                 }
 
-                if (joinMark == ConstMgr.EndMarkOrT)
+                if (joinMark == ConstMgr.EndMarkOrT || joinMark == ConstMgr.EndMarkOr)
                 {
                     rtnQuery =
                         Query.Or(i == 0
-                            ? new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])}
-                            : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
+                            ? new[] { GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1]) }
+                            : new[] { rtnQuery, GetGroupQuery(conditiongrpList[i + 1]) });
                 }
             }
             return rtnQuery;

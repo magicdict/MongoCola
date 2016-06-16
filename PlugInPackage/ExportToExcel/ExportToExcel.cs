@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Windows.Forms;
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUIView;
+using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Command;
+using MongoUtility.Core;
 using MongoUtility.ToolKit;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace PlugInPackage.ExportToExcel
 {
@@ -34,8 +37,16 @@ namespace PlugInPackage.ExportToExcel
         /// <returns></returns>
         public override int Run()
         {
-            _processCollection = (MongoCollection) PlugObj;
-            Export(null, null);
+            _processCollection = (MongoCollection)PlugObj;
+            if (RuntimeMongoDbContext.CollectionFilter.ContainsKey(_processCollection.Name))
+            {
+                var filter = RuntimeMongoDbContext.CollectionFilter[_processCollection.Name].QueryConditionList;
+                Export(_processCollection.FindAs<BsonDocument>(QueryHelper.GetQuery(filter)).ToList(), _processCollection.Name);
+            }
+            else
+            {
+                Export(_processCollection.FindAllAs<BsonDocument>().ToList(), _processCollection.Name);
+            }
             MessageBox.Show(_processCollection.Name);
             return 0;
         }
@@ -45,7 +56,7 @@ namespace PlugInPackage.ExportToExcel
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="filename"></param>
-        private static void Export(List<BsonDocument> dataList, string filename)
+        private static void Export(List<BsonDocument> dataList, string filename,bool IsAutoClose = false)
         {
             var schame = MongoHelper.GetCollectionSchame(_processCollection);
             dynamic excelObj = Interaction.CreateObject("Excel.Application");
@@ -105,16 +116,20 @@ namespace PlugInPackage.ExportToExcel
                 }
                 rowCount++;
             }
-            if (isNew)
+
+            if (IsAutoClose)
             {
-                workbook.SaveAs(filename);
+                if (isNew)
+                {
+                    workbook.SaveAs(filename);
+                }
+                else
+                {
+                    workbook.Save();
+                }
+                workbook.Close();
+                excelObj = null;
             }
-            else
-            {
-                workbook.Save();
-            }
-            workbook.Close();
-            excelObj = null;
         }
     }
 }

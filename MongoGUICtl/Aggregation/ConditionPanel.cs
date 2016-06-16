@@ -11,10 +11,10 @@ namespace MongoGUICtl.Aggregation
 {
     public partial class ConditionPanel : UserControl
     {
-        /// <summary>
-        ///     条件输入器数量
-        /// </summary>
-        private byte _conditionCount;
+        ///// <summary>
+        /////     条件输入器数量
+        ///// </summary>
+        //private byte _conditionCount;
 
         /// <summary>
         ///     条件输入器位置
@@ -26,6 +26,9 @@ namespace MongoGUICtl.Aggregation
         /// </summary>
         public List<string> ColumnList = new List<string>();
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public ConditionPanel()
         {
             InitializeComponent();
@@ -41,12 +44,12 @@ namespace MongoGUICtl.Aggregation
         /// </summary>
         public void AddCondition()
         {
-            _conditionCount++;
             var newCondition = new CtlQueryCondition();
             newCondition.Init(ColumnList);
             _conditionPos.Y += newCondition.Height;
             newCondition.Location = _conditionPos;
-            newCondition.Name = "Condition" + _conditionCount;
+            newCondition.ItemRemoved += sender => { if (Controls.Count > 1) { Controls.Remove((Control)sender); } };
+            newCondition.ItemAdded += sender => AddCondition();
             Controls.Add(newCondition);
         }
 
@@ -56,9 +59,8 @@ namespace MongoGUICtl.Aggregation
         public void SetCurrDataFilter(DataViewInfo currentDataViewInfo)
         {
             //过滤条件
-            for (var i = 0; i < _conditionCount; i++)
+            foreach (CtlQueryCondition ctl in Controls)
             {
-                var ctl = (CtlQueryCondition) Controls.Find("Condition" + (i + 1), true)[0];
                 if (ctl.IsSeted)
                 {
                     currentDataViewInfo.MDataFilter.QueryConditionList.Add(ctl.ConditionItem);
@@ -101,7 +103,6 @@ namespace MongoGUICtl.Aggregation
             }
             Controls.Clear();
             _conditionPos = new Point(5, 0);
-            _conditionCount = 0;
             foreach (var queryConditionItem in newDataFilter.QueryConditionList)
             {
                 var newCondition = new CtlQueryCondition();
@@ -109,8 +110,6 @@ namespace MongoGUICtl.Aggregation
                 _conditionPos.Y += newCondition.Height;
                 newCondition.Location = _conditionPos;
                 newCondition.ConditionItem = queryConditionItem;
-                _conditionCount++;
-                newCondition.Name = "Condition" + _conditionCount;
                 Controls.Add(newCondition);
 
                 if (!ColumnList.Contains(queryConditionItem.ColName))
@@ -132,7 +131,6 @@ namespace MongoGUICtl.Aggregation
         public void ClearCondition()
         {
             Controls.Clear();
-            _conditionCount = 0;
             _conditionPos = new Point(5, 0);
             AddCondition();
         }

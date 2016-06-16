@@ -22,7 +22,7 @@
 ***
 
 ## 驱动程序
-CSharp Mongo Driver 2.2.3
+CSharp Mongo Driver 2.2.4
 
 ***
 
@@ -49,6 +49,9 @@ CSharp Mongo Driver 2.2.3
 ***
 
 # 发布履历
+##Ver 1.5 (Beta3)  2016/06/12
+1.Query增加了删除条件的功能
+2.修正了Query的一些错误
 
 ##Ver 1.5 (Beta3)  2016/04/25
 以下 更新来自于   QiQi  https://github.com/1354092549
