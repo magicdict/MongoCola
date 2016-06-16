@@ -123,14 +123,14 @@ namespace MongoGUIView
             {
                 if (item is ToolStripMenuItem)
                 {
-                    ((ToolStripMenuItem) item).Enabled = false;
+                    ((ToolStripMenuItem)item).Enabled = false;
                 }
             }
             foreach (var item in ViewtoolStrip.Items)
             {
                 if (item is ToolStripButton)
                 {
-                    ((ToolStripButton) item).Enabled = false;
+                    ((ToolStripButton)item).Enabled = false;
                 }
             }
 
@@ -188,7 +188,14 @@ namespace MongoGUIView
                     strUrl = @"UserGuide\User.html";
                     break;
             }
-            Process.Start(strUrl);
+            try
+            {
+                Process.Start(strUrl);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("HelpFile Error!");
+            }
         }
 
         #endregion

@@ -1,9 +1,9 @@
 #Release Note
        
-* 可执行版本[需要 NET Framework 4.6] 更新时间:2015/02/18 16:00
+* 可执行版本[需要 NET Framework 4.6] 更新时间:2016/06/18 16:00
 * 下载地址:  <http://files.cnblogs.com/files/TextEditor/ReleaseVersion.zip>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
-* 版本号：Ver 1.5(Beta2.1)
+* 版本号：Ver 2.0.0
  
 ***
 
@@ -17,7 +17,7 @@
 ## 运行时：
 * NET Framework 4.6
 * Mono 4.5
-* MongoDB 3.2.3 
+* MongoDB 3.2.7 
 
 ***
 
@@ -45,13 +45,15 @@ CSharp Mongo Driver 2.2.4
 	进一步改进多语言系统
 4. User System  
 	用户系统
-
+5. Machine Learning
+    加入对于机器学习方法和BI的支持
 ***
 
 # 发布履历
-##Ver 1.5 (Beta3)  2016/06/12
+##Ver 2.0 2016/06/16
 1.Query增加了删除条件的功能
 2.修正了Query的一些错误
+3.机器学习：线性回归
 
 ##Ver 1.5 (Beta3)  2016/04/25
 以下 更新来自于   QiQi  https://github.com/1354092549

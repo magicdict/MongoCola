@@ -986,6 +986,7 @@ namespace MongoCola
             Utility.OpenForm(new frmRegression(), true, true);
         }
         #endregion
+
         #region "帮助"
 
         /// <summary>
