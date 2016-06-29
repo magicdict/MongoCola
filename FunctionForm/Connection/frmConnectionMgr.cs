@@ -54,6 +54,9 @@ namespace FunctionForm.Connection
             //Modify Mode
             ModifyConn = MongoConnectionConfig.MongoConfig.ConnectionList[connectionName];
             UiBinding.TryUpdateForm(ModifyConn, Controls);
+            if (ModifyConn.AuthMechanism == ConstMgr.MONGODB_CR) radMONGODB_CR.Checked = true;
+            if (ModifyConn.AuthMechanism == ConstMgr.MONGODB_X509) radMONGODB_X509.Checked = true;
+            if (ModifyConn.AuthMechanism == ConstMgr.SCRAM_SHA_1) radSCRAM_SHA_1.Checked = true;
             foreach (var item in ModifyConn.ReplsetList)
             {
                 lstHost.Items.Add(item);
@@ -180,7 +183,9 @@ namespace FunctionForm.Connection
         {
             //更新数据模型
             UiBinding.TryUpdateModel(ModifyConn, Controls);
-
+            if (radMONGODB_CR.Checked) ModifyConn.AuthMechanism = ConstMgr.MONGODB_CR;
+            if (radMONGODB_X509.Checked) ModifyConn.AuthMechanism = ConstMgr.MONGODB_X509;
+            if (radSCRAM_SHA_1.Checked) ModifyConn.AuthMechanism = ConstMgr.SCRAM_SHA_1;
             //感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
             ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != string.Empty)

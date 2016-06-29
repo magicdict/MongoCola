@@ -225,5 +225,11 @@
         public const string DocumentMark = "[DOCUMENT]";
 
         #endregion
+
+        #region authentication mechanisms
+        public const string SCRAM_SHA_1 = "SCRAM-SHA-1";
+        public const string MONGODB_CR = "MONGODB-CR";
+        public const string MONGODB_X509 = "MONGODB-X509";
+        #endregion
     }
 }

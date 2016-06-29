@@ -145,10 +145,16 @@ namespace MongoUtility.Core
         public string SshPassword { set; get; }
 
         /// <summary>
+        /// 
         /// </summary>
         public string SshPrivateKeyFile;
 
-        #endregion
+        /// <summary>
+        /// 验证机制
+        /// </summary>
+        public string AuthMechanism;
+
+        #endregion 
 
         #region"运行时属性"
 

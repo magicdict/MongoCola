@@ -81,6 +81,10 @@ namespace FunctionForm.Connection
             this.ctlSSHConfig1 = new FunctionForm.Connection.CtlSshConfig();
             this.tabSSL = new System.Windows.Forms.TabPage();
             this.ctlSSLConfig1 = new FunctionForm.Connection.CtlSslConfig();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.radMONGODB_X509 = new System.Windows.Forms.RadioButton();
+            this.radMONGODB_CR = new System.Windows.Forms.RadioButton();
+            this.radSCRAM_SHA_1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.intPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -93,6 +97,7 @@ namespace FunctionForm.Connection
             ((System.ComponentModel.ISupportInitialize)(this.dblSocketTimeOut)).BeginInit();
             this.tabSSH.SuspendLayout();
             this.tabSSL.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdCancel
@@ -271,6 +276,7 @@ namespace FunctionForm.Connection
             this.tabConnection.Controls.Add(this.tabOptional);
             this.tabConnection.Controls.Add(this.tabSSH);
             this.tabConnection.Controls.Add(this.tabSSL);
+            this.tabConnection.Controls.Add(this.tabPage1);
             this.tabConnection.Location = new System.Drawing.Point(12, 12);
             this.tabConnection.Name = "tabConnection";
             this.tabConnection.SelectedIndex = 0;
@@ -636,6 +642,51 @@ namespace FunctionForm.Connection
             this.ctlSSLConfig1.Size = new System.Drawing.Size(659, 185);
             this.ctlSSLConfig1.TabIndex = 0;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.radMONGODB_X509);
+            this.tabPage1.Controls.Add(this.radMONGODB_CR);
+            this.tabPage1.Controls.Add(this.radSCRAM_SHA_1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(665, 191);
+            this.tabPage1.TabIndex = 8;
+            this.tabPage1.Text = "AuthMechanism";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // radMONGODB_X509
+            // 
+            this.radMONGODB_X509.AutoSize = true;
+            this.radMONGODB_X509.Location = new System.Drawing.Point(41, 77);
+            this.radMONGODB_X509.Name = "radMONGODB_X509";
+            this.radMONGODB_X509.Size = new System.Drawing.Size(122, 19);
+            this.radMONGODB_X509.TabIndex = 0;
+            this.radMONGODB_X509.Text = "MONGODB-X509";
+            this.radMONGODB_X509.UseVisualStyleBackColor = true;
+            // 
+            // radMONGODB_CR
+            // 
+            this.radMONGODB_CR.AutoSize = true;
+            this.radMONGODB_CR.Location = new System.Drawing.Point(41, 52);
+            this.radMONGODB_CR.Name = "radMONGODB_CR";
+            this.radMONGODB_CR.Size = new System.Drawing.Size(110, 19);
+            this.radMONGODB_CR.TabIndex = 0;
+            this.radMONGODB_CR.Text = "MONGODB-CR";
+            this.radMONGODB_CR.UseVisualStyleBackColor = true;
+            // 
+            // radSCRAM_SHA_1
+            // 
+            this.radSCRAM_SHA_1.AutoSize = true;
+            this.radSCRAM_SHA_1.Checked = true;
+            this.radSCRAM_SHA_1.Location = new System.Drawing.Point(41, 27);
+            this.radSCRAM_SHA_1.Name = "radSCRAM_SHA_1";
+            this.radSCRAM_SHA_1.Size = new System.Drawing.Size(154, 19);
+            this.radSCRAM_SHA_1.TabIndex = 0;
+            this.radSCRAM_SHA_1.TabStop = true;
+            this.radSCRAM_SHA_1.Text = "Default(SCRAM-SHA-1)";
+            this.radSCRAM_SHA_1.UseVisualStyleBackColor = true;
+            // 
             // FrmConnectionMgr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -671,6 +722,8 @@ namespace FunctionForm.Connection
             ((System.ComponentModel.ISupportInitialize)(this.dblSocketTimeOut)).EndInit();
             this.tabSSH.ResumeLayout(false);
             this.tabSSL.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -730,5 +783,9 @@ namespace FunctionForm.Connection
         private TabPage tabSSL;
         private CtlSslConfig ctlSSLConfig1;
         private Label lblAttentionPassword;
+        private TabPage tabPage1;
+        private RadioButton radMONGODB_CR;
+        private RadioButton radSCRAM_SHA_1;
+        private RadioButton radMONGODB_X509;
     }
 }

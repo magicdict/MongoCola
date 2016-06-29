@@ -50,10 +50,11 @@ CSharp Mongo Driver 2.2.4
 ***
 
 # 发布履历
-##Ver 2.0 2016/06/16
+##Ver 2.0 2016/06/29
 1.Query增加了删除条件的功能
 2.修正了Query的一些错误
 3.机器学习：线性回归
+4.AuthMechanism
 
 ##Ver 1.5 (Beta3)  2016/04/25
 以下 更新来自于   QiQi  https://github.com/1354092549

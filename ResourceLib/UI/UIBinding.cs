@@ -158,6 +158,7 @@ namespace ResourceLib.UI
                         ((NumericUpDown) controller).Value = (int) info.GetValue(model);
                     }
                 }
+                //数字
                 if (info.PropertyType == typeof (double))
                 {
                     controlName = DoublePrefix + info.Name;
