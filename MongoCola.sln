@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assistant", "Assistant", "{C2CB64A9-4560-43A1-AAB3-B61451A6551B}"
 EndProject
@@ -33,6 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebForm", "WebForm", "{D89F3EDE-8BB0-4D4C-90CF-E0D2567C2BAA}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MongoColaWebAdmin", "MongoColaWebAdmin\MongoColaWebAdmin.xproj", "{C0F8015A-FA24-4DDD-8A79-99524196B81E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -154,6 +158,18 @@ Global
 		{A57B7879-6935-4C45-AEC0-8B2C2E7AB5EF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A57B7879-6935-4C45-AEC0-8B2C2E7AB5EF}.Release|x86.ActiveCfg = Release|Any CPU
 		{A57B7879-6935-4C45-AEC0-8B2C2E7AB5EF}.Release|x86.Build.0 = Release|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Debug|x86.Build.0 = Debug|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Release|x86.ActiveCfg = Release|Any CPU
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -169,6 +185,7 @@ Global
 		{564926F7-427A-412C-8DE0-967E9D082A84} = {EB6F6C93-B2FA-451B-9799-10C6B15FD053}
 		{C2578125-FE64-43A0-B43B-9830714C988A} = {7FAD8638-E410-46A0-8B32-DCDD29D3CB57}
 		{A57B7879-6935-4C45-AEC0-8B2C2E7AB5EF} = {7FAD8638-E410-46A0-8B32-DCDD29D3CB57}
+		{C0F8015A-FA24-4DDD-8A79-99524196B81E} = {D89F3EDE-8BB0-4D4C-90CF-E0D2567C2BAA}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
