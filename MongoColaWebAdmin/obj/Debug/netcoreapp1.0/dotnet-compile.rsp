@@ -94,6 +94,10 @@
 --reference:C:\Users\scs\.nuget\packages\Microsoft.VisualStudio.Web.BrowserLink.Loader\14.0.0\lib\netstandard1.5\Microsoft.VisualStudio.Web.BrowserLink.Loader.dll
 --reference:C:\Users\scs\.nuget\packages\Microsoft.Win32.Primitives\4.0.1\ref\netstandard1.3\Microsoft.Win32.Primitives.dll
 --reference:C:\Users\scs\.nuget\packages\Microsoft.Win32.Registry\4.0.0\ref\netstandard1.3\Microsoft.Win32.Registry.dll
+--reference:C:\Users\scs\.nuget\packages\mongocsharpdriver\2.3.0-rc1\lib\netstandard1.5\MongoDB.Driver.Legacy.dll
+--reference:C:\Users\scs\.nuget\packages\MongoDB.Bson\2.3.0-rc1\lib\netstandard1.5\MongoDB.Bson.dll
+--reference:C:\Users\scs\.nuget\packages\MongoDB.Driver\2.3.0-rc1\lib\netstandard1.5\MongoDB.Driver.dll
+--reference:C:\Users\scs\.nuget\packages\MongoDB.Driver.Core\2.3.0-rc1\lib\netstandard1.5\MongoDB.Driver.Core.dll
 --reference:C:\Users\scs\.nuget\packages\Newtonsoft.Json\9.0.1\lib\netstandard1.0\Newtonsoft.Json.dll
 --reference:C:\Users\scs\.nuget\packages\NuGet.Common\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Common.dll
 --reference:C:\Users\scs\.nuget\packages\NuGet.Configuration\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Configuration.dll
@@ -115,6 +119,7 @@
 --reference:C:\Users\scs\.nuget\packages\System.Collections.Concurrent\4.0.12\ref\netstandard1.3\System.Collections.Concurrent.dll
 --reference:C:\Users\scs\.nuget\packages\System.Collections.Immutable\1.2.0\lib\netstandard1.0\System.Collections.Immutable.dll
 --reference:C:\Users\scs\.nuget\packages\System.Collections.NonGeneric\4.0.1\ref\netstandard1.3\System.Collections.NonGeneric.dll
+--reference:C:\Users\scs\.nuget\packages\System.Collections.Specialized\4.0.1\ref\netstandard1.3\System.Collections.Specialized.dll
 --reference:C:\Users\scs\.nuget\packages\System.ComponentModel\4.0.1\ref\netstandard1.0\System.ComponentModel.dll
 --reference:C:\Users\scs\.nuget\packages\System.ComponentModel.Annotations\4.1.0\ref\netstandard1.4\System.ComponentModel.Annotations.dll
 --reference:C:\Users\scs\.nuget\packages\System.ComponentModel.Primitives\4.1.0\ref\netstandard1.0\System.ComponentModel.Primitives.dll
@@ -126,6 +131,7 @@
 --reference:C:\Users\scs\.nuget\packages\System.Diagnostics.Process\4.1.0\ref\netstandard1.4\System.Diagnostics.Process.dll
 --reference:C:\Users\scs\.nuget\packages\System.Diagnostics.StackTrace\4.0.1\ref\netstandard1.3\System.Diagnostics.StackTrace.dll
 --reference:C:\Users\scs\.nuget\packages\System.Diagnostics.Tools\4.0.1\ref\netstandard1.0\System.Diagnostics.Tools.dll
+--reference:C:\Users\scs\.nuget\packages\System.Diagnostics.TraceSource\4.0.0\ref\netstandard1.3\System.Diagnostics.TraceSource.dll
 --reference:C:\Users\scs\.nuget\packages\System.Diagnostics.Tracing\4.1.0\ref\netstandard1.5\System.Diagnostics.Tracing.dll
 --reference:C:\Users\scs\.nuget\packages\System.Dynamic.Runtime\4.0.11\ref\netstandard1.3\System.Dynamic.Runtime.dll
 --reference:C:\Users\scs\.nuget\packages\System.Globalization\4.0.11\ref\netstandard1.3\System.Globalization.dll
@@ -155,6 +161,8 @@
 --reference:C:\Users\scs\.nuget\packages\System.ObjectModel\4.0.12\ref\netstandard1.3\System.ObjectModel.dll
 --reference:C:\Users\scs\.nuget\packages\System.Reflection\4.1.0\ref\netstandard1.5\System.Reflection.dll
 --reference:C:\Users\scs\.nuget\packages\System.Reflection.DispatchProxy\4.0.1\ref\netstandard1.3\System.Reflection.DispatchProxy.dll
+--reference:C:\Users\scs\.nuget\packages\System.Reflection.Emit.ILGeneration\4.0.1\ref\netstandard1.0\System.Reflection.Emit.ILGeneration.dll
+--reference:C:\Users\scs\.nuget\packages\System.Reflection.Emit.Lightweight\4.0.1\ref\netstandard1.0\System.Reflection.Emit.Lightweight.dll
 --reference:C:\Users\scs\.nuget\packages\System.Reflection.Extensions\4.0.1\ref\netstandard1.0\System.Reflection.Extensions.dll
 --reference:C:\Users\scs\.nuget\packages\System.Reflection.Metadata\1.3.0\lib\netstandard1.1\System.Reflection.Metadata.dll
 --reference:C:\Users\scs\.nuget\packages\System.Reflection.Primitives\4.0.1\ref\netstandard1.0\System.Reflection.Primitives.dll
@@ -176,6 +184,7 @@
 --reference:C:\Users\scs\.nuget\packages\System.Security.Cryptography.X509Certificates\4.1.0\ref\netstandard1.4\System.Security.Cryptography.X509Certificates.dll
 --reference:C:\Users\scs\.nuget\packages\System.Security.Principal\4.0.1\ref\netstandard1.0\System.Security.Principal.dll
 --reference:C:\Users\scs\.nuget\packages\System.Security.Principal.Windows\4.0.0\ref\netstandard1.3\System.Security.Principal.Windows.dll
+--reference:C:\Users\scs\.nuget\packages\System.Security.SecureString\4.0.0\ref\netstandard1.3\System.Security.SecureString.dll
 --reference:C:\Users\scs\.nuget\packages\System.Text.Encoding\4.0.11\ref\netstandard1.3\System.Text.Encoding.dll
 --reference:C:\Users\scs\.nuget\packages\System.Text.Encoding.Extensions\4.0.11\ref\netstandard1.3\System.Text.Encoding.Extensions.dll
 --reference:C:\Users\scs\.nuget\packages\System.Text.Encodings.Web\4.0.0\lib\netstandard1.0\System.Text.Encodings.Web.dll
@@ -190,6 +199,8 @@
 --reference:C:\Users\scs\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\scs\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\scs\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
+--reference:C:\Users\scs\.nuget\packages\System.Xml.XmlSerializer\4.0.11\ref\netstandard1.3\System.Xml.XmlSerializer.dll
+--reference:E:\WorkSpace\MongoCola\MongoUtilityCore\bin\Debug\netcoreapp1.0\MongoUtilityCore.dll
 --resource:"E:\WorkSpace\MongoCola\MongoColaWebAdmin\obj\Debug\netcoreapp1.0\MongoColaWebAdmindotnet-compile.deps.json",MongoColaWebAdmin.deps.json
 E:\WorkSpace\MongoCola\MongoColaWebAdmin\Program.cs
 E:\WorkSpace\MongoCola\MongoColaWebAdmin\Startup.cs
