@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
-
 
 namespace MongoUtility.Core
 {
-    public class MongoConfig : IXmlSerializable
+    public class MongoConfig
     {
         /// <summary>
         ///     配置文件名称
@@ -79,7 +76,7 @@ namespace MongoUtility.Core
         /// </summary>
         public static void LoadFromConfigFile()
         {
-            //MongoConnectionConfig.MongoConfig = Utility.LoadObjFromXml<MongoConfig>(AppPath + MongoConfigFilename);
+            MongoConnectionConfig.MongoConfig = LoadObjFromXml<MongoConfig>(AppPath + MongoConfigFilename);
             MongoConnectionConfig.MongoConfig.ConnectionList.Clear();
             foreach (var item in MongoConnectionConfig.MongoConfig.SerializableConnectionList)
             {
@@ -87,19 +84,19 @@ namespace MongoUtility.Core
             }
         }
 
-        public XmlSchema GetSchema()
+        /// <summary>
+        ///     读取对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public static T LoadObjFromXml<T>(string filename)
         {
-            throw new NotImplementedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
+            var setting = new XmlReaderSettings();
+            var xml = new XmlSerializer(typeof(T));
+            var reader = XmlReader.Create(filename, setting);
+            var obj = (T)xml.Deserialize(reader);
+            return obj;
         }
     }
 }

@@ -9,8 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
 using MongoUtility.Basic;
 
@@ -20,7 +18,7 @@ namespace MongoUtility.Core
     /// <summary>
     ///     连接结构体
     /// </summary>
-    public class MongoConnectionConfig : IXmlSerializable
+    public class MongoConnectionConfig
     {
         /// <summary>
         /// </summary>
@@ -249,20 +247,7 @@ namespace MongoUtility.Core
         /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
         public double WtimeoutMs;
 
-        public XmlSchema GetSchema()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         #endregion
     }

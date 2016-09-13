@@ -11,7 +11,7 @@ namespace MongoUtility.Aggregation
     /// <summary>
     ///     数据过滤器
     /// </summary>
-    public class DataFilter : IXmlSerializable
+    public class DataFilter 
     {
         /// <summary>
         ///     比较符号
@@ -124,21 +124,6 @@ namespace MongoUtility.Aggregation
             //SkipCnt = 0;
             QueryFieldList.Clear();
             QueryConditionList.Clear();
-        }
-
-        public XmlSchema GetSchema()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

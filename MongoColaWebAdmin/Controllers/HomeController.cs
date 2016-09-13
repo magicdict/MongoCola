@@ -8,26 +8,20 @@ namespace MongoColaWebAdmin.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// 首页
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
+        /// <summary>
+        /// 主面板
+        /// </summary>
+        /// <param name="ConnectionName"></param>
+        /// <returns></returns>
+        public IActionResult MainPanel(string ConnectionName)
         {
             return View();
         }

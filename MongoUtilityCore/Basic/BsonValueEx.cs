@@ -10,7 +10,7 @@ namespace MongoUtility.Basic
     /// <summary>
     ///     用于BsonValue的序列化
     /// </summary>
-    public class BsonValueEx : IXmlSerializable
+    public class BsonValueEx
     {
         // TODO:Check the new driver if the function is ready.
 
@@ -112,21 +112,6 @@ namespace MongoUtility.Basic
                     break;
             }
             return value;
-        }
-
-        public XmlSchema GetSchema()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
-        }
+        }   
     }
 }
