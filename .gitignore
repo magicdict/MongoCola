@@ -54,6 +54,10 @@
 /ConfigurationFile/obj
 /DesignDocument
 /ServerLoader
+/MongoColaWebAdmin/bin
+/MongoColaWebAdmin/obj
+/MongoUtilityCore/bin
+/MongoUtilityCore/obj
 !readme.txt
 !app.config
 !Release Note.txt
