@@ -58,21 +58,6 @@
           }
         }
       },
-      "mongocsharpdriver/2.3.0-rc1": {
-        "type": "package",
-        "dependencies": {
-          "MongoDB.Bson": "2.3.0-rc1",
-          "MongoDB.Driver": "2.3.0-rc1",
-          "MongoDB.Driver.Core": "2.3.0-rc1",
-          "NETStandard.Library": "1.6.0"
-        },
-        "compile": {
-          "lib/netstandard1.5/MongoDB.Driver.Legacy.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.5/MongoDB.Driver.Legacy.dll": {}
-        }
-      },
       "MongoDB.Bson/2.3.0-rc1": {
         "type": "package",
         "dependencies": {
@@ -1563,20 +1548,6 @@
       }
     },
     ".NETFramework,Version=v4.6.2": {
-      "mongocsharpdriver/2.3.0-rc1": {
-        "type": "package",
-        "dependencies": {
-          "MongoDB.Bson": "2.3.0-rc1",
-          "MongoDB.Driver": "2.3.0-rc1",
-          "MongoDB.Driver.Core": "2.3.0-rc1"
-        },
-        "compile": {
-          "lib/net45/MongoDB.Driver.Legacy.dll": {}
-        },
-        "runtime": {
-          "lib/net45/MongoDB.Driver.Legacy.dll": {}
-        }
-      },
       "MongoDB.Bson/2.3.0-rc1": {
         "type": "package",
         "compile": {
@@ -1702,20 +1673,6 @@
         "runtimes/win/lib/net46/Microsoft.Win32.Registry.dll",
         "runtimes/win/lib/netcore50/_._",
         "runtimes/win/lib/netstandard1.3/Microsoft.Win32.Registry.dll"
-      ]
-    },
-    "mongocsharpdriver/2.3.0-rc1": {
-      "sha512": "UJPIjkPOgURAur/V8K6CaRUaSYxYB2WEXZAm+R9mYs5wF4j1yzNJt+i73Alf3oz/d+9ZTWVCUHaKPQZuY8oBcg==",
-      "type": "package",
-      "path": "mongocsharpdriver/2.3.0-rc1",
-      "files": [
-        "License.rtf",
-        "lib/net45/MongoDB.Driver.Legacy.XML",
-        "lib/net45/MongoDB.Driver.Legacy.dll",
-        "lib/netstandard1.5/MongoDB.Driver.Legacy.dll",
-        "lib/netstandard1.5/MongoDB.Driver.Legacy.xml",
-        "mongocsharpdriver.2.3.0-rc1.nupkg.sha512",
-        "mongocsharpdriver.nuspec"
       ]
     },
     "MongoDB.Bson/2.3.0-rc1": {
@@ -5372,8 +5329,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "MongoDB.Driver >= 2.3.0-rc1",
-      "mongocsharpdriver >= 2.3.0-rc1"
+      "MongoDB.Driver >= 2.3.0-rc1"
     ],
     ".NETCoreApp,Version=v1.0": [
       "System.Xml.XmlSerializer >= 4.0.11"
