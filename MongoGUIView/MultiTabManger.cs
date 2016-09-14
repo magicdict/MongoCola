@@ -170,7 +170,7 @@ namespace MongoGUIView
             }
             foreach (TabPage tabpage in ViewTabContain.TabPages)
             {
-                var view = (MultiTabControl) tabpage.Controls[0];
+                var view = (MultiTabControl)tabpage.Controls[0];
                 if (view.IsFixedItem)
                 {
                     view.BindingMenu.Checked = true;

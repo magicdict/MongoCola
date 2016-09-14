@@ -139,7 +139,7 @@ namespace MongoGUICtl.ClientTree
                     }
                     else
                     {
-                        var newSubItem = new TreeNode(arrayName + "[" + count + "]") {Tag = subItem};
+                        var newSubItem = new TreeNode(arrayName + "[" + count + "]") { Tag = subItem };
                         newItem.Nodes.Add(newSubItem);
                     }
                 }
@@ -164,8 +164,8 @@ namespace MongoGUICtl.ClientTree
                 {
                     //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
                     var config = mongoConConfigLst[mongoConnKey];
-                    connectionNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Connection;
-                    connectionNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Connection;
+                    connectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
+                    connectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
                     //不过现在改为全部显示的打开连接
                     connectionNode.Text = mongoConnKey;
@@ -355,8 +355,8 @@ namespace MongoGUICtl.ClientTree
             //无论如何，都改为主要服务器读优先
             var svrInstanceNode = new TreeNode();
             var connSvrKey = mongoConnKey + "/" + mongoConnKey;
-            svrInstanceNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
-            svrInstanceNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
+            svrInstanceNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+            svrInstanceNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
             svrInstanceNode.Text = "Server";
             if (!string.IsNullOrEmpty(config.UserName) & !string.IsNullOrEmpty(config.Password))
             {
@@ -371,8 +371,8 @@ namespace MongoGUICtl.ClientTree
                 var mongoSingleDbNode = FillDataBaseInfoToTreeNode(config.DataBaseName,
                     mongoConnKey + "/" + mongoConnKey, null);
                 mongoSingleDbNode.Tag = ConstMgr.SingleDatabaseTag + ":" + connSvrKey + "/" + config.DataBaseName;
-                mongoSingleDbNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
-                mongoSingleDbNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+                mongoSingleDbNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                mongoSingleDbNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                 svrInstanceNode.Nodes.Add(mongoSingleDbNode);
                 svrInstanceNode.Tag = ConstMgr.SingleDbServerTag + ":" + connSvrKey;
             }
@@ -388,8 +388,8 @@ namespace MongoGUICtl.ClientTree
                     {
                         var dbName = strDbName.GetElement("name").Value.ToString();
                         mongoDbNode = FillDataBaseInfoToTreeNode(dbName, connSvrKey, client);
-                        mongoDbNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
-                        mongoDbNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+                        mongoDbNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                        mongoDbNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         svrInstanceNode.Nodes.Add(mongoDbNode);
                     }
                     catch (Exception ex)
@@ -397,8 +397,8 @@ namespace MongoGUICtl.ClientTree
                         Utility.ExceptionDeal(ex, strDbName + "Exception", strDbName + "Exception");
                         mongoDbNode = new TreeNode(strDbName + " (Exception)")
                         {
-                            ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database,
-                            SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database
+                            ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database,
+                            SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database
                         };
                         svrInstanceNode.Nodes.Add(mongoDbNode);
                     }

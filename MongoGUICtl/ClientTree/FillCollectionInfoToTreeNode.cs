@@ -258,15 +258,15 @@ namespace MongoGUICtl.ClientTree
             task.Wait();
             foreach (var indexDoc in indexDocs)
             {
-                var mongoIndexes = new TreeNode {Text = indexDoc.GetElement("name").Value.ToString()};
+                var mongoIndexes = new TreeNode { Text = indexDoc.GetElement("name").Value.ToString() };
                 foreach (var item in indexDoc.Elements)
                 {
                     mongoIndexes.Nodes.Add(string.Empty, item.Name + ":" + item.Value,
-                        (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-                        (int) GetSystemIcon.MainTreeImageType.KeyInfo);
+                        (int)GetSystemIcon.MainTreeImageType.KeyInfo,
+                        (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                 }
-                mongoIndexes.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Keys;
-                mongoIndexes.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Keys;
+                mongoIndexes.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
+                mongoIndexes.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
                 mongoIndexes.Tag = ConstMgr.IndexesTag + ":" + mongoConnSvrKey + "/" + databaseName + "/" +
                                    col.CollectionNamespace.CollectionName;
                 mongoColNode.Nodes.Add(mongoIndexes);
@@ -386,13 +386,13 @@ namespace MongoGUICtl.ClientTree
 
             if (col.CollectionNamespace.CollectionName == ConstMgr.CollectionNameUser)
             {
-                mongoColNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.UserIcon;
-                mongoColNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.UserIcon;
+                mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.UserIcon;
+                mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.UserIcon;
             }
             else
             {
-                mongoColNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Collection;
-                mongoColNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Collection;
+                mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+                mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
             }
             //End Data
             return mongoColNode;
@@ -423,15 +423,15 @@ namespace MongoGUICtl.ClientTree
             {
                 var node = new TreeNode(name)
                 {
-                    ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
-                    SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
+                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
+                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
                     Tag = tag + "/" + name
                 };
                 jsNode.Nodes.Add(node);
             }
 
-            jsNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Collection;
-            jsNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Collection;
+            jsNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+            jsNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
         }
     }
 }

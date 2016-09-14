@@ -49,8 +49,8 @@ namespace MongoGUICtl.ClientTree
         /// <returns></returns>
         public int Compare(object x, object y)
         {
-            var lstX = (ListViewItem) x;
-            var lstY = (ListViewItem) y;
+            var lstX = (ListViewItem)x;
+            var lstY = (ListViewItem)y;
             var rtnCompare = 0;
             switch (CompareMethod)
             {
@@ -88,7 +88,7 @@ namespace MongoGUICtl.ClientTree
             }
             if (Order == SortOrder.Descending)
             {
-                rtnCompare = rtnCompare*-1;
+                rtnCompare = rtnCompare * -1;
             }
             return rtnCompare;
         }

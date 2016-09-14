@@ -27,9 +27,9 @@
                 <td>@item.UserName</td>
                 <td>@item.ReplSetName</td>
                 <td>
-                    <input type="button" value="连接" class="btn btn-success" />
-                    <input type="button" value="修改" class="btn btn-primary" />
-                    <input type="button" value="删除" class="btn btn-danger" />
+                    <a class="btn btn-success" href="/Home/MainPanel?ConnectionName=@item.ConnectionName">连接</a>
+                    <a class="btn btn-primary">修改</a>
+                    <a class="btn btn-danger">删除</a>
                 </td>
             </tr>
         }

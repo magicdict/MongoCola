@@ -3955,7 +3955,6 @@
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "MongoDB.Driver": "2.3.0-rc1",
-          "NETStandard.Library": "1.6.0",
           "System.Xml.XmlSerializer": "4.0.11",
           "mongocsharpdriver": "2.3.0-rc1"
         },

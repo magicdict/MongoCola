@@ -5,7 +5,7 @@
 <br />
 <br />
 <p class="alert alert-info">
-    数据库列表
+
 </p>
 <br />
 <div>
@@ -18,20 +18,5 @@
             <th>副本成员</th>
             <th>操作</th>
         </tr>
-        @foreach (MongoConnectionConfig item in MongoConnectionConfig.MongoConfig.ConnectionList.Values)
-        {
-            <tr>
-                <td>@item.ConnectionName</td>
-                <td>@item.Host</td>
-                <td>@item.Port</td>
-                <td>@item.UserName</td>
-                <td>@item.ReplSetName</td>
-                <td>
-                    <input type="button" value="连接" class="btn btn-success" />
-                    <input type="button" value="修改" class="btn btn-primary" />
-                    <input type="button" value="删除" class="btn btn-danger" />
-                </td>
-            </tr>
-        }
     </table>
 </div>
