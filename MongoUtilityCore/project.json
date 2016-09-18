@@ -2,6 +2,7 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "mongocsharpdriver": "2.3.0-rc1",
     "MongoDB.Driver": "2.3.0-rc1"
   },
 
