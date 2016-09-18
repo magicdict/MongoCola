@@ -116,7 +116,12 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     WiredTiger(Default Since 3.2.0)
             /// </summary>
-            WiredTiger
+            WiredTiger,
+
+            /// <summary>
+            ///     Enterprise Only
+            /// </summary>
+            In_Memory
         }
 
         /// <summary>

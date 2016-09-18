@@ -101,6 +101,10 @@
       <HintPath>..\packages\mongocsharpdriver.2.3.0-rc1\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MongoUtilityCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MongoUtilityCore\bin\Debug\net462\MongoUtilityCore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -233,10 +237,6 @@
     <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
       <Project>{E71AF267-0DFD-4E71-94A7-48F40793CEEF}</Project>
       <Name>MongoGUIView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
-      <Project>{56D74944-4B20-4941-BC67-72A8E57E5A02}</Project>
-      <Name>MongoUtility</Name>
     </ProjectReference>
     <ProjectReference Include="..\PlugInPackage\PlugInPackage.csproj">
       <Project>{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}</Project>
