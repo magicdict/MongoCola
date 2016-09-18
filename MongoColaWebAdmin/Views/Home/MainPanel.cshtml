@@ -1,22 +1,62 @@
 ﻿@using MongoUtility.Core;
+@using System.Linq;
+@using System.Linq.Expressions;
+@using MongoDB.Bson;
 @{
     ViewData["Title"] = "Home Page";
+
+    var ConnectionName = ViewData["ConnectionName"];
+    var config = MongoConnectionConfig.MongoConfig.ConnectionList[ConnectionName.ToString()];
+    var mongoClient = RuntimeMongoDbContext.CreateMongoClient(ref config);
+    var DataBaseList = GetConnectionInfo.GetDatabaseList(mongoClient);
+    DataBaseList.Sort((x, y) =>
+    {
+        return x.GetElement("name").Value.ToString().CompareTo(y.GetElement("name").Value.ToString());
+    }
+    );
 }
+
+
+
 <br />
 <br />
 <p class="alert alert-info">
-
+    @ViewData["ConnectionName"]
 </p>
 <br />
 <div>
-    <table class="table table-striped">
-        <tr>
-            <th>名称</th>
-            <th>主机</th>
-            <th>端口</th>
-            <th>用户</th>
-            <th>副本成员</th>
-            <th>操作</th>
-        </tr>
-    </table>
+    <div id="jstree_demo_div">
+        <ul>
+            @foreach (var db in DataBaseList)
+            {
+                <li>
+                    @db.GetElement("name").Value.ToString()
+                    <ul>
+                        @{
+                            var ColList = GetConnectionInfo.GetCollectionList(mongoClient, db.GetElement("name").Value.ToString());
+                            ColList.Sort((x, y) =>
+                            {
+                                return x.GetElement("name").Value.ToString().CompareTo(y.GetElement("name").Value.ToString());
+                            }
+                            );
+                        }
+                        @foreach (var col in ColList)
+                        {
+                            var ColInfo = GetConnectionInfo.GetCollectionInfo(mongoClient, db.GetElement("name").Value.ToString(), col.GetElement("name").Value.ToString());
+                            Expression<Func<BsonDocument, bool>> countfun = x => true;
+                            <li>
+                                @col.GetElement("name").Value.ToString()
+                                (@ColInfo.Count(countfun).ToString())
+                            </li>
+                        }
+                    </ul>
+                </li>
+                 }
+        </ul>
+    </div>
 </div>
+@section scripts{
+    <script type="text/javascript">
+        $(function () { $('#jstree_demo_div').jstree(); });
+    </script>
+}

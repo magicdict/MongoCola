@@ -4,24 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace MongoColaWebAdmin.Controllers
 {
-    public class HomeController : Controller
+    public class ModifyConnectionController : Controller
     {
         /// <summary>
-        /// 首页
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Index()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 连接展示主面板
+        /// 修改连接
         /// </summary>
         /// <param name="ConnectionName"></param>
         /// <returns></returns>
-        public IActionResult MainPanel(string ConnectionName)
+        public IActionResult Index(string ConnectionName)
         {
             ViewData.Add("ConnectionName", ConnectionName);
             return View();

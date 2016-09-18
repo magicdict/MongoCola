@@ -1,0 +1,55 @@
+﻿@using MongoUtility.Core;
+@{
+    ViewData["Title"] = "Home Page";
+    var ConnectionName = ViewData["ConnectionName"];
+    var Connection = MongoConnectionConfig.MongoConfig.ConnectionList[ConnectionName.ToString()];
+}
+<br />
+<br />
+<p class="alert alert-info">
+    @ConnectionName - 修改连接配置[基本]
+</p>
+<br />
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>名称:</th>
+            <th>
+                <input type="text" value="@Connection.ConnectionName" disabled />
+            </th>
+        </tr>
+        <tr>
+            <th>主机</th>
+            <th>
+                <input type="text" value="@Connection.Host" />
+            </th>
+        </tr>
+        <tr>
+            <th>端口</th>
+            <th>
+                <input type="number" min="0" max="65535" value="@Connection.Port" />
+            </th>
+        </tr>
+        <tr>
+            <th>用户名</th>
+            <th>
+                <input type="text" value="@Connection.UserName" />
+            </th>
+        </tr>
+        <tr>
+            <th>密码</th>
+            <th>
+                <input type="password" value="@Connection.Password" /><br /><br />
+                <p class="alert alert-danger">密码将以明文形式保存在系统的配置文件中</p>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                数据库名称
+            </th>
+            <th>
+                <input type="text" value="@Connection.DataBaseName" />
+            </th>
+        </tr>
+    </table>
+</div>
