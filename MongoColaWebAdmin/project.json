@@ -26,7 +26,9 @@
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
   },
 
-  "runtimes": { "win7-x64": {} },
+  "runtimes": {
+    "win7-x64": {} 
+  },
 
   "frameworks": {
     "netcoreapp1.0": {

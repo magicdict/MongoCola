@@ -1,7 +1,7 @@
 ﻿@using MongoUtility.Core;
-@using System.Linq;
 @using System.Linq.Expressions;
 @using MongoDB.Bson;
+@using System.Linq;
 @{
     ViewData["Title"] = "Home Page";
 
@@ -12,12 +12,8 @@
     DataBaseList.Sort((x, y) =>
     {
         return x.GetElement("name").Value.ToString().CompareTo(y.GetElement("name").Value.ToString());
-    }
-    );
+    });
 }
-
-
-
 <br />
 <br />
 <p class="alert alert-info">
@@ -25,7 +21,7 @@
 </p>
 <br />
 <div>
-    <div id="jstree_demo_div">
+    <div id="jstree" class="col-md-4">
         <ul>
             @foreach (var db in DataBaseList)
             {
@@ -47,16 +43,65 @@
                             <li>
                                 @col.GetElement("name").Value.ToString()
                                 (@ColInfo.Count(countfun).ToString())
+                                <ul>
+                                    @{
+                                        var Indexes = GetConnectionInfo.GetColIndexInfo(mongoClient, db.GetElement("name").Value.ToString(), col.GetElement("name").Value.ToString());
+                                        foreach (var Index in Indexes)
+                                        {
+                                            <li>
+                                                @Index.GetElement("name").Value.ToString()
+                                                <ul>
+                                                    @foreach (var item in Index.Elements)
+                                                    {
+                                                        <li>@item.Name : @item.Value</li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
                             </li>
-                        }
+                          }
                     </ul>
                 </li>
-                 }
+             }
         </ul>
+    </div>
+    <div id="treegrid" class="col-md-8">
+
     </div>
 </div>
 @section scripts{
+   <script src="~/lib/treegrid/TreeGrid.js" type="text/javascript"></script>
+   <link href="~/lib/treegrid/TreeGrid.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
-        $(function () { $('#jstree_demo_div').jstree(); });
+        $(function () { $('#jstree').jstree(); });
+    </script>
+    <script type="text/javascript">
+      var config = {
+            id: "tg1",
+            //width: "800",
+            renderTo: "treegrid",
+            headerAlign: "left",
+            headerHeight: "30",
+            dataAlign: "left",
+            indentation: "20",
+            folderOpenIcon: "/lib/treegrid/images/folderOpen.gif",
+            folderCloseIcon: "/lib/treegrid/images/folderClose.gif",
+            defaultLeafIcon: "/lib/treegrid/images/defaultLeaf.gif",
+            hoverRowBackground: "false",
+            folderColumnIndex: "0",
+            itemClick: "itemClickEvent",
+            columns: [
+                { headerText: "", headerAlign: "center", dataAlign: "center", width: "20" },
+				{ headerText: "名称", dataField: "name", headerAlign: "center"},
+				{ headerText: "值", dataField: "value", headerAlign: "center", dataAlign: "center", width: "100" },
+				{ headerText: "类型", dataField: "type", headerAlign: "center", dataAlign: "center", width: "100" }
+            ],
+            data:[]
+        };
+      //创建一个组件对象
+      var treeGrid = new TreeGrid(config);
+      treeGrid.show();
     </script>
 }

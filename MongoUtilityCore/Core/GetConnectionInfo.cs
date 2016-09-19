@@ -64,5 +64,30 @@ namespace MongoUtility.Core
             var col = db.GetCollection<BsonDocument>(collectionName);
             return col;
         }
+        /// <summary>
+        ///     获得索引列表
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="dbName"></param>
+        /// <param name="collectionName"></param>
+        /// <returns></returns>
+        public static List<BsonDocument> GetColIndexInfo(MongoClient client, string dbName,
+            string collectionName)
+        {
+            var db = client.GetDatabase(dbName);
+            var col = db.GetCollection<BsonDocument>(collectionName);
+            IAsyncCursor<BsonDocument> collectionCursor = null;
+            var task = Task.Run(
+                async () => { collectionCursor = await col.Indexes.ListAsync(); }
+                );
+            task.Wait();
+            List<BsonDocument> collectionList = null;
+            task = Task.Run(
+                async () => { collectionList = await collectionCursor.ToListAsync(); }
+                );
+            task.Wait();
+            return collectionList;
+        }
+
     }
 }
