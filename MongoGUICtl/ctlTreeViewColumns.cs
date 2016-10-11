@@ -120,7 +120,7 @@ namespace MongoGUICtl
             {
                 e.Graphics.FillRectangle(Brushes.White, rect);
             }
-            var indentWidth = DatatreeView.Indent*e.Node.Level + 25;
+            var indentWidth = DatatreeView.Indent * e.Node.Level + 25;
             e.Graphics.DrawRectangle(SystemPens.Control, rect);
             var stringRect = new Rectangle(e.Bounds.X + indentWidth, e.Bounds.Y, colName.Width - indentWidth,
                 e.Bounds.Height);
@@ -149,13 +149,13 @@ namespace MongoGUICtl
             var mElement = new BsonElement();
             if (e.Node.Tag != null)
             {
-                if (e.Node.Tag.GetType() != typeof (BsonElement))
+                if (e.Node.Tag.GetType() != typeof(BsonElement))
                 {
-                    mElement = new BsonElement("", (BsonValue) e.Node.Tag);
+                    mElement = new BsonElement("", (BsonValue)e.Node.Tag);
                 }
                 else
                 {
-                    mElement = (BsonElement) e.Node.Tag;
+                    mElement = (BsonElement)e.Node.Tag;
                 }
             }
             var mValue = e.Node.Tag as BsonValue;
@@ -322,9 +322,9 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void Control_SizeChanged(object sender, EventArgs e)
         {
-            colName.Width = Convert.ToInt32(Width*0.3);
-            colValue.Width = Convert.ToInt32(Width*0.45);
-            colType.Width = Convert.ToInt32(Width*0.2);
+            colName.Width = Convert.ToInt32(Width * 0.3);
+            colValue.Width = Convert.ToInt32(Width * 0.45);
+            colType.Width = Convert.ToInt32(Width * 0.2);
         }
 
         private void CtlTreeViewColumnsLoad(object sender, EventArgs e)

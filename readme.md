@@ -1,6 +1,6 @@
 #Release Note
        
-* 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/06/18 16:00
+* 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/10/31 16:00
 * Net Core版本 Browse Base Client[需要 NET Core1.0.1] 更新时间:2016/12/31 16:00
 * 下载地址:  <http://files.cnblogs.com/files/TextEditor/ReleaseVersion.zip>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
@@ -18,7 +18,7 @@
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.0.1
-* MongoDB 3.2.9 
+* MongoDB 3.2.10 
 
 ***
 
