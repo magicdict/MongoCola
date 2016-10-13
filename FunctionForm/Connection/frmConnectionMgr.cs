@@ -250,8 +250,8 @@ namespace FunctionForm.Connection
         private void cmdAddHost_Click(object sender, EventArgs e)
         {
             var strHost = string.Empty;
-            if (string.IsNullOrEmpty(strHost)) return;
             strHost = txtReplHost.Text;
+            if (string.IsNullOrEmpty(strHost)) return;
             if (intReplPort.Value == 0) return;
             strHost += ":" + intReplPort.Value;
             lstHost.Items.Add(strHost);
