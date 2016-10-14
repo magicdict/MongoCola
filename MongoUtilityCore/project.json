@@ -2,8 +2,8 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "mongocsharpdriver": "2.3.0",
-    "MongoDB.Driver": "2.3.0"
+    "mongocsharpdriver": "2.4.0-beta1",
+    "MongoDB.Driver": "2.4.0-beta1"
   },
 
   "frameworks": {
@@ -16,6 +16,7 @@
     },
     "net462": {
       "dependencies": {
+        "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
         "System.Runtime": "4.0.20"
       },
       "frameworkAssemblies": {

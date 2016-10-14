@@ -18,12 +18,12 @@
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.0.1
-* MongoDB 3.4.RC0 
+* MongoDB 3.4.0 RC 
 
 ***
 
 ## 驱动程序
-CSharp Mongo Driver 2.3.0
+CSharp Mongo Driver 2.4.0-beta1
 
 ***
 

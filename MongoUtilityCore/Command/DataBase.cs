@@ -117,7 +117,7 @@ namespace MongoUtility.Command
                     }
                     break;
                 case Oprcode.CreateView:
-                    //db.CreateView();
+                    db.CreateView("demo",null,null,null);
                     break;
                 case Oprcode.Drop:
                     if (mongoSvr.DatabaseExists(dbName))
