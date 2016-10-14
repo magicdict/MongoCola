@@ -72,6 +72,7 @@ namespace MongoCola
             this.ServerStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateViewtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyDatabasetoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -464,6 +465,7 @@ namespace MongoCola
             // 
             this.DataBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CreateMongoCollectionToolStripMenuItem,
+            this.CreateViewtoolStripMenuItem,
             this.CopyDatabasetoolStripMenuItem,
             this.DelMongoDBToolStripMenuItem,
             this.toolStripMenuItem5,
@@ -486,9 +488,16 @@ namespace MongoCola
             // 
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
             this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.CreateMongoCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddDC";
+            this.CreateMongoCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddCollection";
             this.CreateMongoCollectionToolStripMenuItem.Text = "New Collection";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
+            // 
+            // CreateViewtoolStripMenuItem
+            // 
+            this.CreateViewtoolStripMenuItem.Name = "CreateViewtoolStripMenuItem";
+            this.CreateViewtoolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.CreateViewtoolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddView";
+            this.CreateViewtoolStripMenuItem.Text = "New View";
             // 
             // CopyDatabasetoolStripMenuItem
             // 
@@ -666,42 +675,42 @@ namespace MongoCola
             // countToolStripMenuItem
             // 
             this.countToolStripMenuItem.Name = "countToolStripMenuItem";
-            this.countToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.countToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.countToolStripMenuItem.Text = "Count";
             this.countToolStripMenuItem.Click += new System.EventHandler(this.countToolStripMenuItem_Click);
             // 
             // distinctToolStripMenuItem
             // 
             this.distinctToolStripMenuItem.Name = "distinctToolStripMenuItem";
-            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.distinctToolStripMenuItem.Text = "Distinct";
             this.distinctToolStripMenuItem.Click += new System.EventHandler(this.distinctToolStripMenuItem_Click);
             // 
             // groupToolStripMenuItem
             // 
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.groupToolStripMenuItem.Text = "Group";
             this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
             // aggregateToolStripMenuItem
             // 
             this.aggregateToolStripMenuItem.Name = "aggregateToolStripMenuItem";
-            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aggregateToolStripMenuItem.Text = "Aggregate";
             this.aggregateToolStripMenuItem.Click += new System.EventHandler(this.aggregateToolStripMenuItem_Click);
             // 
             // textSearchToolStripMenuItem
             // 
             this.textSearchToolStripMenuItem.Name = "textSearchToolStripMenuItem";
-            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.textSearchToolStripMenuItem.Text = "TextSearch";
             this.textSearchToolStripMenuItem.Click += new System.EventHandler(this.textSearchToolStripMenuItem_Click);
             // 
@@ -755,7 +764,7 @@ namespace MongoCola
             // regressionToolStripMenuItem
             // 
             this.regressionToolStripMenuItem.Name = "regressionToolStripMenuItem";
-            this.regressionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.regressionToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.regressionToolStripMenuItem.Text = "Regression";
             this.regressionToolStripMenuItem.Click += new System.EventHandler(this.regressionToolStripMenuItem_Click);
             // 
@@ -1097,6 +1106,7 @@ namespace MongoCola
         private ToolStripMenuItem MultiLanguageToolStripMenuItem;
         private ToolStripMenuItem machineLearningToolStripMenuItem;
         private ToolStripMenuItem regressionToolStripMenuItem;
+        private ToolStripMenuItem CreateViewtoolStripMenuItem;
     }
 }
 

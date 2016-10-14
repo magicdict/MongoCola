@@ -31,7 +31,7 @@
   <Main_Menu_Operation_Server_Properties>服務器屬性</Main_Menu_Operation_Server_Properties>
 
   <Main_Menu_Operation_Database>數據庫</Main_Menu_Operation_Database>
-  <Main_Menu_Operation_Database_AddDC>新增數據集</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_AddCollection>新增數據集</Main_Menu_Operation_Database_AddCollection>
   <Main_Menu_Operation_Database_CopyDB>複製數據庫</Main_Menu_Operation_Database_CopyDB>
   <Main_Menu_Operation_Database_DelDB>刪除數據庫</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddUser>新增用戶</Main_Menu_Operation_Database_AddUser>

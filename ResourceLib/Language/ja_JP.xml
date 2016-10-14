@@ -31,7 +31,7 @@
   <Main_Menu_Operation_Server_Properties>属性</Main_Menu_Operation_Server_Properties>
 
   <Main_Menu_Operation_Database>データベース</Main_Menu_Operation_Database>
-  <Main_Menu_Operation_Database_AddDC>コレクションの新規</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_AddCollection>コレクションの新規</Main_Menu_Operation_Database_AddCollection>
   <Main_Menu_Operation_Database_CopyDB>複製データベース</Main_Menu_Operation_Database_CopyDB>
   <Main_Menu_Operation_Database_DelDB>削除</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddUser>ユーザーの新規</Main_Menu_Operation_Database_AddUser>

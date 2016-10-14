@@ -18,7 +18,7 @@
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.0.1
-* MongoDB 3.2.10 
+* MongoDB 3.4.RC0 
 
 ***
 
@@ -51,6 +51,10 @@ CSharp Mongo Driver 2.3.0
 ***
 
 # 发布履历
+##Ver 2.01 2016/12/31
+1. 添加视图（From MongoDB 3.4）
+
+
 ##Ver 2.0 2016/06/29
 1. Query增加了删除条件的功能
 2. 修正了Query的一些错误

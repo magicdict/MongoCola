@@ -31,7 +31,8 @@
   <Main_Menu_Operation_Server_Properties>服务器属性</Main_Menu_Operation_Server_Properties>
 
   <Main_Menu_Operation_Database>数据库</Main_Menu_Operation_Database>
-  <Main_Menu_Operation_Database_AddDC>添加数据集</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_AddCollection>添加数据集</Main_Menu_Operation_Database_AddCollection>
+  <Main_Menu_Operation_Database_AddView>添加视图</Main_Menu_Operation_Database_AddView>
   <Main_Menu_Operation_Database_CopyDB>复制数据库</Main_Menu_Operation_Database_CopyDB>
   <Main_Menu_Operation_Database_DelDB>删除数据库</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddUser>添加用户</Main_Menu_Operation_Database_AddUser>

@@ -12,9 +12,14 @@ namespace MongoUtility.Command
         public enum Oprcode
         {
             /// <summary>
-            ///     新建
+            ///     新建数据集
             /// </summary>
-            Create,
+            CreateCollection,
+
+            /// <summary>
+            ///     新建视图
+            /// </summary>
+            CreateView,
 
             /// <summary>
             ///     删除
@@ -33,6 +38,7 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        ///     是否为合法的数据库名称
         /// </summary>
         /// <param name="strDbName"></param>
         /// <param name="errMessage"></param>
@@ -43,6 +49,7 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        ///     修复和压缩数据库
         /// </summary>
         public static void RepairDb()
         {
@@ -69,6 +76,24 @@ namespace MongoUtility.Command
             return false;
         }
 
+
+        //从权限上看，clusterAdmin是必须的
+        //但是能够建立数据库，不表示能够看到里面的内容！
+        //dbAdmin可以访问数据库。
+        //clusterAdmin能创建数据库但是不能访问数据库。
+        //try
+        //{
+        //Driver 2.0.1 
+        //如果没有后续对于db的操作，则数据库无法新建
+        //db.CreateCollection("demo");
+        //}
+        //catch (Exception ex)
+        //{
+        //    //如果使用没有dbAdmin权限的clusterAdmin。。。。
+        //    Utility.ExceptionDeal(ex);
+        //}
+
+
         /// <summary>
         ///     数据库操作
         /// </summary>
@@ -82,28 +107,17 @@ namespace MongoUtility.Command
             var rtnResult = string.Empty;
             TagInfo.GetTagPath(strObjTag);
             if (mongoSvr == null) return rtnResult;
+            var db = mongoSvr.GetDatabase(dbName);
             switch (func)
             {
-                case Oprcode.Create:
+                case Oprcode.CreateCollection:
                     if (!mongoSvr.DatabaseExists(dbName))
                     {
-                        //从权限上看，clusterAdmin是必须的
-                        //但是能够建立数据库，不表示能够看到里面的内容！
-                        //dbAdmin可以访问数据库。
-                        //clusterAdmin能创建数据库但是不能访问数据库。
-                        //try
-                        //{
-                        //Driver 2.0.1 
-                        //如果没有后续对于db的操作，则数据库无法新建
-                        var db = mongoSvr.GetDatabase(dbName);
                         db.CreateCollection("demo");
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    //如果使用没有dbAdmin权限的clusterAdmin。。。。
-                        //    Utility.ExceptionDeal(ex);
-                        //}
                     }
+                    break;
+                case Oprcode.CreateView:
+                    //db.CreateView();
                     break;
                 case Oprcode.Drop:
                     if (mongoSvr.DatabaseExists(dbName))
