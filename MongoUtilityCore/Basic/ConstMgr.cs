@@ -199,6 +199,11 @@
         /// </summary>
         public const string CollectionNameJavascript = "system.js";
 
+        /// <summary>
+        ///     视图数据集名称
+        /// </summary>
+        public const string CollectionNameView = "system.views";
+
         #endregion
 
         #region"其他"

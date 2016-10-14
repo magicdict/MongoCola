@@ -169,6 +169,12 @@
     <Compile Include="Operation\frmCopyDataBase.Designer.cs">
       <DependentUpon>frmCopyDataBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operation\frmCreateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\frmCreateView.Designer.cs">
+      <DependentUpon>frmCreateView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -309,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCopyDataBase.resx">
       <DependentUpon>frmCopyDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\frmCreateView.resx">
+      <DependentUpon>frmCreateView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>

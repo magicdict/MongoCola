@@ -81,6 +81,13 @@ namespace MongoGUICtl.ClientTree
                 var strColName = colDoc.GetElement("name").Value.ToString();
                 switch (strColName)
                 {
+                    case ConstMgr.CollectionNameView:
+                        //视图
+                        TreeNode mongoViewNode;
+                        var ViewCol = GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName);
+                        mongoViewNode = FillViewInfoToTreeNode(ViewCol);
+                        mongoDbNode.Nodes.Add(mongoViewNode);
+                        break;
                     case ConstMgr.CollectionNameUser:
                         //system.users,fs,system.js这几个系统级别的Collection不需要放入
                         break;
@@ -105,6 +112,7 @@ namespace MongoGUICtl.ClientTree
                         {
                             var col = GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName);
                             mongoColNode = FillCollectionInfoToTreeNode(col, mongoSvrKey);
+                            if (mongoColNode == null) continue;
                         }
                         catch (Exception ex)
                         {

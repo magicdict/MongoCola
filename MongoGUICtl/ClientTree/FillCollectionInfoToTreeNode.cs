@@ -15,6 +15,41 @@ namespace MongoGUICtl.ClientTree
     public static partial class UiHelper
     {
         /// <summary>
+        ///     View处理
+        /// </summary>
+        /// <param name="col"></param>
+        /// <returns></returns>
+        public static TreeNode FillViewInfoToTreeNode(IMongoCollection<BsonDocument> col)
+        {
+            var mongoColNode = new TreeNode("Views(" + col.Count(x => true).ToString() + ")");
+            mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.CollectionList;
+            mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.CollectionList;
+            var r = col.Find(x => true);
+
+            foreach (var viewDoc in r.ToList())
+            {
+                var id = viewDoc.GetElement(ConstMgr.KeyId).ToString();
+                var viewNode = new TreeNode(id.Substring(id.IndexOf(".") + 1));
+                viewNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+                viewNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+
+                //ViewOn
+                var viewOnNode = new TreeNode("ViewOn:" + viewDoc.GetElement("viewOn").Value.ToString());
+                viewOnNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
+                viewOnNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
+                viewNode.Nodes.Add(viewOnNode);
+                //Pipeline
+                var pipelineNode = new TreeNode("pipeline:" + viewDoc.GetElement("pipeline").Value.ToString());
+                pipelineNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
+                pipelineNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
+                viewNode.Nodes.Add(pipelineNode);
+
+                mongoColNode.Nodes.Add(viewNode);
+            }
+            return mongoColNode;
+        }
+
+        /// <summary>
         ///     将数据集放入Node
         /// </summary>
         /// <param name="col"></param>
@@ -246,32 +281,39 @@ namespace MongoGUICtl.ClientTree
             ////Start ListIndex
             //var mongoIndexes = new TreeNode("Indexes");
             //var indexList = mongoCol.GetIndexes();
-            IAsyncCursor<BsonDocument> indexCursor = null;
-            task = Task.Run(
-                async () => { indexCursor = await col.Indexes.ListAsync(); }
-                );
-            task.Wait();
-            List<BsonDocument> indexDocs = null;
-            task = Task.Run(
-                async () => { indexDocs = await indexCursor.ToListAsync(); }
-                );
-            task.Wait();
-            foreach (var indexDoc in indexDocs)
+            try
             {
-                var mongoIndexes = new TreeNode { Text = indexDoc.GetElement("name").Value.ToString() };
-                foreach (var item in indexDoc.Elements)
+                //View 没有Index
+                IAsyncCursor<BsonDocument> indexCursor = null;
+                task = Task.Run(
+                    async () => { indexCursor = await col.Indexes.ListAsync(); }
+                    );
+                task.Wait();
+                List<BsonDocument> indexDocs = null;
+                task = Task.Run(
+                    async () => { indexDocs = await indexCursor.ToListAsync(); }
+                    );
+                task.Wait();
+                foreach (var indexDoc in indexDocs)
                 {
-                    mongoIndexes.Nodes.Add(string.Empty, item.Name + ":" + item.Value,
-                        (int)GetSystemIcon.MainTreeImageType.KeyInfo,
-                        (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    var mongoIndexes = new TreeNode { Text = indexDoc.GetElement("name").Value.ToString() };
+                    foreach (var item in indexDoc.Elements)
+                    {
+                        mongoIndexes.Nodes.Add(string.Empty, item.Name + ":" + item.Value,
+                            (int)GetSystemIcon.MainTreeImageType.KeyInfo,
+                            (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    }
+                    mongoIndexes.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
+                    mongoIndexes.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
+                    mongoIndexes.Tag = ConstMgr.IndexesTag + ":" + mongoConnSvrKey + "/" + databaseName + "/" +
+                                       col.CollectionNamespace.CollectionName;
+                    mongoColNode.Nodes.Add(mongoIndexes);
                 }
-                mongoIndexes.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
-                mongoIndexes.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
-                mongoIndexes.Tag = ConstMgr.IndexesTag + ":" + mongoConnSvrKey + "/" + databaseName + "/" +
-                                   col.CollectionNamespace.CollectionName;
-                mongoColNode.Nodes.Add(mongoIndexes);
             }
-
+            catch (Exception)
+            {
+                return null;
+            }
             #region Legacy
 
             //foreach (var indexDoc in indexList.ToList())

@@ -96,8 +96,16 @@ namespace MongoGUICtl.ClientTree
                     var colNameList = mongoDb.GetCollectionNames().ToList();
                     foreach (var strColName in colNameList)
                     {
-                        var collectionStatus = mongoDb.GetCollection(strColName).GetStats();
-                        dbStatusList.Add(collectionStatus.Response);
+                        try
+                        {
+                            //过滤掉View
+                            var collectionStatus = mongoDb.GetCollection(strColName).GetStats();
+                            dbStatusList.Add(collectionStatus.Response);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
                     }
                 }
             }

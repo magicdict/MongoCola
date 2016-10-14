@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
+
 namespace MongoUtility.Core
 {
     public static class GetConnectionInfo
@@ -35,6 +36,29 @@ namespace MongoUtility.Core
         /// <param name="dbName"></param>
         /// <returns></returns>
         public static List<BsonDocument> GetCollectionList(MongoClient client, string dbName)
+        {
+            var db = client.GetDatabase(dbName);
+            IAsyncCursor<BsonDocument> collectionCursor = null;
+            var task = Task.Run(
+                async () => { collectionCursor = await db.ListCollectionsAsync(); }
+                );
+            task.Wait();
+            List<BsonDocument> collectionList = null;
+            task = Task.Run(
+                async () => { collectionList = await collectionCursor.ToListAsync(); }
+                );
+            task.Wait();
+            return collectionList;
+        }
+
+
+        /// <summary>
+        ///     获得数据集列表
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="dbName"></param>
+        /// <returns></returns>
+        public static List<BsonDocument> GetViewList(MongoClient client, string dbName)
         {
             var db = client.GetDatabase(dbName);
             IAsyncCursor<BsonDocument> collectionCursor = null;

@@ -18,7 +18,7 @@
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.0.1
-* MongoDB 3.4.0 RC 
+* MongoDB 3.4.0-rc0 
 
 ***
 
