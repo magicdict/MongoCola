@@ -4,7 +4,7 @@ using MongoGUICtl.Aggregation;
 
 namespace FunctionForm.Operation
 {
-    partial class FrmArrayCreator
+    partial class frmArrayCreator
     {
         /// <summary>
         /// Required designer variable.

@@ -4,7 +4,7 @@ using MongoGUICtl;
 
 namespace FunctionForm.Operation
 {
-    partial class FrmCollectionIndex
+    partial class frmCollectionIndex
     {
         /// <summary>
         /// Required designer variable.

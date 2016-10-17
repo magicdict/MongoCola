@@ -10,7 +10,7 @@ using ResourceLib.Method;
 
 namespace FunctionForm.Operation
 {
-    public partial class FrmCopyDataBase : Form
+    public partial class frmCopyDataBase : Form
     {
         #region 变量
 
@@ -21,7 +21,7 @@ namespace FunctionForm.Operation
 
         #endregion
 
-        public FrmCopyDataBase()
+        public frmCopyDataBase()
         {
             InitializeComponent();
         }

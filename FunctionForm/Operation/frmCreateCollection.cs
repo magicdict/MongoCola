@@ -13,14 +13,14 @@ using ResourceLib.UI;
 
 namespace FunctionForm.Operation
 {
-    public partial class FrmCreateCollection : Form
+    public partial class frmCreateCollection : Form
     {
         public string CollectionName;
         public bool Result;
         public string StrSvrPathWithTag;
         public TreeNode TreeNode;
 
-        public FrmCreateCollection()
+        public frmCreateCollection()
         {
             InitializeComponent();
         }

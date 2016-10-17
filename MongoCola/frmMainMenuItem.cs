@@ -291,7 +291,7 @@ namespace MongoCola
             //CommandDocument copy = new CommandDocument();
             //MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().RunCommand("copyDatabase");
 
-            Utility.OpenForm(new FrmCopyDataBase(), true, true);
+            Utility.OpenForm(new frmCopyDataBase(), true, true);
         }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace MongoCola
         {
             //Advance CreateCollection
             var frm =
-                new FrmCreateCollection
+                new frmCreateCollection
                 {
                     StrSvrPathWithTag = RuntimeMongoDbContext.SelectObjectTag,
                     TreeNode = trvsrvlst.SelectedNode
@@ -461,6 +461,17 @@ namespace MongoCola
                 }
                 DisableAllOpr();
             }
+        }
+
+        /// <summary>
+        ///     CreateView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CreateViewtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmCreateView();
+            Utility.OpenForm(frm, true, true);
         }
 
         /// <summary>
@@ -630,7 +641,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void IndexManageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmCollectionIndex(), true, true);
+            Utility.OpenForm(new frmCollectionIndex(), true, true);
         }
 
         /// <summary>

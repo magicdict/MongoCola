@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace FunctionForm.Operation
 {
-    partial class FrmCreateCollection
+    partial class frmCreateCollection
     {
         /// <summary>
         /// Required designer variable.

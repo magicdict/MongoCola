@@ -10,11 +10,11 @@ using ResourceLib.Method;
 
 namespace FunctionForm.Operation
 {
-    public partial class FrmNewDocument : Form
+    public partial class frmNewDocument : Form
     {
         public BsonDocument MBsonDocument;
 
-        public FrmNewDocument()
+        public frmNewDocument()
         {
             InitializeComponent();
         }

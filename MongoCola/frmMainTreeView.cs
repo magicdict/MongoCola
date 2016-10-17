@@ -324,6 +324,10 @@ namespace MongoCola
                     createMongoCollection.Click += CreateMongoCollectionToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(createMongoCollection);
 
+                    var createView = CreateViewtoolStripMenuItem.Clone();
+                    createView.Click += CreateViewtoolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(createView);
+
                     var addUser = AddUserToolStripMenuItem.Clone();
                     addUser.Click += AddUserToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(addUser);
@@ -364,6 +368,7 @@ namespace MongoCola
                 {
                     contextMenuStripMain.Items.Add(DelMongoDBToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(CreateMongoCollectionToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(CreateViewtoolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(CopyDatabasetoolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(AddUserToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(AddDBCustomeRoleStripMenuItem.Clone());

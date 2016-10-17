@@ -11,11 +11,11 @@ using ResourceLib.UI;
 
 namespace FunctionForm.Operation
 {
-    public partial class FrmCollectionIndex : Form
+    public partial class frmCollectionIndex : Form
     {
         /// <summary>
         /// </summary>
-        public FrmCollectionIndex()
+        public frmCollectionIndex()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace FunctionForm.Operation
 {
-    partial class FrmCopyDataBase
+    partial class frmCopyDataBase
     {
         /// <summary>
         /// Required designer variable.

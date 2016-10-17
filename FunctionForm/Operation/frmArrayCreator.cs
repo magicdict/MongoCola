@@ -5,14 +5,14 @@ using ResourceLib.Method;
 
 namespace FunctionForm.Operation
 {
-    public partial class FrmArrayCreator : Form
+    public partial class frmArrayCreator : Form
     {
         /// <summary>
         ///     BsonArray
         /// </summary>
         public BsonArray MBsonArray;
 
-        public FrmArrayCreator()
+        public frmArrayCreator()
         {
             GuiConfig.Translateform(this);
             InitializeComponent();

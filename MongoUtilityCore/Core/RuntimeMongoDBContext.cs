@@ -339,6 +339,24 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     设定当前数据集
+        /// </summary>
+        /// <param name="CollectionName"></param>
+        public static void SetCurrentCollection(string CollectionName)
+        {
+            var t = SelectObjectTag.Split("/".ToCharArray());
+            if (t.Length == 3)
+            {
+                SelectObjectTag += "/" + CollectionName;
+            }
+            else
+            {
+                t[3] = CollectionName;
+                SelectObjectTag = string.Join("/", t);
+            }
+        }
+
+        /// <summary>
         ///     获得当前数据集
         /// </summary>
         /// <returns></returns>

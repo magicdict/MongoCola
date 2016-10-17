@@ -77,6 +77,16 @@ namespace FunctionForm.Aggregation
             }
             Close();
         }
+        
+        /// <summary>
+        /// 取消
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         #region"Group"
 
@@ -125,5 +135,6 @@ namespace FunctionForm.Aggregation
         }
 
         #endregion
+
     }
 }

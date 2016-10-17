@@ -51,6 +51,7 @@ namespace FunctionForm.Aggregation
             this.chkSkip = new System.Windows.Forms.CheckBox();
             this.chkLimit = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.tabAggregation.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabMatch.SuspendLayout();
@@ -253,20 +254,31 @@ namespace FunctionForm.Aggregation
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(542, 348);
+            this.btnOK.Location = new System.Drawing.Point(196, 359);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 21);
+            this.btnOK.Size = new System.Drawing.Size(108, 30);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(332, 359);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(108, 30);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // FrmStageBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(636, 380);
+            this.ClientSize = new System.Drawing.Size(636, 401);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tabAggregation);
             this.Name = "FrmStageBuilder";
@@ -304,7 +316,6 @@ namespace FunctionForm.Aggregation
         private Button btnClearMatch;
         private Button btnAddMatch;
         private MatchPanel MatchListPanel;
-
-
+        private Button btnCancel;
     }
 }

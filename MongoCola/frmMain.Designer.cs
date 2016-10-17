@@ -498,6 +498,7 @@ namespace MongoCola
             this.CreateViewtoolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.CreateViewtoolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddView";
             this.CreateViewtoolStripMenuItem.Text = "New View";
+            this.CreateViewtoolStripMenuItem.Click += new System.EventHandler(this.CreateViewtoolStripMenuItem_Click);
             // 
             // CopyDatabasetoolStripMenuItem
             // 

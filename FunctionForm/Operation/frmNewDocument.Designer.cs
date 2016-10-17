@@ -4,7 +4,7 @@ using MongoGUICtl;
 
 namespace FunctionForm.Operation
 {
-    partial class FrmNewDocument
+    partial class frmNewDocument
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace FunctionForm.Operation
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNewDocument));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewDocument));
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
