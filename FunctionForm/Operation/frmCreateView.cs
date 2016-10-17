@@ -23,10 +23,10 @@ namespace FunctionForm.Operation
             var c = RuntimeMongoDbContext.GetCurrentIMongoDataBase().ListCollections();
             foreach (var item in c.ToList())
             {
+                //这里也可能包括了View，需要进一步处理！
                 cmbViewOn.Items.Add(item.GetElement("name").Value.ToString());
             }
         }
-
 
         /// <summary>
         ///     确定
@@ -35,8 +35,15 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            var pipeline = new BsonDocumentStagePipelineDefinition<BsonDocument, BsonDocument>(stages.Values.Select(x => (BsonDocument)x));
-            RuntimeMongoDbContext.GetCurrentIMongoDataBase().CreateView(txtViewName.Text, cmbViewOn.Text, pipeline);
+            try
+            {
+                var pipeline = new BsonDocumentStagePipelineDefinition<BsonDocument, BsonDocument>(stages.Values.Select(x => (BsonDocument)x));
+                RuntimeMongoDbContext.GetCurrentIMongoDataBase().CreateView(txtViewName.Text, cmbViewOn.Text, pipeline);
+            }
+            catch (Exception ex)
+            {
+                Utility.ExceptionDeal(ex);
+            }
         }
 
         /// <summary>

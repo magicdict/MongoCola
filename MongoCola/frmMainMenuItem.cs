@@ -258,7 +258,7 @@ namespace MongoCola
                 try
                 {
                     var strRusult = Operater.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
-                        Operater.Oprcode.CreateCollection);
+                        Operater.Oprcode.Create);
                     if (string.IsNullOrEmpty(strRusult))
                     {
                         RefreshToolStripMenuItem_Click(sender, e);

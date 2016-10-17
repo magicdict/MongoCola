@@ -12,14 +12,9 @@ namespace MongoUtility.Command
         public enum Oprcode
         {
             /// <summary>
-            ///     新建数据集
+            ///     新建
             /// </summary>
-            CreateCollection,
-
-            /// <summary>
-            ///     新建视图
-            /// </summary>
-            CreateView,
+            Create,
 
             /// <summary>
             ///     删除
@@ -110,14 +105,13 @@ namespace MongoUtility.Command
             var db = mongoSvr.GetDatabase(dbName);
             switch (func)
             {
-                case Oprcode.CreateCollection:
+                case Oprcode.Create:
                     if (!mongoSvr.DatabaseExists(dbName))
                     {
                         db.CreateCollection("demo");
+                        //如果一个数据库没有数据集，则这个数据库则会被自动回收掉
+                        //db.DropCollection("demo");
                     }
-                    break;
-                case Oprcode.CreateView:
-                    db.CreateView("demo",null,null,null);
                     break;
                 case Oprcode.Drop:
                     if (mongoSvr.DatabaseExists(dbName))

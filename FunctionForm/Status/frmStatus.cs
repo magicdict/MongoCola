@@ -168,6 +168,17 @@ namespace FunctionForm.Status
             var seriesResult = new Series(strField);
             foreach (var colName in RuntimeMongoDbContext.GetCurrentDataBase().GetCollectionNames())
             {
+                try
+                {
+                    RuntimeMongoDbContext.GetCurrentDataBase()
+                                .GetCollection(colName).GetStats();
+                }
+                catch (Exception)
+                {
+                    //View的时候，无法获得GetStats方法!
+                    continue;
+                }
+
                 DataPoint colPoint = null;
                 switch (strField)
                 {
@@ -191,6 +202,7 @@ namespace FunctionForm.Status
                         }
                         catch (Exception ex)
                         {
+                            colPoint = new DataPoint(0, 0);
                             Utility.ExceptionDeal(ex);
                         }
                         break;

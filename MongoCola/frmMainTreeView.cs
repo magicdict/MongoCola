@@ -287,6 +287,7 @@ namespace MongoCola
                 {
                     DelMongoDBToolStripMenuItem.Enabled = true;
                     CreateMongoCollectionToolStripMenuItem.Enabled = true;
+                    CreateViewtoolStripMenuItem.Enabled = true;
                     CopyDatabasetoolStripMenuItem.Enabled = true;
                     InitGFSToolStripMenuItem.Enabled = true;
                     AddUserToolStripMenuItem.Enabled = true;

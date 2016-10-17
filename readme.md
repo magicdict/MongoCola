@@ -57,12 +57,14 @@ CSharp Mongo Driver 2.4.0-beta1
 1. 添加视图（From MongoDB 3.4）
 2. 视图的展示（From MongoDB 3.4）
 3. BsonInt64，BSonDecimal128 的对应
+4. 有视图的时候，状态窗体的对应
 
 ###修改
 1. 聚合操作符的更新
 2. 新建数据集的BUG修正，数据集验证的修复
 3. 新建文档时候出现的无法通过数据集验证的异常处理
 4. 优化聚合UI
+
 
 ##Ver 2.0 2016/06/29
 1. Query增加了删除条件的功能
