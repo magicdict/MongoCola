@@ -134,7 +134,8 @@ namespace MongoUtility.Aggregation
 
             MongoCursor<BsonDocument> cursor;
             //Query condition:
-            if (currentDataViewInfo.IsUseFilter)
+            //View 不使用自定义过滤器
+            if (currentDataViewInfo.IsUseFilter && !currentDataViewInfo.IsView)
             {
                 cursor = mongoCol.FindAs<BsonDocument>(
                     QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList))

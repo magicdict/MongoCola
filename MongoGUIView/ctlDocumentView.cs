@@ -78,6 +78,8 @@ namespace MongoGUIView
                 PasteElementStripButton.Text = PasteElementToolStripMenuItem.Text;
             }
 
+            if (MDataViewInfo.IsView) CustomtoolStrip.Enabled = false; //View 只读
+
             CutElementStripButton.Click += CutElementToolStripMenuItem_Click;
             CopyElementStripButton.Click += CopyElementToolStripMenuItem_Click;
             PasteElementStripButton.Click += PasteElementToolStripMenuItem_Click;
@@ -119,6 +121,8 @@ namespace MongoGUIView
         ///// <param name="e"></param>
         private void trvData_AfterSelect_NotTop()
         {
+            if (MDataViewInfo.IsView) return; //View是只读的
+
             //非顶层可以删除的节点
             if (!Operater.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()) &&
                 !MDataViewInfo.IsReadOnly &&
@@ -228,6 +232,7 @@ namespace MongoGUIView
         private void trvData_AfterSelect_Top(object sender, TreeViewEventArgs e)
         {
             //InitControlsEnable();
+            if (MDataViewInfo.IsView) return; //View是只读的
             RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
             if (trvData.DatatreeView.SelectedNode.Level == 0)
             {
@@ -269,6 +274,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         protected virtual void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (MDataViewInfo.IsView) return; //View是只读的
             OpenDocInEditorDocStripButton_Click(sender, e);
         }
 
@@ -279,6 +285,8 @@ namespace MongoGUIView
         /// <param name="e"></param>
         protected virtual void lstData_MouseClick(object sender, MouseEventArgs e)
         {
+            if (MDataViewInfo.IsView) return; //View是只读的
+
             RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
             if (lstData.SelectedItems.Count > 0)
             {
@@ -334,7 +342,15 @@ namespace MongoGUIView
             var t = _getDocument();
             if (t != null)
             {
-                RuntimeMongoDbContext.GetCurrentCollection().Insert(t);
+                try
+                {
+                    RuntimeMongoDbContext.GetCurrentCollection().Insert(t);
+                }
+                catch (Exception ex)
+                {
+                    string strErrormsg = ex.ToString();
+                    MyMessageBox.ShowMessage("Delete Error", strErrormsg, ex.ToString(), true);
+                }
                 RefreshGui();
             }
         }
@@ -574,6 +590,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void trvData_MouseClick_NotTop(MouseEventArgs e)
         {
+            if (MDataViewInfo.IsView) return; //View是只读的
             if (e.Button != MouseButtons.Right) return;
             contextMenuStripMain = new ContextMenuStrip();
             contextMenuStripMain.Items.Add(AddElementToolStripMenuItem.Clone());
@@ -641,6 +658,8 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void trvData_MouseClick_Top(object sender, MouseEventArgs e)
         {
+            if (MDataViewInfo.IsView) return; //View是只读的
+
             if (_isNeedChangeNode)
             {
                 //在节点展开和关闭后，不能使用这个方法来重新设定SelectedNode

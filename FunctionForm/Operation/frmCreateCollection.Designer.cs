@@ -42,27 +42,29 @@ namespace FunctionForm.Operation
             this.lblMaxSize = new System.Windows.Forms.Label();
             this.lblMaxDocument = new System.Windows.Forms.Label();
             this.grpAdvanced = new System.Windows.Forms.GroupBox();
-            this.lnkCappedCollections = new System.Windows.Forms.LinkLabel();
-            this.chkAdvance = new System.Windows.Forms.CheckBox();
-            this.chkValidation = new System.Windows.Forms.CheckBox();
-            this.txtValidation = new System.Windows.Forms.TextBox();
-            this.radLevel_off = new System.Windows.Forms.RadioButton();
-            this.radLevel_strict = new System.Windows.Forms.RadioButton();
-            this.radLevel_moderate = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radAction_error = new System.Windows.Forms.RadioButton();
             this.radAction_warn = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radLevel_moderate = new System.Windows.Forms.RadioButton();
+            this.radLevel_off = new System.Windows.Forms.RadioButton();
+            this.radLevel_strict = new System.Windows.Forms.RadioButton();
+            this.txtValidation = new System.Windows.Forms.TextBox();
+            this.chkValidation = new System.Windows.Forms.CheckBox();
+            this.lnkCappedCollections = new System.Windows.Forms.LinkLabel();
+            this.chkAdvance = new System.Windows.Forms.CheckBox();
+            this.trvNewDocument = new MongoGUICtl.CtlTreeViewColumns();
+            this.cmdPreview = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).BeginInit();
             this.grpAdvanced.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(130, 436);
+            this.cmdOK.Location = new System.Drawing.Point(274, 559);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 27);
             this.cmdOK.TabIndex = 4;
@@ -72,7 +74,7 @@ namespace FunctionForm.Operation
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(284, 436);
+            this.cmdCancel.Location = new System.Drawing.Point(386, 559);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 27);
             this.cmdCancel.TabIndex = 5;
@@ -99,9 +101,7 @@ namespace FunctionForm.Operation
             // chkIsCapped
             // 
             this.chkIsCapped.AutoSize = true;
-            this.chkIsCapped.Checked = true;
-            this.chkIsCapped.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIsCapped.Location = new System.Drawing.Point(23, 32);
+            this.chkIsCapped.Location = new System.Drawing.Point(21, 76);
             this.chkIsCapped.Name = "chkIsCapped";
             this.chkIsCapped.Size = new System.Drawing.Size(78, 19);
             this.chkIsCapped.TabIndex = 0;
@@ -111,9 +111,7 @@ namespace FunctionForm.Operation
             // chkIsAutoIndexId
             // 
             this.chkIsAutoIndexId.AutoSize = true;
-            this.chkIsAutoIndexId.Checked = true;
-            this.chkIsAutoIndexId.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIsAutoIndexId.Location = new System.Drawing.Point(131, 32);
+            this.chkIsAutoIndexId.Location = new System.Drawing.Point(21, 32);
             this.chkIsAutoIndexId.Name = "chkIsAutoIndexId";
             this.chkIsAutoIndexId.Size = new System.Drawing.Size(99, 19);
             this.chkIsAutoIndexId.TabIndex = 1;
@@ -122,7 +120,7 @@ namespace FunctionForm.Operation
             // 
             // numMaxSize
             // 
-            this.numMaxSize.Location = new System.Drawing.Point(131, 57);
+            this.numMaxSize.Location = new System.Drawing.Point(191, 75);
             this.numMaxSize.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -135,7 +133,7 @@ namespace FunctionForm.Operation
             // 
             // numMaxDocument
             // 
-            this.numMaxDocument.Location = new System.Drawing.Point(131, 85);
+            this.numMaxDocument.Location = new System.Drawing.Point(457, 76);
             this.numMaxDocument.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -149,7 +147,7 @@ namespace FunctionForm.Operation
             // lblMaxSize
             // 
             this.lblMaxSize.AutoSize = true;
-            this.lblMaxSize.Location = new System.Drawing.Point(23, 60);
+            this.lblMaxSize.Location = new System.Drawing.Point(130, 76);
             this.lblMaxSize.Name = "lblMaxSize";
             this.lblMaxSize.Size = new System.Drawing.Size(55, 15);
             this.lblMaxSize.TabIndex = 2;
@@ -158,7 +156,7 @@ namespace FunctionForm.Operation
             // lblMaxDocument
             // 
             this.lblMaxDocument.AutoSize = true;
-            this.lblMaxDocument.Location = new System.Drawing.Point(23, 87);
+            this.lblMaxDocument.Location = new System.Drawing.Point(349, 78);
             this.lblMaxDocument.Name = "lblMaxDocument";
             this.lblMaxDocument.Size = new System.Drawing.Size(88, 15);
             this.lblMaxDocument.TabIndex = 4;
@@ -166,6 +164,8 @@ namespace FunctionForm.Operation
             // 
             // grpAdvanced
             // 
+            this.grpAdvanced.Controls.Add(this.cmdPreview);
+            this.grpAdvanced.Controls.Add(this.trvNewDocument);
             this.grpAdvanced.Controls.Add(this.groupBox2);
             this.grpAdvanced.Controls.Add(this.groupBox1);
             this.grpAdvanced.Controls.Add(this.txtValidation);
@@ -179,15 +179,114 @@ namespace FunctionForm.Operation
             this.grpAdvanced.Controls.Add(this.numMaxDocument);
             this.grpAdvanced.Location = new System.Drawing.Point(30, 45);
             this.grpAdvanced.Name = "grpAdvanced";
-            this.grpAdvanced.Size = new System.Drawing.Size(453, 385);
+            this.grpAdvanced.Size = new System.Drawing.Size(733, 488);
             this.grpAdvanced.TabIndex = 3;
             this.grpAdvanced.TabStop = false;
             this.grpAdvanced.Text = "Advanced";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radAction_error);
+            this.groupBox2.Controls.Add(this.radAction_warn);
+            this.groupBox2.Location = new System.Drawing.Point(280, 167);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(181, 45);
+            this.groupBox2.TabIndex = 29;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Action";
+            // 
+            // radAction_error
+            // 
+            this.radAction_error.AutoSize = true;
+            this.radAction_error.Checked = true;
+            this.radAction_error.Location = new System.Drawing.Point(34, 18);
+            this.radAction_error.Name = "radAction_error";
+            this.radAction_error.Size = new System.Drawing.Size(51, 19);
+            this.radAction_error.TabIndex = 27;
+            this.radAction_error.TabStop = true;
+            this.radAction_error.Text = "error";
+            this.radAction_error.UseVisualStyleBackColor = true;
+            // 
+            // radAction_warn
+            // 
+            this.radAction_warn.AutoSize = true;
+            this.radAction_warn.Location = new System.Drawing.Point(102, 18);
+            this.radAction_warn.Name = "radAction_warn";
+            this.radAction_warn.Size = new System.Drawing.Size(52, 19);
+            this.radAction_warn.TabIndex = 28;
+            this.radAction_warn.TabStop = true;
+            this.radAction_warn.Text = "warn";
+            this.radAction_warn.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radLevel_moderate);
+            this.groupBox1.Controls.Add(this.radLevel_off);
+            this.groupBox1.Controls.Add(this.radLevel_strict);
+            this.groupBox1.Location = new System.Drawing.Point(21, 167);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(227, 45);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Level";
+            // 
+            // radLevel_moderate
+            // 
+            this.radLevel_moderate.AutoSize = true;
+            this.radLevel_moderate.Location = new System.Drawing.Point(143, 20);
+            this.radLevel_moderate.Name = "radLevel_moderate";
+            this.radLevel_moderate.Size = new System.Drawing.Size(78, 19);
+            this.radLevel_moderate.TabIndex = 27;
+            this.radLevel_moderate.TabStop = true;
+            this.radLevel_moderate.Text = "moderate";
+            this.radLevel_moderate.UseVisualStyleBackColor = true;
+            // 
+            // radLevel_off
+            // 
+            this.radLevel_off.AutoSize = true;
+            this.radLevel_off.Checked = true;
+            this.radLevel_off.Location = new System.Drawing.Point(27, 20);
+            this.radLevel_off.Name = "radLevel_off";
+            this.radLevel_off.Size = new System.Drawing.Size(38, 19);
+            this.radLevel_off.TabIndex = 25;
+            this.radLevel_off.TabStop = true;
+            this.radLevel_off.Text = "off";
+            this.radLevel_off.UseVisualStyleBackColor = true;
+            // 
+            // radLevel_strict
+            // 
+            this.radLevel_strict.AutoSize = true;
+            this.radLevel_strict.Location = new System.Drawing.Point(79, 20);
+            this.radLevel_strict.Name = "radLevel_strict";
+            this.radLevel_strict.Size = new System.Drawing.Size(50, 19);
+            this.radLevel_strict.TabIndex = 26;
+            this.radLevel_strict.TabStop = true;
+            this.radLevel_strict.Text = "strict";
+            this.radLevel_strict.UseVisualStyleBackColor = true;
+            // 
+            // txtValidation
+            // 
+            this.txtValidation.Location = new System.Drawing.Point(21, 226);
+            this.txtValidation.Multiline = true;
+            this.txtValidation.Name = "txtValidation";
+            this.txtValidation.Size = new System.Drawing.Size(318, 213);
+            this.txtValidation.TabIndex = 24;
+            this.txtValidation.Text = "Validation Express";
+            // 
+            // chkValidation
+            // 
+            this.chkValidation.AutoSize = true;
+            this.chkValidation.Location = new System.Drawing.Point(21, 141);
+            this.chkValidation.Name = "chkValidation";
+            this.chkValidation.Size = new System.Drawing.Size(80, 19);
+            this.chkValidation.TabIndex = 6;
+            this.chkValidation.Text = "Validation";
+            this.chkValidation.UseVisualStyleBackColor = true;
+            // 
             // lnkCappedCollections
             // 
             this.lnkCappedCollections.AutoSize = true;
-            this.lnkCappedCollections.Location = new System.Drawing.Point(21, 111);
+            this.lnkCappedCollections.Location = new System.Drawing.Point(130, 112);
             this.lnkCappedCollections.Name = "lnkCappedCollections";
             this.lnkCappedCollections.Size = new System.Drawing.Size(141, 15);
             this.lnkCappedCollections.TabIndex = 6;
@@ -206,111 +305,33 @@ namespace FunctionForm.Operation
             this.chkAdvance.UseVisualStyleBackColor = true;
             this.chkAdvance.CheckedChanged += new System.EventHandler(this.chkAdvance_CheckedChanged);
             // 
-            // chkValidation
+            // trvNewDocument
             // 
-            this.chkValidation.AutoSize = true;
-            this.chkValidation.Location = new System.Drawing.Point(21, 141);
-            this.chkValidation.Name = "chkValidation";
-            this.chkValidation.Size = new System.Drawing.Size(80, 19);
-            this.chkValidation.TabIndex = 6;
-            this.chkValidation.Text = "Validation";
-            this.chkValidation.UseVisualStyleBackColor = true;
+            this.trvNewDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvNewDocument.Location = new System.Drawing.Point(352, 226);
+            this.trvNewDocument.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.trvNewDocument.Name = "trvNewDocument";
+            this.trvNewDocument.Padding = new System.Windows.Forms.Padding(1);
+            this.trvNewDocument.Size = new System.Drawing.Size(345, 211);
+            this.trvNewDocument.TabIndex = 30;
             // 
-            // txtValidation
+            // cmdPreview
             // 
-            this.txtValidation.Location = new System.Drawing.Point(21, 218);
-            this.txtValidation.Multiline = true;
-            this.txtValidation.Name = "txtValidation";
-            this.txtValidation.Size = new System.Drawing.Size(414, 161);
-            this.txtValidation.TabIndex = 24;
-            this.txtValidation.Text = "Validation Express";
+            this.cmdPreview.Location = new System.Drawing.Point(71, 443);
+            this.cmdPreview.Name = "cmdPreview";
+            this.cmdPreview.Size = new System.Drawing.Size(177, 25);
+            this.cmdPreview.TabIndex = 31;
+            this.cmdPreview.Tag = "Common_Preview";
+            this.cmdPreview.Text = "Preview Validation Express";
+            this.cmdPreview.UseVisualStyleBackColor = true;
+            this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
             // 
-            // radLevel_off
-            // 
-            this.radLevel_off.AutoSize = true;
-            this.radLevel_off.Checked = true;
-            this.radLevel_off.Location = new System.Drawing.Point(4, 20);
-            this.radLevel_off.Name = "radLevel_off";
-            this.radLevel_off.Size = new System.Drawing.Size(38, 19);
-            this.radLevel_off.TabIndex = 25;
-            this.radLevel_off.TabStop = true;
-            this.radLevel_off.Text = "off";
-            this.radLevel_off.UseVisualStyleBackColor = true;
-            // 
-            // radLevel_strict
-            // 
-            this.radLevel_strict.AutoSize = true;
-            this.radLevel_strict.Location = new System.Drawing.Point(48, 19);
-            this.radLevel_strict.Name = "radLevel_strict";
-            this.radLevel_strict.Size = new System.Drawing.Size(50, 19);
-            this.radLevel_strict.TabIndex = 26;
-            this.radLevel_strict.TabStop = true;
-            this.radLevel_strict.Text = "strict";
-            this.radLevel_strict.UseVisualStyleBackColor = true;
-            // 
-            // radLevel_moderate
-            // 
-            this.radLevel_moderate.AutoSize = true;
-            this.radLevel_moderate.Location = new System.Drawing.Point(104, 20);
-            this.radLevel_moderate.Name = "radLevel_moderate";
-            this.radLevel_moderate.Size = new System.Drawing.Size(78, 19);
-            this.radLevel_moderate.TabIndex = 27;
-            this.radLevel_moderate.TabStop = true;
-            this.radLevel_moderate.Text = "moderate";
-            this.radLevel_moderate.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radLevel_moderate);
-            this.groupBox1.Controls.Add(this.radLevel_off);
-            this.groupBox1.Controls.Add(this.radLevel_strict);
-            this.groupBox1.Location = new System.Drawing.Point(21, 167);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 45);
-            this.groupBox1.TabIndex = 28;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Level";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.radAction_error);
-            this.groupBox2.Controls.Add(this.radAction_warn);
-            this.groupBox2.Location = new System.Drawing.Point(235, 174);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(134, 38);
-            this.groupBox2.TabIndex = 29;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Action";
-            // 
-            // radAction_error
-            // 
-            this.radAction_error.AutoSize = true;
-            this.radAction_error.Checked = true;
-            this.radAction_error.Location = new System.Drawing.Point(12, 14);
-            this.radAction_error.Name = "radAction_error";
-            this.radAction_error.Size = new System.Drawing.Size(51, 19);
-            this.radAction_error.TabIndex = 27;
-            this.radAction_error.TabStop = true;
-            this.radAction_error.Text = "error";
-            this.radAction_error.UseVisualStyleBackColor = true;
-            // 
-            // radAction_warn
-            // 
-            this.radAction_warn.AutoSize = true;
-            this.radAction_warn.Location = new System.Drawing.Point(69, 13);
-            this.radAction_warn.Name = "radAction_warn";
-            this.radAction_warn.Size = new System.Drawing.Size(52, 19);
-            this.radAction_warn.TabIndex = 28;
-            this.radAction_warn.TabStop = true;
-            this.radAction_warn.Text = "warn";
-            this.radAction_warn.UseVisualStyleBackColor = true;
-            // 
-            // FrmCreateCollection
+            // frmCreateCollection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(495, 475);
+            this.ClientSize = new System.Drawing.Size(787, 611);
             this.Controls.Add(this.lblCollectionName);
             this.Controls.Add(this.txtCollectionName);
             this.Controls.Add(this.cmdCancel);
@@ -318,7 +339,7 @@ namespace FunctionForm.Operation
             this.Controls.Add(this.grpAdvanced);
             this.Controls.Add(this.chkAdvance);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "FrmCreateCollection";
+            this.Name = "frmCreateCollection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create Collection";
             this.Load += new System.EventHandler(this.frmCreateCollection_Load);
@@ -326,10 +347,10 @@ namespace FunctionForm.Operation
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).EndInit();
             this.grpAdvanced.ResumeLayout(false);
             this.grpAdvanced.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,5 +380,7 @@ namespace FunctionForm.Operation
         private GroupBox groupBox2;
         private RadioButton radAction_error;
         private RadioButton radAction_warn;
+        private MongoGUICtl.CtlTreeViewColumns trvNewDocument;
+        private Button cmdPreview;
     }
 }

@@ -49,7 +49,7 @@ namespace MongoCola
             //新建文档的文档获得方法注入
             CtlDocumentView._getDocument = () =>
             {
-                var frmInsertDoc = new frmNewDocument();
+                var frmInsertDoc = new frmCreateDocument();
                 Utility.OpenForm(frmInsertDoc, false, true);
                 return frmInsertDoc.MBsonDocument;
             };

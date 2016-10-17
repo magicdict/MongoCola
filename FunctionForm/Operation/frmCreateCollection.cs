@@ -10,6 +10,9 @@ using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using MongoDB.Bson.Serialization;
+using MongoGUICtl.ClientTree;
+using MongoUtility.ToolKit;
 
 namespace FunctionForm.Operation
 {
@@ -76,22 +79,34 @@ namespace FunctionForm.Operation
                 RuntimeMongoDbContext.GetCurrentDataBase().IsCollectionNameValid(txtCollectionName.Text, out errMessage);
                 if (errMessage != null)
                 {
-                    MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", errMessage, true);
+                    MyMessageBox.ShowMessage("Create Collection", "Argument Exception", errMessage, true);
                     return;
                 }
                 if (chkAdvance.Checked)
                 {
                     var option = new CollectionOptionsBuilder();
-                    option.SetCapped(chkIsCapped.Checked);
-                    option.SetMaxSize((long) numMaxSize.Value);
-                    option.SetMaxDocuments((long) numMaxDocument.Value);
+
+                    if (chkIsCapped.Checked)
+                    {
+                        if (numMaxSize.Value == 0 || numMaxDocument.Value == 0)
+                        {
+                            MyMessageBox.ShowMessage("Create Collection", "Argument Exception", "Please Input MaxSize Or MaxDocument When IsCapped", true);
+                            return;
+                        }
+                        option.SetCapped(chkIsCapped.Checked);
+                        if (numMaxSize.Value != 0) option.SetMaxSize((long)numMaxSize.Value);
+                        if (numMaxDocument.Value != 0) option.SetMaxDocuments((long)numMaxDocument.Value);
+                    }
+
                     //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                     option.SetAutoIndexId(chkIsAutoIndexId.Checked);
 
                     if (chkValidation.Checked)
                     {
                         //Start From MongoDB 3.2.0
-                        option.SetValidator((QueryDocument) BsonDocument.Parse(txtValidation.Text));
+                        BsonDocument query = BsonSerializer.Deserialize<BsonDocument>(txtValidation.Text);
+                        QueryDocument queryDoc = new QueryDocument(query);
+                        option.SetValidator(queryDoc);
                         //Validation Level
                         if (radLevel_off.Checked) option.SetValidationLevel(DocumentValidationLevel.Off);
                         if (radLevel_strict.Checked) option.SetValidationLevel(DocumentValidationLevel.Strict);
@@ -146,6 +161,22 @@ namespace FunctionForm.Operation
         private void lnkCappedCollections_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("http://docs.mongodb.org/manual/core/capped-collections/");
+        }
+
+        private void cmdPreview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BsonDocument newdoc;
+                newdoc = BsonDocument.Parse(txtValidation.Text);
+                UiHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
+                trvNewDocument.TreeView.ExpandAll();
+                txtValidation.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
+            }
+            catch (Exception ex)
+            {
+                Utility.ExceptionDeal(ex);
+            }
         }
     }
 }
