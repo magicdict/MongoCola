@@ -52,9 +52,11 @@ CSharp Mongo Driver 2.4.0-beta1
 
 # 发布履历
 ##Ver 2.01 2016/10/31
+
 ###新增
 1. 添加视图（From MongoDB 3.4）
 2. 视图的展示（From MongoDB 3.4）
+
 ###修改
 1. 聚合操作符的更新
 

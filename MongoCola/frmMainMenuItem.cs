@@ -1,12 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using FunctionForm.Aggregation;
 using FunctionForm.Connection;
 using FunctionForm.Extend;
+using FunctionForm.MachineLearning;
 using FunctionForm.Operation;
 using FunctionForm.Status;
 using FunctionForm.User;
@@ -21,11 +17,15 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using FunctionForm.MachineLearning;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace MongoCola
 {
-    public partial class FrmMain
+    public partial class frmMain
     {
         #region"工具"
 
@@ -1009,7 +1009,7 @@ namespace MongoCola
         {
             MyMessageBox.ShowMessage("About", "MongoCola",
                 GetResource.GetImage(ImageType.Smile),
-                new StreamReader("Release Note.txt", Encoding.UTF8).ReadToEnd());
+                new StreamReader("Release Note_Ver1.5.txt", Encoding.UTF8).ReadToEnd());
         }
 
         /// <summary>

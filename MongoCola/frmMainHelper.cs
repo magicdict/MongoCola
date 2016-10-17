@@ -15,7 +15,7 @@ namespace MongoCola
     /// <summary>
     ///     Description of frmMain_Helper.
     /// </summary>
-    public partial class FrmMain : Form
+    public partial class frmMain : Form
     {
         /// <summary>
         ///     禁止所有操作
@@ -25,6 +25,7 @@ namespace MongoCola
             //管理-服务器
             CreateMongoDBToolStripMenuItem.Enabled = false;
             AddUserToAdminToolStripMenuItem.Enabled = false;
+            AddAdminCustomeRoleStripMenuItem.Enabled = false;
             ServerStatusToolStripMenuItem.Enabled = false;
             ServePropertyToolStripMenuItem.Enabled = false;
             slaveResyncToolStripMenuItem.Enabled = false;
@@ -37,10 +38,12 @@ namespace MongoCola
 
             //管理-数据库
             CreateMongoCollectionToolStripMenuItem.Enabled = false;
+            CreateViewtoolStripMenuItem.Enabled = false;
             CopyDatabasetoolStripMenuItem.Enabled = false;
             DelMongoDBToolStripMenuItem.Enabled = false;
             UserInfoStripMenuItem.Enabled = false;
             AddUserToolStripMenuItem.Enabled = false;
+            AddDBCustomeRoleStripMenuItem.Enabled = false;
             EvalJSToolStripMenuItem.Enabled = false;
             RepairDBToolStripMenuItem.Enabled = false;
             InitGFSToolStripMenuItem.Enabled = false;

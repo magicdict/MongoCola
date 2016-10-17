@@ -91,7 +91,7 @@ namespace MongoCola
                 MongoConfig.LoadFromConfigFile();
                 RuntimeMongoDbContext.MongoConnectionConfigList = MongoConnectionConfig.MongoConfig.ConnectionList;
             }
-            Application.Run(new FrmMain());
+            Application.Run(new frmMain());
             //delete tempfile directory when exit
             if (Directory.Exists(Gfs.TempFileFolder))
             {

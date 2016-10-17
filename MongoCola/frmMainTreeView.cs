@@ -18,7 +18,7 @@ using ResourceLib.UI;
 
 namespace MongoCola
 {
-    public partial class FrmMain : Form
+    public partial class frmMain : Form
     {
         /// <summary>
         ///     连接

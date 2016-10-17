@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MongoCola
 {
-    partial class FrmMain
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.

@@ -17,14 +17,14 @@ using System.Windows.Forms;
 
 namespace MongoCola
 {
-    public partial class FrmMain
+    public partial class frmMain
     {
         #region"MainForm"
 
         /// <summary>
         ///     切换Tab的时候，必须切换当前对象
         /// </summary>
-        public FrmMain()
+        public frmMain()
         {
             InitializeComponent();
             GetSystemIcon.InitMainTreeImage();
