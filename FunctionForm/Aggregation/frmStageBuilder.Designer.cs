@@ -39,12 +39,13 @@ namespace FunctionForm.Aggregation
             this.MatchListPanel = new MongoGUICtl.Aggregation.MatchPanel();
             this.btnClearMatch = new System.Windows.Forms.Button();
             this.btnAddMatch = new System.Windows.Forms.Button();
-            this.tabGroup = new System.Windows.Forms.TabPage();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.cmdAddGroupItem = new System.Windows.Forms.Button();
+            this.tabGroup1 = new System.Windows.Forms.TabPage();
             this.GroupFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
-            this.groupPanelCreator = new MongoGUICtl.Aggregation.GroupPanel();
             this.lblID = new System.Windows.Forms.Label();
+            this.tabGroup2 = new System.Windows.Forms.TabPage();
+            this.btnClearGroupItem = new System.Windows.Forms.Button();
+            this.cmdAddGroupItem = new System.Windows.Forms.Button();
+            this.groupPanelCreator = new MongoGUICtl.Aggregation.GroupPanel();
             this.tabOption = new System.Windows.Forms.TabPage();
             this.txtSkip = new System.Windows.Forms.TextBox();
             this.txtLimit = new System.Windows.Forms.TextBox();
@@ -55,7 +56,8 @@ namespace FunctionForm.Aggregation
             this.tabAggregation.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabMatch.SuspendLayout();
-            this.tabGroup.SuspendLayout();
+            this.tabGroup1.SuspendLayout();
+            this.tabGroup2.SuspendLayout();
             this.tabOption.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +65,8 @@ namespace FunctionForm.Aggregation
             // 
             this.tabAggregation.Controls.Add(this.tabProject);
             this.tabAggregation.Controls.Add(this.tabMatch);
-            this.tabAggregation.Controls.Add(this.tabGroup);
+            this.tabAggregation.Controls.Add(this.tabGroup1);
+            this.tabAggregation.Controls.Add(this.tabGroup2);
             this.tabAggregation.Controls.Add(this.tabOption);
             this.tabAggregation.Location = new System.Drawing.Point(12, 11);
             this.tabAggregation.Name = "tabAggregation";
@@ -136,60 +139,29 @@ namespace FunctionForm.Aggregation
             this.btnAddMatch.UseVisualStyleBackColor = true;
             this.btnAddMatch.Click += new System.EventHandler(this.btnAddMatch_Click);
             // 
-            // tabGroup
+            // tabGroup1
             // 
-            this.tabGroup.Controls.Add(this.btnClear);
-            this.tabGroup.Controls.Add(this.cmdAddGroupItem);
-            this.tabGroup.Controls.Add(this.GroupFieldPicker);
-            this.tabGroup.Controls.Add(this.groupPanelCreator);
-            this.tabGroup.Controls.Add(this.lblID);
-            this.tabGroup.Location = new System.Drawing.Point(4, 22);
-            this.tabGroup.Name = "tabGroup";
-            this.tabGroup.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGroup.Size = new System.Drawing.Size(604, 301);
-            this.tabGroup.TabIndex = 3;
-            this.tabGroup.Text = "$group";
-            this.tabGroup.UseVisualStyleBackColor = true;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(134, 160);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 21);
-            this.btnClear.TabIndex = 5;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // cmdAddGroupItem
-            // 
-            this.cmdAddGroupItem.Location = new System.Drawing.Point(40, 160);
-            this.cmdAddGroupItem.Name = "cmdAddGroupItem";
-            this.cmdAddGroupItem.Size = new System.Drawing.Size(88, 21);
-            this.cmdAddGroupItem.TabIndex = 4;
-            this.cmdAddGroupItem.Text = "Add GroupItem";
-            this.cmdAddGroupItem.UseVisualStyleBackColor = true;
-            this.cmdAddGroupItem.Click += new System.EventHandler(this.cmdAddGroupItem_Click);
+            this.tabGroup1.Controls.Add(this.GroupFieldPicker);
+            this.tabGroup1.Controls.Add(this.lblID);
+            this.tabGroup1.Location = new System.Drawing.Point(4, 22);
+            this.tabGroup1.Name = "tabGroup1";
+            this.tabGroup1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGroup1.Size = new System.Drawing.Size(604, 301);
+            this.tabGroup1.TabIndex = 3;
+            this.tabGroup1.Text = "$group1";
+            this.tabGroup1.UseVisualStyleBackColor = true;
             // 
             // GroupFieldPicker
             // 
             this.GroupFieldPicker.AutoScroll = true;
             this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
+            this.GroupFieldPicker.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.GroupFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Aggregation;
             this.GroupFieldPicker.IsIdProtect = false;
-            this.GroupFieldPicker.Location = new System.Drawing.Point(6, 28);
+            this.GroupFieldPicker.Location = new System.Drawing.Point(3, 31);
             this.GroupFieldPicker.Name = "GroupFieldPicker";
-            this.GroupFieldPicker.Size = new System.Drawing.Size(592, 126);
+            this.GroupFieldPicker.Size = new System.Drawing.Size(598, 267);
             this.GroupFieldPicker.TabIndex = 3;
-            // 
-            // groupPanelCreator
-            // 
-            this.groupPanelCreator.AutoScroll = true;
-            this.groupPanelCreator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupPanelCreator.Location = new System.Drawing.Point(3, 179);
-            this.groupPanelCreator.Name = "groupPanelCreator";
-            this.groupPanelCreator.Size = new System.Drawing.Size(598, 119);
-            this.groupPanelCreator.TabIndex = 2;
             // 
             // lblID
             // 
@@ -199,6 +171,48 @@ namespace FunctionForm.Aggregation
             this.lblID.Size = new System.Drawing.Size(161, 12);
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID (group by fields below)";
+            // 
+            // tabGroup2
+            // 
+            this.tabGroup2.Controls.Add(this.btnClearGroupItem);
+            this.tabGroup2.Controls.Add(this.cmdAddGroupItem);
+            this.tabGroup2.Controls.Add(this.groupPanelCreator);
+            this.tabGroup2.Location = new System.Drawing.Point(4, 22);
+            this.tabGroup2.Name = "tabGroup2";
+            this.tabGroup2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGroup2.Size = new System.Drawing.Size(604, 301);
+            this.tabGroup2.TabIndex = 4;
+            this.tabGroup2.Text = "$group2";
+            this.tabGroup2.UseVisualStyleBackColor = true;
+            // 
+            // btnClearGroupItem
+            // 
+            this.btnClearGroupItem.Location = new System.Drawing.Point(451, 6);
+            this.btnClearGroupItem.Name = "btnClearGroupItem";
+            this.btnClearGroupItem.Size = new System.Drawing.Size(116, 32);
+            this.btnClearGroupItem.TabIndex = 7;
+            this.btnClearGroupItem.Text = "Clear";
+            this.btnClearGroupItem.UseVisualStyleBackColor = true;
+            this.btnClearGroupItem.Click += new System.EventHandler(this.btnClearGroupItem_Click);
+            // 
+            // cmdAddGroupItem
+            // 
+            this.cmdAddGroupItem.Location = new System.Drawing.Point(316, 6);
+            this.cmdAddGroupItem.Name = "cmdAddGroupItem";
+            this.cmdAddGroupItem.Size = new System.Drawing.Size(129, 32);
+            this.cmdAddGroupItem.TabIndex = 6;
+            this.cmdAddGroupItem.Text = "Add GroupItem";
+            this.cmdAddGroupItem.UseVisualStyleBackColor = true;
+            this.cmdAddGroupItem.Click += new System.EventHandler(this.cmdAddGroupItem_Click);
+            // 
+            // groupPanelCreator
+            // 
+            this.groupPanelCreator.AutoScroll = true;
+            this.groupPanelCreator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupPanelCreator.Location = new System.Drawing.Point(3, 44);
+            this.groupPanelCreator.Name = "groupPanelCreator";
+            this.groupPanelCreator.Size = new System.Drawing.Size(598, 254);
+            this.groupPanelCreator.TabIndex = 3;
             // 
             // tabOption
             // 
@@ -211,7 +225,7 @@ namespace FunctionForm.Aggregation
             this.tabOption.Padding = new System.Windows.Forms.Padding(3);
             this.tabOption.Size = new System.Drawing.Size(604, 301);
             this.tabOption.TabIndex = 1;
-            this.tabOption.Text = "Options";
+            this.tabOption.Text = "$Options";
             this.tabOption.UseVisualStyleBackColor = true;
             // 
             // txtSkip
@@ -254,9 +268,9 @@ namespace FunctionForm.Aggregation
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(196, 359);
+            this.btnOK.Location = new System.Drawing.Point(196, 354);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(108, 30);
+            this.btnOK.Size = new System.Drawing.Size(108, 35);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -264,9 +278,9 @@ namespace FunctionForm.Aggregation
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(332, 359);
+            this.btnCancel.Location = new System.Drawing.Point(332, 354);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(108, 30);
+            this.btnCancel.Size = new System.Drawing.Size(108, 35);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -287,8 +301,9 @@ namespace FunctionForm.Aggregation
             this.tabAggregation.ResumeLayout(false);
             this.tabProject.ResumeLayout(false);
             this.tabMatch.ResumeLayout(false);
-            this.tabGroup.ResumeLayout(false);
-            this.tabGroup.PerformLayout();
+            this.tabGroup1.ResumeLayout(false);
+            this.tabGroup1.PerformLayout();
+            this.tabGroup2.ResumeLayout(false);
             this.tabOption.ResumeLayout(false);
             this.tabOption.PerformLayout();
             this.ResumeLayout(false);
@@ -307,15 +322,16 @@ namespace FunctionForm.Aggregation
         private CheckBox chkLimit;
         private TextBox txtSkip;
         private TextBox txtLimit;
-        private TabPage tabGroup;
+        private TabPage tabGroup1;
         private Label lblID;
-        private GroupPanel groupPanelCreator;
         private FieldPicker GroupFieldPicker;
-        private Button btnClear;
-        private Button cmdAddGroupItem;
         private Button btnClearMatch;
         private Button btnAddMatch;
         private MatchPanel MatchListPanel;
         private Button btnCancel;
+        private TabPage tabGroup2;
+        private Button btnClearGroupItem;
+        private Button cmdAddGroupItem;
+        private GroupPanel groupPanelCreator;
     }
 }

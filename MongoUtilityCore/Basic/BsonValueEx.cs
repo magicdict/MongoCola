@@ -30,6 +30,21 @@ namespace MongoUtility.Basic
         public int MBsonInt32;
 
         /// <summary>
+        ///     Long(Int64)
+        /// </summary>
+        public long MBsonInt64;
+
+        /// <summary>
+        ///     Decimal
+        /// </summary>
+        //public Decimal MBSonDecimal;
+
+        /// <summary>
+        ///     Decimal128
+        /// </summary>
+        public Decimal128 MBSonDecimal128;
+
+        /// <summary>
         ///     文字值
         /// </summary>
         public string MBsonString;
@@ -44,6 +59,7 @@ namespace MongoUtility.Basic
         /// </summary>
         public BsonValueEx()
         {
+
         }
 
         /// <summary>
@@ -62,6 +78,19 @@ namespace MongoUtility.Basic
                 MBsonType = "BsonInt32";
                 MBsonInt32 = value.AsInt32;
             }
+
+            if (value.IsInt64)
+            {
+                MBsonType = "BsonInt64";
+                MBSonDecimal128 = value.AsDecimal;
+            }
+
+            if (value.IsDecimal128)
+            {
+                MBsonType = "BsonDecimal128";
+                MBSonDecimal128 = value.AsDecimal;
+            }
+
             if (value.IsValidDateTime)
             {
                 MBsonType = "BsonDateTime";
@@ -82,6 +111,8 @@ namespace MongoUtility.Basic
             var typelst = new List<string>();
             typelst.Add("BsonString");
             typelst.Add("BsonInt32");
+            typelst.Add("BsonInt64");
+            typelst.Add("BsonDecimal128");
             typelst.Add("BsonDateTime");
             typelst.Add("BsonBoolean");
             typelst.Add("BsonArray");
@@ -103,6 +134,12 @@ namespace MongoUtility.Basic
                     break;
                 case "BsonInt32":
                     value = new BsonInt32(MBsonInt32);
+                    break;
+                case "BsonInt64":
+                    value = new BsonInt64(MBsonInt64);
+                    break;
+                case "BsonDecimal128":
+                    value = new BsonDecimal128(MBSonDecimal128);
                     break;
                 case "BsonDateTime":
                     value = new BsonDateTime(MBsonDateTime);

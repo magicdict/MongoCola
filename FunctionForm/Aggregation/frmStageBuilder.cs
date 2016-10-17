@@ -105,7 +105,7 @@ namespace FunctionForm.Aggregation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnClearGroupItem_Click(object sender, EventArgs e)
         {
             groupPanelCreator.Clear();
         }
@@ -136,5 +136,6 @@ namespace FunctionForm.Aggregation
 
         #endregion
 
+       
     }
 }
