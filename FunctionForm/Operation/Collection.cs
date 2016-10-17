@@ -20,7 +20,7 @@ namespace FunctionForm.Operation
             var strMessage = GuiConfig.GetText("Are you sure to drop this Collection?", TextType.DropCollectionConfirm);
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return false;
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Collection];
+            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.CollectionAndView];
             return Operater.DrapCollection(strCollection);
         }
 
@@ -32,7 +32,7 @@ namespace FunctionForm.Operation
         public static string RenameCollection(TreeNode node)
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.Collection];
+            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLevel.CollectionAndView];
             var strNewCollectionName = MyMessageBox.ShowInput(
                 GuiConfig.GetText("Please input new collection name：", TextType.RenameCollectionInput),
                 GuiConfig.GetText("Rename collection", TextType.RenameCollection), strCollection);

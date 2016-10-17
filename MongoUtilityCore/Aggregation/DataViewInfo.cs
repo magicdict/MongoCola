@@ -48,6 +48,11 @@ namespace MongoUtility.Aggregation
         public bool IsReadOnly;
 
         /// <summary>
+        ///     是否为View
+        /// </summary>
+        public bool IsView;
+
+        /// <summary>
         ///     是否为SafeMode
         /// </summary>
         public bool IsSafeMode;
@@ -91,7 +96,7 @@ namespace MongoUtility.Aggregation
             {
                 var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
                 var dataList = strNodeData.Split("/".ToCharArray());
-                if (dataList[(int) EnumMgr.PathLevel.Database] == ConstMgr.DatabaseNameAdmin)
+                if (dataList[(int)EnumMgr.PathLevel.Database] == ConstMgr.DatabaseNameAdmin)
                 {
                     return true;
                 }
@@ -108,8 +113,8 @@ namespace MongoUtility.Aggregation
             {
                 var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
                 var dataList = strNodeData.Split("/".ToCharArray());
-                return Operater.IsSystemCollection(dataList[(int) EnumMgr.PathLevel.Database],
-                    dataList[(int) EnumMgr.PathLevel.Collection]);
+                return Operater.IsSystemCollection(dataList[(int)EnumMgr.PathLevel.Database],
+                    dataList[(int)EnumMgr.PathLevel.CollectionAndView]);
             }
         }
 
@@ -123,8 +128,8 @@ namespace MongoUtility.Aggregation
             var collectionPath = currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[1];
             var cp = collectionPath.Split("/".ToCharArray());
             MongoCollection mongoCol =
-                mServer.GetDatabase(cp[(int) EnumMgr.PathLevel.Database])
-                    .GetCollection(cp[(int) EnumMgr.PathLevel.Collection]);
+                mServer.GetDatabase(cp[(int)EnumMgr.PathLevel.Database])
+                    .GetCollection(cp[(int)EnumMgr.PathLevel.CollectionAndView]);
 
 
             MongoCursor<BsonDocument> cursor;
@@ -147,7 +152,12 @@ namespace MongoUtility.Aggregation
             currentDataViewInfo.Query = cursor.Query != null
                 ? cursor.Query.ToJson(MongoHelper.JsonWriterSettings)
                 : string.Empty;
-            currentDataViewInfo.Explain = cursor.Explain().ToJson(MongoHelper.JsonWriterSettings);
+
+            if (!currentDataViewInfo.IsView)
+            {
+                currentDataViewInfo.Explain = cursor.Explain().ToJson(MongoHelper.JsonWriterSettings);
+            }
+
             var dataList = cursor.ToList();
             if (currentDataViewInfo.SkipCnt == 0)
             {
@@ -155,11 +165,11 @@ namespace MongoUtility.Aggregation
                 {
                     //感谢cnblogs.com 网友Shadower
                     currentDataViewInfo.CurrentCollectionTotalCnt =
-                        (int) mongoCol.Count(QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList));
+                        (int)mongoCol.Count(QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList));
                 }
                 else
                 {
-                    currentDataViewInfo.CurrentCollectionTotalCnt = (int) mongoCol.Count();
+                    currentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count();
                 }
             }
             SetPageEnable(ref currentDataViewInfo);

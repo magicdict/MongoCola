@@ -19,7 +19,7 @@ namespace MongoGUICtl.ClientTree
         /// </summary>
         /// <param name="col"></param>
         /// <returns></returns>
-        public static TreeNode FillViewInfoToTreeNode(IMongoCollection<BsonDocument> col)
+        public static TreeNode FillViewInfoToTreeNode(IMongoCollection<BsonDocument> col, string TagPrefix)
         {
             var mongoColNode = new TreeNode("Views(" + col.Count(x => true).ToString() + ")");
             mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.CollectionList;
@@ -43,7 +43,7 @@ namespace MongoGUICtl.ClientTree
                 pipelineNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
                 pipelineNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
                 viewNode.Nodes.Add(pipelineNode);
-
+                viewNode.Tag = TagPrefix + viewNode.Text;
                 mongoColNode.Nodes.Add(viewNode);
             }
             return mongoColNode;

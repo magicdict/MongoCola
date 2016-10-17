@@ -223,8 +223,15 @@ namespace MongoCola
                         RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "Collection List ";
                         break;
+                    case ConstMgr.ViewListTag:
+                        RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = "View List ";
+                        break;
                     case ConstMgr.CollectionTag:
                         CollectionHandler(e);
+                        break;
+                    case ConstMgr.ViewTag:
+                        ViewHandler(e);
                         break;
                     case ConstMgr.IndexTag:
                         statusStripMain.Items[0].Text = GuiConfig.GetText("Selected Index:", TextType.SelectedIndex) +
@@ -445,6 +452,7 @@ namespace MongoCola
                         break;
                     case ConstMgr.CollectionTag:
                     case ConstMgr.DocumentTag:
+                    case ConstMgr.ViewTag:
                         ViewDataRecord();
                         break;
                     default:
@@ -464,14 +472,14 @@ namespace MongoCola
         private void ViewJavascript()
         {
             var tagArray = RuntimeMongoDbContext.SelectTagData.Split("/".ToCharArray());
-            var jsName = tagArray[(int) EnumMgr.PathLevel.Document];
+            var jsName = tagArray[(int)EnumMgr.PathLevel.Document];
             if (MultiTabManger.IsExist(RuntimeMongoDbContext.SelectTagData))
             {
                 MultiTabManger.SelectTab(RuntimeMongoDbContext.SelectTagData);
                 return;
             }
 
-            var jsEditor = new CtlJsEditor {StrDBtag = RuntimeMongoDbContext.SelectObjectTag};
+            var jsEditor = new CtlJsEditor { StrDBtag = RuntimeMongoDbContext.SelectObjectTag };
             var dataTab = new TabPage(jsName)
             {
                 Tag = RuntimeMongoDbContext.SelectObjectTag,
@@ -531,6 +539,10 @@ namespace MongoCola
                     break;
                 case ConstMgr.UserListTag:
                     dataViewctl = new CtlUserView(mDataViewInfo);
+                    break;
+                case ConstMgr.ViewTag:
+                    mDataViewInfo.IsView = true;
+                    dataViewctl = new CtlDocumentView(mDataViewInfo);
                     break;
                 default:
                     dataViewctl = new CtlDocumentView(mDataViewInfo);

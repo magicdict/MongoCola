@@ -55,9 +55,14 @@
         public const string CollectionTag = "MongoCollection";
 
         /// <summary>
-        ///     数据集
+        ///     数据集列表
         /// </summary>
         public const string CollectionListTag = "MongoCollectionList";
+
+        /// <summary>
+        ///     视图列表
+        /// </summary>
+        public const string ViewListTag = "MongoViewList";
 
         /// <summary>
         ///     数据集
@@ -65,9 +70,14 @@
         public const string SystemCollectionListTag = "MongoSystemCollectionList";
 
         /// <summary>
-        ///     BSonDoc
+        ///     文档
         /// </summary>
         public const string DocumentTag = "MongoDocument";
+
+        /// <summary>
+        ///     视图
+        /// </summary>
+        public const string ViewTag = "MongoView";
 
         /// <summary>
         ///     JavaScript
@@ -123,11 +133,17 @@
         ///     Default Port(Mongod)
         /// </summary>
         public const int MongodDefaultPort = 27017;
-
+        /// <summary>
+        ///     Web Mongod Default Port
+        /// </summary>
         public const int WebMongodDefaultPort = 28017;
-
+        /// <summary>
+        ///     Shard Default Port
+        /// </summary>
         public const int ShardDefaultPort = 27018;
-
+        /// <summary>
+        ///     Config Default Port
+        /// </summary>
         public const int ConfigDefaultPort = 27019;
 
         /// <summary>

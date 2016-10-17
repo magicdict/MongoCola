@@ -49,7 +49,7 @@ namespace MongoGUIView
                           currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[0] == ConstMgr.CollectionTag))
                     {
                         //只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
-                        FillDataToListView(cp[(int) EnumMgr.PathLevel.Collection], (ListView) control, dataList);
+                        FillDataToListView(cp[(int) EnumMgr.PathLevel.CollectionAndView], (ListView) control, dataList);
                     }
                 }
                 if (control.GetType() == typeof (TextBox))
@@ -58,7 +58,7 @@ namespace MongoGUIView
                 }
                 if (control.GetType() == typeof (CtlTreeViewColumns))
                 {
-                    UiHelper.FillDataToTreeView(cp[(int) EnumMgr.PathLevel.Collection], (CtlTreeViewColumns) control,
+                    UiHelper.FillDataToTreeView(cp[(int) EnumMgr.PathLevel.CollectionAndView], (CtlTreeViewColumns) control,
                         dataList,
                         currentDataViewInfo.SkipCnt);
                 }

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Common;
+using FunctionForm.Aggregation;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoGUICtl.ClientTree;
+using MongoUtility.Core;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using MongoUtility.Core;
-using MongoDB.Driver;
-using MongoDB.Bson;
-using FunctionForm.Aggregation;
-using Common;
-using MongoGUICtl.ClientTree;
 
 namespace FunctionForm.Operation
 {
@@ -35,7 +35,7 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            var pipeline = new BsonDocumentStagePipelineDefinition<BsonDocument, BsonDocument>(new BsonDocument[0]);
+            var pipeline = new BsonDocumentStagePipelineDefinition<BsonDocument, BsonDocument>(stages.Values.Select(x => (BsonDocument)x));
             RuntimeMongoDbContext.GetCurrentIMongoDataBase().CreateView(txtViewName.Text, cmbViewOn.Text, pipeline);
         }
 

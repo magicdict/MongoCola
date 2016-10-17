@@ -10,8 +10,17 @@ namespace MongoUtility.Basic
         /// </summary>
         public enum ExportType
         {
+            /// <summary>
+            /// Excel
+            /// </summary>
             Excel,
+            /// <summary>
+            /// Text
+            /// </summary>
             Text,
+            /// <summary>
+            /// Xml
+            /// </summary>
             Xml
         }
 
@@ -62,9 +71,9 @@ namespace MongoUtility.Basic
             Database = 2,
 
             /// <summary>
-            ///     数据集
+            ///     数据集 和 视图
             /// </summary>
-            Collection = 3,
+            CollectionAndView = 3,
 
             /// <summary>
             ///     数据文档
@@ -100,7 +109,11 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     Version 3.2.0
             /// </summary>
-            V320 = 320
+            V320 = 320,
+            /// <summary>
+            ///     Version 3.4.0
+            /// </summary>
+            V340 = 340
         }
 
         /// <summary>

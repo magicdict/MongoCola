@@ -59,7 +59,7 @@ namespace MongoUtility.Command
             //{
                 switch (mMongoCommand.RunLevel)
                 {
-                    case EnumMgr.PathLevel.Collection:
+                    case EnumMgr.PathLevel.CollectionAndView:
                         if (string.IsNullOrEmpty(mMongoCommand.CommandString))
                         {
                             mCommandResult = ExecuteMongoColCommand(mMongoCommand.CmdDocument,
@@ -118,7 +118,7 @@ namespace MongoUtility.Command
             var e = new RunCommandEventArgs
             {
                 CommandString = commandString,
-                RunLevel = EnumMgr.PathLevel.Collection,
+                RunLevel = EnumMgr.PathLevel.CollectionAndView,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -147,7 +147,7 @@ namespace MongoUtility.Command
             var e = new RunCommandEventArgs
             {
                 CommandString = executeCommand.ToString(),
-                RunLevel = EnumMgr.PathLevel.Collection,
+                RunLevel = EnumMgr.PathLevel.CollectionAndView,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -448,7 +448,7 @@ namespace MongoUtility.Command
         ///     Compact
         /// </summary>
         /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command" />
-        public static MongoCommand CompactCommand = new MongoCommand("compact", EnumMgr.PathLevel.Collection);
+        public static MongoCommand CompactCommand = new MongoCommand("compact", EnumMgr.PathLevel.CollectionAndView);
 
         /// <summary>
         ///     执行聚合

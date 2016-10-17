@@ -591,9 +591,9 @@ namespace MongoUtility.Core
             {
                 var strSvrPath = TagInfo.GetTagPath(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int)EnumMgr.PathLevel.Collection)
+                if (strPathArray.Length > (int)EnumMgr.PathLevel.CollectionAndView)
                 {
-                    rtnMongoCollection = mongoDb.GetCollection(strPathArray[(int)EnumMgr.PathLevel.Collection]);
+                    rtnMongoCollection = mongoDb.GetCollection(strPathArray[(int)EnumMgr.PathLevel.CollectionAndView]);
                 }
             }
             return rtnMongoCollection;
@@ -628,10 +628,10 @@ namespace MongoUtility.Core
             {
                 var strSvrPath = TagInfo.GetTagPath(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int)EnumMgr.PathLevel.Collection)
+                if (strPathArray.Length > (int)EnumMgr.PathLevel.CollectionAndView)
                 {
                     rtnMongoCollection =
-                        mongoDb.GetCollection<BsonDocument>(strPathArray[(int)EnumMgr.PathLevel.Collection]);
+                        mongoDb.GetCollection<BsonDocument>(strPathArray[(int)EnumMgr.PathLevel.CollectionAndView]);
                 }
             }
             return rtnMongoCollection;

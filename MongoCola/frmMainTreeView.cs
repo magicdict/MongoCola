@@ -387,7 +387,24 @@ namespace MongoCola
         }
 
         /// <summary>
-        ///     Collections the handler.
+        ///     View Hanlder
+        /// </summary>
+        /// <param name="e"></param>
+        private void ViewHandler(TreeNodeMouseClickEventArgs e)
+        {
+            statusStripMain.Items[0].Text = "Selected View:" + e.Node.Text;
+            DelMongoCollectionToolStripMenuItem.Enabled = true;
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStripMain = new ContextMenuStrip();
+                contextMenuStripMain.Items.Add(DelMongoCollectionToolStripMenuItem.Clone());
+                e.Node.ContextMenuStrip = contextMenuStripMain;
+                contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+            }
+        }
+
+        /// <summary>
+        ///     Collection  Hanlder.
         /// </summary>
         /// <param name="e">E.</param>
         private void CollectionHandler(TreeNodeMouseClickEventArgs e)

@@ -672,7 +672,7 @@ namespace MongoCola
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.Collection + 1];
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.CollectionAndView + 1];
             var result = Operater.DelJavascript(strCollection);
             if (string.IsNullOrEmpty(result))
             {

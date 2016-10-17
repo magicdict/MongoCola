@@ -85,7 +85,8 @@ namespace MongoGUICtl.ClientTree
                         //视图
                         TreeNode mongoViewNode;
                         var ViewCol = GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName);
-                        mongoViewNode = FillViewInfoToTreeNode(ViewCol);
+                        mongoViewNode = FillViewInfoToTreeNode(ViewCol,ConstMgr.ViewTag + ":" + mongoSvrKey + "/" + strDbName + "/");
+                        mongoViewNode.Tag = ConstMgr.ViewListTag + ":" + mongoSvrKey + "/" + strDbName;
                         mongoDbNode.Nodes.Add(mongoViewNode);
                         break;
                     case ConstMgr.CollectionNameUser:

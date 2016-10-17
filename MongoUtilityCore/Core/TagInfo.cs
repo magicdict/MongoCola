@@ -111,7 +111,7 @@ namespace MongoUtility.Core
                     level = EnumMgr.PathLevel.Database;
                     break;
                 case ConstMgr.CollectionTag:
-                    level = EnumMgr.PathLevel.Collection;
+                    level = EnumMgr.PathLevel.CollectionAndView;
                     break;
             }
             return level;

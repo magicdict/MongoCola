@@ -28,6 +28,11 @@ namespace MongoGUICtl.Aggregation
             return null;
         }
 
+        /// <summary>
+        ///     加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctlMatchItem_Load(object sender, EventArgs e)
         {
             foreach (var item in AggregationHelper.GetComparisonfunction())
