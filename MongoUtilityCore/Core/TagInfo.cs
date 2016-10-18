@@ -96,6 +96,7 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     根据标签类型计算层级
         /// </summary>
         /// <param name="strTagType"></param>
         /// <returns></returns>
@@ -111,6 +112,7 @@ namespace MongoUtility.Core
                     level = EnumMgr.PathLevel.Database;
                     break;
                 case ConstMgr.CollectionTag:
+                case ConstMgr.ViewTag:
                     level = EnumMgr.PathLevel.CollectionAndView;
                     break;
             }

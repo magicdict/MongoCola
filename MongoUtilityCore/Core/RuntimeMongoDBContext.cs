@@ -15,6 +15,7 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Security;
 using MongoUtility.Aggregation;
+using System.Linq;
 
 namespace MongoUtility.Core
 {
@@ -375,6 +376,7 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     获得当前数据集名称
         /// </summary>
         /// <returns></returns>
         public static string GetCurrentCollectionName()
@@ -383,11 +385,31 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     获得当前数据集全称
         /// </summary>
         /// <returns></returns>
         public static string GetCurrentCollectionFullName()
         {
             return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase()).FullName;
+        }
+
+        /// <summary>
+        ///     获得当前数据库View名称列表
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetCurrentDBViewNameList()
+        {
+            var Database = GetCurrentDataBase();
+            var ViewList = new List<string>();
+            if (Database.CollectionExists(ConstMgr.CollectionNameView))
+            {
+                var Col = Database.GetCollection(ConstMgr.CollectionNameView);
+                ViewList = Col.FindAll().ToList().Select(x => {
+                    var id = x.GetElement(ConstMgr.KeyId).Value.ToString();
+                    return id.Substring(id.IndexOf(".") + 1);
+                }).ToList();
+            }
+            return ViewList;
         }
 
         /// <summary>

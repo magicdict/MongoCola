@@ -20,11 +20,14 @@ namespace FunctionForm.Operation
         private void frmCreateView_Load(object sender, EventArgs e)
         {
             cmbViewOn.Items.Clear();
-            var c = RuntimeMongoDbContext.GetCurrentIMongoDataBase().ListCollections();
-            foreach (var item in c.ToList())
+            var ColList = RuntimeMongoDbContext.GetCurrentIMongoDataBase().ListCollections();
+            var viewlist = RuntimeMongoDbContext.GetCurrentDBViewNameList();
+            foreach (var item in ColList.ToList())
             {
-                //这里也可能包括了View，需要进一步处理！
-                cmbViewOn.Items.Add(item.GetElement("name").Value.ToString());
+                var ColName = item.GetElement("name").Value.ToString();
+                if (!viewlist.Contains(ColName)) {
+                    cmbViewOn.Items.Add(ColName);
+                }
             }
         }
 

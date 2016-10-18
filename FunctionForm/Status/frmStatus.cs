@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using Common;
+﻿using Common;
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoGUICtl.ClientTree;
@@ -10,6 +7,9 @@ using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.Properties;
+using System;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace FunctionForm.Status
 {
@@ -49,7 +49,7 @@ namespace FunctionForm.Status
                         docStatus =
                             CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
-                        trvStatus.Height = trvStatus.Height*2;
+                        trvStatus.Height = trvStatus.Height * 2;
                     }
                     if (strType == ConstMgr.ServerTag)
                     {
@@ -141,7 +141,7 @@ namespace FunctionForm.Status
                         docStatus =
                             CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
-                        trvStatus.Height = trvStatus.Height*2;
+                        trvStatus.Height = trvStatus.Height * 2;
                     }
                     break;
             }
@@ -166,44 +166,26 @@ namespace FunctionForm.Status
             chartResult.Series.Clear();
             chartResult.Titles.Clear();
             var seriesResult = new Series(strField);
+            var viewlist = RuntimeMongoDbContext.GetCurrentDBViewNameList();
             foreach (var colName in RuntimeMongoDbContext.GetCurrentDataBase().GetCollectionNames())
             {
-                try
-                {
-                    RuntimeMongoDbContext.GetCurrentDataBase()
-                                .GetCollection(colName).GetStats();
-                }
-                catch (Exception)
-                {
-                    //View的时候，无法获得GetStats方法!
-                    continue;
-                }
-
-                DataPoint colPoint = null;
+                if (viewlist.Contains(colName)) continue;
+                DataPoint colPoint = new DataPoint(0, 0);
                 switch (strField)
                 {
                     case "AverageObjectSize":
-                        try
+                        if (RuntimeMongoDbContext.GetCurrentDataBase()
+                            .GetCollection(colName).GetStats().ObjectCount > 0)
                         {
-                            if (RuntimeMongoDbContext.GetCurrentDataBase()
-                                .GetCollection(colName).GetStats().ObjectCount > 0)
-                            {
-                                //如果没有任何对象的时候，平均值无法取得
-                                colPoint = new DataPoint(0,
-                                    RuntimeMongoDbContext.GetCurrentDataBase()
-                                        .GetCollection(colName)
-                                        .GetStats()
-                                        .AverageObjectSize);
-                            }
-                            else
-                            {
-                                colPoint = new DataPoint(0, 0);
-                            }
+                            //如果没有任何对象的时候，平均值无法取得
+                            colPoint = new DataPoint(0, RuntimeMongoDbContext.GetCurrentDataBase()
+                                    .GetCollection(colName)
+                                    .GetStats()
+                                    .AverageObjectSize);
                         }
-                        catch (Exception ex)
+                        else
                         {
                             colPoint = new DataPoint(0, 0);
-                            Utility.ExceptionDeal(ex);
                         }
                         break;
                     case "DataSize":
@@ -260,11 +242,12 @@ namespace FunctionForm.Status
             chartResult.Titles.Add(new Title(strField));
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
 
+        /// <summary>
+        ///     切换状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbChartField_SelectedIndexChanged(object sender, EventArgs e)
         {
             var strType = RuntimeMongoDbContext.SelectTagType;
@@ -285,6 +268,7 @@ namespace FunctionForm.Status
         }
 
         /// <summary>
+        ///     修改为初始状态
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -292,6 +276,15 @@ namespace FunctionForm.Status
         {
             //修改为初始状态
             CtlTreeViewColumns.IsDisplayNumberWithKSystem = tempIsDisplayNumberWithKSystem;
+        }
+        /// <summary>
+        ///     关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
