@@ -240,7 +240,11 @@ namespace MongoCola
         /// <param name="e"></param>
         private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //新版本如果数据库没有数据集，则数据库将被回收？
+
             string strDbName;
+            string strInitColName;
+
             if (GuiConfig.IsUseDefaultLanguage)
             {
                 strDbName = MyMessageBox.ShowInput("Please Input DataBaseName：", "Create Database");
@@ -252,13 +256,15 @@ namespace MongoCola
                         GuiConfig.GetText(TextType.CreateNewDataBaseInput),
                         GuiConfig.GetText(TextType.CreateNewDataBase));
             }
+
+            strInitColName = MyMessageBox.ShowInput("Please Input Init CollectionName：", "Create Database");
+
             string errMessage;
             if (Operater.IsDatabaseNameValid(strDbName, out errMessage))
             {
                 try
                 {
-                    var strRusult = Operater.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
-                        Operater.Oprcode.Create);
+                    var strRusult = Operater.CreateDataBaseWithInitCollection(strDbName, strInitColName);
                     if (string.IsNullOrEmpty(strRusult))
                     {
                         RefreshToolStripMenuItem_Click(sender, e);

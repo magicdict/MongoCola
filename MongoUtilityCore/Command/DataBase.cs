@@ -128,5 +128,24 @@ namespace MongoUtility.Command
             }
             return rtnResult;
         }
+        /// <summary>
+        ///     新建数据库
+        ///     数据库必须有一个数据集，如果没有数据集的话，则数据库会被回收掉
+        /// </summary>
+        /// <param name="dbName"></param>
+        /// <param name="CollectionName"></param>
+        /// <returns></returns>
+        public static string CreateDataBaseWithInitCollection(string dbName, string CollectionName)
+        {
+            var mongoSvr = RuntimeMongoDbContext.GetCurrentServer();
+            var rtnResult = string.Empty;
+            if (mongoSvr == null) return rtnResult;
+            if (!mongoSvr.DatabaseExists(dbName))
+            {
+                var db = mongoSvr.GetDatabase(dbName);
+                db.CreateCollection(CollectionName);
+            }
+            return rtnResult;
+        }
     }
 }
