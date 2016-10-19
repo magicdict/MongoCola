@@ -32,6 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 		MongoCola\Release Note_Ver1.5.txt = MongoCola\Release Note_Ver1.5.txt
 		MongoCola\Release Note_Ver1.X.txt = MongoCola\Release Note_Ver1.X.txt
+		MongoCola\Release Note_Ver2.0.txt = MongoCola\Release Note_Ver2.0.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebForm", "WebForm", "{D89F3EDE-8BB0-4D4C-90CF-E0D2567C2BAA}"
