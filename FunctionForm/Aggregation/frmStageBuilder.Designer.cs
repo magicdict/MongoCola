@@ -34,18 +34,14 @@ namespace FunctionForm.Aggregation
         {
             this.tabAggregation = new System.Windows.Forms.TabControl();
             this.tabProject = new System.Windows.Forms.TabPage();
-            this.QueryFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
             this.tabMatch = new System.Windows.Forms.TabPage();
-            this.MatchListPanel = new MongoGUICtl.Aggregation.MatchPanel();
             this.btnClearMatch = new System.Windows.Forms.Button();
             this.btnAddMatch = new System.Windows.Forms.Button();
             this.tabGroup1 = new System.Windows.Forms.TabPage();
-            this.GroupFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
             this.lblID = new System.Windows.Forms.Label();
             this.tabGroup2 = new System.Windows.Forms.TabPage();
             this.btnClearGroupItem = new System.Windows.Forms.Button();
             this.cmdAddGroupItem = new System.Windows.Forms.Button();
-            this.groupPanelCreator = new MongoGUICtl.Aggregation.GroupPanel();
             this.tabOption = new System.Windows.Forms.TabPage();
             this.txtSkip = new System.Windows.Forms.TextBox();
             this.txtLimit = new System.Windows.Forms.TextBox();
@@ -53,6 +49,13 @@ namespace FunctionForm.Aggregation
             this.chkLimit = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.chkIndexStats = new System.Windows.Forms.CheckBox();
+            this.chkSortByCount = new System.Windows.Forms.CheckBox();
+            this.QueryFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
+            this.MatchListPanel = new MongoGUICtl.Aggregation.MatchPanel();
+            this.GroupFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
+            this.groupPanelCreator = new MongoGUICtl.Aggregation.GroupPanel();
+            this.cmbSortByCount = new System.Windows.Forms.ComboBox();
             this.tabAggregation.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabMatch.SuspendLayout();
@@ -85,18 +88,6 @@ namespace FunctionForm.Aggregation
             this.tabProject.Text = "$project(Basic)";
             this.tabProject.UseVisualStyleBackColor = true;
             // 
-            // QueryFieldPicker
-            // 
-            this.QueryFieldPicker.AutoScroll = true;
-            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
-            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Aggregation;
-            this.QueryFieldPicker.IsIdProtect = false;
-            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
-            this.QueryFieldPicker.Name = "QueryFieldPicker";
-            this.QueryFieldPicker.Size = new System.Drawing.Size(598, 295);
-            this.QueryFieldPicker.TabIndex = 1;
-            // 
             // tabMatch
             // 
             this.tabMatch.Controls.Add(this.MatchListPanel);
@@ -109,15 +100,6 @@ namespace FunctionForm.Aggregation
             this.tabMatch.TabIndex = 2;
             this.tabMatch.Text = "$match";
             this.tabMatch.UseVisualStyleBackColor = true;
-            // 
-            // MatchListPanel
-            // 
-            this.MatchListPanel.AutoScroll = true;
-            this.MatchListPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MatchListPanel.Location = new System.Drawing.Point(3, 43);
-            this.MatchListPanel.Name = "MatchListPanel";
-            this.MatchListPanel.Size = new System.Drawing.Size(598, 255);
-            this.MatchListPanel.TabIndex = 2;
             // 
             // btnClearMatch
             // 
@@ -151,22 +133,10 @@ namespace FunctionForm.Aggregation
             this.tabGroup1.Text = "$group1";
             this.tabGroup1.UseVisualStyleBackColor = true;
             // 
-            // GroupFieldPicker
-            // 
-            this.GroupFieldPicker.AutoScroll = true;
-            this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
-            this.GroupFieldPicker.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GroupFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Aggregation;
-            this.GroupFieldPicker.IsIdProtect = false;
-            this.GroupFieldPicker.Location = new System.Drawing.Point(3, 31);
-            this.GroupFieldPicker.Name = "GroupFieldPicker";
-            this.GroupFieldPicker.Size = new System.Drawing.Size(598, 267);
-            this.GroupFieldPicker.TabIndex = 3;
-            // 
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(6, 13);
+            this.lblID.Location = new System.Drawing.Point(24, 15);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(161, 12);
             this.lblID.TabIndex = 1;
@@ -205,17 +175,11 @@ namespace FunctionForm.Aggregation
             this.cmdAddGroupItem.UseVisualStyleBackColor = true;
             this.cmdAddGroupItem.Click += new System.EventHandler(this.cmdAddGroupItem_Click);
             // 
-            // groupPanelCreator
-            // 
-            this.groupPanelCreator.AutoScroll = true;
-            this.groupPanelCreator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupPanelCreator.Location = new System.Drawing.Point(3, 44);
-            this.groupPanelCreator.Name = "groupPanelCreator";
-            this.groupPanelCreator.Size = new System.Drawing.Size(598, 254);
-            this.groupPanelCreator.TabIndex = 3;
-            // 
             // tabOption
             // 
+            this.tabOption.Controls.Add(this.cmbSortByCount);
+            this.tabOption.Controls.Add(this.chkSortByCount);
+            this.tabOption.Controls.Add(this.chkIndexStats);
             this.tabOption.Controls.Add(this.txtSkip);
             this.tabOption.Controls.Add(this.txtLimit);
             this.tabOption.Controls.Add(this.chkSkip);
@@ -230,18 +194,18 @@ namespace FunctionForm.Aggregation
             // 
             // txtSkip
             // 
-            this.txtSkip.Location = new System.Drawing.Point(81, 34);
+            this.txtSkip.Location = new System.Drawing.Point(134, 37);
             this.txtSkip.Name = "txtSkip";
-            this.txtSkip.Size = new System.Drawing.Size(135, 21);
+            this.txtSkip.Size = new System.Drawing.Size(91, 21);
             this.txtSkip.TabIndex = 29;
             this.txtSkip.Text = "1";
             this.txtSkip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtLimit
             // 
-            this.txtLimit.Location = new System.Drawing.Point(81, 14);
+            this.txtLimit.Location = new System.Drawing.Point(134, 14);
             this.txtLimit.Name = "txtLimit";
-            this.txtLimit.Size = new System.Drawing.Size(135, 21);
+            this.txtLimit.Size = new System.Drawing.Size(91, 21);
             this.txtLimit.TabIndex = 28;
             this.txtLimit.Text = "1";
             this.txtLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -249,7 +213,7 @@ namespace FunctionForm.Aggregation
             // chkSkip
             // 
             this.chkSkip.AutoSize = true;
-            this.chkSkip.Location = new System.Drawing.Point(26, 37);
+            this.chkSkip.Location = new System.Drawing.Point(26, 40);
             this.chkSkip.Name = "chkSkip";
             this.chkSkip.Size = new System.Drawing.Size(54, 16);
             this.chkSkip.TabIndex = 1;
@@ -285,6 +249,76 @@ namespace FunctionForm.Aggregation
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // chkIndexStats
+            // 
+            this.chkIndexStats.AutoSize = true;
+            this.chkIndexStats.Location = new System.Drawing.Point(26, 62);
+            this.chkIndexStats.Name = "chkIndexStats";
+            this.chkIndexStats.Size = new System.Drawing.Size(90, 16);
+            this.chkIndexStats.TabIndex = 30;
+            this.chkIndexStats.Text = "$indexStats";
+            this.chkIndexStats.UseVisualStyleBackColor = true;
+            // 
+            // chkSortByCount
+            // 
+            this.chkSortByCount.AutoSize = true;
+            this.chkSortByCount.Location = new System.Drawing.Point(26, 85);
+            this.chkSortByCount.Name = "chkSortByCount";
+            this.chkSortByCount.Size = new System.Drawing.Size(96, 16);
+            this.chkSortByCount.TabIndex = 31;
+            this.chkSortByCount.Text = "$sortByCount";
+            this.chkSortByCount.UseVisualStyleBackColor = true;
+            // 
+            // QueryFieldPicker
+            // 
+            this.QueryFieldPicker.AutoScroll = true;
+            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
+            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Aggregation;
+            this.QueryFieldPicker.IsIdProtect = false;
+            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
+            this.QueryFieldPicker.Name = "QueryFieldPicker";
+            this.QueryFieldPicker.Size = new System.Drawing.Size(598, 295);
+            this.QueryFieldPicker.TabIndex = 1;
+            // 
+            // MatchListPanel
+            // 
+            this.MatchListPanel.AutoScroll = true;
+            this.MatchListPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.MatchListPanel.Location = new System.Drawing.Point(3, 43);
+            this.MatchListPanel.Name = "MatchListPanel";
+            this.MatchListPanel.Size = new System.Drawing.Size(598, 255);
+            this.MatchListPanel.TabIndex = 2;
+            // 
+            // GroupFieldPicker
+            // 
+            this.GroupFieldPicker.AutoScroll = true;
+            this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
+            this.GroupFieldPicker.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GroupFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Aggregation;
+            this.GroupFieldPicker.IsIdProtect = false;
+            this.GroupFieldPicker.Location = new System.Drawing.Point(3, 31);
+            this.GroupFieldPicker.Name = "GroupFieldPicker";
+            this.GroupFieldPicker.Size = new System.Drawing.Size(598, 267);
+            this.GroupFieldPicker.TabIndex = 3;
+            // 
+            // groupPanelCreator
+            // 
+            this.groupPanelCreator.AutoScroll = true;
+            this.groupPanelCreator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupPanelCreator.Location = new System.Drawing.Point(3, 44);
+            this.groupPanelCreator.Name = "groupPanelCreator";
+            this.groupPanelCreator.Size = new System.Drawing.Size(598, 254);
+            this.groupPanelCreator.TabIndex = 3;
+            // 
+            // cmbSortByCount
+            // 
+            this.cmbSortByCount.FormattingEnabled = true;
+            this.cmbSortByCount.Location = new System.Drawing.Point(134, 83);
+            this.cmbSortByCount.Name = "cmbSortByCount";
+            this.cmbSortByCount.Size = new System.Drawing.Size(121, 20);
+            this.cmbSortByCount.TabIndex = 32;
             // 
             // FrmStageBuilder
             // 
@@ -333,5 +367,8 @@ namespace FunctionForm.Aggregation
         private Button btnClearGroupItem;
         private Button cmdAddGroupItem;
         private GroupPanel groupPanelCreator;
+        private CheckBox chkIndexStats;
+        private CheckBox chkSortByCount;
+        private ComboBox cmbSortByCount;
     }
 }

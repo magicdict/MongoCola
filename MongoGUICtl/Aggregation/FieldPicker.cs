@@ -34,6 +34,10 @@ namespace MongoGUICtl.Aggregation
         private void FieldPicker_Load(object sender, EventArgs e)
         {
             GuiConfig.Translateform(Controls);
+            if (FieldListMode == CtlFieldInfo.FieldMode.Field || FieldListMode == CtlFieldInfo.FieldMode.Aggregation)
+            {
+                lblSortOrder.Visible = false;
+            }
         }
 
         /// <summary>

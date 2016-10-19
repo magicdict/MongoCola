@@ -30,6 +30,27 @@ namespace MongoUtility.Aggregation
             return strResult;
         }
 
+
+        public static string[] PipelineStages()
+        {
+            return new[]{
+                "$project",
+                "$match",
+                "$redact",
+                "$limit",
+                "$skip",
+                "$unwind",
+                "$group",
+                "$sample",
+                "$sort",
+                "$geoNear",
+                "$lookup",
+                "$out",
+                "$indexStats",
+                "$sortByCount"
+            };
+        }
+
         /// <summary>
         ///     Group function
         ///     https://docs.mongodb.com/master/reference/operator/aggregation-group/

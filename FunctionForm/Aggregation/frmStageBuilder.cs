@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using MongoDB.Bson;
 using ResourceLib.UI;
+using MongoUtility.ToolKit;
+using MongoUtility.Core;
 
 namespace FunctionForm.Aggregation
 {
@@ -19,6 +21,13 @@ namespace FunctionForm.Aggregation
             txtSkip.Enabled = chkSkip.Checked;
             txtLimit.KeyPress += NumberTextBox.NumberTextInt_KeyPress;
             txtSkip.KeyPress += NumberTextBox.NumberTextInt_KeyPress;
+
+            var columnList =
+               MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection());
+            foreach (var fieldname in columnList)
+            {
+                cmbSortByCount.Items.Add("$" + fieldname);
+            }
 
             chkSkip.CheckedChanged += (x, y) => { txtSkip.Enabled = chkSkip.Checked; };
             chkLimit.CheckedChanged += (x, y) => { txtLimit.Enabled = chkLimit.Checked; };
@@ -54,16 +63,6 @@ namespace FunctionForm.Aggregation
             {
                 Aggregation.Add(match);
             }
-            //Skip
-            if (chkSkip.Checked && int.Parse(txtSkip.Text) > 0)
-            {
-                Aggregation.Add(new BsonDocument("$skip", int.Parse(txtSkip.Text)));
-            }
-            //Limit
-            if (chkLimit.Checked && int.Parse(txtLimit.Text) > 0)
-            {
-                Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
-            }
             //Group
             var groupDetail = GroupFieldPicker.GetGroupId();
             if (groupDetail.GetElement(0).Value.AsBsonDocument.ElementCount != 0)
@@ -74,6 +73,28 @@ namespace FunctionForm.Aggregation
                 }
                 var group = new BsonDocument("$group", groupDetail);
                 Aggregation.Add(group);
+            }
+
+
+            //Skip
+            if (chkSkip.Checked && int.Parse(txtSkip.Text) > 0)
+            {
+                Aggregation.Add(new BsonDocument("$skip", int.Parse(txtSkip.Text)));
+            }
+            //Limit
+            if (chkLimit.Checked && int.Parse(txtLimit.Text) > 0)
+            {
+                Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
+            }
+            //IndexStats
+            if (chkIndexStats.Checked)
+            {
+                Aggregation.Add(new BsonDocument("$indexStats", new BsonDocument()));
+            }
+            //sortByCount
+            if (chkSortByCount.Checked)
+            {
+                Aggregation.Add(new BsonDocument("$sortByCount", cmbSortByCount.Text));
             }
             Close();
         }
