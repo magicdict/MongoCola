@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
-
+using System.Linq;
 
 namespace MongoUtility.Core
 {
@@ -88,6 +88,31 @@ namespace MongoUtility.Core
             var col = db.GetCollection<BsonDocument>(collectionName);
             return col;
         }
+
+        /// <summary>
+        ///     获得数据集实例
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="dbName"></param>
+        /// <param name="collectionName"></param>
+        /// <returns></returns>
+        public static BsonDocument GetCollectionDefineInfo(MongoClient client, string dbName, string collectionName)
+        {
+            var db = client.GetDatabase(dbName);
+            IAsyncCursor<BsonDocument> collectionCursor = null;
+            var task = Task.Run(
+                async () => { collectionCursor = await db.ListCollectionsAsync(); }
+                );
+            task.Wait();
+            List<BsonDocument> collectionList = null;
+            task = Task.Run(
+                async () => { collectionList = await collectionCursor.ToListAsync(); }
+                );
+            task.Wait();
+            return collectionList.Where(x => x.GetElement("name").Value.ToString() == collectionName).First();
+        }
+
+
         /// <summary>
         ///     获得索引列表
         /// </summary>

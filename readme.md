@@ -2,9 +2,9 @@
        
 * 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/10/31 16:00
 * Net Core版本 Browse Base Client[需要 NET Core1.0.1] 更新时间:2016/12/31 16:00
-* 下载地址:  <http://files.cnblogs.com/files/TextEditor/ReleaseVersion.zip>
+* 下载地址:  <https://github.com/magicdict/MongoCola/releases>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
-* 版本号：Ver 2.0.0
+* 版本号：Ver 2.0.1
  
 ***
 
@@ -65,9 +65,10 @@ CSharp Mongo Driver 2.4.0-beta1
 3. 数据库必须有一个数据集，如果没有数据集的话，则数据库会被回收掉,所以新建数据库的时候，可以指定初始数据集的名称
 
 ###聚合
-1. IndexStats Stage，sortByCount（From MongoDB3.4） 
+1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind
 2. 聚合操作符的更新
 3. 优化聚合UI
+4. 聚合结果保存为视图
 
 ##Ver 2.0 2016/06/29
 1. Query增加了删除条件的功能

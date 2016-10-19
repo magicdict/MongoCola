@@ -20,6 +20,7 @@ using ResourceLib.UI;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -617,6 +618,20 @@ namespace MongoCola
             trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
             DisableAllOpr();
         }
+        /// <summary>
+        ///     显示这个Pipeline
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewPipelineToolStripMenuItem_Click(object sender,EventArgs e)
+        {
+            var doc = RuntimeMongoDbContext.GetCurrentCollectionDefineInfo();
+            var frm = new frmDataView();
+            var pipeline = doc.GetElement("options").Value.AsBsonDocument.GetElement("pipeline").Value.AsBsonArray.Select(x=>x.AsBsonDocument).ToList();
+            frm.ShowData = pipeline;
+            frm.Title = "Pipeline";
+            Utility.OpenForm(frm, true, true);
+        }
 
         /// <summary>
         ///     重命名数据集
@@ -1015,7 +1030,7 @@ namespace MongoCola
         {
             MyMessageBox.ShowMessage("About", "MongoCola",
                 GetResource.GetImage(ImageType.Smile),
-                new StreamReader("Release Note_Ver1.5.txt", Encoding.UTF8).ReadToEnd());
+                new StreamReader("Release Note_Ver2.0.txt", Encoding.UTF8).ReadToEnd());
         }
 
         /// <summary>

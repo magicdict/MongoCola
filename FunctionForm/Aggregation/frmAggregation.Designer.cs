@@ -43,6 +43,7 @@ namespace FunctionForm.Aggregation
             this.btnAggrBuilder = new System.Windows.Forms.Button();
             this.trvCondition = new MongoGUICtl.CtlTreeViewColumns();
             this.trvResult = new MongoGUICtl.CtlTreeViewColumns();
+            this.btnSaveAsView = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblResult
@@ -58,9 +59,9 @@ namespace FunctionForm.Aggregation
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(663, 358);
+            this.cmdRun.Location = new System.Drawing.Point(694, 376);
             this.cmdRun.Name = "cmdRun";
-            this.cmdRun.Size = new System.Drawing.Size(119, 41);
+            this.cmdRun.Size = new System.Drawing.Size(89, 30);
             this.cmdRun.TabIndex = 21;
             this.cmdRun.Tag = "Command_Run";
             this.cmdRun.Text = "Run";
@@ -69,9 +70,9 @@ namespace FunctionForm.Aggregation
             // 
             // cmdAddCondition
             // 
-            this.cmdAddCondition.Location = new System.Drawing.Point(149, 358);
+            this.cmdAddCondition.Location = new System.Drawing.Point(126, 376);
             this.cmdAddCondition.Name = "cmdAddCondition";
-            this.cmdAddCondition.Size = new System.Drawing.Size(108, 40);
+            this.cmdAddCondition.Size = new System.Drawing.Size(103, 30);
             this.cmdAddCondition.TabIndex = 23;
             this.cmdAddCondition.Text = "Add Stage(s)";
             this.cmdAddCondition.UseVisualStyleBackColor = true;
@@ -90,9 +91,9 @@ namespace FunctionForm.Aggregation
             // 
             // cmdSaveAggregatePipeline
             // 
-            this.cmdSaveAggregatePipeline.Location = new System.Drawing.Point(519, 358);
+            this.cmdSaveAggregatePipeline.Location = new System.Drawing.Point(599, 376);
             this.cmdSaveAggregatePipeline.Name = "cmdSaveAggregatePipeline";
-            this.cmdSaveAggregatePipeline.Size = new System.Drawing.Size(121, 41);
+            this.cmdSaveAggregatePipeline.Size = new System.Drawing.Size(89, 30);
             this.cmdSaveAggregatePipeline.TabIndex = 25;
             this.cmdSaveAggregatePipeline.Text = "Save Stages";
             this.cmdSaveAggregatePipeline.UseVisualStyleBackColor = true;
@@ -118,9 +119,9 @@ namespace FunctionForm.Aggregation
             // 
             // cmdClear
             // 
-            this.cmdClear.Location = new System.Drawing.Point(263, 359);
+            this.cmdClear.Location = new System.Drawing.Point(235, 376);
             this.cmdClear.Name = "cmdClear";
-            this.cmdClear.Size = new System.Drawing.Size(114, 40);
+            this.cmdClear.Size = new System.Drawing.Size(89, 30);
             this.cmdClear.TabIndex = 29;
             this.cmdClear.Text = "Clear";
             this.cmdClear.UseVisualStyleBackColor = true;
@@ -128,9 +129,9 @@ namespace FunctionForm.Aggregation
             // 
             // btnAggrBuilder
             // 
-            this.btnAggrBuilder.Location = new System.Drawing.Point(40, 358);
+            this.btnAggrBuilder.Location = new System.Drawing.Point(15, 376);
             this.btnAggrBuilder.Name = "btnAggrBuilder";
-            this.btnAggrBuilder.Size = new System.Drawing.Size(103, 39);
+            this.btnAggrBuilder.Size = new System.Drawing.Size(105, 30);
             this.btnAggrBuilder.TabIndex = 30;
             this.btnAggrBuilder.Text = "Stage Builder";
             this.btnAggrBuilder.UseVisualStyleBackColor = true;
@@ -154,12 +155,23 @@ namespace FunctionForm.Aggregation
             this.trvResult.Size = new System.Drawing.Size(385, 307);
             this.trvResult.TabIndex = 0;
             // 
+            // btnSaveAsView
+            // 
+            this.btnSaveAsView.Location = new System.Drawing.Point(502, 376);
+            this.btnSaveAsView.Name = "btnSaveAsView";
+            this.btnSaveAsView.Size = new System.Drawing.Size(89, 30);
+            this.btnSaveAsView.TabIndex = 31;
+            this.btnSaveAsView.Text = "Save As View";
+            this.btnSaveAsView.UseVisualStyleBackColor = true;
+            this.btnSaveAsView.Click += new System.EventHandler(this.btnSaveAsView_Click);
+            // 
             // FrmAggregation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(829, 423);
+            this.Controls.Add(this.btnSaveAsView);
             this.Controls.Add(this.btnAggrBuilder);
             this.Controls.Add(this.cmdClear);
             this.Controls.Add(this.cmbForAggregatePipeline);
@@ -192,5 +204,6 @@ namespace FunctionForm.Aggregation
         private ComboBox cmbForAggregatePipeline;
         private Button cmdClear;
         private Button btnAggrBuilder;
+        private Button btnSaveAsView;
     }
 }

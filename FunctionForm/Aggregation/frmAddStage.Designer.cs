@@ -76,11 +76,11 @@ namespace FunctionForm.Aggregation
             // trvNewStage
             // 
             this.trvNewStage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvNewStage.Location = new System.Drawing.Point(444, 13);
+            this.trvNewStage.Location = new System.Drawing.Point(444, 44);
             this.trvNewStage.Margin = new System.Windows.Forms.Padding(4);
             this.trvNewStage.Name = "trvNewStage";
             this.trvNewStage.Padding = new System.Windows.Forms.Padding(1);
-            this.trvNewStage.Size = new System.Drawing.Size(360, 237);
+            this.trvNewStage.Size = new System.Drawing.Size(360, 206);
             this.trvNewStage.TabIndex = 3;
             // 
             // label1
@@ -88,9 +88,9 @@ namespace FunctionForm.Aggregation
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 16);
+            this.label1.Size = new System.Drawing.Size(117, 16);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Stage:";
+            this.label1.Text = "Stage Expression:";
             // 
             // cmdPreview
             // 

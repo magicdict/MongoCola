@@ -180,6 +180,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Status\frmDataView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Status\frmDataView.Designer.cs">
+      <DependentUpon>frmDataView.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\frmAddRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCreateView.resx">
       <DependentUpon>frmCreateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Status\frmDataView.resx">
+      <DependentUpon>frmDataView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>

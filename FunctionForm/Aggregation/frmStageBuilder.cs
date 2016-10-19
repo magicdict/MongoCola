@@ -19,18 +19,22 @@ namespace FunctionForm.Aggregation
             InitializeComponent();
             txtLimit.Enabled = chkLimit.Checked;
             txtSkip.Enabled = chkSkip.Checked;
+            txtSample.Enabled = chkSample.Checked;
+
             txtLimit.KeyPress += NumberTextBox.NumberTextInt_KeyPress;
             txtSkip.KeyPress += NumberTextBox.NumberTextInt_KeyPress;
+            txtSample.KeyPress += NumberTextBox.NumberTextInt_KeyPress;
 
-            var columnList =
-               MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection());
+            var columnList = MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection());
             foreach (var fieldname in columnList)
             {
                 cmbSortByCount.Items.Add("$" + fieldname);
+                cmbUnwind.Items.Add("$" + fieldname);
             }
 
             chkSkip.CheckedChanged += (x, y) => { txtSkip.Enabled = chkSkip.Checked; };
             chkLimit.CheckedChanged += (x, y) => { txtLimit.Enabled = chkLimit.Checked; };
+            chkSample.CheckedChanged += (x, y) => { txtSample.Enabled = chkSample.Checked; };
         }
 
         /// <summary>
@@ -96,9 +100,40 @@ namespace FunctionForm.Aggregation
             {
                 Aggregation.Add(new BsonDocument("$sortByCount", cmbSortByCount.Text));
             }
+            //Sample
+            if (chkSample.Checked)
+            {
+                var size = new BsonDocument("size", (int.Parse(txtSample.Text)));
+                Aggregation.Add(new BsonDocument("$sample", size));
+            }
+            //unwind
+            if (chkUnwind.Checked)
+            {
+                if (!chkPreserveNullAndEmptyArrays.Checked && string.IsNullOrEmpty(txtincludeArrayIndex.Text))
+                {
+                    Aggregation.Add(new BsonDocument("$unwind", cmbUnwind.Text));
+                }
+                else
+                {
+                    var UnwindDoc = new BsonDocument();
+                    var field = new BsonElement("path", cmbUnwind.Text);
+                    UnwindDoc.Add(field);
+                    if (chkPreserveNullAndEmptyArrays.Checked)
+                    {
+                        var preserveNullAndEmptyArrays = new BsonElement("preserveNullAndEmptyArrays", BsonBoolean.True);
+                        UnwindDoc.Add(preserveNullAndEmptyArrays);
+                    }
+                    if (!string.IsNullOrEmpty(txtincludeArrayIndex.Text))
+                    {
+                        var includeArrayIndex = new BsonElement("includeArrayIndex", txtincludeArrayIndex.Text);
+                        UnwindDoc.Add(includeArrayIndex);
+                    }
+                    Aggregation.Add(new BsonDocument("$unwind", UnwindDoc));
+                }
+            }
             Close();
         }
-        
+
         /// <summary>
         /// 取消
         /// </summary>
@@ -157,6 +192,6 @@ namespace FunctionForm.Aggregation
 
         #endregion
 
-       
+
     }
 }

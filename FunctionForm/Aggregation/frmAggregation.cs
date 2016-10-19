@@ -10,6 +10,8 @@ using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.UI;
+using MongoDB.Driver;
+using System.Linq;
 
 namespace FunctionForm.Aggregation
 {
@@ -156,6 +158,20 @@ namespace FunctionForm.Aggregation
                 stages.Add(item);
             }
             FillStagesTreeview();
+        }
+        /// <summary>
+        ///     Save As View
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSaveAsView_Click(object sender, EventArgs e)
+        {
+            if (stages.Count == 0)
+                return;
+            var strViewName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：",
+                "Save Aggregate Pipeline");
+            var pipeline = new BsonDocumentStagePipelineDefinition<BsonDocument, BsonDocument>(stages.Values.Select(x => (BsonDocument)x));
+            RuntimeMongoDbContext.GetCurrentIMongoDataBase().CreateView(strViewName, RuntimeMongoDbContext.GetCurrentCollectionName() , pipeline);
         }
     }
 }

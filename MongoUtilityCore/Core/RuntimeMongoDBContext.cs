@@ -338,6 +338,14 @@ namespace MongoUtility.Core
         {
             return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase());
         }
+        /// <summary>
+        ///     获得当前数据集信息
+        /// </summary>
+        /// <returns></returns>
+        public static BsonDocument GetCurrentCollectionDefineInfo()
+        {
+            return GetConnectionInfo.GetCollectionDefineInfo(GetCurrentClient(), GetCurrentDataBaseName(), GetCurrentCollectionName());
+        }
 
         /// <summary>
         ///     设定当前数据集

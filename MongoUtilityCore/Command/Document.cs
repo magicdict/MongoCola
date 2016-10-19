@@ -5,6 +5,7 @@ using MongoDB.Driver.Builders;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.ToolKit;
 
 namespace MongoUtility.Command
 {
@@ -17,7 +18,7 @@ namespace MongoUtility.Command
         /// <param name="jsCode"></param>
         public static string CreateNewJavascript(string jsName, string jsCode)
         {
-            var jsCol = RuntimeMongoDbContext.GetCurrentCollection();
+            var jsCol = MongoHelper.GetCurrentJsCollection(RuntimeMongoDbContext.GetCurrentDataBase());
             //标准的JS库格式未知
             if (QueryHelper.IsExistByKey(jsName)) return string.Empty;
             CommandResult result;
