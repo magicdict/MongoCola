@@ -70,7 +70,7 @@ namespace MongoGUICtl.ClientTree
                 (int)GetSystemIcon.MainTreeImageType.CollectionList,
                 (int)GetSystemIcon.MainTreeImageType.CollectionList);
             mongoColListNode.Tag = ConstMgr.CollectionListTag + ":" + mongoSvrKey + "/" + strDbName;
-            var colNameList = GetConnectionInfo.GetCollectionList(client, strDbName);
+            var colNameList = ConnectionInfo.GetCollectionInfoList(client, strDbName);
             //Collection按照名称排序
             colNameList.Sort((x, y) =>
             {
@@ -84,8 +84,8 @@ namespace MongoGUICtl.ClientTree
                     case ConstMgr.CollectionNameView:
                         //视图
                         TreeNode mongoViewNode;
-                        var ViewCol = GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName);
-                        mongoViewNode = FillViewInfoToTreeNode(ViewCol,ConstMgr.ViewTag + ":" + mongoSvrKey + "/" + strDbName + "/");
+                        var ViewCol = ConnectionInfo.GetICollection(client, strDbName, strColName);
+                        mongoViewNode = FillViewInfoToTreeNode(ViewCol, ConstMgr.ViewTag + ":" + mongoSvrKey + "/" + strDbName + "/");
                         mongoViewNode.Tag = ConstMgr.ViewListTag + ":" + mongoSvrKey + "/" + strDbName;
                         mongoDbNode.Nodes.Add(mongoViewNode);
                         break;
@@ -93,25 +93,13 @@ namespace MongoGUICtl.ClientTree
                         //system.users,fs,system.js这几个系统级别的Collection不需要放入
                         break;
                     case ConstMgr.CollectionNameJavascript:
-                        //foreach (var doc in  MongoHelper.NewUtility.GetConnectionInfo.GetCollectionInfo(client, strDBName, ConstMgr.COLLECTION_NAME_JAVASCRIPT).Find<BsonDocument>(null,null))
-                        //{
-                        //    var js = new TreeNode(doc.GetValue(ConstMgr.KEY_ID).ToString());
-                        //    js.ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc;
-                        //    js.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc;
-                        //    js.Tag = ConstMgr.JAVASCRIPT_DOC_TAG + ":" + mongoSvrKey + "/" + strDBName + "/" +
-                        //             ConstMgr.COLLECTION_NAME_JAVASCRIPT + "/" + doc.GetValue(ConstMgr.KEY_ID);
-                        //    JsNode.Nodes.Add(js);
-                        //}
-
-                        FillJavaScriptInfoToTreeNode(jsNode,
-                            GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName), mongoSvrKey, strDbName);
-
+                        FillJavaScriptInfoToTreeNode(jsNode, ConnectionInfo.GetICollection(client, strDbName, strColName), mongoSvrKey, strDbName);
                         break;
                     default:
                         TreeNode mongoColNode;
                         try
                         {
-                            var col = GetConnectionInfo.GetCollectionInfo(client, strDbName, strColName);
+                            var col = ConnectionInfo.GetICollection(client, strDbName, strColName);
                             mongoColNode = FillCollectionInfoToTreeNode(col, mongoSvrKey);
                             if (mongoColNode == null) continue;
                         }

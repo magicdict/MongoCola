@@ -7,8 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Windows.Forms;
 using PlugInPackage;
+using ResourceLib.Method;
+using ResourceLib.Properties;
+using ResourceLib.UI;
+using System.Windows.Forms;
 
 namespace MongoCola
 {
@@ -17,6 +20,66 @@ namespace MongoCola
     /// </summary>
     public partial class frmMain : Form
     {
+
+        /// <summary>
+        ///     设置图标
+        /// </summary>
+        private void SetMenuImage()
+        {
+            ExitToolStripMenuItem.Image = Resources.exit.ToBitmap();
+            ExpandAllConnectionToolStripMenuItem.Image = GetResource.GetImage(ImageType.Expand);
+            CollapseAllConnectionToolStripMenuItem.Image = GetResource.GetImage(ImageType.Collpse);
+            DelMongoCollectionToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
+            DelMongoDBToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
+
+            RefreshToolStripMenuItem.Image = GetResource.GetImage(ImageType.Refresh);
+            OptionsToolStripMenuItem.Image = GetResource.GetImage(ImageType.Option);
+
+            ThanksToolStripMenuItem.Image = GetResource.GetImage(ImageType.Smile);
+            UserGuideToolStripMenuItem.Image = GetResource.GetIcon(IconType.UserGuide).ToBitmap();
+        }
+
+        /// <summary>
+        ///     初始化Toolbar
+        /// </summary>
+        private void InitToolBar()
+        {
+            ExpandAllConnectionToolStripButton = ExpandAllConnectionToolStripMenuItem.CloneFromMenuItem();
+            CollapseAllConnectionToolStripButton = CollapseAllConnectionToolStripMenuItem.CloneFromMenuItem();
+            RefreshToolStripButton = RefreshToolStripMenuItem.CloneFromMenuItem();
+            ExitToolStripButton = ExitToolStripMenuItem.CloneFromMenuItem();
+            OptionToolStripButton = OptionsToolStripMenuItem.CloneFromMenuItem();
+            UserGuideToolStripButton = UserGuideToolStripMenuItem.CloneFromMenuItem();
+
+            if (SystemManager.MonoMode)
+            {
+                ExpandAllConnectionToolStripButton.Click += ExpandAllToolStripMenuItem_Click;
+                CollapseAllConnectionToolStripButton.Click += CollapseAllToolStripMenuItem_Click;
+                RefreshToolStripButton.Click += RefreshToolStripMenuItem_Click;
+                ExitToolStripButton.Click += ExitToolStripMenuItem_Click;
+                OptionToolStripButton.Click += OptionToolStripMenuItem_Click;
+                UserGuideToolStripButton.Click += userGuideToolStripMenuItem_Click;
+            }
+            //Main ToolTip
+            toolStripMain.Items.Add(ExpandAllConnectionToolStripButton);
+            toolStripMain.Items.Add(CollapseAllConnectionToolStripButton);
+            toolStripMain.Items.Add(RefreshToolStripButton);
+            toolStripMain.Items.Add(ExitToolStripButton);
+            toolStripMain.Items.Add(new ToolStripSeparator());
+            toolStripMain.Items.Add(OptionToolStripButton);
+            toolStripMain.Items.Add(UserGuideToolStripButton);
+        }
+
+        /// <summary>
+        ///     设定工具栏
+        /// </summary>
+        private void SetToolBarEnabled()
+        {
+            UserGuideToolStripButton.Enabled = true;
+            RefreshToolStripButton.Enabled = true;
+            OptionToolStripButton.Enabled = true;
+        }
+
         /// <summary>
         ///     禁止所有操作
         /// </summary>

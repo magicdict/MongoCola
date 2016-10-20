@@ -380,7 +380,7 @@ namespace MongoGUICtl.ClientTree
             {
                 var setting = RuntimeMongoDbContext.CreateMongoClientSettingsByConfig(ref config);
                 var client = new MongoClient(setting);
-                var databaseNameList = GetConnectionInfo.GetDatabaseList(client);
+                var databaseNameList = ConnectionInfo.GetDatabaseInfoList(client);
                 foreach (var strDbName in databaseNameList)
                 {
                     TreeNode mongoDbNode;

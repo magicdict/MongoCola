@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Forms;
-using Common;
-using FunctionForm.Operation;
+﻿using Common;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.UI;
-using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace FunctionForm.Aggregation
 {

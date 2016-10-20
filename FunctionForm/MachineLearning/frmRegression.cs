@@ -53,7 +53,7 @@ namespace FunctionForm.MachineLearning
             myCurve.Symbol.Fill = new Fill(Color.Blue);
             //线性回归
             // Create a new simple linear regression
-            SimpleLinearRegression regression = new SimpleLinearRegression();
+            var regression = new SimpleLinearRegression();
             // Compute the linear regression
             regression.Regress(inliersX, inliersY);
 

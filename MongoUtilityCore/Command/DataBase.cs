@@ -12,11 +12,6 @@ namespace MongoUtility.Command
         public enum Oprcode
         {
             /// <summary>
-            ///     新建
-            /// </summary>
-            Create,
-
-            /// <summary>
             ///     删除
             /// </summary>
             Drop,
@@ -76,18 +71,7 @@ namespace MongoUtility.Command
         //但是能够建立数据库，不表示能够看到里面的内容！
         //dbAdmin可以访问数据库。
         //clusterAdmin能创建数据库但是不能访问数据库。
-        //try
-        //{
-        //Driver 2.0.1 
-        //如果没有后续对于db的操作，则数据库无法新建
-        //db.CreateCollection("demo");
-        //}
-        //catch (Exception ex)
-        //{
-        //    //如果使用没有dbAdmin权限的clusterAdmin。。。。
-        //    Utility.ExceptionDeal(ex);
-        //}
-
+ 
 
         /// <summary>
         ///     数据库操作
@@ -105,14 +89,6 @@ namespace MongoUtility.Command
             var db = mongoSvr.GetDatabase(dbName);
             switch (func)
             {
-                case Oprcode.Create:
-                    if (!mongoSvr.DatabaseExists(dbName))
-                    {
-                        db.CreateCollection("demo");
-                        //如果一个数据库没有数据集，则这个数据库则会被自动回收掉
-                        //db.DropCollection("demo");
-                    }
-                    break;
                 case Oprcode.Drop:
                     if (mongoSvr.DatabaseExists(dbName))
                     {

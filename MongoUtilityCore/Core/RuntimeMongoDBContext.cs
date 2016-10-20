@@ -7,14 +7,13 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System;
-using System.Collections.Generic;
-
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Security;
-using MongoUtility.Aggregation;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MongoUtility.Core
@@ -73,14 +72,6 @@ namespace MongoUtility.Core
                 {
                     mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.ConnectTimeoutMs / 1000));
                 }
-                //                if (SystemConfig.configHelperInstance.wtimeoutMS != 0)
-                //                {
-                //                    mongoClientSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(SystemConfig.configHelperInstance.wtimeoutMS / 1000));
-                //                }
-                //                if (SystemConfig.configHelperInstance.WaitQueueSize != 0)
-                //                {
-                //                    mongoClientSetting.WaitQueueSize = SystemConfig.configHelperInstance.WaitQueueSize;
-                //                }
                 //运行时LoginAsAdmin的设定
                 config.LoginAsAdmin = config.DataBaseName == string.Empty;
                 if (!(string.IsNullOrEmpty(config.UserName) || string.IsNullOrEmpty(config.Password)))
@@ -338,13 +329,14 @@ namespace MongoUtility.Core
         {
             return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase());
         }
+
         /// <summary>
         ///     获得当前数据集信息
         /// </summary>
         /// <returns></returns>
-        public static BsonDocument GetCurrentCollectionDefineInfo()
+        public static BsonDocument GetCurrentCollectionInfo()
         {
-            return GetConnectionInfo.GetCollectionDefineInfo(GetCurrentClient(), GetCurrentDataBaseName(), GetCurrentCollectionName());
+            return ConnectionInfo.GetCollectionInfo(GetCurrentClient(), GetCurrentDataBaseName(), GetCurrentCollectionName());
         }
 
         /// <summary>
@@ -412,7 +404,8 @@ namespace MongoUtility.Core
             if (Database.CollectionExists(ConstMgr.CollectionNameView))
             {
                 var Col = Database.GetCollection(ConstMgr.CollectionNameView);
-                ViewList = Col.FindAll().ToList().Select(x => {
+                ViewList = Col.FindAll().ToList().Select(x =>
+                {
                     var id = x.GetElement(ConstMgr.KeyId).Value.ToString();
                     return id.Substring(id.IndexOf(".") + 1);
                 }).ToList();

@@ -105,7 +105,7 @@ namespace MongoUtility.Command
             option.SetUnique(uiOption.IsUnique);
             if (uiOption.IsPartial)
             {
-                IMongoQuery query = (QueryDocument) BsonDocument.Parse(uiOption.PartialCondition);
+                IMongoQuery query = (QueryDocument)BsonDocument.Parse(uiOption.PartialCondition);
                 option.SetPartialFilterExpression(query);
             }
             if (uiOption.IsExpireData)
@@ -161,7 +161,7 @@ namespace MongoUtility.Command
                     //暂时要求只能一个TextKey
                     if (!string.IsNullOrEmpty(uiOption.TextKey))
                     {
-                        var textKeysDoc = new IndexKeysDocument {{uiOption.TextKey, "text"}};
+                        var textKeysDoc = new IndexKeysDocument { { uiOption.TextKey, "text" } };
                         RuntimeMongoDbContext.GetCurrentCollection().CreateIndex(textKeysDoc, option);
                     }
                     else

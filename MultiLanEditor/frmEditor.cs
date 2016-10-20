@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Common;
+using ResourceLib.Method;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Common;
-using ResourceLib.Method;
 
 namespace MultiLanEditor
 {
@@ -24,19 +24,58 @@ namespace MultiLanEditor
 
         private void frmEditor_Load(object sender, EventArgs e)
         {
-			var MonoMode = Type.GetType("Mono.Runtime") != null;
-			if (MonoMode) {
-				this.Font = GuiConfig.GetMonoFont (this.Font);
-				this.Text = "Multi Language Editor";
-			}
-		}
+            var MonoMode = Type.GetType("Mono.Runtime") != null;
+            if (MonoMode)
+            {
+                Font = GuiConfig.GetMonoFont(this.Font);
+                Text = "Multi Language Editor";
+            }
+            cmbLanguage.SelectedIndexChanged += CmbLanguage_SelectedIndexChanged;
+            lstMultiLan.DoubleClick += LstMultiLan_DoubleClick; 
+        }
+
+        private void LstMultiLan_DoubleClick(object sender, EventArgs e)
+        {
+            var SelectedItem = lstMultiLan.SelectedItems[0];
+            lblUUID.Text = SelectedItem.Text;
+            txtTranslation.Text = SelectedItem.SubItems[1].Text;
+        }
+
+        private void CmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //将数据放入ListView视图
+            lstMultiLan.Clear();
+            //Header
+            lstMultiLan.Columns.Add("统一标示");
+            lstMultiLan.Columns.Add(_multiLanguageDictionary.Keys.ElementAt(cmbLanguage.SelectedIndex));
+            //Details
+            for (var i = 0; i < uuiDs.Count; i++)
+            {
+                var item = new ListViewItem(uuiDs[i]);
+                for (var j = 0; j < _multiLanguageDictionary.Keys.Count; j++)
+                {
+                    if (_multiLanguageDictionary[_multiLanguageDictionary.Keys.ElementAt(cmbLanguage.SelectedIndex)].ContainsKey(uuiDs[i]))
+                    {
+                        item.SubItems.Add(_multiLanguageDictionary[_multiLanguageDictionary.Keys.ElementAt(cmbLanguage.SelectedIndex)][uuiDs[i]]);
+                    }
+                    else
+                    {
+                        item.SubItems.Add("");
+                    }
+                }
+                lstMultiLan.Items.Add(item);
+            }
+            Utility.ListViewColumnResize(lstMultiLan);
+        }
+
+        List<string> uuiDs = new List<string>();
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            cmbLanguage.Items.Clear();
             //整体表格
             var multilanFolder = ctlMultiLanFolder.SelectedPathOrFileName;
             //整理出最大列表，防止文件之间出现单词表格不同
-            var uuiDs = new List<string>();
             uuiDs.Clear();
             if (!string.IsNullOrEmpty(multilanFolder))
             {
@@ -51,34 +90,10 @@ namespace MultiLanEditor
                         singleDic.Add(item.Key, item.Value);
                     }
                     _multiLanguageDictionary.Add(StringResource.LanguageType, singleDic);
+                    cmbLanguage.Items.Add(StringResource.LanguageType);
                 }
             }
-            //将数据放入ListView视图
-            lstMultiLan.Clear();
-            //Header
-            lstMultiLan.Columns.Add("统一标示");
-            for (var i = 0; i < _multiLanguageDictionary.Keys.Count; i++)
-            {
-                lstMultiLan.Columns.Add(_multiLanguageDictionary.Keys.ElementAt(i));
-            }
-            //Details
-            for (var i = 0; i < uuiDs.Count; i++)
-            {
-                var item = new ListViewItem(uuiDs[i]);
-                for (var j = 0; j < _multiLanguageDictionary.Keys.Count; j++)
-                {
-                    if (_multiLanguageDictionary[_multiLanguageDictionary.Keys.ElementAt(j)].ContainsKey(uuiDs[i]))
-                    {
-                        item.SubItems.Add(_multiLanguageDictionary[_multiLanguageDictionary.Keys.ElementAt(j)][uuiDs[i]]);
-                    }
-                    else
-                    {
-                        item.SubItems.Add("");
-                    }
-                }
-                lstMultiLan.Items.Add(item);
-            }
-            Utility.ListViewColumnResize(lstMultiLan);
+            cmbLanguage.SelectedIndex = 0;
         }
     }
 }

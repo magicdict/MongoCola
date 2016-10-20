@@ -19,7 +19,8 @@ namespace MongoUtility.Core
         /// <summary>
         ///     连接配置列表(管理用）
         /// </summary>
-        [XmlIgnore] public Dictionary<string, MongoConnectionConfig> ConnectionList =
+        [XmlIgnore]
+        public Dictionary<string, MongoConnectionConfig> ConnectionList =
             new Dictionary<string, MongoConnectionConfig>();
 
         /// <summary>

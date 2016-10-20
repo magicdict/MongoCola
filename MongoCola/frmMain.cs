@@ -8,7 +8,6 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using PlugInPackage;
 using ResourceLib.Method;
-using ResourceLib.Properties;
 using ResourceLib.UI;
 using System;
 using System.Collections.Generic;
@@ -351,65 +350,6 @@ namespace MongoCola
             SetToolBarEnabled();
         }
 
-        /// <summary>
-        ///     设置图标
-        /// </summary>
-        private void SetMenuImage()
-        {
-            ExitToolStripMenuItem.Image = Resources.exit.ToBitmap();
-            ExpandAllConnectionToolStripMenuItem.Image = GetResource.GetImage(ImageType.Expand);
-            CollapseAllConnectionToolStripMenuItem.Image = GetResource.GetImage(ImageType.Collpse);
-            DelMongoCollectionToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
-            DelMongoDBToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
-
-            RefreshToolStripMenuItem.Image = GetResource.GetImage(ImageType.Refresh);
-            OptionsToolStripMenuItem.Image = GetResource.GetImage(ImageType.Option);
-
-            ThanksToolStripMenuItem.Image = GetResource.GetImage(ImageType.Smile);
-            UserGuideToolStripMenuItem.Image = GetResource.GetIcon(IconType.UserGuide).ToBitmap();
-        }
-
-        /// <summary>
-        ///     初始化Toolbar
-        /// </summary>
-        private void InitToolBar()
-        {
-            ExpandAllConnectionToolStripButton = ExpandAllConnectionToolStripMenuItem.CloneFromMenuItem();
-            CollapseAllConnectionToolStripButton = CollapseAllConnectionToolStripMenuItem.CloneFromMenuItem();
-            RefreshToolStripButton = RefreshToolStripMenuItem.CloneFromMenuItem();
-            ExitToolStripButton = ExitToolStripMenuItem.CloneFromMenuItem();
-            OptionToolStripButton = OptionsToolStripMenuItem.CloneFromMenuItem();
-            UserGuideToolStripButton = UserGuideToolStripMenuItem.CloneFromMenuItem();
-
-            if (SystemManager.MonoMode)
-            {
-                ExpandAllConnectionToolStripButton.Click += ExpandAllToolStripMenuItem_Click;
-                CollapseAllConnectionToolStripButton.Click += CollapseAllToolStripMenuItem_Click;
-                RefreshToolStripButton.Click += RefreshToolStripMenuItem_Click;
-                ExitToolStripButton.Click += ExitToolStripMenuItem_Click;
-                OptionToolStripButton.Click += OptionToolStripMenuItem_Click;
-                UserGuideToolStripButton.Click += userGuideToolStripMenuItem_Click;
-            }
-            //Main ToolTip
-            toolStripMain.Items.Add(ExpandAllConnectionToolStripButton);
-            toolStripMain.Items.Add(CollapseAllConnectionToolStripButton);
-            toolStripMain.Items.Add(RefreshToolStripButton);
-            toolStripMain.Items.Add(ExitToolStripButton);
-            toolStripMain.Items.Add(new ToolStripSeparator());
-            toolStripMain.Items.Add(OptionToolStripButton);
-            toolStripMain.Items.Add(UserGuideToolStripButton);
-        }
-
-        /// <summary>
-        ///     设定工具栏
-        /// </summary>
-        private void SetToolBarEnabled()
-        {
-            UserGuideToolStripButton.Enabled = true;
-            RefreshToolStripButton.Enabled = true;
-            OptionToolStripButton.Enabled = true;
-        }
-
         #endregion
 
         #region"View Manager"
@@ -567,46 +507,6 @@ namespace MongoCola
 
 
         #endregion
-
-        #region 临时添加treeview数据（js）
-
-        //private delegate void EventsHandlerAddJsName();
-
-        ///// <summary>
-        ///// 显示js数据
-        ///// </summary>
-        //private void ViewJavascriptName()
-        //{
-        //    if (trvsrvlst.InvokeRequired)
-        //    {
-        //        trvsrvlst.Invoke(new EventsHandlerAddJsName(ViewJavascriptName));
-        //    }
-        //    else
-        //    {
-        //        var node = trvsrvlst.SelectedNode;
-        //        if (node != null && node.Text == @"JavaScript")
-        //        {
-        //            node.Nodes.Clear();
-        //            var list = MongoHelper.GetJsNameList();
-        //            foreach (var name in list)
-        //            {
-        //                var jsNode = new TreeNode(name)
-        //                {
-        //                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
-        //                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
-        //                };
-        //                var jsTag = RuntimeMongoDbContext.SelectTagData;
-        //                jsNode.Tag = ConstMgr.JavascriptDocTag + ":" + jsTag + "/" + name;
-        //                node.Nodes.Add(jsNode);
-        //                RuntimeMongoDbContext.SelectObjectTag = jsNode.Tag.ToString();
-        //            }
-        //            trvsrvlst.Refresh();
-        //        }
-        //    }
-        //}
-
-        #endregion
-
 
     }
 }

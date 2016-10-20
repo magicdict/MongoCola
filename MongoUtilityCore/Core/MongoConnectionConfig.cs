@@ -192,32 +192,38 @@ namespace MongoUtility.Core
         /// <summary>
         ///     只读[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public bool IsReadOnly;
+        [XmlIgnore]
+        public bool IsReadOnly;
 
         /// <summary>
         ///     当前连接是否可以使用[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public bool Health;
+        [XmlIgnore]
+        public bool Health;
 
         /// <summary>
         ///     作为Admin登陆[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public bool LoginAsAdmin;
+        [XmlIgnore]
+        public bool LoginAsAdmin;
 
         /// <summary>
         ///     当前连接的MongoDB版本[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public Version MongoDbVersion;
+        [XmlIgnore]
+        public Version MongoDbVersion;
 
         /// <summary>
         ///     认证模式[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public bool AuthMode;
+        [XmlIgnore]
+        public bool AuthMode;
 
         /// <summary>
         ///     服务器角色[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public SvrRoleType ServerRole;
+        [XmlIgnore]
+        public SvrRoleType ServerRole;
 
         #endregion
 
@@ -247,7 +253,7 @@ namespace MongoUtility.Core
         /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
         public double WtimeoutMs;
 
-       
+
 
         #endregion
     }

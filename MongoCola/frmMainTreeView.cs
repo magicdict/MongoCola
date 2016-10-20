@@ -7,7 +7,6 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Windows.Forms;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
@@ -15,6 +14,7 @@ using MongoUtility.Security;
 using PlugInPackage;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using System.Windows.Forms;
 
 namespace MongoCola
 {

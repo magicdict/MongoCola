@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace MongoUtility.Core
 {
-    public static class GetConnectionInfo
+    public static class ConnectionInfo
     {
         /// <summary>
-        ///     获得数据库列表
+        ///     获得数据库定义列表
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        public static List<BsonDocument> GetDatabaseList(MongoClient client)
+        public static List<BsonDocument> GetDatabaseInfoList(MongoClient client)
         {
             //暂时返回一个同步的结果
             IAsyncCursor<BsonDocument> databaseCursor = null;
@@ -35,7 +35,7 @@ namespace MongoUtility.Core
         /// <param name="client"></param>
         /// <param name="dbName"></param>
         /// <returns></returns>
-        public static List<BsonDocument> GetCollectionList(MongoClient client, string dbName)
+        public static List<BsonDocument> GetCollectionInfoList(MongoClient client, string dbName)
         {
             var db = client.GetDatabase(dbName);
             IAsyncCursor<BsonDocument> collectionCursor = null;
@@ -53,12 +53,12 @@ namespace MongoUtility.Core
 
 
         /// <summary>
-        ///     获得数据集列表
+        ///     获得视图定义列表
         /// </summary>
         /// <param name="client"></param>
         /// <param name="dbName"></param>
         /// <returns></returns>
-        public static List<BsonDocument> GetViewList(MongoClient client, string dbName)
+        public static List<BsonDocument> GetViewInfoList(MongoClient client, string dbName)
         {
             var db = client.GetDatabase(dbName);
             IAsyncCursor<BsonDocument> collectionCursor = null;
@@ -75,13 +75,13 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
-        ///     获得数据集实例
+        ///     获得数据集实例（IMongoCollection）
         /// </summary>
         /// <param name="client"></param>
         /// <param name="dbName"></param>
         /// <param name="collectionName"></param>
         /// <returns></returns>
-        public static IMongoCollection<BsonDocument> GetCollectionInfo(MongoClient client, string dbName,
+        public static IMongoCollection<BsonDocument> GetICollection(MongoClient client, string dbName,
             string collectionName)
         {
             var db = client.GetDatabase(dbName);
@@ -90,13 +90,13 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
-        ///     获得数据集实例
+        ///     获得数据集信息
         /// </summary>
         /// <param name="client"></param>
         /// <param name="dbName"></param>
         /// <param name="collectionName"></param>
         /// <returns></returns>
-        public static BsonDocument GetCollectionDefineInfo(MongoClient client, string dbName, string collectionName)
+        public static BsonDocument GetCollectionInfo(MongoClient client, string dbName, string collectionName)
         {
             var db = client.GetDatabase(dbName);
             IAsyncCursor<BsonDocument> collectionCursor = null;

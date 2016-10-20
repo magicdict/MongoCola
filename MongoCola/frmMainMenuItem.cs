@@ -2,7 +2,7 @@
 using FunctionForm.Aggregation;
 using FunctionForm.Connection;
 using FunctionForm.Extend;
-using FunctionForm.MachineLearning;
+//using FunctionForm.MachineLearning;
 using FunctionForm.Operation;
 using FunctionForm.Status;
 using FunctionForm.User;
@@ -625,7 +625,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ViewPipelineToolStripMenuItem_Click(object sender,EventArgs e)
         {
-            var doc = RuntimeMongoDbContext.GetCurrentCollectionDefineInfo();
+            var doc = RuntimeMongoDbContext.GetCurrentCollectionInfo();
             var frm = new frmDataView();
             var pipeline = doc.GetElement("options").Value.AsBsonDocument.GetElement("pipeline").Value.AsBsonArray.Select(x=>x.AsBsonDocument).ToList();
             frm.ShowData = pipeline;
@@ -698,19 +698,6 @@ namespace MongoCola
             if (string.IsNullOrEmpty(result))
             {
                 var strNodeData = RuntimeMongoDbContext.SelectTagData;
-                //if (MultiTabManger.TabInfo.ContainsKey(strNodeData))
-                //{
-                //    var dataTab = MultiTabManger.TabInfo[strNodeData].Tab;
-                //    foreach (ToolStripMenuItem item in JavaScriptStripMenuItem.DropDownItems)
-                //    {
-                //        if (item.Tag != dataTab.Tag)
-                //            continue;
-                //        JavaScriptStripMenuItem.DropDownItems.Remove(item);
-                //        break;
-                //    }
-                //    tabView.Controls.Remove(dataTab);
-                //    MultiTabManger.RemoveTabInfo(strNodeData);
-                //}
                 trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
                 DisableAllOpr();
             }
@@ -1015,7 +1002,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void regressionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new frmRegression(), true, true);
+            MessageBox.Show("Coming Soon!");
+            //Utility.OpenForm(new frmRegression(), true, true);
         }
         #endregion
 

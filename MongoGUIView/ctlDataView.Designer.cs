@@ -168,7 +168,7 @@ namespace MongoGUIView
             this.tabQuery.Controls.Add(this.txtQuery);
             this.tabQuery.Location = new System.Drawing.Point(4, 22);
             this.tabQuery.Name = "tabQuery";
-            this.tabQuery.Size = new System.Drawing.Size(909, 369);
+            this.tabQuery.Size = new System.Drawing.Size(909, 365);
             this.tabQuery.TabIndex = 3;
             this.tabQuery.Text = "Query";
             this.tabQuery.UseVisualStyleBackColor = true;
@@ -179,7 +179,7 @@ namespace MongoGUIView
             this.txtQuery.Location = new System.Drawing.Point(0, 0);
             this.txtQuery.Multiline = true;
             this.txtQuery.Name = "txtQuery";
-            this.txtQuery.Size = new System.Drawing.Size(909, 369);
+            this.txtQuery.Size = new System.Drawing.Size(909, 365);
             this.txtQuery.TabIndex = 0;
             // 
             // contextMenuStripMain
@@ -387,19 +387,19 @@ namespace MongoGUIView
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.ViewtoolStrip);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.CustomtoolStrip);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.ViewtoolStrip);
             // 
             // CustomtoolStrip
             // 
             this.CustomtoolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.CustomtoolStrip.Location = new System.Drawing.Point(39, 0);
+            this.CustomtoolStrip.Location = new System.Drawing.Point(4, 0);
             this.CustomtoolStrip.Name = "CustomtoolStrip";
             this.CustomtoolStrip.Size = new System.Drawing.Size(111, 25);
             this.CustomtoolStrip.TabIndex = 4;
             this.CustomtoolStrip.Text = "toolStrip1";
             // 
-            // ctlDataView
+            // CtlDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
