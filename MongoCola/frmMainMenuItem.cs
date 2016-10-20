@@ -456,16 +456,27 @@ namespace MongoCola
                     UiHelper.FillCollectionInfoToTreeNode(
                         RuntimeMongoDbContext.GetCurrentIMongoDataBase().GetCollection<BsonDocument>(frm.CollectionName),
                         srvkey);
-                foreach (TreeNode item in trvsrvlst.SelectedNode.Nodes)
+
+                if (TagInfo.GetTagType(trvsrvlst.SelectedNode.Tag.ToString()) == ConstMgr.CollectionListTag)
                 {
-                    var strNodeType = TagInfo.GetTagType(item.Tag.ToString());
-                    if (strNodeType == ConstMgr.CollectionListTag)
+                    //选中CollectionList添加
+                    trvsrvlst.SelectedNode.Nodes.Add(newCol);
+                }
+                else
+                {
+                    //选中Database添加
+                    foreach (TreeNode item in trvsrvlst.SelectedNode.Nodes)
                     {
-                        //自己添加的Collection不是SystemCollection
-                        item.Nodes.Add(newCol);
-                        break;
+                        var strNodeType = TagInfo.GetTagType(item.Tag.ToString());
+                        if (strNodeType == ConstMgr.CollectionListTag)
+                        {
+                            //自己添加的Collection不是SystemCollection
+                            item.Nodes.Add(newCol);
+                            break;
+                        }
                     }
                 }
+
                 DisableAllOpr();
             }
         }
@@ -623,11 +634,11 @@ namespace MongoCola
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ViewPipelineToolStripMenuItem_Click(object sender,EventArgs e)
+        private void ViewPipelineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var doc = RuntimeMongoDbContext.GetCurrentCollectionInfo();
             var frm = new frmDataView();
-            var pipeline = doc.GetElement("options").Value.AsBsonDocument.GetElement("pipeline").Value.AsBsonArray.Select(x=>x.AsBsonDocument).ToList();
+            var pipeline = doc.GetElement("options").Value.AsBsonDocument.GetElement("pipeline").Value.AsBsonArray.Select(x => x.AsBsonDocument).ToList();
             frm.ShowData = pipeline;
             frm.Title = "Pipeline";
             Utility.OpenForm(frm, true, true);

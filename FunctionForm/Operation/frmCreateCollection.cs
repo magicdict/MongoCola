@@ -72,7 +72,7 @@ namespace FunctionForm.Operation
             //SERVER-4412已经在2013/03解决了
             //collection names are limited to 121 bytes after converting to UTF-8. 
             if (txtCollectionName.Text == string.Empty) return;
-            CollectionName = txtCollectionName.Text;
+            CollectionName = txtCollectionName.Text.Trim();
             try
             {
                 string errMessage;

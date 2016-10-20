@@ -33,6 +33,16 @@ namespace MongoUtility.ToolKit
         public static string MongoDbBsonVersion;
 
         /// <summary>
+        ///     驱动版本 MongoDB.Driver.Core.DLL
+        /// </summary>
+        public static string MongoDbDriverCoreVersion;
+
+        /// <summary>
+        ///     驱动版本 MongoDB.Driver.Legacy.DLL
+        /// </summary>
+        public static string MongoDbDriverLegacyVersion;
+
+        /// <summary>
         ///     JsonWriterSettings
         /// </summary>
         public static JsonWriterSettings JsonWriterSettings = new JsonWriterSettings

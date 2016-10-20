@@ -45,14 +45,18 @@ namespace MongoCola
         {
             //MongoDB驱动版本的取得
             Debug.Print(Path.DirectorySeparatorChar.ToString());
-            var info =
-                FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar +
-                                               "MongoDB.Driver.dll");
+            var info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar + "MongoDB.Driver.dll");
             MongoHelper.MongoDbDriverVersion = info.ProductVersion;
-            info =
-                FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar +
-                                               "MongoDB.Bson.dll");
+
+            info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar + "MongoDB.Bson.dll");
             MongoHelper.MongoDbBsonVersion = info.ProductVersion;
+
+            info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar + "MongoDB.Driver.Core.dll");
+            MongoHelper.MongoDbDriverCoreVersion = info.ProductVersion;
+
+            info = FileVersionInfo.GetVersionInfo(Application.StartupPath + Path.DirectorySeparatorChar + "MongoDB.Driver.Legacy.dll");
+            MongoHelper.MongoDbDriverLegacyVersion = info.ProductVersion;
+
             //版本设定
             Version = Application.ProductVersion;
             DebugMode = false;
@@ -60,10 +64,10 @@ namespace MongoCola
             GuiConfig.IsMono = MonoMode;
             //Can't know for OSVersion to diff Mac or Unix....
             //异常处理器的初始化
-            Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + MongoHelper.MongoDbDriverVersion +
-                                          Environment.NewLine;
-            Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + MongoHelper.MongoDbBsonVersion +
-                                           Environment.NewLine;
+            Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + MongoHelper.MongoDbDriverVersion + Environment.NewLine;
+            Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + MongoHelper.MongoDbBsonVersion + Environment.NewLine;
+            Utility.ExceptionAppendInfo += "MongoDbDriverCoreVersion:" + MongoHelper.MongoDbDriverCoreVersion + Environment.NewLine;
+            Utility.ExceptionAppendInfo += "MongoDbDriverLegacyVersion:" + MongoHelper.MongoDbDriverLegacyVersion + Environment.NewLine;
             //config
             SystemConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
             MongoConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;

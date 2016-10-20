@@ -303,6 +303,7 @@ namespace MongoCola
                         MongoDbAction.ActionType.MiscEvalJs);
                 }
             }
+
             //备份数据库
             DumpDatabaseToolStripMenuItem.Enabled = true;
             ProfillingLevelToolStripMenuItem.Enabled = true;
@@ -407,6 +408,61 @@ namespace MongoCola
             }
         }
 
+        /// <summary>
+        ///     CollectionList右键事件
+        /// </summary>
+        /// <param name="e"></param>
+        private void CollectionListHandler(TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (!Operater.IsSystemDataBase(RuntimeMongoDbContext.GetCurrentDataBaseName()))
+                {
+                    CreateMongoCollectionToolStripMenuItem.Enabled = true;
+                }
+                contextMenuStripMain = new ContextMenuStrip();
+                if (SystemManager.MonoMode)
+                {
+                    var createMongoCollection = CreateMongoCollectionToolStripMenuItem.Clone();
+                    createMongoCollection.Click += CreateMongoCollectionToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(createMongoCollection);
+                }
+                else
+                {
+                    contextMenuStripMain.Items.Add(CreateMongoCollectionToolStripMenuItem.Clone());
+                }
+                e.Node.ContextMenuStrip = contextMenuStripMain;
+                contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+            }
+        }
+
+        /// <summary>
+        /// ViewLis右键事件
+        /// </summary>
+        /// <param name="e"></param>
+        private void ViewListHandler(TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (!Operater.IsSystemDataBase(RuntimeMongoDbContext.GetCurrentDataBaseName()))
+                {
+                    CreateViewtoolStripMenuItem.Enabled = true;
+                }
+                contextMenuStripMain = new ContextMenuStrip();
+                if (SystemManager.MonoMode)
+                {
+                    var createMongoCollection = CreateViewtoolStripMenuItem.Clone();
+                    createMongoCollection.Click += CreateMongoCollectionToolStripMenuItem_Click;
+                    contextMenuStripMain.Items.Add(createMongoCollection);
+                }
+                else
+                {
+                    contextMenuStripMain.Items.Add(CreateViewtoolStripMenuItem.Clone());
+                }
+                e.Node.ContextMenuStrip = contextMenuStripMain;
+                contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+            }
+        }
         /// <summary>
         ///     Collection  Hanlder.
         /// </summary>

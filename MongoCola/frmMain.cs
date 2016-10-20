@@ -219,10 +219,13 @@ namespace MongoCola
                         statusStripMain.Items[0].Text = "System Collection List ";
                         break;
                     case ConstMgr.CollectionListTag:
+                        //添加数据集
+                        CollectionListHandler(e);
                         RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "Collection List ";
                         break;
                     case ConstMgr.ViewListTag:
+                        ViewListHandler(e);
                         RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "View List ";
                         break;

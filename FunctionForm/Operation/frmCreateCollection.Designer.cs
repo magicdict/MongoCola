@@ -42,6 +42,8 @@ namespace FunctionForm.Operation
             this.lblMaxSize = new System.Windows.Forms.Label();
             this.lblMaxDocument = new System.Windows.Forms.Label();
             this.grpAdvanced = new System.Windows.Forms.GroupBox();
+            this.cmdPreview = new System.Windows.Forms.Button();
+            this.trvNewDocument = new MongoGUICtl.CtlTreeViewColumns();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radAction_error = new System.Windows.Forms.RadioButton();
             this.radAction_warn = new System.Windows.Forms.RadioButton();
@@ -53,8 +55,7 @@ namespace FunctionForm.Operation
             this.chkValidation = new System.Windows.Forms.CheckBox();
             this.lnkCappedCollections = new System.Windows.Forms.LinkLabel();
             this.chkAdvance = new System.Windows.Forms.CheckBox();
-            this.trvNewDocument = new MongoGUICtl.CtlTreeViewColumns();
-            this.cmdPreview = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).BeginInit();
             this.grpAdvanced.SuspendLayout();
@@ -184,6 +185,27 @@ namespace FunctionForm.Operation
             this.grpAdvanced.TabStop = false;
             this.grpAdvanced.Text = "Advanced";
             // 
+            // cmdPreview
+            // 
+            this.cmdPreview.Location = new System.Drawing.Point(71, 443);
+            this.cmdPreview.Name = "cmdPreview";
+            this.cmdPreview.Size = new System.Drawing.Size(177, 25);
+            this.cmdPreview.TabIndex = 31;
+            this.cmdPreview.Tag = "Common_Preview";
+            this.cmdPreview.Text = "Preview Validation Express";
+            this.cmdPreview.UseVisualStyleBackColor = true;
+            this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
+            // 
+            // trvNewDocument
+            // 
+            this.trvNewDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvNewDocument.Location = new System.Drawing.Point(352, 226);
+            this.trvNewDocument.Margin = new System.Windows.Forms.Padding(5);
+            this.trvNewDocument.Name = "trvNewDocument";
+            this.trvNewDocument.Padding = new System.Windows.Forms.Padding(1);
+            this.trvNewDocument.Size = new System.Drawing.Size(345, 211);
+            this.trvNewDocument.TabIndex = 30;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.radAction_error);
@@ -305,26 +327,14 @@ namespace FunctionForm.Operation
             this.chkAdvance.UseVisualStyleBackColor = true;
             this.chkAdvance.CheckedChanged += new System.EventHandler(this.chkAdvance_CheckedChanged);
             // 
-            // trvNewDocument
+            // label1
             // 
-            this.trvNewDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvNewDocument.Location = new System.Drawing.Point(352, 226);
-            this.trvNewDocument.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.trvNewDocument.Name = "trvNewDocument";
-            this.trvNewDocument.Padding = new System.Windows.Forms.Padding(1);
-            this.trvNewDocument.Size = new System.Drawing.Size(345, 211);
-            this.trvNewDocument.TabIndex = 30;
-            // 
-            // cmdPreview
-            // 
-            this.cmdPreview.Location = new System.Drawing.Point(71, 443);
-            this.cmdPreview.Name = "cmdPreview";
-            this.cmdPreview.Size = new System.Drawing.Size(177, 25);
-            this.cmdPreview.TabIndex = 31;
-            this.cmdPreview.Tag = "Common_Preview";
-            this.cmdPreview.Text = "Preview Validation Express";
-            this.cmdPreview.UseVisualStyleBackColor = true;
-            this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(328, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(329, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "WhiteSpace at start or end of collectionname will be trimed!";
             // 
             // frmCreateCollection
             // 
@@ -332,6 +342,7 @@ namespace FunctionForm.Operation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(787, 611);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCollectionName);
             this.Controls.Add(this.txtCollectionName);
             this.Controls.Add(this.cmdCancel);
@@ -382,5 +393,6 @@ namespace FunctionForm.Operation
         private RadioButton radAction_warn;
         private MongoGUICtl.CtlTreeViewColumns trvNewDocument;
         private Button cmdPreview;
+        private Label label1;
     }
 }
