@@ -16,6 +16,7 @@ namespace MongoGUIView
         private readonly string _fullPath = string.Empty;
 
         /// <summary>
+        ///     是否为元素
         /// </summary>
         private readonly bool _isElement = true;
 

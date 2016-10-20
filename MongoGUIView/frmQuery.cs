@@ -119,8 +119,8 @@ namespace MongoGUIView
             //清除以前的结果和内部变量，重要！
             //FieldList 和 FieldPicker 是引用关系，所以这里Clear掉之后FieldPicker也会被清除掉。GetQueryFieldList就会始终为空！
             _currentDataViewInfo.MDataFilter.QueryConditionList.Clear();
-            _currentDataViewInfo.MDataFilter.DbName = RuntimeMongoDbContext.GetCurrentDataBase().Name;
-            _currentDataViewInfo.MDataFilter.CollectionName = RuntimeMongoDbContext.GetCurrentCollection().Name;
+            _currentDataViewInfo.MDataFilter.DbName = RuntimeMongoDbContext.GetCurrentDataBaseName();
+            _currentDataViewInfo.MDataFilter.CollectionName = RuntimeMongoDbContext.GetCurrentCollectionName();
             _currentDataViewInfo.MDataFilter.QueryFieldList = QueryFieldPicker.GetQueryFieldList();
             ConditionPan.SetCurrDataFilter(_currentDataViewInfo);
             if (RuntimeMongoDbContext.CollectionFilter.ContainsKey(RuntimeMongoDbContext.GetCurrentCollectionName()))

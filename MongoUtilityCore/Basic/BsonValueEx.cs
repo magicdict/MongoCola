@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using MongoDB.Bson;
-using System.Xml.Serialization;
-using System.Xml;
-using System.Xml.Schema;
 
 namespace MongoUtility.Basic
 {
@@ -104,6 +101,7 @@ namespace MongoUtility.Basic
         }
 
         /// <summary>
+        ///     基本类型
         /// </summary>
         /// <returns></returns>
         public static List<string> GetBasicTypeList()
@@ -118,6 +116,20 @@ namespace MongoUtility.Basic
             typelst.Add("BsonArray");
             typelst.Add("BsonDocument");
             return typelst;
+        }
+        /// <summary>
+        ///     基本类型枚举
+        /// </summary>
+        public enum BasicType : int
+        {
+            BsonString = 0,
+            BsonInt32 ,
+            BsonInt64,
+            BsonDecimal128,
+            BsonDateTime,
+            BsonBoolean,
+            BsonArray,
+            BsonDocument
         }
 
         /// <summary>

@@ -248,9 +248,20 @@
         #endregion
 
         #region authentication mechanisms
+
+        /// <summary>
+        ///     SCRAM_SHA_1
+        /// </summary>
         public const string SCRAM_SHA_1 = "SCRAM-SHA-1";
+        /// <summary>
+        ///     MONGODB_CR
+        /// </summary>
         public const string MONGODB_CR = "MONGODB-CR";
+        /// <summary>
+        ///     MONGODB_X509
+        /// </summary>
         public const string MONGODB_X509 = "MONGODB-X509";
+
         #endregion
     }
 }

@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using System.Linq;
+
 namespace MongoUtility.Aggregation
 {
     public static class AggregationHelper
@@ -30,7 +31,10 @@ namespace MongoUtility.Aggregation
             return strResult;
         }
 
-
+        /// <summary>
+        ///     PipelineStages
+        /// </summary>
+        /// <returns></returns>
         public static string[] PipelineStages()
         {
             return new[]{
@@ -47,7 +51,8 @@ namespace MongoUtility.Aggregation
                 "$lookup",
                 "$out",
                 "$indexStats",
-                "$sortByCount"
+                "$sortByCount",
+                "$addFields"
             };
         }
 
