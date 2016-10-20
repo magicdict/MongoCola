@@ -314,117 +314,6 @@ namespace MongoGUICtl.ClientTree
             {
                 return null;
             }
-            #region Legacy
-
-            //foreach (var indexDoc in indexList.ToList())
-            //{
-            //    var mongoIndex = new TreeNode();
-            //    if (!GUIConfig.IsUseDefaultLanguage)
-            //    {
-            //        mongoIndex.Text =
-            //            (GUIConfig.MStringResource.GetText(TextType.Index_Name) + ":" +
-            //             indexDoc.Name);
-            //        mongoIndex.Nodes.Add(string.Empty,
-            //            GUIConfig.MStringResource.GetText(TextType.Index_Keys) + ":" +
-            //            GetKeyString(indexDoc.Key), (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty,
-            //            GUIConfig.MStringResource.GetText(TextType.Index_RepeatDel) + ":" +
-            //            indexDoc.DroppedDups, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty,
-            //            GUIConfig.MStringResource.GetText(TextType.Index_Background) + ":" +
-            //            indexDoc.IsBackground, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty,
-            //            GUIConfig.MStringResource.GetText(TextType.Index_Sparse) + ":" +
-            //            indexDoc.IsSparse, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty,
-            //            GUIConfig.MStringResource.GetText(TextType.Index_Unify) + ":" +
-            //            indexDoc.IsUnique, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty,
-            //            GUIConfig.MStringResource.GetText(TextType.Index_NameSpace) + ":" +
-            //            indexDoc.Namespace, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty,
-            //            GUIConfig.MStringResource.GetText(TextType.Index_Version) + ":" +
-            //            indexDoc.Version, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        if (indexDoc.TimeToLive == TimeSpan.MaxValue)
-            //        {
-            //            mongoIndex.Nodes.Add(string.Empty,
-            //                GUIConfig.MStringResource.GetText(TextType.Index_ExpireData) +
-            //                ":Not Set",
-            //                (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        }
-            //        else
-            //        {
-            //            mongoIndex.Nodes.Add(string.Empty,
-            //                GUIConfig.MStringResource.GetText(TextType.Index_ExpireData) +
-            //                ":" +
-            //                indexDoc.TimeToLive.TotalSeconds, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
-            //                (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        mongoIndex.Text = "IndexName:" + indexDoc.Name;
-            //        mongoIndex.Nodes.Add(string.Empty, "Keys:" + GetKeyString(indexDoc.Key),
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "DroppedDups :" + indexDoc.DroppedDups,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "IsBackground:" + indexDoc.IsBackground,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "IsSparse:" + indexDoc.IsSparse,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "IsUnique:" + indexDoc.IsUnique,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "NameSpace:" + indexDoc.Namespace,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "Version:" + indexDoc.Version,
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        if (indexDoc.TimeToLive == TimeSpan.MaxValue)
-            //        {
-            //            mongoIndex.Nodes.Add(string.Empty, "Expire Data:Not Set",
-            //                (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        }
-            //        else
-            //        {
-            //            mongoIndex.Nodes.Add(string.Empty, "Expire Data(sec):" + indexDoc.TimeToLive.TotalSeconds,
-            //                (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        }
-            //    }
-            //    if (indexDoc.RawDocument.Contains("default_language"))
-            //    {
-            //        //TextIndex
-            //        mongoIndex.Nodes.Add(string.Empty, "weights:" + indexDoc.RawDocument["weights"],
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "default_language:" + indexDoc.RawDocument["default_language"],
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "language_override:" + indexDoc.RawDocument["language_override"],
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //        mongoIndex.Nodes.Add(string.Empty, "textIndexVersion:" + indexDoc.RawDocument["textIndexVersion"],
-            //            (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-            //    }
-            //    mongoIndex.ImageIndex = (int) GetSystemIcon.MainTreeImageType.DBKey;
-            //    mongoIndex.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.DBKey;
-            //    mongoIndex.Tag = ConstMgr.INDEX_TAG + ":" + mongoConnSvrKey + "/" + DatabaseName + "/" + strColName +
-            //                     "/" +
-            //                     indexDoc.Name;
-            //    mongoIndexes.Nodes.Add(mongoIndex);
-            //}
-            //mongoIndexes.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Keys;
-            //mongoIndexes.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Keys;
-            //mongoIndexes.Tag = ConstMgr.INDEXES_TAG + ":" + mongoConnSvrKey + "/" + DatabaseName + "/" + strColName;
-            //mongoColNode.Nodes.Add(mongoIndexes);
-            ////End ListIndex
-
-            //mongoColNode.ToolTipText = strColName + Environment.NewLine;
-            //mongoColNode.ToolTipText += "IsCapped:" + mongoCol.GetStats().IsCapped;
-
-            #endregion
 
             if (col.CollectionNamespace.CollectionName == ConstMgr.CollectionNameUser)
             {
@@ -472,8 +361,8 @@ namespace MongoGUICtl.ClientTree
                 jsNode.Nodes.Add(node);
             }
 
-            jsNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
-            jsNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+            jsNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.JavaScriptList;
+            jsNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JavaScriptList;
         }
     }
 }
