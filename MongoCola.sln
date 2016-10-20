@@ -41,6 +41,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MongoColaWebAdmin", "MongoC
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MongoUtilityCore", "MongoUtilityCore\MongoUtilityCore.xproj", "{395FC850-77F6-4820-B797-A323453382C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineLearning", "MachineLearning\MachineLearning.csproj", "{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,18 @@ Global
 		{395FC850-77F6-4820-B797-A323453382C5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{395FC850-77F6-4820-B797-A323453382C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{395FC850-77F6-4820-B797-A323453382C5}.Release|x86.Build.0 = Release|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Debug|x86.Build.0 = Debug|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Release|x86.ActiveCfg = Release|Any CPU
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -189,6 +203,7 @@ Global
 		{A57B7879-6935-4C45-AEC0-8B2C2E7AB5EF} = {7FAD8638-E410-46A0-8B32-DCDD29D3CB57}
 		{C0F8015A-FA24-4DDD-8A79-99524196B81E} = {D89F3EDE-8BB0-4D4C-90CF-E0D2567C2BAA}
 		{395FC850-77F6-4820-B797-A323453382C5} = {C2CB64A9-4560-43A1-AAB3-B61451A6551B}
+		{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589} = {7FAD8638-E410-46A0-8B32-DCDD29D3CB57}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ZedGraph;
 
-namespace FunctionForm.MachineLearning
+namespace MachineLearning
 {
     public partial class frmRegression : Form
     {

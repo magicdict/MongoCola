@@ -1,4 +1,4 @@
-﻿namespace FunctionForm.MachineLearning
+﻿namespace MachineLearning
 {
     partial class frmRegression
     {
