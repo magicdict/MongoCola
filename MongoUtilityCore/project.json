@@ -11,7 +11,8 @@
       "imports": "netcoreapp1.0",
       "dependencies": {
         "System.Runtime": "4.1.0",
-        "System.Xml.XmlSerializer": "4.0.11"
+        "System.Xml.XmlSerializer": "4.0.11",
+        "System.Runtime.Serialization.Formatters": "4.0.0-rc3-24212-01"
       }
     },
     "net462": {

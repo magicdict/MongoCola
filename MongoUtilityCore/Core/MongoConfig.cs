@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -70,7 +72,7 @@ namespace MongoUtility.Core
             {
                 MongoConnectionConfig.MongoConfig.SerializableConnectionList.Add(item);
             }
-            //Utility.SaveObjAsXml(AppPath + MongoConfigFilename, this);
+            SaveObjAsXml(AppPath + MongoConfigFilename, this);
         }
 
         /// <summary>
@@ -98,6 +100,24 @@ namespace MongoUtility.Core
             var reader = XmlReader.Create(filename, setting);
             var obj = (T)xml.Deserialize(reader);
             return obj;
+        }
+
+        /// <summary>
+        ///     保存对象
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="obj"></param>
+        public static void SaveObjAsXml<T>(string filename, T obj)
+        {
+            var settings = new XmlWriterSettings { Indent = true, NewLineChars = Environment.NewLine };
+            //NewLineChars对于String属性的东西无效
+            //这是对于XML中换行有效，
+            //String的换行会变成Console的NewLine /n
+            var xml = new XmlSerializer(typeof(T));
+            var writer = XmlWriter.Create(new FileStream(filename,FileMode.OpenOrCreate), settings);
+            var ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+            xml.Serialize(writer, obj, ns);
         }
     }
 }

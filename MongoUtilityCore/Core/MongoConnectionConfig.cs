@@ -18,6 +18,7 @@ namespace MongoUtility.Core
     /// <summary>
     ///     连接结构体
     /// </summary>
+    [Serializable]
     public class MongoConnectionConfig
     {
         /// <summary>
