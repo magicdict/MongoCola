@@ -57,30 +57,30 @@ namespace MongoUtility.Command
             var mCommandResult = new CommandResult(new BsonDocument());
             //try
             //{
-                switch (mMongoCommand.RunLevel)
-                {
-                    case EnumMgr.PathLevel.CollectionAndView:
-                        if (string.IsNullOrEmpty(mMongoCommand.CommandString))
-                        {
-                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.CmdDocument,
-                                RuntimeMongoDbContext.GetCurrentCollection());
-                        }
-                        else
-                        {
-                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString,
-                                RuntimeMongoDbContext.GetCurrentCollection());
-                        }
-                        break;
-                    case EnumMgr.PathLevel.Database:
-                        mCommandResult = ExecuteMongoDBCommand(mMongoCommand.CmdDocument,
-                            RuntimeMongoDbContext.GetCurrentDataBase());
-                        break;
-                    case EnumMgr.PathLevel.Instance:
-                        mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.CmdDocument,
-                            RuntimeMongoDbContext.GetCurrentServer());
-                        break;
-                }
-                resultCommandList.Add(mCommandResult);
+            switch (mMongoCommand.RunLevel)
+            {
+                case EnumMgr.PathLevel.CollectionAndView:
+                    if (string.IsNullOrEmpty(mMongoCommand.CommandString))
+                    {
+                        mCommandResult = ExecuteMongoColCommand(mMongoCommand.CmdDocument,
+                            RuntimeMongoDbContext.GetCurrentCollection());
+                    }
+                    else
+                    {
+                        mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString,
+                            RuntimeMongoDbContext.GetCurrentCollection());
+                    }
+                    break;
+                case EnumMgr.PathLevel.Database:
+                    mCommandResult = ExecuteMongoDBCommand(mMongoCommand.CmdDocument,
+                        RuntimeMongoDbContext.GetCurrentDataBase());
+                    break;
+                case EnumMgr.PathLevel.Instance:
+                    mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.CmdDocument,
+                        RuntimeMongoDbContext.GetCurrentServer());
+                    break;
+            }
+            resultCommandList.Add(mCommandResult);
             //}
             //catch (IOException ex)
             //{
@@ -104,7 +104,7 @@ namespace MongoUtility.Command
         public static CommandResult ExecuteMongoColCommand(string commandString, MongoCollection mongoCol)
         {
             CommandResult mCommandResult;
-            var baseCommand = new BsonDocument {{commandString, mongoCol.Name}};
+            var baseCommand = new BsonDocument { { commandString, mongoCol.Name } };
             var mongoCmd = new CommandDocument();
             mongoCmd.AddRange(baseCommand);
             try
@@ -272,7 +272,7 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult ExecuteMongoDBCommand(MongoCommand mMongoCommand, MongoDatabase mongoDb)
         {
-            var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
+            var command = new CommandDocument { { mMongoCommand.CommandString, 1 } };
             if (mMongoCommand.RunLevel == EnumMgr.PathLevel.Database)
             {
                 return ExecuteMongoDBCommand(command, mongoDb);
@@ -315,14 +315,27 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult ExecuteMongoSvrCommand(CommandDocument mCommandDocument, MongoServer mongoSvr)
         {
-            CommandResult mCommandResult;
+            CommandResult mCommandResult = null;
             try
             {
-                mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mCommandDocument);
+                if (mongoSvr.DatabaseExists(ConstMgr.DatabaseNameAdmin))
+                {
+                    mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mCommandDocument);
+                }
+                else
+                {
+                    //Replset的时候，没有Admin数据库
+                }
             }
             catch (MongoCommandException ex)
             {
                 mCommandResult = new CommandResult(ex.Result);
+            }
+            catch (TimeoutException ex)
+            {
+                BsonDocument TimeOutDocument = new BsonDocument();
+                TimeOutDocument.Add("errmsg", "TimeoutException");
+                mCommandResult = new CommandResult(TimeOutDocument);
             }
             var e = new RunCommandEventArgs
             {
@@ -342,7 +355,7 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult ExecuteMongoSvrCommand(MongoCommand mMongoCommand, MongoServer mongosrv)
         {
-            var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
+            var command = new CommandDocument { { mMongoCommand.CommandString, 1 } };
             if (mMongoCommand.RunLevel == EnumMgr.PathLevel.Database)
             {
                 throw new Exception();
@@ -378,7 +391,7 @@ namespace MongoUtility.Command
             {
                 CommandString = commandString;
                 RunLevel = runLevel;
-                CmdDocument = new CommandDocument {{commandString, 1}};
+                CmdDocument = new CommandDocument { { commandString, 1 } };
             }
 
             /// <summary>
@@ -461,13 +474,13 @@ namespace MongoUtility.Command
             //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
             //try
             //{
-                var agg = new CommandDocument
+            var agg = new CommandDocument
                 {
                     new BsonElement("aggregate", new BsonString(collectionName)),
                     new BsonElement("pipeline", aggregateDoc)
                 };
-                var aggregateCommand = new MongoCommand(agg, EnumMgr.PathLevel.Database);
-                return ExecuteMongoCommand(aggregateCommand);
+            var aggregateCommand = new MongoCommand(agg, EnumMgr.PathLevel.Database);
+            return ExecuteMongoCommand(aggregateCommand);
             //}
             //catch (Exception ex)
             //{
@@ -603,10 +616,10 @@ namespace MongoUtility.Command
                 cmdPara += item + ",";
             }
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
-            var mongoCmd = new CommandDocument {{"addshard", cmdPara}};
+            var mongoCmd = new CommandDocument { { "addshard", cmdPara } };
             if (maxSize != 0)
             {
-                mongoCmd.Add("maxSize", (BsonValue) maxSize);
+                mongoCmd.Add("maxSize", (BsonValue)maxSize);
             }
             if (name != string.Empty)
             {
@@ -696,7 +709,7 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult RemoveSharding(MongoServer routeSvr, string shardName)
         {
-            var mongoCmd = new CommandDocument {{"removeshard", shardName}};
+            var mongoCmd = new CommandDocument { { "removeshard", shardName } };
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -709,7 +722,7 @@ namespace MongoUtility.Command
         public static CommandResult EnableSharding(MongoServer routeSvr, string shardingDb)
         {
             var mongoCmd = new CommandDocument();
-            mongoCmd = new CommandDocument {{"enablesharding", shardingDb}};
+            mongoCmd = new CommandDocument { { "enablesharding", shardingDb } };
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -723,7 +736,7 @@ namespace MongoUtility.Command
         public static CommandResult ShardCollection(MongoServer routeSvr, string sharingCollection,
             BsonDocument shardingKey)
         {
-            var mongoCmd = new CommandDocument {{"shardCollection", sharingCollection}, {"key", shardingKey}};
+            var mongoCmd = new CommandDocument { { "shardCollection", sharingCollection }, { "key", shardingKey } };
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 

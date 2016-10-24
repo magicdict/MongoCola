@@ -114,7 +114,8 @@ namespace MongoUtility.Core
             //这是对于XML中换行有效，
             //String的换行会变成Console的NewLine /n
             var xml = new XmlSerializer(typeof(T));
-            var writer = XmlWriter.Create(new FileStream(filename,FileMode.OpenOrCreate), settings);
+            var fs = new FileStream(filename, FileMode.OpenOrCreate);
+            var writer = XmlWriter.Create(fs, settings);
             var ns = new XmlSerializerNamespaces();
             ns.Add("", "");
             xml.Serialize(writer, obj, ns);
