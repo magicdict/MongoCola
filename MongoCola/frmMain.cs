@@ -1,6 +1,7 @@
 ﻿using Common;
 using FunctionForm.Connection;
 using FunctionForm.Operation;
+using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
@@ -51,6 +52,18 @@ namespace MongoCola
                 var frmInsertDoc = new frmCreateDocument();
                 Utility.OpenForm(frmInsertDoc, false, true);
                 return frmInsertDoc.MBsonDocument;
+            };
+            CtlBsonValue.GetDocument = () =>
+            {
+                var frmInsertDoc = new frmCreateDocument();
+                Utility.OpenForm(frmInsertDoc, false, true);
+                return frmInsertDoc.MBsonDocument;
+            };
+            CtlBsonValue.GetArray = () =>
+            {
+                var frmInsertArray = new frmArrayCreator();
+                Utility.OpenForm(frmInsertArray, false, true);
+                return frmInsertArray.MBsonArray;
             };
         }
 

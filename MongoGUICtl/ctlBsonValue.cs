@@ -19,12 +19,12 @@ namespace MongoGUICtl
         /// <summary>
         ///     获得一个新BSonArray的委托
         /// </summary>
-        public Func<BsonArray> GetArray;
+        public static Func<BsonArray> GetArray;
 
         /// <summary>
         ///     获得一个新BSonDocument的委托
         /// </summary>
-        public Func<BsonDocument> GetDocument;
+        public static Func<BsonDocument> GetDocument;
 
         /// <summary>
         ///     初始化，请确保 getArray 和 getDocument正确设定

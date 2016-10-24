@@ -63,6 +63,7 @@ CSharp Mongo Driver 2.4.0-beta1
 1. 新建数据集的BUG修正，数据集验证的修复
 2. 新建文档时候出现的无法通过数据集验证的异常处理
 3. 数据库必须有一个数据集，如果没有数据集的话，则数据库会被回收掉,所以新建数据库的时候，可以指定初始数据集的名称
+4. 修正了无法保存配置的严重错误！(感谢错误报告者： https://github.com/shipf0820)
 
 ###聚合
 1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind
