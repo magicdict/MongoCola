@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/6
- * Time: 11:09
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson;

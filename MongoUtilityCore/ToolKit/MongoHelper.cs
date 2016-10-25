@@ -9,15 +9,6 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.EventArgs;
 
-/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/5
- * Time: 15:47
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
 namespace MongoUtility.ToolKit
 {
     public static class MongoHelper
@@ -82,10 +73,7 @@ namespace MongoUtility.ToolKit
             rtnSvrInfo += "Address：" + mongosvr.Instance.Address + Environment.NewLine;
             if (mongosvr.Instance.BuildInfo != null)
             {
-                //Before mongo2.0.2 BuildInfo will be null
                 rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + Environment.NewLine;
-                //remove from mongodrvier 2.0.0
-                //rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + Environment.NewLine;
             }
             return rtnSvrInfo;
         }
@@ -308,7 +296,7 @@ namespace MongoUtility.ToolKit
                     unitOrder++;
                 }
             }
-            return tempSize.ToString("F2") + " " + unit[unitOrder]; //$"{tempSize:F2}" + " " + unit[unitOrder];
+            return tempSize.ToString("F2") + " " + unit[unitOrder]; 
         }
 
     }

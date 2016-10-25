@@ -1,17 +1,7 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/8
- * Time: 9:59
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using MongoUtility.Basic;
-
 
 namespace MongoUtility.Core
 {

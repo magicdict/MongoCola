@@ -1,13 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/9
- * Time: 13:48
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using PlugInPackage;
+﻿using PlugInPrj;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
@@ -126,7 +117,6 @@ namespace MongoCola
             ValidateToolStripMenuItem.Enabled = false;
             ExportToFileToolStripMenuItem.Enabled = false;
             ProfillingLevelToolStripMenuItem.Enabled = false;
-            machineLearningToolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
             DumpDatabaseToolStripMenuItem.Enabled = false;

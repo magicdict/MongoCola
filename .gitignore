@@ -58,6 +58,8 @@
 /MongoColaWebAdmin/obj
 /MongoUtilityCore/bin
 /MongoUtilityCore/obj
+/PlugInPrj/bin
+/PlugInPrj/obj
 /MachineLearning/bin
 /MachineLearning/obj
 !readme.txt

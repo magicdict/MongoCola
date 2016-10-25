@@ -78,6 +78,11 @@ namespace MongoCola.Config
             {
                 cmbLanguage.Text = StringResource.LanguageEnglish;
             }
+
+            //GuidRepresentation
+            Common.Utility.FillComberWithEnum(cmbGuidRepresentation, typeof(SystemConfig.GuidRepresentation), true);
+            cmbGuidRepresentation.SelectedIndex = SystemManager.SystemConfig.BsonGuidRepresentation.GetHashCode();
+
             GuiConfig.Translateform(this);
             GuiConfig.MonoCompactControl(Controls);
         }
@@ -89,9 +94,9 @@ namespace MongoCola.Config
         /// <param name="e"></param>
         private void btnFont_Click(object sender, EventArgs e)
         {
-            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            if (fontDialog.ShowDialog() == DialogResult.OK)
             {
-                SystemManager.SystemConfig.UiFontFamily = fontDialog1.Font.FontFamily.Name;
+                SystemManager.SystemConfig.UiFontFamily = fontDialog.Font.FontFamily.Name;
                 lblCurrentFont.Text = SystemManager.SystemConfig.UiFontFamily;
             }
         }
@@ -107,8 +112,9 @@ namespace MongoCola.Config
             SystemManager.SystemConfig.IsUtc = radUTC.Checked;
             SystemManager.SystemConfig.IsDisplayNumberWithKSystem = chkIsDisplayNumberWithKSystem.Checked;
             SystemManager.SystemConfig.MongoBinPath = fileMongoBinPath.SelectedPathOrFileName;
-            SystemManager.SystemConfig.RefreshStatusTimer = (int) intRefreshStatusTimer.Value;
+            SystemManager.SystemConfig.RefreshStatusTimer = (int)intRefreshStatusTimer.Value;
             SystemManager.SystemConfig.LanguageFileName = cmbLanguage.Text + ".xml";
+            SystemManager.SystemConfig.BsonGuidRepresentation = (SystemConfig.GuidRepresentation)cmbGuidRepresentation.SelectedIndex;
             SystemManager.SystemConfig.SaveSystemConfig();
             Close();
         }

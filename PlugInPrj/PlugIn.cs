@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Common;
+using MongoUtility.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using Common;
-using MongoUtility.Core;
 
-namespace PlugInPackage
+namespace PlugInPrj
 {
     public static class PlugIn
     {
@@ -48,22 +48,21 @@ namespace PlugInPackage
         /// </summary>
         private static void LoadPlugIn()
         {
-            foreach (var mFile in Directory.GetFiles(Application.StartupPath + Path.DirectorySeparatorChar, "*.dll"))
+            var plugInPath = Application.StartupPath + Path.DirectorySeparatorChar + "PlugIn" + Path.DirectorySeparatorChar;
+            foreach (var mFile in Directory.GetFiles(plugInPath, "*.dll"))
             {
                 try
                 {
-                    var fileName = mFile.Replace(Application.StartupPath + Path.DirectorySeparatorChar, string.Empty);
-                    //正式版本中，应该不会有这些
-                    if (fileName != "PlugInPackage.dll") continue;
+                    var fileName = mFile.Replace(plugInPath, string.Empty);
                     var mAssem = Assembly.LoadFile(mFile);
                     var typeName = fileName.Substring(0, fileName.Length - 4);
                     var mTypelist = mAssem.GetTypes();
                     foreach (var mType in mTypelist)
                     {
-                        if (mType.BaseType == typeof (PlugInBase))
+                        if (mType.BaseType == typeof(PlugInBase))
                         {
-                            var constructorInfo = mType.GetConstructor(new Type[] {});
-                            var mPlug = (PlugInBase) constructorInfo.Invoke(new object[] {});
+                            var constructorInfo = mType.GetConstructor(new Type[] { });
+                            var mPlug = (PlugInBase)constructorInfo.Invoke(new object[] { });
                             PlugInList.Add(typeName + "." + mType, mPlug);
                         }
                     }

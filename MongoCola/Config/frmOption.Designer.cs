@@ -41,6 +41,7 @@ namespace MongoCola.Config
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGerneric = new System.Windows.Forms.TabPage();
+            this.chkIsDisplayNumberWithKSystem = new System.Windows.Forms.CheckBox();
             this.lblCurrentFont = new System.Windows.Forms.Label();
             this.btnFont = new System.Windows.Forms.Button();
             this.lblFont = new System.Windows.Forms.Label();
@@ -50,8 +51,9 @@ namespace MongoCola.Config
             this.fileMongoBinPath = new ResourceLib.UI.CtlFilePicker();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this._ctlReadWriteConfig1 = new FunctionForm.Connection.CtlReadWriteConfig();
-            this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.chkIsDisplayNumberWithKSystem = new System.Windows.Forms.CheckBox();
+            this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.lblGuidRepresentation = new System.Windows.Forms.Label();
+            this.cmbGuidRepresentation = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.intRefreshStatusTimer)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
@@ -96,7 +98,7 @@ namespace MongoCola.Config
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(557, 240);
+            this.cmdCancel.Location = new System.Drawing.Point(553, 308);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 35);
             this.cmdCancel.TabIndex = 5;
@@ -108,7 +110,7 @@ namespace MongoCola.Config
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(464, 240);
+            this.cmdOK.Location = new System.Drawing.Point(460, 308);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 35);
             this.cmdOK.TabIndex = 4;
@@ -143,11 +145,13 @@ namespace MongoCola.Config
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(635, 218);
+            this.tabControl1.Size = new System.Drawing.Size(628, 290);
             this.tabControl1.TabIndex = 18;
             // 
             // tabGerneric
             // 
+            this.tabGerneric.Controls.Add(this.cmbGuidRepresentation);
+            this.tabGerneric.Controls.Add(this.lblGuidRepresentation);
             this.tabGerneric.Controls.Add(this.chkIsDisplayNumberWithKSystem);
             this.tabGerneric.Controls.Add(this.lblCurrentFont);
             this.tabGerneric.Controls.Add(this.btnFont);
@@ -161,10 +165,20 @@ namespace MongoCola.Config
             this.tabGerneric.Location = new System.Drawing.Point(4, 24);
             this.tabGerneric.Name = "tabGerneric";
             this.tabGerneric.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGerneric.Size = new System.Drawing.Size(627, 190);
+            this.tabGerneric.Size = new System.Drawing.Size(620, 262);
             this.tabGerneric.TabIndex = 1;
             this.tabGerneric.Text = "Gerneric";
             this.tabGerneric.UseVisualStyleBackColor = true;
+            // 
+            // chkIsDisplayNumberWithKSystem
+            // 
+            this.chkIsDisplayNumberWithKSystem.AutoSize = true;
+            this.chkIsDisplayNumberWithKSystem.Location = new System.Drawing.Point(319, 96);
+            this.chkIsDisplayNumberWithKSystem.Name = "chkIsDisplayNumberWithKSystem";
+            this.chkIsDisplayNumberWithKSystem.Size = new System.Drawing.Size(191, 19);
+            this.chkIsDisplayNumberWithKSystem.TabIndex = 19;
+            this.chkIsDisplayNumberWithKSystem.Text = "Display Number  With K,M,G,T";
+            this.chkIsDisplayNumberWithKSystem.UseVisualStyleBackColor = true;
             // 
             // lblCurrentFont
             // 
@@ -235,7 +249,7 @@ namespace MongoCola.Config
             this.fileMongoBinPath.Clear = "Clear";
             this.fileMongoBinPath.FileFilter = "";
             this.fileMongoBinPath.InitFileName = "";
-            this.fileMongoBinPath.Location = new System.Drawing.Point(33, 115);
+            this.fileMongoBinPath.Location = new System.Drawing.Point(27, 115);
             this.fileMongoBinPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.fileMongoBinPath.Name = "fileMongoBinPath";
             this.fileMongoBinPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
@@ -247,10 +261,10 @@ namespace MongoCola.Config
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this._ctlReadWriteConfig1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(627, 192);
+            this.tabPage1.Size = new System.Drawing.Size(627, 190);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Read Write";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -261,24 +275,31 @@ namespace MongoCola.Config
             this._ctlReadWriteConfig1.Location = new System.Drawing.Point(3, 3);
             this._ctlReadWriteConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ctlReadWriteConfig1.Name = "_ctlReadWriteConfig1";
-            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(621, 186);
+            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(621, 184);
             this._ctlReadWriteConfig1.TabIndex = 0;
             // 
-            // chkIsDisplayNumberWithKSystem
+            // lblGuidRepresentation
             // 
-            this.chkIsDisplayNumberWithKSystem.AutoSize = true;
-            this.chkIsDisplayNumberWithKSystem.Location = new System.Drawing.Point(319, 96);
-            this.chkIsDisplayNumberWithKSystem.Name = "chkIsDisplayNumberWithKSystem";
-            this.chkIsDisplayNumberWithKSystem.Size = new System.Drawing.Size(191, 19);
-            this.chkIsDisplayNumberWithKSystem.TabIndex = 19;
-            this.chkIsDisplayNumberWithKSystem.Text = "Display Number  With K,M,G,T";
-            this.chkIsDisplayNumberWithKSystem.UseVisualStyleBackColor = true;
+            this.lblGuidRepresentation.AutoSize = true;
+            this.lblGuidRepresentation.Location = new System.Drawing.Point(31, 172);
+            this.lblGuidRepresentation.Name = "lblGuidRepresentation";
+            this.lblGuidRepresentation.Size = new System.Drawing.Size(117, 15);
+            this.lblGuidRepresentation.TabIndex = 24;
+            this.lblGuidRepresentation.Text = "GuidRepresentation";
+            // 
+            // cmbGuidRepresentation
+            // 
+            this.cmbGuidRepresentation.FormattingEnabled = true;
+            this.cmbGuidRepresentation.Location = new System.Drawing.Point(166, 169);
+            this.cmbGuidRepresentation.Name = "cmbGuidRepresentation";
+            this.cmbGuidRepresentation.Size = new System.Drawing.Size(140, 23);
+            this.cmbGuidRepresentation.TabIndex = 25;
             // 
             // FrmOption
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(659, 287);
+            this.ClientSize = new System.Drawing.Size(662, 355);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
@@ -319,9 +340,11 @@ namespace MongoCola.Config
         private RadioButton radLocal;
         private RadioButton radUTC;
         private Label lblFont;
-        private FontDialog fontDialog1;
+        private FontDialog fontDialog;
         private Label lblCurrentFont;
         private Button btnFont;
         private CheckBox chkIsDisplayNumberWithKSystem;
+        private Label lblGuidRepresentation;
+        private ComboBox cmbGuidRepresentation;
     }
 }

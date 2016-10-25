@@ -2,7 +2,6 @@
 using FunctionForm.Aggregation;
 using FunctionForm.Connection;
 using FunctionForm.Extend;
-//using FunctionForm.MachineLearning;
 using FunctionForm.Operation;
 using FunctionForm.Status;
 using FunctionForm.User;
@@ -183,7 +182,6 @@ namespace MongoCola
         private void ExpandAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             trvsrvlst.BeginUpdate();
-            //trvsrvlst.ExpandAll();
             //全部展开的时候，东西太多了，只展开到Collection
             foreach (TreeNode node in trvsrvlst.Nodes)
             {
@@ -293,11 +291,6 @@ namespace MongoCola
         /// <param name="e"></param>
         private void CopyDatabasetoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //MongoHelper.Core.RuntimeMongoDBContext.GetCurrentServer().CopyDatabase(MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().Name, MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().Name + "_Backup");
-            //MongoDBHelper.ExecuteMongoDBCommand("copyDatabase", MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase());
-            //CommandDocument copy = new CommandDocument();
-            //MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().RunCommand("copyDatabase");
-
             Utility.OpenForm(new frmCopyDataBase(), true, true);
         }
 
@@ -1005,20 +998,28 @@ namespace MongoCola
 
         #endregion
 
-        #region MahcineLearning
-        /// <summary>
-        /// 回归
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void regressionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Coming Soon!");
-            //Utility.OpenForm(new frmRegression(), true, true);
-        }
-        #endregion
-
         #region "帮助"
+
+        private void ShellReferenceMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://docs.mongodb.com/manual/reference/mongo-shell/");
+        }
+
+        private void ShellMethod_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://docs.mongodb.com/manual/reference/method/");
+        }
+
+        private void AggregationReference_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://docs.mongodb.com/manual/meta/aggregation-quick-reference/");
+        }
+
+        private void MongoDBManualMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://docs.mongodb.com/manual/");
+        }
+
 
         /// <summary>
         ///     About

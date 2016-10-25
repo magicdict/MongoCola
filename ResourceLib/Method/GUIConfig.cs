@@ -1,13 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/6
- * Time: 10:40
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace ResourceLib.Method

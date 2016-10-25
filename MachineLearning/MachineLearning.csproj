@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6ECEAC41-9F4E-473F-902A-1CCBB7AB9589}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MachineLearning</RootNamespace>
     <AssemblyName>MachineLearning</AssemblyName>
@@ -34,6 +34,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accord, Version=3.3.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
@@ -102,6 +105,7 @@
     <Compile Include="MachineLearning\frmRegression.Designer.cs">
       <DependentUpon>frmRegression.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineLearning\Regression.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MachineLearning\frmRegression.resx">
@@ -133,6 +137,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlugInPackage\PlugInPackage.csproj">
+      <Project>{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}</Project>
+      <Name>PlugInPackage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlugInPrj\PlugInPrj.csproj">
+      <Project>{7A3EA89C-F84E-446C-892A-690FA28BEBCA}</Project>
+      <Name>PlugInPrj</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Accord.3.3.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.3.0\build\Accord.targets')" />

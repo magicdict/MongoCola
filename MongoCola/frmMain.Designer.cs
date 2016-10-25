@@ -105,8 +105,6 @@ namespace MongoCola
             this.CollectionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ValidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExportToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.machineLearningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.regressionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DumpAndRestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestoreMongoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DumpDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,6 +119,11 @@ namespace MongoCola
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MongoDBManualMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShellReferenceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShellMethod = new System.Windows.Forms.ToolStripMenuItem();
+            this.AggregationReference = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ThanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -607,8 +610,7 @@ namespace MongoCola
             this.dropJavascriptToolStripMenuItem,
             this.CollectionStatusToolStripMenuItem,
             this.ValidateToolStripMenuItem,
-            this.ExportToFileToolStripMenuItem,
-            this.machineLearningToolStripMenuItem});
+            this.ExportToFileToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
             this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.DataCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection";
@@ -676,42 +678,42 @@ namespace MongoCola
             // countToolStripMenuItem
             // 
             this.countToolStripMenuItem.Name = "countToolStripMenuItem";
-            this.countToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.countToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.countToolStripMenuItem.Text = "Count";
             this.countToolStripMenuItem.Click += new System.EventHandler(this.countToolStripMenuItem_Click);
             // 
             // distinctToolStripMenuItem
             // 
             this.distinctToolStripMenuItem.Name = "distinctToolStripMenuItem";
-            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.distinctToolStripMenuItem.Text = "Distinct";
             this.distinctToolStripMenuItem.Click += new System.EventHandler(this.distinctToolStripMenuItem_Click);
             // 
             // groupToolStripMenuItem
             // 
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.groupToolStripMenuItem.Text = "Group";
             this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
             // aggregateToolStripMenuItem
             // 
             this.aggregateToolStripMenuItem.Name = "aggregateToolStripMenuItem";
-            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aggregateToolStripMenuItem.Text = "Aggregate";
             this.aggregateToolStripMenuItem.Click += new System.EventHandler(this.aggregateToolStripMenuItem_Click);
             // 
             // textSearchToolStripMenuItem
             // 
             this.textSearchToolStripMenuItem.Name = "textSearchToolStripMenuItem";
-            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.textSearchToolStripMenuItem.Text = "TextSearch";
             this.textSearchToolStripMenuItem.Click += new System.EventHandler(this.textSearchToolStripMenuItem_Click);
             // 
@@ -753,21 +755,6 @@ namespace MongoCola
             this.ExportToFileToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_ExportToFile";
             this.ExportToFileToolStripMenuItem.Text = "ExportImport To File";
             this.ExportToFileToolStripMenuItem.Click += new System.EventHandler(this.ExportToFileToolStripMenuItem_Click);
-            // 
-            // machineLearningToolStripMenuItem
-            // 
-            this.machineLearningToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.regressionToolStripMenuItem});
-            this.machineLearningToolStripMenuItem.Name = "machineLearningToolStripMenuItem";
-            this.machineLearningToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.machineLearningToolStripMenuItem.Text = "Machine Learning";
-            // 
-            // regressionToolStripMenuItem
-            // 
-            this.regressionToolStripMenuItem.Name = "regressionToolStripMenuItem";
-            this.regressionToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.regressionToolStripMenuItem.Text = "Regression";
-            this.regressionToolStripMenuItem.Click += new System.EventHandler(this.regressionToolStripMenuItem_Click);
             // 
             // DumpAndRestoreToolStripMenuItem
             // 
@@ -877,6 +864,11 @@ namespace MongoCola
             // HelpToolStripMenuItem
             // 
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MongoDBManualMenuItem,
+            this.ShellReferenceMenuItem,
+            this.ShellMethod,
+            this.AggregationReference,
+            this.toolStripSeparator3,
             this.ThanksToolStripMenuItem,
             this.UserGuideToolStripMenuItem,
             this.toolStripSeparator2,
@@ -886,10 +878,43 @@ namespace MongoCola
             this.HelpToolStripMenuItem.Tag = "Main_Menu_Help";
             this.HelpToolStripMenuItem.Text = "&Help";
             // 
+            // MongoDBManualMenuItem
+            // 
+            this.MongoDBManualMenuItem.Name = "MongoDBManualMenuItem";
+            this.MongoDBManualMenuItem.Size = new System.Drawing.Size(361, 22);
+            this.MongoDBManualMenuItem.Text = "MongoDB Manual";
+            this.MongoDBManualMenuItem.Click += new System.EventHandler(this.MongoDBManualMenuItem_Click);
+            // 
+            // ShellReferenceMenuItem
+            // 
+            this.ShellReferenceMenuItem.Name = "ShellReferenceMenuItem";
+            this.ShellReferenceMenuItem.Size = new System.Drawing.Size(361, 22);
+            this.ShellReferenceMenuItem.Text = "MongoDB Shell Quick Reference";
+            this.ShellReferenceMenuItem.Click += new System.EventHandler(this.ShellReferenceMenuItem_Click);
+            // 
+            // ShellMethod
+            // 
+            this.ShellMethod.Name = "ShellMethod";
+            this.ShellMethod.Size = new System.Drawing.Size(361, 22);
+            this.ShellMethod.Text = "MongoDB Shell Methods";
+            this.ShellMethod.Click += new System.EventHandler(this.ShellMethod_Click);
+            // 
+            // AggregationReference
+            // 
+            this.AggregationReference.Name = "AggregationReference";
+            this.AggregationReference.Size = new System.Drawing.Size(361, 22);
+            this.AggregationReference.Text = "MongoDB Aggregation Pipeline Quick Reference";
+            this.AggregationReference.Click += new System.EventHandler(this.AggregationReference_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(358, 6);
+            // 
             // ThanksToolStripMenuItem
             // 
             this.ThanksToolStripMenuItem.Name = "ThanksToolStripMenuItem";
-            this.ThanksToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.ThanksToolStripMenuItem.Size = new System.Drawing.Size(361, 22);
             this.ThanksToolStripMenuItem.Tag = "Main_Menu_Help_Thanks";
             this.ThanksToolStripMenuItem.Text = "&Thanks";
             this.ThanksToolStripMenuItem.Click += new System.EventHandler(this.ThanksToolStripMenuItem_Click);
@@ -898,7 +923,7 @@ namespace MongoCola
             // 
             this.UserGuideToolStripMenuItem.Name = "UserGuideToolStripMenuItem";
             this.UserGuideToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.UserGuideToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.UserGuideToolStripMenuItem.Size = new System.Drawing.Size(361, 22);
             this.UserGuideToolStripMenuItem.Tag = "Main_Menu_Help_UserGuide";
             this.UserGuideToolStripMenuItem.Text = "UserGuide";
             this.UserGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
@@ -906,12 +931,12 @@ namespace MongoCola
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(358, 6);
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(361, 22);
             this.AboutToolStripMenuItem.Tag = "Main_Menu_Help_About";
             this.AboutToolStripMenuItem.Text = "&About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
@@ -969,7 +994,7 @@ namespace MongoCola
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // FrmMain
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -980,7 +1005,7 @@ namespace MongoCola
             this.Controls.Add(this.toolStripMain);
             this.Controls.Add(this.menuStripMain);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "FrmMain";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MongoCola";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -1105,9 +1130,12 @@ namespace MongoCola
         private TabControl tabView;
         private ToolStripMenuItem ConfigfileMenuItem;
         private ToolStripMenuItem MultiLanguageToolStripMenuItem;
-        private ToolStripMenuItem machineLearningToolStripMenuItem;
-        private ToolStripMenuItem regressionToolStripMenuItem;
         private ToolStripMenuItem CreateViewtoolStripMenuItem;
+        private ToolStripMenuItem MongoDBManualMenuItem;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem ShellReferenceMenuItem;
+        private ToolStripMenuItem ShellMethod;
+        private ToolStripMenuItem AggregationReference;
     }
 }
 

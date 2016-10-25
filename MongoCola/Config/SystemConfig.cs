@@ -1,18 +1,9 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/8
- * Time: 13:50
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using System;
+﻿using System;
 using Common;
 using FunctionForm.Status;
 using MongoGUICtl;
 using MongoGUIView;
-using MongoUtility.Core;
+using MongoDB.Driver;
 
 namespace MongoCola.Config
 {
@@ -37,7 +28,7 @@ namespace MongoCola.Config
         /// <summary>
         ///     Config Format Version
         /// </summary>
-        public byte ConfigVer = 2;
+        public byte ConfigVer = 3;
 
 
         /// <summary>
@@ -55,8 +46,26 @@ namespace MongoCola.Config
         /// </summary>
         public bool IsDisplayNumberWithKSystem { set; get; }
 
+        /// <summary>
+        ///     GuidRepresentation
+        /// </summary>
+        public enum GuidRepresentation
+        {
+            Unspecified = 0,
+            Standard,
+            CSharpLegacy,
+            JavaLegacy,
+            PythonLegacy
+        }
 
-        [NonSerialized] public int DefaultRefreshStatusTimer = 30;
+        /// <summary>
+        ///     BsonGuidRepresentation
+        /// </summary>
+        public GuidRepresentation BsonGuidRepresentation { set; get; }
+
+
+        [NonSerialized]
+        public int DefaultRefreshStatusTimer = 30;
 
         /// <summary>
         ///     状态刷新间隔时间
@@ -88,17 +97,9 @@ namespace MongoCola.Config
         /// </summary>
         public void SaveSystemConfig()
         {
-            MongoConnectionConfig.MongoConfig.SerializableConnectionList.Clear();
-            foreach (var item in MongoConnectionConfig.MongoConfig.ConnectionList.Values)
-            {
-                MongoConnectionConfig.MongoConfig.SerializableConnectionList.Add(item);
-            }
             Utility.SaveObjAsXml(AppPath + SystemConfigFilename, this);
-            CtlTreeViewColumns.IsUtc = IsUtc;
-            CtlTreeViewColumns.IsDisplayNumberWithKSystem = IsDisplayNumberWithKSystem;
-            ViewHelper.IsUtc = IsUtc;
-            ViewHelper.IsDisplayNumberWithKSystem = IsDisplayNumberWithKSystem;
-            FrmServerMonitor.RefreshInterval = RefreshStatusTimer;
+            SystemManager.SystemConfig = this;
+            ApplyConfig();
         }
 
         /// <summary>
@@ -108,13 +109,21 @@ namespace MongoCola.Config
         public static void LoadFromConfigFile()
         {
             SystemManager.SystemConfig = Utility.LoadObjFromXml<SystemConfig>(AppPath + SystemConfigFilename);
+            ApplyConfig();
+        }
+
+        /// <summary>
+        ///     应用配置
+        /// </summary>
+        private static void ApplyConfig()
+        {
             CtlTreeViewColumns.IsUtc = SystemManager.SystemConfig.IsUtc;
             CtlTreeViewColumns.IsDisplayNumberWithKSystem = SystemManager.SystemConfig.IsDisplayNumberWithKSystem;
             ViewHelper.IsUtc = SystemManager.SystemConfig.IsUtc;
             ViewHelper.IsDisplayNumberWithKSystem = SystemManager.SystemConfig.IsDisplayNumberWithKSystem;
             FrmServerMonitor.RefreshInterval = SystemManager.SystemConfig.RefreshStatusTimer;
+            MongoDefaults.GuidRepresentation = (MongoDB.Bson.GuidRepresentation)SystemManager.SystemConfig.BsonGuidRepresentation;
         }
-
         #endregion
     }
 }

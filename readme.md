@@ -64,12 +64,19 @@ CSharp Mongo Driver 2.4.0-beta1
 2. 新建文档时候出现的无法通过数据集验证的异常处理
 3. 数据库必须有一个数据集，如果没有数据集的话，则数据库会被回收掉,所以新建数据库的时候，可以指定初始数据集的名称
 4. 修正了无法保存配置的严重错误！(感谢错误报告者： https://github.com/shipf0820)
+5. ML插件化
 
 ###聚合
 1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind
 2. 聚合操作符的更新
 3. 优化聚合UI
 4. 聚合结果保存为视图
+
+###mongobooster功能的借鉴
+1. 增加了MongoDB官方文档的链接
+2. BsonGuidRepresentation概念的引入
+
+
 
 ##Ver 2.0 2016/06/29
 1. Query增加了删除条件的功能

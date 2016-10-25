@@ -1,17 +1,8 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/9
- * Time: 14:14
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using MongoUtility.Basic;
+﻿using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.Security;
-using PlugInPackage;
+using PlugInPrj;
 using ResourceLib.Method;
 using ResourceLib.UI;
 using System.Windows.Forms;
@@ -40,8 +31,6 @@ namespace MongoCola
             }
 
             DisconnectToolStripMenuItem.Enabled = true;
-            //ShutDownToolStripMenuItem.Enabled = true;
-            //ShutDownToolStripButton.Enabled = true;
 
             switch (strNodeType)
             {
@@ -76,14 +65,10 @@ namespace MongoCola
                     shardingConfig.Click += ShardingConfigToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(shardingConfig);
 
-                    //var t5 = ShutDownToolStripMenuItem.Clone();
-                    //t5.Click += ShutDownToolStripMenuItem_Click;
-                    //contextMenuStripMain.Items.Add(t5);
                 }
                 else
                 {
                     contextMenuStripMain.Items.Add(DisconnectToolStripMenuItem.Clone());
-                    //contextMenuStripMain.Items.Add(ShutDownToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(InitReplsetToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ReplicaSetToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ShardingConfigToolStripMenuItem.Clone());
@@ -506,7 +491,6 @@ namespace MongoCola
             ViewDataToolStripMenuItem.Enabled = true;
             CollectionStatusToolStripMenuItem.Enabled = true;
             ValidateToolStripMenuItem.Enabled = true;
-            machineLearningToolStripMenuItem.Enabled = true;
             ExportToFileToolStripMenuItem.Enabled = true;
             if (e.Button == MouseButtons.Right)
             {
@@ -603,7 +587,6 @@ namespace MongoCola
                     contextMenuStripMain.Items.Add(new ToolStripSeparator());
                     contextMenuStripMain.Items.Add(CollectionStatusToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ValidateToolStripMenuItem.Clone());
-                    contextMenuStripMain.Items.Add(machineLearningToolStripMenuItem.Clone());
                 }
                 e.Node.ContextMenuStrip = contextMenuStripMain;
                 contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));

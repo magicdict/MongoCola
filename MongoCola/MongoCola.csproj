@@ -250,6 +250,10 @@
       <Project>{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}</Project>
       <Name>PlugInPackage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PlugInPrj\PlugInPrj.csproj">
+      <Project>{7A3EA89C-F84E-446C-892A-690FA28BEBCA}</Project>
+      <Name>PlugInPrj</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
       <Project>{5AC3B529-8E37-4D99-99E9-729603E3BB5E}</Project>
       <Name>ResourceLib</Name>

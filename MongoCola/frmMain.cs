@@ -7,7 +7,7 @@ using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
-using PlugInPackage;
+using PlugInPrj;
 using ResourceLib.Method;
 using ResourceLib.UI;
 using System;
@@ -94,13 +94,6 @@ namespace MongoCola
             serverStatusCtl.SelectObjectTag = "[ServerStatus]";
             serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
             MultiTabManger.AddView(serverStatusCtl, "Status");
-
-            //var ctlShellCommandEditor = new CtlJsEditor();
-            //ctlShellCommandEditor.IsFixedItem = true;
-            //ctlShellCommandEditor.SelectObjectTag = "[ShellCommand]";
-            //ctlShellCommandEditor.BindingMenu = commandShellToolStripMenuItem;
-            //MultiTabManger.AddView(ctlShellCommandEditor, "ShellCommand");
-
 
             //刷新
             RefreshToolStripMenuItem_Click(sender, e);

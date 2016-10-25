@@ -1,4 +1,4 @@
-﻿namespace PlugInPackage
+﻿namespace PlugInPrj
 {
     public abstract class PlugInBase
     {

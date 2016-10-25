@@ -288,14 +288,30 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult ExecuteMongoSvrCommand(string mongoCmd, MongoServer mongoSvr)
         {
-            CommandResult mCommandResult;
+            CommandResult mCommandResult = null;
             try
             {
-                mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mongoCmd);
+                if (mongoSvr.DatabaseExists(ConstMgr.DatabaseNameAdmin))
+                {
+                    mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mongoCmd);
+                }
+                else
+                {
+                    //Replset的时候，没有Admin数据库
+                    BsonDocument AdminDatabaseNotFound = new BsonDocument();
+                    AdminDatabaseNotFound.Add("errmsg", "Admin Database Not Found");
+                    mCommandResult = new CommandResult(AdminDatabaseNotFound);
+                }
             }
             catch (MongoCommandException ex)
             {
                 mCommandResult = new CommandResult(ex.Result);
+            }
+            catch (TimeoutException)
+            {
+                BsonDocument TimeOutDocument = new BsonDocument();
+                TimeOutDocument.Add("errmsg", "TimeoutException");
+                mCommandResult = new CommandResult(TimeOutDocument);
             }
             var e = new RunCommandEventArgs
             {
@@ -325,13 +341,16 @@ namespace MongoUtility.Command
                 else
                 {
                     //Replset的时候，没有Admin数据库
+                    BsonDocument AdminDatabaseNotFound = new BsonDocument();
+                    AdminDatabaseNotFound.Add("errmsg", "Admin Database Not Found");
+                    mCommandResult = new CommandResult(AdminDatabaseNotFound);
                 }
             }
             catch (MongoCommandException ex)
             {
                 mCommandResult = new CommandResult(ex.Result);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
                 BsonDocument TimeOutDocument = new BsonDocument();
                 TimeOutDocument.Add("errmsg", "TimeoutException");
@@ -517,8 +536,7 @@ namespace MongoUtility.Command
         /// <summary>
         ///     副本状态
         /// </summary>
-        public static MongoCommand ReplSetGetStatusCommand = new MongoCommand("replSetGetStatus",
-            EnumMgr.PathLevel.Instance);
+        public static MongoCommand ReplSetGetStatusCommand = new MongoCommand("replSetGetStatus", EnumMgr.PathLevel.Instance);
 
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// <summary>
@@ -574,6 +592,7 @@ namespace MongoUtility.Command
             }
             catch (EndOfStreamException)
             {
+
             }
             return mCommandResult;
         }
@@ -594,6 +613,7 @@ namespace MongoUtility.Command
             }
             catch (EndOfStreamException)
             {
+
             }
             return cmdRtn;
         }

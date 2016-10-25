@@ -1,13 +1,6 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/9
- * Time: 13:37
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
+﻿
 using Common;
+using PlugInPrj;
 
 namespace PlugInPackage.GenerateConfigIni
 {

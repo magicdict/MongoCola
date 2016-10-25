@@ -1,13 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/8
- * Time: 9:18
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;

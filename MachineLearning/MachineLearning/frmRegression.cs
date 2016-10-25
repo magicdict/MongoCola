@@ -1,7 +1,6 @@
 ﻿using Accord.Statistics.Models.Regression.Linear;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using System;
 using System.Drawing;
@@ -18,7 +17,7 @@ namespace MachineLearning
             InitializeComponent();
         }
 
-        MongoCollection mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
+        public MongoCollection mongoCol;
 
         private void frmRegression_Load(object sender, EventArgs e)
         {

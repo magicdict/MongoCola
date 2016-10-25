@@ -148,8 +148,6 @@
     <Compile Include="ImportAccessDB\frmSelectTable.Designer.cs">
       <DependentUpon>frmSelectTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlugInBase.cs" />
-    <Compile Include="PlugIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +162,10 @@
     <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
       <Project>{E71AF267-0DFD-4E71-94A7-48F40793CEEF}</Project>
       <Name>MongoGUIView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlugInPrj\PlugInPrj.csproj">
+      <Project>{7a3ea89c-f84e-446c-892a-690fa28bebca}</Project>
+      <Name>PlugInPrj</Name>
     </ProjectReference>
     <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
       <Project>{5AC3B529-8E37-4D99-99E9-729603E3BB5E}</Project>
