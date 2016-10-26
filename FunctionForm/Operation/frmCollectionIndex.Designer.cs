@@ -43,6 +43,7 @@ namespace FunctionForm.Operation
             this.numTTL = new System.Windows.Forms.NumericUpDown();
             this.chkExpireData = new System.Windows.Forms.CheckBox();
             this.txtIndexName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblIndexName = new System.Windows.Forms.Label();
             this.chkIsUnique = new System.Windows.Forms.CheckBox();
             this.chkIsSparse = new System.Windows.Forms.CheckBox();
@@ -53,7 +54,6 @@ namespace FunctionForm.Operation
             this.ctlIndexCreate3 = new MongoGUICtl.CtlIndexCreate();
             this.ctlIndexCreate2 = new MongoGUICtl.CtlIndexCreate();
             this.ctlIndexCreate1 = new MongoGUICtl.CtlIndexCreate();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabIndexMgr.SuspendLayout();
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();
@@ -79,14 +79,16 @@ namespace FunctionForm.Operation
             this.cmdDelIndex.Name = "cmdDelIndex";
             this.cmdDelIndex.Size = new System.Drawing.Size(132, 40);
             this.cmdDelIndex.TabIndex = 7;
-            this.cmdDelIndex.Tag = "DelIndex";
-            this.cmdDelIndex.Text = "Delect Index";
+            this.cmdDelIndex.Tag = "CollectionIndex_Tab_Current_Del";
+            this.cmdDelIndex.Text = "Drop Index";
             this.cmdDelIndex.UseVisualStyleBackColor = false;
             this.cmdDelIndex.Click += new System.EventHandler(this.cmdDelIndex_Click);
             // 
             // lstIndex
             // 
             this.lstIndex.CheckBoxes = true;
+            this.lstIndex.FullRowSelect = true;
+            this.lstIndex.GridLines = true;
             this.lstIndex.Location = new System.Drawing.Point(7, 7);
             this.lstIndex.Name = "lstIndex";
             this.lstIndex.Size = new System.Drawing.Size(628, 381);
@@ -196,6 +198,16 @@ namespace FunctionForm.Operation
             this.txtIndexName.Size = new System.Drawing.Size(335, 21);
             this.txtIndexName.TabIndex = 19;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 283);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 15);
+            this.label1.TabIndex = 18;
+            this.label1.Tag = "";
+            this.label1.Text = "Partial Filter Expression";
+            // 
             // lblIndexName
             // 
             this.lblIndexName.AutoSize = true;
@@ -289,16 +301,6 @@ namespace FunctionForm.Operation
             this.ctlIndexCreate1.Name = "ctlIndexCreate1";
             this.ctlIndexCreate1.Size = new System.Drawing.Size(592, 37);
             this.ctlIndexCreate1.TabIndex = 13;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 283);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 15);
-            this.label1.TabIndex = 18;
-            this.label1.Tag = "";
-            this.label1.Text = "Partial Filter Expression";
             // 
             // frmCollectionIndex
             // 

@@ -136,7 +136,7 @@
   <!--frmCollectionIndex-->
   <CollectionIndex_Title>索引管理器</CollectionIndex_Title>
   <CollectionIndex_Tab_Current>当前索引</CollectionIndex_Tab_Current>
-  <CollectionIndex_Tab_Current_Del>删除选中</CollectionIndex_Tab_Current_Del>
+  <CollectionIndex_Tab_Current_Del>删除索引</CollectionIndex_Tab_Current_Del>
   <CollectionIndex_Tab_Manager>添加索引</CollectionIndex_Tab_Manager>
 
 
