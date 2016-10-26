@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoUtility.Basic;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -71,7 +72,7 @@ namespace MongoGUIView
         /// <param name="key"></param>
         /// <param name="info"></param>
         /// <param name="tab"></param>
-        public static void AddView(MultiTabControl view, string tabPageTitle)
+        public static void AddView(MultiTabControl view, string tabPageTitle,string SelectTagType)
         {
             var key = view.SelectObjectTag;
             if (ExistTabPage.ContainsKey(key))
@@ -80,6 +81,7 @@ namespace MongoGUIView
                 return;
             }
             var tabpage = new TabPage();
+            if (SelectTagType == ConstMgr.GridFileSystemTag) tabpage.AllowDrop = true;
             if (view.IsFixedItem)
             {
                 if (!BindingMenuItems.ContainsKey(key))
@@ -102,7 +104,7 @@ namespace MongoGUIView
                         {
                             //加入
                             view.RefreshGui();
-                            AddView(view, tabPageTitle);
+                            AddView(view, tabPageTitle, SelectTagType);
                         }
                         else
                         {

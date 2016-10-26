@@ -50,7 +50,7 @@ namespace MongoUtility.Core
             if (string.IsNullOrEmpty(config.ConnectionString))
             {
                 mongoClientSetting.ConnectionMode = ConnectionMode.Direct;
-                SetReadPreferenceWriteConcern(mongoClientSetting, config);
+                ReadWrite.SetReadPreferenceWriteConcern(mongoClientSetting, config);
                 //Replset时候可以不用设置吗？                    
                 mongoClientSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
@@ -152,63 +152,7 @@ namespace MongoUtility.Core
             return mongoClientSetting;
         }
 
-        /// <summary>
-        ///     Set ReadPreference And WriteConcern
-        /// </summary>
-        /// <param name="clientsettings"></param>
-        /// <param name="config"></param>
-        private static void SetReadPreferenceWriteConcern(MongoClientSettings clientsettings,
-            MongoConnectionConfig config)
-        {
-            if (config.ReadPreference == ReadPreference.Primary.ToString())
-            {
-                clientsettings.ReadPreference = ReadPreference.Primary;
-            }
-            if (config.ReadPreference == ReadPreference.PrimaryPreferred.ToString())
-            {
-                clientsettings.ReadPreference = ReadPreference.PrimaryPreferred;
-            }
-            if (config.ReadPreference == ReadPreference.Secondary.ToString())
-            {
-                clientsettings.ReadPreference = ReadPreference.Secondary;
-            }
-            if (config.ReadPreference == ReadPreference.SecondaryPreferred.ToString())
-            {
-                clientsettings.ReadPreference = ReadPreference.SecondaryPreferred;
-            }
-            if (config.ReadPreference == ReadPreference.Nearest.ToString())
-            {
-                clientsettings.ReadPreference = ReadPreference.Nearest;
-            }
-            //Default ReadPreference is Primary
-            //安全模式
-            if (config.WriteConcern == WriteConcern.Unacknowledged.ToString())
-            {
-                clientsettings.WriteConcern = WriteConcern.Unacknowledged;
-            }
-            if (config.WriteConcern == WriteConcern.Acknowledged.ToString())
-            {
-                clientsettings.WriteConcern = WriteConcern.Acknowledged;
-            }
-            if (config.WriteConcern == WriteConcern.W2.ToString())
-            {
-                clientsettings.WriteConcern = WriteConcern.W2;
-            }
-            if (config.WriteConcern == WriteConcern.W3.ToString())
-            {
-                clientsettings.WriteConcern = WriteConcern.W3;
-            }
-            //remove from mongodrvier 2.0.0
-            //if (config.WriteConcern == WriteConcern.W4.ToString())
-            //{
-            //    mongoSvrSetting.WriteConcern = WriteConcern.W4;
-            //}
-            if (config.WriteConcern == WriteConcern.WMajority.ToString())
-            {
-                clientsettings.WriteConcern = WriteConcern.WMajority;
-            }
-            //Default WriteConcern is w=0
-        }
+
 
         #endregion
 
@@ -283,6 +227,7 @@ namespace MongoUtility.Core
         public static void RemoveConnectionConfig(string connectionName)
         {
             MongoConnSvrLst.Remove(connectionName);
+            MongoConnClientLst.Remove(connectionName);
         }
 
         /// <summary>

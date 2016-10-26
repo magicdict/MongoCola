@@ -40,6 +40,7 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        /// 
         /// </summary>
         public enum EnumGfsAlready
         {
@@ -51,6 +52,7 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        /// 
         /// </summary>
         public enum EnumGfsFileName
         {

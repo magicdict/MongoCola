@@ -197,7 +197,7 @@ namespace MongoGUIView
             this.chkIgnore.Text = "add files form selected folder only(ignore sub-folder)";
             this.chkIgnore.UseVisualStyleBackColor = true;
             // 
-            // frmGFSOption
+            // FrmGfsOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -208,6 +208,7 @@ namespace MongoGUIView
             this.Controls.Add(this.grpFileAlreadyExist);
             this.Controls.Add(this.grpFilename);
             this.Name = "FrmGfsOption";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GFS Insert Option";
             this.Load += new System.EventHandler(this.frmGFSOption_Load);
             this.grpFilename.ResumeLayout(false);

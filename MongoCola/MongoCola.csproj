@@ -246,10 +246,6 @@
       <Project>{E71AF267-0DFD-4E71-94A7-48F40793CEEF}</Project>
       <Name>MongoGUIView</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PlugInPackage\PlugInPackage.csproj">
-      <Project>{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}</Project>
-      <Name>PlugInPackage</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PlugInPrj\PlugInPrj.csproj">
       <Project>{7A3EA89C-F84E-446C-892A-690FA28BEBCA}</Project>
       <Name>PlugInPrj</Name>

@@ -228,11 +228,20 @@ namespace ResourceLib.Method
                     {
                         var regFileType = regVersion.GetValue(string.Empty) as string;
                         regVersion.Close();
-                        regVersion = Registry.ClassesRoot.OpenSubKey(regFileType + @"\DefaultIcon", true);
-                        if (regVersion != null)
+                        try
                         {
-                            regIconString = regVersion.GetValue(string.Empty) as string;
-                            regVersion.Close();
+                            //权限问题
+                            regVersion = Registry.ClassesRoot.OpenSubKey(regFileType + @"\DefaultIcon", true);
+                            if (regVersion != null)
+                            {
+                                regIconString = regVersion.GetValue(string.Empty) as string;
+                                regVersion.Close();
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            //如果没有访问权限,则什么都不做
+                            regVersion = null;
                         }
                     }
                     if (regIconString == null)

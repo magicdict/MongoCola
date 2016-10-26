@@ -93,7 +93,7 @@ namespace MongoCola
             serverStatusCtl.IsFixedItem = true;
             serverStatusCtl.SelectObjectTag = "[ServerStatus]";
             serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
-            MultiTabManger.AddView(serverStatusCtl, "Status");
+            MultiTabManger.AddView(serverStatusCtl, "Status",string.Empty);
 
             //刷新
             RefreshToolStripMenuItem_Click(sender, e);
@@ -485,6 +485,7 @@ namespace MongoCola
             {
                 case ConstMgr.GridFileSystemTag:
                     dataViewctl = new CtlGfsView(mDataViewInfo);
+                    dataViewctl.AllowDrop = true;
                     break;
                 case ConstMgr.UserListTag:
                     dataViewctl = new CtlUserView(mDataViewInfo);
@@ -501,7 +502,7 @@ namespace MongoCola
             dataViewctl.MDataViewInfo = mDataViewInfo;
             dataViewctl.SelectObjectTag = RuntimeMongoDbContext.SelectObjectTag;
             dataViewctl.ParentMenu = CollectionToolStripMenuItem;
-            MultiTabManger.AddView(dataViewctl, RuntimeMongoDbContext.GetCurrentCollectionName());
+            MultiTabManger.AddView(dataViewctl, RuntimeMongoDbContext.GetCurrentCollectionName(), RuntimeMongoDbContext.SelectTagType);
         }
 
         /// <summary>

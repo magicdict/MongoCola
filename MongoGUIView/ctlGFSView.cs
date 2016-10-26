@@ -39,6 +39,11 @@ namespace MongoGUIView
 
         private void ctlGFSView_Load(object sender, EventArgs e)
         {
+
+            lstData.AllowDrop = true;
+            tabDataShower.AllowDrop = true;
+            AllowDrop = true;
+
             OpenFileToolStripMenuItem.Click += OpenFileStripButton_Click;
             DownloadFileToolStripMenuItem.Click += DownloadFileStripButton_Click;
             UploadFileToolStripMenuItem.Click += UploadFileStripButton_Click;
@@ -53,7 +58,7 @@ namespace MongoGUIView
             UploadFolderToolStripMenuItem.Enabled = true;
 
             cmbListViewStyle.Visible = true;
-            cmbListViewStyle.SelectedIndexChanged += (x, y) => { lstData.View = (View) cmbListViewStyle.SelectedIndex; };
+            cmbListViewStyle.SelectedIndexChanged += (x, y) => { lstData.View = (View)cmbListViewStyle.SelectedIndex; };
         }
 
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,9 +112,61 @@ namespace MongoGUIView
             }
         }
 
+        /// <summary>
+        ///     双击操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             OpenFileStripButton_Click(sender, e);
+        }
+
+        /// <summary>
+        ///     拖曳终止
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lstData_DragDrop(object sender, DragEventArgs e)
+        {
+            Array UploadfileList = (Array)e.Data.GetData(DataFormats.FileDrop);
+            if (!MyMessageBox.ShowConfirm("UploadFile", "是否上传" + UploadfileList.Length + "个文件")) return;
+            var opt = new Gfs.UpLoadFileOption();
+            var frm = new FrmGfsOption();
+            frm.ShowDialog();
+            opt.AlreadyOpt = frm.Option;
+            opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
+            opt.FileNameOpt = frm.Filename;
+            opt.IgnoreSubFolder = frm.IgnoreSubFolder;
+            var count = 0;
+            foreach (string UploadFilename in UploadfileList)
+            {
+                if (File.Exists(UploadFilename))
+                {
+                    Gfs.UpLoadFile(UploadFilename, opt, RuntimeMongoDbContext.GetCurrentDataBase());
+                    count++;
+                }
+                else
+                {
+                    if (Directory.Exists(UploadFilename))
+                    {
+                        var uploadDir = new DirectoryInfo(UploadFilename);
+                        UploadFolder(uploadDir, ref count, opt);
+                    }
+                }
+            }
+            RefreshGui();
+            MyMessageBox.ShowMessage("Upload", "Upload Completed! Upload Files Count: " + count);
+        }
+        
+        /// <summary>
+        ///     开始拖曳
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lstData_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
         }
 
         protected void lstData_MouseClick(object sender, MouseEventArgs e)
@@ -275,6 +332,9 @@ namespace MongoGUIView
             }
         }
 
+
         #endregion
+
+
     }
 }

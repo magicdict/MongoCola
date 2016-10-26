@@ -97,8 +97,12 @@ namespace MongoUtility.Core
         {
             var setting = new XmlReaderSettings();
             var xml = new XmlSerializer(typeof(T));
-            var reader = XmlReader.Create(filename, setting);
+            var fs = new FileStream(filename, FileMode.Open);
+            var reader = XmlReader.Create(fs, setting);
             var obj = (T)xml.Deserialize(reader);
+#if NET462
+            fs.Close();
+#endif
             return obj;
         }
 
@@ -119,6 +123,9 @@ namespace MongoUtility.Core
             var ns = new XmlSerializerNamespaces();
             ns.Add("", "");
             xml.Serialize(writer, obj, ns);
+#if NET462
+            fs.Close();
+#endif
         }
     }
 }

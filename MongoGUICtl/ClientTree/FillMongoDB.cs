@@ -102,7 +102,7 @@ namespace MongoGUICtl.ClientTree
                             var collectionStatus = mongoDb.GetCollection(strColName).GetStats();
                             dbStatusList.Add(collectionStatus.Response);
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
 
                         }

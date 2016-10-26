@@ -53,6 +53,7 @@ namespace MongoGUIView
             // 
             // tabDataShower
             // 
+            this.tabDataShower.AllowDrop = true;
             this.tabDataShower.Size = new System.Drawing.Size(917, 366);
             // 
             // tabTreeView
@@ -69,8 +70,11 @@ namespace MongoGUIView
             // 
             // lstData
             // 
+            this.lstData.AllowDrop = true;
             this.lstData.Size = new System.Drawing.Size(903, 334);
             this.lstData.SelectedIndexChanged += new System.EventHandler(this.lstData_SelectedIndexChanged);
+            this.lstData.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstData_DragDrop);
+            this.lstData.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstData_DragEnter);
             this.lstData.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseClick);
             this.lstData.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseDoubleClick);
             // 
@@ -190,7 +194,7 @@ namespace MongoGUIView
             this.OpenFileStripButton.Text = "Open File";
             this.OpenFileStripButton.Click += new System.EventHandler(this.OpenFileStripButton_Click);
             // 
-            // ctlGFSView
+            // CtlGfsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
