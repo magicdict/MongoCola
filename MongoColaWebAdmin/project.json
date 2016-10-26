@@ -1,30 +1,25 @@
 {
   "dependencies": {
-    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
-    "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "1.0.0-preview2-final",
-      "type": "build"
-    },
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
-    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
-    "Microsoft.Extensions.Configuration.Json": "1.0.0",
-    "Microsoft.Extensions.Logging": "1.0.0",
-    "Microsoft.Extensions.Logging.Console": "1.0.0",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "MongoUtilityCore": "1.0.0-*",
-    "BundlerMinifier.Core": "2.2.281",
-    "Microsoft.AspNetCore.Mvc": "1.0.1",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
-    "Microsoft.NETCore.App": "1.0.1",
-    "Newtonsoft.Json": "9.0.1"
+    "BundlerMinifier.Core": "2.2.296",
+    "Microsoft.AspNetCore.Diagnostics": "1.1.0-preview1-final",
+    "Microsoft.AspNetCore.Mvc": "1.1.0-preview1-final",
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview3-final",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0-preview1-final",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0-preview1-final",
+    "Microsoft.AspNetCore.StaticFiles": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Logging": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Logging.Console": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Logging.Debug": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0-preview1-final",
+    "Microsoft.NETCore.App": "1.1.0-preview1-001100-00",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0-preview1-final",
+    "Newtonsoft.Json": "9.0.2-beta1"
   },
 
   "tools": {
-    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
   },
 
   "runtimes": {
