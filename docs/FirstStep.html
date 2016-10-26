@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mongo-Cola|Gui tools for MongoDB</title>
+    <link href="mongodb.css" rel="stylesheet"/>
+</head>
+<body style="background: url('images/background.JPG'); background-color: #000000; color: #FFFFFF; font-size: x-large; margin: 0px; padding: 0px;">
+<span><b>Tutorial:First Step</b></span>
+<table style="border-spacing: 0px;">
+    <tr>
+        <td align="center">
+            <br/>
+            <font size="3" color="black">
+                <b>第一次启动</b>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <font size="3">
+                在你第一次启动程序的时候，请会看到这样的一个语言选择窗体:<br/>
+                你可以选择简体中文作为程序的表示语言（繁体中文和日语现在已经部分支持了）
+                <br/>
+                <br/>
+                <img src="images/LanguagePicker.PNG" alt=""/>
+                <br/>
+                <br/>
+                如果您下载了MongoDB的安装文件，您可以使用一些工具，请在下面的窗体中设定工具的路径
+                <br/>
+                <br/>
+                <img src="images/Option_ToolKit.PNG" alt=""/>
+                <br/>
+                <font color="red">
+                    <b>这里我们假设路径是 C:\runmongo\bin</b>
+                </font><br/>
+                <br/>
+                如果启动正常，界面将会像下面这个样子.<br/>
+                <br/>
+                <img src="images/Main_Empty.PNG" alt=""/><br/>
+                <br/>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <font size="3" color="black">
+                <b>新增一个数据连接</b>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <font size="3">
+                接下来我们来启动一个MongoDB数据库:<br/>
+                （这里假设你将可执行文件放在 C:\runmongo\bin）<br/>
+                <br/>
+                <code>
+                    cd C:\runmongo\bin<br/>
+                    mkdir C:\mongodb\magicdict<br/>
+                    mongod --port 28030 --dbpath C:\mongodb\magicdict
+                </code>
+                <br/>
+                <br/>
+                <img src="images/StartupbyDos.PNG" alt=""/>
+                <br/>
+                <br/>
+                More reference @mongodb.org:<a href="http://www.mongodb.org/display/DOCS/Quickstart+Windows">
+                    Quickstart
+                    Windows
+                </a><br/>
+                [A Mongo connection is not only a single server,but also a replset,a route or config
+                server in sharding system]<br/>
+                <br/>
+                打开连接管理窗体:<br/>
+                菜单项：管理 -> 添加连接:<br/>
+                <br/>
+                <img src="images/ConnectionManager_Empty.PNG" alt=""/>
+                <br/>
+                <br/>
+                这里将会列出所有已经在软件中添加过的连接<br/>
+                如果是第一次运行软件，这个列表将是空的.<br/>
+                点击“添加”来新建一个连接<br/>
+                <br/>
+                <img src="images/ServerConnection.PNG" alt=""/>
+                <br/>
+                <br/>
+                你可以只输入三个项目<br/>
+                <ul>
+                    <li>连接名称(你可以按照自己的喜好命名)</li>
+                    <li>主机(主机的ＩＰ地址，也可以用‘localhost’表示本地)</li>
+                    <li>段口号</li>
+                </ul>
+                <img src="images/ServerConnection_Magicdict.PNG" alt=""/>
+                <br/>
+                <br/>
+                选中Magicdict,点击确定按钮<br/>
+                <font color="red">
+                    <b>左边的数据库对象需要手动更新，右边的服务器状态默认自动更新</b>
+                </font>
+                <br/>
+                <br/>
+                你可以折叠或者收起数据库对象的树型结构:
+                <ul>
+                    <li>菜单项：管理 -> 展开:</li>
+                    <li>菜单项：管理 -> 收起:</li>
+                </ul>
+                <img alt="" src="images/Main_MagicDict.PNG"/>
+                <br/>
+                <br/>
+            </font>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

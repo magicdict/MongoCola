@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mongo-Cola|Gui tools for MongoDB</title>
+    <link href="mongodb.css" rel="stylesheet"/>
+</head>
+<body style="background: url('images/background.JPG'); background-color: #000000; color: #FFFFFF; font-size: x-large; margin: 0px; padding: 0px;">
+<span>Tutorial:Aggregation</span>
+<table>
+    <tr>
+        <td align="center">
+            <br/>
+            <font size="3" color="black">
+                <b>Aggregation</b>
+            </font>
+        </td>
+        <td/>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <font size="3">Aggregation FrameWork Tool</font>
+            <br/>
+            <br/>
+            <img src="images/Aggregation.PNG" alt=""/>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <br/>
+            <font size="3" color="black">
+                <b>Map Reduce</b>
+            </font>
+        </td>
+        <td/>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <font size="3">
+                Map Reduce is a cool function,this tool is support the map reduce via GUI<br/>
+                To open the map-reduce form,please select a data treenode,then click right.<br/>
+                <br/>
+                <img src="images/Main_MapReduce.PNG" alt=""/>
+                <br/>
+                <br/>
+                In the map-reduce,you will see a sample for map javascript and reduce javascript.It
+                is only for beginer.<br/>
+                <br/>
+                <img src="images/MapReduce_Init.PNG" alt=""/>
+                <br/>
+                <br/>
+                You can load a javascript form system.js collection by select the jsname at listbox.Or
+                you can save your javascript to system.js collection.<br/>
+                When the javascript is ready,click run to do map-reduce.
+                <br/>
+                <br/>
+                <img src="images/MapReduce_Result.PNG" alt=""/>
+                <br/>
+                <br/>
+                <font color="red">
+                    If the socketTimeout is too short to complete the map-reduce,there
+                    will be a exception happens.Please modify the socketTimeout at connection manager
+                    form<br/>
+                </font>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <br/>
+            <font size="3" color="black">
+                <b>Others</b>
+            </font>
+        </td>
+        <td/>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <font size="3">
+                Count:<br/>
+                This tools also support the Aggregation:Count,Distinct,Group,(All Aggregation is
+                support query filter.The next section will introduce query filter)<br/>
+                Count will give you a count result of collection.The count result may be different
+                ,when a datafilter is enable or not.<br/>
+                <br/>
+                <br/>
+                <img src="images/Count.PNG" alt=""/>
+                <br/>
+                <br/>
+                Distinct:<br/>
+                You need to pick a distinct field first
+                <br/>
+                <br/>
+                <img src="images/Distinct_FieldPick.PNG" alt=""/>
+                <br/>
+                <br/>
+                Click "Run",the result is display by a messagebox:<br/>
+                <br/>
+                <img src="images/Distinct_Result.PNG" alt=""/>
+                <br/>
+                <br/>
+                Group:<br/>
+                Please see the reference first: <a href="http://www.mongodb.org/display/DOCS/Aggregation">Refrence of Aggregation at mongodb.org</a><br/>
+                The Gui of group is look like this:<br/>
+                <br/>
+                <img src="images/Group_Init.PNG" alt=""/>
+                <br/>
+                <br/>
+                If everything is right,the result looks like this:(Don't forget to add init fields...if
+                some fields is not need any more,leave fieldname with space)<br/>
+                <br/>
+                <img src="images/Group_Result.PNG" alt=""/>
+                <br/>
+                <br/>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <br/>
+            <font size="3" color="black">
+                <b>Text Search</b>
+            </font>
+        </td>
+        <td/>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <font size="3">
+                如果你连接的MongoDB的数据库是2.4及其以上，同时服务器端允许Text Search功能的话。你可以使用本工具进行Text Search。<br/>
+                MongoDB的Text Search 功能是针对拉丁语系的，所以，请不要尝试检索中文的关键字。<br/>
+                <br/>
+                <img src="images/TextSearch.png" alt="Text Search"/>
+            </font>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mongo-Cola|Gui tools for MongoDB</title>
+    <link href="mongodb.css" rel="stylesheet"/>
+</head>
+<body style="background: url('images/background.JPG'); background-color: #000000; color: #FFFFFF; font-size: x-large; margin: 0px; padding: 0px;">
+<span>Release Note</span>
+<table>
+<tr>
+<td/>
+<td>
+<font size="3" color="black">
+<pre>
+                          ========================================================================
+                          MongoCola Release Note
+                          ========================================================================
+                          MongoCola is developed by Microsoft .NET (C#)
+                          You need install .NET framework 4.0 to run it.
+                          The C# Mongo driver is mongo offical C# driver 1.10.0.
+                          Test Based on MongoDB 2.8.0 rc4
+                          MongoCola is free and open source.
+
+                          ========================================================================
+                          Release History
+                          ========================================================================
+                          Ver 1.40-rc0  2015/01/20 @ Shanghai China
+                          1.Refactoring All
+
+                          Ver 1.32  2014/05/01 @ Dalian China
+                          1.Create User Custom Role
+
+                          Ver 1.31  2013/12/31 @ Dalian China
+                          1.Upgrade the user system to fit the version 2.4.8
+                          2.File Filter:Add all files filter
+
+                          ========================================================================
+                          Ver 1.30  2013/10/25 @ Dalian China
+                          1.Upgrade the user system to fit the version 2.4.6
+                          2.New User Guide
+                          3.Add "Language","Limit" Option to Text Search
+                          4.Add validate function for collection
+                          5.Add SaveToFile function for some command result as a json format
+                          6.Operation Count Monitor
+                          7.Show the full name of collection at label of tag
+                          8.Fix the statusbar text when a connection node is selected
+                          9.Export to file.
+                          10.New MongoDBUser ManagerSystem
+
+                          ========================================================================
+                          Ver 1.28 2013/03/25
+                          1.Create Text Index at Index Management
+                          2.Text Search
+
+                          ========================================================================
+                          Ver 1.27 2013/03/01
+                          1.Aggregation Framework
+                          2.Show MongoDB Driver version at exception message box.
+                          3.Exception log
+                          4.BsonArray Input
+
+                          ========================================================================
+
+                          Ver 1.26 2013/01/27
+                          Only Fix Bugs
+                          1.Change the ForeColor to HighlightText of the selected node text. (Thank cyrus for report bug)
+                          2.Try to fix the bugs of modify documents. (Thank cyrus for report bug)
+                          3.Report the MaxDocument Bugs of C#1.7.1 Driver
+                          ========================================================================
+
+
+                          Ver 1.25 2013/01/20
+                          1.Add chart to DB status and Collection status.
+                          2.Use BeginUpdate,EndUpdate to freeze UI when expend treeview.
+                          3.Show oldCollection name when the collection rename dialog is shown
+                          4.Fix Bug of not check Application.RenderWithVisualStyles (Thank cyrus for report bug)
+                          5.Fix Bug of delete a member of array at treeview (Thank cyrus for report bug)
+                          6.Add a preview to new document function.
+                          6.Aggregation Function:Run Aggregation JSON
+                          7.Add a document element directly.
+                          8.Try use SQL for a query.
+
+                          ========================================================================
+
+                          Ver 1.24 2013/01/06 [Back to IBM GDC]
+                          1.Upgrade to C# Driver to 1.7.1
+                          2.System.Windows.Forms.DataVisualization.dll For Data Visualization
+                          3.Support SSL
+                          4.Change SafeMode and SlaveOK to ReadPreferce and WriteConcern
+                          5.Support TimeToLive Index
+                          6.From Mongo2.2.2 Capped Collection is default AutoIdIndex.
+                          7.Add some useful link
+                          8.Change dialog from icon to application icon.
+                          9.Tag Aware Sharding
+                          10.GEONEAR QUERY
+                          11.Add Geo Index at index manager
+                          12.Rewrite Sharding Config
+                          ========================================================================
+
+                          Ver 1.22 2012/04/15
+                          1.Show the process at status bar when import data from Access And Upload Folder
+                          2.Fix the bug of delete document.Now only the record has a _id ObjectKey can be delete.
+                          3.DirectorySeparatorChar can be customize.
+                          4.Fix the bug that the panel at distinct form has not scrollbar.
+
+                          ========================================================================
+                          Ver 1.21 2012/04/08 [First Version @Accenture CDC]
+                          WebForm
+                          1.You can select a connection at connection list page to jump to connection detail page.
+                          2.Show Connection Status when click the connection node.
+                          3.Show Database Status when click the database node.
+                          4.Show Collection records when click the collection node.
+
+                          Main form:
+                          1.Display server role before connection name at node text.
+
+                          ========================================================================
+
+                          ========================================================================
+                          Ver 1.20 2012/03/31 [Last Version @IBM GDC]
+                          C# Driver:
+                          upgrade to C# offical driver 1.4.1
+
+                          Main form:
+                          1.Replset,Cluster will show member server at treeview.
+                          2.Fix the bug :  when disconnect a connection witch can't be connected a exception happened.
+                          3.Close ViewTabs of collection when the database witch the collection belongs to is droped.
+
+                          Connection Config:
+                          1.Add some argument of connection,eg.connectionTimeout.
+                          2.Connection name is editable.
+
+                          GFS View:
+                          1.Add Content-Type List (windows only)
+                          2.Collection fs.chunk is shown at collection list
+                          3.Now you can delete multi Files.
+                          4.Upload Folder can select if subfolder is ignor or not.
+
+                          Replset and sharding Manger
+                          1.Redesign the way to manage the replset and sharding.
+                          2.Skip EndOfStreamException.
+
+                          Others
+                          1.If getStatus exception happend,stop the auto refresh to avoid endless exception.
+                          2.fixed the bug that the userform show confirmbox instead of messagebox.
+
+                          ========================================================================
+                          Ver 1.13 2012/03/23
+                          All:
+                          1.Add Icon to form.
+                          2.Set all popup window's FormBorderStyle to FormBorderStyle.FixedSingle;
+
+                          Main：
+                          1.Put count,distinct,group,mapreduce menuitme to Aggregation
+                          2.Fix the bug when a server is shutdown by this application,the serverlist is not update
+
+                          GFS:
+                          1.Upload Folder
+                          2.Before Upload file,let user choose what to do if file is existed.
+                          3.The remote filename can be the name or Fullname of a localfile
+
+                          Collection DataView
+                          1.Set start position when view data records
+                          2.New TreeListView for show data records
+                          3.Fixed the bug,if the KEY_ID field is not the first item of the document.
+                          4.Add new document by json String.
+                          5.Fixed the display field bugs of datafilter
+                          6.Make the KEY_ID field always IsShow to true.
+
+                          Connection List
+                          1.Double Click to start at connection list form.
+
+                          MessageBox
+                          1.Make the visualStyle of Messagebox better.
+
+                          ========================================================================
+                          Ver 1.10 2012/03/16
+                          System:
+                          1.Set all popup form backcolor to white.
+                          2.Add some Language Resource
+
+                          Main Form:
+                          1.DataView Refresh function
+                          2.Add Tooltips to Dataview and Collection Nodes
+
+                          Status Control:
+                          1.Fixed Sort Bug at Collection Status
+                          2.Fixed the bug while the user login without admin auth.
+                          Thanks to mailto:mail.james@qq.com to report the bug
+
+
+                          DataView Control:
+                          1.Fixed "Open File in Editor" can't be use after DataView is refreshed.
+                          2.Use Offical C# Driver .ToJson() for textview
+
+                          Connection List Form:
+                          1.Fix the bug if there is no connection is selected,the form can't close by click Ok button
+                          2.Change the command Text "Cancel" to "close"
+
+                          Add Connection
+                          1.Fix bug:The ConnectionString will not be remove in config file.
+                          2.Add "Test" Function to test a connection is enable or not.
+
+                          ========================================================================
+                          Ver 1.10(Beta) 2012/03/16
+                          1.Multi Collection View is ready.
+                          2.Divide all collections into GFS,Javascript,User,Gerneral Collections,System Collections 5, Groups
+                          3.Add comfirm password at "Add New User" form.
+                          4.Add some icons.
+                          5.Add sort function to file list view.
+                          6.Change user password and readonly.
+                          7.DataBase profilling level function.
+                          8.Create/Drop Javascript
+                          9.Records count at display at perpage can be set at dataview.
+                          10.Capped Collection Restrictions.
+
+                          ========================================================================
+                          Ver 1.05 2012/03/10
+
+                          1.Change the Name of ClusterInfo to CurrentOperationInfo.
+                          2.Add Switch Auto Refresh Botton at Status form.
+                          3.Modify the way of get the total count of a collection,and the performance is up.Thanks to Shadower (cnblogs.com).
+                          4.Fixed Some bugs in GUI
+                          5.Modify repairDatabase from "compact" Command to "repairDatabase" Command.
+                          6.Catch TimeOut Exception When Run Command
+
+                          ========================================================================
+                          Ver 1.04 2012/03/07
+
+                          1.Open In Native Editor at Textview
+                          2.Compact Collection
+                          3.Advance options for Create a Collection
+                          4.Show Server Status at Mainform
+                          5.Add View ToolStrip and move DataNav to View Toolstrip.
+                          6.Fix display bug at connection list form.
+                          7.Change Online userguide to local
+                          8.Fix the bug that the icon of treeview can't be display when the config.xml file not exist.
+
+                          ========================================================================
+                          Ver 1.03 2012/01/13
+
+                          1.Set All Form's FontSize to 9.75pt.
+                          2.Show CommandText After a command is completed.
+                          3.Clear Navi Record Label After Clear.
+                          4.Fix a bug when show fileInfo at TableView
+                          5.Fix a bug when add a connection by use a ConnectionString
+                          6.Modify Repair Database Enable condition.
+
+                          ========================================================================
+                          Ver 1.02 2012/01/04
+
+                          1.Display "English" at Language Picker form instead of Space when default Language is used.
+                          2.Show Connection Host and Port at Connection ListBox.
+                          3.Array Operation is supported.
+                          4.BsonDocument Element is supported.
+                          5.Correct Paste ShortKey form Ctrl + P to Ctrl + V.
+                          6.Show Message When exception happend at Element operation.
+
+                          ========================================================================
+                          Ver 1.01 2011/12/27
+
+                          1.Add Chinese and Japanese Language File
+                          2.Make Status Form Sizable
+
+                          ========================================================================
+                          Ver 1.00 2011/12/22
+
+                          This is the first release of MongoCola.
+                          ========================================================================
+                        </pre>
+</font>
+</td>
+</tr>
+</table>
+</body>
+</html>

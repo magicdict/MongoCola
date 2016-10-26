@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mongo-Cola|Gui tools for MongoDB</title>
+    <link href="mongodb.css" rel="stylesheet"/>
+</head>
+<body style="background: url('images/background.JPG'); background-color: #000000; color: #FFFFFF; font-size: x-large; margin: 0px; padding: 0px;">
+<table>
+    <tr>
+        <td align="center">
+            <br/>
+            <font size="3" color="black">
+                <b>Document Operation</b>
+            </font>
+        </td>
+        <td/>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <font size="3">
+                You can add a new empty document to current collection.Select a data
+                Node<img src="images/data.png" alt=""/>
+                at the left pannel.
+                <ul>
+                    <li>MenuItem：Add Document</li>
+                    <li>Right Context Menu：Add Document</li>
+                </ul>
+                A empty document will append to current collection.<br/>
+                <br/>
+                <img src="images/addemptydoc.PNG" alt=""/>
+                <br/>
+                <br/>
+                As you have add a empty document to collection.Now try to add some element to this
+                empty document.<br/>
+                1.Add a BsonElement to collection:Select document node,then
+                <ul>
+                    <li>Menu:Operation -> Document -> Add Element</li>
+                    <li>RightClick Context - > Add Element</li>
+                </ul>
+                <img src="images/AddElement1.PNG" alt=""/>
+                <br/>
+                <br/>
+                Now BsonString,BsonInt32,BsonDateTime,BSonBoolean,BSonDocument,BSonArray is supported.
+                <br/>
+                <br/>
+                <img src="images/AddElement2.PNG" alt=""/>
+                <br/>
+                <br/>
+                You also can add Element to a document,or add a value to a Array with "Add Element"
+                menuitem. (But now a Array or a Document add to a Array is not support yet)<br/>
+                With this tool,you can generate your owner layout quickly.
+                <br/>
+                <br/>
+                <img src="images/AddElement3.PNG" alt=""/>
+                <br/>
+                <br/>
+                You can also copy,cut,paste Element of a document or value of a array to generate your owner layout quickly.
+                <br/>
+                <br/>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <br/>
+            <font size="3" color="black">
+                <b>Data Query</b>
+            </font>
+        </td>
+        <td/>
+    </tr>
+    <tr>
+        <td/>
+        <td>
+            <font size="3">
+                With DataQuery,you can decide the output fields with conditions.<br/>
+                To enable the DataQuery,please select the data node from the left panel,then<br/>
+                <ul>
+                    <li>Click the MainMenu : Data -> Query</li>
+                    <li>Click the ContextMenu : Query</li>
+                </ul>
+                You can Select the output fields with sort in "Output fields" tab.<br/>
+                <br/>
+                <img src="images/Query_init.PNG" alt=""/>
+                <br/>
+                <br/>
+                You can give some conditions to limit the output data in "Filter" tab.<br/>
+                <br/>
+                Example1: Select * from Collection Where Age > 10<br/>
+                <br/>
+                <img src="images/Query_Condition_One.PNG" alt=""/>
+                <br/>
+                <br/>
+                <img src="images/Query_Condition_One_Result.PNG" alt=""/>
+                <br/>
+                <br/>
+                <br/>
+                Example2: Select * from Collection Where Age > 10 Or Age2 < 10
+                <br/>
+                <br/>
+                <img src="images/Query_Condition_Two.PNG" alt=""/>
+                <br/>
+                <br/>
+                <img src="images/Query_Condition_Two_Result.PNG" alt=""/>
+                <br/>
+                <br/>
+                <br/>
+                Example3: Select * from Collection Where (Age > 10 and Age2 < 10) or Age > 10
+                <br/>
+                <br/>
+                <img src="images/Query_Condition_Three.PNG" alt=""/>
+                <br/>
+                <br/>
+                <img src="images/Query_Condition_Three_Result.PNG" alt=""/>
+                <br/>
+                <br/>
+                You can save your query filter into a .xml file or load your query filter from a
+                .xml file at any functions witch support query filter.<br/>
+                (All Aggregation is support query filter.)<br/>
+                You also can click the
+                <img src="images/Filter.png" alt=""/>
+                icon on toolbar to switch filter status quickly.<br/>
+                <br/>
+                <img src="images/Toolbar.PNG" alt=""/><br/>
+                <br/>
+            </font>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
