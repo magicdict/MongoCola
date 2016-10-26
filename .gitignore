@@ -18,6 +18,7 @@
 *.scc
 *.bk
 *.bak
+*.png
 /MongoCola/.localhistory
 /MongoCola/MongoCola.sln.ide
 /MongoGUICtl/bin
