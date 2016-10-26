@@ -38,6 +38,7 @@ namespace FunctionForm.Operation
             this.tabIndexMgr = new System.Windows.Forms.TabControl();
             this.tabCurrentIndex = new System.Windows.Forms.TabPage();
             this.tabIndexManager = new System.Windows.Forms.TabPage();
+            this.txtPartialIndexes = new System.Windows.Forms.TextBox();
             this.chkPartialIndexes = new System.Windows.Forms.CheckBox();
             this.numTTL = new System.Windows.Forms.NumericUpDown();
             this.chkExpireData = new System.Windows.Forms.CheckBox();
@@ -52,7 +53,7 @@ namespace FunctionForm.Operation
             this.ctlIndexCreate3 = new MongoGUICtl.CtlIndexCreate();
             this.ctlIndexCreate2 = new MongoGUICtl.CtlIndexCreate();
             this.ctlIndexCreate1 = new MongoGUICtl.CtlIndexCreate();
-            this.txtPartialIndexes = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabIndexMgr.SuspendLayout();
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();
@@ -124,6 +125,7 @@ namespace FunctionForm.Operation
             this.tabIndexManager.Controls.Add(this.numTTL);
             this.tabIndexManager.Controls.Add(this.chkExpireData);
             this.tabIndexManager.Controls.Add(this.txtIndexName);
+            this.tabIndexManager.Controls.Add(this.label1);
             this.tabIndexManager.Controls.Add(this.lblIndexName);
             this.tabIndexManager.Controls.Add(this.chkIsUnique);
             this.tabIndexManager.Controls.Add(this.chkIsSparse);
@@ -142,6 +144,14 @@ namespace FunctionForm.Operation
             this.tabIndexManager.TabIndex = 1;
             this.tabIndexManager.Tag = "CollectionIndexTabManager";
             this.tabIndexManager.Text = "Create Index";
+            // 
+            // txtPartialIndexes
+            // 
+            this.txtPartialIndexes.Location = new System.Drawing.Point(167, 283);
+            this.txtPartialIndexes.Multiline = true;
+            this.txtPartialIndexes.Name = "txtPartialIndexes";
+            this.txtPartialIndexes.Size = new System.Drawing.Size(473, 122);
+            this.txtPartialIndexes.TabIndex = 23;
             // 
             // chkPartialIndexes
             // 
@@ -280,16 +290,17 @@ namespace FunctionForm.Operation
             this.ctlIndexCreate1.Size = new System.Drawing.Size(592, 37);
             this.ctlIndexCreate1.TabIndex = 13;
             // 
-            // txtPartialIndexes
+            // label1
             // 
-            this.txtPartialIndexes.Location = new System.Drawing.Point(167, 257);
-            this.txtPartialIndexes.Multiline = true;
-            this.txtPartialIndexes.Name = "txtPartialIndexes";
-            this.txtPartialIndexes.Size = new System.Drawing.Size(473, 148);
-            this.txtPartialIndexes.TabIndex = 23;
-            this.txtPartialIndexes.Text = "Partial Filter Expression";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 283);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 15);
+            this.label1.TabIndex = 18;
+            this.label1.Tag = "";
+            this.label1.Text = "Partial Filter Expression";
             // 
-            // FrmCollectionIndex
+            // frmCollectionIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -300,7 +311,7 @@ namespace FunctionForm.Operation
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmCollectionIndex";
+            this.Name = "frmCollectionIndex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "CollectionIndexTitle";
             this.Text = "Index Management";
@@ -337,5 +348,6 @@ namespace FunctionForm.Operation
         private NumericUpDown numTTL;
         private CheckBox chkPartialIndexes;
         private TextBox txtPartialIndexes;
+        private Label label1;
     }
 }

@@ -17,37 +17,19 @@ namespace MongoGUICtl
             GuiConfig.Translateform(Controls);
             if (RuntimeMongoDbContext.GetCurrentCollection() != null)
             {
-                foreach (
-                    var fieldName in
-                        MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection())
-                    )
+                foreach (var fieldName in MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection()))
                 {
                     cmbKeyName.Items.Add(fieldName);
                 }
             }
+            Common.Utility.FillComberWithEnum(cmbIndexKeyType, typeof(EnumMgr.IndexType), true);
         }
 
         public EnumMgr.IndexType IndexKeyType
         {
             get
             {
-                if (radAscendingKey.Checked)
-                {
-                    return EnumMgr.IndexType.Ascending;
-                }
-                if (radDescendingKey.Checked)
-                {
-                    return EnumMgr.IndexType.Descending;
-                }
-                if (radGeoSpatial.Checked)
-                {
-                    return EnumMgr.IndexType.GeoSpatial;
-                }
-                if (radText.Checked)
-                {
-                    return EnumMgr.IndexType.Text;
-                }
-                return EnumMgr.IndexType.Ascending;
+                return (EnumMgr.IndexType)cmbIndexKeyType.SelectedIndex;
             }
         }
 

@@ -68,12 +68,16 @@ CSharp Mongo Driver 2.4.0-beta1
 5. ML插件化
 6. 修正了切断连接无效的问题
 7. NetCore和Net版本条件编译
+8. BsonDocument树形表示优化
 
 ###聚合
 1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind
 2. 聚合操作符的更新
 3. 优化聚合UI
 4. 聚合结果保存为视图
+
+###索引管理器
+1. 更新了索引种类（7种索引）
 
 ###mongobooster功能的借鉴
 1. 增加了MongoDB官方文档的链接

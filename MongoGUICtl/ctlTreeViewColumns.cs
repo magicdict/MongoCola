@@ -203,6 +203,14 @@ namespace MongoGUICtl
                     {
                         if (mElement.Value != null)
                         {
+                            if (mElement.Value.IsBsonDocument)
+                            {
+                                strColumnText = "{ " + mElement.Value.AsBsonDocument.ElementCount + " Fields }";
+                            }
+                            if (mElement.Value.IsBsonArray)
+                            {
+                                strColumnText = "{ " + mElement.Value.AsBsonArray.Count + " Items }";
+                            }
                             if (!mElement.Value.IsBsonDocument && !mElement.Value.IsBsonArray)
                             {
                                 strColumnText = GetDisplayString(ref mElement);
@@ -213,6 +221,14 @@ namespace MongoGUICtl
                             if (mValue != null)
                             {
                                 //Type这里已经有表示Type的标识了，这里就不重复显示了。
+                                if (mValue.IsBsonDocument)
+                                {
+                                    if (e.Node.Level > 0) strColumnText = "{ " + mValue.AsBsonDocument.ElementCount + " Fields }";
+                                }
+                                if (mValue.IsBsonArray)
+                                {
+                                    if (e.Node.Level > 0) strColumnText = "{ " + mValue.AsBsonArray.Count + " Items }";
+                                }
                                 if (!mValue.IsBsonDocument && !mValue.IsBsonArray)
                                 {
                                     if (e.Node.Level > 0)

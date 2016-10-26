@@ -73,36 +73,43 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void cmdAddIndex_Click(object sender, EventArgs e)
         {
-            var ascendingKey = new List<string>();
-            var descendingKey = new List<string>();
-            var geoSpatialKey = string.Empty;
+            //Index UIOption
+            var uiOption = new Operater.IndexOption();
+            uiOption.AscendingKey = new List<string>();
+            uiOption.DescendingKey = new List<string>();
+            uiOption.TextKey = new List<string>();
+
             var firstKey = string.Empty;
-            var textKey = string.Empty;
             for (var i = 0; i < 5; i++)
             {
-                var ctl = (CtlIndexCreate) Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
+                var ctl = (CtlIndexCreate)Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
                 if (ctl.KeyName == string.Empty) continue;
                 firstKey = ctl.KeyName.Trim();
                 switch (ctl.IndexKeyType)
                 {
-                    case EnumMgr.IndexType.Ascending:
-                        ascendingKey.Add(ctl.KeyName.Trim());
+                    case EnumMgr.IndexType.GeoSpatialHaystack:
+                        uiOption.GeoSpatialHaystackKey = ctl.KeyName.Trim();
                         break;
-                    case EnumMgr.IndexType.Descending:
-                        descendingKey.Add(ctl.KeyName.Trim());
+                    case EnumMgr.IndexType.GeoSpatialSpherical:
+                        uiOption.GeoSpatialSphericalKey = ctl.KeyName.Trim();
                         break;
                     case EnumMgr.IndexType.GeoSpatial:
-                        geoSpatialKey = ctl.KeyName.Trim();
+                        uiOption.GeoSpatialKey = ctl.KeyName.Trim();
+                        break;
+                    case EnumMgr.IndexType.Ascending:
+                        uiOption.AscendingKey.Add(ctl.KeyName.Trim());
+                        break;
+                    case EnumMgr.IndexType.Descending:
+                        uiOption.DescendingKey.Add(ctl.KeyName.Trim());
                         break;
                     case EnumMgr.IndexType.Text:
-                        textKey = ctl.KeyName.Trim();
+                        uiOption.TextKey.Add(ctl.KeyName.Trim());
                         break;
-                    default:
+                    case EnumMgr.IndexType.Hashed:
+                        uiOption.HashedKey = ctl.KeyName.Trim();
                         break;
                 }
             }
-            //Index UIOption
-            var uiOption = new Operater.IndexOption();
             uiOption.IsBackground = chkIsBackground.Checked;
             uiOption.IsDropDups = chkIsDroppedDups.Checked;
             uiOption.IsSparse = chkIsSparse.Checked;
@@ -110,14 +117,10 @@ namespace FunctionForm.Operation
             uiOption.IsExpireData = chkExpireData.Checked;
             //Partial Indexes
             uiOption.IsPartial = chkPartialIndexes.Checked;
-            uiOption.Ttl = (int) numTTL.Value;
-            uiOption.AscendingKey = ascendingKey;
-            uiOption.DescendingKey = descendingKey;
-            uiOption.GeoSpatialKey = geoSpatialKey;
+            uiOption.Ttl = (int)numTTL.Value;
             uiOption.FirstKey = firstKey;
-            uiOption.TextKey = textKey;
             uiOption.IndexName = txtIndexName.Text;
-            //Partial Indexes
+            //Partial Condition
             uiOption.PartialCondition = txtPartialIndexes.Text;
             var strMessageTitle = string.Empty;
             var strMessageContent = string.Empty;
