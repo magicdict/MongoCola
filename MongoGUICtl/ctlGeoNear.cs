@@ -28,23 +28,39 @@ namespace MongoGUICtl
 
         private void cmdGeoNear_Click(object sender, EventArgs e)
         {
-            var geoOption = new GeoNearArgs();
-            geoOption.DistanceMultiplier = double.Parse(NumDistanceMultiplier.Text);
-            geoOption.MaxDistance = double.Parse(NumMaxDistance.Text);
-            geoOption.Spherical = chkSpherical.Checked;
-            geoOption.Limit = (int) NumResultCount.Value;
-            geoOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
+            BsonDocument mGeoNearAs = null;
+            bool IsHaystack = chkHaystack.Checked;
             try
             {
-                var mGeoNearAs =
-                    RuntimeMongoDbContext.GetCurrentCollection().GeoNearAs<BsonDocument>(geoOption).Response;
-                UiHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
-                trvGeoResult.DatatreeView.Nodes[0].Expand();
+                if (IsHaystack)
+                {
+                    var geoSearchOption = new GeoHaystackSearchArgs();
+                    geoSearchOption.MaxDistance = double.Parse(NumMaxDistance.Text);
+                    geoSearchOption.Limit = (int)NumResultCount.Value;
+                    geoSearchOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
+                    //geoSearch
+                    mGeoNearAs = RuntimeMongoDbContext.GetCurrentCollection().GeoHaystackSearchAs<BsonDocument>(geoSearchOption).Response;
+                }
+                else
+                {
+                    var geoOption = new GeoNearArgs();
+                    geoOption.DistanceMultiplier = double.Parse(NumDistanceMultiplier.Text);
+                    geoOption.MaxDistance = double.Parse(NumMaxDistance.Text);
+                    geoOption.Spherical = chkSpherical.Checked;
+                    geoOption.Limit = (int)NumResultCount.Value;
+                    geoOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
+                    //geoNear
+                    mGeoNearAs = RuntimeMongoDbContext.GetCurrentCollection().GeoNearAs<BsonDocument>(geoOption).Response;
+                }
             }
             catch (Exception ex)
             {
                 Utility.ExceptionDeal(ex);
+                return;
             }
+            UiHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
+            trvGeoResult.DatatreeView.Nodes[0].Expand();
+
         }
 
         /// <summary>
@@ -54,7 +70,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void btnKM_Click(object sender, EventArgs e)
         {
-            NumDistanceMultiplier.Text = (1/6378.137).ToString();
+            NumDistanceMultiplier.Text = (1 / 6378.137).ToString();
         }
 
         /// <summary>
@@ -64,7 +80,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void btnMile_Click(object sender, EventArgs e)
         {
-            NumDistanceMultiplier.Text = (1/3963.192).ToString();
+            NumDistanceMultiplier.Text = (1 / 3963.192).ToString();
         }
 
         private void btnHelp_Click(object sender, EventArgs e)

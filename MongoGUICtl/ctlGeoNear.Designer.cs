@@ -33,122 +33,123 @@ namespace MongoGUICtl
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnHelp = new Button();
-            this.btnMile = new Button();
-            this.btnKM = new Button();
-            this.NumGeoX = new TextBox();
-            this.NumGeoY = new TextBox();
-            this.NumMaxDistance = new TextBox();
-            this.NumDistanceMultiplier = new TextBox();
-            this.lblMaxDistance = new Label();
-            this.lblDistanceMultiplier = new Label();
-            this.chkSpherical = new CheckBox();
-            this.NumResultCount = new NumericUpDown();
-            this.cmdGeoNear = new Button();
-            this.lblGeoNear = new Label();
-            this.lblResultCount = new Label();
-            this.lnkGeoNear = new LinkLabel();
-            this.trvGeoResult = new CtlTreeViewColumns();
-            ((ISupportInitialize)(this.NumResultCount)).BeginInit();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.btnMile = new System.Windows.Forms.Button();
+            this.btnKM = new System.Windows.Forms.Button();
+            this.NumGeoX = new System.Windows.Forms.TextBox();
+            this.NumGeoY = new System.Windows.Forms.TextBox();
+            this.NumMaxDistance = new System.Windows.Forms.TextBox();
+            this.NumDistanceMultiplier = new System.Windows.Forms.TextBox();
+            this.lblMaxDistance = new System.Windows.Forms.Label();
+            this.lblDistanceMultiplier = new System.Windows.Forms.Label();
+            this.chkSpherical = new System.Windows.Forms.CheckBox();
+            this.NumResultCount = new System.Windows.Forms.NumericUpDown();
+            this.cmdGeoNear = new System.Windows.Forms.Button();
+            this.lblGeoNear = new System.Windows.Forms.Label();
+            this.lblResultCount = new System.Windows.Forms.Label();
+            this.lnkGeoNear = new System.Windows.Forms.LinkLabel();
+            this.chkHaystack = new System.Windows.Forms.CheckBox();
+            this.trvGeoResult = new MongoGUICtl.CtlTreeViewColumns();
+            ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).BeginInit();
             this.SuspendLayout();
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new Point(372, 65);
+            this.btnHelp.Location = new System.Drawing.Point(381, 67);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new Size(35, 23);
+            this.btnHelp.Size = new System.Drawing.Size(35, 21);
             this.btnHelp.TabIndex = 33;
             this.btnHelp.Text = "?";
             this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new EventHandler(this.btnHelp_Click);
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // btnMile
             // 
-            this.btnMile.Location = new Point(308, 65);
+            this.btnMile.Location = new System.Drawing.Point(317, 67);
             this.btnMile.Name = "btnMile";
-            this.btnMile.Size = new Size(58, 23);
+            this.btnMile.Size = new System.Drawing.Size(58, 21);
             this.btnMile.TabIndex = 32;
             this.btnMile.Text = "Mile";
             this.btnMile.UseVisualStyleBackColor = true;
-            this.btnMile.Click += new EventHandler(this.btnMile_Click);
+            this.btnMile.Click += new System.EventHandler(this.btnMile_Click);
             // 
             // btnKM
             // 
-            this.btnKM.Location = new Point(250, 65);
+            this.btnKM.Location = new System.Drawing.Point(259, 67);
             this.btnKM.Name = "btnKM";
-            this.btnKM.Size = new Size(52, 23);
+            this.btnKM.Size = new System.Drawing.Size(52, 21);
             this.btnKM.TabIndex = 31;
             this.btnKM.Text = "KM";
             this.btnKM.UseVisualStyleBackColor = true;
-            this.btnKM.Click += new EventHandler(this.btnKM_Click);
+            this.btnKM.Click += new System.EventHandler(this.btnKM_Click);
             // 
             // NumGeoX
             // 
-            this.NumGeoX.Location = new Point(115, 38);
+            this.NumGeoX.Location = new System.Drawing.Point(124, 42);
             this.NumGeoX.Name = "NumGeoX";
-            this.NumGeoX.Size = new Size(51, 20);
+            this.NumGeoX.Size = new System.Drawing.Size(51, 21);
             this.NumGeoX.TabIndex = 27;
             this.NumGeoX.Text = "1";
-            this.NumGeoX.TextAlign = HorizontalAlignment.Right;
+            this.NumGeoX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NumGeoY
             // 
-            this.NumGeoY.Location = new Point(172, 38);
+            this.NumGeoY.Location = new System.Drawing.Point(181, 42);
             this.NumGeoY.Name = "NumGeoY";
-            this.NumGeoY.Size = new Size(51, 20);
+            this.NumGeoY.Size = new System.Drawing.Size(51, 21);
             this.NumGeoY.TabIndex = 28;
             this.NumGeoY.Text = "1";
-            this.NumGeoY.TextAlign = HorizontalAlignment.Right;
+            this.NumGeoY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NumMaxDistance
             // 
-            this.NumMaxDistance.Location = new Point(115, 69);
+            this.NumMaxDistance.Location = new System.Drawing.Point(124, 71);
             this.NumMaxDistance.Name = "NumMaxDistance";
-            this.NumMaxDistance.Size = new Size(116, 20);
+            this.NumMaxDistance.Size = new System.Drawing.Size(116, 21);
             this.NumMaxDistance.TabIndex = 29;
             this.NumMaxDistance.Text = "1";
-            this.NumMaxDistance.TextAlign = HorizontalAlignment.Right;
+            this.NumMaxDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NumDistanceMultiplier
             // 
-            this.NumDistanceMultiplier.Location = new Point(371, 41);
+            this.NumDistanceMultiplier.Location = new System.Drawing.Point(380, 45);
             this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
-            this.NumDistanceMultiplier.Size = new Size(116, 20);
+            this.NumDistanceMultiplier.Size = new System.Drawing.Size(116, 21);
             this.NumDistanceMultiplier.TabIndex = 30;
             this.NumDistanceMultiplier.Text = "1";
-            this.NumDistanceMultiplier.TextAlign = HorizontalAlignment.Right;
+            this.NumDistanceMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblMaxDistance
             // 
             this.lblMaxDistance.AutoSize = true;
-            this.lblMaxDistance.Location = new Point(3, 69);
+            this.lblMaxDistance.Location = new System.Drawing.Point(12, 71);
             this.lblMaxDistance.Name = "lblMaxDistance";
-            this.lblMaxDistance.Size = new Size(72, 13);
+            this.lblMaxDistance.Size = new System.Drawing.Size(77, 12);
             this.lblMaxDistance.TabIndex = 26;
             this.lblMaxDistance.Text = "Max Distance";
             // 
             // lblDistanceMultiplier
             // 
             this.lblDistanceMultiplier.AutoSize = true;
-            this.lblDistanceMultiplier.Location = new Point(247, 44);
+            this.lblDistanceMultiplier.Location = new System.Drawing.Point(256, 47);
             this.lblDistanceMultiplier.Name = "lblDistanceMultiplier";
-            this.lblDistanceMultiplier.Size = new Size(93, 13);
+            this.lblDistanceMultiplier.Size = new System.Drawing.Size(119, 12);
             this.lblDistanceMultiplier.TabIndex = 25;
             this.lblDistanceMultiplier.Text = "Distance Multiplier";
             // 
             // chkSpherical
             // 
             this.chkSpherical.AutoSize = true;
-            this.chkSpherical.Location = new Point(251, 11);
+            this.chkSpherical.Location = new System.Drawing.Point(260, 17);
             this.chkSpherical.Name = "chkSpherical";
-            this.chkSpherical.Size = new Size(70, 17);
+            this.chkSpherical.Size = new System.Drawing.Size(78, 16);
             this.chkSpherical.TabIndex = 24;
             this.chkSpherical.Text = "Spherical";
             this.chkSpherical.UseVisualStyleBackColor = true;
             // 
             // NumResultCount
             // 
-            this.NumResultCount.Location = new Point(115, 9);
+            this.NumResultCount.Location = new System.Drawing.Point(124, 15);
             this.NumResultCount.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -160,9 +161,9 @@ namespace MongoGUICtl
             0,
             0});
             this.NumResultCount.Name = "NumResultCount";
-            this.NumResultCount.Size = new Size(108, 20);
+            this.NumResultCount.Size = new System.Drawing.Size(108, 21);
             this.NumResultCount.TabIndex = 23;
-            this.NumResultCount.TextAlign = HorizontalAlignment.Right;
+            this.NumResultCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NumResultCount.Value = new decimal(new int[] {
             100,
             0,
@@ -171,56 +172,66 @@ namespace MongoGUICtl
             // 
             // cmdGeoNear
             // 
-            this.cmdGeoNear.Location = new Point(371, 1);
+            this.cmdGeoNear.Location = new System.Drawing.Point(527, 10);
             this.cmdGeoNear.Name = "cmdGeoNear";
-            this.cmdGeoNear.Size = new Size(116, 29);
+            this.cmdGeoNear.Size = new System.Drawing.Size(87, 27);
             this.cmdGeoNear.TabIndex = 22;
             this.cmdGeoNear.Text = "GeoNear";
             this.cmdGeoNear.UseVisualStyleBackColor = true;
-            this.cmdGeoNear.Click += new EventHandler(this.cmdGeoNear_Click);
+            this.cmdGeoNear.Click += new System.EventHandler(this.cmdGeoNear_Click);
             // 
             // lblGeoNear
             // 
             this.lblGeoNear.AutoSize = true;
-            this.lblGeoNear.Location = new Point(3, 43);
+            this.lblGeoNear.Location = new System.Drawing.Point(12, 47);
             this.lblGeoNear.Name = "lblGeoNear";
-            this.lblGeoNear.Size = new Size(56, 13);
+            this.lblGeoNear.Size = new System.Drawing.Size(65, 12);
             this.lblGeoNear.TabIndex = 20;
             this.lblGeoNear.Text = "Near(X,Y):";
             // 
             // lblResultCount
             // 
             this.lblResultCount.AutoSize = true;
-            this.lblResultCount.Location = new Point(3, 11);
+            this.lblResultCount.Location = new System.Drawing.Point(12, 17);
             this.lblResultCount.Name = "lblResultCount";
-            this.lblResultCount.Size = new Size(65, 13);
+            this.lblResultCount.Size = new System.Drawing.Size(71, 12);
             this.lblResultCount.TabIndex = 19;
             this.lblResultCount.Text = "ResultCount";
             // 
             // lnkGeoNear
             // 
             this.lnkGeoNear.AutoSize = true;
-            this.lnkGeoNear.Location = new Point(16, 378);
+            this.lnkGeoNear.Location = new System.Drawing.Point(22, 369);
             this.lnkGeoNear.Name = "lnkGeoNear";
-            this.lnkGeoNear.Size = new Size(324, 13);
+            this.lnkGeoNear.Size = new System.Drawing.Size(353, 12);
             this.lnkGeoNear.TabIndex = 18;
             this.lnkGeoNear.TabStop = true;
             this.lnkGeoNear.Text = "http://docs.mongodb.org/manual/reference/commands/#geoNear";
-            this.lnkGeoNear.LinkClicked += new LinkLabelLinkClickedEventHandler(this.lnkGeoNear_LinkClicked);
+            this.lnkGeoNear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkGeoNear_LinkClicked);
+            // 
+            // chkHaystack
+            // 
+            this.chkHaystack.AutoSize = true;
+            this.chkHaystack.Location = new System.Drawing.Point(343, 17);
+            this.chkHaystack.Name = "chkHaystack";
+            this.chkHaystack.Size = new System.Drawing.Size(168, 16);
+            this.chkHaystack.TabIndex = 24;
+            this.chkHaystack.Text = "GeoSpatialHaystack Index";
+            this.chkHaystack.UseVisualStyleBackColor = true;
             // 
             // trvGeoResult
             // 
-            this.trvGeoResult.BackColor = Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvGeoResult.Location = new Point(6, 94);
+            this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvGeoResult.Location = new System.Drawing.Point(15, 94);
             this.trvGeoResult.Name = "trvGeoResult";
-            this.trvGeoResult.Padding = new Padding(1);
-            this.trvGeoResult.Size = new Size(496, 281);
+            this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
+            this.trvGeoResult.Size = new System.Drawing.Size(599, 259);
             this.trvGeoResult.TabIndex = 21;
             // 
-            // ctlGeoNear
+            // CtlGeoNear
             // 
-            this.AutoScaleDimensions = new SizeF(6F, 13F);
-            this.AutoScaleMode = AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnMile);
             this.Controls.Add(this.btnKM);
@@ -230,6 +241,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.NumDistanceMultiplier);
             this.Controls.Add(this.lblMaxDistance);
             this.Controls.Add(this.lblDistanceMultiplier);
+            this.Controls.Add(this.chkHaystack);
             this.Controls.Add(this.chkSpherical);
             this.Controls.Add(this.NumResultCount);
             this.Controls.Add(this.cmdGeoNear);
@@ -238,8 +250,8 @@ namespace MongoGUICtl
             this.Controls.Add(this.lnkGeoNear);
             this.Controls.Add(this.trvGeoResult);
             this.Name = "CtlGeoNear";
-            this.Size = new Size(508, 402);
-            ((ISupportInitialize)(this.NumResultCount)).EndInit();
+            this.Size = new System.Drawing.Size(631, 392);
+            ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,5 +275,6 @@ namespace MongoGUICtl
         private Label lblResultCount;
         private LinkLabel lnkGeoNear;
         private CtlTreeViewColumns trvGeoResult;
+        private CheckBox chkHaystack;
     }
 }
