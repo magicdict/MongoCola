@@ -55,7 +55,7 @@ namespace MongoGUICtl
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(381, 67);
+            this.btnHelp.Location = new System.Drawing.Point(352, 67);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(35, 21);
             this.btnHelp.TabIndex = 33;
@@ -65,7 +65,7 @@ namespace MongoGUICtl
             // 
             // btnMile
             // 
-            this.btnMile.Location = new System.Drawing.Point(317, 67);
+            this.btnMile.Location = new System.Drawing.Point(288, 67);
             this.btnMile.Name = "btnMile";
             this.btnMile.Size = new System.Drawing.Size(58, 21);
             this.btnMile.TabIndex = 32;
@@ -75,7 +75,7 @@ namespace MongoGUICtl
             // 
             // btnKM
             // 
-            this.btnKM.Location = new System.Drawing.Point(259, 67);
+            this.btnKM.Location = new System.Drawing.Point(230, 67);
             this.btnKM.Name = "btnKM";
             this.btnKM.Size = new System.Drawing.Size(52, 21);
             this.btnKM.TabIndex = 31;
@@ -85,7 +85,7 @@ namespace MongoGUICtl
             // 
             // NumGeoX
             // 
-            this.NumGeoX.Location = new System.Drawing.Point(124, 42);
+            this.NumGeoX.Location = new System.Drawing.Point(95, 42);
             this.NumGeoX.Name = "NumGeoX";
             this.NumGeoX.Size = new System.Drawing.Size(51, 21);
             this.NumGeoX.TabIndex = 27;
@@ -94,7 +94,7 @@ namespace MongoGUICtl
             // 
             // NumGeoY
             // 
-            this.NumGeoY.Location = new System.Drawing.Point(181, 42);
+            this.NumGeoY.Location = new System.Drawing.Point(152, 42);
             this.NumGeoY.Name = "NumGeoY";
             this.NumGeoY.Size = new System.Drawing.Size(51, 21);
             this.NumGeoY.TabIndex = 28;
@@ -103,7 +103,7 @@ namespace MongoGUICtl
             // 
             // NumMaxDistance
             // 
-            this.NumMaxDistance.Location = new System.Drawing.Point(124, 71);
+            this.NumMaxDistance.Location = new System.Drawing.Point(95, 71);
             this.NumMaxDistance.Name = "NumMaxDistance";
             this.NumMaxDistance.Size = new System.Drawing.Size(116, 21);
             this.NumMaxDistance.TabIndex = 29;
@@ -112,7 +112,7 @@ namespace MongoGUICtl
             // 
             // NumDistanceMultiplier
             // 
-            this.NumDistanceMultiplier.Location = new System.Drawing.Point(380, 45);
+            this.NumDistanceMultiplier.Location = new System.Drawing.Point(351, 45);
             this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
             this.NumDistanceMultiplier.Size = new System.Drawing.Size(116, 21);
             this.NumDistanceMultiplier.TabIndex = 30;
@@ -131,7 +131,7 @@ namespace MongoGUICtl
             // lblDistanceMultiplier
             // 
             this.lblDistanceMultiplier.AutoSize = true;
-            this.lblDistanceMultiplier.Location = new System.Drawing.Point(256, 47);
+            this.lblDistanceMultiplier.Location = new System.Drawing.Point(227, 47);
             this.lblDistanceMultiplier.Name = "lblDistanceMultiplier";
             this.lblDistanceMultiplier.Size = new System.Drawing.Size(119, 12);
             this.lblDistanceMultiplier.TabIndex = 25;
@@ -140,7 +140,7 @@ namespace MongoGUICtl
             // chkSpherical
             // 
             this.chkSpherical.AutoSize = true;
-            this.chkSpherical.Location = new System.Drawing.Point(260, 17);
+            this.chkSpherical.Location = new System.Drawing.Point(231, 17);
             this.chkSpherical.Name = "chkSpherical";
             this.chkSpherical.Size = new System.Drawing.Size(78, 16);
             this.chkSpherical.TabIndex = 24;
@@ -149,7 +149,7 @@ namespace MongoGUICtl
             // 
             // NumResultCount
             // 
-            this.NumResultCount.Location = new System.Drawing.Point(124, 15);
+            this.NumResultCount.Location = new System.Drawing.Point(95, 15);
             this.NumResultCount.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -172,7 +172,7 @@ namespace MongoGUICtl
             // 
             // cmdGeoNear
             // 
-            this.cmdGeoNear.Location = new System.Drawing.Point(527, 10);
+            this.cmdGeoNear.Location = new System.Drawing.Point(498, 10);
             this.cmdGeoNear.Name = "cmdGeoNear";
             this.cmdGeoNear.Size = new System.Drawing.Size(87, 27);
             this.cmdGeoNear.TabIndex = 22;
@@ -201,7 +201,7 @@ namespace MongoGUICtl
             // lnkGeoNear
             // 
             this.lnkGeoNear.AutoSize = true;
-            this.lnkGeoNear.Location = new System.Drawing.Point(22, 369);
+            this.lnkGeoNear.Location = new System.Drawing.Point(13, 347);
             this.lnkGeoNear.Name = "lnkGeoNear";
             this.lnkGeoNear.Size = new System.Drawing.Size(353, 12);
             this.lnkGeoNear.TabIndex = 18;
@@ -212,7 +212,7 @@ namespace MongoGUICtl
             // chkHaystack
             // 
             this.chkHaystack.AutoSize = true;
-            this.chkHaystack.Location = new System.Drawing.Point(343, 17);
+            this.chkHaystack.Location = new System.Drawing.Point(314, 17);
             this.chkHaystack.Name = "chkHaystack";
             this.chkHaystack.Size = new System.Drawing.Size(168, 16);
             this.chkHaystack.TabIndex = 24;
@@ -225,7 +225,7 @@ namespace MongoGUICtl
             this.trvGeoResult.Location = new System.Drawing.Point(15, 94);
             this.trvGeoResult.Name = "trvGeoResult";
             this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvGeoResult.Size = new System.Drawing.Size(599, 259);
+            this.trvGeoResult.Size = new System.Drawing.Size(570, 235);
             this.trvGeoResult.TabIndex = 21;
             // 
             // CtlGeoNear

@@ -53,7 +53,7 @@ namespace FunctionForm.Aggregation
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(14, 65);
+            this.lblResult.Location = new System.Drawing.Point(14, 62);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(41, 12);
             this.lblResult.TabIndex = 18;

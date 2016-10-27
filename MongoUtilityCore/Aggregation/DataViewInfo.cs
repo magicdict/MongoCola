@@ -152,6 +152,11 @@ namespace MongoUtility.Aggregation
             }
 
             var dataList = cursor.ToList();
+
+            //https://jira.mongodb.org/browse/SERVER-26802
+            //在非正常Shutdown的时候，这个统计结果可能出现错误
+            //这个时候需要执行验证数据集命令
+
             if (currentDataViewInfo.SkipCnt == 0)
             {
                 if (currentDataViewInfo.IsUseFilter)

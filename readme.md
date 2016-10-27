@@ -60,6 +60,8 @@ CSharp Mongo Driver 2.4.0-beta1
 3. BsonInt64，BSonDecimal128 的对应
 4. 有视图的时候，状态窗体的对应
 5. GFS拖曳上传功能
+6. GeoHaystackSearchAs的追加
+7. ObjectId详细信息的表示
 
 ###修改
 1. 新建数据集的BUG修正，数据集验证的修复
@@ -84,8 +86,6 @@ CSharp Mongo Driver 2.4.0-beta1
 1. 增加了MongoDB官方文档的链接
 2. BsonGuidRepresentation概念的引入
 
-
-
 ##Ver 2.0 2016/06/29
 1. Query增加了删除条件的功能
 2. 修正了Query的一些错误
@@ -94,7 +94,6 @@ CSharp Mongo Driver 2.4.0-beta1
 
 ##Ver 1.5 (Beta3)  2016/04/25
 以下 更新来自于   QiQi  https://github.com/1354092549
-
 
 1. 优化聚合功能
 -  对齐组件，更美观

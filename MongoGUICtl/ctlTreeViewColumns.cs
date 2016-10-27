@@ -287,6 +287,12 @@ namespace MongoGUICtl
             try
             {
                 strColumnText = mElement.Value.ToString();
+                if (mElement.Value.IsObjectId)
+                {
+                    var oid = mElement.Value.AsObjectId;
+                    strColumnText = oid.ToString();
+                    return strColumnText;
+                }
                 //日期型处理
                 if (mElement.Value.IsValidDateTime)
                 {

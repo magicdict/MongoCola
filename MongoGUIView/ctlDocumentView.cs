@@ -42,39 +42,19 @@ namespace MongoGUIView
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                //NewDocumentToolStripMenuItem.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataCollection_AddDocument);
-                //DelSelectRecordToolToolStripMenuItem.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataCollection_DropDocument);
-
-                //AddElementToolStripMenuItem.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataDocument_AddElement);
-                //DropElementToolStripMenuItem.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataDocument_DropElement);
-                //ModifyElementToolStripMenuItem.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataDocument_ModifyElement);
-
-                //NewDocumentStripButton.Text = NewDocumentToolStripMenuItem.Text;
-                //OpenDocInEditorStripButton.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
-                //DelSelectRecordToolStripButton.Text = DelSelectRecordToolToolStripMenuItem.Text;
-                //CopyElementToolStripMenuItem.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataDocument_CopyElement);
-                //CopyElementStripButton.Text = CopyElementToolStripMenuItem.Text;
-                //CutElementToolStripMenuItem.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataDocument_CutElement);
-                //CutElementStripButton.Text = CutElementToolStripMenuItem.Text;
-                //PasteElementToolStripMenuItem.Text =
-                //    GUIConfig.MStringResource.GetText(
-                //        TextType.Main_Menu_Operation_DataDocument_PasteElement);
+                NewDocumentToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataCollectionAddDocument");
+                DelSelectRecordToolToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataCollectionDropDocument");
+                AddElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentAddElement");
+                DropElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentDropElement");
+                ModifyElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentModifyElement");
+                NewDocumentStripButton.Text = NewDocumentToolStripMenuItem.Text;
+                OpenDocInEditorStripButton.Text = GuiConfig.GetText("MainMenuOperationDataDocumentOpenInNativeEditor");
+                DelSelectRecordToolStripButton.Text = DelSelectRecordToolToolStripMenuItem.Text;
+                CopyElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentCopyElement");
+                CopyElementStripButton.Text = CopyElementToolStripMenuItem.Text;
+                CutElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentCutElement");
+                CutElementStripButton.Text = CutElementToolStripMenuItem.Text;
+                PasteElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentPasteElement");
                 PasteElementStripButton.Text = PasteElementToolStripMenuItem.Text;
             }
 
@@ -171,7 +151,7 @@ namespace MongoGUIView
                     if (trvData.DatatreeView.SelectedNode.Tag is BsonElement)
                     {
                         //子节点是一个元素，获得子节点的Value
-                        t = ((BsonElement) trvData.DatatreeView.SelectedNode.Tag).Value;
+                        t = ((BsonElement)trvData.DatatreeView.SelectedNode.Tag).Value;
                         if (t.IsBsonDocument || t.IsBsonArray)
                         {
                             //2.空的Array
@@ -208,7 +188,7 @@ namespace MongoGUIView
                     {
                         //子节点是一个Array的Value，获得Value
                         //4.Array中的Value
-                        t = (BsonValue) trvData.DatatreeView.SelectedNode.Tag;
+                        t = (BsonValue)trvData.DatatreeView.SelectedNode.Tag;
                         ModifyElementToolStripMenuItem.Enabled = true;
                         if (t.IsBsonArray || t.IsBsonDocument)
                         {
@@ -386,7 +366,7 @@ namespace MongoGUIView
                     {
                         //如果是自定义主键的情况下,这里IsObjectId就不可能成立
                         if (item.Tag != null)
-                            //if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
+                        //if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
                         {
                             var result = Operater.DropDocument(RuntimeMongoDbContext.GetCurrentCollection(),
                                 item.Tag.ToString());
@@ -404,8 +384,8 @@ namespace MongoGUIView
                 {
                     //如果是自定义主键的情况下,这里IsObjectId就不可能成立
                     if (trvData.DatatreeView.SelectedNode.Tag != null)
-                        //if (trvData.DatatreeView.SelectedNode.Tag != null &&
-                        //    ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
+                    //if (trvData.DatatreeView.SelectedNode.Tag != null &&
+                    //    ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
                     {
                         var result = Operater.DropDocument(RuntimeMongoDbContext.GetCurrentCollection(),
                             trvData.DatatreeView.SelectedNode.Tag.ToString());
@@ -433,11 +413,11 @@ namespace MongoGUIView
             BsonValue t;
             if (trvData.DatatreeView.SelectedNode.Tag is BsonElement)
             {
-                t = ((BsonElement) trvData.DatatreeView.SelectedNode.Tag).Value;
+                t = ((BsonElement)trvData.DatatreeView.SelectedNode.Tag).Value;
             }
             else
             {
-                t = (BsonValue) trvData.DatatreeView.SelectedNode.Tag;
+                t = (BsonValue)trvData.DatatreeView.SelectedNode.Tag;
             }
             if (t.IsBsonArray)
             {
@@ -468,7 +448,7 @@ namespace MongoGUIView
             else
             {
                 ElementHelper.DropElement(trvData.DatatreeView.SelectedNode.FullPath,
-                    (BsonElement) trvData.DatatreeView.SelectedNode.Tag, RuntimeMongoDbContext.CurrentDocument,
+                    (BsonElement)trvData.DatatreeView.SelectedNode.Tag, RuntimeMongoDbContext.CurrentDocument,
                     RuntimeMongoDbContext.GetCurrentCollection());
             }
             trvData.DatatreeView.Nodes.Remove(trvData.DatatreeView.SelectedNode);
@@ -509,11 +489,11 @@ namespace MongoGUIView
             ElementHelper.ClipElement = trvData.DatatreeView.SelectedNode.Tag;
             if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.ArrayMark))
             {
-                ElementHelper.CopyValue((BsonValue) trvData.DatatreeView.SelectedNode.Tag);
+                ElementHelper.CopyValue((BsonValue)trvData.DatatreeView.SelectedNode.Tag);
             }
             else
             {
-                ElementHelper.CopyElement((BsonElement) trvData.DatatreeView.SelectedNode.Tag);
+                ElementHelper.CopyElement((BsonElement)trvData.DatatreeView.SelectedNode.Tag);
             }
         }
 
@@ -527,7 +507,7 @@ namespace MongoGUIView
             if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(ConstMgr.ArrayMark))
             {
                 ElementHelper.PasteValue(trvData.DatatreeView.SelectedNode.FullPath, null, null);
-                var newValue = new TreeNode(ViewHelper.ConvertToString((BsonValue) ElementHelper.ClipElement));
+                var newValue = new TreeNode(ViewHelper.ConvertToString((BsonValue)ElementHelper.ClipElement));
                 newValue.Tag = ElementHelper.ClipElement;
                 trvData.DatatreeView.SelectedNode.Nodes.Add(newValue);
             }
@@ -538,7 +518,7 @@ namespace MongoGUIView
                 {
                     //GetCurrentDocument()的第一个元素是ID
                     UiHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,
-                        new BsonDocument().Add((BsonElement) ElementHelper.ClipElement));
+                        new BsonDocument().Add((BsonElement)ElementHelper.ClipElement));
                 }
                 else
                 {
@@ -563,13 +543,13 @@ namespace MongoGUIView
             if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.ArrayMark))
             {
                 ElementHelper.CutValue(trvData.DatatreeView.SelectedNode.FullPath,
-                    trvData.DatatreeView.SelectedNode.Index, (BsonValue) trvData.DatatreeView.SelectedNode.Tag, null,
+                    trvData.DatatreeView.SelectedNode.Index, (BsonValue)trvData.DatatreeView.SelectedNode.Tag, null,
                     null);
             }
             else
             {
                 ElementHelper.CutElement(trvData.DatatreeView.SelectedNode.FullPath,
-                    (BsonElement) trvData.DatatreeView.SelectedNode.Tag, null, null);
+                    (BsonElement)trvData.DatatreeView.SelectedNode.Tag, null, null);
             }
             trvData.DatatreeView.Nodes.Remove(trvData.DatatreeView.SelectedNode);
             IsNeedRefresh = true;
@@ -623,7 +603,7 @@ namespace MongoGUIView
             var rootNode = FindRootNode(currentNode);
             //TODO:rootNode.Tag == null ???
             if (rootNode.Tag == null) return;
-            var selectDocId = (BsonValue) rootNode.Tag;
+            var selectDocId = (BsonValue)rootNode.Tag;
             var doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KeyId, selectDocId));
             RuntimeMongoDbContext.CurrentDocument = doc;
         }

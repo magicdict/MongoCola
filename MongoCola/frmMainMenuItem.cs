@@ -1059,15 +1059,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var strUrl = @"UserGuide\Chinese\index.html";
-            try
-            {
-                Process.Start(strUrl);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("HelpFile Error!");
-            }
+            Process.Start("http://magicdict.github.io/MongoCola/");
         }
 
         #endregion
