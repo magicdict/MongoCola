@@ -5,14 +5,14 @@ using ResourceLib.Method;
 
 namespace ResourceLib.UI
 {
-    public partial class FrmMesssage : Form
+    public partial class frmMesssage : Form
     {
         /// <summary>
         ///     Is Show Details
         /// </summary>
         private bool _showDetails;
 
-        internal FrmMesssage()
+        internal frmMesssage()
         {
             InitializeComponent();
             //系统图标
@@ -30,12 +30,17 @@ namespace ResourceLib.UI
             lblMessage.Text = message;
             txtException.Text = details;
             txtException.Select(0, 0);
-            if (details == string.Empty)
+            if (string.IsNullOrEmpty(details))
             {
                 isShowDetails = false;
+            } else
+            {
+                isShowDetails = true;
             }
             _showDetails = isShowDetails;
-            Height = _showDetails ? 350 : 130;
+            txtException.Visible = isShowDetails;
+            cmdDetails.Visible = isShowDetails;
+            Height = _showDetails ? 350 : 150;
         }
 
         /// <summary>

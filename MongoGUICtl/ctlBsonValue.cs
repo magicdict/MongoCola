@@ -12,17 +12,16 @@ namespace MongoGUICtl
         /// </summary>
         private BsonArray _mBsonArray = new BsonArray();
         /// <summary>
-        ///     文档
-        /// </summary>
-        private BsonDocument _mBsonDocument = new BsonDocument();
-
-        /// <summary>
-        ///     获得一个新BSonArray的委托
+        ///     获得一个新BsonArray的委托
         /// </summary>
         public static Func<BsonArray> GetArray;
 
         /// <summary>
-        ///     获得一个新BSonDocument的委托
+        ///     文档
+        /// </summary>
+        private BsonDocument _mBsonDocument = new BsonDocument();
+        /// <summary>
+        ///     获得一个新BsonDocument的委托
         /// </summary>
         public static Func<BsonDocument> GetDocument;
 

@@ -160,7 +160,8 @@ namespace MongoUtility.Command
                 return false;
             }
             option.SetName(KeyOptions.IndexName);
-            if (CreateMongoIndex(KeyOptions, option, RuntimeMongoDbContext.GetCurrentCollection()))
+            string errorMessage = string.Empty;
+            if (CreateMongoIndex(KeyOptions, option, RuntimeMongoDbContext.GetCurrentCollection(), ref errorMessage))
             {
                 strMessageTitle = "Index Add Completed!";
                 strMessageContent = "IndexName:" + KeyOptions.IndexName + " is add to collection.";
@@ -169,7 +170,7 @@ namespace MongoUtility.Command
             else
             {
                 strMessageTitle = "Index Add Failed!";
-                strMessageContent = "IndexName:" + KeyOptions.IndexName;
+                strMessageContent = errorMessage;
                 return false;
             }
         }
@@ -182,7 +183,7 @@ namespace MongoUtility.Command
         /// <param name="currentCollection"></param>
         /// <returns></returns>
         public static bool CreateMongoIndex(IndexOption IdxOpt,
-            IndexOptionsBuilder option, MongoCollection currentCollection)
+            IndexOptionsBuilder option, MongoCollection currentCollection,ref string errorMessage)
         {
             var mongoCol = currentCollection;
             var indexkeys = new IndexKeysBuilder();
@@ -192,8 +193,17 @@ namespace MongoUtility.Command
             indexkeys.Ascending(IdxOpt.AscendingKey.ToArray());
             indexkeys.Descending(IdxOpt.DescendingKey.ToArray());
             indexkeys.Text(IdxOpt.TextKey.ToArray());
-            var result = mongoCol.CreateIndex(indexkeys, option);
-            return result.Response.GetElement("ok").Value.AsBoolean;
+            //CreateIndex失败的时候会出现异常！
+            try
+            {
+                var result = mongoCol.CreateIndex(indexkeys, option);
+                return result.Response.GetElement("ok").Value.AsInt32 == 1;
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.ToString();
+                return false;
+            }
         }
 
         /// <summary>

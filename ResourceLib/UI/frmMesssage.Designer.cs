@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace ResourceLib.UI
 {
-    partial class FrmMesssage
+    partial class frmMesssage
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace ResourceLib.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMesssage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMesssage));
             this.txtException = new System.Windows.Forms.TextBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -113,7 +113,7 @@ namespace ResourceLib.UI
             this.picImage.TabIndex = 5;
             this.picImage.TabStop = false;
             // 
-            // frmMesssage
+            // FrmMesssage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

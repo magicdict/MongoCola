@@ -128,7 +128,7 @@ namespace FunctionForm.Operation
             {
                 RefreshList();
             }
-            MyMessageBox.ShowEasyMessage(strMessageTitle, strMessageContent);
+            MyMessageBox.ShowMessage(strMessageTitle, strMessageContent);
         }
 
         /// <summary>

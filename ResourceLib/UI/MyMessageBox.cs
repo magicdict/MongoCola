@@ -9,7 +9,7 @@ namespace ResourceLib.UI
         /// <summary>
         ///     消息窗体
         /// </summary>
-        private static readonly FrmMesssage FrmMessage = new FrmMesssage();
+        private static readonly frmMesssage FrmMessage = new frmMesssage();
 
         /// <summary>
         ///     消息窗体
@@ -82,7 +82,7 @@ namespace ResourceLib.UI
         {
             FormatMsgbox(FrmMessage, title);
             FrmMessage.SetMessage(message, details, false);
-            if (FrmMessage.Visible == false)
+            if (!FrmMessage.Visible)
             {
                 FrmMessage.ShowDialog();
             }
@@ -97,7 +97,7 @@ namespace ResourceLib.UI
         {
             FormatMsgbox(FrmMessage, title);
             FrmMessage.SetMessage(message, details, isShowDetail);
-            if (FrmMessage.Visible == false)
+            if (!FrmMessage.Visible)
             {
                 FrmMessage.ShowDialog();
             }
@@ -112,7 +112,7 @@ namespace ResourceLib.UI
         {
             FormatMsgbox(FrmMessage, title);
             FrmMessage.SetMessage(message, img, details);
-            if (FrmMessage.Visible == false)
+            if (!FrmMessage.Visible)
             {
                 FrmMessage.ShowDialog();
             }
@@ -127,7 +127,7 @@ namespace ResourceLib.UI
         {
             FormatMsgbox(FrmEasyMessage, title);
             FrmEasyMessage.SetMessage(message);
-            if (FrmMessage.Visible == false)
+            if (!FrmMessage.Visible)
             {
                 FrmEasyMessage.ShowDialog();
             }
