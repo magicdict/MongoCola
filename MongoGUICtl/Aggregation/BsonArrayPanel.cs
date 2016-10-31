@@ -5,10 +5,11 @@ using MongoDB.Bson;
 
 namespace MongoGUICtl.Aggregation
 {
-    public partial class BsonValuePanel : UserControl
+    public partial class BsonArrayPanel : UserControl
     {
+
         /// <summary>
-        ///     GroupItem数量
+        ///     ArrayItem数量
         /// </summary>
         private byte _conditionCount;
 
@@ -20,7 +21,7 @@ namespace MongoGUICtl.Aggregation
         /// <summary>
         ///     构造器
         /// </summary>
-        public BsonValuePanel()
+        public BsonArrayPanel()
         {
             InitializeComponent();
         }
@@ -41,7 +42,7 @@ namespace MongoGUICtl.Aggregation
         public void AddBsonValueItem()
         {
             _conditionCount++;
-            var newBsonValueItem = new CtlBsonValue();
+            var newBsonValueItem = new ctlBsonValueType();
             newBsonValueItem.Location = _conditionPos;
             newBsonValueItem.Name = "BsonValueItem" + _conditionCount;
             Controls.Add(newBsonValueItem);
@@ -55,7 +56,7 @@ namespace MongoGUICtl.Aggregation
         public BsonArray GetBsonArray()
         {
             var valueList = new BsonArray();
-            foreach (CtlBsonValue item in Controls)
+            foreach (ctlBsonValueType item in Controls)
             {
                 if (item.GetValue() != null)
                 {

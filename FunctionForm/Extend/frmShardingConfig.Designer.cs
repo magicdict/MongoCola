@@ -76,8 +76,8 @@ namespace FunctionForm.Extend
             this.txtShardName = new System.Windows.Forms.TextBox();
             this.lblTagShard = new System.Windows.Forms.Label();
             this.lblShardName = new System.Windows.Forms.Label();
-            this.ctlBsonValueShardKeyTo = new MongoGUICtl.CtlBsonValue();
-            this.ctlBsonValueShardKeyFrom = new MongoGUICtl.CtlBsonValue();
+            this.ctlBsonValueShardKeyTo = new MongoGUICtl.ctlBsonValue();
+            this.ctlBsonValueShardKeyFrom = new MongoGUICtl.ctlBsonValue();
             this.tabRemoveSharding = new System.Windows.Forms.TabPage();
             this.lstSharding = new System.Windows.Forms.ListBox();
             this.cmdRemoveSharding = new System.Windows.Forms.Button();
@@ -707,8 +707,8 @@ namespace FunctionForm.Extend
         private ListView lstExistShardTag;
         private Label lblShardTag;
         private ComboBox cmbTagList;
-        private CtlBsonValue ctlBsonValueShardKeyTo;
-        private CtlBsonValue ctlBsonValueShardKeyFrom;
+        private ctlBsonValue ctlBsonValueShardKeyTo;
+        private ctlBsonValue ctlBsonValueShardKeyFrom;
         private Label lblShardKeyTo;
         private Label lblShardKeyFrom;
         private Button cmdaddTagRange;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using MongoDB.Bson;
 
 namespace MongoUtility.Basic
@@ -9,47 +8,45 @@ namespace MongoUtility.Basic
     /// </summary>
     public class BsonValueEx
     {
-        // TODO:Check the new driver if the function is ready.
-
         /// <summary>
         ///     Boolean
         /// </summary>
-        public bool MBsonBoolean;
+        bool mBsonBoolean;
 
         /// <summary>
         ///     DateTime
         /// </summary>
-        public DateTime MBsonDateTime;
+        DateTime mBsonDateTime;
 
         /// <summary>
         ///     Int32
         /// </summary>
-        public int MBsonInt32;
+        int mBsonInt32;
 
         /// <summary>
         ///     Long(Int64)
         /// </summary>
-        public long MBsonInt64;
+        long mBsonInt64;
 
         /// <summary>
         ///     Decimal
         /// </summary>
-        //public Decimal MBSonDecimal;
+        double mBsonDouble;
 
         /// <summary>
         ///     Decimal128
         /// </summary>
-        public Decimal128 MBSonDecimal128;
+        Decimal128 mBSonDecimal128;
 
         /// <summary>
         ///     文字值
         /// </summary>
-        public string MBsonString;
+        string mBsonString;
 
         /// <summary>
         ///     类型
         /// </summary>
-        public string MBsonType;
+        BasicType mBsonType;
 
         /// <summary>
         ///     为了序列化，必须要写这个方法
@@ -67,69 +64,57 @@ namespace MongoUtility.Basic
         {
             if (value.IsString)
             {
-                MBsonType = "BsonString";
-                MBsonString = value.ToString();
+                mBsonType = BasicType.BsonString;
+                mBsonString = value.ToString();
             }
             if (value.IsInt32)
             {
-                MBsonType = "BsonInt32";
-                MBsonInt32 = value.AsInt32;
+                mBsonType = BasicType.BsonInt32;
+                mBsonInt32 = value.AsInt32;
             }
 
             if (value.IsInt64)
             {
-                MBsonType = "BsonInt64";
-                MBSonDecimal128 = value.AsDecimal;
+                mBsonType = BasicType.BsonInt64;
+                mBSonDecimal128 = value.AsDecimal;
             }
 
             if (value.IsDecimal128)
             {
-                MBsonType = "BsonDecimal128";
-                MBSonDecimal128 = value.AsDecimal;
+                mBsonType = BasicType.BsonDecimal128;
+                mBSonDecimal128 = value.AsDecimal;
             }
-
+            if (value.IsDouble)
+            {
+                mBsonType = BasicType.BsonDouble;
+                mBsonDouble = value.AsDouble;
+            }
             if (value.IsValidDateTime)
             {
-                MBsonType = "BsonDateTime";
-                MBsonDateTime = value.ToUniversalTime();
+                mBsonType = BasicType.BsonDateTime;
+                mBsonDateTime = value.ToUniversalTime();
             }
             if (value.IsBoolean)
             {
-                MBsonType = "BsonBoolean";
-                MBsonBoolean = value.AsBoolean;
+                mBsonType = BasicType.BsonBoolean;
+                mBsonBoolean = value.AsBoolean;
             }
         }
 
-        /// <summary>
-        ///     基本类型
-        /// </summary>
-        /// <returns></returns>
-        public static List<string> GetBasicTypeList()
-        {
-            var typelst = new List<string>();
-            typelst.Add("BsonString");
-            typelst.Add("BsonInt32");
-            typelst.Add("BsonInt64");
-            typelst.Add("BsonDecimal128");
-            typelst.Add("BsonDateTime");
-            typelst.Add("BsonBoolean");
-            typelst.Add("BsonArray");
-            typelst.Add("BsonDocument");
-            return typelst;
-        }
         /// <summary>
         ///     基本类型枚举
         /// </summary>
         public enum BasicType : int
         {
             BsonString = 0,
-            BsonInt32 ,
+            BsonInt32,
             BsonInt64,
             BsonDecimal128,
+            BsonDouble,
             BsonDateTime,
             BsonBoolean,
             BsonArray,
-            BsonDocument
+            BsonDocument,
         }
 
         /// <summary>
@@ -139,28 +124,94 @@ namespace MongoUtility.Basic
         public BsonValue GetBsonValue()
         {
             BsonValue value = new BsonString(string.Empty);
-            switch (MBsonType)
+            switch (mBsonType)
             {
-                case "BsonString":
-                    value = new BsonString(MBsonString);
+                case BasicType.BsonString:
+                    value = new BsonString(mBsonString);
                     break;
-                case "BsonInt32":
-                    value = new BsonInt32(MBsonInt32);
+                case BasicType.BsonInt32:
+                    value = new BsonInt32(mBsonInt32);
                     break;
-                case "BsonInt64":
-                    value = new BsonInt64(MBsonInt64);
+                case BasicType.BsonInt64:
+                    value = new BsonInt64(mBsonInt64);
                     break;
-                case "BsonDecimal128":
-                    value = new BsonDecimal128(MBSonDecimal128);
+                case BasicType.BsonDecimal128:
+                    value = new BsonDecimal128(mBSonDecimal128);
                     break;
-                case "BsonDateTime":
-                    value = new BsonDateTime(MBsonDateTime);
+                case BasicType.BsonDouble:
+                    value = new BsonDouble(mBsonDouble);
                     break;
-                case "BsonBoolean":
-                    value = MBsonBoolean ? BsonBoolean.True : BsonBoolean.False;
+                case BasicType.BsonDateTime:
+                    value = new BsonDateTime(mBsonDateTime);
+                    break;
+                case BasicType.BsonBoolean:
+                    value = mBsonBoolean ? BsonBoolean.True : BsonBoolean.False;
                     break;
             }
             return value;
-        }   
+        }
+
+        /// <summary>
+        ///     各种基本类型的初始值
+        /// </summary>
+        /// <param name="DataType"></param>
+        /// <returns></returns>
+        public static BsonValue GetInitValue(BsonValueEx.BasicType DataType)
+        {
+            BsonValue InitValue = BsonNull.Value;
+            switch (DataType)
+            {
+                case BasicType.BsonString:
+                    InitValue = (new BsonString(string.Empty));
+                    break;
+                case BasicType.BsonInt32:
+                    InitValue = (new BsonInt32(0));
+                    break;
+                case BasicType.BsonInt64:
+                    InitValue = (new BsonInt64(0));
+                    break;
+                case BasicType.BsonDecimal128:
+                    InitValue = (new BsonDecimal128(0));
+                    break;
+                case BasicType.BsonDouble:
+                    InitValue = (new BsonDouble(0));
+                    break;
+                case BasicType.BsonDateTime:
+                    InitValue = (new BsonDateTime(DateTime.Now));
+                    break;
+                case BasicType.BsonBoolean:
+                    InitValue = (BsonBoolean.False);
+                    break;
+                case BasicType.BsonArray:
+                    InitValue = (new BsonArray());
+                    break;
+                case BasicType.BsonDocument:
+                    InitValue = (new BsonDocument());
+                    break;
+                default:
+                    break;
+            }
+            return InitValue;
+        }
+
+        /// <summary>
+        /// 根据BsonValue推断基本类型
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static BasicType GetBsonValueBasicType(BsonValue value)
+        {
+            if (value.IsString) return BasicType.BsonString;
+            if (value.IsInt32) return BasicType.BsonInt32;
+            if (value.IsInt64) return BasicType.BsonInt64;
+            if (value.IsDecimal128) return BasicType.BsonDecimal128;
+            if (value.IsDouble) return BasicType.BsonDouble;
+            if (value.IsValidDateTime) return BasicType.BsonDateTime;
+            if (value.IsBoolean) return BasicType.BsonBoolean;
+            if (value.IsBsonArray) return BasicType.BsonArray;
+            if (value.IsBsonDocument) return BasicType.BsonDocument;
+            return BasicType.BsonString;
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
+using MongoUtility.Basic;
 
 namespace MongoGUICtl.Aggregation
 {
@@ -35,16 +36,10 @@ namespace MongoGUICtl.Aggregation
         /// <param name="e"></param>
         private void ctlMatchItem_Load(object sender, EventArgs e)
         {
-            foreach (var item in AggregationHelper.GetComparisonfunction())
-            {
-                cmbComparisonfunction.Items.Add(item);
-            }
+            Common.Utility.FillComberWithArray(cmbComparisonfunction, AggregationHelper.GetComparisonfunction(), true);
             if (RuntimeMongoDbContext.GetCurrentCollection() != null)
             {
-                foreach (
-                    var item in
-                        MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection())
-                    )
+                foreach (var item in MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection()))
                 {
                     cmbField.Items.Add(item);
                 }

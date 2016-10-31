@@ -53,17 +53,17 @@ namespace MongoCola
                 Utility.OpenForm(frmInsertDoc, false, true);
                 return frmInsertDoc.MBsonDocument;
             };
-            CtlBsonValue.GetDocument = () =>
+            ctlBsonValue.GetDocument = () =>
             {
                 var frmInsertDoc = new frmCreateDocument();
                 Utility.OpenForm(frmInsertDoc, false, true);
                 return frmInsertDoc.MBsonDocument;
             };
-            CtlBsonValue.GetArray = () =>
+            ctlBsonValue.GetArray = () =>
             {
                 var frmInsertArray = new frmArrayCreator();
                 Utility.OpenForm(frmInsertArray, false, true);
-                return frmInsertArray.MBsonArray;
+                return frmInsertArray.mBsonArray;
             };
         }
 

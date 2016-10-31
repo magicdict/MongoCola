@@ -69,13 +69,19 @@
     <Compile Include="ClientTree\FillDataBaseInfoToTreeNode.cs" />
     <Compile Include="ClientTree\FillMongoDB.cs" />
     <Compile Include="ClientTree\LvwColumnSorter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ClientTree\UIHelper.cs" />
-    <Compile Include="Aggregation\BsonValuePanel.cs">
+    <Compile Include="ctlBsonValueType.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Aggregation\BsonValuePanel.Designer.cs">
-      <DependentUpon>BsonValuePanel.cs</DependentUpon>
+    <Compile Include="ctlBsonValueType.Designer.cs">
+      <DependentUpon>ctlBsonValueType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClientTree\UIHelper.cs" />
+    <Compile Include="Aggregation\BsonArrayPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Aggregation\BsonArrayPanel.Designer.cs">
+      <DependentUpon>BsonArrayPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Aggregation\ConditionPanel.cs">
       <SubType>UserControl</SubType>
@@ -119,11 +125,11 @@
     <Compile Include="Aggregation\MatchPanel.Designer.cs">
       <DependentUpon>MatchPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlAddBsonEl.cs">
+    <Compile Include="ctlBsonValueTypeName.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctlAddBsonEl.Designer.cs">
-      <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
+    <Compile Include="ctlBsonValueTypeName.Designer.cs">
+      <DependentUpon>ctlBsonValueTypeName.cs</DependentUpon>
     </Compile>
     <Compile Include="ctlBsonValue.cs">
       <SubType>UserControl</SubType>
@@ -169,8 +175,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Aggregation\BsonValuePanel.resx">
-      <DependentUpon>BsonValuePanel.cs</DependentUpon>
+    <EmbeddedResource Include="Aggregation\BsonArrayPanel.resx">
+      <DependentUpon>BsonArrayPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Aggregation\ConditionPanel.resx">
       <DependentUpon>ConditionPanel.cs</DependentUpon>
@@ -190,8 +196,11 @@
     <EmbeddedResource Include="Aggregation\GroupPanel.resx">
       <DependentUpon>GroupPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctlAddBsonEl.resx">
-      <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
+    <EmbeddedResource Include="ctlBsonValueTypeName.resx">
+      <DependentUpon>ctlBsonValueTypeName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlBsonValueType.resx">
+      <DependentUpon>ctlBsonValueType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctlBsonValue.resx">
       <DependentUpon>ctlBsonValue.cs</DependentUpon>

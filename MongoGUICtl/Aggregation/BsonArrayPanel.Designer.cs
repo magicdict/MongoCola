@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MongoGUICtl.Aggregation
 {
-    partial class BsonValuePanel
+    partial class BsonArrayPanel
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -37,10 +37,11 @@ namespace MongoGUICtl.Aggregation
             // 
             // BsonValuePanel
             // 
-            this.AutoScaleDimensions = new SizeF(6F, 13F);
-            this.AutoScaleMode = AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "BsonValuePanel";
-            this.Load += new EventHandler(this.BsonValuePanel_Load);
+            this.Size = new System.Drawing.Size(506, 234);
+            this.Load += new System.EventHandler(this.BsonValuePanel_Load);
             this.ResumeLayout(false);
 
         }

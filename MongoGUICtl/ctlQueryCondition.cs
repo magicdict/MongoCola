@@ -17,7 +17,10 @@ namespace MongoGUICtl
 
         public bool IsSeted
         {
-            get { return cmbCompareOpr.SelectedIndex != -1; }
+            get
+            {
+                return cmbCompareOpr.SelectedIndex != -1;
+            }
         }
 
         public DataFilter.QueryConditionInputItem ConditionItem
@@ -27,7 +30,7 @@ namespace MongoGUICtl
                 if (cmbCompareOpr.SelectedIndex != -1)
                 {
                     var rtn = new DataFilter.QueryConditionInputItem();
-                    rtn.Compare = (DataFilter.CompareEnum) cmbCompareOpr.SelectedIndex;
+                    rtn.Compare = (DataFilter.CompareEnum)cmbCompareOpr.SelectedIndex;
                     rtn.Value = new BsonValueEx(ElBsonValue.GetValue());
                     rtn.StartMark = cmbStartMark.Text;
                     rtn.EndMark = cmbEndMark.Text;
@@ -40,7 +43,7 @@ namespace MongoGUICtl
             {
                 cmbColName.Text = value.ColName;
                 ElBsonValue.SetValue(value.Value.GetBsonValue());
-                cmbCompareOpr.SelectedIndex = (int) value.Compare;
+                cmbCompareOpr.SelectedIndex = (int)value.Compare;
                 cmbStartMark.Text = value.StartMark;
                 cmbEndMark.Text = value.EndMark;
             }
@@ -58,21 +61,16 @@ namespace MongoGUICtl
             cmbEndMark.Items.Add(ConstMgr.EndMarkOrT);
             cmbEndMark.Items.Add(ConstMgr.EndMarkT);
             cmbEndMark.SelectedIndex = 0;
-
             //字段表的载入
-            foreach (var item in columnList)
-            {
-                cmbColName.Items.Add(item);
-            }
+            Common.Utility.FillComberWithArray(cmbColName, columnList.ToArray(), true);
             //逻辑操作符号的载入
-            foreach (var item in Enum.GetNames(typeof (DataFilter.CompareEnum)))
-            {
-                cmbCompareOpr.Items.Add(item);
-            }
+            Common.Utility.FillComberWithEnum(cmbCompareOpr, typeof(DataFilter.CompareEnum), true);
         }
 
         public delegate void ItemChanged(object sender);
+
         public event ItemChanged ItemRemoved;
+
         public event ItemChanged ItemAdded;
         /// <summary>
         /// 触发Remove事件

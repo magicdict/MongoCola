@@ -253,7 +253,7 @@ namespace FunctionForm.Extend
         /// <param name="e"></param>
         private void cmdEnableSharding_Click(object sender, EventArgs e)
         {
-            var resultlst = new List<CommandResult> {CommandHelper.EnableSharding(_prmSvr, cmbDataBase.Text)};
+            var resultlst = new List<CommandResult> { CommandHelper.EnableSharding(_prmSvr, cmbDataBase.Text) };
             MyMessageBox.ShowMessage("EnableSharding", "Result",
                 MongoHelper.ConvertCommandResultlstToString(resultlst));
         }
@@ -283,7 +283,7 @@ namespace FunctionForm.Extend
         {
             foreach (string item in lstSharding.SelectedItems)
             {
-                var resultlst = new List<CommandResult> {CommandHelper.RemoveSharding(_prmSvr, item)};
+                var resultlst = new List<CommandResult> { CommandHelper.RemoveSharding(_prmSvr, item) };
                 MyMessageBox.ShowMessage("Remove Sharding", "Result",
                     MongoHelper.ConvertCommandResultlstToString(resultlst));
             }
@@ -319,8 +319,8 @@ namespace FunctionForm.Extend
             var resultlst = new List<CommandResult>
             {
                 CommandHelper.AddTagRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,
-                    ctlBsonValueShardKeyFrom.GetValue(),
-                    ctlBsonValueShardKeyTo.GetValue(), cmbTagList.Text.Split(".".ToCharArray())[1])
+                    ctlBsonValueShardKeyFrom.GetValue( BsonValueEx.BasicType.BsonString),
+                    ctlBsonValueShardKeyTo.GetValue( BsonValueEx.BasicType.BsonString), cmbTagList.Text.Split(".".ToCharArray())[1])
             };
             MyMessageBox.ShowMessage("Add Shard Tag", "Result",
                 MongoHelper.ConvertCommandResultlstToString(resultlst));

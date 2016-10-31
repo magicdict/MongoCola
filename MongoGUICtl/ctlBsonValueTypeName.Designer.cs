@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
-    partial class CtlAddBsonEl
+    partial class ctlBsonValueTypeName
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,42 +32,42 @@ namespace MongoGUICtl
         private void InitializeComponent()
         {
             this.txtElName = new System.Windows.Forms.TextBox();
-            this.ElBsonValue = new CtlBsonValue();
             this.lblElement = new System.Windows.Forms.Label();
+            this.ElBsonValue = new MongoGUICtl.ctlBsonValueType();
             this.SuspendLayout();
             // 
             // txtElName
             // 
             this.txtElName.Location = new System.Drawing.Point(0, 5);
             this.txtElName.Name = "txtElName";
-            this.txtElName.Size = new System.Drawing.Size(96, 20);
+            this.txtElName.Size = new System.Drawing.Size(96, 21);
             this.txtElName.TabIndex = 2;
+            // 
+            // lblElement
+            // 
+            this.lblElement.AutoSize = true;
+            this.lblElement.Location = new System.Drawing.Point(5, 7);
+            this.lblElement.Name = "lblElement";
+            this.lblElement.Size = new System.Drawing.Size(71, 12);
+            this.lblElement.TabIndex = 4;
+            this.lblElement.Text = "ElementName";
             // 
             // ElBsonValue
             // 
             this.ElBsonValue.Location = new System.Drawing.Point(102, 0);
             this.ElBsonValue.Name = "ElBsonValue";
-            this.ElBsonValue.Size = new System.Drawing.Size(218, 27);
-            this.ElBsonValue.TabIndex = 3;
+            this.ElBsonValue.Size = new System.Drawing.Size(328, 27);
+            this.ElBsonValue.TabIndex = 5;
             // 
-            // lblElement
+            // CtlAddBsonEl
             // 
-            this.lblElement.AutoSize = true;
-            this.lblElement.Location = new System.Drawing.Point(5, 8);
-            this.lblElement.Name = "lblElement";
-            this.lblElement.Size = new System.Drawing.Size(73, 13);
-            this.lblElement.TabIndex = 4;
-            this.lblElement.Text = "ElementName";
-            // 
-            // ctlAddBsonEl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblElement);
             this.Controls.Add(this.ElBsonValue);
+            this.Controls.Add(this.lblElement);
             this.Controls.Add(this.txtElName);
             this.Name = "CtlAddBsonEl";
-            this.Size = new System.Drawing.Size(315, 30);
+            this.Size = new System.Drawing.Size(429, 28);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -76,7 +76,7 @@ namespace MongoGUICtl
         #endregion
 
         private TextBox txtElName;
-        private CtlBsonValue ElBsonValue;
         private Label lblElement;
+        private ctlBsonValueType ElBsonValue;
     }
 }

@@ -3,9 +3,9 @@ using MongoDB.Bson;
 
 namespace MongoGUICtl
 {
-    public partial class CtlAddBsonEl : UserControl
+    public partial class ctlBsonValueTypeName : UserControl
     {
-        public CtlAddBsonEl()
+        public ctlBsonValueTypeName()
         {
             InitializeComponent();
             lblElement.Visible = false;

@@ -34,15 +34,15 @@ namespace FunctionForm.Operation
         {
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.ArrayPanel = new BsonValuePanel();
             this.btnOK = new System.Windows.Forms.Button();
+            this.ArrayPanel = new MongoGUICtl.Aggregation.BsonArrayPanel();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(202, 8);
+            this.btnAdd.Location = new System.Drawing.Point(150, 303);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(86, 30);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -50,46 +50,48 @@ namespace FunctionForm.Operation
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(283, 8);
+            this.btnClear.Location = new System.Drawing.Point(253, 303);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.Size = new System.Drawing.Size(86, 30);
             this.btnClear.TabIndex = 1;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // ArrayPanel
-            // 
-            this.ArrayPanel.AutoScroll = true;
-            this.ArrayPanel.Location = new System.Drawing.Point(1, 39);
-            this.ArrayPanel.Name = "ArrayPanel";
-            this.ArrayPanel.Size = new System.Drawing.Size(374, 237);
-            this.ArrayPanel.TabIndex = 2;
-            // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(283, 282);
+            this.btnOK.Location = new System.Drawing.Point(357, 303);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(86, 30);
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "Ok";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // ArrayPanel
+            // 
+            this.ArrayPanel.AutoScroll = true;
+            this.ArrayPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ArrayPanel.Location = new System.Drawing.Point(0, 0);
+            this.ArrayPanel.Name = "ArrayPanel";
+            this.ArrayPanel.Size = new System.Drawing.Size(455, 282);
+            this.ArrayPanel.TabIndex = 2;
+            // 
             // frmArrayCreator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(370, 316);
+            this.ClientSize = new System.Drawing.Size(455, 345);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.ArrayPanel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnClear);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmArrayCreator";
-            this.Text = "frmArrayCreator";
+            this.Name = "frmArrayCreator";
+            this.Text = "Array Creator";
+            this.Load += new System.EventHandler(this.frmArrayCreator_Load);
             this.ResumeLayout(false);
 
         }
@@ -98,7 +100,7 @@ namespace FunctionForm.Operation
 
         private Button btnAdd;
         private Button btnClear;
-        private BsonValuePanel ArrayPanel;
+        private BsonArrayPanel ArrayPanel;
         private Button btnOK;
     }
 }

@@ -10,7 +10,7 @@ namespace FunctionForm.Operation
         /// <summary>
         ///     BsonArray
         /// </summary>
-        public BsonArray MBsonArray;
+        public BsonArray mBsonArray;
 
         public frmArrayCreator()
         {
@@ -45,8 +45,13 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
-            MBsonArray = ArrayPanel.GetBsonArray();
+            mBsonArray = ArrayPanel.GetBsonArray();
             Close();
+        }
+
+        private void frmArrayCreator_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

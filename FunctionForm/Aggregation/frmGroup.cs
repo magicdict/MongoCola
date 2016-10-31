@@ -65,7 +65,7 @@ namespace FunctionForm.Aggregation
             var initial = new BsonDocument();
             for (var i = 0; i < _conditionCount; i++)
             {
-                var ctl = (CtlAddBsonEl) Controls.Find("BsonEl" + (i + 1), true)[0];
+                var ctl = (ctlBsonValueTypeName) Controls.Find("BsonEl" + (i + 1), true)[0];
                 if (ctl.IsSetted)
                 {
                     initial.Add(ctl.GetElement());
@@ -135,7 +135,7 @@ namespace FunctionForm.Aggregation
                 conditionPos.Y += ctrItem.Height;
             }
             conditionPos = new Point(50, 20);
-            var firstAddBsonElCtl = new CtlAddBsonEl {Location = conditionPos, Name = "BsonEl" + _conditionCount};
+            var firstAddBsonElCtl = new ctlBsonValueTypeName {Location = conditionPos, Name = "BsonEl" + _conditionCount};
             var el = new BsonElement("count", new BsonInt32(0));
             firstAddBsonElCtl.SetElement(el);
             panBsonEl.Controls.Add(firstAddBsonElCtl);
@@ -163,7 +163,7 @@ namespace FunctionForm.Aggregation
         private void cmdAddFld_Click(object sender, EventArgs e)
         {
             _conditionCount++;
-            var newCondition = new CtlAddBsonEl();
+            var newCondition = new ctlBsonValueTypeName();
             _conditionPos.Y += newCondition.Height;
             newCondition.Location = _conditionPos;
             newCondition.Name = "BsonEl" + _conditionCount;

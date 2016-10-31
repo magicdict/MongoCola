@@ -32,7 +32,6 @@ namespace FunctionForm.Operation
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateDocument));
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
@@ -115,7 +114,7 @@ namespace FunctionForm.Operation
             this.cmdSaveAggregate.UseVisualStyleBackColor = false;
             this.cmdSaveAggregate.Click += new System.EventHandler(this.cmdSaveDocument_Click);
             // 
-            // FrmNewDocument
+            // frmCreateDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -129,8 +128,7 @@ namespace FunctionForm.Operation
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.txtDocument);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmNewDocument";
+            this.Name = "frmCreateDocument";
             this.Text = "New Document";
             this.Load += new System.EventHandler(this.frmNewDocument_Load);
             this.ResumeLayout(false);

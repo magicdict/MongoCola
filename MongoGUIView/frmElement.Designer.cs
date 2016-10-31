@@ -34,18 +34,20 @@ namespace MongoGUIView
         {
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
-            this.AddBsonElement = new MongoGUICtl.CtlAddBsonEl();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblElement = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtElName = new System.Windows.Forms.TextBox();
+            this.cmbDataType = new System.Windows.Forms.ComboBox();
+            this.ctlBsonValue1 = new MongoGUICtl.ctlBsonValue();
             this.SuspendLayout();
             // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(207, 87);
+            this.cmdCancel.Location = new System.Drawing.Point(202, 98);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(117, 37);
+            this.cmdCancel.Size = new System.Drawing.Size(80, 37);
             this.cmdCancel.TabIndex = 8;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
@@ -54,37 +56,29 @@ namespace MongoGUIView
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(61, 87);
+            this.cmdOK.Location = new System.Drawing.Point(104, 98);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(117, 37);
+            this.cmdOK.Size = new System.Drawing.Size(71, 37);
             this.cmdOK.TabIndex = 7;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
-            // AddBsonElement
+            // lblElement
             // 
-            this.AddBsonElement.BackColor = System.Drawing.Color.Transparent;
-            this.AddBsonElement.Location = new System.Drawing.Point(21, 35);
-            this.AddBsonElement.Name = "AddBsonElement";
-            this.AddBsonElement.Size = new System.Drawing.Size(370, 35);
-            this.AddBsonElement.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(45, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 15);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Name";
+            this.lblElement.AutoSize = true;
+            this.lblElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblElement.Location = new System.Drawing.Point(14, 10);
+            this.lblElement.Name = "lblElement";
+            this.lblElement.Size = new System.Drawing.Size(45, 15);
+            this.lblElement.TabIndex = 9;
+            this.lblElement.Text = "Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(172, 17);
+            this.label2.Location = new System.Drawing.Point(14, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 15);
             this.label2.TabIndex = 10;
@@ -94,24 +88,50 @@ namespace MongoGUIView
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(286, 17);
+            this.label3.Location = new System.Drawing.Point(16, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 15);
             this.label3.TabIndex = 11;
             this.label3.Text = "Value";
+            // 
+            // txtElName
+            // 
+            this.txtElName.Location = new System.Drawing.Point(82, 12);
+            this.txtElName.Name = "txtElName";
+            this.txtElName.Size = new System.Drawing.Size(257, 21);
+            this.txtElName.TabIndex = 12;
+            // 
+            // cmbDataType
+            // 
+            this.cmbDataType.FormattingEnabled = true;
+            this.cmbDataType.Location = new System.Drawing.Point(82, 40);
+            this.cmbDataType.Name = "cmbDataType";
+            this.cmbDataType.Size = new System.Drawing.Size(257, 23);
+            this.cmbDataType.TabIndex = 13;
+            this.cmbDataType.SelectedIndexChanged += new System.EventHandler(this.cmbDataType_SelectedIndexChanged);
+            // 
+            // ctlBsonValue1
+            // 
+            this.ctlBsonValue1.Location = new System.Drawing.Point(82, 68);
+            this.ctlBsonValue1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ctlBsonValue1.Name = "ctlBsonValue1";
+            this.ctlBsonValue1.Size = new System.Drawing.Size(257, 26);
+            this.ctlBsonValue1.TabIndex = 14;
             // 
             // FrmElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(413, 150);
+            this.ClientSize = new System.Drawing.Size(378, 150);
+            this.Controls.Add(this.ctlBsonValue1);
+            this.Controls.Add(this.cmbDataType);
+            this.Controls.Add(this.txtElName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblElement);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
-            this.Controls.Add(this.AddBsonElement);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -126,12 +146,13 @@ namespace MongoGUIView
         }
 
         #endregion
-
-        private CtlAddBsonEl AddBsonElement;
         private Button cmdCancel;
         private Button cmdOK;
-        private Label label1;
+        private Label lblElement;
         private Label label2;
         private Label label3;
+        private TextBox txtElName;
+        private ComboBox cmbDataType;
+        private ctlBsonValue ctlBsonValue1;
     }
 }
