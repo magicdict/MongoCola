@@ -12,7 +12,7 @@ namespace FunctionForm.Operation
 {
     public partial class frmCreateDocument : Form
     {
-        public BsonDocument MBsonDocument;
+        public BsonDocument mBsonDocument;
 
         public frmCreateDocument()
         {
@@ -32,7 +32,7 @@ namespace FunctionForm.Operation
                 try
                 {
                     newBsonDocument = BsonDocument.Parse(txtDocument.Text);
-                    MBsonDocument = newBsonDocument;
+                    mBsonDocument = newBsonDocument;
                     Close();
                 }
                 catch (Exception ex)

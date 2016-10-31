@@ -94,14 +94,13 @@ namespace MongoGUIView
             };
         }
 
-        ///// <summary>
-        ///// 数据树形被选择后(非TOP)
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        private void trvData_AfterSelect_NotTop()
+        /// <summary>
+        ///     数据树形被选择后(非TOP)
+        /// </summary>
+        /// <returns>是否能被修改[双击事件]</returns>
+        private bool trvData_AfterSelect_NotTop()
         {
-            if (MDataViewInfo.IsView) return; //View是只读的
+            if (MDataViewInfo.IsView) return false; //View是只读的
 
             //非顶层可以删除的节点
             if (!Operater.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()) &&
@@ -202,6 +201,8 @@ namespace MongoGUIView
                     }
                 }
             }
+
+            return ModifyElementToolStripMenuItem.Enabled;
         }
 
         ///// <summary>
@@ -282,7 +283,7 @@ namespace MongoGUIView
         }
 
         //<summary>
-        //数据列表选中索引变换
+        //      数据列表选中索引变换
         //</summary>
         //<param name="sender"></param>
         //<param name="e"></param>
@@ -462,6 +463,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void ModifyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!trvData_AfterSelect_NotTop()) return;
             if (trvData.DatatreeView.SelectedNode.Level == 1 & trvData.DatatreeView.SelectedNode.PrevNode == null)
             {
                 MyMessageBox.ShowMessage("Error", "_id can't be modify");

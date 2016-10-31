@@ -1,0 +1,166 @@
+﻿namespace FunctionForm.Operation
+{
+    partial class frmCreateGeo
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtLongitude = new System.Windows.Forms.TextBox();
+            this.txtLatitude = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rad2d = new System.Windows.Forms.RadioButton();
+            this.rad2dSphere = new System.Windows.Forms.RadioButton();
+            this.cmdClose = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtLongitude);
+            this.groupBox1.Controls.Add(this.txtLatitude);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.rad2d);
+            this.groupBox1.Controls.Add(this.rad2dSphere);
+            this.groupBox1.Location = new System.Drawing.Point(23, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(312, 112);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Geo Type";
+            // 
+            // txtLongitude
+            // 
+            this.txtLongitude.Location = new System.Drawing.Point(129, 52);
+            this.txtLongitude.Name = "txtLongitude";
+            this.txtLongitude.Size = new System.Drawing.Size(100, 21);
+            this.txtLongitude.TabIndex = 6;
+            // 
+            // txtLatitude
+            // 
+            this.txtLatitude.Location = new System.Drawing.Point(129, 82);
+            this.txtLatitude.Name = "txtLatitude";
+            this.txtLatitude.Size = new System.Drawing.Size(100, 21);
+            this.txtLatitude.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 12);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "latitude ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "longitude";
+            // 
+            // rad2d
+            // 
+            this.rad2d.AutoSize = true;
+            this.rad2d.Location = new System.Drawing.Point(29, 20);
+            this.rad2d.Name = "rad2d";
+            this.rad2d.Size = new System.Drawing.Size(35, 16);
+            this.rad2d.TabIndex = 1;
+            this.rad2d.TabStop = true;
+            this.rad2d.Text = "2D";
+            this.rad2d.UseVisualStyleBackColor = true;
+            // 
+            // rad2dSphere
+            // 
+            this.rad2dSphere.AutoSize = true;
+            this.rad2dSphere.Location = new System.Drawing.Point(70, 20);
+            this.rad2dSphere.Name = "rad2dSphere";
+            this.rad2dSphere.Size = new System.Drawing.Size(113, 16);
+            this.rad2dSphere.TabIndex = 2;
+            this.rad2dSphere.TabStop = true;
+            this.rad2dSphere.Text = "2dSphere(WGS84)";
+            this.rad2dSphere.UseVisualStyleBackColor = true;
+            // 
+            // cmdClose
+            // 
+            this.cmdClose.Location = new System.Drawing.Point(170, 130);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(82, 25);
+            this.cmdClose.TabIndex = 4;
+            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
+            // 
+            // cmdOK
+            // 
+            this.cmdOK.Location = new System.Drawing.Point(82, 130);
+            this.cmdOK.Name = "cmdOK";
+            this.cmdOK.Size = new System.Drawing.Size(82, 25);
+            this.cmdOK.TabIndex = 3;
+            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Text = "OK";
+            this.cmdOK.UseVisualStyleBackColor = true;
+            this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
+            // 
+            // frmCreateGeo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(351, 171);
+            this.Controls.Add(this.cmdClose);
+            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmCreateGeo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Create GeoJSON";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rad2d;
+        private System.Windows.Forms.RadioButton rad2dSphere;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtLongitude;
+        private System.Windows.Forms.TextBox txtLatitude;
+        private System.Windows.Forms.Button cmdClose;
+        private System.Windows.Forms.Button cmdOK;
+    }
+}

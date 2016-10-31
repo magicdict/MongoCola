@@ -84,16 +84,19 @@ namespace MongoUtility.Basic
                 mBsonType = BasicType.BsonDecimal128;
                 mBSonDecimal128 = value.AsDecimal;
             }
+
             if (value.IsDouble)
             {
                 mBsonType = BasicType.BsonDouble;
                 mBsonDouble = value.AsDouble;
             }
+
             if (value.IsValidDateTime)
             {
                 mBsonType = BasicType.BsonDateTime;
                 mBsonDateTime = value.ToUniversalTime();
             }
+
             if (value.IsBoolean)
             {
                 mBsonType = BasicType.BsonBoolean;
@@ -115,6 +118,8 @@ namespace MongoUtility.Basic
             BsonBoolean,
             BsonArray,
             BsonDocument,
+            BsonGeo,
+            BsonUndefined = 99
         }
 
         /// <summary>
@@ -188,6 +193,9 @@ namespace MongoUtility.Basic
                 case BasicType.BsonDocument:
                     InitValue = (new BsonDocument());
                     break;
+                case BasicType.BsonGeo:
+                    InitValue = (new BsonArray() { 0, 0 });
+                    break;
                 default:
                     break;
             }
@@ -208,6 +216,7 @@ namespace MongoUtility.Basic
             if (value.IsDouble) return BasicType.BsonDouble;
             if (value.IsValidDateTime) return BasicType.BsonDateTime;
             if (value.IsBoolean) return BasicType.BsonBoolean;
+            //这里也可能是一个地理对象
             if (value.IsBsonArray) return BasicType.BsonArray;
             if (value.IsBsonDocument) return BasicType.BsonDocument;
             return BasicType.BsonString;

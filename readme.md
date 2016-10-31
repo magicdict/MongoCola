@@ -18,8 +18,8 @@
 
 ## 运行时：
 * NET Framework 4.6.2
-* NET Core 1.0.1
-* MongoDB 3.4.0-rc1 
+* NET Core 1.1.10
+* MongoDB 3.4.0-rc2 
 
 ***
 
@@ -62,6 +62,7 @@ CSharp Mongo Driver 2.4.0-beta1
 5. GFS拖曳上传功能
 6. GeoHaystackSearchAs的追加
 7. ObjectId详细信息的表示
+8. 增加了地理数组的快捷输入
 
 ###修改
 1. 新建数据集的BUG修正，数据集验证的修复
@@ -72,6 +73,7 @@ CSharp Mongo Driver 2.4.0-beta1
 6. 修正了切断连接无效的问题
 7. NetCore和Net版本条件编译
 8. BsonDocument树形表示优化
+9. 树形数据展示，双击是否能被修改的问题
 
 ###聚合
 1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind

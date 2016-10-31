@@ -17,6 +17,11 @@ namespace MongoGUICtl
         public static Func<BsonArray> GetArray;
 
         /// <summary>
+        ///     获得一个新BsonArray的委托
+        /// </summary>
+        public static Func<BsonArray> GetGeo;
+
+        /// <summary>
         ///     文档
         /// </summary>
         private BsonDocument _mBsonDocument = new BsonDocument();
@@ -81,6 +86,7 @@ namespace MongoGUICtl
                     mValue = radTrue.Checked ? BsonBoolean.True : BsonBoolean.False;
                     break;
                 case BsonValueEx.BasicType.BsonArray:
+                case BsonValueEx.BasicType.BsonGeo:
                     mValue = _mBsonArray;
                     break;
                 case BsonValueEx.BasicType.BsonDocument:
@@ -94,7 +100,7 @@ namespace MongoGUICtl
         ///     使用属性会发生一些MONO上的移植问题
         /// </summary>
         /// <returns></returns>
-        public void SetValue(BsonValue value)
+        public void SetValue(BsonValue value, BsonValueEx.BasicType DataType = BsonValueEx.BasicType.BsonUndefined)
         {
             txtBsonValue.Visible = false;
             txtBsonValue.Text = string.Empty;
@@ -161,14 +167,31 @@ namespace MongoGUICtl
                     MessageBox.Show("GetArray委托不存在！");
                     return;
                 }
-                var t = GetArray();
-                if (t != null)
+                if (DataType == BsonValueEx.BasicType.BsonGeo)
                 {
-                    _mBsonArray = t;
-                    txtBsonValue.Visible = true;
-                    txtBsonValue.Text = _mBsonArray.ToString();
-                    txtBsonValue.ReadOnly = true;
+                    //地理
+                    var t = GetGeo();
+                    if (t != null)
+                    {
+                        _mBsonArray = t;
+                        txtBsonValue.Visible = true;
+                        txtBsonValue.Text = _mBsonArray.ToString();
+                        txtBsonValue.ReadOnly = true;
+                    }
                 }
+                else
+                {
+                    //普通数组
+                    var t = GetArray();
+                    if (t != null)
+                    {
+                        _mBsonArray = t;
+                        txtBsonValue.Visible = true;
+                        txtBsonValue.Text = _mBsonArray.ToString();
+                        txtBsonValue.ReadOnly = true;
+                    }
+                }
+
             }
             if (value.IsBsonDocument)
             {
@@ -198,7 +221,7 @@ namespace MongoGUICtl
             txtBsonValue.Visible = false;
             radTrue.Visible = false;
             radFalse.Visible = false;
-            SetValue(BsonValueEx.GetInitValue(DataType));
+            SetValue(BsonValueEx.GetInitValue(DataType), DataType);
         }
     }
 }
