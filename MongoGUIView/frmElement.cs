@@ -1,11 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
+using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using MongoUtility.Basic;
+using System;
+using System.Windows.Forms;
 
 namespace MongoGUIView
 {
@@ -68,18 +68,15 @@ namespace MongoGUIView
                     txtElName.Text = (El).Name;
                     ctlBsonValue1.SetValue(El.Value);
                     cmbDataType.SelectedIndex = (int)BsonValueEx.GetBsonValueBasicType(El.Value);
-                }else
+                }
+                else
                 {
                     var value = (BsonValue)_selectNode.Tag;
                     ctlBsonValue1.SetValue(value);
                     cmbDataType.SelectedIndex = (int)BsonValueEx.GetBsonValueBasicType(value);
+                    txtElName.Text = _selectNode.Text;
+                    txtElName.ReadOnly = true;
                 }
-            }
-            if (!_isElement)
-            {
-                //TODO:在这个模式，数组里面暂时不能添加数组或者文档
-                txtElName.Visible = false;
-                lblElement.Visible = false;
             }
             IsLoaded = true;
             if (!GuiConfig.IsUseDefaultLanguage)

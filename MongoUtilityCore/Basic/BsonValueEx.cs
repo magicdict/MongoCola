@@ -67,24 +67,22 @@ namespace MongoUtility.Basic
                 mBsonType = BasicType.BsonString;
                 mBsonString = value.ToString();
             }
+
             if (value.IsInt32)
             {
                 mBsonType = BasicType.BsonInt32;
                 mBsonInt32 = value.AsInt32;
             }
-
             if (value.IsInt64)
             {
                 mBsonType = BasicType.BsonInt64;
                 mBSonDecimal128 = value.AsDecimal;
             }
-
             if (value.IsDecimal128)
             {
                 mBsonType = BasicType.BsonDecimal128;
                 mBSonDecimal128 = value.AsDecimal;
             }
-
             if (value.IsDouble)
             {
                 mBsonType = BasicType.BsonDouble;
@@ -96,12 +94,21 @@ namespace MongoUtility.Basic
                 mBsonType = BasicType.BsonDateTime;
                 mBsonDateTime = value.ToUniversalTime();
             }
-
             if (value.IsBoolean)
             {
                 mBsonType = BasicType.BsonBoolean;
                 mBsonBoolean = value.AsBoolean;
             }
+
+            if (value.IsBsonMaxKey)
+            {
+                mBsonType = BasicType.BsonMaxKey;
+            }
+            if (value.IsBsonMinKey)
+            {
+                mBsonType = BasicType.BsonMinKey;
+            }
+
         }
 
         /// <summary>
@@ -119,6 +126,8 @@ namespace MongoUtility.Basic
             BsonArray,
             BsonDocument,
             BsonGeo,
+            BsonMinKey,
+            BsonMaxKey,
             BsonUndefined = 99
         }
 
@@ -152,6 +161,14 @@ namespace MongoUtility.Basic
                 case BasicType.BsonBoolean:
                     value = mBsonBoolean ? BsonBoolean.True : BsonBoolean.False;
                     break;
+
+                case BasicType.BsonMaxKey:
+                    value = BsonMaxKey.Value;
+                    break;
+                case BasicType.BsonMinKey:
+                    value = BsonMinKey.Value;
+                    break;
+
             }
             return value;
         }
@@ -196,6 +213,12 @@ namespace MongoUtility.Basic
                 case BasicType.BsonGeo:
                     InitValue = (new BsonArray() { 0, 0 });
                     break;
+                case BasicType.BsonMaxKey:
+                    InitValue = BsonMaxKey.Value;
+                    break;
+                case BasicType.BsonMinKey:
+                    InitValue = BsonMinKey.Value;
+                    break;
                 default:
                     break;
             }
@@ -219,6 +242,10 @@ namespace MongoUtility.Basic
             //这里也可能是一个地理对象
             if (value.IsBsonArray) return BasicType.BsonArray;
             if (value.IsBsonDocument) return BasicType.BsonDocument;
+
+            if (value.IsBsonMaxKey) return BasicType.BsonMaxKey;
+            if (value.IsBsonMinKey) return BasicType.BsonMinKey;
+
             return BasicType.BsonString;
         }
 

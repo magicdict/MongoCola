@@ -72,7 +72,6 @@ namespace MongoGUICtl
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker.Location = new System.Drawing.Point(0, 3);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(219, 21);
@@ -96,7 +95,7 @@ namespace MongoGUICtl
             this.NumberPick.TabIndex = 9;
             this.NumberPick.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // CtlBsonValue
+            // ctlBsonValue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,7 +104,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.radFalse);
             this.Controls.Add(this.NumberPick);
             this.Controls.Add(this.dateTimePicker);
-            this.Name = "CtlBsonValue";
+            this.Name = "ctlBsonValue";
             this.Size = new System.Drawing.Size(225, 28);
             ((System.ComponentModel.ISupportInitialize)(this.NumberPick)).EndInit();
             this.ResumeLayout(false);

@@ -28,6 +28,27 @@ namespace MongoCola.Config
             {
                 radLocal.Checked = true;
             }
+
+            switch (SystemManager.SystemConfig.DateTimeFormat)
+            {
+                case DateTimePickerFormat.Long:
+                    radDateTime_Long.Checked = true;
+                    break;
+                case DateTimePickerFormat.Short:
+                    radDateTime_Short.Checked = true;
+                    break;
+                case DateTimePickerFormat.Time:
+                    radDateTime_Time.Checked = true;
+                    break;
+                case DateTimePickerFormat.Custom:
+                    radDateTime_Custom.Checked = true;
+                    txtDateTimeFormat.Text = SystemManager.SystemConfig.DateTimeCustomFormat;
+                    break;
+                default:
+                    break;
+            }
+
+
             if (SystemManager.SystemConfig.IsDisplayNumberWithKSystem)
             {
                 chkIsDisplayNumberWithKSystem.Checked = true;
@@ -110,6 +131,16 @@ namespace MongoCola.Config
         {
             _ctlReadWriteConfig1.SaveConfig();
             SystemManager.SystemConfig.IsUtc = radUTC.Checked;
+            if (radDateTime_Custom.Checked)
+            {
+                SystemManager.SystemConfig.DateTimeFormat = DateTimePickerFormat.Custom;
+                SystemManager.SystemConfig.DateTimeCustomFormat = txtDateTimeFormat.Text;
+            }
+            if (radDateTime_Long.Checked) SystemManager.SystemConfig.DateTimeFormat = DateTimePickerFormat.Long;
+            if (radDateTime_Short.Checked) SystemManager.SystemConfig.DateTimeFormat = DateTimePickerFormat.Short;
+            if (radDateTime_Time.Checked) SystemManager.SystemConfig.DateTimeFormat = DateTimePickerFormat.Time;
+
+
             SystemManager.SystemConfig.IsDisplayNumberWithKSystem = chkIsDisplayNumberWithKSystem.Checked;
             SystemManager.SystemConfig.MongoBinPath = fileMongoBinPath.SelectedPathOrFileName;
             SystemManager.SystemConfig.RefreshStatusTimer = (int)intRefreshStatusTimer.Value;

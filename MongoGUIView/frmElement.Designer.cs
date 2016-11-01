@@ -103,6 +103,7 @@ namespace MongoGUIView
             // 
             // cmbDataType
             // 
+            this.cmbDataType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmbDataType.FormattingEnabled = true;
             this.cmbDataType.Location = new System.Drawing.Point(82, 40);
             this.cmbDataType.Name = "cmbDataType";

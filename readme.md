@@ -52,7 +52,7 @@ CSharp Mongo Driver 2.4.0-beta1
 ***
 
 # 发布履历
-##Ver 2.01 2016/10/31
+##Ver 2.01 2016/11/31
 
 ###新增
 1. 添加视图（From MongoDB 3.4）
@@ -63,6 +63,8 @@ CSharp Mongo Driver 2.4.0-beta1
 6. GeoHaystackSearchAs的追加
 7. ObjectId详细信息的表示
 8. 增加了地理数组的快捷输入
+9. 日期格式的设定
+10. 更新了索引种类（7种索引）
 
 ###修改
 1. 新建数据集的BUG修正，数据集验证的修复
@@ -81,12 +83,11 @@ CSharp Mongo Driver 2.4.0-beta1
 3. 优化聚合UI
 4. 聚合结果保存为视图
 
-###索引管理器
-1. 更新了索引种类（7种索引）
 
 ###mongobooster功能的借鉴
 1. 增加了MongoDB官方文档的链接
 2. BsonGuidRepresentation概念的引入
+3. BsonMaxKey,BsonMinKey概念的引入
 
 ##Ver 2.0 2016/06/29
 1. Query增加了删除条件的功能

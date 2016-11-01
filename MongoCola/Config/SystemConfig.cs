@@ -1,9 +1,10 @@
-﻿using System;
-using Common;
+﻿using Common;
 using FunctionForm.Status;
+using MongoDB.Driver;
 using MongoGUICtl;
 using MongoGUIView;
-using MongoDB.Driver;
+using System;
+using System.Windows.Forms;
 
 namespace MongoCola.Config
 {
@@ -63,6 +64,15 @@ namespace MongoCola.Config
         /// </summary>
         public GuidRepresentation BsonGuidRepresentation { set; get; }
 
+        /// <summary>
+        ///     DateTimeFormat
+        /// </summary>
+        public DateTimePickerFormat DateTimeFormat { set; get; }
+        /// <summary>
+        ///     DateTimeCustomFormat
+        /// </summary>
+        public string DateTimeCustomFormat { set; get; }
+
 
         [NonSerialized]
         public int DefaultRefreshStatusTimer = 30;
@@ -117,7 +127,16 @@ namespace MongoCola.Config
         /// </summary>
         private static void ApplyConfig()
         {
+            if (SystemManager.SystemConfig.DateTimeFormat.GetHashCode() == 0)
+            {
+                SystemManager.SystemConfig.DateTimeFormat = DateTimePickerFormat.Long;
+            }
+
             CtlTreeViewColumns.IsUtc = SystemManager.SystemConfig.IsUtc;
+            CtlTreeViewColumns.DateTimeFormat = SystemManager.SystemConfig.DateTimeFormat;
+            CtlTreeViewColumns.DateTimeCustomFormat = SystemManager.SystemConfig.DateTimeCustomFormat;
+            ctlBsonValue.DateTimeFormat = SystemManager.SystemConfig.DateTimeFormat;
+            ctlBsonValue.DateTimeCustomFormat = SystemManager.SystemConfig.DateTimeCustomFormat;
             CtlTreeViewColumns.IsDisplayNumberWithKSystem = SystemManager.SystemConfig.IsDisplayNumberWithKSystem;
             ViewHelper.IsUtc = SystemManager.SystemConfig.IsUtc;
             ViewHelper.IsDisplayNumberWithKSystem = SystemManager.SystemConfig.IsDisplayNumberWithKSystem;

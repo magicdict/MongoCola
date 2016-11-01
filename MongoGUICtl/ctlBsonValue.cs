@@ -31,6 +31,15 @@ namespace MongoGUICtl
         public static Func<BsonDocument> GetDocument;
 
         /// <summary>
+        ///     DateTimeFormat
+        /// </summary>
+        public static DateTimePickerFormat DateTimeFormat { set; get; }
+        /// <summary>
+        ///     DateTimeCustomFormat
+        /// </summary>
+        public static string DateTimeCustomFormat { set; get; }
+
+        /// <summary>
         ///     初始化，请确保 getArray 和 getDocument正确设定
         /// </summary>
         public ctlBsonValue()
@@ -39,6 +48,9 @@ namespace MongoGUICtl
 
             dateTimePicker.Location = txtBsonValue.Location;
             dateTimePicker.Size = txtBsonValue.Size;
+            dateTimePicker.Format = DateTimeFormat;
+            dateTimePicker.CustomFormat = DateTimeCustomFormat;
+
             radTrue.Location = txtBsonValue.Location;
             radFalse.Top = txtBsonValue.Top;
             NumberPick.Location = txtBsonValue.Location;
@@ -91,6 +103,12 @@ namespace MongoGUICtl
                     break;
                 case BsonValueEx.BasicType.BsonDocument:
                     mValue = _mBsonDocument;
+                    break;
+                case BsonValueEx.BasicType.BsonMaxKey:
+                    mValue = BsonMaxKey.Value;
+                    break;
+                case BsonValueEx.BasicType.BsonMinKey:
+                    mValue = BsonMinKey.Value;
                     break;
             }
             return mValue;
@@ -145,6 +163,13 @@ namespace MongoGUICtl
             {
                 dateTimePicker.Visible = true;
                 dateTimePicker.Value = value.ToUniversalTime();
+            }
+
+            if (value.IsBsonMaxKey || value.IsBsonMinKey)
+            {
+                txtBsonValue.Visible = true;
+                txtBsonValue.Enabled = false;
+                txtBsonValue.Text = value.ToString();
             }
 
             if (value.IsBoolean)

@@ -40,6 +40,15 @@ namespace MongoGUICtl
         public static bool IsUtc { get; set; }
 
         /// <summary>
+        ///     DateTimeFormat
+        /// </summary>
+        public static DateTimePickerFormat DateTimeFormat { set; get; }
+        /// <summary>
+        ///     DateTimeCustomFormat
+        /// </summary>
+        public static string DateTimeCustomFormat { set; get; }
+
+        /// <summary>
         ///     是否使用千，百万系统表示数字
         /// </summary>
         public static bool IsDisplayNumberWithKSystem { get; set; }
@@ -296,13 +305,31 @@ namespace MongoGUICtl
                 //日期型处理
                 if (mElement.Value.IsValidDateTime)
                 {
+                    DateTime datetime;
                     if (IsUtc)
                     {
-                        strColumnText = mElement.Value.AsBsonDateTime.ToUniversalTime().ToString();
+                        datetime = mElement.Value.AsBsonDateTime.ToUniversalTime();
                     }
                     else
                     {
-                        strColumnText = mElement.Value.AsBsonDateTime.ToLocalTime().ToString();
+                        datetime = mElement.Value.AsBsonDateTime.ToLocalTime();
+                    }
+                    switch (DateTimeFormat)
+                    {
+                        case DateTimePickerFormat.Long:
+                            strColumnText = datetime.ToLongDateString();
+                            break;
+                        case DateTimePickerFormat.Short:
+                            strColumnText = datetime.ToShortDateString();
+                            break;
+                        case DateTimePickerFormat.Time:
+                            strColumnText = datetime.ToShortTimeString();
+                            break;
+                        case DateTimePickerFormat.Custom:
+                            strColumnText = datetime.ToString(DateTimeCustomFormat);
+                            break;
+                        default:
+                            break;
                     }
                     return strColumnText;
                 }
