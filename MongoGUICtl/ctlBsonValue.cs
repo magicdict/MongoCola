@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoUtility.Basic;
+using System.Text;
 
 namespace MongoGUICtl
 {
@@ -118,9 +119,14 @@ namespace MongoGUICtl
                 case BsonValueEx.BasicType.BsonMinKey:
                     mValue = BsonMinKey.Value;
                     break;
+                case BsonValueEx.BasicType.BsonBinary:
+                    mValue = new BsonBinaryData(Encoding.Default.GetBytes(txtBsonValue.Text));
+                    break;
             }
             return mValue;
         }
+
+        
 
         /// <summary>
         ///     使用属性会发生一些MONO上的移植问题
@@ -241,6 +247,11 @@ namespace MongoGUICtl
                     txtBsonValue.Text = _mBsonDocument.ToString();
                     txtBsonValue.ReadOnly = true;
                 }
+            }
+            if (value.IsBsonBinaryData)
+            {
+                txtBsonValue.Visible = true;
+                txtBsonValue.Text = Encoding.Default.GetString(value.AsBsonBinaryData.Bytes);
             }
         }
 

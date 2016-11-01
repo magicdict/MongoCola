@@ -44,6 +44,11 @@ namespace MongoUtility.Basic
         string mBsonString;
 
         /// <summary>
+        ///     二进制
+        /// </summary>
+        byte[] mBsonBinary;
+
+        /// <summary>
         ///     类型
         /// </summary>
         BasicType mBsonType;
@@ -54,6 +59,27 @@ namespace MongoUtility.Basic
         public BsonValueEx()
         {
 
+        }
+
+        /// <summary>
+        ///     基本类型枚举
+        /// </summary>
+        public enum BasicType : int
+        {
+            BsonString = 0,
+            BsonInt32,
+            BsonInt64,
+            BsonDecimal128,
+            BsonDouble,
+            BsonDateTime,
+            BsonBoolean,
+            BsonArray,
+            BsonDocument,
+            BsonGeo,
+            BsonMinKey,
+            BsonMaxKey,
+            BsonBinary,
+            BsonUndefined = 99
         }
 
         /// <summary>
@@ -109,27 +135,14 @@ namespace MongoUtility.Basic
                 mBsonType = BasicType.BsonMinKey;
             }
 
+            if (value.IsBsonBinaryData)
+            {
+                mBsonType = BasicType.BsonBinary;
+                mBsonBinary = value.AsBsonBinaryData.Bytes;
+            }
         }
 
-        /// <summary>
-        ///     基本类型枚举
-        /// </summary>
-        public enum BasicType : int
-        {
-            BsonString = 0,
-            BsonInt32,
-            BsonInt64,
-            BsonDecimal128,
-            BsonDouble,
-            BsonDateTime,
-            BsonBoolean,
-            BsonArray,
-            BsonDocument,
-            BsonGeo,
-            BsonMinKey,
-            BsonMaxKey,
-            BsonUndefined = 99
-        }
+     
 
         /// <summary>
         ///     还原BsonValue
@@ -168,7 +181,9 @@ namespace MongoUtility.Basic
                 case BasicType.BsonMinKey:
                     value = BsonMinKey.Value;
                     break;
-
+                case BasicType.BsonBinary:
+                    value = new BsonBinaryData(mBsonBinary);
+                    break;
             }
             return value;
         }
@@ -219,6 +234,9 @@ namespace MongoUtility.Basic
                 case BasicType.BsonMinKey:
                     InitValue = BsonMinKey.Value;
                     break;
+                case BasicType.BsonBinary:
+                    InitValue = new BsonBinaryData(new byte[0]);
+                    break;
                 default:
                     break;
             }
@@ -245,6 +263,8 @@ namespace MongoUtility.Basic
 
             if (value.IsBsonMaxKey) return BasicType.BsonMaxKey;
             if (value.IsBsonMinKey) return BasicType.BsonMinKey;
+
+            if (value.IsBsonBinaryData) return BasicType.BsonBinary;
 
             return BasicType.BsonString;
         }

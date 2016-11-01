@@ -89,6 +89,7 @@ CSharp Mongo Driver 2.4.0-beta1
 1. 增加了MongoDB官方文档的链接
 2. BsonGuidRepresentation概念的引入
 3. BsonMaxKey,BsonMinKey概念的引入
+4. BsonBinaryData概念的引入
 
 ##Ver 2.0 2016/06/29
 1. Query增加了删除条件的功能

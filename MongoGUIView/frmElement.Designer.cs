@@ -40,12 +40,13 @@ namespace MongoGUIView
             this.txtElName = new System.Windows.Forms.TextBox();
             this.cmbDataType = new System.Windows.Forms.ComboBox();
             this.ctlBsonValue1 = new MongoGUICtl.ctlBsonValue();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(202, 98);
+            this.cmdCancel.Location = new System.Drawing.Point(201, 158);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(80, 37);
             this.cmdCancel.TabIndex = 8;
@@ -56,7 +57,7 @@ namespace MongoGUIView
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(104, 98);
+            this.cmdOK.Location = new System.Drawing.Point(103, 158);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(71, 37);
             this.cmdOK.TabIndex = 7;
@@ -103,7 +104,6 @@ namespace MongoGUIView
             // 
             // cmbDataType
             // 
-            this.cmbDataType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmbDataType.FormattingEnabled = true;
             this.cmbDataType.Location = new System.Drawing.Point(82, 40);
             this.cmbDataType.Name = "cmbDataType";
@@ -119,12 +119,26 @@ namespace MongoGUIView
             this.ctlBsonValue1.Size = new System.Drawing.Size(257, 26);
             this.ctlBsonValue1.TabIndex = 14;
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(19, 112);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(335, 38);
+            this.textBox1.TabIndex = 15;
+            this.textBox1.Text = "BsonBinaryData:Please Input the data without encode.\r\nThe data will encode to bas" +
+    "e64 by mongocola.";
+            // 
             // FrmElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(378, 150);
+            this.ClientSize = new System.Drawing.Size(378, 207);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ctlBsonValue1);
             this.Controls.Add(this.cmbDataType);
             this.Controls.Add(this.txtElName);
@@ -155,5 +169,6 @@ namespace MongoGUIView
         private TextBox txtElName;
         private ComboBox cmbDataType;
         private ctlBsonValue ctlBsonValue1;
+        private TextBox textBox1;
     }
 }

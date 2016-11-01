@@ -513,7 +513,8 @@ namespace MongoUtility.Command
         #region"Server Command"
 
         //Replica Set Commands
-        //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
+        //[OLD]http://www.mongodb.org/display/DOCS/Replica+Set+Commands
+        //[NEW]https://docs.mongodb.com/manual/reference/replication/
         //rs.help()                       show help
         //rs.status()                     { replSetGetStatus : 1 }
         //rs.initiate()                   { replSetInitiate : null } initiate
@@ -526,21 +527,23 @@ namespace MongoUtility.Command
         //rs.stepDown()                   { replSetStepDown : true }
         //rs.conf()                       return configuration from local.system.replset
         //db.isMaster()                   check who is primary
+
         /// <summary>
         ///     服务器状态
-        ///     http://www.mongodb.org/display/DOCS/serverStatus+Command
+        ///     [OLD]http://www.mongodb.org/display/DOCS/serverStatus+Command
+        ///     [NEW]https://docs.mongodb.com/manual/reference/command/serverStatus/
         /// </summary>
         public static MongoCommand ServerStatusCommand = new MongoCommand("serverStatus", EnumMgr.PathLevel.Instance);
 
-        //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// <summary>
         ///     副本状态
+        ///     http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// </summary>
         public static MongoCommand ReplSetGetStatusCommand = new MongoCommand("replSetGetStatus", EnumMgr.PathLevel.Instance);
 
-        //http://www.mongodb.org/display/DOCS/Master+Slave
         /// <summary>
         ///     Slave强制同步
+        ///     http://www.mongodb.org/display/DOCS/Master+Slave
         /// </summary>
         public static MongoCommand ResyncCommand = new MongoCommand("resync", EnumMgr.PathLevel.Instance);
 
@@ -658,17 +661,47 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult AddShardTag(MongoServer routeSvr, string shardName, string tagName)
         {
-            //mongos> sh.addShardTag
-            //function (shard, tag) {
-            //    var config = db.getSisterDB("config");
-            //    if (config.shards.findOne({_id:shard}) == null) {
-            //        throw "can't find a shard with name: " + shard;
-            //    }
-            //    config.shards.update({_id:shard}, {$addToSet:{tags:tag}});
-            //    sh._checkLastError(config);
-            //}
             return ExecuteJsShell("sh.addShardTag('" + shardName + "', '" + tagName + "')", routeSvr);
         }
+
+        /// <summary>
+        ///     AddShardToZone
+        /// </summary>
+        /// <param name="routeSvr">服务器</param>
+        /// <param name="shardName">Shard名称</param>
+        /// <param name="tagName">Tag名称</param>
+        /// <returns></returns>
+        public static CommandResult AddShardToZone(MongoServer routeSvr, string shardName, string zone)
+        {
+            return ExecuteJsShell("sh.addShardToZone('" + shardName + "', '" + zone + "')", routeSvr);
+        }
+
+        //mongos> sh.addShardTag
+        //function (shard, tag) {
+        //    var config = db.getSisterDB("config");
+        //    if (config.shards.findOne({_id:shard}) == null) {
+        //        throw "can't find a shard with name: " + shard;
+        //    }
+        //    config.shards.update({_id:shard}, {$addToSet:{tags:tag}});
+        //    sh._checkLastError(config);
+        //}
+        //mongos> sh.addTagRange
+        //function (ns, min, max, tag) {
+        //    var config = db.getSisterDB("config");
+        //    config.tags.update(
+        //                       {_id:{ns:ns, min:min}},
+        //                       {
+        //                             _id:{ns:ns, min:min},
+        //                             ns:ns,
+        //                             min:min,
+        //                             max:max, 
+        //                             tag:tag
+        //                       }, 
+        //                       true
+        //                       );
+        //    sh._checkLastError(config);
+        //}
+
 
         /// <summary>
         ///     AddTagRange

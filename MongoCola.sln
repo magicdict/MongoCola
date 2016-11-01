@@ -29,7 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLanEditor", "MultiLanE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCF84DFC-72F4-4A63-9CF1-80E764305390}"
 	ProjectSection(SolutionItems) = preProject
-		docs\MongoCola.md = docs\MongoCola.md
 		readme.md = readme.md
 		MongoCola\Release Note_Ver1.5.txt = MongoCola\Release Note_Ver1.5.txt
 		MongoCola\Release Note_Ver1.X.txt = MongoCola\Release Note_Ver1.X.txt

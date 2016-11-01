@@ -357,6 +357,14 @@ namespace MongoGUICtl
                     }
                     return strColumnText;
                 }
+
+                if (mElement.Value.IsBsonBinaryData)
+                {
+                    BsonBinaryData bin = mElement.Value.AsBsonBinaryData;
+                    strColumnText = "Byte[" + bin.Bytes.Length + "](Binary)";
+                    return strColumnText;
+                }
+
             }
             catch (Exception)
             {
