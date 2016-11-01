@@ -39,11 +39,11 @@ namespace Common
         /// <param name="obj"></param>
         public static void SaveObjAsXml<T>(string filename, T obj)
         {
-            var settings = new XmlWriterSettings {Indent = true, NewLineChars = Environment.NewLine};
+            var settings = new XmlWriterSettings { Indent = true, NewLineChars = Environment.NewLine };
             //NewLineChars对于String属性的东西无效
             //这是对于XML中换行有效，
             //String的换行会变成Console的NewLine /n
-            var xml = new XmlSerializer(typeof (T));
+            var xml = new XmlSerializer(typeof(T));
             var writer = XmlWriter.Create(filename, settings);
             var ns = new XmlSerializerNamespaces();
             ns.Add("", "");
@@ -60,9 +60,9 @@ namespace Common
         public static T LoadObjFromXml<T>(string filename)
         {
             var setting = new XmlReaderSettings();
-            var xml = new XmlSerializer(typeof (T));
+            var xml = new XmlSerializer(typeof(T));
             var reader = XmlReader.Create(filename, setting);
-            var obj = (T) xml.Deserialize(reader);
+            var obj = (T)xml.Deserialize(reader);
             reader.Close();
             return obj;
         }
@@ -78,7 +78,7 @@ namespace Common
             var stream = new MemoryStream();
             bFormatter.Serialize(stream, obj);
             stream.Seek(0, SeekOrigin.Begin);
-            return (T) bFormatter.Deserialize(stream);
+            return (T)bFormatter.Deserialize(stream);
         }
 
 
@@ -88,7 +88,7 @@ namespace Common
         /// <param name="result"></param>
         public static void SaveJavascriptFile(string result)
         {
-            var dialog = new SaveFileDialog {Filter = JsFilter};
+            var dialog = new SaveFileDialog { Filter = JsFilter };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var writer = new StreamWriter(dialog.FileName, false);

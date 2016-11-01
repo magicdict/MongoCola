@@ -107,6 +107,7 @@ namespace MongoCola.Config
         /// </summary>
         public void SaveSystemConfig()
         {
+            if (DateTimeFormat == 0) DateTimeFormat = DateTimePickerFormat.Long;
             Utility.SaveObjAsXml(AppPath + SystemConfigFilename, this);
             SystemManager.SystemConfig = this;
             ApplyConfig();

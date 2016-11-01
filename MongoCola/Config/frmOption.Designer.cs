@@ -41,6 +41,12 @@ namespace MongoCola.Config
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGerneric = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtDateTimeFormat = new System.Windows.Forms.TextBox();
+            this.radDateTime_Custom = new System.Windows.Forms.RadioButton();
+            this.radDateTime_Time = new System.Windows.Forms.RadioButton();
+            this.radDateTime_Short = new System.Windows.Forms.RadioButton();
+            this.radDateTime_Long = new System.Windows.Forms.RadioButton();
             this.cmbGuidRepresentation = new System.Windows.Forms.ComboBox();
             this.lblGuidRepresentation = new System.Windows.Forms.Label();
             this.chkIsDisplayNumberWithKSystem = new System.Windows.Forms.CheckBox();
@@ -52,25 +58,19 @@ namespace MongoCola.Config
             this.radUTC = new System.Windows.Forms.RadioButton();
             this.fileMongoBinPath = new ResourceLib.UI.CtlFilePicker();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.fontDialog = new System.Windows.Forms.FontDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radDateTime_Long = new System.Windows.Forms.RadioButton();
-            this.radDateTime_Short = new System.Windows.Forms.RadioButton();
-            this.radDateTime_Time = new System.Windows.Forms.RadioButton();
-            this.radDateTime_Custom = new System.Windows.Forms.RadioButton();
-            this.txtDateTimeFormat = new System.Windows.Forms.TextBox();
             this._ctlReadWriteConfig1 = new FunctionForm.Connection.CtlReadWriteConfig();
+            this.fontDialog = new System.Windows.Forms.FontDialog();
             ((System.ComponentModel.ISupportInitialize)(this.intRefreshStatusTimer)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // intRefreshStatusTimer
             // 
-            this.intRefreshStatusTimer.Location = new System.Drawing.Point(203, 47);
+            this.intRefreshStatusTimer.Location = new System.Drawing.Point(218, 47);
             this.intRefreshStatusTimer.Maximum = new decimal(new int[] {
             180,
             0,
@@ -82,7 +82,7 @@ namespace MongoCola.Config
             0,
             0});
             this.intRefreshStatusTimer.Name = "intRefreshStatusTimer";
-            this.intRefreshStatusTimer.Size = new System.Drawing.Size(77, 21);
+            this.intRefreshStatusTimer.Size = new System.Drawing.Size(65, 21);
             this.intRefreshStatusTimer.TabIndex = 2;
             this.intRefreshStatusTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.intRefreshStatusTimer.Value = new decimal(new int[] {
@@ -95,9 +95,10 @@ namespace MongoCola.Config
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblRefreshIntervalForStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(15, 47);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
-            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(167, 15);
+            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(197, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
             this.lblRefreshIntervalForStatus.Tag = "";
             this.lblRefreshIntervalForStatus.Text = "Monitor Refresh Interval (sec)";
@@ -130,9 +131,10 @@ namespace MongoCola.Config
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
+            this.lblLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLanguage.Location = new System.Drawing.Point(15, 21);
             this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(63, 15);
+            this.lblLanguage.Size = new System.Drawing.Size(71, 15);
             this.lblLanguage.TabIndex = 16;
             this.lblLanguage.Tag = "";
             this.lblLanguage.Text = "Language";
@@ -142,7 +144,7 @@ namespace MongoCola.Config
             this.cmbLanguage.FormattingEnabled = true;
             this.cmbLanguage.Location = new System.Drawing.Point(108, 17);
             this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(140, 23);
+            this.cmbLanguage.Size = new System.Drawing.Size(175, 23);
             this.cmbLanguage.TabIndex = 3;
             // 
             // tabControl1
@@ -178,6 +180,69 @@ namespace MongoCola.Config
             this.tabGerneric.Text = "Gerneric";
             this.tabGerneric.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtDateTimeFormat);
+            this.groupBox2.Controls.Add(this.radDateTime_Custom);
+            this.groupBox2.Controls.Add(this.radDateTime_Time);
+            this.groupBox2.Controls.Add(this.radDateTime_Short);
+            this.groupBox2.Controls.Add(this.radDateTime_Long);
+            this.groupBox2.Location = new System.Drawing.Point(258, 122);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(356, 130);
+            this.groupBox2.TabIndex = 26;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "DateTime Format";
+            // 
+            // txtDateTimeFormat
+            // 
+            this.txtDateTimeFormat.Location = new System.Drawing.Point(128, 103);
+            this.txtDateTimeFormat.Name = "txtDateTimeFormat";
+            this.txtDateTimeFormat.Size = new System.Drawing.Size(219, 21);
+            this.txtDateTimeFormat.TabIndex = 1;
+            // 
+            // radDateTime_Custom
+            // 
+            this.radDateTime_Custom.AutoSize = true;
+            this.radDateTime_Custom.Location = new System.Drawing.Point(34, 105);
+            this.radDateTime_Custom.Name = "radDateTime_Custom";
+            this.radDateTime_Custom.Size = new System.Drawing.Size(67, 19);
+            this.radDateTime_Custom.TabIndex = 0;
+            this.radDateTime_Custom.Text = "Custom";
+            this.radDateTime_Custom.UseVisualStyleBackColor = true;
+            // 
+            // radDateTime_Time
+            // 
+            this.radDateTime_Time.AutoSize = true;
+            this.radDateTime_Time.Location = new System.Drawing.Point(34, 78);
+            this.radDateTime_Time.Name = "radDateTime_Time";
+            this.radDateTime_Time.Size = new System.Drawing.Size(53, 19);
+            this.radDateTime_Time.TabIndex = 0;
+            this.radDateTime_Time.Text = "Time";
+            this.radDateTime_Time.UseVisualStyleBackColor = true;
+            // 
+            // radDateTime_Short
+            // 
+            this.radDateTime_Short.AutoSize = true;
+            this.radDateTime_Short.Location = new System.Drawing.Point(34, 52);
+            this.radDateTime_Short.Name = "radDateTime_Short";
+            this.radDateTime_Short.Size = new System.Drawing.Size(54, 19);
+            this.radDateTime_Short.TabIndex = 0;
+            this.radDateTime_Short.Text = "Short";
+            this.radDateTime_Short.UseVisualStyleBackColor = true;
+            // 
+            // radDateTime_Long
+            // 
+            this.radDateTime_Long.AutoSize = true;
+            this.radDateTime_Long.Checked = true;
+            this.radDateTime_Long.Location = new System.Drawing.Point(34, 27);
+            this.radDateTime_Long.Name = "radDateTime_Long";
+            this.radDateTime_Long.Size = new System.Drawing.Size(53, 19);
+            this.radDateTime_Long.TabIndex = 0;
+            this.radDateTime_Long.TabStop = true;
+            this.radDateTime_Long.Text = "Long";
+            this.radDateTime_Long.UseVisualStyleBackColor = true;
+            // 
             // cmbGuidRepresentation
             // 
             this.cmbGuidRepresentation.FormattingEnabled = true;
@@ -189,9 +254,10 @@ namespace MongoCola.Config
             // lblGuidRepresentation
             // 
             this.lblGuidRepresentation.AutoSize = true;
+            this.lblGuidRepresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGuidRepresentation.Location = new System.Drawing.Point(15, 128);
             this.lblGuidRepresentation.Name = "lblGuidRepresentation";
-            this.lblGuidRepresentation.Size = new System.Drawing.Size(117, 15);
+            this.lblGuidRepresentation.Size = new System.Drawing.Size(135, 15);
             this.lblGuidRepresentation.TabIndex = 24;
             this.lblGuidRepresentation.Text = "GuidRepresentation";
             // 
@@ -208,7 +274,7 @@ namespace MongoCola.Config
             // lblCurrentFont
             // 
             this.lblCurrentFont.AutoSize = true;
-            this.lblCurrentFont.Location = new System.Drawing.Point(316, 20);
+            this.lblCurrentFont.Location = new System.Drawing.Point(353, 13);
             this.lblCurrentFont.Name = "lblCurrentFont";
             this.lblCurrentFont.Size = new System.Drawing.Size(71, 15);
             this.lblCurrentFont.TabIndex = 23;
@@ -216,9 +282,9 @@ namespace MongoCola.Config
             // 
             // btnFont
             // 
-            this.btnFont.Location = new System.Drawing.Point(496, 12);
+            this.btnFont.Location = new System.Drawing.Point(537, 13);
             this.btnFont.Name = "btnFont";
-            this.btnFont.Size = new System.Drawing.Size(109, 23);
+            this.btnFont.Size = new System.Drawing.Size(68, 23);
             this.btnFont.TabIndex = 22;
             this.btnFont.Text = "Font...";
             this.btnFont.UseVisualStyleBackColor = true;
@@ -227,9 +293,10 @@ namespace MongoCola.Config
             // lblFont
             // 
             this.lblFont.AutoSize = true;
-            this.lblFont.Location = new System.Drawing.Point(266, 21);
+            this.lblFont.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFont.Location = new System.Drawing.Point(316, 13);
             this.lblFont.Name = "lblFont";
-            this.lblFont.Size = new System.Drawing.Size(31, 15);
+            this.lblFont.Size = new System.Drawing.Size(35, 15);
             this.lblFont.TabIndex = 21;
             this.lblFont.Text = "Font";
             // 
@@ -294,69 +361,6 @@ namespace MongoCola.Config
             this.tabPage1.Text = "Read Write";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtDateTimeFormat);
-            this.groupBox2.Controls.Add(this.radDateTime_Custom);
-            this.groupBox2.Controls.Add(this.radDateTime_Time);
-            this.groupBox2.Controls.Add(this.radDateTime_Short);
-            this.groupBox2.Controls.Add(this.radDateTime_Long);
-            this.groupBox2.Location = new System.Drawing.Point(258, 122);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 130);
-            this.groupBox2.TabIndex = 26;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "DateTime Format";
-            // 
-            // radDateTime_Long
-            // 
-            this.radDateTime_Long.AutoSize = true;
-            this.radDateTime_Long.Checked = true;
-            this.radDateTime_Long.Location = new System.Drawing.Point(34, 27);
-            this.radDateTime_Long.Name = "radDateTime_Long";
-            this.radDateTime_Long.Size = new System.Drawing.Size(53, 19);
-            this.radDateTime_Long.TabIndex = 0;
-            this.radDateTime_Long.TabStop = true;
-            this.radDateTime_Long.Text = "Long";
-            this.radDateTime_Long.UseVisualStyleBackColor = true;
-            // 
-            // radDateTime_Short
-            // 
-            this.radDateTime_Short.AutoSize = true;
-            this.radDateTime_Short.Location = new System.Drawing.Point(34, 52);
-            this.radDateTime_Short.Name = "radDateTime_Short";
-            this.radDateTime_Short.Size = new System.Drawing.Size(54, 19);
-            this.radDateTime_Short.TabIndex = 0;
-            this.radDateTime_Short.Text = "Short";
-            this.radDateTime_Short.UseVisualStyleBackColor = true;
-            // 
-            // radDateTime_Time
-            // 
-            this.radDateTime_Time.AutoSize = true;
-            this.radDateTime_Time.Location = new System.Drawing.Point(34, 78);
-            this.radDateTime_Time.Name = "radDateTime_Time";
-            this.radDateTime_Time.Size = new System.Drawing.Size(53, 19);
-            this.radDateTime_Time.TabIndex = 0;
-            this.radDateTime_Time.Text = "Time";
-            this.radDateTime_Time.UseVisualStyleBackColor = true;
-            // 
-            // radDateTime_Custom
-            // 
-            this.radDateTime_Custom.AutoSize = true;
-            this.radDateTime_Custom.Location = new System.Drawing.Point(34, 105);
-            this.radDateTime_Custom.Name = "radDateTime_Custom";
-            this.radDateTime_Custom.Size = new System.Drawing.Size(67, 19);
-            this.radDateTime_Custom.TabIndex = 0;
-            this.radDateTime_Custom.Text = "Custom";
-            this.radDateTime_Custom.UseVisualStyleBackColor = true;
-            // 
-            // txtDateTimeFormat
-            // 
-            this.txtDateTimeFormat.Location = new System.Drawing.Point(128, 103);
-            this.txtDateTimeFormat.Name = "txtDateTimeFormat";
-            this.txtDateTimeFormat.Size = new System.Drawing.Size(219, 21);
-            this.txtDateTimeFormat.TabIndex = 1;
-            // 
             // _ctlReadWriteConfig1
             // 
             this._ctlReadWriteConfig1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -387,11 +391,11 @@ namespace MongoCola.Config
             this.tabControl1.ResumeLayout(false);
             this.tabGerneric.ResumeLayout(false);
             this.tabGerneric.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
