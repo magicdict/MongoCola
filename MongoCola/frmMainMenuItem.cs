@@ -622,6 +622,7 @@ namespace MongoCola
             trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
             DisableAllOpr();
         }
+
         /// <summary>
         ///     显示这个Pipeline
         /// </summary>
@@ -906,8 +907,8 @@ namespace MongoCola
             var strMessage = "Are you sure to Import Collection?";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.GetText(TextType.DropData);
-                strMessage = GuiConfig.GetText(TextType.DropDataConfirm);
+                strTitle = GuiConfig.GetText("Import Collection", "Main_Menu_Operation_BackupAndRestore_Import");
+                strMessage = GuiConfig.GetText("Are you sure to Import Collection?","");
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;

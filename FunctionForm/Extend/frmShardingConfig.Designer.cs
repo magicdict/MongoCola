@@ -76,12 +76,12 @@ namespace FunctionForm.Extend
             this.txtShardName = new System.Windows.Forms.TextBox();
             this.lblTagShard = new System.Windows.Forms.Label();
             this.lblShardName = new System.Windows.Forms.Label();
-            this.ctlBsonValueShardKeyTo = new MongoGUICtl.ctlBsonValue();
-            this.ctlBsonValueShardKeyFrom = new MongoGUICtl.ctlBsonValue();
             this.tabRemoveSharding = new System.Windows.Forms.TabPage();
             this.lstSharding = new System.Windows.Forms.ListBox();
             this.cmdRemoveSharding = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
+            this.ctlBsonValueShardKeyFrom = new MongoGUICtl.ctlBsonValueType();
+            this.ctlBsonValueShardKeyTo = new MongoGUICtl.ctlBsonValueType();
             this.tabSharding.SuspendLayout();
             this.tabAddSharding.SuspendLayout();
             this.grpAdvanced.SuspendLayout();
@@ -422,6 +422,8 @@ namespace FunctionForm.Extend
             // 
             // tabAddShardTag
             // 
+            this.tabAddShardTag.Controls.Add(this.ctlBsonValueShardKeyTo);
+            this.tabAddShardTag.Controls.Add(this.ctlBsonValueShardKeyFrom);
             this.tabAddShardTag.Controls.Add(this.label1);
             this.tabAddShardTag.Controls.Add(this.label2);
             this.tabAddShardTag.Controls.Add(this.cmbShardKeyDB);
@@ -436,8 +438,6 @@ namespace FunctionForm.Extend
             this.tabAddShardTag.Controls.Add(this.txtShardName);
             this.tabAddShardTag.Controls.Add(this.lblTagShard);
             this.tabAddShardTag.Controls.Add(this.lblShardName);
-            this.tabAddShardTag.Controls.Add(this.ctlBsonValueShardKeyTo);
-            this.tabAddShardTag.Controls.Add(this.ctlBsonValueShardKeyFrom);
             this.tabAddShardTag.Location = new System.Drawing.Point(4, 24);
             this.tabAddShardTag.Name = "tabAddShardTag";
             this.tabAddShardTag.Padding = new System.Windows.Forms.Padding(3);
@@ -575,20 +575,6 @@ namespace FunctionForm.Extend
             this.lblShardName.TabIndex = 0;
             this.lblShardName.Text = "Shard Name";
             // 
-            // ctlBsonValueShardKeyTo
-            // 
-            this.ctlBsonValueShardKeyTo.Location = new System.Drawing.Point(135, 191);
-            this.ctlBsonValueShardKeyTo.Name = "ctlBsonValueShardKeyTo";
-            this.ctlBsonValueShardKeyTo.Size = new System.Drawing.Size(295, 32);
-            this.ctlBsonValueShardKeyTo.TabIndex = 20;
-            // 
-            // ctlBsonValueShardKeyFrom
-            // 
-            this.ctlBsonValueShardKeyFrom.Location = new System.Drawing.Point(135, 155);
-            this.ctlBsonValueShardKeyFrom.Name = "ctlBsonValueShardKeyFrom";
-            this.ctlBsonValueShardKeyFrom.Size = new System.Drawing.Size(295, 32);
-            this.ctlBsonValueShardKeyFrom.TabIndex = 19;
-            // 
             // tabRemoveSharding
             // 
             this.tabRemoveSharding.Controls.Add(this.lstSharding);
@@ -631,7 +617,23 @@ namespace FunctionForm.Extend
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
-            // frmShardingConfig
+            // ctlBsonValueShardKeyFrom
+            // 
+            this.ctlBsonValueShardKeyFrom.Location = new System.Drawing.Point(135, 162);
+            this.ctlBsonValueShardKeyFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ctlBsonValueShardKeyFrom.Name = "ctlBsonValueShardKeyFrom";
+            this.ctlBsonValueShardKeyFrom.Size = new System.Drawing.Size(376, 27);
+            this.ctlBsonValueShardKeyFrom.TabIndex = 27;
+            // 
+            // ctlBsonValueShardKeyTo
+            // 
+            this.ctlBsonValueShardKeyTo.Location = new System.Drawing.Point(135, 193);
+            this.ctlBsonValueShardKeyTo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ctlBsonValueShardKeyTo.Name = "ctlBsonValueShardKeyTo";
+            this.ctlBsonValueShardKeyTo.Size = new System.Drawing.Size(383, 34);
+            this.ctlBsonValueShardKeyTo.TabIndex = 27;
+            // 
+            // FrmShardingConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -707,8 +709,6 @@ namespace FunctionForm.Extend
         private ListView lstExistShardTag;
         private Label lblShardTag;
         private ComboBox cmbTagList;
-        private ctlBsonValue ctlBsonValueShardKeyTo;
-        private ctlBsonValue ctlBsonValueShardKeyFrom;
         private Label lblShardKeyTo;
         private Label lblShardKeyFrom;
         private Button cmdaddTagRange;
@@ -716,5 +716,7 @@ namespace FunctionForm.Extend
         private Label label2;
         private ComboBox cmbShardKeyDB;
         private ComboBox cmbShardKeyCol;
+        private ctlBsonValueType ctlBsonValueShardKeyTo;
+        private ctlBsonValueType ctlBsonValueShardKeyFrom;
     }
 }

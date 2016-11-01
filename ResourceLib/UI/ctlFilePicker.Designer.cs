@@ -37,12 +37,12 @@ namespace ResourceLib.UI
             this.cmdBrowse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // cmdClearPath
+            // cmdClear
             // 
             this.cmdClear.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cmdClear.BackColor = System.Drawing.Color.Transparent;
-            this.cmdClear.Location = new System.Drawing.Point(375, 12);
-            this.cmdClear.Name = "cmdClearPath";
+            this.cmdClear.Location = new System.Drawing.Point(375, 7);
+            this.cmdClear.Name = "cmdClear";
             this.cmdClear.Size = new System.Drawing.Size(75, 23);
             this.cmdClear.TabIndex = 10;
             this.cmdClear.Tag = "Common_Clear";
@@ -54,7 +54,7 @@ namespace ResourceLib.UI
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Location = new System.Drawing.Point(3, 17);
+            this.lblTitle.Location = new System.Drawing.Point(9, 12);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(35, 12);
             this.lblTitle.TabIndex = 9;
@@ -65,7 +65,7 @@ namespace ResourceLib.UI
             // 
             this.txtPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPathName.BackColor = System.Drawing.Color.White;
-            this.txtPathName.Location = new System.Drawing.Point(50, 14);
+            this.txtPathName.Location = new System.Drawing.Point(50, 8);
             this.txtPathName.Name = "txtPathName";
             this.txtPathName.Size = new System.Drawing.Size(238, 21);
             this.txtPathName.TabIndex = 8;
@@ -74,7 +74,7 @@ namespace ResourceLib.UI
             // 
             this.cmdBrowse.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cmdBrowse.BackColor = System.Drawing.Color.Transparent;
-            this.cmdBrowse.Location = new System.Drawing.Point(294, 12);
+            this.cmdBrowse.Location = new System.Drawing.Point(294, 7);
             this.cmdBrowse.Name = "cmdBrowse";
             this.cmdBrowse.Size = new System.Drawing.Size(75, 23);
             this.cmdBrowse.TabIndex = 7;
@@ -94,7 +94,7 @@ namespace ResourceLib.UI
             this.Controls.Add(this.txtPathName);
             this.Controls.Add(this.cmdBrowse);
             this.Name = "CtlFilePicker";
-            this.Size = new System.Drawing.Size(463, 47);
+            this.Size = new System.Drawing.Size(463, 49);
             this.Load += new System.EventHandler(this.ctlFilePicker_Load);
             this.Resize += new System.EventHandler(this.ResizeControl);
             this.ResumeLayout(false);

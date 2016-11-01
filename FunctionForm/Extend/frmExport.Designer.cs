@@ -37,15 +37,15 @@ namespace FunctionForm.Extend
             this.optXML = new System.Windows.Forms.RadioButton();
             this.optText = new System.Windows.Forms.RadioButton();
             this.optExcel = new System.Windows.Forms.RadioButton();
-            this.ctlExportFilePicker = new CtlFilePicker();
+            this.ctlExportFilePicker = new ResourceLib.UI.CtlFilePicker();
             this.grpExportType.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(585, 112);
+            this.btnSave.Location = new System.Drawing.Point(455, 73);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(145, 24);
+            this.btnSave.Size = new System.Drawing.Size(120, 27);
             this.btnSave.TabIndex = 1;
             this.btnSave.Tag = "Common_Save";
             this.btnSave.Text = "Save";
@@ -59,7 +59,7 @@ namespace FunctionForm.Extend
             this.grpExportType.Controls.Add(this.optExcel);
             this.grpExportType.Location = new System.Drawing.Point(12, 56);
             this.grpExportType.Name = "grpExportType";
-            this.grpExportType.Size = new System.Drawing.Size(258, 60);
+            this.grpExportType.Size = new System.Drawing.Size(275, 60);
             this.grpExportType.TabIndex = 2;
             this.grpExportType.TabStop = false;
             this.grpExportType.Text = "ExportImport File Type";
@@ -101,18 +101,21 @@ namespace FunctionForm.Extend
             // 
             // ctlExportFilePicker
             // 
+            this.ctlExportFilePicker.AutoSize = true;
             this.ctlExportFilePicker.BackColor = System.Drawing.Color.Transparent;
+            this.ctlExportFilePicker.Browse = "Browse...";
+            this.ctlExportFilePicker.Clear = "Clear";
             this.ctlExportFilePicker.FileFilter = "";
             this.ctlExportFilePicker.InitFileName = "";
-            this.ctlExportFilePicker.Location = new System.Drawing.Point(12, 20);
+            this.ctlExportFilePicker.Location = new System.Drawing.Point(12, 8);
             this.ctlExportFilePicker.Name = "ctlExportFilePicker";
-            this.ctlExportFilePicker.PickerType = CtlFilePicker.DialogType.SaveFile;
+            this.ctlExportFilePicker.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;
             this.ctlExportFilePicker.SelectedPathOrFileName = "";
-            this.ctlExportFilePicker.Size = new System.Drawing.Size(739, 30);
+            this.ctlExportFilePicker.Size = new System.Drawing.Size(596, 38);
             this.ctlExportFilePicker.TabIndex = 0;
             this.ctlExportFilePicker.Title = "FileName";
             // 
-            // frmExport
+            // FrmExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -121,6 +124,8 @@ namespace FunctionForm.Extend
             this.Controls.Add(this.grpExportType);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ctlExportFilePicker);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmExport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "Main_Menu_Operation_DataCollection_ExportToFile";
@@ -129,6 +134,7 @@ namespace FunctionForm.Extend
             this.grpExportType.ResumeLayout(false);
             this.grpExportType.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

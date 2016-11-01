@@ -52,7 +52,7 @@ CSharp Mongo Driver 2.4.0-beta1
 ***
 
 # 发布履历
-##Ver 2.01 2016/11/31
+##Ver 2.03 2016/11/31
 
 ###新增
 1. 添加视图（From MongoDB 3.4）
@@ -76,6 +76,8 @@ CSharp Mongo Driver 2.4.0-beta1
 7. NetCore和Net版本条件编译
 8. BsonDocument树形表示优化
 9. 树形数据展示，双击是否能被修改的问题
+10. 导入数据集时候，提示框文字不正确
+11. ShardingRange设置BsonValue的优化
 
 ###聚合
 1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind

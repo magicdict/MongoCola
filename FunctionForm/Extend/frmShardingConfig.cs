@@ -318,9 +318,8 @@ namespace FunctionForm.Extend
         {
             var resultlst = new List<CommandResult>
             {
-                CommandHelper.AddTagRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,
-                    ctlBsonValueShardKeyFrom.GetValue( BsonValueEx.BasicType.BsonString),
-                    ctlBsonValueShardKeyTo.GetValue( BsonValueEx.BasicType.BsonString), cmbTagList.Text.Split(".".ToCharArray())[1])
+                CommandHelper.AddTagRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,ctlBsonValueShardKeyFrom.GetValue(),
+                                          ctlBsonValueShardKeyTo.GetValue(), cmbTagList.Text.Split(".".ToCharArray())[1])
             };
             MyMessageBox.ShowMessage("Add Shard Tag", "Result",
                 MongoHelper.ConvertCommandResultlstToString(resultlst));
