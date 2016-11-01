@@ -679,25 +679,8 @@ namespace MongoUtility.Command
         /// <param name="max">最大值</param>
         /// <param name="tag">标签</param>
         /// <returns></returns>
-        public static CommandResult AddTagRange(MongoServer routeSvr, string nameSpace, BsonValue min, BsonValue max,
-            string tag)
+        public static CommandResult AddTagRange(MongoServer routeSvr, string nameSpace, string FieldName, BsonValue min, BsonValue max, string tag)
         {
-            //mongos> sh.addTagRange
-            //function (ns, min, max, tag) {
-            //    var config = db.getSisterDB("config");
-            //    config.tags.update(
-            //                       {_id:{ns:ns, min:min}},
-            //                       {
-            //                             _id:{ns:ns, min:min},
-            //                             ns:ns,
-            //                             min:min,
-            //                             max:max, 
-            //                             tag:tag
-            //                       }, 
-            //                       true
-            //                       );
-            //    sh._checkLastError(config);
-            //}
             var maxValue = string.Empty;
             var minValue = string.Empty;
             if (min.IsString)
@@ -717,8 +700,17 @@ namespace MongoUtility.Command
             {
                 maxValue = max.ToString();
             }
-            return ExecuteJsShell(
-                "sh.addTagRange('" + nameSpace + "'," + minValue + "," + maxValue + ",'" + tag + "')", routeSvr);
+
+            var MinDoc = new BsonDocument();
+            var MaxDoc = new BsonDocument();
+
+            var MinEl = new BsonElement(FieldName, min);
+            var MaxEl = new BsonElement(FieldName, max);
+
+            MinDoc.Add(MinEl);
+            MaxDoc.Add(MaxEl);
+
+            return ExecuteJsShell("sh.addTagRange('" + nameSpace + "'," + MinDoc.ToString() + "},{" + MaxDoc.ToString() + "},'" + tag + "')", routeSvr);
         }
 
         /// <summary>

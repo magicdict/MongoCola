@@ -196,7 +196,6 @@ namespace FunctionForm.Extend
                 Utility.ExceptionDeal(ex);
             }
         }
-
         /// <summary>
         ///     数据集变换时，实时更新主键列表
         /// </summary>
@@ -275,23 +274,15 @@ namespace FunctionForm.Extend
         }
 
         /// <summary>
-        ///     移除Sharding
+        ///     数据集变换时
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdRemoveSharding_Click(object sender, EventArgs e)
+        private void cmbShardKeyCol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (string item in lstSharding.SelectedItems)
-            {
-                var resultlst = new List<CommandResult> { CommandHelper.RemoveSharding(_prmSvr, item) };
-                MyMessageBox.ShowMessage("Remove Sharding", "Result",
-                    MongoHelper.ConvertCommandResultlstToString(resultlst));
-            }
-            lstSharding.Items.Clear();
-            foreach (var lst in Operater.GetShardInfo(_prmSvr, "_id"))
-            {
-                lstSharding.Items.Add(lst.Value);
-            }
+            var Col = _prmSvr.GetDatabase(cmbDataBase.Text).GetCollection(cmbCollection.Text);
+            var columnList = MongoHelper.GetCollectionSchame(Col);
+            Utility.FillComberWithArray(cmbField, columnList.ToArray(), true);
         }
 
         /// <summary>
@@ -318,11 +309,32 @@ namespace FunctionForm.Extend
         {
             var resultlst = new List<CommandResult>
             {
-                CommandHelper.AddTagRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,ctlBsonValueShardKeyFrom.GetValue(),
+                CommandHelper.AddTagRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,cmbField.Text, ctlBsonValueShardKeyFrom.GetValue(),
                                           ctlBsonValueShardKeyTo.GetValue(), cmbTagList.Text.Split(".".ToCharArray())[1])
             };
             MyMessageBox.ShowMessage("Add Shard Tag", "Result",
                 MongoHelper.ConvertCommandResultlstToString(resultlst));
+        }
+
+
+        /// <summary>
+        ///     移除Sharding
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdRemoveSharding_Click(object sender, EventArgs e)
+        {
+            foreach (string item in lstSharding.SelectedItems)
+            {
+                var resultlst = new List<CommandResult> { CommandHelper.RemoveSharding(_prmSvr, item) };
+                MyMessageBox.ShowMessage("Remove Sharding", "Result",
+                    MongoHelper.ConvertCommandResultlstToString(resultlst));
+            }
+            lstSharding.Items.Clear();
+            foreach (var lst in Operater.GetShardInfo(_prmSvr, "_id"))
+            {
+                lstSharding.Items.Add(lst.Value);
+            }
         }
 
         /// <summary>
@@ -334,5 +346,6 @@ namespace FunctionForm.Extend
         {
             Close();
         }
+
     }
 }

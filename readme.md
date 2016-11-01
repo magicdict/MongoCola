@@ -5,7 +5,7 @@
 * 下载地址:  <https://github.com/magicdict/MongoCola/releases>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
-* 版本号：Ver 2.0.2
+* 版本号：Ver 2.0.3
  
 ***
 
@@ -84,7 +84,6 @@ CSharp Mongo Driver 2.4.0-beta1
 2. 聚合操作符的更新
 3. 优化聚合UI
 4. 聚合结果保存为视图
-
 
 ###mongobooster功能的借鉴
 1. 增加了MongoDB官方文档的链接
