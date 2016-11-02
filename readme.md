@@ -1,8 +1,9 @@
-#Release Note
+#MongoCola
        
-* 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/10/31 16:00
-* Net Core版本 Browse Base Client[需要 NET Core1.0.1] 更新时间:2016/12/31 16:00
+* 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/11/24 16:00
+* Net Core版本 Browse Base Client[需要 NET Core1.0.1] 更新时间:2016/11/24 16:00
 * 下载地址:  <https://github.com/magicdict/MongoCola/releases>
+* 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
 * 版本号：Ver 2.0.3
@@ -50,99 +51,3 @@ CSharp Mongo Driver 2.4.0-beta1
 5. Machine Learning
     加入对于机器学习方法和BI的支持
 ***
-
-# 发布履历
-##Ver 2.03 2016/11/31
-
-###新增
-1. 添加视图（From MongoDB 3.4）
-2. 视图的展示（From MongoDB 3.4）
-3. BsonInt64，BSonDecimal128 的对应
-4. 有视图的时候，状态窗体的对应
-5. GFS拖曳上传功能
-6. GeoHaystackSearchAs的追加
-7. ObjectId详细信息的表示
-8. 增加了地理数组的快捷输入
-9. 日期格式的设定
-10. 更新了索引种类（7种索引）
-
-###修改
-1. 新建数据集的BUG修正，数据集验证的修复
-2. 新建文档时候出现的无法通过数据集验证的异常处理
-3. 数据库必须有一个数据集，如果没有数据集的话，则数据库会被回收掉,所以新建数据库的时候，可以指定初始数据集的名称
-4. 修正了无法保存配置的严重错误！(感谢错误报告者： https://github.com/shipf0820)
-5. ML插件化
-6. 修正了切断连接无效的问题
-7. NetCore和Net版本条件编译
-8. BsonDocument树形表示优化
-9. 树形数据展示，双击是否能被修改的问题
-10. 导入数据集时候，提示框文字不正确
-11. ShardingRange设置BsonValue的优化
-
-###聚合
-1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind
-2. 聚合操作符的更新
-3. 优化聚合UI
-4. 聚合结果保存为视图
-
-###mongobooster功能的借鉴
-1. 增加了MongoDB官方文档的链接
-2. BsonGuidRepresentation概念的引入
-3. BsonMaxKey,BsonMinKey概念的引入
-4. BsonBinaryData概念的引入
-
-##Ver 2.0 2016/06/29
-1. Query增加了删除条件的功能
-2. 修正了Query的一些错误
-3. 机器学习：线性回归
-4. AuthMechanism
-
-##Ver 1.5 (Beta3)  2016/04/25
-以下 更新来自于   QiQi  https://github.com/1354092549
-
-1. 优化聚合功能
--  对齐组件，更美观
--  优化聚合管道（Aggregate）相关功能，和Mongodb官方统一，使用名词stage
--  Add Stage（应用第2条前的Add Aggregate）支持提供数组，用于一次添加多个stage
-2. 优化中文语言包
-
-##Ver 1.5(Beta2)  2016/02/17 @ Shanghai China 
-###感谢 张鹏 zp11qm12#hotmail.com 对于1，2，3点的贡献
-1. 修复了collection中数据删除不掉的bug（id应强转为ObjectId）
-2. 修改了ctlJsEditor界面，现可直接执行已经保存的javascript代码（我的团队需要这个功能）
-3. 添加了复制数据库的功能（其实是复制表，目的是为了同步javascript代码）
-4. CSharp Mongo Driver 2.2.3
-5. GFS修复重构后没有处理的功能
-
-***
-
-##Ver 1.5(Beta)  2015/12/31 @ Shanghai China 
-###MongoDB 3.2.0 新功能对应版本
-1. Text Search V3 的对应：大小写敏感
-2. Partial Index 的创建  
-3. 独立外部工具 Configuration Creator 初版
-4. 创建Collection时候可以设定DocumentValidation参数
-5. MongoDump 增加 --gzip --archive
-6. 修复添加Collection后UI没有实时更新的BUG 
-
-***
-
-##Ver 1.5(Alpha)  2015/07/09 @ Shanghai China
-1. 重构代码，Mongo业务代码和界面代码分开
-2. 新代码尽可能适配MongoDriver2.0.1
-3. MongoServer尽可能用MongoClient代替
-4. 窗体TabPage管理功能的独立化
-5. TextSearch功能的修改（MongoDB 2.6之后使用不同的方法）
-6. 各种Status改用树型结构表示
-7. 新建数据库无效,删除数据库错误等问题.
-
-***
-
-# 已知BUG
-1. 新建数据库时,必须要新建一个数据集.
-2. MONO  Windows API Crash!
-3. ZedGraph For Mono Chart
-4. Status里面的列无效，MMVP和WireTiger数据集状态不同
-5. MongoBin没有设置的时候，非Windows的时候，Cmd命令无法执行的问题
-6. User命令未完成
-[Fixed]7. JS文件等不应该保存到Mongo数据库中，如果没有获得客户允许的时候（张鹏修复了这个问题）

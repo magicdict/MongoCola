@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
+using ResourceLib.Method;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,7 +20,14 @@ namespace FunctionForm.Operation
 
         private void frmCreateView_Load(object sender, EventArgs e)
         {
-            cmbViewOn.Items.Clear();
+            if (!GuiConfig.IsUseDefaultLanguage)
+            {
+                Text = GuiConfig.GetText("Create View", "MainMenuOperationDatabaseAddView");
+                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
+                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
+            }
+
+                cmbViewOn.Items.Clear();
             var ColList = RuntimeMongoDbContext.GetCurrentIMongoDataBase().ListCollections();
             var viewlist = RuntimeMongoDbContext.GetCurrentDBViewNameList();
             foreach (var item in ColList.ToList())
@@ -71,6 +79,11 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void btnAggrBuilder_Click(object sender, EventArgs e)
         {
+            if(cmbViewOn.SelectedIndex == -1)
+            {
+                //必须先选中Collection
+                return;
+            }
             RuntimeMongoDbContext.SetCurrentCollection(cmbViewOn.Text);
             var frmAggregationBuilder = new FrmStageBuilder();
             Utility.OpenForm(frmAggregationBuilder, false, true);

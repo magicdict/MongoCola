@@ -35,7 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.rad2d = new System.Windows.Forms.RadioButton();
             this.rad2dSphere = new System.Windows.Forms.RadioButton();
-            this.cmdClose = new System.Windows.Forms.Button();
+            this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +60,7 @@
             this.txtLongitude.Location = new System.Drawing.Point(129, 52);
             this.txtLongitude.Name = "txtLongitude";
             this.txtLongitude.Size = new System.Drawing.Size(100, 21);
-            this.txtLongitude.TabIndex = 6;
+            this.txtLongitude.TabIndex = 3;
             // 
             // txtLatitude
             // 
@@ -84,7 +84,7 @@
             this.label1.Location = new System.Drawing.Point(28, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 3;
+            this.label1.TabIndex = 2;
             this.label1.Text = "longitude";
             // 
             // rad2d
@@ -93,7 +93,7 @@
             this.rad2d.Location = new System.Drawing.Point(29, 20);
             this.rad2d.Name = "rad2d";
             this.rad2d.Size = new System.Drawing.Size(35, 16);
-            this.rad2d.TabIndex = 1;
+            this.rad2d.TabIndex = 0;
             this.rad2d.TabStop = true;
             this.rad2d.Text = "2D";
             this.rad2d.UseVisualStyleBackColor = true;
@@ -104,28 +104,28 @@
             this.rad2dSphere.Location = new System.Drawing.Point(70, 20);
             this.rad2dSphere.Name = "rad2dSphere";
             this.rad2dSphere.Size = new System.Drawing.Size(113, 16);
-            this.rad2dSphere.TabIndex = 2;
+            this.rad2dSphere.TabIndex = 1;
             this.rad2dSphere.TabStop = true;
             this.rad2dSphere.Text = "2dSphere(WGS84)";
             this.rad2dSphere.UseVisualStyleBackColor = true;
             // 
-            // cmdClose
+            // cmdCancel
             // 
-            this.cmdClose.Location = new System.Drawing.Point(170, 130);
-            this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(82, 25);
-            this.cmdClose.TabIndex = 4;
-            this.cmdClose.Tag = "Common_Close";
-            this.cmdClose.Text = "Close";
-            this.cmdClose.UseVisualStyleBackColor = true;
-            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
+            this.cmdCancel.Location = new System.Drawing.Point(170, 153);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(82, 25);
+            this.cmdCancel.TabIndex = 2;
+            this.cmdCancel.Tag = "Common_Cancel";
+            this.cmdCancel.Text = "Cancel";
+            this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdClose_Click);
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(82, 130);
+            this.cmdOK.Location = new System.Drawing.Point(82, 153);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(82, 25);
-            this.cmdOK.TabIndex = 3;
+            this.cmdOK.TabIndex = 1;
             this.cmdOK.Tag = "Common_OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
@@ -136,8 +136,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(351, 171);
-            this.Controls.Add(this.cmdClose);
+            this.ClientSize = new System.Drawing.Size(351, 190);
+            this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
@@ -145,6 +145,7 @@
             this.Name = "frmCreateGeo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create GeoJSON";
+            this.Load += new System.EventHandler(this.frmCreateGeo_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -160,7 +161,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtLongitude;
         private System.Windows.Forms.TextBox txtLatitude;
-        private System.Windows.Forms.Button cmdClose;
+        private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdOK;
     }
 }

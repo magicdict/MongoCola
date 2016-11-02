@@ -1,12 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
 using ResourceLib.UI;
+using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
@@ -15,10 +15,9 @@ namespace MongoGUICtl
         public CtlGeoNear()
         {
             InitializeComponent();
-            NumGeoX.KeyPress += NumberTextBox.NumberText_KeyPress;
-            NumGeoY.KeyPress += NumberTextBox.NumberText_KeyPress;
             NumDistanceMultiplier.KeyPress += NumberTextBox.NumberText_KeyPress;
             NumMaxDistance.KeyPress += NumberTextBox.NumberText_KeyPress;
+            lblPoint.Text = "[" + point.X.ToString() + "," + point.Y.ToString() + "]";
         }
 
         private void lnkGeoNear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -37,7 +36,7 @@ namespace MongoGUICtl
                     var geoSearchOption = new GeoHaystackSearchArgs();
                     geoSearchOption.MaxDistance = double.Parse(NumMaxDistance.Text);
                     geoSearchOption.Limit = (int)NumResultCount.Value;
-                    geoSearchOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
+                    geoSearchOption.Near = point;
                     //geoSearch
                     mGeoNearAs = RuntimeMongoDbContext.GetCurrentCollection().GeoHaystackSearchAs<BsonDocument>(geoSearchOption).Response;
                 }
@@ -48,7 +47,7 @@ namespace MongoGUICtl
                     geoOption.MaxDistance = double.Parse(NumMaxDistance.Text);
                     geoOption.Spherical = chkSpherical.Checked;
                     geoOption.Limit = (int)NumResultCount.Value;
-                    geoOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
+                    geoOption.Near = point;
                     //geoNear
                     mGeoNearAs = RuntimeMongoDbContext.GetCurrentCollection().GeoNearAs<BsonDocument>(geoOption).Response;
                 }
@@ -89,6 +88,24 @@ namespace MongoGUICtl
                 @"distance to radians: divide the distance by the radius of the sphere (e.g. the Earth) in the same units as the distance measurement.
 radians to distance: multiply the rad ian measure by the radius of the sphere (e.g. the Earth) in the units system that you want to convert the distance to.
 The radius of the Earth is approximately 3963.192 miles or 6378.137 kilometers.", true);
+        }
+
+
+        /// <summary>
+        ///     获得一个新BsonArray的委托
+        /// </summary>
+        public static Func<BsonArray> GetGeo;
+
+        public XYPoint point = new XYPoint(0, 0);
+
+        private void cmdGeoJson_Click(object sender, EventArgs e)
+        {
+            var t = GetGeo();
+            if (t != null)
+            {
+                point = new XYPoint(t[0].AsDouble, t[1].AsDouble);
+                lblPoint.Text = "[" + point.X.ToString() + "," + point.Y.ToString() + "]";
+            }
         }
     }
 }

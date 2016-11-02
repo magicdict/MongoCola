@@ -247,6 +247,7 @@ namespace MongoCola
             if (GuiConfig.IsUseDefaultLanguage)
             {
                 strDbName = MyMessageBox.ShowInput("Please Input DataBaseName：", "Create Database");
+                strInitColName = MyMessageBox.ShowInput("Please Input Init CollectionName：", "Create Database");
             }
             else
             {
@@ -254,9 +255,12 @@ namespace MongoCola
                     MyMessageBox.ShowInput(
                         GuiConfig.GetText(TextType.CreateNewDataBaseInput),
                         GuiConfig.GetText(TextType.CreateNewDataBase));
-            }
+                strInitColName =
+                    MyMessageBox.ShowInput(
+                        GuiConfig.GetText("Please Input Init CollectionName：", "CreateNewDataBaseInitCollection"),
+                        GuiConfig.GetText(TextType.CreateNewDataBase));
 
-            strInitColName = MyMessageBox.ShowInput("Please Input Init CollectionName：", "Create Database");
+            }
 
             string errMessage;
             if (Operater.IsDatabaseNameValid(strDbName, out errMessage))
@@ -1060,7 +1064,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://magicdict.github.io/MongoCola/");
+            Process.Start("http://www.codesnippet.info/Article/Index?ArticleId=00000062");
         }
 
         #endregion

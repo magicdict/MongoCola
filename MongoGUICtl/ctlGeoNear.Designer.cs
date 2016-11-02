@@ -36,8 +36,6 @@ namespace MongoGUICtl
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMile = new System.Windows.Forms.Button();
             this.btnKM = new System.Windows.Forms.Button();
-            this.NumGeoX = new System.Windows.Forms.TextBox();
-            this.NumGeoY = new System.Windows.Forms.TextBox();
             this.NumMaxDistance = new System.Windows.Forms.TextBox();
             this.NumDistanceMultiplier = new System.Windows.Forms.TextBox();
             this.lblMaxDistance = new System.Windows.Forms.Label();
@@ -50,6 +48,8 @@ namespace MongoGUICtl
             this.lnkGeoNear = new System.Windows.Forms.LinkLabel();
             this.chkHaystack = new System.Windows.Forms.CheckBox();
             this.trvGeoResult = new MongoGUICtl.CtlTreeViewColumns();
+            this.cmdGeoJson = new System.Windows.Forms.Button();
+            this.lblPoint = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,24 +83,6 @@ namespace MongoGUICtl
             this.btnKM.UseVisualStyleBackColor = true;
             this.btnKM.Click += new System.EventHandler(this.btnKM_Click);
             // 
-            // NumGeoX
-            // 
-            this.NumGeoX.Location = new System.Drawing.Point(95, 42);
-            this.NumGeoX.Name = "NumGeoX";
-            this.NumGeoX.Size = new System.Drawing.Size(51, 21);
-            this.NumGeoX.TabIndex = 27;
-            this.NumGeoX.Text = "1";
-            this.NumGeoX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // NumGeoY
-            // 
-            this.NumGeoY.Location = new System.Drawing.Point(152, 42);
-            this.NumGeoY.Name = "NumGeoY";
-            this.NumGeoY.Size = new System.Drawing.Size(51, 21);
-            this.NumGeoY.TabIndex = 28;
-            this.NumGeoY.Text = "1";
-            this.NumGeoY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // NumMaxDistance
             // 
             this.NumMaxDistance.Location = new System.Drawing.Point(95, 71);
@@ -112,7 +94,7 @@ namespace MongoGUICtl
             // 
             // NumDistanceMultiplier
             // 
-            this.NumDistanceMultiplier.Location = new System.Drawing.Point(351, 45);
+            this.NumDistanceMultiplier.Location = new System.Drawing.Point(469, 44);
             this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
             this.NumDistanceMultiplier.Size = new System.Drawing.Size(116, 21);
             this.NumDistanceMultiplier.TabIndex = 30;
@@ -131,7 +113,7 @@ namespace MongoGUICtl
             // lblDistanceMultiplier
             // 
             this.lblDistanceMultiplier.AutoSize = true;
-            this.lblDistanceMultiplier.Location = new System.Drawing.Point(227, 47);
+            this.lblDistanceMultiplier.Location = new System.Drawing.Point(345, 46);
             this.lblDistanceMultiplier.Name = "lblDistanceMultiplier";
             this.lblDistanceMultiplier.Size = new System.Drawing.Size(119, 12);
             this.lblDistanceMultiplier.TabIndex = 25;
@@ -228,15 +210,34 @@ namespace MongoGUICtl
             this.trvGeoResult.Size = new System.Drawing.Size(570, 235);
             this.trvGeoResult.TabIndex = 21;
             // 
+            // cmdGeoJson
+            // 
+            this.cmdGeoJson.Location = new System.Drawing.Point(95, 44);
+            this.cmdGeoJson.Name = "cmdGeoJson";
+            this.cmdGeoJson.Size = new System.Drawing.Size(75, 23);
+            this.cmdGeoJson.TabIndex = 34;
+            this.cmdGeoJson.Text = "GeoJson";
+            this.cmdGeoJson.UseVisualStyleBackColor = true;
+            this.cmdGeoJson.Click += new System.EventHandler(this.cmdGeoJson_Click);
+            // 
+            // lblPoint
+            // 
+            this.lblPoint.AutoSize = true;
+            this.lblPoint.Location = new System.Drawing.Point(188, 49);
+            this.lblPoint.Name = "lblPoint";
+            this.lblPoint.Size = new System.Drawing.Size(35, 12);
+            this.lblPoint.TabIndex = 35;
+            this.lblPoint.Text = "Point";
+            // 
             // CtlGeoNear
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblPoint);
+            this.Controls.Add(this.cmdGeoJson);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnMile);
             this.Controls.Add(this.btnKM);
-            this.Controls.Add(this.NumGeoX);
-            this.Controls.Add(this.NumGeoY);
             this.Controls.Add(this.NumMaxDistance);
             this.Controls.Add(this.NumDistanceMultiplier);
             this.Controls.Add(this.lblMaxDistance);
@@ -262,8 +263,6 @@ namespace MongoGUICtl
         private Button btnHelp;
         private Button btnMile;
         private Button btnKM;
-        private TextBox NumGeoX;
-        private TextBox NumGeoY;
         private TextBox NumMaxDistance;
         private TextBox NumDistanceMultiplier;
         private Label lblMaxDistance;
@@ -276,5 +275,7 @@ namespace MongoGUICtl
         private LinkLabel lnkGeoNear;
         private CtlTreeViewColumns trvGeoResult;
         private CheckBox chkHaystack;
+        private Button cmdGeoJson;
+        private Label lblPoint;
     }
 }

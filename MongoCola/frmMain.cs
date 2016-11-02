@@ -71,6 +71,12 @@ namespace MongoCola
                 Utility.OpenForm(frmGeo, false, true);
                 return frmGeo.mBsonArray;
             };
+            CtlGeoNear.GetGeo = () =>
+            {
+                var frmGeo = new frmCreateGeo();
+                Utility.OpenForm(frmGeo, false, true);
+                return frmGeo.mBsonArray;
+            };
         }
 
         /// <summary>

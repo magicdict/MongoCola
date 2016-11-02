@@ -1,11 +1,12 @@
 # MongoCola工具
-* 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/10/31 16:00
-* Net Core版本 Browse Base Client[需要 NET Core1.0.1] 更新时间:2016/12/31 16:00
+* 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/11/24 16:00
+* Net Core版本 Browse Base Client[需要 NET Core1.0.1] 更新时间:2016/11/24 16:00
 * 下载地址:  <https://github.com/magicdict/MongoCola/releases>
+* 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
 * 版本号：Ver 2.0.3
-* 文档最后更新时间：2016-11-01 16:44:41 星期二
+* 文档最后更新时间：2016-11-02 14:32:57 星期三
 
 ## 开发和测试环境
 ### 操作系统：
@@ -62,6 +63,45 @@ CSharp Mongo Driver 2.4.0-beta1
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161101160732_MainGUI.png)
 
+###使用三种视图查看数据
+- 树形视图（TreeView）
+树形视图便于查看数据的阶层构造。
+注意：如果是ObjectId类型数据，系统将会展示ObjectId的详细信息：
+CreateionTime，Machine，Pid，Increment，TimeStamp
+但是这些信息字段实际上是不存在于数据库中的，是通过ObjectId计算出来的。
+![](/FileSystem/Thumbnail?filename=00000001_20161102095610_TreeView.png)
+
+- 列表视图
+如果数据集的字段整齐，则列表视图将会使用关系型数据那样的二维视图展示数据
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102100153_ListView.png)
+
+- 文本视图
+在文本视图中，可以看到数据的JSON格式文本
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102100423_TextView.png)
+
+###新建数据库
+如果数据库里面没有任何数据集，则该数据库将自动被系统回收，所以，新建数据库的时候，会要求设定初始数据集。
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102143247_NewDatabase.png)
+
+###新建数据集
+软件使用了完全可视化的界面来帮助您新建一个数据集
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102130549_CreateCollection.png)
+
+- 数据集名称前后的空白将被工具自动去除
+- 高级选项包含了自动Id索引，容量限制Capped和文档验证功能
+
+###新建视图
+选中某个数据库，然后在右键菜单中选择“添加视图”即可打开视图创建窗体。
+你可以使用软件提供的StageBuilder来添加聚合管道条件。
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102131835_CreateView.png)
+
+你也可以使用聚合功能来创建视图：参见[聚合管道命令]
+
 ##索引管理
 ###索引一览和删除
 选中一个你想处理的数据集，通过右键菜单的"索引管理"可以打开索引管理器。
@@ -76,6 +116,16 @@ CSharp Mongo Driver 2.4.0-beta1
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161101161703_IndexMgr_Create.png)
 
+- Ascending ： 升序
+- Desceding ： 降序
+- Hashed：散列
+- Text：文本索引（全文检索必须，只用作用于BsonString型字段）
+- GeoSpatial：地理（二维）
+- GeoSpatialSpherical：地理（球形）
+- GeoSpatialHaystack: 地理(HayStack,GeoHayStack操作必须)
+
+[MongoDB官方索引参考文档](https://docs.mongodb.com/master/indexes/ "MongoDB官方索引参考文档")
+
 ##元数据的编辑
 ###添加或者修改
 选中一个元素之后，双击便可进行简单的修改元素值了。
@@ -89,12 +139,39 @@ CSharp Mongo Driver 2.4.0-beta1
 - BsonDouble 双精度
 - BsonDateTime 日期可以选择，时间为当前时间
 - BsonArray 数组
-- BsonDocument 文档
+- BsonDocument 文档，具体参考【插入文档】
 - BsonGeo 地理数据
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102093904_GeoJSON.png)
+注意：半球坐标，使用WGS84坐标系 经度纬度的取值范围：经度 [-180,180] ,纬度[-90,90]
+
 - BsonMaxKey Sharding用最大值
 - BsonMinKey Sharding用最小值
 - BsonBinary Base64的数据 注意：请直接填写内容即可，系统自动进行转换
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102093738_BsonBinary.png)
+
 - BsonUndifined （测试用，请不要选择）
+
+###文档的插入
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102094939_CreateDocument.png)
+
+- 实际使用中，如果希望系统生成"_id"字段，则请不要添加"_id"字段
+- 建议使用预览功能来验证数据格式然后再进行添加操作
+
+##聚合功能
+### 聚合管道命令
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102131308_Aggregation.png)
+
+- StageBuilder可以帮助你设定一些简单的Stage条件
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102131443_StageBuilder.png)
+
+当然您也可以通过AddStage将一个复杂的Stage的JSON定义加入到StagePipeline中。
+
+当您创建完成一个聚合管道命令时，你可以将这个聚合管道转换为一个视图（View）
 
 ## 更新履历
 ###新增

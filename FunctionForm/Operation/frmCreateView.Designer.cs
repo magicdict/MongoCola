@@ -43,7 +43,7 @@
             // 
             this.cmdCancel.Location = new System.Drawing.Point(231, 309);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(102, 40);
+            this.cmdCancel.Size = new System.Drawing.Size(87, 40);
             this.cmdCancel.TabIndex = 7;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;

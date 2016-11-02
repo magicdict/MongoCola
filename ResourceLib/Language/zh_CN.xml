@@ -383,6 +383,7 @@
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
   <Create_New_DataBase_Input>请输入数据库名称:</Create_New_DataBase_Input>
+  <Create_New_DataBase_InitCollection>请输入初始数据集名称:</Create_New_DataBase_InitCollection>
   <Drop_DataBase>删除数据库</Drop_DataBase>
   <Drop_DataBase_Confirm>确定是否要删除数据库?</Drop_DataBase_Confirm>
   <Restore_Connection_Confirm>确定是否要恢复数据库?</Restore_Connection_Confirm>
