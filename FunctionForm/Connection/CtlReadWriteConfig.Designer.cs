@@ -33,28 +33,31 @@ namespace FunctionForm.Connection
         /// </summary>
         private void InitializeComponent()
         {
-            this.chkUseDefault = new CheckBox();
-            this.lnkWriteConcern = new LinkLabel();
-            this.lnkReadPreference = new LinkLabel();
-            this.cmbWriteConcern = new ComboBox();
-            this.lblWriteConcern = new Label();
-            this.cmbReadPreference = new ComboBox();
-            this.lblReadPreference = new Label();
-            this.lblWtimeoutDescript = new Label();
-            this.NumWTimeoutMS = new NumericUpDown();
-            this.lblQueueSize = new Label();
-            this.lblWTimeout = new Label();
-            this.NumWaitQueueSize = new NumericUpDown();
-            ((ISupportInitialize)(this.NumWTimeoutMS)).BeginInit();
-            ((ISupportInitialize)(this.NumWaitQueueSize)).BeginInit();
+            this.chkUseDefault = new System.Windows.Forms.CheckBox();
+            this.lnkWriteConcern = new System.Windows.Forms.LinkLabel();
+            this.lnkReadPreference = new System.Windows.Forms.LinkLabel();
+            this.cmbWriteConcern = new System.Windows.Forms.ComboBox();
+            this.lblWriteConcern = new System.Windows.Forms.Label();
+            this.cmbReadPreference = new System.Windows.Forms.ComboBox();
+            this.lblReadPreference = new System.Windows.Forms.Label();
+            this.lblWtimeoutDescript = new System.Windows.Forms.Label();
+            this.NumWTimeoutMS = new System.Windows.Forms.NumericUpDown();
+            this.lblQueueSize = new System.Windows.Forms.Label();
+            this.lblWTimeout = new System.Windows.Forms.Label();
+            this.NumWaitQueueSize = new System.Windows.Forms.NumericUpDown();
+            this.lnkReadConcern = new System.Windows.Forms.LinkLabel();
+            this.cmbReadConcern = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.NumWTimeoutMS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumWaitQueueSize)).BeginInit();
             this.SuspendLayout();
             // 
             // chkUseDefault
             // 
             this.chkUseDefault.AutoSize = true;
-            this.chkUseDefault.Location = new Point(41, 14);
+            this.chkUseDefault.Location = new System.Drawing.Point(41, 14);
             this.chkUseDefault.Name = "chkUseDefault";
-            this.chkUseDefault.Size = new Size(168, 16);
+            this.chkUseDefault.Size = new System.Drawing.Size(168, 16);
             this.chkUseDefault.TabIndex = 76;
             this.chkUseDefault.Text = "Use Tool Default Setting";
             this.chkUseDefault.UseVisualStyleBackColor = true;
@@ -62,115 +65,149 @@ namespace FunctionForm.Connection
             // lnkWriteConcern
             // 
             this.lnkWriteConcern.AutoSize = true;
-            this.lnkWriteConcern.Location = new Point(318, 145);
+            this.lnkWriteConcern.Location = new System.Drawing.Point(319, 173);
             this.lnkWriteConcern.Name = "lnkWriteConcern";
-            this.lnkWriteConcern.Size = new Size(113, 12);
+            this.lnkWriteConcern.Size = new System.Drawing.Size(113, 12);
             this.lnkWriteConcern.TabIndex = 75;
             this.lnkWriteConcern.TabStop = true;
             this.lnkWriteConcern.Text = "About WriteConcern";
+            this.lnkWriteConcern.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkWriteConcern_LinkClicked);
             // 
             // lnkReadPreference
             // 
             this.lnkReadPreference.AutoSize = true;
-            this.lnkReadPreference.Location = new Point(319, 122);
+            this.lnkReadPreference.Location = new System.Drawing.Point(319, 122);
             this.lnkReadPreference.Name = "lnkReadPreference";
-            this.lnkReadPreference.Size = new Size(125, 12);
+            this.lnkReadPreference.Size = new System.Drawing.Size(125, 12);
             this.lnkReadPreference.TabIndex = 74;
             this.lnkReadPreference.TabStop = true;
             this.lnkReadPreference.Text = "About ReadPreference";
+            this.lnkReadPreference.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkReadPreference_LinkClicked);
             // 
             // cmbWriteConcern
             // 
-            this.cmbWriteConcern.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbWriteConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWriteConcern.FormattingEnabled = true;
-            this.cmbWriteConcern.Location = new Point(147, 145);
+            this.cmbWriteConcern.Location = new System.Drawing.Point(148, 173);
             this.cmbWriteConcern.Name = "cmbWriteConcern";
-            this.cmbWriteConcern.Size = new Size(149, 20);
+            this.cmbWriteConcern.Size = new System.Drawing.Size(149, 20);
             this.cmbWriteConcern.TabIndex = 73;
             // 
             // lblWriteConcern
             // 
             this.lblWriteConcern.AutoSize = true;
-            this.lblWriteConcern.Location = new Point(40, 145);
+            this.lblWriteConcern.Location = new System.Drawing.Point(41, 173);
             this.lblWriteConcern.Name = "lblWriteConcern";
-            this.lblWriteConcern.Size = new Size(77, 12);
+            this.lblWriteConcern.Size = new System.Drawing.Size(77, 12);
             this.lblWriteConcern.TabIndex = 72;
             this.lblWriteConcern.Text = "WriteConcern";
             // 
             // cmbReadPreference
             // 
-            this.cmbReadPreference.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbReadPreference.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReadPreference.FormattingEnabled = true;
-            this.cmbReadPreference.Location = new Point(147, 120);
+            this.cmbReadPreference.Location = new System.Drawing.Point(147, 120);
             this.cmbReadPreference.Name = "cmbReadPreference";
-            this.cmbReadPreference.Size = new Size(149, 20);
+            this.cmbReadPreference.Size = new System.Drawing.Size(149, 20);
             this.cmbReadPreference.TabIndex = 71;
             // 
             // lblReadPreference
             // 
             this.lblReadPreference.AutoSize = true;
-            this.lblReadPreference.Location = new Point(40, 120);
+            this.lblReadPreference.Location = new System.Drawing.Point(40, 120);
             this.lblReadPreference.Name = "lblReadPreference";
-            this.lblReadPreference.Size = new Size(89, 12);
+            this.lblReadPreference.Size = new System.Drawing.Size(89, 12);
             this.lblReadPreference.TabIndex = 70;
             this.lblReadPreference.Text = "ReadPreference";
             // 
             // lblWtimeoutDescript
             // 
             this.lblWtimeoutDescript.AutoSize = true;
-            this.lblWtimeoutDescript.Location = new Point(149, 73);
+            this.lblWtimeoutDescript.Location = new System.Drawing.Point(149, 73);
             this.lblWtimeoutDescript.Name = "lblWtimeoutDescript";
-            this.lblWtimeoutDescript.Size = new Size(491, 12);
+            this.lblWtimeoutDescript.Size = new System.Drawing.Size(491, 12);
             this.lblWtimeoutDescript.TabIndex = 69;
             this.lblWtimeoutDescript.Text = "The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true." +
     "";
             // 
             // NumWTimeoutMS
             // 
-            this.NumWTimeoutMS.Location = new Point(147, 44);
+            this.NumWTimeoutMS.Location = new System.Drawing.Point(147, 44);
             this.NumWTimeoutMS.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.NumWTimeoutMS.Name = "NumWTimeoutMS";
-            this.NumWTimeoutMS.Size = new Size(76, 21);
+            this.NumWTimeoutMS.Size = new System.Drawing.Size(76, 21);
             this.NumWTimeoutMS.TabIndex = 65;
-            this.NumWTimeoutMS.TextAlign = HorizontalAlignment.Right;
+            this.NumWTimeoutMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblQueueSize
             // 
             this.lblQueueSize.AutoSize = true;
-            this.lblQueueSize.Location = new Point(38, 93);
+            this.lblQueueSize.Location = new System.Drawing.Point(38, 93);
             this.lblQueueSize.Name = "lblQueueSize";
-            this.lblQueueSize.Size = new Size(83, 12);
+            this.lblQueueSize.Size = new System.Drawing.Size(83, 12);
             this.lblQueueSize.TabIndex = 67;
             this.lblQueueSize.Text = "WaitQueueSize";
             // 
             // lblWTimeout
             // 
             this.lblWTimeout.AutoSize = true;
-            this.lblWTimeout.Location = new Point(40, 47);
+            this.lblWTimeout.Location = new System.Drawing.Point(40, 47);
             this.lblWTimeout.Name = "lblWTimeout";
-            this.lblWTimeout.Size = new Size(77, 12);
+            this.lblWTimeout.Size = new System.Drawing.Size(77, 12);
             this.lblWTimeout.TabIndex = 68;
             this.lblWTimeout.Text = "wtimeout(MS)";
             // 
             // NumWaitQueueSize
             // 
-            this.NumWaitQueueSize.Location = new Point(147, 91);
+            this.NumWaitQueueSize.Location = new System.Drawing.Point(147, 91);
             this.NumWaitQueueSize.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
             this.NumWaitQueueSize.Name = "NumWaitQueueSize";
-            this.NumWaitQueueSize.Size = new Size(76, 21);
+            this.NumWaitQueueSize.Size = new System.Drawing.Size(76, 21);
             this.NumWaitQueueSize.TabIndex = 66;
-            this.NumWaitQueueSize.TextAlign = HorizontalAlignment.Right;
+            this.NumWaitQueueSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // ctlReadWriteConfig
+            // lnkReadConcern
             // 
+            this.lnkReadConcern.AutoSize = true;
+            this.lnkReadConcern.Location = new System.Drawing.Point(319, 146);
+            this.lnkReadConcern.Name = "lnkReadConcern";
+            this.lnkReadConcern.Size = new System.Drawing.Size(107, 12);
+            this.lnkReadConcern.TabIndex = 79;
+            this.lnkReadConcern.TabStop = true;
+            this.lnkReadConcern.Text = "About ReadConcern";
+            this.lnkReadConcern.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkReadConcern_LinkClicked);
+            // 
+            // cmbReadConcern
+            // 
+            this.cmbReadConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReadConcern.FormattingEnabled = true;
+            this.cmbReadConcern.Location = new System.Drawing.Point(148, 146);
+            this.cmbReadConcern.Name = "cmbReadConcern";
+            this.cmbReadConcern.Size = new System.Drawing.Size(149, 20);
+            this.cmbReadConcern.TabIndex = 78;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(41, 146);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.TabIndex = 77;
+            this.label1.Text = "ReadConcern";
+            // 
+            // CtlReadWriteConfig
+            // 
+            this.Controls.Add(this.lnkReadConcern);
+            this.Controls.Add(this.cmbReadConcern);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.chkUseDefault);
             this.Controls.Add(this.lnkWriteConcern);
             this.Controls.Add(this.lnkReadPreference);
@@ -184,10 +221,10 @@ namespace FunctionForm.Connection
             this.Controls.Add(this.lblWTimeout);
             this.Controls.Add(this.NumWaitQueueSize);
             this.Name = "CtlReadWriteConfig";
-            this.Size = new Size(656, 198);
-            this.Load += new EventHandler(this.CtlMongoConfig_Load);
-            ((ISupportInitialize)(this.NumWTimeoutMS)).EndInit();
-            ((ISupportInitialize)(this.NumWaitQueueSize)).EndInit();
+            this.Size = new System.Drawing.Size(656, 198);
+            this.Load += new System.EventHandler(this.CtlMongoConfig_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.NumWTimeoutMS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumWaitQueueSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,6 +244,8 @@ namespace FunctionForm.Connection
         private Label lblQueueSize;
         private Label lblWTimeout;
         private NumericUpDown NumWaitQueueSize;
-
+        private LinkLabel lnkReadConcern;
+        private ComboBox cmbReadConcern;
+        private Label label1;
     }
 }

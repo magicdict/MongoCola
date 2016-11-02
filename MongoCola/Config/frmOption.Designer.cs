@@ -353,10 +353,10 @@ namespace MongoCola.Config
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this._ctlReadWriteConfig1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(620, 264);
+            this.tabPage1.Size = new System.Drawing.Size(620, 262);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Read Write";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -367,7 +367,7 @@ namespace MongoCola.Config
             this._ctlReadWriteConfig1.Location = new System.Drawing.Point(3, 3);
             this._ctlReadWriteConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ctlReadWriteConfig1.Name = "_ctlReadWriteConfig1";
-            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(614, 258);
+            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(614, 256);
             this._ctlReadWriteConfig1.TabIndex = 0;
             // 
             // FrmOption

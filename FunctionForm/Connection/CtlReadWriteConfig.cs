@@ -19,6 +19,7 @@ namespace FunctionForm.Connection
             MongoConnectionConfig.MongoConfig.WtimeoutMs = (double) NumWTimeoutMS.Value;
             MongoConnectionConfig.MongoConfig.WaitQueueSize = (int) NumWaitQueueSize.Value;
             MongoConnectionConfig.MongoConfig.WriteConcern = cmbWriteConcern.Text;
+            MongoConnectionConfig.MongoConfig.ReadConcern = cmbReadConcern.Text;
             MongoConnectionConfig.MongoConfig.ReadPreference = cmbReadPreference.Text;
             MongoConnectionConfig.MongoConfig.SaveMongoConfig();
         }
@@ -28,15 +29,9 @@ namespace FunctionForm.Connection
             NumWTimeoutMS.GotFocus += (x, y) => NumWTimeoutMS.Select(0, 5);
             NumWaitQueueSize.GotFocus += (x, y) => NumWaitQueueSize.Select(0, 5);
 
-            foreach (var readPreferenceItem in ReadWrite.ReadPreferenceList)
-            {
-                cmbReadPreference.Items.Add(readPreferenceItem);
-            }
-
-            foreach (var writeConcernItem in ReadWrite.WriteConcernList)
-            {
-                cmbWriteConcern.Items.Add(writeConcernItem);
-            }
+            Common.Utility.FillComberWithArray(cmbReadConcern, ReadWrite.ReadConcernList);
+            Common.Utility.FillComberWithArray(cmbReadPreference, ReadWrite.ReadPreferenceList);
+            Common.Utility.FillComberWithArray(cmbWriteConcern, ReadWrite.WriteConcernList);
 
             //ReadPreference和WriteConern不是Connection的属性,
             //而是读写策略
@@ -44,12 +39,31 @@ namespace FunctionForm.Connection
             {
                 cmbReadPreference.Text = MongoConnectionConfig.MongoConfig.ReadPreference;
             }
+            if (MongoConnectionConfig.MongoConfig.ReadConcern != string.Empty)
+            {
+                cmbReadConcern.Text = MongoConnectionConfig.MongoConfig.ReadConcern;
+            }
             if (MongoConnectionConfig.MongoConfig.WriteConcern != string.Empty)
             {
                 cmbWriteConcern.Text = MongoConnectionConfig.MongoConfig.WriteConcern;
             }
             NumWTimeoutMS.Value = (decimal) MongoConnectionConfig.MongoConfig.WtimeoutMs;
             NumWaitQueueSize.Value = MongoConnectionConfig.MongoConfig.WaitQueueSize;
+        }
+
+        private void lnkReadPreference_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://docs.mongodb.com/master/reference/read-preference/");
+        }
+
+        private void lnkReadConcern_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://docs.mongodb.com/master/reference/read-concern/");
+        }
+
+        private void lnkWriteConcern_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://docs.mongodb.com/master/reference/write-concern/");
         }
     }
 }

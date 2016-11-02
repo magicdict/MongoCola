@@ -31,6 +31,11 @@ namespace MongoUtility.Core
         public string ReadPreference;
 
         /// <summary>
+        ///     ReadConcern
+        /// </summary>
+        public string ReadConcern;
+
+        /// <summary>
         ///     连接配置列表(保存用）
         /// </summary>
         public List<MongoConnectionConfig> SerializableConnectionList = new List<MongoConnectionConfig>();

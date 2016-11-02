@@ -228,6 +228,11 @@ namespace MongoUtility.Core
         public string ReadPreference;
 
         /// <summary>
+        ///     ReadConcern
+        /// </summary>
+        public string ReadConcern;
+
+        /// <summary>
         ///     WriteConcern
         /// </summary>
         public string WriteConcern;

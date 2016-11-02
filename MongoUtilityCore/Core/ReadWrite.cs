@@ -8,6 +8,10 @@ namespace MongoUtility.Core
         //https://github.com/mongodb/mongo-csharp-driver/blob/master/src/MongoDB.Driver.Core/ReadConcern.cs
         //http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options
         //https://github.com/mongodb/mongo-csharp-driver/blob/master/src/MongoDB.Driver.Core/WriteConcern.cs
+        //https://yq.aliyun.com/articles/60553
+
+        //readPreference 主要控制客户端 Driver 从复制集的哪个节点读取数据，这个特性可方便的实现读写分离、就近读取等策略。
+        //readConcern 决定在某个读取数据时，能读到什么样的数据。
 
         /// <summary>
         ///     读策略
@@ -19,6 +23,16 @@ namespace MongoUtility.Core
             "Secondary",
             "SecondaryPreferred",
             "Nearest"
+        };
+
+        /// <summary>
+        ///     读确认
+        /// </summary>
+        public static string[] ReadConcernList =
+        {
+            "Local",
+            "Majority",
+            "Linearizable",
         };
 
         /// <summary>
@@ -63,6 +77,22 @@ namespace MongoUtility.Core
             {
                 clientsettings.ReadPreference = ReadPreference.Nearest;
             }
+
+
+            //Default ReadConcern is Local
+            if (config.ReadConcern == "Local")
+            {
+                clientsettings.ReadConcern = ReadConcern.Local;
+            }
+            if (config.ReadConcern == "Majority")
+            {
+                clientsettings.ReadConcern = ReadConcern.Majority;
+            }
+            if (config.ReadConcern == "Linearizable")
+            {
+                clientsettings.ReadConcern = ReadConcern.Linearizable;
+            }
+
 
             //Default WriteConcern is Unacknowledged
             if (config.WriteConcern == "Unacknowledged")
