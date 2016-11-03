@@ -15,7 +15,19 @@ namespace FunctionForm.Status
         /// <summary>
         ///     待展示数据
         /// </summary>
-        public List<BsonDocument> ShowData;
+        public List<BsonDocument> ShowData = new List<BsonDocument>();
+
+        /// <summary>
+        ///     待展示数据
+        /// </summary>
+        public BsonDocument ShowDocument
+        {
+            set
+            {
+                ShowData.Add(value);
+            }
+        }
+
         /// <summary>
         ///     标题
         /// </summary>

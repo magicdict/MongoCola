@@ -404,5 +404,12 @@ namespace MongoGUICtl
             writer.Write(ContentData.ToJson(MongoHelper.JsonWriterSettings));
             writer.Close();
         }
+
+        public void Clear()
+        {
+            TreeView.Nodes.Clear();
+            listView.Items.Clear();
+        }
+
     }
 }

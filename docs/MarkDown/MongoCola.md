@@ -177,7 +177,7 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102144713_COUNT.png)
 
--Distionct
+- Distinct
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102144741_Distinct_FieldPick.PNG)
 
@@ -191,9 +191,30 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 
 ###MapReduce
 
-![](/FileSystem/Thumbnail?filename=00000001_20161102144936_MapReduce_Init.PNG)
+MapReduce用户界面
 
-![](/FileSystem/Thumbnail?filename=00000001_20161102145011_MapReduce_Result.PNG)
+![](/FileSystem/Thumbnail?filename=00000001_20161103153439_MapReduce.png)
+
+- limit
+Optional. Specifies a maximum number of documents for the input into the map function.
+
+- jsMode
+Optional. Specifies whether to convert intermediate data into BSON format between the execution of the map and reduce functions. Defaults to false.
+
+- verbose
+Optional. Specifies whether to include the timing information in the result information. The verbose defaults to true to include the timing information.
+
+- bypassDocumentValidation
+Optional. Enables mapReduce to bypass document validation during the operation. This lets you insert documents that do not meet the validation requirements.
+
+- collation
+Coming Soon
+
+MapReduce的结果如图
+
+![](/FileSystem/Thumbnail?filename=00000001_20161103150054_MapReduceResult.png)
+
+这里包含了timing information.
 
 ### 聚合管道命令
 
