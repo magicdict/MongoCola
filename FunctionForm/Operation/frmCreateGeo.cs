@@ -23,6 +23,8 @@ namespace FunctionForm.Operation
             {
                 cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
+                lblLongitude.Text = GuiConfig.GetText("Common_Longitude");
+                lblLatitude.Text = GuiConfig.GetText("Common_Latitude");
             }
         }
 

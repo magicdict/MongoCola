@@ -25,9 +25,12 @@ namespace FunctionForm.Operation
                 Text = GuiConfig.GetText("Create View", "MainMenuOperationDatabaseAddView");
                 cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
+                lblViewName.Text = GuiConfig.GetText("Common_ViewName");
+                lblViewOn.Text = GuiConfig.GetText("Common_ViewOn");
+                lblPipeline.Text = GuiConfig.GetText("Common_Pipeline");
             }
 
-                cmbViewOn.Items.Clear();
+            cmbViewOn.Items.Clear();
             var ColList = RuntimeMongoDbContext.GetCurrentIMongoDataBase().ListCollections();
             var viewlist = RuntimeMongoDbContext.GetCurrentDBViewNameList();
             foreach (var item in ColList.ToList())

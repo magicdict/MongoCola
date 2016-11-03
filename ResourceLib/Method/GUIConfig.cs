@@ -223,6 +223,7 @@ namespace ResourceLib.Method
                 //GroupBox
                 if (ctrlItem.GetType().FullName == typeof(GroupBox).FullName)
                 {
+                    if (((GroupBox)ctrlItem).Tag != null) display = GetText(((GroupBox)ctrlItem).Text, ctrlItem.Tag.ToString()); ;
                     if (!string.IsNullOrEmpty(display))
                     {
                         ((GroupBox)ctrlItem).Text = display;

@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using ResourceLib.UI;
 using MongoUtility.ToolKit;
 using MongoUtility.Core;
+using ResourceLib.Method;
 
 namespace FunctionForm.Aggregation
 {
@@ -35,6 +36,7 @@ namespace FunctionForm.Aggregation
             chkSkip.CheckedChanged += (x, y) => { txtSkip.Enabled = chkSkip.Checked; };
             chkLimit.CheckedChanged += (x, y) => { txtLimit.Enabled = chkLimit.Checked; };
             chkSample.CheckedChanged += (x, y) => { txtSample.Enabled = chkSample.Checked; };
+
         }
 
         /// <summary>
@@ -46,6 +48,14 @@ namespace FunctionForm.Aggregation
         {
             QueryFieldPicker.InitByCurrentCollection(false);
             GroupFieldPicker.InitByCurrentCollection(false);
+
+            if (!GuiConfig.IsUseDefaultLanguage)
+            {
+                Text = GuiConfig.GetText("Create View", "MainMenuOperationDatabaseAddView");
+                btnOK.Text = GuiConfig.GetText(TextType.CommonOk);
+                btnCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
+            }
+
         }
 
         /// <summary>

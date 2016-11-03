@@ -209,6 +209,7 @@ namespace MongoGUIView
             this.Controls.Add(this.grpFilename);
             this.Name = "FrmGfsOption";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "GFS_Insert_Option";
             this.Text = "GFS Insert Option";
             this.Load += new System.EventHandler(this.frmGFSOption_Load);
             this.grpFilename.ResumeLayout(false);

@@ -98,9 +98,16 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 选中某个数据库，然后在右键菜单中选择“添加视图”即可打开视图创建窗体。
 你可以使用软件提供的StageBuilder来添加聚合管道条件。
 
-![](/FileSystem/Thumbnail?filename=00000001_20161102131835_CreateView.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161102205619_CreateView.png)
 
 你也可以使用聚合功能来创建视图：参见[聚合管道命令]
+
+###复制数据库
+
+通过复制数据库命令，可以将数据库中的数据集复制到其他数据库中
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102210138_CopyDataBase.png)
+
 
 ##索引管理
 ###索引一览和删除
@@ -142,7 +149,8 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 - BsonDocument 文档，具体参考【插入文档】
 - BsonGeo 地理数据
 
-![](/FileSystem/Thumbnail?filename=00000001_20161102093904_GeoJSON.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161102205658_GeoJSON.png)
+
 注意：半球坐标，使用WGS84坐标系 经度纬度的取值范围：经度 [-180,180] ,纬度[-90,90]
 
 - BsonMaxKey Sharding用最大值
@@ -161,6 +169,32 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 - 建议使用预览功能来验证数据格式然后再进行添加操作
 
 ##聚合功能
+
+选择任意一个数据集之后在右键菜单中可以找到聚合命令的入口
+
+###基本聚合
+- Count
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102144713_COUNT.png)
+
+-Distionct
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102144741_Distinct_FieldPick.PNG)
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102145040_Distinct_Result.PNG)
+
+- Group
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102144844_Group_Init.PNG)
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102144904_Group_Result.PNG)
+
+###MapReduce
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102144936_MapReduce_Init.PNG)
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102145011_MapReduce_Result.PNG)
+
 ### 聚合管道命令
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102131308_Aggregation.png)
@@ -172,6 +206,63 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 当然您也可以通过AddStage将一个复杂的Stage的JSON定义加入到StagePipeline中。
 
 当您创建完成一个聚合管道命令时，你可以将这个聚合管道转换为一个视图（View）
+
+###文本检索
+注意：文本检索需要对数据集增加Text索引。
+非Enterprise版本不支持分词功能。
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102144505_TextSearch.png)
+
+##GFS
+你可以使用MongoDB的GridFileSystem来存储文件。
+这里我们使用 “上传” 这个词语表示将文件放入数据库。
+这里我们使用 “下载” 这个词语表示将文件数据库取出。
+
+###文件一览
+
+![](/FileSystem/Thumbnail?filename=00000001_20161102211009_GFS.png)
+
+为了文件图标能够正常显示，请使用系统管理员权限运行本工具。
+
+###文件的上传
+你可以使用工具栏按钮上传文件和文件夹。在Windows平台，也支持使用拖放的操作来上传文件夹。
+在上传文件夹的时候，可以进行一些配置
+
+![](/FileSystem/Thumbnail?filename=00000001_20161103093226_GFSInsertOption.png)
+服务器端的文件名选项：
+- 仅文件名：文件名作为文件名字段
+- 全路径：全路径作为文件名字段
+
+文件已经存在时的选项
+- 添加
+- 重命名:增加数字后缀
+- 跳过:不进行上传
+- 覆盖文件
+- 停止上传：已上传文件不删除
+
+##插件系统（C#语言）
+
+本工具支持插件系统，任何人可以为这个软件制作插件
+在 PlugIn文件夹中，有一些内置的工具
+
+###工具内置插件
+
+
+
+## MongoDB3.4
+
+###Read Concern linearizable
+在ReadConcern 增加了 "linearizable"
+
+###Decimal Type
+从MongoDB3.4开始，增加了128位的Decimal的数据格式。
+
+###视图（ReadOnly View）
+视图是MongoDB 3.4 新增的一个功能，虽然其名称也是视图，但是和传统的关系型数据库的View还是有一些区别的。
+MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时还不能从多个不同的数据集中抽取数据集中反映在一个视图中。
+这样的View只是在大数据统计的时候，可以将一些预置的聚合条件提升为视图的概念，便于数据分析。
+暂时还不清楚View的内部机理是什么，到底是实时抽取的，还是内部在监视原来的数据集，然后进行Diff更新。或者和传统数据库那样，静态View，通过手动或者定时更新。
+
 
 ## 更新履历
 ###新增

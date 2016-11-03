@@ -71,6 +71,7 @@
   <Main_Menu_Operation_FileSystem_OpenFile>打开文件</Main_Menu_Operation_FileSystem_OpenFile>
   <Main_Menu_Operation_FileSystem_DelFile>删除文件</Main_Menu_Operation_FileSystem_DelFile>
   <Main_Menu_Operation_FileSystem_InitGFS>初始化文件系统</Main_Menu_Operation_FileSystem_InitGFS>
+  
 
   <Main_Menu_Operation_BackupAndRestore>备份和恢复</Main_Menu_Operation_BackupAndRestore>
   <Main_Menu_Operation_BackupAndRestore_Restore>恢复</Main_Menu_Operation_BackupAndRestore_Restore>
@@ -290,6 +291,7 @@
   <GFS_uploadDate>日期</GFS_uploadDate>
   <GFS_md5>MD5</GFS_md5>
 
+  <GFS_Insert_Option>文件上传选项</GFS_Insert_Option>
   <GFS_Insert_Option_RemoteFileName>服务器端的文件名</GFS_Insert_Option_RemoteFileName>
   <GFS_Insert_Option_OnlyFilename>仅文件名(例如，readme.txt)</GFS_Insert_Option_OnlyFilename>
   <GFS_Insert_Option_FullPath>全路径(例如，C:\readme.txt)</GFS_Insert_Option_FullPath>
@@ -376,9 +378,17 @@
   <Common_Clear>清除</Common_Clear>
   <Common_Test>测试</Common_Test>
   <Common_Advance_Option>高级选项</Common_Advance_Option>
-  
+
   <Common_Preview>预览</Common_Preview>
   <Common_Run>运行</Common_Run>
+
+  <Common_Longitude>经度</Common_Longitude>
+  <Common_Latitude>纬度</Common_Latitude>
+
+
+  <Common_ViewName>视图名称</Common_ViewName>
+  <Common_ViewOn>视图数据集</Common_ViewOn>
+  <Common_Pipeline>视图条件</Common_Pipeline>
 
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>

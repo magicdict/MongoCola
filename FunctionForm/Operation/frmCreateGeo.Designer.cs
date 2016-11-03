@@ -31,8 +31,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtLongitude = new System.Windows.Forms.TextBox();
             this.txtLatitude = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLatitude = new System.Windows.Forms.Label();
+            this.lblLongitude = new System.Windows.Forms.Label();
             this.rad2d = new System.Windows.Forms.RadioButton();
             this.rad2dSphere = new System.Windows.Forms.RadioButton();
             this.cmdCancel = new System.Windows.Forms.Button();
@@ -44,8 +44,8 @@
             // 
             this.groupBox1.Controls.Add(this.txtLongitude);
             this.groupBox1.Controls.Add(this.txtLatitude);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblLatitude);
+            this.groupBox1.Controls.Add(this.lblLongitude);
             this.groupBox1.Controls.Add(this.rad2d);
             this.groupBox1.Controls.Add(this.rad2dSphere);
             this.groupBox1.Location = new System.Drawing.Point(23, 12);
@@ -69,23 +69,23 @@
             this.txtLatitude.Size = new System.Drawing.Size(100, 21);
             this.txtLatitude.TabIndex = 5;
             // 
-            // label2
+            // lblLatitude
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 12);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "latitude ";
+            this.lblLatitude.AutoSize = true;
+            this.lblLatitude.Location = new System.Drawing.Point(28, 82);
+            this.lblLatitude.Name = "lblLatitude";
+            this.lblLatitude.Size = new System.Drawing.Size(59, 12);
+            this.lblLatitude.TabIndex = 4;
+            this.lblLatitude.Text = "latitude ";
             // 
-            // label1
+            // lblLongitude
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "longitude";
+            this.lblLongitude.AutoSize = true;
+            this.lblLongitude.Location = new System.Drawing.Point(28, 55);
+            this.lblLongitude.Name = "lblLongitude";
+            this.lblLongitude.Size = new System.Drawing.Size(59, 12);
+            this.lblLongitude.TabIndex = 2;
+            this.lblLongitude.Text = "longitude";
             // 
             // rad2d
             // 
@@ -157,8 +157,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rad2d;
         private System.Windows.Forms.RadioButton rad2dSphere;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLatitude;
+        private System.Windows.Forms.Label lblLongitude;
         private System.Windows.Forms.TextBox txtLongitude;
         private System.Windows.Forms.TextBox txtLatitude;
         private System.Windows.Forms.Button cmdCancel;
