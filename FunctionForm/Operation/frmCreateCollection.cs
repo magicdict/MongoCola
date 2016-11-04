@@ -1,18 +1,17 @@
-﻿using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using MongoGUICtl.ClientTree;
 using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
-using MongoDB.Bson.Serialization;
-using MongoGUICtl.ClientTree;
-using MongoUtility.ToolKit;
+using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace FunctionForm.Operation
 {
@@ -33,32 +32,18 @@ namespace FunctionForm.Operation
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 Text = GuiConfig.GetText(TextType.CreateNewCollection);
-                lblCollectionName.Text =
-                    GuiConfig.GetText(
-                        TextType.CollectionStatusCollectionName);
-                chkAdvance.Text =
-                    GuiConfig.GetText(TextType.CommonAdvanceOption);
+                lblCollectionName.Text = GuiConfig.GetText(TextType.CollectionStatusCollectionName);
                 cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
-                chkIsCapped.Text =
-                    GuiConfig.GetText(TextType.CollectionStatusIsCapped);
-                lblMaxDocument.Text =
-                    GuiConfig.GetText(
-                        TextType.CollectionStatusMaxDocuments);
-                lblMaxSize.Text =
-                    GuiConfig.GetText(TextType.CollectionStatusMaxSize);
-                chkIsAutoIndexId.Text =
-                    GuiConfig.GetText(
-                        TextType.CollectionStatusIsAutoIndexId);
+                chkIsCapped.Text = GuiConfig.GetText(TextType.CollectionStatusIsCapped);
+                lblMaxDocument.Text = GuiConfig.GetText(TextType.CollectionStatusMaxDocuments);
+                lblMaxSize.Text = GuiConfig.GetText(TextType.CollectionStatusMaxSize);
+                chkIsAutoIndexId.Text = GuiConfig.GetText(TextType.CollectionStatusIsAutoIndexId);
             }
 
             //Difference between with long and decimal.....
             numMaxDocument.Maximum = decimal.MaxValue;
             numMaxSize.Maximum = decimal.MaxValue;
-            chkAdvance.Checked = false;
-            chkAdvance.Location = new Point(grpAdvanced.Location.X + 10, grpAdvanced.Location.Y);
-            chkAdvance.BringToFront();
-            grpAdvanced.Enabled = false;
         }
 
         /// <summary>
@@ -82,48 +67,40 @@ namespace FunctionForm.Operation
                     MyMessageBox.ShowMessage("Create Collection", "Argument Exception", errMessage, true);
                     return;
                 }
-                if (chkAdvance.Checked)
+                var option = new CollectionOptionsBuilder();
+                if (chkIsCapped.Checked)
                 {
-                    var option = new CollectionOptionsBuilder();
-
-                    if (chkIsCapped.Checked)
+                    if (numMaxSize.Value == 0 || numMaxDocument.Value == 0)
                     {
-                        if (numMaxSize.Value == 0 || numMaxDocument.Value == 0)
-                        {
-                            MyMessageBox.ShowMessage("Create Collection", "Argument Exception", "Please Input MaxSize Or MaxDocument When IsCapped", true);
-                            return;
-                        }
-                        option.SetCapped(chkIsCapped.Checked);
-                        if (numMaxSize.Value != 0) option.SetMaxSize((long)numMaxSize.Value);
-                        if (numMaxDocument.Value != 0) option.SetMaxDocuments((long)numMaxDocument.Value);
+                        MyMessageBox.ShowMessage("Create Collection", "Argument Exception", "Please Input MaxSize Or MaxDocument When IsCapped", true);
+                        return;
                     }
-
-                    //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
-                    option.SetAutoIndexId(chkIsAutoIndexId.Checked);
-
-                    if (chkValidation.Checked)
-                    {
-                        //Start From MongoDB 3.2.0
-                        BsonDocument query = BsonSerializer.Deserialize<BsonDocument>(txtValidation.Text);
-                        QueryDocument queryDoc = new QueryDocument(query);
-                        option.SetValidator(queryDoc);
-                        //Validation Level
-                        if (radLevel_off.Checked) option.SetValidationLevel(DocumentValidationLevel.Off);
-                        if (radLevel_strict.Checked) option.SetValidationLevel(DocumentValidationLevel.Strict);
-                        if (radLevel_moderate.Checked) option.SetValidationLevel(DocumentValidationLevel.Moderate);
-                        //Validation Action
-                        if (radAction_error.Checked) option.SetValidationAction(DocumentValidationAction.Error);
-                        if (radAction_warn.Checked) option.SetValidationAction(DocumentValidationAction.Warn);
-                    }
-
-                    Result = Operater.CreateCollectionWithOptions(StrSvrPathWithTag, txtCollectionName.Text,
-                        option, RuntimeMongoDbContext.GetCurrentDataBase());
+                    option.SetCapped(chkIsCapped.Checked);
+                    if (numMaxSize.Value != 0) option.SetMaxSize((long)numMaxSize.Value);
+                    if (numMaxDocument.Value != 0) option.SetMaxDocuments((long)numMaxDocument.Value);
                 }
-                else
+
+                //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
+                option.SetAutoIndexId(chkIsAutoIndexId.Checked);
+
+                if (chkValidation.Checked)
                 {
-                    Result = Operater.CreateCollection(StrSvrPathWithTag, txtCollectionName.Text,
-                        RuntimeMongoDbContext.GetCurrentDataBase());
+                    //Start From MongoDB 3.2.0
+                    BsonDocument query = BsonSerializer.Deserialize<BsonDocument>(txtValidation.Text);
+                    QueryDocument queryDoc = new QueryDocument(query);
+                    option.SetValidator(queryDoc);
+                    //Validation Level
+                    if (radLevel_off.Checked) option.SetValidationLevel(DocumentValidationLevel.Off);
+                    if (radLevel_strict.Checked) option.SetValidationLevel(DocumentValidationLevel.Strict);
+                    if (radLevel_moderate.Checked) option.SetValidationLevel(DocumentValidationLevel.Moderate);
+                    //Validation Action
+                    if (radAction_error.Checked) option.SetValidationAction(DocumentValidationAction.Error);
+                    if (radAction_warn.Checked) option.SetValidationAction(DocumentValidationAction.Warn);
                 }
+                if (mCollation != null) option.SetCollation(mCollation);
+                Result = Operater.CreateCollectionWithOptions(StrSvrPathWithTag, txtCollectionName.Text,
+                    option, RuntimeMongoDbContext.GetCurrentDataBase());
+
                 Close();
             }
             catch (ArgumentException ex)
@@ -141,16 +118,6 @@ namespace FunctionForm.Operation
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        /// <summary>
-        ///     高级选项
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void chkAdvance_CheckedChanged(object sender, EventArgs e)
-        {
-            grpAdvanced.Enabled = chkAdvance.Checked;
         }
 
         /// <summary>
@@ -176,6 +143,23 @@ namespace FunctionForm.Operation
             catch (Exception ex)
             {
                 Utility.ExceptionDeal(ex);
+            }
+        }
+
+        /// <summary>
+        ///     排序规则
+        /// </summary>
+        Collation mCollation = null;
+
+        private void btnCollation_Click(object sender, EventArgs e)
+        {
+            var frm = new frmCreateCollation();
+            Utility.OpenForm(frm, false, true);
+            if (frm.mCollation != null)
+            {
+                mCollation = frm.mCollation;
+                UiHelper.FillDataToTreeView("Collation", trvCollation, mCollation.ToBsonDocument());
+
             }
         }
     }
