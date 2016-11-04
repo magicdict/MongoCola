@@ -99,6 +99,12 @@
     <Compile Include="Aggregation\frmAggregation.Designer.cs">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Aggregation\frmGeoNear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aggregation\frmGeoNear.Designer.cs">
+      <DependentUpon>frmGeoNear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Aggregation\frmStageBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Aggregation\frmAggregation.resx">
       <DependentUpon>frmAggregation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aggregation\frmGeoNear.resx">
+      <DependentUpon>frmGeoNear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Aggregation\frmStageBuilder.resx">
       <DependentUpon>frmStageBuilder.cs</DependentUpon>

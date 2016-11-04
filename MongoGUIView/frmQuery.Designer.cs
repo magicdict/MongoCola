@@ -39,19 +39,12 @@ namespace MongoGUIView
             this.QueryFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
             this.tabCondition = new System.Windows.Forms.TabPage();
             this.ConditionPan = new MongoGUICtl.Aggregation.ConditionPanel();
-            this.tabGeoNear = new System.Windows.Forms.TabPage();
-            this.GeoNear = new MongoGUICtl.CtlGeoNear();
-            this.tabSql = new System.Windows.Forms.TabPage();
-            this.lblAttentionSelectOnly = new System.Windows.Forms.Label();
-            this.txtSql = new System.Windows.Forms.TextBox();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabFieldInfo.SuspendLayout();
             this.tabCondition.SuspendLayout();
-            this.tabGeoNear.SuspendLayout();
-            this.tabSql.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdOK
@@ -70,8 +63,6 @@ namespace MongoGUIView
             // 
             this.tabControl.Controls.Add(this.tabFieldInfo);
             this.tabControl.Controls.Add(this.tabCondition);
-            this.tabControl.Controls.Add(this.tabGeoNear);
-            this.tabControl.Controls.Add(this.tabSql);
             this.tabControl.Location = new System.Drawing.Point(6, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -121,57 +112,6 @@ namespace MongoGUIView
             this.ConditionPan.Name = "ConditionPan";
             this.ConditionPan.Size = new System.Drawing.Size(690, 462);
             this.ConditionPan.TabIndex = 0;
-            // 
-            // tabGeoNear
-            // 
-            this.tabGeoNear.Controls.Add(this.GeoNear);
-            this.tabGeoNear.Location = new System.Drawing.Point(4, 24);
-            this.tabGeoNear.Name = "tabGeoNear";
-            this.tabGeoNear.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeoNear.Size = new System.Drawing.Size(696, 468);
-            this.tabGeoNear.TabIndex = 2;
-            this.tabGeoNear.Text = "GeoNear";
-            this.tabGeoNear.UseVisualStyleBackColor = true;
-            // 
-            // GeoNear
-            // 
-            this.GeoNear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GeoNear.Location = new System.Drawing.Point(3, 3);
-            this.GeoNear.Name = "GeoNear";
-            this.GeoNear.Size = new System.Drawing.Size(690, 462);
-            this.GeoNear.TabIndex = 0;
-            // 
-            // tabSql
-            // 
-            this.tabSql.Controls.Add(this.lblAttentionSelectOnly);
-            this.tabSql.Controls.Add(this.txtSql);
-            this.tabSql.Location = new System.Drawing.Point(4, 24);
-            this.tabSql.Name = "tabSql";
-            this.tabSql.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSql.Size = new System.Drawing.Size(696, 468);
-            this.tabSql.TabIndex = 3;
-            this.tabSql.Text = "SqlHelper";
-            this.tabSql.UseVisualStyleBackColor = true;
-            // 
-            // lblAttentionSelectOnly
-            // 
-            this.lblAttentionSelectOnly.AutoSize = true;
-            this.lblAttentionSelectOnly.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAttentionSelectOnly.ForeColor = System.Drawing.Color.Red;
-            this.lblAttentionSelectOnly.Location = new System.Drawing.Point(15, 425);
-            this.lblAttentionSelectOnly.Name = "lblAttentionSelectOnly";
-            this.lblAttentionSelectOnly.Size = new System.Drawing.Size(385, 13);
-            this.lblAttentionSelectOnly.TabIndex = 46;
-            this.lblAttentionSelectOnly.Text = "Now,Select Sentence is only supported.From is not a must fill item ";
-            // 
-            // txtSql
-            // 
-            this.txtSql.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSql.Location = new System.Drawing.Point(9, 15);
-            this.txtSql.Multiline = true;
-            this.txtSql.Name = "txtSql";
-            this.txtSql.Size = new System.Drawing.Size(681, 391);
-            this.txtSql.TabIndex = 45;
             // 
             // cmdLoad
             // 
@@ -231,9 +171,6 @@ namespace MongoGUIView
             this.tabControl.ResumeLayout(false);
             this.tabFieldInfo.ResumeLayout(false);
             this.tabCondition.ResumeLayout(false);
-            this.tabGeoNear.ResumeLayout(false);
-            this.tabSql.ResumeLayout(false);
-            this.tabSql.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -245,11 +182,6 @@ namespace MongoGUIView
         private Button cmdSave;
         private Button cmdLoad;
         private Button cmdCancel;
-        private TabPage tabGeoNear;
-        private CtlGeoNear GeoNear;
-        private TabPage tabSql;
-        private Label lblAttentionSelectOnly;
-        private TextBox txtSql;
         private TabPage tabFieldInfo;
         private FieldPicker QueryFieldPicker;
         private ConditionPanel ConditionPan;

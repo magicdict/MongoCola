@@ -59,6 +59,12 @@ namespace Common
             yamlDoc.Close();
         }
 
+        /// <summary>
+        ///     打印
+        /// </summary>
+        /// <param name="yamlDoc"></param>
+        /// <param name="indentLevel"></param>
+        /// <param name="item"></param>
         private static void PrintYaml(StreamWriter yamlDoc, int indentLevel, string item)
         {
             var indent = indentLevel*3;

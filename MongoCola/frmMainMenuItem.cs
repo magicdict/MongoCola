@@ -1001,6 +1001,15 @@ namespace MongoCola
             Utility.OpenForm(new FrmTextSearch(), true, true);
         }
 
+        /// <summary>
+        ///     GeoNear
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void geoNearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.OpenForm(new frmGeoNear(), true, true);
+        }
         #endregion
 
         #region "帮助"

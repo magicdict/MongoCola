@@ -77,6 +77,7 @@ namespace MongoUtility.ToolKit
         public static string StrErrorPut = string.Empty;
 
         /// <summary>
+        ///     生成Ini格式Config文件
         /// </summary>
         /// <returns></returns>
         public static string GenerateIniFile(MongodConfig mongod)

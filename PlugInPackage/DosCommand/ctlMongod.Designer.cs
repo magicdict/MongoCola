@@ -34,7 +34,7 @@ namespace PlugInPackage.DosCommand
         {
             this.grpLog = new System.Windows.Forms.GroupBox();
             this.chkSmallfiles = new System.Windows.Forms.CheckBox();
-            this.ctllogLvT = new CtllogLv();
+            this.ctllogLvT = new PlugInPackage.DosCommand.CtllogLv();
             this.chkIsAppend = new System.Windows.Forms.CheckBox();
             this.ctlFilePickerLogPath = new ResourceLib.UI.CtlFilePicker();
             this.lblPort = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@ namespace PlugInPackage.DosCommand
             this.grpLog.Controls.Add(this.ctlFilePickerLogPath);
             this.grpLog.Location = new System.Drawing.Point(19, 69);
             this.grpLog.Name = "grpLog";
-            this.grpLog.Size = new System.Drawing.Size(745, 88);
+            this.grpLog.Size = new System.Drawing.Size(756, 88);
             this.grpLog.TabIndex = 0;
             this.grpLog.TabStop = false;
             this.grpLog.Text = "Log";
@@ -98,6 +98,8 @@ namespace PlugInPackage.DosCommand
             // 
             this.ctlFilePickerLogPath.AutoSize = true;
             this.ctlFilePickerLogPath.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerLogPath.Browse = "Browse...";
+            this.ctlFilePickerLogPath.Clear = "Clear";
             this.ctlFilePickerLogPath.FileFilter = "";
             this.ctlFilePickerLogPath.InitFileName = "";
             this.ctlFilePickerLogPath.Location = new System.Drawing.Point(7, 16);
@@ -111,7 +113,7 @@ namespace PlugInPackage.DosCommand
             // lblPort
             // 
             this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(22, 16);
+            this.lblPort.Location = new System.Drawing.Point(36, 15);
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(41, 12);
             this.lblPort.TabIndex = 7;
@@ -119,7 +121,7 @@ namespace PlugInPackage.DosCommand
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(69, 10);
+            this.numPort.Location = new System.Drawing.Point(83, 12);
             this.numPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -144,7 +146,7 @@ namespace PlugInPackage.DosCommand
             // chkAuth
             // 
             this.chkAuth.AutoSize = true;
-            this.chkAuth.Location = new System.Drawing.Point(593, 15);
+            this.chkAuth.Location = new System.Drawing.Point(593, 14);
             this.chkAuth.Name = "chkAuth";
             this.chkAuth.Size = new System.Drawing.Size(78, 16);
             this.chkAuth.TabIndex = 16;
@@ -173,7 +175,7 @@ namespace PlugInPackage.DosCommand
             // 
             this.radNormal.AutoSize = true;
             this.radNormal.Checked = true;
-            this.radNormal.Location = new System.Drawing.Point(163, 14);
+            this.radNormal.Location = new System.Drawing.Point(163, 12);
             this.radNormal.Name = "radNormal";
             this.radNormal.Size = new System.Drawing.Size(59, 16);
             this.radNormal.TabIndex = 19;
@@ -219,6 +221,8 @@ namespace PlugInPackage.DosCommand
             // 
             this.ctlFilePickerDBPath.AutoSize = true;
             this.ctlFilePickerDBPath.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerDBPath.Browse = "Browse...";
+            this.ctlFilePickerDBPath.Clear = "Clear";
             this.ctlFilePickerDBPath.FileFilter = "";
             this.ctlFilePickerDBPath.InitFileName = "";
             this.ctlFilePickerDBPath.Location = new System.Drawing.Point(20, 30);

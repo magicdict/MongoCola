@@ -70,19 +70,20 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            // 设置DataFilter
-            if (string.IsNullOrEmpty(txtSql.Text))
-            {
-                //No Sql
-                SetCurrentDataFilter();
-            }
-            else
-            {
-                SetCurrentDataFilter();
-                _currentDataViewInfo.MDataFilter = SqlHelper.ConvertQuerySql(txtSql.Text,
-                    RuntimeMongoDbContext.GetCurrentCollection());
-            }
+            //// 设置DataFilter
+            //if (string.IsNullOrEmpty(txtSql.Text))
+            //{
+            //    //No Sql
+            //    SetCurrentDataFilter();
+            //}
+            //else
+            //{
+            //    SetCurrentDataFilter();
+            //    _currentDataViewInfo.MDataFilter = SqlHelper.ConvertQuerySql(txtSql.Text,
+            //        RuntimeMongoDbContext.GetCurrentCollection());
+            //}
             //按下OK，不论是否做更改都认为True
+            SetCurrentDataFilter();
             _currentDataViewInfo.IsUseFilter = true;
             Close();
         }
@@ -97,17 +98,19 @@ namespace MongoGUIView
             var savefile = new SaveFileDialog { Filter = Utility.XmlFilter };
             if (savefile.ShowDialog() != DialogResult.OK) return;
             // 设置DataFilter
-            if (string.IsNullOrEmpty(txtSql.Text))
-            {
-                //设置DataFilter
-                SetCurrentDataFilter();
-            }
-            else
-            {
-                //使用SQL
-                _currentDataViewInfo.MDataFilter = SqlHelper.ConvertQuerySql(txtSql.Text,
-                    RuntimeMongoDbContext.GetCurrentCollection());
-            }
+            //if (string.IsNullOrEmpty(txtSql.Text))
+            //{
+            //    //设置DataFilter
+            //    SetCurrentDataFilter();
+            //}
+            //else
+            //{
+            //    //使用SQL
+            //    _currentDataViewInfo.MDataFilter = SqlHelper.ConvertQuerySql(txtSql.Text,
+            //        RuntimeMongoDbContext.GetCurrentCollection());
+            //}
+            //设置DataFilter
+            SetCurrentDataFilter();
             _currentDataViewInfo.MDataFilter.SaveFilter(savefile.FileName);
         }
 

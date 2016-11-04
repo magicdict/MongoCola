@@ -37,22 +37,19 @@ namespace MongoGUIView
             this.tabSvrBasicInfo = new System.Windows.Forms.TabPage();
             this.trvSvrStatus = new MongoGUICtl.CtlTreeViewColumns();
             this.tabDBBasicInfo = new System.Windows.Forms.TabPage();
+            this.trvDBStatus = new MongoGUICtl.CtlTreeViewColumns();
             this.tabCollectionInfo = new System.Windows.Forms.TabPage();
-            this.tabCurrentOprInfo = new System.Windows.Forms.TabPage();
+            this.trvColStatus = new MongoGUICtl.CtlTreeViewColumns();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.ExpandAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.CollapseAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.btnSwitch = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
-            this.lstSrvOpr = new System.Windows.Forms.ListView();
-            this.trvDBStatus = new MongoGUICtl.CtlTreeViewColumns();
-            this.trvColStatus = new MongoGUICtl.CtlTreeViewColumns();
             this.tabSvrStatus.SuspendLayout();
             this.tabSvrBasicInfo.SuspendLayout();
             this.tabDBBasicInfo.SuspendLayout();
             this.tabCollectionInfo.SuspendLayout();
-            this.tabCurrentOprInfo.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +58,6 @@ namespace MongoGUIView
             this.tabSvrStatus.Controls.Add(this.tabSvrBasicInfo);
             this.tabSvrStatus.Controls.Add(this.tabDBBasicInfo);
             this.tabSvrStatus.Controls.Add(this.tabCollectionInfo);
-            this.tabSvrStatus.Controls.Add(this.tabCurrentOprInfo);
             this.tabSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabSvrStatus.Location = new System.Drawing.Point(0, 25);
             this.tabSvrStatus.Name = "tabSvrStatus";
@@ -103,6 +99,16 @@ namespace MongoGUIView
             this.tabDBBasicInfo.Text = "DB Status";
             this.tabDBBasicInfo.UseVisualStyleBackColor = true;
             // 
+            // trvDBStatus
+            // 
+            this.trvDBStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
+            this.trvDBStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvDBStatus.Location = new System.Drawing.Point(3, 3);
+            this.trvDBStatus.Name = "trvDBStatus";
+            this.trvDBStatus.Padding = new System.Windows.Forms.Padding(1);
+            this.trvDBStatus.Size = new System.Drawing.Size(873, 365);
+            this.trvDBStatus.TabIndex = 1;
+            // 
             // tabCollectionInfo
             // 
             this.tabCollectionInfo.Controls.Add(this.trvColStatus);
@@ -115,17 +121,15 @@ namespace MongoGUIView
             this.tabCollectionInfo.Text = "Collection Status";
             this.tabCollectionInfo.UseVisualStyleBackColor = true;
             // 
-            // tabCurrentOprInfo
+            // trvColStatus
             // 
-            this.tabCurrentOprInfo.Controls.Add(this.lstSrvOpr);
-            this.tabCurrentOprInfo.Location = new System.Drawing.Point(4, 22);
-            this.tabCurrentOprInfo.Name = "tabCurrentOprInfo";
-            this.tabCurrentOprInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCurrentOprInfo.Size = new System.Drawing.Size(879, 371);
-            this.tabCurrentOprInfo.TabIndex = 1;
-            this.tabCurrentOprInfo.Tag = "ServiceStatus_CurrentOperationInfo";
-            this.tabCurrentOprInfo.Text = "Current Operation";
-            this.tabCurrentOprInfo.UseVisualStyleBackColor = true;
+            this.trvColStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
+            this.trvColStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvColStatus.Location = new System.Drawing.Point(3, 3);
+            this.trvColStatus.Name = "trvColStatus";
+            this.trvColStatus.Padding = new System.Windows.Forms.Padding(1);
+            this.trvColStatus.Size = new System.Drawing.Size(873, 365);
+            this.trvColStatus.TabIndex = 1;
             // 
             // toolStrip1
             // 
@@ -194,38 +198,6 @@ namespace MongoGUIView
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
-            // lstSrvOpr
-            // 
-            this.lstSrvOpr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstSrvOpr.FullRowSelect = true;
-            this.lstSrvOpr.GridLines = true;
-            this.lstSrvOpr.Location = new System.Drawing.Point(3, 3);
-            this.lstSrvOpr.Name = "lstSrvOpr";
-            this.lstSrvOpr.Size = new System.Drawing.Size(873, 365);
-            this.lstSrvOpr.TabIndex = 3;
-            this.lstSrvOpr.UseCompatibleStateImageBehavior = false;
-            this.lstSrvOpr.View = System.Windows.Forms.View.Details;
-            // 
-            // trvDBStatus
-            // 
-            this.trvDBStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
-            this.trvDBStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvDBStatus.Location = new System.Drawing.Point(3, 3);
-            this.trvDBStatus.Name = "trvDBStatus";
-            this.trvDBStatus.Padding = new System.Windows.Forms.Padding(1);
-            this.trvDBStatus.Size = new System.Drawing.Size(873, 365);
-            this.trvDBStatus.TabIndex = 1;
-            // 
-            // trvColStatus
-            // 
-            this.trvColStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
-            this.trvColStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvColStatus.Location = new System.Drawing.Point(3, 3);
-            this.trvColStatus.Name = "trvColStatus";
-            this.trvColStatus.Padding = new System.Windows.Forms.Padding(1);
-            this.trvColStatus.Size = new System.Drawing.Size(873, 365);
-            this.trvColStatus.TabIndex = 1;
-            // 
             // CtlServerStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -240,7 +212,6 @@ namespace MongoGUIView
             this.tabSvrBasicInfo.ResumeLayout(false);
             this.tabDBBasicInfo.ResumeLayout(false);
             this.tabCollectionInfo.ResumeLayout(false);
-            this.tabCurrentOprInfo.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -254,7 +225,6 @@ namespace MongoGUIView
         private TabPage tabSvrBasicInfo;
         private TabPage tabDBBasicInfo;
         private TabPage tabCollectionInfo;
-        private TabPage tabCurrentOprInfo;
         private ToolStrip toolStrip1;
         private ToolStripButton RefreshStripButton;
         private ToolStripButton btnSwitch;
@@ -264,6 +234,5 @@ namespace MongoGUIView
         private ToolStripButton ExpandAllStripButton;
         private CtlTreeViewColumns trvDBStatus;
         private CtlTreeViewColumns trvColStatus;
-        private ListView lstSrvOpr;
     }
 }

@@ -28,6 +28,11 @@
 9. 树形数据展示，双击是否能被修改的问题
 10. 导入数据集时候，提示框文字不正确
 11. ShardingRange设置BsonValue的优化
+12. GeoNear放入聚合菜单
+ 
+###移除(不成熟烂尾功能)
+1. SQL转换功能
+2. 实时状态报表的移除
 
 ###聚合
 1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind

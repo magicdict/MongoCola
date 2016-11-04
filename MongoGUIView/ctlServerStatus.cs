@@ -59,6 +59,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void btnSwitch_Click(object sender, EventArgs e)
         {
+
         }
 
         public void ResetCtl()

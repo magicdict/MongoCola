@@ -31,7 +31,7 @@ namespace PlugInPackage.GenerateConfigIni
         /// <param name="e"></param>
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = Utility.ConfFilter};
+            var savefile = new SaveFileDialog { Filter = Utility.ConfFilter };
             if (savefile.ShowDialog() != DialogResult.OK) return;
             var save = new StreamWriter(savefile.FileName);
             save.Write(MongodbDosCommand.GenerateIniFile(ctlGenerateMongod.MongodCommand));
