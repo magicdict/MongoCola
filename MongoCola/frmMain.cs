@@ -50,31 +50,31 @@ namespace MongoCola
             CtlDocumentView._getDocument = () =>
             {
                 var frmInsertDoc = new frmCreateDocument();
-                Utility.OpenForm(frmInsertDoc, false, true);
+                Utility.OpenModalForm(frmInsertDoc, false, true);
                 return frmInsertDoc.mBsonDocument;
             };
             ctlBsonValue.GetDocument = () =>
             {
                 var frmInsertDoc = new frmCreateDocument();
-                Utility.OpenForm(frmInsertDoc, false, true);
+                Utility.OpenModalForm(frmInsertDoc, false, true);
                 return frmInsertDoc.mBsonDocument;
             };
             ctlBsonValue.GetArray = () =>
             {
                 var frmInsertArray = new frmArrayCreator();
-                Utility.OpenForm(frmInsertArray, false, true);
+                Utility.OpenModalForm(frmInsertArray, false, true);
                 return frmInsertArray.mBsonArray;
             };
             ctlBsonValue.GetGeo = () =>
             {
                 var frmGeo = new frmCreateGeo();
-                Utility.OpenForm(frmGeo, false, true);
+                Utility.OpenModalForm(frmGeo, false, true);
                 return frmGeo.mBsonArray;
             };
             CtlGeoNear.GetGeo = () =>
             {
                 var frmGeo = new frmCreateGeo();
-                Utility.OpenForm(frmGeo, false, true);
+                Utility.OpenModalForm(frmGeo, false, true);
                 return frmGeo.mBsonArray;
             };
         }
@@ -93,7 +93,7 @@ namespace MongoCola
             //Set Tool bar button enable
             SetToolBarEnabled();
             //Open ConnectionManagement Form
-            Utility.OpenForm(new FrmConnect(), true, true);
+            Utility.OpenModalForm(new FrmConnect(), true, true);
 
             //多文档管理器的设定
             var parentMenuItems = new List<ToolStripMenuItem>();
@@ -128,6 +128,8 @@ namespace MongoCola
                 lblAction.Text = y.Message;
                 Application.DoEvents();
             };
+
+            trvsrvlst.SelectedNode = trvsrvlst.Nodes[0];
         }
 
         /// <summary>
@@ -526,6 +528,8 @@ namespace MongoCola
         {
             MultiTabManger.RefreshSelectTab();
         }
+
+
 
 
         #endregion

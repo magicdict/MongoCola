@@ -56,7 +56,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmOption(), true, true);
+            Utility.OpenModalForm(new FrmOption(), true, true);
             SystemManager.InitLanguage();
             if (GuiConfig.IsUseDefaultLanguage)
             {
@@ -79,7 +79,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void AddConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmConnect(), true, true);
+            Utility.OpenModalForm(new FrmConnect(), true, true);
             RefreshToolStripMenuItem_Click(sender, e);
         }
 
@@ -129,7 +129,7 @@ namespace MongoCola
         private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
-            Utility.OpenForm(new FrmReplsetMgr(ref newConfig), true, true);
+            Utility.OpenModalForm(new FrmReplsetMgr(ref newConfig), true, true);
             Operater.ReplicaSet(newConfig);
             MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
         }
@@ -141,7 +141,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ShardingConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmShardingConfig(), true, true);
+            Utility.OpenModalForm(new FrmShardingConfig(), true, true);
         }
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void CopyDatabasetoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new frmCopyDataBase(), true, true);
+            Utility.OpenModalForm(new frmCopyDataBase(), true, true);
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void AddUserToAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmUser(true), true, true);
+            Utility.OpenModalForm(new FrmUser(true), true, true);
         }
 
         /// <summary>
@@ -338,7 +338,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void AddCustomeRoleStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmAddRole(), true, true);
+            Utility.OpenModalForm(new FrmAddRole(), true, true);
         }
 
         /// <summary>
@@ -352,27 +352,6 @@ namespace MongoCola
         }
 
         /// <summary>
-        ///     Server Info
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ServePropertyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (GuiConfig.IsUseDefaultLanguage)
-            {
-                MyMessageBox.ShowMessage("Server Property", "Server Property",
-                    MongoHelper.GetCurrentSvrInfo(), true);
-            }
-            else
-            {
-                MyMessageBox.ShowMessage(
-                    GuiConfig.GetText(TextType.MainMenuOperationServerProperties),
-                    GuiConfig.GetText(TextType.MainMenuOperationServerProperties),
-                    MongoHelper.GetCurrentSvrInfo(), true);
-            }
-        }
-
-        /// <summary>
         ///     Status
         /// </summary>
         /// <param name="sender"></param>
@@ -381,12 +360,22 @@ namespace MongoCola
         {
             if (SystemManager.MonoMode)
             {
-                Utility.OpenForm(new FrmStatusMono(), true, true);
+                Utility.OpenModalForm(new FrmStatusMono(), true, true);
             }
             else
             {
-                Utility.OpenForm(new FrmStatus(), true, true);
+                Utility.OpenModalForm(new FrmStatus(), true, true);
             }
+        }
+
+        /// <summary>
+        ///     ServerMonitor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ServerMonitorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.OpenForm(new FrmServerMonitor(), true);
         }
 
         #endregion
@@ -443,7 +432,7 @@ namespace MongoCola
                     StrSvrPathWithTag = RuntimeMongoDbContext.SelectObjectTag,
                     TreeNode = trvsrvlst.SelectedNode
                 };
-            Utility.OpenForm(frm, true, true);
+            Utility.OpenModalForm(frm, true, true);
             if (frm.Result)
             {
                 //这里表示： Client / Server  一个Client 可能连结复数Server  
@@ -486,7 +475,7 @@ namespace MongoCola
         private void CreateViewtoolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmCreateView();
-            Utility.OpenForm(frm, true, true);
+            Utility.OpenModalForm(frm, true, true);
         }
 
         /// <summary>
@@ -496,7 +485,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmUser(false), true, true);
+            Utility.OpenModalForm(new FrmUser(false), true, true);
         }
 
         /// <summary>
@@ -506,7 +495,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void AddDBCustomeRoleStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmAddRole(), true, true);
+            Utility.OpenModalForm(new FrmAddRole(), true, true);
         }
 
         /// <summary>
@@ -516,7 +505,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void evalJSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmEvalJs(), true, true);
+            Utility.OpenModalForm(new FrmEvalJs(), true, true);
         }
 
         /// <summary>
@@ -553,7 +542,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void profillingLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmProfilling(), true, true);
+            Utility.OpenModalForm(new FrmProfilling(), true, true);
         }
 
         /// <summary>
@@ -564,11 +553,11 @@ namespace MongoCola
         {
             if (SystemManager.MonoMode)
             {
-                Utility.OpenForm(new FrmStatusMono(), true, true);
+                Utility.OpenModalForm(new FrmStatusMono(), true, true);
             }
             else
             {
-                Utility.OpenForm(new FrmStatus(), true, true);
+                Utility.OpenModalForm(new FrmStatus(), true, true);
             }
         }
 
@@ -639,7 +628,7 @@ namespace MongoCola
             var pipeline = doc.GetElement("options").Value.AsBsonDocument.GetElement("pipeline").Value.AsBsonArray.Select(x => x.AsBsonDocument).ToList();
             frm.ShowData = pipeline;
             frm.Title = "Pipeline";
-            Utility.OpenForm(frm, true, true);
+            Utility.OpenModalForm(frm, true, true);
         }
 
         /// <summary>
@@ -671,7 +660,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void IndexManageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new frmCollectionIndex(), true, true);
+            Utility.OpenModalForm(new frmCollectionIndex(), true, true);
         }
 
         /// <summary>
@@ -726,11 +715,11 @@ namespace MongoCola
         {
             if (SystemManager.MonoMode)
             {
-                Utility.OpenForm(new FrmStatusMono(), true, true);
+                Utility.OpenModalForm(new FrmStatusMono(), true, true);
             }
             else
             {
-                Utility.OpenForm(new FrmStatus(), true, true);
+                Utility.OpenModalForm(new FrmStatus(), true, true);
             }
         }
 
@@ -741,7 +730,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void validateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmValidate(), true, true);
+            Utility.OpenModalForm(new FrmValidate(), true, true);
         }
 
         /// <summary>
@@ -769,7 +758,7 @@ namespace MongoCola
             MyMessageBox.ShowMessage("Exception",
                 "Mongo Bin Path Can't be found",
                 "Mongo Bin Path[" + SystemManager.SystemConfig.MongoBinPath + "]Can't be found");
-            Utility.OpenForm(new FrmOption(), true, true);
+            Utility.OpenModalForm(new FrmOption(), true, true);
             return false;
         }
 
@@ -912,7 +901,7 @@ namespace MongoCola
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 strTitle = GuiConfig.GetText("Import Collection", "Main_Menu_Operation_BackupAndRestore_Import");
-                strMessage = GuiConfig.GetText("Are you sure to Import Collection?","");
+                strMessage = GuiConfig.GetText("Are you sure to Import Collection?", "");
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
@@ -957,7 +946,7 @@ namespace MongoCola
         private void distinctToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var query = new DataFilter();
-            Utility.OpenForm(new FrmDistinct(query, false), true, true);
+            Utility.OpenModalForm(new FrmDistinct(query, false), true, true);
         }
 
         /// <summary>
@@ -968,7 +957,7 @@ namespace MongoCola
         private void groupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var query = new DataFilter();
-            Utility.OpenForm(new FrmGroup(query, false), true, true);
+            Utility.OpenModalForm(new FrmGroup(query, false), true, true);
         }
 
         /// <summary>
@@ -978,7 +967,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void mapReduceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmMapReduce(), true, true);
+            Utility.OpenModalForm(new FrmMapReduce(), true, true);
         }
 
         /// <summary>
@@ -988,7 +977,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void aggregateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmAggregation(), true, true);
+            Utility.OpenModalForm(new FrmAggregation(), true, true);
         }
 
         /// <summary>
@@ -998,7 +987,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void textSearchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmTextSearch(), true, true);
+            Utility.OpenModalForm(new FrmTextSearch(), true, true);
         }
 
         /// <summary>
@@ -1008,7 +997,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void geoNearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new frmGeoNear(), true, true);
+            Utility.OpenModalForm(new frmGeoNear(), true, true);
         }
         #endregion
 

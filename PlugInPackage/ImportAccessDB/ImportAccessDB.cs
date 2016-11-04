@@ -37,7 +37,7 @@ namespace PlugInPackage.ImportAccessDB
         /// <returns></returns>
         public override int Run()
         {
-            Utility.OpenForm(new FrmSelectTable(), true, true);
+            Utility.OpenModalForm(new FrmSelectTable(), true, true);
             return 0;
         }
 

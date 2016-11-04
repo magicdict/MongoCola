@@ -79,6 +79,24 @@ namespace MongoUtility.ToolKit
         }
 
         /// <summary>
+        ///     get current Server Information
+        /// </summary>
+        /// <returns></returns>
+        public static BsonDocument GetCurrentServerDescription()
+        {
+            var mongosvr = RuntimeMongoDbContext.GetCurrentServer();
+            var Description = mongosvr.Instance;
+            var DescriptionDoc = new BsonDocument();
+            DescriptionDoc.Add(new BsonElement(nameof(Description.IsArbiter),Description.IsArbiter));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.IsPrimary), Description.IsPrimary));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.IsSecondary), Description.IsSecondary));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.Address), Description.Address.ToString()));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.BuildInfo.VersionString), Description.BuildInfo.VersionString));
+            return DescriptionDoc;
+        }
+
+
+        /// <summary>
         ///     使用字符串连接来填充
         /// </summary>
         /// <remarks>http://www.mongodb.org/display/DOCS/Connections</remarks>
@@ -296,7 +314,7 @@ namespace MongoUtility.ToolKit
                     unitOrder++;
                 }
             }
-            return tempSize.ToString("F2") + " " + unit[unitOrder]; 
+            return tempSize.ToString("F2") + " " + unit[unitOrder];
         }
 
     }

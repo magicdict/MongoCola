@@ -140,7 +140,8 @@ namespace MongoCola
             }
             UserInfoStripMenuItem.Enabled = true;
             ServerStatusToolStripMenuItem.Enabled = true;
-            ServePropertyToolStripMenuItem.Enabled = true;
+            //ServePropertyToolStripMenuItem.Enabled = true;
+            ServerMonitorToolStripMenuItem.Enabled = true;
 
             if (e.Button == MouseButtons.Right)
             {
@@ -164,9 +165,9 @@ namespace MongoCola
                     slaveResync.Click += slaveResyncToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(slaveResync);
 
-                    var serveProperty = ServePropertyToolStripMenuItem.Clone();
-                    serveProperty.Click += ServePropertyToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(serveProperty);
+                    //var serveProperty = ServePropertyToolStripMenuItem.Clone();
+                    //serveProperty.Click += ServePropertyToolStripMenuItem_Click;
+                    //contextMenuStripMain.Items.Add(serveProperty);
 
                     var serverStatus = ServerStatusToolStripMenuItem.Clone();
                     serverStatus.Click += SvrStatusToolStripMenuItem_Click;
@@ -180,8 +181,10 @@ namespace MongoCola
                     contextMenuStripMain.Items.Add(UserInfoStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(RestoreMongoToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(slaveResyncToolStripMenuItem.Clone());
-                    contextMenuStripMain.Items.Add(ServePropertyToolStripMenuItem.Clone());
+                    //contextMenuStripMain.Items.Add(ServePropertyToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ServerStatusToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(ServerMonitorToolStripMenuItem.Clone());
+
                 }
                 e.Node.ContextMenuStrip = contextMenuStripMain;
                 contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));

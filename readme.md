@@ -50,4 +50,10 @@ CSharp Mongo Driver 2.4.0-beta1
 	用户系统
 5. Machine Learning
     加入对于机器学习方法和BI的支持
+6. SQL转AggregateFrame
+	原本不完整的SQL转AggregateFrame废止
+7. 服务器读写状态的实时报表
+	MongoTop
+8. C#直接操作MongoShell
+
 ***

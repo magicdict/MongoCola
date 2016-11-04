@@ -63,7 +63,7 @@ namespace FunctionForm.Aggregation
                 var frm = new frmDataView();
                 frm.ShowDocument = mMapReduceResult.Response;
                 frm.Title = "MapReduce Result";
-                Utility.OpenForm(frm, true, true);
+                Utility.OpenModalForm(frm, true, true);
             }
             catch (Exception ex)
             {
@@ -84,7 +84,7 @@ namespace FunctionForm.Aggregation
         private void cmdCreateQueryDocument_Click(object sender, EventArgs e)
         {
             var frmInsertDoc = new frmCreateDocument();
-            Utility.OpenForm(frmInsertDoc, false, true);
+            Utility.OpenModalForm(frmInsertDoc, false, true);
             QueryDoc = frmInsertDoc.mBsonDocument;
             UiHelper.FillDataToTreeView("Query", QueryTreeView, frmInsertDoc.mBsonDocument);
         }

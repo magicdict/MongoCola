@@ -68,8 +68,8 @@ namespace MongoCola
             this.UserInfoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ServePropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServerStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ServerMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateViewtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +100,7 @@ namespace MongoCola
             this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggregateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.geoNearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dropJavascriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CollectionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,7 +135,6 @@ namespace MongoCola
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.geoNearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -393,8 +393,8 @@ namespace MongoCola
             this.UserInfoStripMenuItem,
             this.toolStripMenuItem3,
             this.slaveResyncToolStripMenuItem,
-            this.ServePropertyToolStripMenuItem,
-            this.ServerStatusToolStripMenuItem});
+            this.ServerStatusToolStripMenuItem,
+            this.ServerMonitorToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
             this.ServerToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.ServerToolStripMenuItem.Tag = "Main_Menu_Operation_Server";
@@ -449,14 +449,6 @@ namespace MongoCola
             this.slaveResyncToolStripMenuItem.Text = "Slave Resync";
             this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
             // 
-            // ServePropertyToolStripMenuItem
-            // 
-            this.ServePropertyToolStripMenuItem.Name = "ServePropertyToolStripMenuItem";
-            this.ServePropertyToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.ServePropertyToolStripMenuItem.Tag = "Main_Menu_Operation_Server_Properties";
-            this.ServePropertyToolStripMenuItem.Text = "Serve Info";
-            this.ServePropertyToolStripMenuItem.Click += new System.EventHandler(this.ServePropertyToolStripMenuItem_Click);
-            // 
             // ServerStatusToolStripMenuItem
             // 
             this.ServerStatusToolStripMenuItem.Name = "ServerStatusToolStripMenuItem";
@@ -464,6 +456,13 @@ namespace MongoCola
             this.ServerStatusToolStripMenuItem.Tag = "Main_Menu_Mangt_Status";
             this.ServerStatusToolStripMenuItem.Text = "Status";
             this.ServerStatusToolStripMenuItem.Click += new System.EventHandler(this.SvrStatusToolStripMenuItem_Click);
+            // 
+            // ServerMonitorToolStripMenuItem
+            // 
+            this.ServerMonitorToolStripMenuItem.Name = "ServerMonitorToolStripMenuItem";
+            this.ServerMonitorToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.ServerMonitorToolStripMenuItem.Text = "Server Monitor";
+            this.ServerMonitorToolStripMenuItem.Click += new System.EventHandler(this.ServerMonitorToolStripMenuItem_Click);
             // 
             // DataBaseToolStripMenuItem
             // 
@@ -680,44 +679,51 @@ namespace MongoCola
             // countToolStripMenuItem
             // 
             this.countToolStripMenuItem.Name = "countToolStripMenuItem";
-            this.countToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.countToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.countToolStripMenuItem.Text = "Count";
             this.countToolStripMenuItem.Click += new System.EventHandler(this.countToolStripMenuItem_Click);
             // 
             // distinctToolStripMenuItem
             // 
             this.distinctToolStripMenuItem.Name = "distinctToolStripMenuItem";
-            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.distinctToolStripMenuItem.Text = "Distinct";
             this.distinctToolStripMenuItem.Click += new System.EventHandler(this.distinctToolStripMenuItem_Click);
             // 
             // groupToolStripMenuItem
             // 
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.groupToolStripMenuItem.Text = "Group";
             this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
             // aggregateToolStripMenuItem
             // 
             this.aggregateToolStripMenuItem.Name = "aggregateToolStripMenuItem";
-            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aggregateToolStripMenuItem.Text = "Aggregate";
             this.aggregateToolStripMenuItem.Click += new System.EventHandler(this.aggregateToolStripMenuItem_Click);
             // 
             // textSearchToolStripMenuItem
             // 
             this.textSearchToolStripMenuItem.Name = "textSearchToolStripMenuItem";
-            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.textSearchToolStripMenuItem.Text = "TextSearch";
             this.textSearchToolStripMenuItem.Click += new System.EventHandler(this.textSearchToolStripMenuItem_Click);
+            // 
+            // geoNearToolStripMenuItem
+            // 
+            this.geoNearToolStripMenuItem.Name = "geoNearToolStripMenuItem";
+            this.geoNearToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.geoNearToolStripMenuItem.Text = "GeoNear";
+            this.geoNearToolStripMenuItem.Click += new System.EventHandler(this.geoNearToolStripMenuItem_Click);
             // 
             // ViewDataToolStripMenuItem
             // 
@@ -998,13 +1004,6 @@ namespace MongoCola
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // geoNearToolStripMenuItem
-            // 
-            this.geoNearToolStripMenuItem.Name = "geoNearToolStripMenuItem";
-            this.geoNearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.geoNearToolStripMenuItem.Text = "GeoNear";
-            this.geoNearToolStripMenuItem.Click += new System.EventHandler(this.geoNearToolStripMenuItem_Click);
-            // 
             // frmMain
             // 
             this.AllowDrop = true;
@@ -1125,7 +1124,6 @@ namespace MongoCola
         private ToolStripMenuItem AddUserToAdminToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem3;
         private ToolStripMenuItem slaveResyncToolStripMenuItem;
-        private ToolStripMenuItem ServePropertyToolStripMenuItem;
         private ToolStripMenuItem ServerStatusToolStripMenuItem;
         //private ToolStripMenuItem ShutDownToolStripMenuItem;
         private ToolStripStatusLabel lblAction;
@@ -1149,6 +1147,7 @@ namespace MongoCola
         private ToolStripMenuItem ShellMethod;
         private ToolStripMenuItem AggregationReference;
         private ToolStripMenuItem geoNearToolStripMenuItem;
+        private ToolStripMenuItem ServerMonitorToolStripMenuItem;
     }
 }
 

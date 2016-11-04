@@ -97,7 +97,7 @@ namespace FunctionForm.Operation
             }
             RuntimeMongoDbContext.SetCurrentCollection(cmbViewOn.Text);
             var frmAggregationBuilder = new FrmStageBuilder();
-            Utility.OpenForm(frmAggregationBuilder, false, true);
+            Utility.OpenModalForm(frmAggregationBuilder, false, true);
             foreach (var item in frmAggregationBuilder.Aggregation)
             {
                 stages.Add(item);
@@ -113,7 +113,7 @@ namespace FunctionForm.Operation
         private void btnCollation_Click(object sender, EventArgs e)
         {
             var frm = new frmCreateCollation();
-            Utility.OpenForm(frm, false, true);
+            Utility.OpenModalForm(frm, false, true);
             if (frm.mCollation != null)
             {
                 mCollation = frm.mCollation;

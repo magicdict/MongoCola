@@ -39,7 +39,6 @@ namespace FunctionForm.Status
             this.cmdClose = new System.Windows.Forms.Button();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbChartField = new System.Windows.Forms.ComboBox();
-            this.btnOpCnt = new System.Windows.Forms.Button();
             this.trvStatus = new MongoGUICtl.CtlTreeViewColumns();
             ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
@@ -81,17 +80,6 @@ namespace FunctionForm.Status
             this.cmbChartField.TabIndex = 30;
             this.cmbChartField.SelectedIndexChanged += new System.EventHandler(this.cmbChartField_SelectedIndexChanged);
             // 
-            // btnOpCnt
-            // 
-            this.btnOpCnt.Location = new System.Drawing.Point(227, 498);
-            this.btnOpCnt.Name = "btnOpCnt";
-            this.btnOpCnt.Size = new System.Drawing.Size(125, 28);
-            this.btnOpCnt.TabIndex = 31;
-            this.btnOpCnt.Tag = "Common_OpCnt";
-            this.btnOpCnt.Text = "Operate Counter";
-            this.btnOpCnt.UseVisualStyleBackColor = true;
-            this.btnOpCnt.Click += new System.EventHandler(this.btnOpCnt_Click);
-            // 
             // trvStatus
             // 
             this.trvStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
@@ -107,7 +95,6 @@ namespace FunctionForm.Status
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(498, 537);
-            this.Controls.Add(this.btnOpCnt);
             this.Controls.Add(this.cmbChartField);
             this.Controls.Add(this.chartResult);
             this.Controls.Add(this.trvStatus);
@@ -129,6 +116,5 @@ namespace FunctionForm.Status
         private CtlTreeViewColumns trvStatus;
         private Chart chartResult;
         private ComboBox cmbChartField;
-        private Button btnOpCnt;
     }
 }

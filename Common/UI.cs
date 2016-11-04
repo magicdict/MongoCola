@@ -99,7 +99,27 @@ namespace Common
         /// <param name="mfrm"></param>
         /// <param name="isDispose">有些时候需要使用被打开窗体产生的数据，所以不能Dispose</param>
         /// <param name="isUseAppIcon"></param>
-        public static void OpenForm(Form mfrm, bool isDispose, bool isUseAppIcon)
+        public static void OpenForm(Form mfrm, bool isUseAppIcon)
+        {
+            mfrm.StartPosition = FormStartPosition.CenterParent;
+            mfrm.BackColor = Color.White;
+            mfrm.FormBorderStyle = FormBorderStyle.FixedSingle;
+            mfrm.MaximizeBox = false;
+            mfrm.Font = new Font("微软雅黑", 9);
+            if (isUseAppIcon)
+            {
+                mfrm.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            }
+            mfrm.Show();
+        }
+
+        /// <summary>
+        ///     对话框子窗体的统一管理
+        /// </summary>
+        /// <param name="mfrm"></param>
+        /// <param name="isDispose">有些时候需要使用被打开窗体产生的数据，所以不能Dispose</param>
+        /// <param name="isUseAppIcon"></param>
+        public static void OpenModalForm(Form mfrm, bool isDispose, bool isUseAppIcon)
         {
             mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.BackColor = Color.White;

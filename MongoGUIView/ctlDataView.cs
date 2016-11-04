@@ -424,7 +424,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void QueryStripButton_Click(object sender, EventArgs e)
         {
-            Utility.OpenForm(new FrmQuery(MDataViewInfo), true, false);
+            Utility.OpenModalForm(new FrmQuery(MDataViewInfo), true, false);
             FilterStripButton.Enabled = MDataViewInfo.IsUseFilter;
             FilterStripButton.Checked = MDataViewInfo.IsUseFilter;
             //重新展示数据

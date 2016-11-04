@@ -81,7 +81,7 @@ namespace MongoCola
             AddUserToAdminToolStripMenuItem.Enabled = false;
             AddAdminCustomeRoleStripMenuItem.Enabled = false;
             ServerStatusToolStripMenuItem.Enabled = false;
-            ServePropertyToolStripMenuItem.Enabled = false;
+            //ServePropertyToolStripMenuItem.Enabled = false;
             slaveResyncToolStripMenuItem.Enabled = false;
             //ShutDownToolStripMenuItem.Enabled = false;
             //ShutDownToolStripButton.Enabled = false;

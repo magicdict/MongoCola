@@ -54,16 +54,8 @@ namespace MongoGUICtl.ClientTree
                     case ConstMgr.CollectionNameUser:
                         dataNode.Tag = item.GetElement(1).Value;
                         break;
-                    //case COLLECTION_NAME_ROLE:
-                    //    dataNode.Tag = item.GetElement(1).Value;
-                    //    break;
                     default:
-                        //SelectDocId属性的设置,
-                        //2012/03/19 不一定id是在第一位
-                        //这里是为了操作顶层节点的删除，修改用的，所以必须要放item.GetElement(0).Value;
-                        BsonElement id;
-                        item.TryGetElement(ConstMgr.KeyId, out id);
-                        dataNode.Tag = id.Value != null ? id.Value : item.GetElement(0).Value;
+                        dataNode.Tag = item;
                         break;
                 }
                 AddBsonDocToTreeNode(dataNode, item);

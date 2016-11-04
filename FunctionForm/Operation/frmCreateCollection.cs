@@ -154,7 +154,7 @@ namespace FunctionForm.Operation
         private void btnCollation_Click(object sender, EventArgs e)
         {
             var frm = new frmCreateCollation();
-            Utility.OpenForm(frm, false, true);
+            Utility.OpenModalForm(frm, false, true);
             if (frm.mCollation != null)
             {
                 mCollation = frm.mCollation;

@@ -8,6 +8,7 @@ using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -33,27 +34,33 @@ namespace FunctionForm.Status
         private void frmStatus_Load(object sender, EventArgs e)
         {
             if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
+            GuiConfig.Translateform(this);
             var strType = RuntimeMongoDbContext.SelectTagType;
             var docStatus = new BsonDocument();
             cmbChartField.Visible = false;
             chartResult.Visible = false;
-            btnOpCnt.Visible = false;
             tempIsDisplayNumberWithKSystem = CtlTreeViewColumns.IsDisplayNumberWithKSystem;
             CtlTreeViewColumns.IsDisplayNumberWithKSystem = true;
+
             switch (strType)
             {
                 case ConstMgr.ServerTag:
                 case ConstMgr.SingleDbServerTag:
                     if (RuntimeMongoDbContext.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        docStatus =
-                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
+                        var StatusList = new List<BsonDocument>();
+                            
+                        var Status =  CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
+                        var ServerDesripter = MongoUtility.ToolKit.MongoHelper.GetCurrentServerDescription();
+                        StatusList.Add(Status);
+                        StatusList.Add(ServerDesripter);
+                        UiHelper.FillDataToTreeView(strType, trvStatus, StatusList, 0);
+
                         trvStatus.Height = trvStatus.Height * 2;
-                    }
-                    if (strType == ConstMgr.ServerTag)
-                    {
-                        btnOpCnt.Visible = true;
+                        trvStatus.DatatreeView.Nodes[0].Expand();
+                        trvStatus.DatatreeView.Nodes[1].Expand();
+                        return;
                     }
                     break;
                 case ConstMgr.DatabaseTag:
@@ -145,20 +152,10 @@ namespace FunctionForm.Status
                     }
                     break;
             }
-            GuiConfig.Translateform(this);
             UiHelper.FillDataToTreeView(strType, trvStatus, docStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
 
-        /// <summary>
-        ///     系统监视
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnOpCnt_Click(object sender, EventArgs e)
-        {
-            Utility.OpenForm(new FrmServerMonitor(), true, true);
-        }
 
         private void RefreshDbStatusChart(string strField)
         {

@@ -19,7 +19,7 @@ namespace PlugInPackage.DosCommand
 
         public override int Run()
         {
-            Utility.OpenForm(new FrmDosCommand(), true, true);
+            Utility.OpenModalForm(new FrmDosCommand(), true, true);
             return Success;
         }
 
