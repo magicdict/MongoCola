@@ -36,12 +36,15 @@
             this.txtViewName = new System.Windows.Forms.TextBox();
             this.cmbViewOn = new System.Windows.Forms.ComboBox();
             this.btnAggrBuilder = new System.Windows.Forms.Button();
+            this.lblCollation = new System.Windows.Forms.Label();
+            this.btnCollation = new System.Windows.Forms.Button();
             this.trvNewStage = new MongoGUICtl.CtlTreeViewColumns();
+            this.trvCollation = new MongoGUICtl.CtlTreeViewColumns();
             this.SuspendLayout();
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(193, 323);
+            this.cmdCancel.Location = new System.Drawing.Point(279, 462);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 31);
             this.cmdCancel.TabIndex = 7;
@@ -51,7 +54,7 @@
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(87, 323);
+            this.cmdOK.Location = new System.Drawing.Point(173, 462);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 31);
             this.cmdOK.TabIndex = 6;
@@ -71,7 +74,7 @@
             // lblViewOn
             // 
             this.lblViewOn.AutoSize = true;
-            this.lblViewOn.Location = new System.Drawing.Point(13, 64);
+            this.lblViewOn.Location = new System.Drawing.Point(254, 25);
             this.lblViewOn.Name = "lblViewOn";
             this.lblViewOn.Size = new System.Drawing.Size(41, 12);
             this.lblViewOn.TabIndex = 9;
@@ -80,7 +83,7 @@
             // lblPipeline
             // 
             this.lblPipeline.AutoSize = true;
-            this.lblPipeline.Location = new System.Drawing.Point(13, 103);
+            this.lblPipeline.Location = new System.Drawing.Point(13, 72);
             this.lblPipeline.Name = "lblPipeline";
             this.lblPipeline.Size = new System.Drawing.Size(53, 12);
             this.lblPipeline.TabIndex = 10;
@@ -90,20 +93,20 @@
             // 
             this.txtViewName.Location = new System.Drawing.Point(87, 22);
             this.txtViewName.Name = "txtViewName";
-            this.txtViewName.Size = new System.Drawing.Size(282, 21);
+            this.txtViewName.Size = new System.Drawing.Size(135, 21);
             this.txtViewName.TabIndex = 11;
             // 
             // cmbViewOn
             // 
             this.cmbViewOn.FormattingEnabled = true;
-            this.cmbViewOn.Location = new System.Drawing.Point(87, 61);
+            this.cmbViewOn.Location = new System.Drawing.Point(328, 22);
             this.cmbViewOn.Name = "cmbViewOn";
-            this.cmbViewOn.Size = new System.Drawing.Size(282, 20);
+            this.cmbViewOn.Size = new System.Drawing.Size(135, 20);
             this.cmbViewOn.TabIndex = 12;
             // 
             // btnAggrBuilder
             // 
-            this.btnAggrBuilder.Location = new System.Drawing.Point(87, 99);
+            this.btnAggrBuilder.Location = new System.Drawing.Point(87, 68);
             this.btnAggrBuilder.Name = "btnAggrBuilder";
             this.btnAggrBuilder.Size = new System.Drawing.Size(135, 31);
             this.btnAggrBuilder.TabIndex = 31;
@@ -111,31 +114,65 @@
             this.btnAggrBuilder.UseVisualStyleBackColor = true;
             this.btnAggrBuilder.Click += new System.EventHandler(this.btnAggrBuilder_Click);
             // 
+            // lblCollation
+            // 
+            this.lblCollation.AutoSize = true;
+            this.lblCollation.Location = new System.Drawing.Point(13, 310);
+            this.lblCollation.Name = "lblCollation";
+            this.lblCollation.Size = new System.Drawing.Size(59, 12);
+            this.lblCollation.TabIndex = 10;
+            this.lblCollation.Text = "Collation";
+            // 
+            // btnCollation
+            // 
+            this.btnCollation.Location = new System.Drawing.Point(87, 301);
+            this.btnCollation.Name = "btnCollation";
+            this.btnCollation.Size = new System.Drawing.Size(135, 31);
+            this.btnCollation.TabIndex = 33;
+            this.btnCollation.Text = "Create Collation";
+            this.btnCollation.UseVisualStyleBackColor = true;
+            this.btnCollation.Click += new System.EventHandler(this.btnCollation_Click);
+            // 
             // trvNewStage
             // 
             this.trvNewStage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvNewStage.Location = new System.Drawing.Point(87, 136);
+            this.trvNewStage.Location = new System.Drawing.Point(87, 105);
             this.trvNewStage.Margin = new System.Windows.Forms.Padding(4);
             this.trvNewStage.Name = "trvNewStage";
             this.trvNewStage.Padding = new System.Windows.Forms.Padding(1);
-            this.trvNewStage.Size = new System.Drawing.Size(282, 171);
+            this.trvNewStage.Size = new System.Drawing.Size(409, 171);
             this.trvNewStage.TabIndex = 32;
+            // 
+            // trvCollation
+            // 
+            this.trvCollation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvCollation.Location = new System.Drawing.Point(87, 339);
+            this.trvCollation.Margin = new System.Windows.Forms.Padding(4);
+            this.trvCollation.Name = "trvCollation";
+            this.trvCollation.Padding = new System.Windows.Forms.Padding(1);
+            this.trvCollation.Size = new System.Drawing.Size(409, 116);
+            this.trvCollation.TabIndex = 34;
             // 
             // frmCreateView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(382, 362);
+            this.ClientSize = new System.Drawing.Size(526, 505);
+            this.Controls.Add(this.trvCollation);
+            this.Controls.Add(this.btnCollation);
             this.Controls.Add(this.trvNewStage);
             this.Controls.Add(this.btnAggrBuilder);
             this.Controls.Add(this.cmbViewOn);
             this.Controls.Add(this.txtViewName);
+            this.Controls.Add(this.lblCollation);
             this.Controls.Add(this.lblPipeline);
             this.Controls.Add(this.lblViewOn);
             this.Controls.Add(this.lblViewName);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCreateView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create View";
@@ -156,5 +193,8 @@
         private System.Windows.Forms.ComboBox cmbViewOn;
         private System.Windows.Forms.Button btnAggrBuilder;
         private MongoGUICtl.CtlTreeViewColumns trvNewStage;
+        private System.Windows.Forms.Label lblCollation;
+        private System.Windows.Forms.Button btnCollation;
+        private MongoGUICtl.CtlTreeViewColumns trvCollation;
     }
 }

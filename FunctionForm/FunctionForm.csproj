@@ -160,6 +160,12 @@
     <Compile Include="Operation\frmCopyDataBase.Designer.cs">
       <DependentUpon>frmCopyDataBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operation\frmCreateCollation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operation\frmCreateCollation.Designer.cs">
+      <DependentUpon>frmCreateCollation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operation\frmCreateGeo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCopyDataBase.resx">
       <DependentUpon>frmCopyDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operation\frmCreateCollation.resx">
+      <DependentUpon>frmCreateCollation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCreateGeo.resx">
       <DependentUpon>frmCreateGeo.cs</DependentUpon>

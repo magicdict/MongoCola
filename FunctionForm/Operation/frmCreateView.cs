@@ -28,6 +28,7 @@ namespace FunctionForm.Operation
                 lblViewName.Text = GuiConfig.GetText("Common_ViewName");
                 lblViewOn.Text = GuiConfig.GetText("Common_ViewOn");
                 lblPipeline.Text = GuiConfig.GetText("Common_Pipeline");
+                lblCollation.Text = GuiConfig.GetText("Common_Collation");
             }
 
             cmbViewOn.Items.Clear();
@@ -36,7 +37,8 @@ namespace FunctionForm.Operation
             foreach (var item in ColList.ToList())
             {
                 var ColName = item.GetElement("name").Value.ToString();
-                if (!viewlist.Contains(ColName)) {
+                if (!viewlist.Contains(ColName))
+                {
                     cmbViewOn.Items.Add(ColName);
                 }
             }
@@ -52,7 +54,13 @@ namespace FunctionForm.Operation
             try
             {
                 var pipeline = new BsonDocumentStagePipelineDefinition<BsonDocument, BsonDocument>(stages.Values.Select(x => (BsonDocument)x));
-                RuntimeMongoDbContext.GetCurrentIMongoDataBase().CreateView(txtViewName.Text, cmbViewOn.Text, pipeline);
+                CreateViewOptions<BsonDocument> OptionalDoc = null;
+                if (mCollation != null)
+                {
+                    OptionalDoc = new CreateViewOptions<BsonDocument>();
+                    OptionalDoc.Collation = mCollation;
+                }
+                RuntimeMongoDbContext.GetCurrentIMongoDataBase().CreateView(txtViewName.Text, cmbViewOn.Text, pipeline, OptionalDoc);
             }
             catch (Exception ex)
             {
@@ -82,7 +90,7 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void btnAggrBuilder_Click(object sender, EventArgs e)
         {
-            if(cmbViewOn.SelectedIndex == -1)
+            if (cmbViewOn.SelectedIndex == -1)
             {
                 //必须先选中Collection
                 return;
@@ -95,6 +103,23 @@ namespace FunctionForm.Operation
                 stages.Add(item);
             }
             UiHelper.FillDataToTreeView("stages", trvNewStage, stages.Values.ToList().Select(x => (BsonDocument)x).ToList(), 0);
+        }
+
+        /// <summary>
+        ///     排序规则
+        /// </summary>
+        Collation mCollation = null;
+
+        private void btnCollation_Click(object sender, EventArgs e)
+        {
+            var frm = new frmCreateCollation();
+            Utility.OpenForm(frm, false, true);
+            if (frm.mCollation != null)
+            {
+                mCollation = frm.mCollation;
+                UiHelper.FillDataToTreeView("Collation", trvCollation, mCollation.ToBsonDocument());
+
+            }
         }
     }
 }

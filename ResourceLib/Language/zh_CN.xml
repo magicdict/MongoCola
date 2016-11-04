@@ -389,6 +389,7 @@
   <Common_ViewName>视图名称</Common_ViewName>
   <Common_ViewOn>视图数据集</Common_ViewOn>
   <Common_Pipeline>视图条件</Common_Pipeline>
+  <Common_Collation>排序规则</Common_Collation>
 
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
