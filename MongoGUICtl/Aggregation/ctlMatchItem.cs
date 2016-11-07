@@ -4,7 +4,6 @@ using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
-using MongoUtility.Basic;
 
 namespace MongoGUICtl.Aggregation
 {

@@ -1,6 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using Common;
 using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtilityCore.Command;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using System;
@@ -21,27 +22,15 @@ namespace FunctionForm.Status
             GuiConfig.Translateform(this);
         }
 
-        private Dictionary<string, string> QueryName = new Dictionary<string, string>();
-
-        private void FillQueryName()
-        {
-            //opcounters
-            QueryName.Add("opcounters.Query", "opcounters.query");
-            QueryName.Add("opcounters.Insert", "opcounters.insert");
-            QueryName.Add("opcounters.Update", "opcounters.update");
-            QueryName.Add("opcounters.Delete", "opcounters.delete");
-
-            //memory
-            QueryName.Add("mem.bits", "mem.bits");
-            QueryName.Add("mem.resident", "mem.resident");
-            QueryName.Add("mem.virtual", "mem.virtual");
-            QueryName.Add("mem.mapped", "mem.mapped");
-        }
-
         /// <summary>
         ///     刷新时间间隔
         /// </summary>
         public static int RefreshInterval { set; get; }
+
+        /// <summary>
+        ///     分类内部项目
+        /// </summary>
+        public static Dictionary<string, string> CatalogDetailDic = new Dictionary<string, string>();
 
         /// <summary>
         /// 
@@ -50,26 +39,18 @@ namespace FunctionForm.Status
         /// <param name="e"></param>
         private void frmServerMonitor_Load(object sender, EventArgs e)
         {
-            FillQueryName();
+            //填充分组
+            Utility.FillComberWithArray(cmbCatalog, SystemStatus.GetCatalog().ToArray());
+            cmbCatalog.SelectedIndex = 0;
             if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
             _mTime = new Timer { Interval = RefreshInterval * 1000 };
+            NumTimeInterval.Value = RefreshInterval;
             _mTime.Tick += SetValue;
-            MonitorGrap.Series.Clear();
-
-            foreach (var item in QueryName.Keys)
-            {
-                var querySeries = new Series(item.Split(".".ToCharArray())[1])
-                {
-                    ChartType = SeriesChartType.Line,
-                    XValueType = ChartValueType.String,
-                    YValueType = ChartValueType.Int32
-                };
-                MonitorGrap.Series.Add(querySeries);
-            }
-            SetValue(null,null);
+            SetValue(null, null);
             FormClosing += (x, y) => _mTime.Stop();
             _mTime.Start();
         }
+
         /// <summary>
         ///     将值设定到图表
         /// </summary>
@@ -79,24 +60,45 @@ namespace FunctionForm.Status
         {
             var docStatus = CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                     RuntimeMongoDbContext.GetCurrentServer()).Response;
-            foreach (var item in QueryName.Keys)
+            foreach (var item in CatalogDetailDic.Keys)
             {
                 var queryPoint = new DataPoint();
-                queryPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture), GetValue(docStatus, QueryName[item]));
+                queryPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture), SystemStatus.GetValue(docStatus, CatalogDetailDic[item]));
                 MonitorGrap.Series[item.Split(".".ToCharArray())[1]].Points.Add(queryPoint);
             }
         }
-        /// <summary>
-        ///     获得值
-        /// </summary>
-        /// <param name="Doc"></param>
-        /// <param name="Path"></param>
-        /// <returns></returns>
-        private BsonValue GetValue(BsonDocument Doc, string Path)
-        {
-            var PathArray = Path.Split(".".ToCharArray());
-            return Doc.GetElement(PathArray[0]).Value.AsBsonDocument.GetElement(PathArray[1]).Value;
-        }
 
+        private void cmbCatalog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CatalogDetailDic = SystemStatus.GetCatalogDic(cmbCatalog.Text);
+            MonitorGrap.Series.Clear();
+            foreach (var item in CatalogDetailDic.Keys)
+            {
+                var querySeries = new Series(item.Split(".".ToCharArray())[1])
+                {
+                    ChartType = SeriesChartType.Line,
+                    XValueType = ChartValueType.String,
+                    YValueType = ChartValueType.Int32
+                };
+                MonitorGrap.Series.Add(querySeries);
+            }
+        }
+        /// <summary>
+        ///     时间变化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NumTimeInterval_ValueChanged(object sender, EventArgs e)
+        {
+            if ((int)NumTimeInterval.Value == 0)
+            {
+                _mTime.Stop();
+            }
+            else
+            {
+                _mTime.Start();
+                _mTime.Interval = (int)NumTimeInterval.Value * 1000;
+            }
+        }
     }
 }

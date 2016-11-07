@@ -3,6 +3,7 @@ using MongoCola.Config;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
+using MongoUtilityCore.Command;
 using ResourceLib.Method;
 using System;
 using System.Diagnostics;
@@ -95,6 +96,8 @@ namespace MongoCola
                 MongoConfig.LoadFromConfigFile();
                 RuntimeMongoDbContext.MongoConnectionConfigList = MongoConnectionConfig.MongoConfig.ConnectionList;
             }
+            //服务器状态字典的初始化
+            SystemStatus.FillStatusDicName();
             Application.Run(new frmMain());
             //delete tempfile directory when exit
             if (Directory.Exists(Gfs.TempFileFolder))
