@@ -48,6 +48,13 @@ namespace MongoCola.Config
                     break;
             }
 
+            if (SystemManager.SystemConfig.jsonMode == MongoDB.Bson.IO.JsonOutputMode.Strict)
+            {
+                radJsonStrict.Checked = true;
+            }else
+            {
+                radJsonShell.Checked = true;
+            }
 
             if (SystemManager.SystemConfig.IsDisplayNumberWithKSystem)
             {
@@ -140,6 +147,8 @@ namespace MongoCola.Config
             if (radDateTime_Short.Checked) SystemManager.SystemConfig.DateTimeFormat = DateTimePickerFormat.Short;
             if (radDateTime_Time.Checked) SystemManager.SystemConfig.DateTimeFormat = DateTimePickerFormat.Time;
 
+            if (radJsonShell.Checked) SystemManager.SystemConfig.jsonMode = MongoDB.Bson.IO.JsonOutputMode.Shell;
+            if (radJsonStrict.Checked) SystemManager.SystemConfig.jsonMode = MongoDB.Bson.IO.JsonOutputMode.Strict;
 
             SystemManager.SystemConfig.IsDisplayNumberWithKSystem = chkIsDisplayNumberWithKSystem.Checked;
             SystemManager.SystemConfig.MongoBinPath = fileMongoBinPath.SelectedPathOrFileName;

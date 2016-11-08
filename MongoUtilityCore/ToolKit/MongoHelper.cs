@@ -40,7 +40,7 @@ namespace MongoUtility.ToolKit
         {
             Indent = true,
             NewLineChars = Environment.NewLine,
-            OutputMode = JsonOutputMode.Strict
+            OutputMode = JsonOutputMode.Shell
         };
 
         /// <summary>

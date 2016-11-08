@@ -38,7 +38,7 @@ CSharp Mongo Driver 2.4.0-beta1
 如果你有MongoDB的客户端工具，请在MongoBin中填写上工具的保存路径。
 有一些操作是需要使用这些工具的，例如Import和Export等功能
 
-![](/FileSystem/Thumbnail?filename=00000001_20161101155300_option.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161108164348_Option.png)
 
 - Language:界面语言
 - Font：字体（Mac系统请使用Mac的专用字体，防止乱码出现）
@@ -48,6 +48,7 @@ CSharp Mongo Driver 2.4.0-beta1
 - Guid：Guid的内部保存形式
 - TimeZone：使用UTC或者Local来显示时间数据
 - DateTimeFormat：时间日期在系统中的显示形式
+- JsonOutputMode：Json对象的表示形式，表示日期的时候，形式不一样。
 
 ###建立一个数据连接
 
@@ -187,10 +188,11 @@ Mongo3.4新增概念：通过设定Collation可以指定字符串比较的时候
 
 ###文档的插入
 
-![](/FileSystem/Thumbnail?filename=00000001_20161102094939_CreateDocument.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161108164848_NewDocument.png)
 
 - 实际使用中，如果希望系统生成"_id"字段，则请不要添加"_id"字段
 - 建议使用预览功能来验证数据格式然后再进行添加操作
+- 预览之后显示的文本，可以通过选项JsonOutput来进行设定
 
 ##聚合功能
 

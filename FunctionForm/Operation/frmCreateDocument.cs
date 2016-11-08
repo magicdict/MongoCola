@@ -1,12 +1,13 @@
-﻿using System;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
+using ICSharpCode.TextEditor.Document;
 using MongoDB.Bson;
 using MongoGUICtl.ClientTree;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
+using System;
+using System.Windows.Forms;
 
 namespace FunctionForm.Operation
 {
@@ -27,11 +28,11 @@ namespace FunctionForm.Operation
         private void cmdOK_Click(object sender, EventArgs e)
         {
             BsonDocument newBsonDocument;
-            if (txtDocument.Text != string.Empty)
+            if (txtJsCode.Text != string.Empty)
             {
                 try
                 {
-                    newBsonDocument = BsonDocument.Parse(txtDocument.Text);
+                    newBsonDocument = BsonDocument.Parse(txtJsCode.Text);
                     mBsonDocument = newBsonDocument;
                     Close();
                 }
@@ -73,11 +74,10 @@ namespace FunctionForm.Operation
         {
             try
             {
-                BsonDocument newdoc;
-                newdoc = BsonDocument.Parse(txtDocument.Text);
+                BsonDocument newdoc = BsonDocument.Parse(txtJsCode.Text);
                 UiHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
-                txtDocument.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
+                txtJsCode.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
             }
             catch (Exception ex)
             {
@@ -92,9 +92,9 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void cmdSaveDocument_Click(object sender, EventArgs e)
         {
-            if (txtDocument.Text != string.Empty)
+            if (txtJsCode.Text != string.Empty)
             {
-                Utility.SaveTextFile(txtDocument.Text, Utility.TxtFilter);
+                Utility.SaveTextFile(txtJsCode.Text, Utility.TxtFilter);
             }
         }
 
@@ -105,6 +105,7 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
+            txtJsCode.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
             GuiConfig.Translateform(this);
         }
     }

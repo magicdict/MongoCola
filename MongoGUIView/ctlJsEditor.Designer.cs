@@ -121,7 +121,6 @@ namespace MongoGUIView
             this.txtEvalJavaScript.Size = new System.Drawing.Size(690, 61);
             this.txtEvalJavaScript.TabIndex = 3;
             this.txtEvalJavaScript.Text = "";
-            this.txtEvalJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
             this.txtEvalJavaScript.Encoding = System.Text.Encoding.Default;
             // 
             // panel1
@@ -227,7 +226,6 @@ namespace MongoGUIView
             this.txtEditJavaScript.Size = new System.Drawing.Size(690, 165);
             this.txtEditJavaScript.TabIndex = 0;
             this.txtEditJavaScript.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CtlJsEditor_KeyDown);
-            this.txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
             this.txtEditJavaScript.Encoding = System.Text.Encoding.Default;
             // 
             // CtlJsEditor

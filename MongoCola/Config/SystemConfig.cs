@@ -1,8 +1,10 @@
 ﻿using Common;
 using FunctionForm.Status;
+using MongoDB.Bson.IO;
 using MongoDB.Driver;
 using MongoGUICtl;
 using MongoGUIView;
+using MongoUtility.ToolKit;
 using System;
 using System.Windows.Forms;
 
@@ -73,6 +75,10 @@ namespace MongoCola.Config
         /// </summary>
         public string DateTimeCustomFormat { set; get; }
 
+        /// <summary>
+        ///     JsonOutputMode
+        /// </summary>
+        public JsonOutputMode jsonMode { set; get; }
 
         [NonSerialized]
         public int DefaultRefreshStatusTimer = 30;
@@ -132,7 +138,6 @@ namespace MongoCola.Config
             {
                 SystemManager.SystemConfig.DateTimeFormat = DateTimePickerFormat.Long;
             }
-
             CtlTreeViewColumns.IsUtc = SystemManager.SystemConfig.IsUtc;
             CtlTreeViewColumns.DateTimeFormat = SystemManager.SystemConfig.DateTimeFormat;
             CtlTreeViewColumns.DateTimeCustomFormat = SystemManager.SystemConfig.DateTimeCustomFormat;
@@ -143,6 +148,7 @@ namespace MongoCola.Config
             ViewHelper.IsDisplayNumberWithKSystem = SystemManager.SystemConfig.IsDisplayNumberWithKSystem;
             FrmServerMonitor.RefreshInterval = SystemManager.SystemConfig.RefreshStatusTimer;
             MongoDefaults.GuidRepresentation = (MongoDB.Bson.GuidRepresentation)SystemManager.SystemConfig.BsonGuidRepresentation;
+            MongoHelper.JsonWriterSettings.OutputMode = SystemManager.SystemConfig.jsonMode;
         }
         #endregion
     }

@@ -114,7 +114,7 @@ namespace Common
         }
 
         /// <summary>
-        ///     对话框子窗体的统一管理
+        ///     对话框子窗体的统一管理(模态)
         /// </summary>
         /// <param name="mfrm"></param>
         /// <param name="isDispose">有些时候需要使用被打开窗体产生的数据，所以不能Dispose</param>

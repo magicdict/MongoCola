@@ -10,6 +10,7 @@ using MongoUtility.Command;
 using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.Properties;
+using ICSharpCode.TextEditor.Document;
 
 namespace MongoGUIView
 {
@@ -38,13 +39,8 @@ namespace MongoGUIView
             if (DesignMode) return;
             GuiConfig.Translateform(Controls);
             SaveStripButton.Image = Resources.save.ToBitmap();
-            //            if (!string.IsNullOrEmpty(JsName))
-            //            {
-            //                txtEditJavaScript.Text = Operater.LoadJavascript(JsName, RuntimeMongoDbContext.GetCurrentCollection());
-            //                txtEditJavaScript.Select(0, 0);
-            //            }
-            //            txtEditJavaScript.GotFocus += (x, y) => { RuntimeMongoDbContext.SelectObjectTag = StrDBtag; };
-
+            this.txtEvalJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
+            this.txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
 
             if (!string.IsNullOrEmpty(JsName))
             {

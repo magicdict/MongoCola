@@ -60,12 +60,16 @@ namespace MongoCola.Config
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this._ctlReadWriteConfig1 = new FunctionForm.Connection.CtlReadWriteConfig();
             this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radJsonShell = new System.Windows.Forms.RadioButton();
+            this.radJsonStrict = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.intRefreshStatusTimer)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGerneric.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // intRefreshStatusTimer
@@ -166,6 +170,7 @@ namespace MongoCola.Config
             this.tabGerneric.Controls.Add(this.lblCurrentFont);
             this.tabGerneric.Controls.Add(this.btnFont);
             this.tabGerneric.Controls.Add(this.lblFont);
+            this.tabGerneric.Controls.Add(this.groupBox3);
             this.tabGerneric.Controls.Add(this.groupBox1);
             this.tabGerneric.Controls.Add(this.fileMongoBinPath);
             this.tabGerneric.Controls.Add(this.cmbLanguage);
@@ -246,7 +251,7 @@ namespace MongoCola.Config
             // cmbGuidRepresentation
             // 
             this.cmbGuidRepresentation.FormattingEnabled = true;
-            this.cmbGuidRepresentation.Location = new System.Drawing.Point(145, 125);
+            this.cmbGuidRepresentation.Location = new System.Drawing.Point(145, 122);
             this.cmbGuidRepresentation.Name = "cmbGuidRepresentation";
             this.cmbGuidRepresentation.Size = new System.Drawing.Size(103, 23);
             this.cmbGuidRepresentation.TabIndex = 25;
@@ -255,7 +260,7 @@ namespace MongoCola.Config
             // 
             this.lblGuidRepresentation.AutoSize = true;
             this.lblGuidRepresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGuidRepresentation.Location = new System.Drawing.Point(15, 128);
+            this.lblGuidRepresentation.Location = new System.Drawing.Point(15, 122);
             this.lblGuidRepresentation.Name = "lblGuidRepresentation";
             this.lblGuidRepresentation.Size = new System.Drawing.Size(135, 15);
             this.lblGuidRepresentation.TabIndex = 24;
@@ -304,9 +309,9 @@ namespace MongoCola.Config
             // 
             this.groupBox1.Controls.Add(this.radLocal);
             this.groupBox1.Controls.Add(this.radUTC);
-            this.groupBox1.Location = new System.Drawing.Point(15, 159);
+            this.groupBox1.Location = new System.Drawing.Point(16, 147);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(233, 60);
+            this.groupBox1.Size = new System.Drawing.Size(233, 52);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TimeZone";
@@ -353,10 +358,10 @@ namespace MongoCola.Config
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this._ctlReadWriteConfig1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(620, 262);
+            this.tabPage1.Size = new System.Drawing.Size(620, 264);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Read Write";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -367,8 +372,41 @@ namespace MongoCola.Config
             this._ctlReadWriteConfig1.Location = new System.Drawing.Point(3, 3);
             this._ctlReadWriteConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ctlReadWriteConfig1.Name = "_ctlReadWriteConfig1";
-            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(614, 256);
+            this._ctlReadWriteConfig1.Size = new System.Drawing.Size(614, 258);
             this._ctlReadWriteConfig1.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radJsonShell);
+            this.groupBox3.Controls.Add(this.radJsonStrict);
+            this.groupBox3.Location = new System.Drawing.Point(18, 205);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(233, 52);
+            this.groupBox3.TabIndex = 20;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "JsonOutputMode";
+            // 
+            // radJsonShell
+            // 
+            this.radJsonShell.AutoSize = true;
+            this.radJsonShell.Location = new System.Drawing.Point(101, 20);
+            this.radJsonShell.Name = "radJsonShell";
+            this.radJsonShell.Size = new System.Drawing.Size(115, 19);
+            this.radJsonShell.TabIndex = 1;
+            this.radJsonShell.Text = "Shell(Javascript)";
+            this.radJsonShell.UseVisualStyleBackColor = true;
+            // 
+            // radJsonStrict
+            // 
+            this.radJsonStrict.AutoSize = true;
+            this.radJsonStrict.Checked = true;
+            this.radJsonStrict.Location = new System.Drawing.Point(24, 21);
+            this.radJsonStrict.Name = "radJsonStrict";
+            this.radJsonStrict.Size = new System.Drawing.Size(52, 19);
+            this.radJsonStrict.TabIndex = 0;
+            this.radJsonStrict.TabStop = true;
+            this.radJsonStrict.Text = "Strict";
+            this.radJsonStrict.UseVisualStyleBackColor = true;
             // 
             // FrmOption
             // 
@@ -396,6 +434,8 @@ namespace MongoCola.Config
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -429,5 +469,8 @@ namespace MongoCola.Config
         private RadioButton radDateTime_Short;
         private RadioButton radDateTime_Long;
         private TextBox txtDateTimeFormat;
+        private GroupBox groupBox3;
+        private RadioButton radJsonShell;
+        private RadioButton radJsonStrict;
     }
 }
