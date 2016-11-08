@@ -35,15 +35,15 @@ namespace FunctionForm.Extend
             this.cmdEval = new System.Windows.Forms.Button();
             this.txtParm = new System.Windows.Forms.TextBox();
             this.lblParm = new System.Windows.Forms.Label();
-            this.ctlEval = new MongoGUICtl.CtlTextMgr();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.lblResult = new System.Windows.Forms.Label();
+            this.ctlEval = new MongoGUICtl.CtlTextMgr();
             this.SuspendLayout();
             // 
             // cmdEval
             // 
             this.cmdEval.BackColor = System.Drawing.Color.Transparent;
-            this.cmdEval.Location = new System.Drawing.Point(374, 254);
+            this.cmdEval.Location = new System.Drawing.Point(266, 262);
             this.cmdEval.Name = "cmdEval";
             this.cmdEval.Size = new System.Drawing.Size(93, 24);
             this.cmdEval.TabIndex = 2;
@@ -53,7 +53,7 @@ namespace FunctionForm.Extend
             // 
             // txtParm
             // 
-            this.txtParm.Location = new System.Drawing.Point(9, 257);
+            this.txtParm.Location = new System.Drawing.Point(17, 235);
             this.txtParm.Name = "txtParm";
             this.txtParm.Size = new System.Drawing.Size(342, 21);
             this.txtParm.TabIndex = 4;
@@ -62,11 +62,28 @@ namespace FunctionForm.Extend
             // 
             this.lblParm.AutoSize = true;
             this.lblParm.BackColor = System.Drawing.Color.Transparent;
-            this.lblParm.Location = new System.Drawing.Point(14, 239);
+            this.lblParm.Location = new System.Drawing.Point(22, 217);
             this.lblParm.Name = "lblParm";
             this.lblParm.Size = new System.Drawing.Size(148, 15);
             this.lblParm.TabIndex = 23;
             this.lblParm.Text = "Parameter(seperate by \',\')";
+            // 
+            // txtResult
+            // 
+            this.txtResult.Location = new System.Drawing.Point(17, 295);
+            this.txtResult.Multiline = true;
+            this.txtResult.Name = "txtResult";
+            this.txtResult.Size = new System.Drawing.Size(342, 106);
+            this.txtResult.TabIndex = 25;
+            // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Location = new System.Drawing.Point(22, 271);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(42, 15);
+            this.lblResult.TabIndex = 26;
+            this.lblResult.Text = "Result";
             // 
             // ctlEval
             // 
@@ -74,33 +91,16 @@ namespace FunctionForm.Extend
             this.ctlEval.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctlEval.Location = new System.Drawing.Point(6, 0);
             this.ctlEval.Name = "ctlEval";
-            this.ctlEval.Size = new System.Drawing.Size(467, 236);
+            this.ctlEval.Size = new System.Drawing.Size(372, 209);
             this.ctlEval.TabIndex = 24;
             this.ctlEval.Title = "Eval Js";
-            // 
-            // txtResult
-            // 
-            this.txtResult.Location = new System.Drawing.Point(9, 317);
-            this.txtResult.Multiline = true;
-            this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(458, 84);
-            this.txtResult.TabIndex = 25;
-            // 
-            // lblResult
-            // 
-            this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(14, 299);
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(42, 15);
-            this.lblResult.TabIndex = 26;
-            this.lblResult.Text = "Result";
             // 
             // FrmEvalJs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(485, 413);
+            this.ClientSize = new System.Drawing.Size(386, 417);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.ctlEval);

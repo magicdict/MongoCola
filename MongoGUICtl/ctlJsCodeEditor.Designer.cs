@@ -33,90 +33,85 @@ namespace MongoGUICtl
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmdSaveLocal = new Button();
-            this.cmbJsList = new ComboBox();
-            this.cmdSave = new Button();
-            this.lblTitle = new Label();
-            this.txtContext = new TextBox();
-            this.cmdLoadLocal = new Button();
+            this.cmdSaveLocal = new System.Windows.Forms.Button();
+            this.cmbJsList = new System.Windows.Forms.ComboBox();
+            this.cmdSave = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.cmdLoadLocal = new System.Windows.Forms.Button();
+            this.txtEditJavaScript = new ICSharpCode.TextEditor.TextEditorControl();
             this.SuspendLayout();
             // 
             // cmdSaveLocal
             // 
-            this.cmdSaveLocal.Location = new Point(129, 30);
+            this.cmdSaveLocal.Location = new System.Drawing.Point(129, 30);
             this.cmdSaveLocal.Name = "cmdSaveLocal";
-            this.cmdSaveLocal.Size = new Size(117, 27);
+            this.cmdSaveLocal.Size = new System.Drawing.Size(117, 27);
             this.cmdSaveLocal.TabIndex = 23;
             this.cmdSaveLocal.Text = "Save[Local] ";
             this.cmdSaveLocal.UseVisualStyleBackColor = true;
-            this.cmdSaveLocal.Click += new EventHandler(this.cmdSaveLocal_Click);
+            this.cmdSaveLocal.Click += new System.EventHandler(this.cmdSaveLocal_Click);
             // 
             // cmbJsList
             // 
             this.cmbJsList.FormattingEnabled = true;
-            this.cmbJsList.Location = new Point(129, 2);
+            this.cmbJsList.Location = new System.Drawing.Point(129, 2);
             this.cmbJsList.Name = "cmbJsList";
-            this.cmbJsList.Size = new Size(233, 23);
+            this.cmbJsList.Size = new System.Drawing.Size(233, 23);
             this.cmbJsList.TabIndex = 19;
             // 
             // cmdSave
             // 
-            this.cmdSave.BackColor = Color.Transparent;
-            this.cmdSave.Location = new Point(9, 30);
+            this.cmdSave.BackColor = System.Drawing.Color.Transparent;
+            this.cmdSave.Location = new System.Drawing.Point(9, 30);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new Size(114, 29);
+            this.cmdSave.Size = new System.Drawing.Size(117, 27);
             this.cmdSave.TabIndex = 20;
             this.cmdSave.Text = "Save[Remote]";
             this.cmdSave.UseVisualStyleBackColor = false;
-            this.cmdSave.Click += new EventHandler(this.cmdSave_Click);
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.BackColor = Color.Transparent;
-            this.lblTitle.Location = new Point(15, 5);
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Location = new System.Drawing.Point(15, 5);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new Size(30, 15);
+            this.lblTitle.Size = new System.Drawing.Size(30, 15);
             this.lblTitle.TabIndex = 22;
             this.lblTitle.Text = "Title";
             // 
-            // txtContext
-            // 
-            this.txtContext.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) 
-            | AnchorStyles.Left) 
-            | AnchorStyles.Right)));
-            this.txtContext.BorderStyle = BorderStyle.FixedSingle;
-            this.txtContext.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-            this.txtContext.Location = new Point(0, 60);
-            this.txtContext.Multiline = true;
-            this.txtContext.Name = "txtContext";
-            this.txtContext.ScrollBars = ScrollBars.Both;
-            this.txtContext.Size = new Size(392, 198);
-            this.txtContext.TabIndex = 21;
-            // 
             // cmdLoadLocal
             // 
-            this.cmdLoadLocal.Location = new Point(252, 33);
+            this.cmdLoadLocal.Location = new System.Drawing.Point(252, 30);
             this.cmdLoadLocal.Name = "cmdLoadLocal";
-            this.cmdLoadLocal.Size = new Size(110, 23);
+            this.cmdLoadLocal.Size = new System.Drawing.Size(117, 27);
             this.cmdLoadLocal.TabIndex = 24;
             this.cmdLoadLocal.Text = "Load[Local]";
             this.cmdLoadLocal.UseVisualStyleBackColor = true;
-            this.cmdLoadLocal.Click += new EventHandler(this.cmdLoadLocal_Click);
+            this.cmdLoadLocal.Click += new System.EventHandler(this.cmdLoadLocal_Click);
             // 
-            // ctlTextMgr
+            // txtEditJavaScript
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
+            this.txtEditJavaScript.IsReadOnly = false;
+            this.txtEditJavaScript.Location = new System.Drawing.Point(9, 72);
+            this.txtEditJavaScript.Name = "txtEditJavaScript";
+            this.txtEditJavaScript.Size = new System.Drawing.Size(353, 124);
+            this.txtEditJavaScript.TabIndex = 25;
+            // 
+            // CtlTextMgr
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtEditJavaScript);
             this.Controls.Add(this.cmdLoadLocal);
             this.Controls.Add(this.cmdSaveLocal);
             this.Controls.Add(this.cmbJsList);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.txtContext);
-            this.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "CtlTextMgr";
-            this.Size = new Size(399, 263);
+            this.Size = new System.Drawing.Size(369, 211);
+            this.Load += new System.EventHandler(this.CtlTextMgr_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,7 +123,7 @@ namespace MongoGUICtl
         private ComboBox cmbJsList;
         private Button cmdSave;
         private Label lblTitle;
-        private TextBox txtContext;
         private Button cmdLoadLocal;
+        private ICSharpCode.TextEditor.TextEditorControl txtEditJavaScript;
     }
 }

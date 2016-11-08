@@ -121,7 +121,7 @@ namespace MongoGUIView
             this.txtEvalJavaScript.Size = new System.Drawing.Size(690, 61);
             this.txtEvalJavaScript.TabIndex = 3;
             this.txtEvalJavaScript.Text = "";
-            this.txtEvalJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("c#");
+            this.txtEvalJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
             this.txtEvalJavaScript.Encoding = System.Text.Encoding.Default;
             // 
             // panel1

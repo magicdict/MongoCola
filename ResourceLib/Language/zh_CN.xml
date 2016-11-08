@@ -71,7 +71,7 @@
   <Main_Menu_Operation_FileSystem_OpenFile>打开文件</Main_Menu_Operation_FileSystem_OpenFile>
   <Main_Menu_Operation_FileSystem_DelFile>删除文件</Main_Menu_Operation_FileSystem_DelFile>
   <Main_Menu_Operation_FileSystem_InitGFS>初始化文件系统</Main_Menu_Operation_FileSystem_InitGFS>
-  
+
 
   <Main_Menu_Operation_BackupAndRestore>备份和恢复</Main_Menu_Operation_BackupAndRestore>
   <Main_Menu_Operation_BackupAndRestore_Restore>恢复</Main_Menu_Operation_BackupAndRestore_Restore>
@@ -381,7 +381,7 @@
 
   <Common_Preview>预览</Common_Preview>
   <Common_Run>运行</Common_Run>
-    <Common_Result>结果</Common_Result>
+  <Common_Result>结果</Common_Result>
 
   <Common_Longitude>经度</Common_Longitude>
   <Common_Latitude>纬度</Common_Latitude>

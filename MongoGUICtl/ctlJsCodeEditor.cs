@@ -1,11 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
+using ICSharpCode.TextEditor.Document;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using System;
+using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
@@ -31,8 +32,8 @@ namespace MongoGUICtl
         /// </summary>
         public string Context
         {
-            set { txtContext.Text = value; }
-            get { return txtContext.Text; }
+            set { txtEditJavaScript.Text = value; }
+            get { return txtEditJavaScript.Text; }
         }
 
         public void Init()
@@ -46,7 +47,7 @@ namespace MongoGUICtl
                 cmbJsList.SelectedIndexChanged +=
                     (x, y) =>
                     {
-                        txtContext.Text = Operater.LoadJavascript(cmbJsList.Text,
+                        txtEditJavaScript.Text = Operater.LoadJavascript(cmbJsList.Text,
                             RuntimeMongoDbContext.GetCurrentJavaScript());
                     };
                 if (!GuiConfig.IsUseDefaultLanguage)
@@ -67,11 +68,11 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            if (txtContext.Text != string.Empty)
+            if (txtEditJavaScript.Text != string.Empty)
             {
                 var strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]",
                     "Save Javascript");
-                Operater.CreateNewJavascript(strJsName, txtContext.Text);
+                Operater.CreateNewJavascript(strJsName, txtEditJavaScript.Text);
             }
         }
 
@@ -82,7 +83,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdSaveLocal_Click(object sender, EventArgs e)
         {
-            Utility.SaveJavascriptFile(txtContext.Text);
+            Utility.SaveJavascriptFile(txtEditJavaScript.Text);
         }
 
         /// <summary>
@@ -92,7 +93,17 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdLoadLocal_Click(object sender, EventArgs e)
         {
-            txtContext.Text = Utility.LoadFile();
+            txtEditJavaScript.Text = Utility.LoadFile();
+        }
+
+        /// <summary>
+        ///     Load方法，属性设定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CtlTextMgr_Load(object sender, EventArgs e)
+        {
+            txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
         }
     }
 }

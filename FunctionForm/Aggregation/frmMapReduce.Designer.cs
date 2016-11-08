@@ -33,8 +33,6 @@ namespace FunctionForm.Aggregation
         private void InitializeComponent()
         {
             this.cmdRun = new System.Windows.Forms.Button();
-            this.ctlMapFunction = new MongoGUICtl.CtlTextMgr();
-            this.ctlReduceFunction = new MongoGUICtl.CtlTextMgr();
             this.cmdClose = new System.Windows.Forms.Button();
             this.grpOutput = new System.Windows.Forms.GroupBox();
             this.cmbOutputMode = new System.Windows.Forms.ComboBox();
@@ -46,11 +44,13 @@ namespace FunctionForm.Aggregation
             this.chkjsMode = new System.Windows.Forms.CheckBox();
             this.chkverbose = new System.Windows.Forms.CheckBox();
             this.chkbypassDocumentValidation = new System.Windows.Forms.CheckBox();
-            this.ctlFinalizeFunction = new MongoGUICtl.CtlTextMgr();
             this.grpQuery = new System.Windows.Forms.GroupBox();
-            this.QueryTreeView = new MongoGUICtl.CtlTreeViewColumns();
-            this.cmdCreateQueryDocument = new System.Windows.Forms.Button();
             this.cmdClearQuery = new System.Windows.Forms.Button();
+            this.cmdCreateQueryDocument = new System.Windows.Forms.Button();
+            this.QueryTreeView = new MongoGUICtl.CtlTreeViewColumns();
+            this.ctlFinalizeFunction = new MongoGUICtl.CtlTextMgr();
+            this.ctlReduceFunction = new MongoGUICtl.CtlTextMgr();
+            this.ctlMapFunction = new MongoGUICtl.CtlTextMgr();
             this.grpOutput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumLimit)).BeginInit();
             this.grpQuery.SuspendLayout();
@@ -59,7 +59,7 @@ namespace FunctionForm.Aggregation
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(491, 477);
+            this.cmdRun.Location = new System.Drawing.Point(494, 609);
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(103, 30);
             this.cmdRun.TabIndex = 7;
@@ -68,29 +68,9 @@ namespace FunctionForm.Aggregation
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
-            // ctlMapFunction
-            // 
-            this.ctlMapFunction.Context = "";
-            this.ctlMapFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctlMapFunction.Location = new System.Drawing.Point(12, 12);
-            this.ctlMapFunction.Name = "ctlMapFunction";
-            this.ctlMapFunction.Size = new System.Drawing.Size(369, 139);
-            this.ctlMapFunction.TabIndex = 20;
-            this.ctlMapFunction.Title = "MapFunction";
-            // 
-            // ctlReduceFunction
-            // 
-            this.ctlReduceFunction.Context = "";
-            this.ctlReduceFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctlReduceFunction.Location = new System.Drawing.Point(4, 157);
-            this.ctlReduceFunction.Name = "ctlReduceFunction";
-            this.ctlReduceFunction.Size = new System.Drawing.Size(377, 133);
-            this.ctlReduceFunction.TabIndex = 21;
-            this.ctlReduceFunction.Title = "Reduce Function";
-            // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(600, 477);
+            this.cmdClose.Location = new System.Drawing.Point(603, 609);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(111, 30);
             this.cmdClose.TabIndex = 22;
@@ -107,7 +87,7 @@ namespace FunctionForm.Aggregation
             this.grpOutput.Controls.Add(this.lblLimit);
             this.grpOutput.Controls.Add(this.label1);
             this.grpOutput.Controls.Add(this.lblCollectionName);
-            this.grpOutput.Location = new System.Drawing.Point(410, 263);
+            this.grpOutput.Location = new System.Drawing.Point(410, 329);
             this.grpOutput.Name = "grpOutput";
             this.grpOutput.Size = new System.Drawing.Size(377, 148);
             this.grpOutput.TabIndex = 23;
@@ -172,7 +152,7 @@ namespace FunctionForm.Aggregation
             // chkjsMode
             // 
             this.chkjsMode.AutoSize = true;
-            this.chkjsMode.Location = new System.Drawing.Point(442, 428);
+            this.chkjsMode.Location = new System.Drawing.Point(442, 494);
             this.chkjsMode.Name = "chkjsMode";
             this.chkjsMode.Size = new System.Drawing.Size(67, 19);
             this.chkjsMode.TabIndex = 24;
@@ -184,7 +164,7 @@ namespace FunctionForm.Aggregation
             this.chkverbose.AutoSize = true;
             this.chkverbose.Checked = true;
             this.chkverbose.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkverbose.Location = new System.Drawing.Point(515, 429);
+            this.chkverbose.Location = new System.Drawing.Point(515, 495);
             this.chkverbose.Name = "chkverbose";
             this.chkverbose.Size = new System.Drawing.Size(69, 19);
             this.chkverbose.TabIndex = 25;
@@ -194,54 +174,24 @@ namespace FunctionForm.Aggregation
             // chkbypassDocumentValidation
             // 
             this.chkbypassDocumentValidation.AutoSize = true;
-            this.chkbypassDocumentValidation.Location = new System.Drawing.Point(600, 429);
+            this.chkbypassDocumentValidation.Location = new System.Drawing.Point(600, 495);
             this.chkbypassDocumentValidation.Name = "chkbypassDocumentValidation";
             this.chkbypassDocumentValidation.Size = new System.Drawing.Size(175, 19);
             this.chkbypassDocumentValidation.TabIndex = 26;
             this.chkbypassDocumentValidation.Text = "bypassDocumentValidation";
             this.chkbypassDocumentValidation.UseVisualStyleBackColor = true;
             // 
-            // ctlFinalizeFunction
-            // 
-            this.ctlFinalizeFunction.Context = "";
-            this.ctlFinalizeFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctlFinalizeFunction.Location = new System.Drawing.Point(4, 319);
-            this.ctlFinalizeFunction.Name = "ctlFinalizeFunction";
-            this.ctlFinalizeFunction.Size = new System.Drawing.Size(377, 139);
-            this.ctlFinalizeFunction.TabIndex = 21;
-            this.ctlFinalizeFunction.Title = "Finalize Function";
-            // 
             // grpQuery
             // 
             this.grpQuery.Controls.Add(this.cmdClearQuery);
             this.grpQuery.Controls.Add(this.QueryTreeView);
             this.grpQuery.Controls.Add(this.cmdCreateQueryDocument);
-            this.grpQuery.Location = new System.Drawing.Point(410, 13);
+            this.grpQuery.Location = new System.Drawing.Point(410, 59);
             this.grpQuery.Name = "grpQuery";
             this.grpQuery.Size = new System.Drawing.Size(377, 225);
             this.grpQuery.TabIndex = 27;
             this.grpQuery.TabStop = false;
             this.grpQuery.Text = "Query Document";
-            // 
-            // QueryTreeView
-            // 
-            this.QueryTreeView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.QueryTreeView.Location = new System.Drawing.Point(12, 48);
-            this.QueryTreeView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.QueryTreeView.Name = "QueryTreeView";
-            this.QueryTreeView.Padding = new System.Windows.Forms.Padding(1);
-            this.QueryTreeView.Size = new System.Drawing.Size(359, 170);
-            this.QueryTreeView.TabIndex = 1;
-            // 
-            // cmdCreateQueryDocument
-            // 
-            this.cmdCreateQueryDocument.Location = new System.Drawing.Point(145, 13);
-            this.cmdCreateQueryDocument.Name = "cmdCreateQueryDocument";
-            this.cmdCreateQueryDocument.Size = new System.Drawing.Size(127, 28);
-            this.cmdCreateQueryDocument.TabIndex = 0;
-            this.cmdCreateQueryDocument.Text = "Create Document";
-            this.cmdCreateQueryDocument.UseVisualStyleBackColor = true;
-            this.cmdCreateQueryDocument.Click += new System.EventHandler(this.cmdCreateQueryDocument_Click);
             // 
             // cmdClearQuery
             // 
@@ -253,12 +203,62 @@ namespace FunctionForm.Aggregation
             this.cmdClearQuery.UseVisualStyleBackColor = true;
             this.cmdClearQuery.Click += new System.EventHandler(this.cmdClearQuery_Click);
             // 
+            // cmdCreateQueryDocument
+            // 
+            this.cmdCreateQueryDocument.Location = new System.Drawing.Point(145, 13);
+            this.cmdCreateQueryDocument.Name = "cmdCreateQueryDocument";
+            this.cmdCreateQueryDocument.Size = new System.Drawing.Size(127, 28);
+            this.cmdCreateQueryDocument.TabIndex = 0;
+            this.cmdCreateQueryDocument.Text = "Create Document";
+            this.cmdCreateQueryDocument.UseVisualStyleBackColor = true;
+            this.cmdCreateQueryDocument.Click += new System.EventHandler(this.cmdCreateQueryDocument_Click);
+            // 
+            // QueryTreeView
+            // 
+            this.QueryTreeView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.QueryTreeView.Location = new System.Drawing.Point(12, 48);
+            this.QueryTreeView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.QueryTreeView.Name = "QueryTreeView";
+            this.QueryTreeView.Padding = new System.Windows.Forms.Padding(1);
+            this.QueryTreeView.Size = new System.Drawing.Size(359, 170);
+            this.QueryTreeView.TabIndex = 1;
+            // 
+            // ctlFinalizeFunction
+            // 
+            this.ctlFinalizeFunction.Context = "";
+            this.ctlFinalizeFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctlFinalizeFunction.Location = new System.Drawing.Point(4, 450);
+            this.ctlFinalizeFunction.Name = "ctlFinalizeFunction";
+            this.ctlFinalizeFunction.Size = new System.Drawing.Size(377, 207);
+            this.ctlFinalizeFunction.TabIndex = 21;
+            this.ctlFinalizeFunction.Title = "Finalize Function";
+            // 
+            // ctlReduceFunction
+            // 
+            this.ctlReduceFunction.Context = "";
+            this.ctlReduceFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctlReduceFunction.Location = new System.Drawing.Point(4, 220);
+            this.ctlReduceFunction.Name = "ctlReduceFunction";
+            this.ctlReduceFunction.Size = new System.Drawing.Size(377, 215);
+            this.ctlReduceFunction.TabIndex = 21;
+            this.ctlReduceFunction.Title = "Reduce Function";
+            // 
+            // ctlMapFunction
+            // 
+            this.ctlMapFunction.Context = "";
+            this.ctlMapFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctlMapFunction.Location = new System.Drawing.Point(12, 12);
+            this.ctlMapFunction.Name = "ctlMapFunction";
+            this.ctlMapFunction.Size = new System.Drawing.Size(369, 202);
+            this.ctlMapFunction.TabIndex = 20;
+            this.ctlMapFunction.Title = "MapFunction";
+            // 
             // FrmMapReduce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(839, 519);
+            this.ClientSize = new System.Drawing.Size(809, 669);
             this.Controls.Add(this.grpQuery);
             this.Controls.Add(this.chkbypassDocumentValidation);
             this.Controls.Add(this.chkverbose);

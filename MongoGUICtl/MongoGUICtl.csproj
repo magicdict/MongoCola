@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <HintPath>..\packages\ICSharpCode.TextEditor.3.2.1.6466\lib\Net20\ICSharpCode.TextEditor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MongoDB.Bson, Version=2.4.0.41, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Bson.2.4.0-beta1\lib\net45\MongoDB.Bson.dll</HintPath>
       <Private>True</Private>
@@ -155,11 +159,11 @@
     <Compile Include="ctlQueryCondition.Designer.cs">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlTextMgr.cs">
+    <Compile Include="ctlJsCodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctlTextMgr.Designer.cs">
-      <DependentUpon>ctlTextMgr.cs</DependentUpon>
+    <Compile Include="ctlJsCodeEditor.Designer.cs">
+      <DependentUpon>ctlJsCodeEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="ctlUserRolesPanel.cs">
       <SubType>UserControl</SubType>
@@ -214,8 +218,8 @@
     <EmbeddedResource Include="ctlQueryCondition.resx">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctlTextMgr.resx">
-      <DependentUpon>ctlTextMgr.cs</DependentUpon>
+    <EmbeddedResource Include="ctlJsCodeEditor.resx">
+      <DependentUpon>ctlJsCodeEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctlUserRolesPanel.resx">
       <DependentUpon>ctlUserRolesPanel.cs</DependentUpon>
