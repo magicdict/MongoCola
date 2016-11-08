@@ -35,7 +35,9 @@ namespace FunctionForm.Extend
             this.cmdEval = new System.Windows.Forms.Button();
             this.txtParm = new System.Windows.Forms.TextBox();
             this.lblParm = new System.Windows.Forms.Label();
-            this.ctlEval = new CtlTextMgr();
+            this.ctlEval = new MongoGUICtl.CtlTextMgr();
+            this.txtResult = new System.Windows.Forms.TextBox();
+            this.lblResult = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmdEval
@@ -76,12 +78,31 @@ namespace FunctionForm.Extend
             this.ctlEval.TabIndex = 24;
             this.ctlEval.Title = "Eval Js";
             // 
-            // frmEvalJS
+            // txtResult
+            // 
+            this.txtResult.Location = new System.Drawing.Point(9, 317);
+            this.txtResult.Multiline = true;
+            this.txtResult.Name = "txtResult";
+            this.txtResult.Size = new System.Drawing.Size(458, 84);
+            this.txtResult.TabIndex = 25;
+            // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Location = new System.Drawing.Point(14, 299);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(42, 15);
+            this.lblResult.TabIndex = 26;
+            this.lblResult.Text = "Result";
+            // 
+            // FrmEvalJs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(485, 295);
+            this.ClientSize = new System.Drawing.Size(485, 413);
+            this.Controls.Add(this.lblResult);
+            this.Controls.Add(this.txtResult);
             this.Controls.Add(this.ctlEval);
             this.Controls.Add(this.lblParm);
             this.Controls.Add(this.cmdEval);
@@ -103,5 +124,7 @@ namespace FunctionForm.Extend
         private Label lblParm;
         private TextBox txtParm;
         private CtlTextMgr ctlEval;
+        private TextBox txtResult;
+        private Label lblResult;
     }
 }

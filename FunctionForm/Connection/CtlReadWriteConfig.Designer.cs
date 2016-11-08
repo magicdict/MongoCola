@@ -55,7 +55,7 @@ namespace FunctionForm.Connection
             // chkUseDefault
             // 
             this.chkUseDefault.AutoSize = true;
-            this.chkUseDefault.Location = new System.Drawing.Point(41, 14);
+            this.chkUseDefault.Location = new System.Drawing.Point(43, 4);
             this.chkUseDefault.Name = "chkUseDefault";
             this.chkUseDefault.Size = new System.Drawing.Size(168, 16);
             this.chkUseDefault.TabIndex = 76;
@@ -65,7 +65,7 @@ namespace FunctionForm.Connection
             // lnkWriteConcern
             // 
             this.lnkWriteConcern.AutoSize = true;
-            this.lnkWriteConcern.Location = new System.Drawing.Point(319, 173);
+            this.lnkWriteConcern.Location = new System.Drawing.Point(321, 149);
             this.lnkWriteConcern.Name = "lnkWriteConcern";
             this.lnkWriteConcern.Size = new System.Drawing.Size(113, 12);
             this.lnkWriteConcern.TabIndex = 75;
@@ -76,7 +76,7 @@ namespace FunctionForm.Connection
             // lnkReadPreference
             // 
             this.lnkReadPreference.AutoSize = true;
-            this.lnkReadPreference.Location = new System.Drawing.Point(319, 122);
+            this.lnkReadPreference.Location = new System.Drawing.Point(321, 98);
             this.lnkReadPreference.Name = "lnkReadPreference";
             this.lnkReadPreference.Size = new System.Drawing.Size(125, 12);
             this.lnkReadPreference.TabIndex = 74;
@@ -88,7 +88,7 @@ namespace FunctionForm.Connection
             // 
             this.cmbWriteConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWriteConcern.FormattingEnabled = true;
-            this.cmbWriteConcern.Location = new System.Drawing.Point(148, 173);
+            this.cmbWriteConcern.Location = new System.Drawing.Point(147, 149);
             this.cmbWriteConcern.Name = "cmbWriteConcern";
             this.cmbWriteConcern.Size = new System.Drawing.Size(149, 20);
             this.cmbWriteConcern.TabIndex = 73;
@@ -96,7 +96,7 @@ namespace FunctionForm.Connection
             // lblWriteConcern
             // 
             this.lblWriteConcern.AutoSize = true;
-            this.lblWriteConcern.Location = new System.Drawing.Point(41, 173);
+            this.lblWriteConcern.Location = new System.Drawing.Point(43, 149);
             this.lblWriteConcern.Name = "lblWriteConcern";
             this.lblWriteConcern.Size = new System.Drawing.Size(77, 12);
             this.lblWriteConcern.TabIndex = 72;
@@ -106,7 +106,7 @@ namespace FunctionForm.Connection
             // 
             this.cmbReadPreference.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReadPreference.FormattingEnabled = true;
-            this.cmbReadPreference.Location = new System.Drawing.Point(147, 120);
+            this.cmbReadPreference.Location = new System.Drawing.Point(147, 96);
             this.cmbReadPreference.Name = "cmbReadPreference";
             this.cmbReadPreference.Size = new System.Drawing.Size(149, 20);
             this.cmbReadPreference.TabIndex = 71;
@@ -114,7 +114,7 @@ namespace FunctionForm.Connection
             // lblReadPreference
             // 
             this.lblReadPreference.AutoSize = true;
-            this.lblReadPreference.Location = new System.Drawing.Point(40, 120);
+            this.lblReadPreference.Location = new System.Drawing.Point(43, 96);
             this.lblReadPreference.Name = "lblReadPreference";
             this.lblReadPreference.Size = new System.Drawing.Size(89, 12);
             this.lblReadPreference.TabIndex = 70;
@@ -123,7 +123,7 @@ namespace FunctionForm.Connection
             // lblWtimeoutDescript
             // 
             this.lblWtimeoutDescript.AutoSize = true;
-            this.lblWtimeoutDescript.Location = new System.Drawing.Point(149, 73);
+            this.lblWtimeoutDescript.Location = new System.Drawing.Point(43, 27);
             this.lblWtimeoutDescript.Name = "lblWtimeoutDescript";
             this.lblWtimeoutDescript.Size = new System.Drawing.Size(491, 12);
             this.lblWtimeoutDescript.TabIndex = 69;
@@ -146,7 +146,7 @@ namespace FunctionForm.Connection
             // lblQueueSize
             // 
             this.lblQueueSize.AutoSize = true;
-            this.lblQueueSize.Location = new System.Drawing.Point(38, 93);
+            this.lblQueueSize.Location = new System.Drawing.Point(43, 69);
             this.lblQueueSize.Name = "lblQueueSize";
             this.lblQueueSize.Size = new System.Drawing.Size(83, 12);
             this.lblQueueSize.TabIndex = 67;
@@ -155,7 +155,7 @@ namespace FunctionForm.Connection
             // lblWTimeout
             // 
             this.lblWTimeout.AutoSize = true;
-            this.lblWTimeout.Location = new System.Drawing.Point(40, 47);
+            this.lblWTimeout.Location = new System.Drawing.Point(43, 47);
             this.lblWTimeout.Name = "lblWTimeout";
             this.lblWTimeout.Size = new System.Drawing.Size(77, 12);
             this.lblWTimeout.TabIndex = 68;
@@ -163,7 +163,7 @@ namespace FunctionForm.Connection
             // 
             // NumWaitQueueSize
             // 
-            this.NumWaitQueueSize.Location = new System.Drawing.Point(147, 91);
+            this.NumWaitQueueSize.Location = new System.Drawing.Point(147, 67);
             this.NumWaitQueueSize.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -177,7 +177,7 @@ namespace FunctionForm.Connection
             // lnkReadConcern
             // 
             this.lnkReadConcern.AutoSize = true;
-            this.lnkReadConcern.Location = new System.Drawing.Point(319, 146);
+            this.lnkReadConcern.Location = new System.Drawing.Point(321, 122);
             this.lnkReadConcern.Name = "lnkReadConcern";
             this.lnkReadConcern.Size = new System.Drawing.Size(107, 12);
             this.lnkReadConcern.TabIndex = 79;
@@ -189,7 +189,7 @@ namespace FunctionForm.Connection
             // 
             this.cmbReadConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReadConcern.FormattingEnabled = true;
-            this.cmbReadConcern.Location = new System.Drawing.Point(148, 146);
+            this.cmbReadConcern.Location = new System.Drawing.Point(147, 122);
             this.cmbReadConcern.Name = "cmbReadConcern";
             this.cmbReadConcern.Size = new System.Drawing.Size(149, 20);
             this.cmbReadConcern.TabIndex = 78;
@@ -197,7 +197,7 @@ namespace FunctionForm.Connection
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 146);
+            this.label1.Location = new System.Drawing.Point(43, 122);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 12);
             this.label1.TabIndex = 77;

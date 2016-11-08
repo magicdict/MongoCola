@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
-using ResourceLib.UI;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace FunctionForm.Extend
 {
@@ -31,6 +30,7 @@ namespace FunctionForm.Extend
                 ctlEval.Title = GuiConfig.GetText(TextType.EvalJsMethod);
                 lblParm.Text = GuiConfig.GetText(TextType.EvalJsParameter);
                 cmdEval.Text = GuiConfig.GetText(TextType.EvalJsRun);
+                lblResult.Text = GuiConfig.GetText("Common_Result");
             }
             ctlEval.Context = "function eval(){" + Environment.NewLine;
             ctlEval.Context += "    var i = 0;" + Environment.NewLine;
@@ -83,10 +83,9 @@ namespace FunctionForm.Extend
             }
             try
             {
-                var args = new EvalArgs {Args = Params.ToArray(), Code = js};
+                var args = new EvalArgs { Args = Params.ToArray(), Code = js };
                 var result = mongoDb.Eval(args);
-                MyMessageBox.ShowMessage("Result", "Result",
-                    result.ToJson(MongoHelper.JsonWriterSettings), true);
+                txtResult.Text = result.ToJson(MongoHelper.JsonWriterSettings);
             }
             catch (Exception ex)
             {

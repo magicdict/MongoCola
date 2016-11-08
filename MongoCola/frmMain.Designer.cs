@@ -135,6 +135,7 @@ namespace MongoCola
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.CheckUpdatetoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -490,7 +491,7 @@ namespace MongoCola
             // CreateMongoCollectionToolStripMenuItem
             // 
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
-            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.CreateMongoCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddCollection";
             this.CreateMongoCollectionToolStripMenuItem.Text = "New Collection";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
@@ -498,7 +499,7 @@ namespace MongoCola
             // CreateViewtoolStripMenuItem
             // 
             this.CreateViewtoolStripMenuItem.Name = "CreateViewtoolStripMenuItem";
-            this.CreateViewtoolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.CreateViewtoolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.CreateViewtoolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddView";
             this.CreateViewtoolStripMenuItem.Text = "New View";
             this.CreateViewtoolStripMenuItem.Click += new System.EventHandler(this.CreateViewtoolStripMenuItem_Click);
@@ -506,7 +507,7 @@ namespace MongoCola
             // CopyDatabasetoolStripMenuItem
             // 
             this.CopyDatabasetoolStripMenuItem.Name = "CopyDatabasetoolStripMenuItem";
-            this.CopyDatabasetoolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.CopyDatabasetoolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.CopyDatabasetoolStripMenuItem.Tag = "Main_Menu_Operation_Database_CopyDB";
             this.CopyDatabasetoolStripMenuItem.Text = "Copy Database";
             this.CopyDatabasetoolStripMenuItem.Click += new System.EventHandler(this.CopyDatabasetoolStripMenuItem_Click);
@@ -514,7 +515,7 @@ namespace MongoCola
             // DelMongoDBToolStripMenuItem
             // 
             this.DelMongoDBToolStripMenuItem.Name = "DelMongoDBToolStripMenuItem";
-            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.DelMongoDBToolStripMenuItem.Tag = "Main_Menu_Operation_Database_DelDB";
             this.DelMongoDBToolStripMenuItem.Text = "Del Database";
             this.DelMongoDBToolStripMenuItem.Click += new System.EventHandler(this.DelMongoDBToolStripMenuItem_Click);
@@ -522,12 +523,12 @@ namespace MongoCola
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(175, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(192, 6);
             // 
             // AddUserToolStripMenuItem
             // 
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
-            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.AddUserToolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddUser";
             this.AddUserToolStripMenuItem.Text = "Add User";
             this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
@@ -535,27 +536,27 @@ namespace MongoCola
             // AddDBCustomeRoleStripMenuItem
             // 
             this.AddDBCustomeRoleStripMenuItem.Name = "AddDBCustomeRoleStripMenuItem";
-            this.AddDBCustomeRoleStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.AddDBCustomeRoleStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.AddDBCustomeRoleStripMenuItem.Text = "Add Custom Role";
             this.AddDBCustomeRoleStripMenuItem.Click += new System.EventHandler(this.AddDBCustomeRoleStripMenuItem_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(175, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(192, 6);
             // 
             // EvalJSToolStripMenuItem
             // 
             this.EvalJSToolStripMenuItem.Name = "EvalJSToolStripMenuItem";
-            this.EvalJSToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.EvalJSToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.EvalJSToolStripMenuItem.Tag = "Main_Menu_Operation_Database_EvalJs";
-            this.EvalJSToolStripMenuItem.Text = "Eval Javascript";
+            this.EvalJSToolStripMenuItem.Text = "Eval Javascript(Shell)";
             this.EvalJSToolStripMenuItem.Click += new System.EventHandler(this.evalJSToolStripMenuItem_Click);
             // 
             // creatJavaScriptToolStripMenuItem
             // 
             this.creatJavaScriptToolStripMenuItem.Name = "creatJavaScriptToolStripMenuItem";
-            this.creatJavaScriptToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.creatJavaScriptToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.creatJavaScriptToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_CreateJavaScript";
             this.creatJavaScriptToolStripMenuItem.Text = "Creat JavaScript";
             this.creatJavaScriptToolStripMenuItem.Click += new System.EventHandler(this.creatJavaScriptToolStripMenuItem_Click);
@@ -563,12 +564,12 @@ namespace MongoCola
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
             // 
             // RepairDBToolStripMenuItem
             // 
             this.RepairDBToolStripMenuItem.Name = "RepairDBToolStripMenuItem";
-            this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.RepairDBToolStripMenuItem.Tag = "Main_Menu_Operation_Database_RepairDatabase";
             this.RepairDBToolStripMenuItem.Text = "Repair Database";
             this.RepairDBToolStripMenuItem.Click += new System.EventHandler(this.RepairDBToolStripMenuItem_Click);
@@ -576,14 +577,14 @@ namespace MongoCola
             // InitGFSToolStripMenuItem
             // 
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.InitGFSToolStripMenuItem.Tag = "Main_Menu_Operation_FileSystem_InitGFS";
             this.InitGFSToolStripMenuItem.Text = "Init GFS";
             // 
             // ProfillingLevelToolStripMenuItem
             // 
             this.ProfillingLevelToolStripMenuItem.Name = "ProfillingLevelToolStripMenuItem";
-            this.ProfillingLevelToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.ProfillingLevelToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.ProfillingLevelToolStripMenuItem.Tag = "Main_Menu_Operation_ProfillingLevel";
             this.ProfillingLevelToolStripMenuItem.Text = "Profilling Level";
             this.ProfillingLevelToolStripMenuItem.Click += new System.EventHandler(this.profillingLevelToolStripMenuItem_Click);
@@ -591,7 +592,7 @@ namespace MongoCola
             // DBStatusToolStripMenuItem
             // 
             this.DBStatusToolStripMenuItem.Name = "DBStatusToolStripMenuItem";
-            this.DBStatusToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.DBStatusToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.DBStatusToolStripMenuItem.Tag = "Main_Menu_Mangt_Status";
             this.DBStatusToolStripMenuItem.Text = "Status";
             this.DBStatusToolStripMenuItem.Click += new System.EventHandler(this.DBStatusToolStripMenuItem_Click);
@@ -880,6 +881,7 @@ namespace MongoCola
             this.ThanksToolStripMenuItem,
             this.UserGuideToolStripMenuItem,
             this.toolStripSeparator2,
+            this.CheckUpdatetoolStripMenuItem,
             this.AboutToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
             this.HelpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
@@ -1003,6 +1005,13 @@ namespace MongoCola
             this.splitter1.Size = new System.Drawing.Size(3, 674);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
+            // 
+            // CheckUpdatetoolStripMenuItem
+            // 
+            this.CheckUpdatetoolStripMenuItem.Name = "CheckUpdatetoolStripMenuItem";
+            this.CheckUpdatetoolStripMenuItem.Size = new System.Drawing.Size(361, 22);
+            this.CheckUpdatetoolStripMenuItem.Text = "Check Update";
+            this.CheckUpdatetoolStripMenuItem.Click += new System.EventHandler(this.CheckUpdatetoolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -1148,6 +1157,7 @@ namespace MongoCola
         private ToolStripMenuItem AggregationReference;
         private ToolStripMenuItem geoNearToolStripMenuItem;
         private ToolStripMenuItem ServerMonitorToolStripMenuItem;
+        private ToolStripMenuItem CheckUpdatetoolStripMenuItem;
     }
 }
 

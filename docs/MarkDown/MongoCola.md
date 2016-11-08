@@ -6,7 +6,7 @@
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
 * 版本号：Ver 2.0.5
-* 文档最后更新时间：2016-11-04 11:12:05 星期五
+* 文档最后更新时间：2016-11-08
 
 ## 开发和测试环境
 ### 操作系统：
@@ -53,17 +53,22 @@ CSharp Mongo Driver 2.4.0-beta1
 
 我们尝试建立一个新的数据库连接，来管理在本地端口28030运行的数据库
 
-![](/FileSystem/Thumbnail?filename=00000001_20161101155910_NewConnectiong.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161108144631_NewConnection.png)
+
+注意：请不要在连接名称中放入 冒号： 字符
 
 新建之后勾选数据连接之前的复选框，按下确定按钮即可。
 
-![](/FileSystem/Thumbnail?filename=00000001_20161101160117_ConnectionList1.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161108144752_ConnectionList.png)
 
+你可以使用工具栏按钮将连接转为MongoUri连接字符串。也可以通过工具栏按钮通过MongoUri快速建立连接。
+
+###使用三种视图查看数据
 主界面如图所示：左边是数据库结构展示区，右边是数据展示区：
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161101160732_MainGUI.png)
 
-###使用三种视图查看数据
+
 - 树形视图（TreeView）
 树形视图便于查看数据的阶层构造。
 注意：如果是ObjectId类型数据，系统将会展示ObjectId的详细信息：

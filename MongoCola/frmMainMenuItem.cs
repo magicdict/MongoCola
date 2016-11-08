@@ -1064,7 +1064,15 @@ namespace MongoCola
         {
             Process.Start("http://www.codesnippet.info/Article/Index?ArticleId=00000062");
         }
-
+        /// <summary>
+        ///     Check Update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckUpdatetoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/magicdict/MongoCola/releases");
+        }
         #endregion
     }
 }

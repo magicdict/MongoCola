@@ -44,6 +44,8 @@ namespace FunctionForm.Connection
             this.cmdAddCon = new System.Windows.Forms.ToolStripButton();
             this.cmdModifyCon = new System.Windows.Forms.ToolStripButton();
             this.cmdDelCon = new System.Windows.Forms.ToolStripButton();
+            this.cmdToUrlString = new System.Windows.Forms.ToolStripButton();
+            this.cmdFromUriString = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,7 +126,9 @@ namespace FunctionForm.Connection
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdAddCon,
             this.cmdModifyCon,
-            this.cmdDelCon});
+            this.cmdDelCon,
+            this.cmdToUrlString,
+            this.cmdFromUriString});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(549, 25);
@@ -163,6 +167,26 @@ namespace FunctionForm.Connection
             this.cmdDelCon.Tag = "Connect_Action_Del";
             this.cmdDelCon.Text = "Drop";
             this.cmdDelCon.Click += new System.EventHandler(this.cmdDelCon_Click);
+            // 
+            // cmdToUrlString
+            // 
+            this.cmdToUrlString.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cmdToUrlString.Image = ((System.Drawing.Image)(resources.GetObject("cmdToUrlString.Image")));
+            this.cmdToUrlString.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdToUrlString.Name = "cmdToUrlString";
+            this.cmdToUrlString.Size = new System.Drawing.Size(23, 22);
+            this.cmdToUrlString.Text = "ToUri";
+            this.cmdToUrlString.Click += new System.EventHandler(this.cmdToUrlString_Click);
+            // 
+            // cmdFromUriString
+            // 
+            this.cmdFromUriString.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cmdFromUriString.Image = ((System.Drawing.Image)(resources.GetObject("cmdFromUriString.Image")));
+            this.cmdFromUriString.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdFromUriString.Name = "cmdFromUriString";
+            this.cmdFromUriString.Size = new System.Drawing.Size(23, 22);
+            this.cmdFromUriString.Text = "FromUri";
+            this.cmdFromUriString.Click += new System.EventHandler(this.cmdFromUriString_Click);
             // 
             // FrmConnect
             // 
@@ -203,5 +227,7 @@ namespace FunctionForm.Connection
         private ToolStripButton cmdAddCon;
         private ToolStripButton cmdModifyCon;
         private ToolStripButton cmdDelCon;
+        private ToolStripButton cmdToUrlString;
+        private ToolStripButton cmdFromUriString;
     }
 }

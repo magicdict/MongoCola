@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using MongoUtility.Basic;
+using MongoDB.Driver;
 
 namespace MongoUtility.Core
 {
@@ -52,8 +53,9 @@ namespace MongoUtility.Core
         #region Advance
 
         /// <summary>
-        ///     存储引擎
+        ///     存储引擎(服务器固有属性)
         /// </summary>
+        [XmlIgnore]
         public EnumMgr.StorageEngineType StorageEngine;
 
         /// <summary>
@@ -248,8 +250,6 @@ namespace MongoUtility.Core
         /// </summary>
         /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
         public double WtimeoutMs;
-
-
 
         #endregion
     }

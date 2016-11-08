@@ -92,8 +92,18 @@ namespace FunctionForm.Connection
         /// <param name="e"></param>
         private void cmdAdd_Click(object sender, EventArgs e)
         {
-            CreateConnection();
             var newCollectionName = txtConnectionName.Text;
+            if (string.IsNullOrEmpty(newCollectionName))
+            {
+                MyMessageBox.ShowMessage("Connection", "Please Input ConnectionName");
+                return;
+            }
+            if (newCollectionName.Contains(":"))
+            {
+                MyMessageBox.ShowMessage("Connection", "Please Remove : from ConnectionName");
+                return;
+            }
+            if (!CreateConnection()) return;
             if (OldConnectionName != string.Empty)
             {
                 //如果有旧名称，说明是修改模式
@@ -129,7 +139,7 @@ namespace FunctionForm.Connection
         /// <param name="e"></param>
         private void cmdTest_Click(object sender, EventArgs e)
         {
-            CreateConnection();
+            if (!CreateConnection()) return;
             try
             {
                 var srv = RuntimeMongoDbContext.CreateMongoServer(ref ModifyConn);
@@ -179,7 +189,7 @@ namespace FunctionForm.Connection
         /// <summary>
         ///     新建连接
         /// </summary>
-        private void CreateConnection()
+        private bool CreateConnection()
         {
             //更新数据模型
             UiBinding.TryUpdateModel(ModifyConn, Controls);
@@ -194,6 +204,7 @@ namespace FunctionForm.Connection
                 if (strException != string.Empty)
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);
+                    return false;
                 }
             }
             else
@@ -202,12 +213,12 @@ namespace FunctionForm.Connection
                 if (txtUsername.Text != string.Empty && txtPassword.Text == string.Empty)
                 {
                     MessageBox.Show("Please Input Password");
-                    return;
+                    return false;
                 }
                 if (txtUsername.Text == string.Empty && txtPassword.Text != string.Empty)
                 {
                     MessageBox.Show("Please Input UserName");
-                    return;
+                    return false;
                 }
                 //数据库名称存在，则必须输入用户名和密码
                 if (txtDataBaseName.Text != string.Empty)
@@ -216,7 +227,7 @@ namespace FunctionForm.Connection
                     if (txtUsername.Text == string.Empty || txtPassword.Text == string.Empty)
                     {
                         MessageBox.Show("Please Input UserName or Password");
-                        return;
+                        return false;
                     }
                 }
                 if (ModifyConn.IsUseDefaultSetting)
@@ -240,6 +251,7 @@ namespace FunctionForm.Connection
                     ModifyConn.ReplsetList.Add(item);
                 }
             }
+            return true;
         }
 
         /// <summary>

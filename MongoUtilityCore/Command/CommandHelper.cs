@@ -336,6 +336,7 @@ namespace MongoUtility.Command
             {
                 if (mongoSvr.DatabaseExists(ConstMgr.DatabaseNameAdmin))
                 {
+                    //Repl的时候，会发生超时问题
                     mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mCommandDocument);
                 }
                 else

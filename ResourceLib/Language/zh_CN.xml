@@ -37,7 +37,7 @@
   <Main_Menu_Operation_Database_DelDB>删除数据库</Main_Menu_Operation_Database_DelDB>
   <Main_Menu_Operation_Database_AddUser>添加用户</Main_Menu_Operation_Database_AddUser>
   <Main_Menu_Operation_Database_DelUser>删除用户</Main_Menu_Operation_Database_DelUser>
-  <Main_Menu_Operation_Database_EvalJs>实行JavaScript</Main_Menu_Operation_Database_EvalJs>
+  <Main_Menu_Operation_Database_EvalJs>执行JavaScript(Shell)</Main_Menu_Operation_Database_EvalJs>
   <Main_Menu_Operation_Database_RepairDatabase>修复数据库</Main_Menu_Operation_Database_RepairDatabase>
   <Main_Menu_Operation_ProfillingLevel>日志等级</Main_Menu_Operation_ProfillingLevel>
 
@@ -381,6 +381,7 @@
 
   <Common_Preview>预览</Common_Preview>
   <Common_Run>运行</Common_Run>
+    <Common_Result>结果</Common_Result>
 
   <Common_Longitude>经度</Common_Longitude>
   <Common_Latitude>纬度</Common_Latitude>

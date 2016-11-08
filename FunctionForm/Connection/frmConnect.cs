@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using Common;
 using MongoUtility.Core;
 using ResourceLib.Method;
+using MongoUtility.ToolKit;
+using ResourceLib.UI;
 
 namespace FunctionForm.Connection
 {
@@ -123,6 +125,44 @@ namespace FunctionForm.Connection
         }
 
         /// <summary>
+        ///     选中的连接转为URL
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdToUrlString_Click(object sender, EventArgs e)
+        {
+            if (lstConnection.CheckedItems.Count == 0) return;
+            var uri = string.Empty;
+            foreach (ListViewItem item in lstConnection.CheckedItems)
+            {
+                var config = MongoConnectionConfig.MongoConfig.ConnectionList[item.Text];
+                uri += config.ToUri() + System.Environment.NewLine;
+            }
+            MyMessageBox.ShowMessage("URI", "Uri Connectiong String:", uri);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdFromUriString_Click(object sender, EventArgs e)
+        {
+            var uri = MyMessageBox.ShowInput("MongoConnectionUri", "Uri");
+            MongoConnectionConfig ModifyConn = new MongoConnectionConfig();
+            ModifyConn.ConnectionString = uri;
+            var strException = MongoHelper.FillConfigWithConnectionString(ref ModifyConn);
+            if (strException != string.Empty)
+            {
+                MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);
+                return;
+            }
+            //这里不能使用 ：，会出现问题
+            var ConnectionName = ModifyConn.Host + "_" + ModifyConn.Port;
+            ModifyConn.ConnectionName = ConnectionName;
+            MongoConnectionConfig.MongoConfig.ConnectionList.Add(ConnectionName, ModifyConn);
+            RefreshConnection();
+        }
+        /// <summary>
         ///     关闭
         /// </summary>
         /// <param name="sender"></param>
@@ -131,5 +171,7 @@ namespace FunctionForm.Connection
         {
             Close();
         }
+
+
     }
 }

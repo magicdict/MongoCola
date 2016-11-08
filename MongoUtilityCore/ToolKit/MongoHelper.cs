@@ -79,6 +79,17 @@ namespace MongoUtility.ToolKit
         }
 
         /// <summary>
+        ///     获得MongoUri
+        /// </summary>
+        /// <returns></returns>
+        public static string ToUri(this MongoConnectionConfig config)
+        {
+            var uri = string.Empty;
+            uri = "mongodb://" + config.Host + ":" + config.Port;
+            return uri;
+        }
+
+        /// <summary>
         ///     get current Server Information
         /// </summary>
         /// <returns></returns>
@@ -87,7 +98,7 @@ namespace MongoUtility.ToolKit
             var mongosvr = RuntimeMongoDbContext.GetCurrentServer();
             var Description = mongosvr.Instance;
             var DescriptionDoc = new BsonDocument();
-            DescriptionDoc.Add(new BsonElement(nameof(Description.IsArbiter),Description.IsArbiter));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.IsArbiter), Description.IsArbiter));
             DescriptionDoc.Add(new BsonElement(nameof(Description.IsPrimary), Description.IsPrimary));
             DescriptionDoc.Add(new BsonElement(nameof(Description.IsSecondary), Description.IsSecondary));
             DescriptionDoc.Add(new BsonElement(nameof(Description.Address), Description.Address.ToString()));
@@ -118,7 +129,7 @@ namespace MongoUtility.ToolKit
                 config.Host = mongourl.Server.Host;
                 config.Port = mongourl.Server.Port;
 
-                config.ReadPreference = mongourl.ReadPreference.ToString();
+                if (mongourl.ReadPreference != null) config.ReadPreference = mongourl.ReadPreference.ToString();
                 config.WriteConcern = mongourl.GetWriteConcern(true).ToString();
                 config.WaitQueueSize = mongourl.WaitQueueSize;
                 config.WtimeoutMs = (int)mongourl.WaitQueueTimeout.TotalMilliseconds;
@@ -127,9 +138,13 @@ namespace MongoUtility.ToolKit
                 config.SocketTimeoutMs = (int)mongourl.SocketTimeout.TotalMilliseconds;
                 config.ConnectTimeoutMs = (int)mongourl.ConnectTimeout.TotalMilliseconds;
                 config.ReplSetName = mongourl.ReplicaSetName;
-                foreach (var item in mongourl.Servers)
+                config.ReplsetList = new List<string>();
+                if (!string.IsNullOrEmpty(config.ReplSetName))
                 {
-                    config.ReplsetList.Add(item.Host + (item.Port == 0 ? string.Empty : ":" + item.Port));
+                    foreach (var item in mongourl.Servers)
+                    {
+                        config.ReplsetList.Add(item.Host + (item.Port == 0 ? string.Empty : ":" + item.Port));
+                    }
                 }
                 return string.Empty;
             }
