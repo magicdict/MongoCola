@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using MongoUtility.Basic;
-using MongoDB.Driver;
 
 namespace MongoUtility.Core
 {

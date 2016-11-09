@@ -3,10 +3,10 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.0": {
-      "BundlerMinifier.Core/2.2.296": {
+      "BundlerMinifier.Core/2.2.301": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.App": "1.1.0-preview1-001100-00",
+          "Microsoft.NETCore.App": "1.0.0",
           "NUglify": "1.5.1",
           "Newtonsoft.Json": "9.0.1"
         },
@@ -3995,10 +3995,10 @@
       }
     },
     ".NETCoreApp,Version=v1.0/win7-x64": {
-      "BundlerMinifier.Core/2.2.296": {
+      "BundlerMinifier.Core/2.2.301": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.App": "1.1.0-preview1-001100-00",
+          "Microsoft.NETCore.App": "1.0.0",
           "NUglify": "1.5.1",
           "Newtonsoft.Json": "9.0.1"
         },
@@ -8286,12 +8286,12 @@
     }
   },
   "libraries": {
-    "BundlerMinifier.Core/2.2.296": {
-      "sha512": "0tzTk9PaLqPFp4bwG/HbMC8y6cY7iNt07dM/T9eeVDi6u2XVAkCjTW78/oInhdM95/KGj6zi2w5dJzYHmg3ZrQ==",
+    "BundlerMinifier.Core/2.2.301": {
+      "sha512": "7vWVrVzO8a9NbdJN/ydYl3pjdt7+VTyGqO5ot2NKi7PGwCQt/H1Jckz0q131y8JbOmdXk/MYvN5U4UFhXUWxOw==",
       "type": "package",
-      "path": "BundlerMinifier.Core/2.2.296",
+      "path": "BundlerMinifier.Core/2.2.301",
       "files": [
-        "BundlerMinifier.Core.2.2.296.nupkg.sha512",
+        "BundlerMinifier.Core.2.2.301.nupkg.sha512",
         "BundlerMinifier.Core.nuspec",
         "lib/net452/dotnet-bundle.exe",
         "lib/netcoreapp1.0/dotnet-bundle.dll",
@@ -15506,7 +15506,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "BundlerMinifier.Core >= 2.2.296",
+      "BundlerMinifier.Core >= 2.2.301",
       "Microsoft.AspNetCore.Diagnostics >= 1.1.0-preview1-final",
       "Microsoft.AspNetCore.Mvc >= 1.1.0-preview1-final",
       "Microsoft.AspNetCore.Razor.Tools >= 1.0.0-preview3-final",

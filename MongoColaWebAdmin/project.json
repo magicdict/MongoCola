@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "MongoUtilityCore": "1.0.0-*",
-    "BundlerMinifier.Core": "2.2.296",
+    "BundlerMinifier.Core": "2.2.301",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0-preview1-final",
     "Microsoft.AspNetCore.Mvc": "1.1.0-preview1-final",
     "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview3-final",

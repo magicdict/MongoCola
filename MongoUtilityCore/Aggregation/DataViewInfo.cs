@@ -118,12 +118,10 @@ namespace MongoUtility.Aggregation
         public static List<BsonDocument> GetDataList(ref DataViewInfo currentDataViewInfo, MongoServer mServer)
         {
             var collectionPath = currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[1];
-            var cp = collectionPath.Split("/".ToCharArray());
-            MongoCollection mongoCol =
-                mServer.GetDatabase(cp[(int)EnumMgr.PathLevel.Database])
-                    .GetCollection(cp[(int)EnumMgr.PathLevel.CollectionAndView]);
-
-
+            var CurrentPath = collectionPath.Split("/".ToCharArray());
+            MongoCollection mongoCol = mServer.GetDatabase(CurrentPath[(int)EnumMgr.PathLevel.Database]).GetCollection(CurrentPath[(int)EnumMgr.PathLevel.CollectionAndView]);
+            //由于Tab页的关系，这里当前数据集并非DataViewInfo的数据集，所以不能写成下面这个样子
+            //var mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
             MongoCursor<BsonDocument> cursor;
             //Query condition:
             //View 不使用自定义过滤器
