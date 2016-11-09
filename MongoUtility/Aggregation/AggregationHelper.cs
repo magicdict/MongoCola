@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using System.Linq;
+
 namespace MongoUtility.Aggregation
 {
     public static class AggregationHelper
@@ -31,40 +32,68 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///     group aggregation function
+        ///     PipelineStages
+        /// </summary>
+        /// <returns></returns>
+        public static string[] PipelineStages()
+        {
+            return new[]{
+                "$project",
+                "$match",
+                "$redact",
+                "$limit",
+                "$skip",
+                "$unwind",
+                "$group",
+                "$sample",
+                "$sort",
+                "$geoNear",
+                "$lookup",
+                "$out",
+                "$indexStats",
+                "$sortByCount",
+                "$addFields"
+            };
+        }
+
+        /// <summary>
+        ///     Group function
+        ///     https://docs.mongodb.com/master/reference/operator/aggregation-group/
         /// </summary>
         /// <returns></returns>
         public static string[] GetGroupfunction()
         {
             return new[]
             {
-                "$addToSet",
+                "$sum",
+                "$avg",
                 "$first",
                 "$last",
                 "$max",
                 "$min",
-                "$avg",
                 "$push",
-                "$sum"
+                "$addToSet",
+                "$stdDevPop",
+                "$stdDevSamp"
             };
         }
 
         /// <summary>
-        ///     group aggregation function
+        ///     Comparison function
+        ///     https://docs.mongodb.com/master/reference/operator/aggregation-comparison/
         /// </summary>
         /// <returns></returns>
         public static string[] GetComparisonfunction()
         {
             return new[]
             {
-                "$all",
+                "$cmp",
+                "$eq",
                 "$gt",
                 "$gte",
-                "$in",
                 "$lt",
                 "$lte",
-                "$ne",
-                "$nin"
+                "$ne"
             };
         }
     }

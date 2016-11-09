@@ -59,7 +59,7 @@ namespace MongoGUIView
 
         protected void lstData_MouseClick(object sender, MouseEventArgs e)
         {
-            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.strCollectionPath;
             if (lstData.SelectedItems.Count > 0)
             {
                 if (e.Button == MouseButtons.Right)

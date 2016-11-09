@@ -38,7 +38,6 @@ namespace MongoGUICtl.Aggregation
         /// </summary>
         private bool _mIdProtectMode;
 
-        private FieldMode _mMode;
 
         public CtlFieldInfo()
         {
@@ -70,8 +69,7 @@ namespace MongoGUICtl.Aggregation
         {
             set
             {
-                _mMode = value;
-                switch (_mMode)
+                switch (value)
                 {
                     case FieldMode.Field:
                         chkIsShow.Visible = true;
@@ -103,7 +101,6 @@ namespace MongoGUICtl.Aggregation
                         break;
                 }
             }
-            get { return _mMode; }
         }
 
         /// <summary>
@@ -198,7 +195,7 @@ namespace MongoGUICtl.Aggregation
                 {
                     rtnQueryFieldItem.SortType = DataFilter.SortType.Descending;
                 }
-                rtnQueryFieldItem.SortOrder = (int) NumIndexOrder.Value;
+                rtnQueryFieldItem.SortOrder = (int)NumIndexOrder.Value;
                 return rtnQueryFieldItem;
             }
         }

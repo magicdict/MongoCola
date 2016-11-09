@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
-using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using MongoUtility.EventArgs;
 
 namespace MongoUtility.Command
 {
@@ -15,385 +11,11 @@ namespace MongoUtility.Command
     /// 有些RepairDatabase 这样的函数可以简单的执行
     /// <summary>
     /// </summary>
-    public static class CommandHelper
+    public static partial class CommandHelper
     {
-        /// <summary>
-        ///     Command Complete Event
-        /// </summary>
-        public static EventHandler<RunCommandEventArgs> RunCommandComplete;
-
-        #region"DataBase Command"
-
-        /// 数据库命令 http://www.mongodb.org/display/DOCS/List+of+Database+Commands
-        /// <summary>
-        ///     修复数据库
-        ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
-        /// </summary>
-        public static MongoCommand RepairDatabaseCommand = new MongoCommand("repairDatabase", EnumMgr.PathLevel.Database);
-
-        #endregion
-
         //查看命令方法：http://localhost:29018/_commands
         //假设28018为端口号，同时使用 --rest 选项
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
-
-        /// <summary>
-        ///     Command Complete
-        /// </summary>
-        /// <param name="e"></param>
-        public static void OnCommandRunComplete(RunCommandEventArgs e)
-        {
-            e.Raise(null, ref RunCommandComplete);
-        }
-
-        /// <summary>
-        ///     当前对象的MONGO命令
-        /// </summary>
-        /// <param name="mMongoCommand">命令对象</param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoCommand(MongoCommand mMongoCommand)
-        {
-            var resultCommandList = new List<CommandResult>();
-
-            var mCommandResult = new CommandResult(new BsonDocument());
-            try
-            {
-                switch (mMongoCommand.RunLevel)
-                {
-                    case EnumMgr.PathLevel.Collection:
-                        if (string.IsNullOrEmpty(mMongoCommand.CommandString))
-                        {
-                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.CmdDocument,
-                                RuntimeMongoDbContext.GetCurrentCollection());
-                        }
-                        else
-                        {
-                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString,
-                                RuntimeMongoDbContext.GetCurrentCollection());
-                        }
-                        break;
-                    case EnumMgr.PathLevel.Database:
-                        mCommandResult = ExecuteMongoDBCommand(mMongoCommand.CmdDocument,
-                            RuntimeMongoDbContext.GetCurrentDataBase());
-                        break;
-                    case EnumMgr.PathLevel.Instance:
-                        mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.CmdDocument,
-                            RuntimeMongoDbContext.GetCurrentServer());
-                        break;
-                }
-                resultCommandList.Add(mCommandResult);
-            }
-            catch (IOException ex)
-            {
-                Utility.ExceptionDeal(ex, mMongoCommand.CommandString,
-                    "IOException,Try to set Socket TimeOut more long at connection config");
-            }
-            catch (Exception ex)
-            {
-                Utility.ExceptionDeal(ex, mMongoCommand.CommandString);
-            }
-
-            return mCommandResult;
-        }
-
-        /// <summary>
-        ///     执行数据集命令
-        /// </summary>
-        /// <param name="commandString"></param>
-        /// <param name="mongoCol"></param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoColCommand(string commandString, MongoCollection mongoCol)
-        {
-            CommandResult mCommandResult;
-            var baseCommand = new BsonDocument {{commandString, mongoCol.Name}};
-            var mongoCmd = new CommandDocument();
-            mongoCmd.AddRange(baseCommand);
-            try
-            {
-                mCommandResult = mongoCol.Database.RunCommand(mongoCmd);
-            }
-            catch (MongoCommandException ex)
-            {
-                mCommandResult = new CommandResult(ex.Result);
-            }
-            var e = new RunCommandEventArgs
-            {
-                CommandString = commandString,
-                RunLevel = EnumMgr.PathLevel.Collection,
-                Result = mCommandResult
-            };
-            OnCommandRunComplete(e);
-            return mCommandResult;
-        }
-
-        /// <summary>
-        ///     数据集命令
-        /// </summary>
-        /// <param name="command">命令关键字</param>
-        /// <param name="mongoCol">数据集</param>
-        /// <param name="extendInfo">命令参数</param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoColCommand(string command, MongoCollection mongoCol,
-            BsonDocument extendInfo)
-        {
-            var executeCommand = new CommandDocument
-            {
-                {command, mongoCol.Name}
-            };
-            foreach (var item in extendInfo.Elements)
-            {
-                executeCommand.Add(item);
-            }
-            var mCommandResult = mongoCol.Database.RunCommand(executeCommand);
-            var e = new RunCommandEventArgs
-            {
-                CommandString = executeCommand.ToString(),
-                RunLevel = EnumMgr.PathLevel.Collection,
-                Result = mCommandResult
-            };
-            OnCommandRunComplete(e);
-            return mCommandResult;
-        }
-
-        /// <summary>
-        ///     执行数据集命令
-        /// </summary>
-        /// <param name="cmdDoc"></param>
-        /// <param name="mongoCol"></param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoColCommand(CommandDocument cmdDoc, MongoCollection mongoCol)
-        {
-            CommandResult mCommandResult;
-            try
-            {
-                mCommandResult = mongoCol.Database.RunCommand(cmdDoc);
-            }
-            catch (MongoCommandException ex)
-            {
-                mCommandResult = new CommandResult(ex.Result);
-            }
-            var e = new RunCommandEventArgs
-            {
-                CommandString = cmdDoc.GetElement(0).Value.ToString(),
-                RunLevel = EnumMgr.PathLevel.Database,
-                Result = mCommandResult
-            };
-            OnCommandRunComplete(e);
-            return mCommandResult;
-        }
-
-        /// <summary>
-        ///     执行数据库命令
-        /// </summary>
-        /// <param name="mongoCmd"></param>
-        /// <param name="mongoDb"></param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(string mongoCmd, MongoDatabase mongoDb)
-        {
-            CommandResult mCommandResult;
-            try
-            {
-                mCommandResult = mongoDb.RunCommand(mongoCmd);
-            }
-            catch (MongoCommandException ex)
-            {
-                mCommandResult = new CommandResult(ex.Result);
-            }
-            var e = new RunCommandEventArgs
-            {
-                CommandString = mongoCmd,
-                RunLevel = EnumMgr.PathLevel.Database,
-                Result = mCommandResult
-            };
-            OnCommandRunComplete(e);
-            return mCommandResult;
-        }
-
-        /// <summary>
-        ///     执行数据库命令
-        /// </summary>
-        /// <param name="mongoCmd"></param>
-        /// <param name="mongoDb"></param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(CommandDocument mongoCmd, MongoDatabase mongoDb)
-        {
-            CommandResult mCommandResult;
-            try
-            {
-                mCommandResult = mongoDb.RunCommand(mongoCmd);
-            }
-            catch (MongoCommandException ex)
-            {
-                mCommandResult = new CommandResult(ex.Result);
-            }
-            var e = new RunCommandEventArgs
-            {
-                CommandString = mongoCmd.ToString(),
-                RunLevel = EnumMgr.PathLevel.Database,
-                Result = mCommandResult
-            };
-            OnCommandRunComplete(e);
-            return mCommandResult;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="mongoCmd"></param>
-        /// <param name="mongoDb"></param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(CommandDocument mongoCmd, IMongoDatabase mongoDb)
-        {
-            CommandResult mCommandResult = null;
-            try
-            {
-                var t = Task.Run(
-                    async () => { mCommandResult = await mongoDb.RunCommandAsync<CommandResult>(mongoCmd); }
-                    );
-                t.Wait();
-            }
-            catch (MongoCommandException ex)
-            {
-                mCommandResult = new CommandResult(ex.Result);
-            }
-            var e = new RunCommandEventArgs
-            {
-                CommandString = mongoCmd.ToString(),
-                RunLevel = EnumMgr.PathLevel.Database,
-                Result = mCommandResult
-            };
-            OnCommandRunComplete(e);
-            return mCommandResult;
-        }
-
-        /// <summary>
-        ///     在指定数据库执行指定命令
-        /// </summary>
-        /// <param name="mMongoCommand"></param>
-        /// <param name="mongoDb"></param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(MongoCommand mMongoCommand, MongoDatabase mongoDb)
-        {
-            var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
-            if (mMongoCommand.RunLevel == EnumMgr.PathLevel.Database)
-            {
-                return ExecuteMongoDBCommand(command, mongoDb);
-            }
-            throw new Exception();
-        }
-
-        /// <summary>
-        ///     执行MongoCommand
-        /// </summary>
-        /// <param name="mongoCmd">命令Command</param>
-        /// <param name="mongoSvr">目标服务器</param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoSvrCommand(string mongoCmd, MongoServer mongoSvr)
-        {
-            CommandResult mCommandResult;
-            try
-            {
-                mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mongoCmd);
-            }
-            catch (MongoCommandException ex)
-            {
-                mCommandResult = new CommandResult(ex.Result);
-            }
-            var e = new RunCommandEventArgs
-            {
-                CommandString = mongoCmd,
-                RunLevel = EnumMgr.PathLevel.Instance,
-                Result = mCommandResult
-            };
-            OnCommandRunComplete(e);
-            return mCommandResult;
-        }
-
-        /// <summary>
-        ///     执行MongoCommand
-        /// </summary>
-        /// <param name="mCommandDocument">命令Doc</param>
-        /// <param name="mongoSvr">目标服务器</param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoSvrCommand(CommandDocument mCommandDocument, MongoServer mongoSvr)
-        {
-            CommandResult mCommandResult;
-            try
-            {
-                mCommandResult = mongoSvr.GetDatabase(ConstMgr.DatabaseNameAdmin).RunCommand(mCommandDocument);
-            }
-            catch (MongoCommandException ex)
-            {
-                mCommandResult = new CommandResult(ex.Result);
-            }
-            var e = new RunCommandEventArgs
-            {
-                CommandString = mCommandDocument.ToString(),
-                RunLevel = EnumMgr.PathLevel.Instance,
-                Result = mCommandResult
-            };
-            OnCommandRunComplete(e);
-            return mCommandResult;
-        }
-
-        /// <summary>
-        ///     在指定服务器上执行指定命令
-        /// </summary>
-        /// <param name="mMongoCommand"></param>
-        /// <param name="mongosrv"></param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoSvrCommand(MongoCommand mMongoCommand, MongoServer mongosrv)
-        {
-            var command = new CommandDocument {{mMongoCommand.CommandString, 1}};
-            if (mMongoCommand.RunLevel == EnumMgr.PathLevel.Database)
-            {
-                throw new Exception();
-            }
-            return ExecuteMongoSvrCommand(command, mongosrv);
-        }
-
-        /// <summary>
-        ///     MONGO命令
-        /// </summary>
-        public struct MongoCommand
-        {
-            /// <summary>
-            /// </summary>
-            public CommandDocument CmdDocument;
-
-            /// <summary>
-            ///     命令文
-            /// </summary>
-            public string CommandString;
-
-            /// <summary>
-            ///     对象等级
-            /// </summary>
-            public EnumMgr.PathLevel RunLevel;
-
-            /// <summary>
-            ///     初始化
-            /// </summary>
-            /// <param name="commandString"></param>
-            /// <param name="runLevel"></param>
-            public MongoCommand(string commandString, EnumMgr.PathLevel runLevel)
-            {
-                CommandString = commandString;
-                RunLevel = runLevel;
-                CmdDocument = new CommandDocument {{commandString, 1}};
-            }
-
-            /// <summary>
-            ///     初始化
-            /// </summary>
-            /// <param name="commandDocument"></param>
-            /// <param name="runLevel"></param>
-            public MongoCommand(CommandDocument commandDocument, EnumMgr.PathLevel runLevel)
-            {
-                CmdDocument = commandDocument;
-                RunLevel = runLevel;
-                CommandString = string.Empty;
-            }
-        }
 
         #region"Shell Command"
 
@@ -449,7 +71,7 @@ namespace MongoUtility.Command
         ///     Compact
         /// </summary>
         /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command" />
-        public static MongoCommand CompactCommand = new MongoCommand("compact", EnumMgr.PathLevel.Collection);
+        public static MongoCommand CompactCommand = new MongoCommand("compact", EnumMgr.PathLevel.CollectionAndView);
 
         /// <summary>
         ///     执行聚合
@@ -460,21 +82,49 @@ namespace MongoUtility.Command
         public static CommandResult Aggregate(BsonArray aggregateDoc, string collectionName)
         {
             //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
-            try
-            {
-                var agg = new CommandDocument
+            var aggrCmd = new CommandDocument
                 {
                     new BsonElement("aggregate", new BsonString(collectionName)),
                     new BsonElement("pipeline", aggregateDoc)
                 };
-                var aggregateCommand = new MongoCommand(agg, EnumMgr.PathLevel.Database);
-                return ExecuteMongoCommand(aggregateCommand);
-            }
-            catch (Exception ex)
-            {
-                Utility.ExceptionDeal(ex);
-                return new CommandResult(new BsonDocument());
-            }
+            var aggregateCommand = new MongoCommand(aggrCmd, EnumMgr.PathLevel.Database);
+            return ExecuteMongoCommand(aggregateCommand);
+        }
+        /// <summary>
+        ///     执行聚合（指定路劲）
+        /// </summary>
+        /// <param name="aggregateDoc"></param>
+        /// <param name="databaseName"></param>
+        /// <param name="collectionName"></param>
+        /// <returns></returns>
+        public static CommandResult Aggregate(BsonArray aggregateDoc, string databaseName, string collectionName)
+        {
+            //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
+            var aggrCmd = new CommandDocument
+                {
+                    new BsonElement("aggregate", new BsonString(collectionName)),
+                    new BsonElement("pipeline", aggregateDoc)
+                };
+            var aggregateCommand = new MongoCommand(aggrCmd, EnumMgr.PathLevel.Database, databaseName);
+            return ExecuteMongoCommand(aggregateCommand);
+        }
+        /// <summary>
+        ///     执行Count（指定路劲）
+        /// </summary>
+        /// <param name="QueryDoc"></param>
+        /// <param name="databaseName"></param>
+        /// <param name="collectionName"></param>
+        /// <returns></returns>
+        public static CommandResult Count(BsonDocument QueryDoc, string databaseName, string collectionName)
+        {
+            //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
+            var aggrCmd = new CommandDocument
+                {
+                    new BsonElement("count", new BsonString(collectionName)),
+                    new BsonElement("query", QueryDoc)
+                };
+            var aggregateCommand = new MongoCommand(aggrCmd, EnumMgr.PathLevel.Database, databaseName);
+            return ExecuteMongoCommand(aggregateCommand);
         }
 
         #endregion
@@ -482,7 +132,8 @@ namespace MongoUtility.Command
         #region"Server Command"
 
         //Replica Set Commands
-        //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
+        //[OLD]http://www.mongodb.org/display/DOCS/Replica+Set+Commands
+        //[NEW]https://docs.mongodb.com/manual/reference/replication/
         //rs.help()                       show help
         //rs.status()                     { replSetGetStatus : 1 }
         //rs.initiate()                   { replSetInitiate : null } initiate
@@ -495,22 +146,23 @@ namespace MongoUtility.Command
         //rs.stepDown()                   { replSetStepDown : true }
         //rs.conf()                       return configuration from local.system.replset
         //db.isMaster()                   check who is primary
+
         /// <summary>
         ///     服务器状态
-        ///     http://www.mongodb.org/display/DOCS/serverStatus+Command
+        ///     [OLD]http://www.mongodb.org/display/DOCS/serverStatus+Command
+        ///     [NEW]https://docs.mongodb.com/manual/reference/command/serverStatus/
         /// </summary>
         public static MongoCommand ServerStatusCommand = new MongoCommand("serverStatus", EnumMgr.PathLevel.Instance);
 
-        //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// <summary>
         ///     副本状态
+        ///     http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// </summary>
-        public static MongoCommand ReplSetGetStatusCommand = new MongoCommand("replSetGetStatus",
-            EnumMgr.PathLevel.Instance);
+        public static MongoCommand ReplSetGetStatusCommand = new MongoCommand("replSetGetStatus", EnumMgr.PathLevel.Instance);
 
-        //http://www.mongodb.org/display/DOCS/Master+Slave
         /// <summary>
         ///     Slave强制同步
+        ///     http://www.mongodb.org/display/DOCS/Master+Slave
         /// </summary>
         public static MongoCommand ResyncCommand = new MongoCommand("resync", EnumMgr.PathLevel.Instance);
 
@@ -562,6 +214,7 @@ namespace MongoUtility.Command
             }
             catch (EndOfStreamException)
             {
+
             }
             return mCommandResult;
         }
@@ -582,6 +235,7 @@ namespace MongoUtility.Command
             }
             catch (EndOfStreamException)
             {
+
             }
             return cmdRtn;
         }
@@ -604,10 +258,10 @@ namespace MongoUtility.Command
                 cmdPara += item + ",";
             }
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
-            var mongoCmd = new CommandDocument {{"addshard", cmdPara}};
+            var mongoCmd = new CommandDocument { { "addshard", cmdPara } };
             if (maxSize != 0)
             {
-                mongoCmd.Add("maxSize", (BsonValue) maxSize);
+                mongoCmd.Add("maxSize", (BsonValue)maxSize);
             }
             if (name != string.Empty)
             {
@@ -626,17 +280,47 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult AddShardTag(MongoServer routeSvr, string shardName, string tagName)
         {
-            //mongos> sh.addShardTag
-            //function (shard, tag) {
-            //    var config = db.getSisterDB("config");
-            //    if (config.shards.findOne({_id:shard}) == null) {
-            //        throw "can't find a shard with name: " + shard;
-            //    }
-            //    config.shards.update({_id:shard}, {$addToSet:{tags:tag}});
-            //    sh._checkLastError(config);
-            //}
             return ExecuteJsShell("sh.addShardTag('" + shardName + "', '" + tagName + "')", routeSvr);
         }
+
+        /// <summary>
+        ///     AddShardToZone
+        /// </summary>
+        /// <param name="routeSvr">服务器</param>
+        /// <param name="shardName">Shard名称</param>
+        /// <param name="tagName">Tag名称</param>
+        /// <returns></returns>
+        public static CommandResult AddShardToZone(MongoServer routeSvr, string shardName, string zone)
+        {
+            return ExecuteJsShell("sh.addShardToZone('" + shardName + "', '" + zone + "')", routeSvr);
+        }
+
+        //mongos> sh.addShardTag
+        //function (shard, tag) {
+        //    var config = db.getSisterDB("config");
+        //    if (config.shards.findOne({_id:shard}) == null) {
+        //        throw "can't find a shard with name: " + shard;
+        //    }
+        //    config.shards.update({_id:shard}, {$addToSet:{tags:tag}});
+        //    sh._checkLastError(config);
+        //}
+        //mongos> sh.addTagRange
+        //function (ns, min, max, tag) {
+        //    var config = db.getSisterDB("config");
+        //    config.tags.update(
+        //                       {_id:{ns:ns, min:min}},
+        //                       {
+        //                             _id:{ns:ns, min:min},
+        //                             ns:ns,
+        //                             min:min,
+        //                             max:max, 
+        //                             tag:tag
+        //                       }, 
+        //                       true
+        //                       );
+        //    sh._checkLastError(config);
+        //}
+
 
         /// <summary>
         ///     AddTagRange
@@ -647,25 +331,8 @@ namespace MongoUtility.Command
         /// <param name="max">最大值</param>
         /// <param name="tag">标签</param>
         /// <returns></returns>
-        public static CommandResult AddTagRange(MongoServer routeSvr, string nameSpace, BsonValue min, BsonValue max,
-            string tag)
+        public static CommandResult AddTagRange(MongoServer routeSvr, string nameSpace, string FieldName, BsonValue min, BsonValue max, string tag)
         {
-            //mongos> sh.addTagRange
-            //function (ns, min, max, tag) {
-            //    var config = db.getSisterDB("config");
-            //    config.tags.update(
-            //                       {_id:{ns:ns, min:min}},
-            //                       {
-            //                             _id:{ns:ns, min:min},
-            //                             ns:ns,
-            //                             min:min,
-            //                             max:max, 
-            //                             tag:tag
-            //                       }, 
-            //                       true
-            //                       );
-            //    sh._checkLastError(config);
-            //}
             var maxValue = string.Empty;
             var minValue = string.Empty;
             if (min.IsString)
@@ -685,8 +352,17 @@ namespace MongoUtility.Command
             {
                 maxValue = max.ToString();
             }
-            return ExecuteJsShell(
-                "sh.addTagRange('" + nameSpace + "'," + minValue + "," + maxValue + ",'" + tag + "')", routeSvr);
+
+            var MinDoc = new BsonDocument();
+            var MaxDoc = new BsonDocument();
+
+            var MinEl = new BsonElement(FieldName, min);
+            var MaxEl = new BsonElement(FieldName, max);
+
+            MinDoc.Add(MinEl);
+            MaxDoc.Add(MaxEl);
+
+            return ExecuteJsShell("sh.addTagRange('" + nameSpace + "'," + MinDoc.ToString() + "},{" + MaxDoc.ToString() + "},'" + tag + "')", routeSvr);
         }
 
         /// <summary>
@@ -697,7 +373,7 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult RemoveSharding(MongoServer routeSvr, string shardName)
         {
-            var mongoCmd = new CommandDocument {{"removeshard", shardName}};
+            var mongoCmd = new CommandDocument { { "removeshard", shardName } };
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -710,7 +386,7 @@ namespace MongoUtility.Command
         public static CommandResult EnableSharding(MongoServer routeSvr, string shardingDb)
         {
             var mongoCmd = new CommandDocument();
-            mongoCmd = new CommandDocument {{"enablesharding", shardingDb}};
+            mongoCmd = new CommandDocument { { "enablesharding", shardingDb } };
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -724,7 +400,7 @@ namespace MongoUtility.Command
         public static CommandResult ShardCollection(MongoServer routeSvr, string sharingCollection,
             BsonDocument shardingKey)
         {
-            var mongoCmd = new CommandDocument {{"shardCollection", sharingCollection}, {"key", shardingKey}};
+            var mongoCmd = new CommandDocument { { "shardCollection", sharingCollection }, { "key", shardingKey } };
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
@@ -768,6 +444,17 @@ namespace MongoUtility.Command
             mongoCmd.AddRange(replSetInitiateCmd);
             return ExecuteMongoSvrCommand(mongoCmd, primarySvr);
         }
+
+        #endregion
+
+        #region"DataBase Command"
+
+        /// 数据库命令 http://www.mongodb.org/display/DOCS/List+of+Database+Commands
+        /// <summary>
+        ///     修复数据库
+        ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
+        /// </summary>
+        public static MongoCommand RepairDatabaseCommand = new MongoCommand("repairDatabase", EnumMgr.PathLevel.Database);
 
         #endregion
     }

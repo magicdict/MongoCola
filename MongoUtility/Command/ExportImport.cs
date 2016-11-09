@@ -63,9 +63,10 @@ namespace MongoUtility.Command
         /// <param name="settings"></param>
         private static void ExportToJson(List<BsonDocument> dataList, string filename, JsonWriterSettings settings)
         {
-            var sw = new StreamWriter(filename, false);
+            var file = new FileStream(filename, FileMode.Create);
+            var sw = new StreamWriter(file);
             sw.Write(dataList.ToJson(settings));
-            sw.Close();
+            sw.Flush();
         }
     }
 }

@@ -9,6 +9,12 @@ namespace MongoUtility.Command
 {
     public static partial class Operater
     {
+        /// <summary>
+        ///     初始化副本
+        /// </summary>
+        /// <param name="replSetName"></param>
+        /// <param name="strMessage"></param>
+        /// <returns></returns>
         public static bool InitReplicaSet(string replSetName, ref string strMessage)
         {
             var result = CommandHelper.InitReplicaSet(replSetName,
@@ -37,6 +43,7 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        ///     副本
         /// </summary>
         /// <param name="newConfig"></param>
         public static void ReplicaSet(MongoConnectionConfig newConfig)
@@ -68,6 +75,7 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        ///     同步
         /// </summary>
         public static void ResyncCommand()
         {
@@ -75,12 +83,18 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        ///     压缩
         /// </summary>
         public static void Compact()
         {
             CommandHelper.ExecuteMongoCommand(CommandHelper.CompactCommand);
         }
 
+        /// <summary>
+        ///     验证
+        /// </summary>
+        /// <param name="isFull"></param>
+        /// <returns></returns>
         public static BsonDocument Validate(bool isFull)
         {
             BsonDocument result;

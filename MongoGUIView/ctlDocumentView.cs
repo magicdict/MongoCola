@@ -214,7 +214,7 @@ namespace MongoGUIView
         {
             //InitControlsEnable();
             if (MDataViewInfo.IsView) return; //View是只读的
-            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.strCollectionPath;
             if (trvData.DatatreeView.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
@@ -268,7 +268,7 @@ namespace MongoGUIView
         {
             if (MDataViewInfo.IsView) return; //View是只读的
 
-            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.strCollectionPath;
             if (lstData.SelectedItems.Count > 0)
             {
                 if (e.Button == MouseButtons.Right)

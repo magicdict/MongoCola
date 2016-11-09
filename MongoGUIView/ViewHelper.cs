@@ -38,7 +38,7 @@ namespace MongoGUIView
         public static void FillDataToControl(List<BsonDocument> dataList, List<Control> controls,
             DataViewInfo currentDataViewInfo)
         {
-            var collectionPath = currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[1];
+            var collectionPath = currentDataViewInfo.strCollectionPath.Split(":".ToCharArray())[1];
             var cp = collectionPath.Split("/".ToCharArray());
             foreach (var control in controls)
             {
@@ -46,7 +46,7 @@ namespace MongoGUIView
                 {
                     if (
                         !(dataList.Count == 0 &&
-                          currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[0] == ConstMgr.CollectionTag))
+                          currentDataViewInfo.strCollectionPath.Split(":".ToCharArray())[0] == ConstMgr.CollectionTag))
                     {
                         //只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
                         FillDataToListView(cp[(int) EnumMgr.PathLevel.CollectionAndView], (ListView) control, dataList);

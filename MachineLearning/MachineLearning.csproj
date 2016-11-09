@@ -79,9 +79,6 @@
       <HintPath>..\packages\mongocsharpdriver.2.4.0-beta1\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MongoUtilityCore">
-      <HintPath>..\MongoUtilityCore\bin\Debug\net462\MongoUtilityCore.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -139,6 +136,10 @@
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
+      <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
+      <Name>MongoUtility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlugInPackage\PlugInPackage.csproj">
       <Project>{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}</Project>
       <Name>PlugInPackage</Name>

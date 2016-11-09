@@ -2,22 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.EventArgs;
-
-/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/5
- * Time: 15:47
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
 
 namespace MongoUtility.ToolKit
 {
@@ -34,13 +24,23 @@ namespace MongoUtility.ToolKit
         public static string MongoDbBsonVersion;
 
         /// <summary>
+        ///     驱动版本 MongoDB.Driver.Core.DLL
+        /// </summary>
+        public static string MongoDbDriverCoreVersion;
+
+        /// <summary>
+        ///     驱动版本 MongoDB.Driver.Legacy.DLL
+        /// </summary>
+        public static string MongoDbDriverLegacyVersion;
+
+        /// <summary>
         ///     JsonWriterSettings
         /// </summary>
         public static JsonWriterSettings JsonWriterSettings = new JsonWriterSettings
         {
             Indent = true,
             NewLineChars = Environment.NewLine,
-            OutputMode = JsonOutputMode.Strict
+            OutputMode = JsonOutputMode.Shell
         };
 
         /// <summary>
@@ -73,13 +73,39 @@ namespace MongoUtility.ToolKit
             rtnSvrInfo += "Address：" + mongosvr.Instance.Address + Environment.NewLine;
             if (mongosvr.Instance.BuildInfo != null)
             {
-                //Before mongo2.0.2 BuildInfo will be null
                 rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + Environment.NewLine;
-                //remove from mongodrvier 2.0.0
-                //rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + Environment.NewLine;
             }
             return rtnSvrInfo;
         }
+
+        /// <summary>
+        ///     获得MongoUri
+        /// </summary>
+        /// <returns></returns>
+        public static string ToUri(this MongoConnectionConfig config)
+        {
+            var uri = string.Empty;
+            uri = "mongodb://" + config.Host + ":" + config.Port;
+            return uri;
+        }
+
+        /// <summary>
+        ///     get current Server Information
+        /// </summary>
+        /// <returns></returns>
+        public static BsonDocument GetCurrentServerDescription()
+        {
+            var mongosvr = RuntimeMongoDbContext.GetCurrentServer();
+            var Description = mongosvr.Instance;
+            var DescriptionDoc = new BsonDocument();
+            DescriptionDoc.Add(new BsonElement(nameof(Description.IsArbiter), Description.IsArbiter));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.IsPrimary), Description.IsPrimary));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.IsSecondary), Description.IsSecondary));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.Address), Description.Address.ToString()));
+            DescriptionDoc.Add(new BsonElement(nameof(Description.BuildInfo.VersionString), Description.BuildInfo.VersionString));
+            return DescriptionDoc;
+        }
+
 
         /// <summary>
         ///     使用字符串连接来填充
@@ -103,18 +129,22 @@ namespace MongoUtility.ToolKit
                 config.Host = mongourl.Server.Host;
                 config.Port = mongourl.Server.Port;
 
-                config.ReadPreference = mongourl.ReadPreference.ToString();
+                if (mongourl.ReadPreference != null) config.ReadPreference = mongourl.ReadPreference.ToString();
                 config.WriteConcern = mongourl.GetWriteConcern(true).ToString();
                 config.WaitQueueSize = mongourl.WaitQueueSize;
-                config.WtimeoutMs = (int) mongourl.WaitQueueTimeout.TotalMilliseconds;
+                config.WtimeoutMs = (int)mongourl.WaitQueueTimeout.TotalMilliseconds;
                 config.IsUseDefaultSetting = false;
 
-                config.SocketTimeoutMs = (int) mongourl.SocketTimeout.TotalMilliseconds;
-                config.ConnectTimeoutMs = (int) mongourl.ConnectTimeout.TotalMilliseconds;
+                config.SocketTimeoutMs = (int)mongourl.SocketTimeout.TotalMilliseconds;
+                config.ConnectTimeoutMs = (int)mongourl.ConnectTimeout.TotalMilliseconds;
                 config.ReplSetName = mongourl.ReplicaSetName;
-                foreach (var item in mongourl.Servers)
+                config.ReplsetList = new List<string>();
+                if (!string.IsNullOrEmpty(config.ReplSetName))
                 {
-                    config.ReplsetList.Add(item.Host + (item.Port == 0 ? string.Empty : ":" + item.Port));
+                    foreach (var item in mongourl.Servers)
+                    {
+                        config.ReplsetList.Add(item.Host + (item.Port == 0 ? string.Empty : ":" + item.Port));
+                    }
                 }
                 return string.Empty;
             }
@@ -158,9 +188,10 @@ namespace MongoUtility.ToolKit
         /// <param name="result"></param>
         public static void SaveResultToJSonFile(BsonDocument result, string fileName)
         {
-            var writer = new StreamWriter(fileName, false);
+            var file = new FileStream(fileName, FileMode.Create);
+            var writer = new StreamWriter(file);
             writer.Write(result.ToJson(JsonWriterSettings));
-            writer.Close();
+            writer.Flush();
         }
 
         /// <summary>
@@ -264,9 +295,42 @@ namespace MongoUtility.ToolKit
         /// <returns></returns>
         public static string GetBsonSize(BsonValue size)
         {
-            return size.IsInt32
-                ? Utility.GetSize((int) size)
-                : Utility.GetSize((long) size);
+            return size.IsInt32 ? GetSize((int)size) : GetSize((long)size);
         }
+
+
+        /// <summary>
+        ///     Size的文字表达
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static string GetSize(long size)
+        {
+            string[] unit =
+            {
+                "Byte", "KB", "MB", "GB", "TB"
+            };
+            if (size == 0)
+            {
+                return "0 Byte";
+            }
+            byte unitOrder = 2;
+            var tempSize = size / Math.Pow(2, 20);
+            while (!(tempSize > 0.1 & tempSize < 1000))
+            {
+                if (tempSize < 0.1)
+                {
+                    tempSize = tempSize * 1024;
+                    unitOrder--;
+                }
+                else
+                {
+                    tempSize = tempSize / 1024;
+                    unitOrder++;
+                }
+            }
+            return tempSize.ToString("F2") + " " + unit[unitOrder];
+        }
+
     }
 }

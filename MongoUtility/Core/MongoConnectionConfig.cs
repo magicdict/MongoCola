@@ -1,13 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/8
- * Time: 9:59
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using MongoUtility.Basic;
@@ -61,8 +52,9 @@ namespace MongoUtility.Core
         #region Advance
 
         /// <summary>
-        ///     存储引擎
+        ///     存储引擎(服务器固有属性)
         /// </summary>
+        [XmlIgnore]
         public EnumMgr.StorageEngineType StorageEngine;
 
         /// <summary>
@@ -192,32 +184,38 @@ namespace MongoUtility.Core
         /// <summary>
         ///     只读[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public bool IsReadOnly;
+        [XmlIgnore]
+        public bool IsReadOnly;
 
         /// <summary>
         ///     当前连接是否可以使用[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public bool Health;
+        [XmlIgnore]
+        public bool Health;
 
         /// <summary>
         ///     作为Admin登陆[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public bool LoginAsAdmin;
+        [XmlIgnore]
+        public bool LoginAsAdmin;
 
         /// <summary>
         ///     当前连接的MongoDB版本[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public Version MongoDbVersion;
+        [XmlIgnore]
+        public Version MongoDbVersion;
 
         /// <summary>
         ///     认证模式[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public bool AuthMode;
+        [XmlIgnore]
+        public bool AuthMode;
 
         /// <summary>
         ///     服务器角色[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public SvrRoleType ServerRole;
+        [XmlIgnore]
+        public SvrRoleType ServerRole;
 
         #endregion
 
@@ -229,6 +227,11 @@ namespace MongoUtility.Core
         ///     ReadPreference
         /// </summary>
         public string ReadPreference;
+
+        /// <summary>
+        ///     ReadConcern
+        /// </summary>
+        public string ReadConcern;
 
         /// <summary>
         ///     WriteConcern

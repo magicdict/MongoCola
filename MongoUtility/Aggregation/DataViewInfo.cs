@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: scs
- * Date: 2015/1/6
- * Time: 11:09
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson;
@@ -48,6 +40,11 @@ namespace MongoUtility.Aggregation
         public bool IsReadOnly;
 
         /// <summary>
+        ///     是否为View
+        /// </summary>
+        public bool IsView;
+
+        /// <summary>
         ///     是否为SafeMode
         /// </summary>
         public bool IsSafeMode;
@@ -68,6 +65,11 @@ namespace MongoUtility.Aggregation
         public DataFilter MDataFilter;
 
         /// <summary>
+        ///     聚合数组(使用聚合框架获取数据)
+        /// </summary>
+        private BsonArray stages = new BsonArray();
+
+        /// <summary>
         ///     查询
         /// </summary>
         public string Query;
@@ -80,7 +82,7 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     数据库
         /// </summary>
-        public string StrDbTag;
+        public string strCollectionPath;
 
         /// <summary>
         ///     是否为Admin数据库
@@ -89,9 +91,9 @@ namespace MongoUtility.Aggregation
         {
             get
             {
-                var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
+                var strNodeData = strCollectionPath.Split(":".ToCharArray())[1];
                 var dataList = strNodeData.Split("/".ToCharArray());
-                if (dataList[(int) EnumMgr.PathLevel.Database] == ConstMgr.DatabaseNameAdmin)
+                if (dataList[(int)EnumMgr.PathLevel.Database] == ConstMgr.DatabaseNameAdmin)
                 {
                     return true;
                 }
@@ -106,10 +108,10 @@ namespace MongoUtility.Aggregation
         {
             get
             {
-                var strNodeData = StrDbTag.Split(":".ToCharArray())[1];
+                var strNodeData = strCollectionPath.Split(":".ToCharArray())[1];
                 var dataList = strNodeData.Split("/".ToCharArray());
-                return Operater.IsSystemCollection(dataList[(int) EnumMgr.PathLevel.Database],
-                    dataList[(int) EnumMgr.PathLevel.Collection]);
+                return Operater.IsSystemCollection(dataList[(int)EnumMgr.PathLevel.Database],
+                    dataList[(int)EnumMgr.PathLevel.CollectionAndView]);
             }
         }
 
@@ -120,16 +122,14 @@ namespace MongoUtility.Aggregation
         /// <param name="mServer"></param>
         public static List<BsonDocument> GetDataList(ref DataViewInfo currentDataViewInfo, MongoServer mServer)
         {
-            var collectionPath = currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[1];
-            var cp = collectionPath.Split("/".ToCharArray());
-            MongoCollection mongoCol =
-                mServer.GetDatabase(cp[(int) EnumMgr.PathLevel.Database])
-                    .GetCollection(cp[(int) EnumMgr.PathLevel.Collection]);
-
-
+            var PathArray = currentDataViewInfo.strCollectionPath.Split(":".ToCharArray())[1].Split("/".ToCharArray());
+            MongoCollection mongoCol = mServer.GetDatabase(PathArray[(int)EnumMgr.PathLevel.Database]).GetCollection(PathArray[(int)EnumMgr.PathLevel.CollectionAndView]);
+            //由于Tab页的关系，这里当前数据集并非DataViewInfo的数据集，所以不能写成下面这个样子
+            //var mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
             MongoCursor<BsonDocument> cursor;
             //Query condition:
-            if (currentDataViewInfo.IsUseFilter)
+            //View 不使用自定义过滤器
+            if (currentDataViewInfo.IsUseFilter && !currentDataViewInfo.IsView)
             {
                 cursor = mongoCol.FindAs<BsonDocument>(
                     QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList))
@@ -147,23 +147,80 @@ namespace MongoUtility.Aggregation
             currentDataViewInfo.Query = cursor.Query != null
                 ? cursor.Query.ToJson(MongoHelper.JsonWriterSettings)
                 : string.Empty;
-            currentDataViewInfo.Explain = cursor.Explain().ToJson(MongoHelper.JsonWriterSettings);
+
+            if (!currentDataViewInfo.IsView)
+            {
+                currentDataViewInfo.Explain = cursor.Explain().ToJson(MongoHelper.JsonWriterSettings);
+            }
+
             var dataList = cursor.ToList();
+
+            //https://jira.mongodb.org/browse/SERVER-26802
+            //在非正常Shutdown的时候，这个统计结果可能出现错误
+            //这个时候需要执行验证数据集命令
+
             if (currentDataViewInfo.SkipCnt == 0)
             {
                 if (currentDataViewInfo.IsUseFilter)
                 {
                     //感谢cnblogs.com 网友Shadower
                     currentDataViewInfo.CurrentCollectionTotalCnt =
-                        (int) mongoCol.Count(QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList));
+                        (int)mongoCol.Count(QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList));
                 }
                 else
                 {
-                    currentDataViewInfo.CurrentCollectionTotalCnt = (int) mongoCol.Count();
+                    currentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count();
                 }
             }
             SetPageEnable(ref currentDataViewInfo);
             return dataList;
+        }
+
+        /// <summary>
+        ///     使用聚合框架获得数据
+        /// </summary>
+        /// <param name="currentDataViewInfo"></param>
+        /// <param name="mServer"></param>
+        public static List<BsonDocument> GetDataListByAggregation(ref DataViewInfo currentDataViewInfo, MongoServer mServer)
+        {
+            var PathArray = currentDataViewInfo.strCollectionPath.Split(":".ToCharArray())[1].Split("/".ToCharArray());
+            MongoCollection mongoCol = mServer.GetDatabase(PathArray[(int)EnumMgr.PathLevel.Database]).GetCollection(PathArray[(int)EnumMgr.PathLevel.CollectionAndView]);
+
+            var db = PathArray[(int)EnumMgr.PathLevel.Database];
+            var col = PathArray[(int)EnumMgr.PathLevel.CollectionAndView];
+            //增加Skip和Limit
+            currentDataViewInfo.stages.Add(new BsonDocument("$skip", currentDataViewInfo.SkipCnt));
+            currentDataViewInfo.stages.Add(new BsonDocument("$limit", currentDataViewInfo.LimitCnt));
+            var mCommandResult = CommandHelper.Aggregate(currentDataViewInfo.stages, db, col);
+            var mResult = mCommandResult.Response.GetElement("result").Value.AsBsonArray;
+            //删除Skip和Limit
+            currentDataViewInfo.stages.RemoveAt(currentDataViewInfo.stages.Count() - 1);
+            currentDataViewInfo.stages.RemoveAt(currentDataViewInfo.stages.Count() - 1);
+
+
+            //https://jira.mongodb.org/browse/SERVER-26802
+            //在非正常Shutdown的时候，这个统计结果可能出现错误
+            //这个时候需要执行验证数据集命令
+
+            if (currentDataViewInfo.SkipCnt == 0)
+            {
+                if (currentDataViewInfo.IsUseFilter)
+                {
+                    var cnt = BsonDocument.Parse(" { $group: { _id: null, count: { $sum: 1 } } } ");
+                    currentDataViewInfo.stages.Add(cnt);
+                    mCommandResult = CommandHelper.Aggregate(currentDataViewInfo.stages, db, col);
+                    currentDataViewInfo.CurrentCollectionTotalCnt = mCommandResult.Response.GetElement("result").Value.AsBsonArray[0].AsBsonDocument.GetElement("count").Value.AsInt32;
+                    currentDataViewInfo.stages.RemoveAt(currentDataViewInfo.stages.Count() - 1);
+                }
+                else
+                {
+                    currentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count();
+                }
+            }
+            SetPageEnable(ref currentDataViewInfo);
+
+
+            return mResult.Select(x => x.AsBsonDocument).ToList();
         }
 
         /// <summary>

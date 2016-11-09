@@ -105,7 +105,7 @@ namespace MongoCola
             serverStatusCtl.IsFixedItem = true;
             serverStatusCtl.SelectObjectTag = "[ServerStatus]";
             serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
-            MultiTabManger.AddView(serverStatusCtl, "Status",string.Empty);
+            MultiTabManger.AddView(serverStatusCtl, "Status", string.Empty);
 
             //刷新
             RefreshToolStripMenuItem_Click(sender, e);
@@ -488,7 +488,7 @@ namespace MongoCola
 
             var mDataViewInfo = new DataViewInfo
             {
-                StrDbTag = RuntimeMongoDbContext.SelectObjectTag,
+                strCollectionPath = RuntimeMongoDbContext.SelectObjectTag,
                 IsUseFilter = false,
                 IsReadOnly = RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly,
                 MDataFilter = new DataFilter()

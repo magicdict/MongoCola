@@ -25,7 +25,7 @@ namespace MongoGUIView
         {
             InitializeComponent();
             _currentDataViewInfo = mDataViewInfo;
-            RuntimeMongoDbContext.SelectObjectTag = mDataViewInfo.StrDbTag;
+            RuntimeMongoDbContext.SelectObjectTag = mDataViewInfo.strCollectionPath;
         }
 
         /// <summary>

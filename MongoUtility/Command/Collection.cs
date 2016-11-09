@@ -40,8 +40,7 @@ namespace MongoUtility.Command
             //config数据库,默认为系统
             //local数据库,默认为系统
             //系统文件
-            if (mongoColName.StartsWith("system."))
-                return true;
+            if (mongoColName.StartsWith("system.")) return true;
             return mongoColName.StartsWith("fs.") || IsSystemDataBase(mongoDbName);
         }
 
@@ -59,6 +58,7 @@ namespace MongoUtility.Command
             //不支持中文 JIRA ticket is created : SERVER-4412
             //SERVER-4412已经在2013/03解决了
             //collection names are limited to 121 bytes after converting to UTF-8. 
+            collectionName = collectionName.Trim();
             if (mongoDb == null) return false;
             if (mongoDb.CollectionExists(collectionName)) return false;
             mongoDb.CreateCollection(collectionName, option);
@@ -85,37 +85,35 @@ namespace MongoUtility.Command
         {
             return
                 RuntimeMongoDbContext.GetCurrentDataBase()
-                    .RenameCollection(strOldCollectionName, strNewCollectionName)
-                    .Ok;
+                    .RenameCollection(strOldCollectionName, strNewCollectionName).Ok;
         }
 
         /// <summary>
         /// </summary>
-        /// <param name="uiOption"></param>
+        /// <param name="KeyOptions"></param>
         /// <param name="strMessageTitle"></param>
         /// <param name="strMessageContent"></param>
         /// <returns></returns>
-        public static bool CreateIndex(IndexOption uiOption, ref string strMessageTitle, ref string strMessageContent)
+        public static bool CreateIndex(IndexOption KeyOptions, ref string strMessageTitle, ref string strMessageContent)
         {
-            var result = true;
             var option = new IndexOptionsBuilder();
-            option.SetBackground(uiOption.IsBackground);
-            option.SetDropDups(uiOption.IsDropDups);
-            option.SetSparse(uiOption.IsSparse);
-            option.SetUnique(uiOption.IsUnique);
-            if (uiOption.IsPartial)
+            option.SetBackground(KeyOptions.IsBackground);
+            option.SetDropDups(KeyOptions.IsDropDups);
+            option.SetSparse(KeyOptions.IsSparse);
+            option.SetUnique(KeyOptions.IsUnique);
+            if (KeyOptions.IsPartial)
             {
-                IMongoQuery query = (QueryDocument) BsonDocument.Parse(uiOption.PartialCondition);
+                IMongoQuery query = (QueryDocument)BsonDocument.Parse(KeyOptions.PartialCondition);
                 option.SetPartialFilterExpression(query);
             }
-            if (uiOption.IsExpireData)
+            if (KeyOptions.IsExpireData)
             {
                 //TTL的限制条件很多
                 //http://docs.mongodb.org/manual/tutorial/expire-data/
                 //不能是组合键
                 var canUseTtl = true;
-                if (uiOption.AscendingKey.Count + uiOption.DescendingKey.Count +
-                    (string.IsNullOrEmpty(uiOption.GeoSpatialKey) ? 0 : 1) != 1)
+                if (KeyOptions.AscendingKey.Count + KeyOptions.DescendingKey.Count +
+                    (string.IsNullOrEmpty(KeyOptions.GeoSpatialKey) ? 0 : 1) != 1)
                 {
                     strMessageTitle = "Can't Set TTL";
                     strMessageContent = "the TTL index may not be compound (may not have multiple fields).";
@@ -124,7 +122,7 @@ namespace MongoUtility.Command
                 else
                 {
                     //不能是_id
-                    if (uiOption.FirstKey == ConstMgr.KeyId)
+                    if (KeyOptions.FirstKey == ConstMgr.KeyId)
                     {
                         strMessageTitle = "Can't Set TTL";
                         strMessageContent =
@@ -146,96 +144,150 @@ namespace MongoUtility.Command
                         "the indexed field must be a date BSON type. If the field does not have a date type, the data will not expire." +
                         Environment.NewLine +
                         "if the field holds an array, and there are multiple date-typed data in the index, the document will expire when the lowest (i.e. earliest) matches the expiration threshold.";
-                    option.SetTimeToLive(new TimeSpan(0, 0, uiOption.Ttl));
+                    option.SetTimeToLive(new TimeSpan(0, 0, KeyOptions.Ttl));
                 }
             }
-            var totalIndex = uiOption.AscendingKey.Count + uiOption.DescendingKey.Count +
-                             (string.IsNullOrEmpty(uiOption.GeoSpatialKey) ? 0 : 1) +
-                             (string.IsNullOrEmpty(uiOption.TextKey) ? 0 : 1);
-            if (uiOption.IndexName != string.Empty &&
-                !RuntimeMongoDbContext.GetCurrentCollection().IndexExists(uiOption.IndexName) && totalIndex != 0)
+            var totalIndex = KeyOptions.AscendingKey.Count + KeyOptions.DescendingKey.Count + KeyOptions.TextKey.Count;
+            totalIndex += string.IsNullOrEmpty(KeyOptions.GeoSpatialHaystackKey) ? 0 : 1;
+            totalIndex += string.IsNullOrEmpty(KeyOptions.GeoSpatialKey) ? 0 : 1;
+            totalIndex += string.IsNullOrEmpty(KeyOptions.GeoSpatialSphericalKey) ? 0 : 1;
+
+            if (string.IsNullOrEmpty(KeyOptions.IndexName) || totalIndex == 0 ||
+                RuntimeMongoDbContext.GetCurrentCollection().IndexExists(KeyOptions.IndexName))
             {
-                option.SetName(uiOption.IndexName);
-                try
-                {
-                    //暂时要求只能一个TextKey
-                    if (!string.IsNullOrEmpty(uiOption.TextKey))
-                    {
-                        var textKeysDoc = new IndexKeysDocument {{uiOption.TextKey, "text"}};
-                        RuntimeMongoDbContext.GetCurrentCollection().CreateIndex(textKeysDoc, option);
-                    }
-                    else
-                    {
-                        CreateMongoIndex(uiOption.AscendingKey.ToArray(), uiOption.DescendingKey.ToArray(),
-                            uiOption.GeoSpatialKey,
-                            option, RuntimeMongoDbContext.GetCurrentCollection());
-                    }
-                    strMessageTitle = "Index Add Completed!";
-                    strMessageContent = "IndexName:" + uiOption.IndexName + " is add to collection.";
-                }
-                catch
-                {
-                    strMessageTitle = "Index Add Failed!";
-                    strMessageContent = "IndexName:" + uiOption.IndexName;
-                    result = false;
-                }
+                strMessageTitle = "Index Add Failed!";
+                strMessageContent = "Please Check the index information.";
+                return false;
+            }
+            option.SetName(KeyOptions.IndexName);
+            string errorMessage = string.Empty;
+            if (CreateMongoIndex(KeyOptions, option, RuntimeMongoDbContext.GetCurrentCollection(), ref errorMessage))
+            {
+                strMessageTitle = "Index Add Completed!";
+                strMessageContent = "IndexName:" + KeyOptions.IndexName + " is add to collection.";
+                return true;
             }
             else
             {
                 strMessageTitle = "Index Add Failed!";
-                strMessageContent = "Please Check the index information.";
-                result = false;
+                strMessageContent = errorMessage;
+                return false;
             }
-            return result;
-        }
-
-        /// <summary>
-        /// </summary>
-        public static void ReIndex()
-        {
-            RuntimeMongoDbContext.GetCurrentCollection().ReIndex();
-        }
-
-        /// <summary>
-        ///     Create Collection
-        /// </summary>
-        /// <param name="strObjTag"></param>
-        /// <param name="collectionName"></param>
-        /// <param name="mongoDb"></param>
-        /// <returns></returns>
-        public static bool CreateCollection(string strObjTag, string collectionName, MongoDatabase mongoDb)
-        {
-            //不支持中文 JIRA ticket is created : SERVER-4412
-            //SERVER-4412已经在2013/03解决了
-            //collection names are limited to 121 bytes after converting to UTF-8. 
-            if (mongoDb == null) return false;
-            if (mongoDb.CollectionExists(collectionName)) return false;
-            mongoDb.CreateCollection(collectionName);
-            return true;
         }
 
         /// <summary>
         ///     添加索引
         /// </summary>
-        /// <param name="ascendingKey"></param>
-        /// <param name="descendingKey"></param>
-        /// <param name="geoSpatialKey"></param>
+        /// <param name="IdxOpt"></param>
         /// <param name="option"></param>
         /// <param name="currentCollection"></param>
         /// <returns></returns>
-        public static bool CreateMongoIndex(string[] ascendingKey, string[] descendingKey, string geoSpatialKey,
-            IndexOptionsBuilder option, MongoCollection currentCollection)
+        public static bool CreateMongoIndex(IndexOption IdxOpt,
+            IndexOptionsBuilder option, MongoCollection currentCollection,ref string errorMessage)
         {
             var mongoCol = currentCollection;
             var indexkeys = new IndexKeysBuilder();
-            if (!string.IsNullOrEmpty(geoSpatialKey))
+            if (!string.IsNullOrEmpty(IdxOpt.GeoSpatialHaystackKey)) indexkeys.GeoSpatialHaystack(IdxOpt.GeoSpatialHaystackKey);
+            if (!string.IsNullOrEmpty(IdxOpt.GeoSpatialKey)) indexkeys.GeoSpatial(IdxOpt.GeoSpatialKey);
+            if (!string.IsNullOrEmpty(IdxOpt.GeoSpatialSphericalKey)) indexkeys.GeoSpatialSpherical(IdxOpt.GeoSpatialSphericalKey);
+            indexkeys.Ascending(IdxOpt.AscendingKey.ToArray());
+            indexkeys.Descending(IdxOpt.DescendingKey.ToArray());
+            indexkeys.Text(IdxOpt.TextKey.ToArray());
+            //CreateIndex失败的时候会出现异常！
+            try
             {
-                indexkeys.GeoSpatial(geoSpatialKey);
+                var result = mongoCol.CreateIndex(indexkeys, option);
+                return result.Response.GetElement("ok").Value.AsInt32 == 1;
             }
-            indexkeys.Ascending(ascendingKey);
-            indexkeys.Descending(descendingKey);
-            mongoCol.CreateIndex(indexkeys, option);
-            return true;
+            catch (Exception ex)
+            {
+                errorMessage = ex.ToString();
+                return false;
+            }
+        }
+
+        /// <summary>
+        ///     索引选项
+        /// </summary>
+        public struct IndexOption
+        {
+            /// <summary>
+            ///     IsBackground
+            /// </summary>
+            public bool IsBackground;
+            /// <summary>
+            ///     IsDropDups
+            /// </summary>
+            public bool IsDropDups;
+            /// <summary>
+            ///     IsSparse
+            /// </summary>
+            public bool IsSparse;
+            /// <summary>
+            ///     IsUnique
+            /// </summary>
+            public bool IsUnique;
+
+            /// <summary>
+            ///     是否为 Partial Indexes
+            /// </summary>
+            public bool IsPartial;
+            /// <summary>
+            ///     IsExpireData
+            /// </summary>
+            public bool IsExpireData;
+            /// <summary>
+            ///     Ttl
+            /// </summary>
+            public int Ttl;
+            /// <summary>
+            ///     IndexName
+            /// </summary>
+            public string IndexName;
+            /// <summary>
+            ///     AscendingKey
+            /// </summary>
+            public List<string> AscendingKey;
+            /// <summary>
+            ///     DescendingKey
+            /// </summary>
+            public List<string> DescendingKey;
+            /// <summary>
+            ///     GeoSpatialHaystackKey
+            /// </summary>
+            public string GeoSpatialHaystackKey;
+            /// <summary>
+            ///     GeoSpatialSphericalKey
+            /// </summary>
+            public string GeoSpatialSphericalKey;
+            /// <summary>
+            ///     GeoSpatialKey
+            /// </summary>
+            public string GeoSpatialKey;
+            /// <summary>
+            ///     HashedKey
+            /// </summary>
+            public string HashedKey;
+            /// <summary>
+            ///     FirstKey
+            /// </summary>
+            public string FirstKey;
+            /// <summary>
+            ///     TextKey
+            /// </summary>
+            public List<string> TextKey;
+
+            /// <summary>
+            ///     Partial Indexes 的条件
+            /// </summary>
+            public string PartialCondition;
+        }
+        /// <summary>
+        /// ReIndex
+        /// </summary>
+        public static void ReIndex()
+        {
+            RuntimeMongoDbContext.GetCurrentCollection().ReIndex();
         }
 
         /// <summary>
@@ -254,6 +306,26 @@ namespace MongoUtility.Command
             {
                 mongoCol.DropIndexByName(indexName);
             }
+            return true;
+        }
+
+
+        /// <summary>
+        ///     Create Collection
+        /// </summary>
+        /// <param name="strObjTag"></param>
+        /// <param name="collectionName"></param>
+        /// <param name="mongoDb"></param>
+        /// <returns></returns>
+        public static bool CreateCollection(string strObjTag, string collectionName, MongoDatabase mongoDb)
+        {
+            //不支持中文 JIRA ticket is created : SERVER-4412
+            //SERVER-4412已经在2013/03解决了
+            //collection names are limited to 121 bytes after converting to UTF-8. 
+            collectionName = collectionName.Trim();
+            if (mongoDb == null) return false;
+            if (mongoDb.CollectionExists(collectionName)) return false;
+            mongoDb.CreateCollection(collectionName);
             return true;
         }
 
@@ -276,65 +348,16 @@ namespace MongoUtility.Command
                 var result = toCollection.InsertBatch(fromCollection.FindAll()).ToList();
                 if (isIndex)
                 {
-                    //toCollection.DropAllIndexes();
-                    //foreach (var index in fromCollection.GetIndexes())
-                    //{
-                    //    toCollection.CreateIndex(index.)
-                    //}
+                    //TODO:
                 }
                 return result.Count > 0 && result[0].Response.Contains("ok") && result[0].Response["ok"] == 1;
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
-            //var result = toDb.RunCommand(new CommandDocument()
-            //{
-            //    {"cloneCollection", dbName + "." + collectionName},
-            //    {"from", fromDb},
-            //    {"copyIndexes", isIndex}
-            //});
-            //return result.Response.Contains("ok") && result.Response["ok"] == 1;
         }
 
-        /// <summary>
-        ///     索引选项
-        /// </summary>
-        public struct IndexOption
-        {
-            public bool IsBackground;
 
-            public bool IsDropDups;
-
-            public bool IsSparse;
-
-            public bool IsUnique;
-
-            /// <summary>
-            ///     是否为 Partial Indexes
-            /// </summary>
-            public bool IsPartial;
-
-            public bool IsExpireData;
-
-            public int Ttl;
-
-            public string IndexName;
-
-            public List<string> AscendingKey;
-
-            public List<string> DescendingKey;
-
-            public string GeoSpatialKey;
-
-            public string FirstKey;
-
-            public string TextKey;
-
-            /// <summary>
-            ///     Partial Indexes 的条件
-            /// </summary>
-            public string PartialCondition;
-        }
     }
 }

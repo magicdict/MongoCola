@@ -1,8 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using Common;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 using MongoUtility.EventArgs;
@@ -41,6 +38,7 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        /// 
         /// </summary>
         public enum EnumGfsAlready
         {
@@ -52,6 +50,7 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
+        /// 
         /// </summary>
         public enum EnumGfsFileName
         {
@@ -70,9 +69,10 @@ namespace MongoUtility.Command
                 Directory.CreateDirectory(TempFileFolder);
             }
             var localFileName = TempFileFolder + Path.DirectorySeparatorChar + "JsonData.txt";
-            var t = new StreamWriter(localFileName, false);
+            var file = new FileStream(localFileName, FileMode.Create);
+            var t = new StreamWriter(file);
             t.Write(strJson);
-            t.Close();
+            t.Flush();
             Process.Start(localFileName);
         }
 
@@ -88,28 +88,15 @@ namespace MongoUtility.Command
         public static void OpenFile(string strRemoteFileName, MongoDatabase mongoDb)
         {
             var gfs = mongoDb.GetGridFS(new MongoGridFSSettings());
-
             var strLocalFileName = strRemoteFileName.Split(Path.DirectorySeparatorChar);
-
-            try
+            if (!Directory.Exists(TempFileFolder))
             {
-                if (!Directory.Exists(TempFileFolder))
-                {
-                    Directory.CreateDirectory(TempFileFolder);
-                }
-                var localFileName = TempFileFolder + Path.DirectorySeparatorChar +
-                                    strLocalFileName[strLocalFileName.Length - 1];
-                gfs.Download(localFileName, strRemoteFileName);
-                Process.Start(localFileName);
+                Directory.CreateDirectory(TempFileFolder);
             }
-            catch (Win32Exception ex)
-            {
-                Utility.ExceptionDeal(ex, "No Program can open this file");
-            }
-            catch (Exception ex)
-            {
-                Utility.ExceptionDeal(ex, "Error", "Exception happend when open file");
-            }
+            var localFileName = TempFileFolder + Path.DirectorySeparatorChar +
+                                strLocalFileName[strLocalFileName.Length - 1];
+            gfs.Download(localFileName, strRemoteFileName);
+            Process.Start(localFileName);
         }
 
         /// <summary>
@@ -145,45 +132,37 @@ namespace MongoUtility.Command
                     ? strFileName.Replace(Path.DirectorySeparatorChar, option.DirectorySeparatorChar)
                     : strFileName;
             }
-            try
+            MongoHelper.OnActionDone(new ActionDoneEventArgs(remoteName + " Uploading "));
+            if (!gfs.Exists(remoteName))
             {
-                MongoHelper.OnActionDone(new ActionDoneEventArgs(remoteName + " Uploading "));
-                if (!gfs.Exists(remoteName))
-                {
+                gfs.Upload(strFileName, remoteName);
+                return UploadResult.Complete;
+            }
+            switch (option.AlreadyOpt)
+            {
+                case EnumGfsAlready.JustAddIt:
                     gfs.Upload(strFileName, remoteName);
                     return UploadResult.Complete;
-                }
-                switch (option.AlreadyOpt)
-                {
-                    case EnumGfsAlready.JustAddIt:
-                        gfs.Upload(strFileName, remoteName);
-                        return UploadResult.Complete;
-                    case EnumGfsAlready.RenameIt:
-                        var extendName = new FileInfo(strFileName).Extension;
-                        var mainName = remoteName.Substring(0, remoteName.Length - extendName.Length);
-                        var i = 1;
-                        while (gfs.Exists(mainName + i + extendName))
-                        {
-                            i++;
-                        }
-                        gfs.Upload(strFileName, mainName + i + extendName);
-                        return UploadResult.Complete;
-                    case EnumGfsAlready.SkipIt:
-                        return UploadResult.Skip;
-                    case EnumGfsAlready.OverwriteIt:
-                        gfs.Delete(remoteName);
-                        gfs.Upload(strFileName, remoteName);
-                        return UploadResult.Complete;
-                    case EnumGfsAlready.Stop:
-                        return UploadResult.Skip;
-                }
-                return UploadResult.Skip;
+                case EnumGfsAlready.RenameIt:
+                    var extendName = new FileInfo(strFileName).Extension;
+                    var mainName = remoteName.Substring(0, remoteName.Length - extendName.Length);
+                    var i = 1;
+                    while (gfs.Exists(mainName + i + extendName))
+                    {
+                        i++;
+                    }
+                    gfs.Upload(strFileName, mainName + i + extendName);
+                    return UploadResult.Complete;
+                case EnumGfsAlready.SkipIt:
+                    return UploadResult.Skip;
+                case EnumGfsAlready.OverwriteIt:
+                    gfs.Delete(remoteName);
+                    gfs.Upload(strFileName, remoteName);
+                    return UploadResult.Complete;
+                case EnumGfsAlready.Stop:
+                    return UploadResult.Skip;
             }
-            catch (Exception ex)
-            {
-                Utility.ExceptionDeal(ex);
-                return UploadResult.Exception;
-            }
+            return UploadResult.Skip;
         }
 
         /// <summary>

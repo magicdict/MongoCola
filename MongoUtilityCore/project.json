@@ -1,5 +1,26 @@
 {
   "version": "1.0.0-*",
+  "buildOptions": {
+    "compile": {
+      "include": [ "../MongoUtility/**/*.cs" ]
+    },
+    "warningsAsErrors": false,
+    "outputName": "MongoUtilityCore",
+    "xmlDoc": false
+  },
+  "configurations": {
+    "Debug": {
+      "buildOptions": {
+        "define": [ "DEBUG", "TRACE" ]
+      }
+    },
+    "Release": {
+      "buildOptions": {
+        "define": [ "TRACE" ],
+        "optimize": true
+      }
+    }
+  },
 
   "dependencies": {
     "mongocsharpdriver": "2.4.0-beta1",

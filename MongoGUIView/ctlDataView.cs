@@ -377,7 +377,7 @@ namespace MongoGUIView
         {
             Clear();
             MDataViewInfo.SkipCnt = 0;
-            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.strCollectionPath;
             var datalist = DataViewInfo.GetDataList(ref MDataViewInfo, RuntimeMongoDbContext.GetCurrentServer());
             ViewHelper.FillDataToControl(datalist, DataShower, MDataViewInfo);
             InitControlsEnable();
@@ -410,7 +410,7 @@ namespace MongoGUIView
                 return;
             }
             Clear();
-            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.StrDbTag;
+            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.strCollectionPath;
             var datalist = DataViewInfo.GetDataList(ref MDataViewInfo, RuntimeMongoDbContext.GetCurrentServer());
             ViewHelper.FillDataToControl(datalist, DataShower, MDataViewInfo);
             SetDataNav();

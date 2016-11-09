@@ -77,6 +77,7 @@ namespace MongoUtility.ToolKit
         public static string StrErrorPut = string.Empty;
 
         /// <summary>
+        ///     生成Ini格式Config文件
         /// </summary>
         /// <returns></returns>
         public static string GenerateIniFile(MongodConfig mongod)
@@ -232,12 +233,12 @@ namespace MongoUtility.ToolKit
             myProcess.WaitForExit();
             sb.AppendLine(StrOutPut);
             sb.AppendLine(StrErrorPut);
-            if (myProcess.HasExited == false)
+            if (!myProcess.HasExited)
             {
                 myProcess.Kill();
             }
-            stringWriter.Close();
-            myProcess.Close();
+            stringWriter.Flush();
+            myProcess.Kill();
         }
 
         private static void ErrorDataHandler(object sendingProcess, DataReceivedEventArgs errLine)

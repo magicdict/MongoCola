@@ -1,39 +1,18 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-// 有关程序集的常规信息通过以下
-// 特性集控制。更改这些特性值可修改
-// 与程序集关联的信息。
-
-[assembly: AssemblyTitle("MongoHelper")]
-[assembly: AssemblyDescription("")]
+// General Information about an assembly is controlled through the following
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shanghai Chuwa Software co.ltd")]
-[assembly: AssemblyProduct("MongoHelper")]
-[assembly: AssemblyCopyright("Copyright © IBM 2014")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("MongoUtilityCore")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 
-// 将 ComVisible 设置为 false 使此程序集中的类型
-// 对 COM 组件不可见。  如果需要从 COM 访问此程序集中的类型，
-// 则将该类型上的 ComVisible 特性设置为 true。
-
+// Setting ComVisible to false makes the types in this assembly not visible
+// to COM components.  If you need to access a type in this assembly from
+// COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-// 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-
-[assembly: Guid("a8518d70-2504-4cdb-8a9b-749e6e972c59")]
-
-// 程序集的版本信息由下面四个值组成: 
-//
-//      主版本
-//      次版本 
-//      生成号
-//      修订号
-//
-// 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
-// 方法是按如下所示使用“*”: 
-// [assembly: AssemblyVersion("1.0.*")]
-
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: Guid("395fc850-77f6-4820-b797-a323453382c5")]

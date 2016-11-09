@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using MongoUtility.Basic;
@@ -9,7 +8,6 @@ namespace MongoUtility.Aggregation
     /// <summary>
     ///     数据过滤器
     /// </summary>
-    [Serializable]
     public class DataFilter
     {
         /// <summary>
@@ -66,7 +64,12 @@ namespace MongoUtility.Aggregation
             /// <summary>
             ///     降序
             /// </summary>
-            Descending
+            Descending,
+
+            /// <summary>
+            ///     TextScore降序
+            /// </summary>
+            TextScore
         }
 
         /// <summary>
@@ -95,10 +98,10 @@ namespace MongoUtility.Aggregation
         /// <param name="fileName"></param>
         public void SaveFilter(string fileName)
         {
-            var xs = new XmlSerializer(typeof (DataFilter));
+            var xs = new XmlSerializer(typeof(DataFilter));
             var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             xs.Serialize(fs, this);
-            fs.Close();
+            fs.Flush();
         }
 
         /// <summary>
@@ -108,10 +111,10 @@ namespace MongoUtility.Aggregation
         /// <returns></returns>
         public static DataFilter LoadFilter(string fileName)
         {
-            var xs = new XmlSerializer(typeof (DataFilter));
+            var xs = new XmlSerializer(typeof(DataFilter));
             var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-            var t = (DataFilter) xs.Deserialize(fs);
-            fs.Close();
+            var t = (DataFilter)xs.Deserialize(fs);
+            fs.Flush();
             return t;
         }
 

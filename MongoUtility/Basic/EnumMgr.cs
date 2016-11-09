@@ -10,8 +10,19 @@ namespace MongoUtility.Basic
         /// </summary>
         public enum ExportType
         {
+            /// <summary>
+            /// Excel
+            /// </summary>
             Excel,
+
+            /// <summary>
+            /// Text
+            /// </summary>
             Text,
+
+            /// <summary>
+            /// Xml
+            /// </summary>
             Xml
         }
 
@@ -31,14 +42,71 @@ namespace MongoUtility.Basic
             Descending,
 
             /// <summary>
-            ///     Geo
+            ///     Hashed
             /// </summary>
-            GeoSpatial,
+            Hashed,
 
             /// <summary>
             ///     拉丁语的全文检索(Since mongodb 2.2.4)
             /// </summary>
-            Text
+            Text,
+
+            /// <summary>
+            ///     GeoSpatial(2d)
+            /// </summary>
+            GeoSpatial,
+
+            /// <summary>
+            ///     GeoSpatial Spherical(2dsphere)
+            /// </summary>
+            GeoSpatialSpherical,
+
+            /// <summary>
+            ///     Geo Haystack
+            /// </summary>
+            GeoSpatialHaystack
+
+        }
+
+        /// <summary>
+        ///     Key String
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <returns></returns>
+        public static string GetKeyString(IndexKeysDocument keys)
+        {
+            var keyString = string.Empty;
+            foreach (var key in keys.Elements)
+            {
+                keyString += key.Name + ":";
+                switch (key.Value.ToString())
+                {
+                    case "1":
+                        keyString += IndexType.Ascending.ToString();
+                        break;
+                    case "-1":
+                        keyString += IndexType.Descending.ToString();
+                        break;
+                    case "2d":
+                        keyString += IndexType.GeoSpatial.ToString();
+                        break;
+                    case "2dsphere":
+                        keyString += IndexType.GeoSpatialSpherical.ToString();
+                        break;
+                    case "geoHaystack":
+                        keyString += IndexType.GeoSpatialHaystack.ToString();
+                        break;
+                    case "hashed":
+                        keyString += IndexType.Hashed.ToString();
+                        break;
+                    case "text":
+                        keyString += IndexType.Text.ToString();
+                        break;
+                }
+                keyString += ";";
+            }
+            keyString = "[" + keyString.TrimEnd(";".ToArray()) + "]";
+            return keyString;
         }
 
         /// <summary>
@@ -62,9 +130,9 @@ namespace MongoUtility.Basic
             Database = 2,
 
             /// <summary>
-            ///     数据集
+            ///     数据集 和 视图
             /// </summary>
-            Collection = 3,
+            CollectionAndView = 3,
 
             /// <summary>
             ///     数据文档
@@ -100,7 +168,12 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     Version 3.2.0
             /// </summary>
-            V320 = 320
+            V320 = 320,
+
+            /// <summary>
+            ///     Version 3.4.0
+            /// </summary>
+            V340 = 340
         }
 
         /// <summary>
@@ -116,7 +189,12 @@ namespace MongoUtility.Basic
             /// <summary>
             ///     WiredTiger(Default Since 3.2.0)
             /// </summary>
-            WiredTiger
+            WiredTiger,
+
+            /// <summary>
+            ///     Enterprise Only
+            /// </summary>
+            In_Memory
         }
 
         /// <summary>
@@ -154,36 +232,6 @@ namespace MongoUtility.Basic
             TraditionalChinese
         }
 
-        /// <summary>
-        ///     Key String
-        /// </summary>
-        /// <param name="keys"></param>
-        /// <returns></returns>
-        public static string GetKeyString(IndexKeysDocument keys)
-        {
-            var keyString = string.Empty;
-            foreach (var key in keys.Elements)
-            {
-                keyString += key.Name + ":";
-                switch (key.Value.ToString())
-                {
-                    case "1":
-                        keyString += IndexType.Ascending.ToString();
-                        break;
-                    case "-1":
-                        keyString += IndexType.Descending.ToString();
-                        break;
-                    case "2d":
-                        keyString += IndexType.GeoSpatial.ToString();
-                        break;
-                    case "text":
-                        keyString += IndexType.Text.ToString();
-                        break;
-                }
-                keyString += ";";
-            }
-            keyString = "[" + keyString.TrimEnd(";".ToArray()) + "]";
-            return keyString;
-        }
+
     }
 }
