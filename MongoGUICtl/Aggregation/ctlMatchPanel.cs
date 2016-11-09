@@ -1,38 +1,25 @@
-﻿using System.Drawing;
+﻿using MongoDB.Bson;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
-using MongoDB.Bson;
 
 namespace MongoGUICtl.Aggregation
 {
-    public partial class MatchPanel : UserControl
+    public partial class ctlMatchPanel : UserControl
     {
         /// <summary>
         ///     MatchItem数量
         /// </summary>
-        private byte _conditionCount;
+        private byte MatchItemCount;
 
         /// <summary>
         ///     MatchItem位置
         /// </summary>
-        private Point _conditionPos = new Point(10, 0);
+        private Point CurrentPos = new Point(10, 40);
 
-        public MatchPanel()
+        public ctlMatchPanel()
         {
             InitializeComponent();
-            AddMatchItem();
-        }
-
-        /// <summary>
-        ///     增加MatchItem
-        /// </summary>
-        public void AddMatchItem()
-        {
-            _conditionCount++;
-            var newMatchItem = new CtlMatchItem();
-            newMatchItem.Location = _conditionPos;
-            newMatchItem.Name = "MatchItem" + _conditionCount;
-            Controls.Add(newMatchItem);
-            _conditionPos.Y += newMatchItem.Height;
         }
 
         /// <summary>
@@ -42,9 +29,10 @@ namespace MongoGUICtl.Aggregation
         public BsonDocument GetMatchDocument()
         {
             var matchlist = new BsonDocument();
-            foreach (CtlMatchItem item in Controls)
+            foreach (Control item in Controls)
             {
-                var match = item.GetMatchItem();
+                if (item.GetType().FullName == typeof(Button).FullName) continue;
+                var match = ((CtlMatchItem)item).GetMatchItem();
                 if (match != null)
                 {
                     var matchName = match.GetElement(0).Name;
@@ -66,15 +54,31 @@ namespace MongoGUICtl.Aggregation
             return null;
         }
 
+
         /// <summary>
-        ///     清除所有MatchItem
+        ///     新增MatchItem
         /// </summary>
-        public void Clear()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddMatch_Click(object sender, EventArgs e)
+        {
+            MatchItemCount++;
+            var newMatchItem = new CtlMatchItem();
+            newMatchItem.Location = CurrentPos;
+            newMatchItem.Name = "MatchItem" + MatchItemCount;
+            Controls.Add(newMatchItem);
+            CurrentPos.Y += newMatchItem.Height;
+        }
+        /// <summary>
+        ///     清除MatchItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClearMatch_Click(object sender, EventArgs e)
         {
             Controls.Clear();
-            _conditionCount = 0;
-            _conditionPos = new Point(10, 0);
-            AddMatchItem();
+            MatchItemCount = 0;
+            CurrentPos = new Point(10, 40);
         }
     }
 }

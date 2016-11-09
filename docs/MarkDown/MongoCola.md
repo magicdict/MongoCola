@@ -246,7 +246,13 @@ MapReduce的结果如图
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102131308_Aggregation.png)
 
-- StageBuilder可以帮助你设定一些简单的Stage条件
+StageBuilder可以帮助你设定一些简单的Stage条件
+- Sort :设定排序
+
+![](/FileSystem/Thumbnail?filename=00000001_20161109185102_Sort.png)
+
+
+- Misc
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102131443_StageBuilder.png)
 
@@ -287,7 +293,7 @@ GeoNear用来检索地理位置：
 - 全路径：全路径作为文件名字段
 
 文件已经存在时的选项
-- 添加
+- 添加（系统允许出现同名文件）
 - 重命名:增加数字后缀
 - 跳过:不进行上传
 - 覆盖文件
@@ -326,6 +332,12 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 3. 服务器属性菜单表示的内容合并到服务器状态中
 4. 启动后自动选中数据库结构的根对象
 5. 服务器监视功能的强化，允许同时打开多个监视窗体（改为非模态）
+6. 连接管理，增加了对于连接名称的检查
+7. 连接字符串放在连接管理器的最外层，方便快速建立连接。
+8. 连接转连接字符串的最简单实现
+9. Javascript编辑器的优化
+10. JsonOutputMode 默认设定为Shell
+11. 聚合的Sort设定
 
 ##Ver 2.0.3 2016/11/03
 

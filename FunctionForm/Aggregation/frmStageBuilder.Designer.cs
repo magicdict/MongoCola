@@ -36,9 +36,9 @@ namespace FunctionForm.Aggregation
             this.tabProject = new System.Windows.Forms.TabPage();
             this.QueryFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
             this.tabMatch = new System.Windows.Forms.TabPage();
-            this.MatchListPanel = new MongoGUICtl.Aggregation.MatchPanel();
-            this.btnClearMatch = new System.Windows.Forms.Button();
-            this.btnAddMatch = new System.Windows.Forms.Button();
+            this.MatchListPanel = new MongoGUICtl.Aggregation.ctlMatchPanel();
+            this.tabSort = new System.Windows.Forms.TabPage();
+            this.SortPanel = new MongoGUICtl.Aggregation.ctlSortPanel();
             this.tabGroup1 = new System.Windows.Forms.TabPage();
             this.GroupFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
             this.lblID = new System.Windows.Forms.Label();
@@ -64,10 +64,10 @@ namespace FunctionForm.Aggregation
             this.chkLimit = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.tabSort = new System.Windows.Forms.TabPage();
             this.tabAggregation.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabMatch.SuspendLayout();
+            this.tabSort.SuspendLayout();
             this.tabGroup1.SuspendLayout();
             this.tabGroup2.SuspendLayout();
             this.tabMisc.SuspendLayout();
@@ -113,8 +113,6 @@ namespace FunctionForm.Aggregation
             // tabMatch
             // 
             this.tabMatch.Controls.Add(this.MatchListPanel);
-            this.tabMatch.Controls.Add(this.btnClearMatch);
-            this.tabMatch.Controls.Add(this.btnAddMatch);
             this.tabMatch.Location = new System.Drawing.Point(4, 22);
             this.tabMatch.Name = "tabMatch";
             this.tabMatch.Padding = new System.Windows.Forms.Padding(3);
@@ -126,31 +124,31 @@ namespace FunctionForm.Aggregation
             // MatchListPanel
             // 
             this.MatchListPanel.AutoScroll = true;
-            this.MatchListPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MatchListPanel.Location = new System.Drawing.Point(3, 43);
+            this.MatchListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MatchListPanel.Location = new System.Drawing.Point(3, 3);
             this.MatchListPanel.Name = "MatchListPanel";
-            this.MatchListPanel.Size = new System.Drawing.Size(598, 255);
+            this.MatchListPanel.Size = new System.Drawing.Size(598, 295);
             this.MatchListPanel.TabIndex = 2;
             // 
-            // btnClearMatch
+            // tabSort
             // 
-            this.btnClearMatch.Location = new System.Drawing.Point(101, 18);
-            this.btnClearMatch.Name = "btnClearMatch";
-            this.btnClearMatch.Size = new System.Drawing.Size(75, 21);
-            this.btnClearMatch.TabIndex = 1;
-            this.btnClearMatch.Text = "Clear";
-            this.btnClearMatch.UseVisualStyleBackColor = true;
-            this.btnClearMatch.Click += new System.EventHandler(this.btnClearMatch_Click);
+            this.tabSort.Controls.Add(this.SortPanel);
+            this.tabSort.Location = new System.Drawing.Point(4, 22);
+            this.tabSort.Name = "tabSort";
+            this.tabSort.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSort.Size = new System.Drawing.Size(604, 301);
+            this.tabSort.TabIndex = 5;
+            this.tabSort.Text = "$sort";
+            this.tabSort.UseVisualStyleBackColor = true;
             // 
-            // btnAddMatch
+            // SortPanel
             // 
-            this.btnAddMatch.Location = new System.Drawing.Point(20, 18);
-            this.btnAddMatch.Name = "btnAddMatch";
-            this.btnAddMatch.Size = new System.Drawing.Size(75, 21);
-            this.btnAddMatch.TabIndex = 0;
-            this.btnAddMatch.Text = "Add";
-            this.btnAddMatch.UseVisualStyleBackColor = true;
-            this.btnAddMatch.Click += new System.EventHandler(this.btnAddMatch_Click);
+            this.SortPanel.CollectionPath = null;
+            this.SortPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SortPanel.Location = new System.Drawing.Point(3, 3);
+            this.SortPanel.Name = "SortPanel";
+            this.SortPanel.Size = new System.Drawing.Size(598, 295);
+            this.SortPanel.TabIndex = 0;
             // 
             // tabGroup1
             // 
@@ -410,16 +408,6 @@ namespace FunctionForm.Aggregation
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // tabSort
-            // 
-            this.tabSort.Location = new System.Drawing.Point(4, 22);
-            this.tabSort.Name = "tabSort";
-            this.tabSort.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSort.Size = new System.Drawing.Size(604, 301);
-            this.tabSort.TabIndex = 5;
-            this.tabSort.Text = "$sort";
-            this.tabSort.UseVisualStyleBackColor = true;
-            // 
             // FrmStageBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -435,6 +423,7 @@ namespace FunctionForm.Aggregation
             this.tabAggregation.ResumeLayout(false);
             this.tabProject.ResumeLayout(false);
             this.tabMatch.ResumeLayout(false);
+            this.tabSort.ResumeLayout(false);
             this.tabGroup1.ResumeLayout(false);
             this.tabGroup1.PerformLayout();
             this.tabGroup2.ResumeLayout(false);
@@ -459,9 +448,7 @@ namespace FunctionForm.Aggregation
         private TabPage tabGroup1;
         private Label lblID;
         private FieldPicker GroupFieldPicker;
-        private Button btnClearMatch;
-        private Button btnAddMatch;
-        private MatchPanel MatchListPanel;
+        private ctlMatchPanel MatchListPanel;
         private Button btnCancel;
         private TabPage tabGroup2;
         private Button btnClearGroupItem;
@@ -479,5 +466,6 @@ namespace FunctionForm.Aggregation
         private Label label1;
         private TextBox txtincludeArrayIndex;
         private TabPage tabSort;
+        private ctlSortPanel SortPanel;
     }
 }

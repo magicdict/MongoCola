@@ -1,10 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
+using MongoDB.Bson;
+using System.Drawing;
 
 namespace MongoGUICtl.Aggregation
 {
     public partial class ctlSortPanel : UserControl
     {
+
+        /// <summary>
+        ///     MatchItem数量
+        /// </summary>
+        private byte SortItemCount;
+
+        /// <summary>
+        ///     MatchItem位置
+        /// </summary>
+        private Point CurrentPos = new Point(10, 40);
 
         public ctlSortPanel()
         {
@@ -17,12 +29,20 @@ namespace MongoGUICtl.Aggregation
         public string CollectionPath { set; get; }
 
         /// <summary>
-        ///     增加排序
+        /// 增加排序
         /// </summary>
-        public void AddSort()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdAdd_Click(object sender, EventArgs e)
         {
+            SortItemCount++;
             var newSortItem = new ctlSortItem();
+            newSortItem.Location = CurrentPos;
+            newSortItem.Name = "SortItem" + SortItemCount;
+            Controls.Add(newSortItem);
+            CurrentPos.Y += newSortItem.Height;
         }
+
 
         /// <summary>
         ///     ItemChanged
@@ -54,6 +74,39 @@ namespace MongoGUICtl.Aggregation
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ItemAdded(this);
+        }
+        /// <summary>
+        /// 获得排序文档
+        /// </summary>
+        /// <returns></returns>
+        public BsonDocument GetSortDocument()
+        {
+            var sortlist = new BsonDocument();
+            foreach (Control item in Controls)
+            {
+                if (item.GetType().FullName == typeof(Button).FullName) continue;
+                var sort = ((ctlSortItem)item).GetSortItem();
+                if (sort != null)
+                {
+                    var sortName = sort.Name;
+                    if (!string.IsNullOrEmpty(sortName))
+                    {
+                        sortlist.Add(sort);
+                    }
+                }
+            }
+            if (sortlist.ElementCount > 0)
+            {
+                return new BsonDocument("$sort", sortlist);
+            }
+            return null;
+        }
+
+        private void btnClearMatch_Click(object sender, EventArgs e)
+        {
+            Controls.Clear();
+            SortItemCount = 0;
+            CurrentPos = new Point(10, 40);
         }
     }
 }

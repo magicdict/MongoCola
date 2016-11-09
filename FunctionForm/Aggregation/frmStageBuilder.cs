@@ -46,12 +46,12 @@ namespace FunctionForm.Aggregation
         /// <param name="e"></param>
         private void frmAggregationCondition_Load(object sender, EventArgs e)
         {
-            QueryFieldPicker.InitByCurrentCollection(false);
+            QueryFieldPicker.InitByCurrentCollection(true);
             GroupFieldPicker.InitByCurrentCollection(false);
 
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                Text = GuiConfig.GetText("Create View", "MainMenuOperationDatabaseAddView");
+                Text = GuiConfig.GetText("Stage Builder", "StageBuilder");
                 btnOK.Text = GuiConfig.GetText(TextType.CommonOk);
                 btnCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             }
@@ -71,12 +71,21 @@ namespace FunctionForm.Aggregation
             {
                 Aggregation.Add(project);
             }
+
             //match
             var match = MatchListPanel.GetMatchDocument();
             if (match != null)
             {
                 Aggregation.Add(match);
             }
+
+            //Sort
+            var sort = SortPanel.GetSortDocument();
+            if (sort != null)
+            {
+                Aggregation.Add(sort);
+            }
+
             //Group
             var groupDetail = GroupFieldPicker.GetGroupId();
             if (groupDetail.GetElement(0).Value.AsBsonDocument.ElementCount != 0)
@@ -177,31 +186,5 @@ namespace FunctionForm.Aggregation
         }
 
         #endregion
-
-        #region"Match"
-
-        /// <summary>
-        ///     新增MatchItem
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAddMatch_Click(object sender, EventArgs e)
-        {
-            MatchListPanel.AddMatchItem();
-        }
-
-        /// <summary>
-        ///     清除MatchItem
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnClearMatch_Click(object sender, EventArgs e)
-        {
-            MatchListPanel.Clear();
-        }
-
-        #endregion
-
-
     }
 }

@@ -134,11 +134,11 @@
     <Compile Include="Aggregation\GroupPanel.Designer.cs">
       <DependentUpon>GroupPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Aggregation\MatchPanel.cs">
+    <Compile Include="Aggregation\ctlMatchPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Aggregation\MatchPanel.Designer.cs">
-      <DependentUpon>MatchPanel.cs</DependentUpon>
+    <Compile Include="Aggregation\ctlMatchPanel.Designer.cs">
+      <DependentUpon>ctlMatchPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="ctlBsonValueTypeName.cs">
       <SubType>UserControl</SubType>
@@ -201,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Aggregation\ctlMatchItem.resx">
       <DependentUpon>ctlMatchItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aggregation\ctlMatchPanel.resx">
+      <DependentUpon>ctlMatchPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Aggregation\ctlSortItem.resx">
       <DependentUpon>ctlSortItem.cs</DependentUpon>
