@@ -296,7 +296,7 @@
   <GFS_Insert_Option_OnlyFilename>仅文件名(例如，readme.txt)</GFS_Insert_Option_OnlyFilename>
   <GFS_Insert_Option_FullPath>全路径(例如，C:\readme.txt)</GFS_Insert_Option_FullPath>
   <GFS_Insert_Option_FileAlreadyExist>文件已经存在</GFS_Insert_Option_FileAlreadyExist>
-  <GFS_Insert_Option_JustAddIt>添加</GFS_Insert_Option_JustAddIt>
+  <GFS_Insert_Option_JustAddIt>添加（系统允许出现同名文件）</GFS_Insert_Option_JustAddIt>
   <GFS_Insert_Option_Rename>重命名(例如readme1.txt)</GFS_Insert_Option_Rename>
   <GFS_Insert_Option_SkipIt>跳过</GFS_Insert_Option_SkipIt>
   <GFS_Insert_Option_Overwrite>覆盖文件</GFS_Insert_Option_Overwrite>

@@ -6,7 +6,7 @@
 * 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
-* 版本号：Ver 2.0.3
+* 版本号：Ver 2.0.5
  
 ***
 
@@ -30,11 +30,19 @@ CSharp Mongo Driver 2.4.0-beta1
 ***
 
 # 项目说明
+C#的代码分为两个解决方案：
+
+- MongoCola解决方案
 * ExternalTools:外部工具  
 1. ConfigurationFile 配置文件编辑器
 2. MultiLanEditor 多语言文件编辑器
 * Assistant:业务逻辑和辅助类  
 * Winform:窗体和控件  
+* PlugIn：插件
+
+- MongoCola.Core解决方案
+1. MongoUtilityCore：MongoUtility的.Net Core编译配置
+2. MongoColaWebAdmin:Asp.Net Core版的网页版程序
 
 # 计划
 0. Fix Bug  
@@ -52,8 +60,7 @@ CSharp Mongo Driver 2.4.0-beta1
     加入对于机器学习方法和BI的支持
 6. SQL转AggregateFrame
 	原本不完整的SQL转AggregateFrame废止
-7. 服务器读写状态的实时报表
-	MongoTop
+7. 服务器读写状态的实时报表：MongoStatus 和 MongoTop，需要进行强化
 8. C#直接操作MongoShell
 
 ***

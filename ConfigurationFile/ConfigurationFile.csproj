@@ -52,9 +52,6 @@
     <ApplicationIcon>clody.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MongoUtilityCore">
-      <HintPath>..\MongoUtilityCore\bin\Debug\net462\MongoUtilityCore.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -115,6 +112,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{40495682-C452-41C4-B2AE-8C60D7743BC9}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
+      <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
+      <Name>MongoUtility</Name>
     </ProjectReference>
     <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
       <Project>{5AC3B529-8E37-4D99-99E9-729603E3BB5E}</Project>

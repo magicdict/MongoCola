@@ -42,10 +42,25 @@ namespace MongoUtility.Command
         /// </summary>
         public enum EnumGfsAlready
         {
+            /// <summary>
+            /// 添加（系统允许出现同名文件）
+            /// </summary>
             JustAddIt,
+            /// <summary>
+            /// 重命名
+            /// </summary>
             RenameIt,
+            /// <summary>
+            /// 跳过
+            /// </summary>
             SkipIt,
+            /// <summary>
+            /// 覆盖
+            /// </summary>
             OverwriteIt,
+            /// <summary>
+            /// 停止
+            /// </summary>
             Stop
         }
 
