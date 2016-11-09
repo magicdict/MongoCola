@@ -610,7 +610,7 @@ namespace MongoCola
         private void DelMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strDelTag = trvsrvlst.SelectedNode.Tag.ToString();
-            if (!Collection.DropCollection(trvsrvlst.SelectedNode)) return;
+            if (!DropCollection(trvsrvlst.SelectedNode)) return;
             MultiTabManger.SelectObjectTagDeleted(strDelTag);
             trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
             DisableAllOpr();
@@ -630,7 +630,20 @@ namespace MongoCola
             frm.Title = "Pipeline";
             Utility.OpenModalForm(frm, true, true);
         }
-
+        /// <summary>
+        ///     删除
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public  bool DropCollection(TreeNode node)
+        {
+            var strTitle = GuiConfig.GetText("Drop Collection", TextType.DropCollection);
+            var strMessage = GuiConfig.GetText("Are you sure to drop this Collection?", TextType.DropCollectionConfirm);
+            if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return false;
+            var strPath = RuntimeMongoDbContext.SelectTagData;
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.CollectionAndView];
+            return Operater.DrapCollection(strCollection);
+        }
         /// <summary>
         ///     重命名数据集
         /// </summary>
@@ -639,7 +652,7 @@ namespace MongoCola
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strOldNodeTag = trvsrvlst.SelectedNode.Tag.ToString();
-            var strNewCollectionName = Collection.RenameCollection(trvsrvlst.SelectedNode);
+            var strNewCollectionName = RenameCollection(trvsrvlst.SelectedNode);
             if (string.IsNullOrEmpty(strNewCollectionName)) return;
             var strNewNodeTag = TagInfo.ChangeName(trvsrvlst.SelectedNode.Tag.ToString(), strNewCollectionName);
             MultiTabManger.SelectObjectTagChanged(strOldNodeTag, strNewNodeTag, strNewCollectionName);
@@ -651,6 +664,28 @@ namespace MongoCola
             trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" + RuntimeMongoDbContext.GetCurrentCollectionIsCapped();
             statusStripMain.Items[0].Text = GuiConfig.GetText("selected Collection", TextType.SelectedCollection) + ":" +
                                             RuntimeMongoDbContext.SelectTagData;
+        }
+
+
+
+        /// <summary>
+        ///     重命名
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public string RenameCollection(TreeNode node)
+        {
+            var strPath = RuntimeMongoDbContext.SelectTagData;
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.CollectionAndView];
+            var strNewCollectionName = MyMessageBox.ShowInput(
+                GuiConfig.GetText("Please input new collection name：", TextType.RenameCollectionInput),
+                GuiConfig.GetText("Rename collection", TextType.RenameCollection), strCollection);
+            if (string.IsNullOrEmpty(strNewCollectionName)) return string.Empty;
+            if (Operater.RenameCollection(strCollection, strNewCollectionName))
+            {
+                return strNewCollectionName;
+            }
+            return string.Empty;
         }
 
         /// <summary>

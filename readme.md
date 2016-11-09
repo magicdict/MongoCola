@@ -30,19 +30,19 @@ CSharp Mongo Driver 2.4.0-beta1
 ***
 
 # 项目说明
-C#的代码分为两个解决方案：
+C#的代码分为两个解决方案： 
 
-- MongoCola解决方案
-* ExternalTools:外部工具  
+- MongoCola解决方案  
+* ExternalTools:外部工具   
 1. ConfigurationFile 配置文件编辑器
 2. MultiLanEditor 多语言文件编辑器
 * Assistant:业务逻辑和辅助类  
 * Winform:窗体和控件  
-* PlugIn：插件
+* PlugIn：插件  
 
-- MongoCola.Core解决方案
-1. MongoUtilityCore：MongoUtility的.Net Core编译配置
-2. MongoColaWebAdmin:Asp.Net Core版的网页版程序
+- MongoCola.Core解决方案  
+1. MongoUtilityCore：MongoUtility的.Net Core编译配置  
+2. MongoColaWebAdmin:Asp.Net Core版的网页版程序  
 
 # 计划
 0. Fix Bug  

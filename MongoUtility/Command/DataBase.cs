@@ -19,11 +19,6 @@ namespace MongoUtility.Command
             ///     压缩
             /// </summary>
             Repair,
-
-            /// <summary>
-            ///     重命名
-            /// </summary>
-            Rename
         }
 
         /// <summary>

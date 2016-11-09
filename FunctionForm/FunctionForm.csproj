@@ -154,7 +154,6 @@
     <Compile Include="Connection\frmConnect.Designer.cs">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\Collection.cs" />
     <Compile Include="Connection\CtlReadWriteConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
