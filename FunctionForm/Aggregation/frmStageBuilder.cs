@@ -82,7 +82,7 @@ namespace FunctionForm.Aggregation
             }
 
             //match
-            var match = MatchListPanel.GetMatchDocument();
+            var match = ConditionPan.GetMatchDocument();
             if (match != null)
             {
                 Aggregation.Add(match);

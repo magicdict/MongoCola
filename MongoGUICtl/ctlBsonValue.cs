@@ -49,7 +49,6 @@ namespace MongoGUICtl
 
             dateTimePicker.Location = txtBsonValue.Location;
             dateTimePicker.Size = txtBsonValue.Size;
-
             if (DateTimeFormat ==0)
             {
                 //设计时出错的对应

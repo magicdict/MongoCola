@@ -76,7 +76,6 @@ namespace MongoUtility.Aggregation
         /// <returns></returns>
         public static IMongoQuery GetQuery(List<DataFilter.QueryConditionInputItem> queryCompareList)
         {
-            //
             var conditiongrpList = new List<List<DataFilter.QueryConditionInputItem>>();
             List<DataFilter.QueryConditionInputItem> currGrp = null;
             for (var i = 0; i < queryCompareList.Count; i++)

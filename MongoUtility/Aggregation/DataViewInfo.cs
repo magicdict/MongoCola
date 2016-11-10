@@ -65,7 +65,7 @@ namespace MongoUtility.Aggregation
         ///     数据过滤器
         /// </summary>
         [Obsolete("过滤器已经废止")]
-        public DataFilter MDataFilter;
+        public DataFilter mDataFilter;
 
         /// <summary>
         ///     聚合数组(使用聚合框架获取数据)
@@ -136,10 +136,10 @@ namespace MongoUtility.Aggregation
             if (currentDataViewInfo.IsUseFilter && !currentDataViewInfo.IsView)
             {
                 cursor = mongoCol.FindAs<BsonDocument>(
-                    QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList))
+                    QueryHelper.GetQuery(currentDataViewInfo.mDataFilter.QueryConditionList))
                     .SetSkip(currentDataViewInfo.SkipCnt)
-                    .SetFields(QueryHelper.GetOutputFields(currentDataViewInfo.MDataFilter.QueryFieldList))
-                    .SetSortOrder(QueryHelper.GetSort(currentDataViewInfo.MDataFilter.QueryFieldList))
+                    .SetFields(QueryHelper.GetOutputFields(currentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetSortOrder(QueryHelper.GetSort(currentDataViewInfo.mDataFilter.QueryFieldList))
                     .SetLimit(currentDataViewInfo.LimitCnt);
             }
             else
@@ -169,7 +169,7 @@ namespace MongoUtility.Aggregation
                 {
                     //感谢cnblogs.com 网友Shadower
                     currentDataViewInfo.CurrentCollectionTotalCnt =
-                        (int)mongoCol.Count(QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList));
+                        (int)mongoCol.Count(QueryHelper.GetQuery(currentDataViewInfo.mDataFilter.QueryConditionList));
                 }
                 else
                 {

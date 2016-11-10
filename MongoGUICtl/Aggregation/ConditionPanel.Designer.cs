@@ -36,10 +36,11 @@ namespace MongoGUICtl.Aggregation
             // 
             // ConditionPanel
             // 
-            this.AutoScaleDimensions = new SizeF(6F, 13F);
-            this.AutoScaleMode = AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ConditionPanel";
-            this.Size = new Size(489, 281);
+            this.Size = new System.Drawing.Size(556, 340);
+            this.Load += new System.EventHandler(this.ConditionPanel_Load);
             this.ResumeLayout(false);
 
         }

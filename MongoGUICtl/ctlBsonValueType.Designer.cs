@@ -31,34 +31,38 @@ namespace MongoGUICtl
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlBsonValue1 = new MongoGUICtl.ctlBsonValue();
             this.cmbDataType = new System.Windows.Forms.ComboBox();
+            this.ctlBsonValue1 = new MongoGUICtl.ctlBsonValue();
             this.SuspendLayout();
-            // 
-            // ctlBsonValue1
-            // 
-            this.ctlBsonValue1.Location = new System.Drawing.Point(100, 1);
-            this.ctlBsonValue1.Name = "ctlBsonValue1";
-            this.ctlBsonValue1.Size = new System.Drawing.Size(225, 26);
-            this.ctlBsonValue1.TabIndex = 0;
-            this.ctlBsonValue1.Load += new System.EventHandler(this.ctlBsonValue1_Load);
             // 
             // cmbDataType
             // 
             this.cmbDataType.FormattingEnabled = true;
-            this.cmbDataType.Location = new System.Drawing.Point(3, 3);
+            this.cmbDataType.Location = new System.Drawing.Point(0, 4);
             this.cmbDataType.Name = "cmbDataType";
             this.cmbDataType.Size = new System.Drawing.Size(91, 20);
             this.cmbDataType.TabIndex = 15;
+            // 
+            // ctlBsonValue1
+            // 
+            this.ctlBsonValue1.BackColor = System.Drawing.Color.Transparent;
+            this.ctlBsonValue1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ctlBsonValue1.Location = new System.Drawing.Point(100, 1);
+            this.ctlBsonValue1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ctlBsonValue1.Name = "ctlBsonValue1";
+            this.ctlBsonValue1.Size = new System.Drawing.Size(197, 31);
+            this.ctlBsonValue1.TabIndex = 0;
+            this.ctlBsonValue1.Load += new System.EventHandler(this.ctlBsonValue1_Load);
             // 
             // ctlBsonValueType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.cmbDataType);
             this.Controls.Add(this.ctlBsonValue1);
             this.Name = "ctlBsonValueType";
-            this.Size = new System.Drawing.Size(328, 27);
+            this.Size = new System.Drawing.Size(302, 35);
             this.ResumeLayout(false);
 
         }

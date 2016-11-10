@@ -43,44 +43,49 @@ namespace MongoGUICtl
             // cmbCompareOpr
             // 
             this.cmbCompareOpr.FormattingEnabled = true;
-            this.cmbCompareOpr.Location = new System.Drawing.Point(98, 33);
+            this.cmbCompareOpr.Location = new System.Drawing.Point(148, 4);
+            this.cmbCompareOpr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbCompareOpr.Name = "cmbCompareOpr";
-            this.cmbCompareOpr.Size = new System.Drawing.Size(54, 20);
+            this.cmbCompareOpr.Size = new System.Drawing.Size(42, 25);
             this.cmbCompareOpr.TabIndex = 2;
             // 
             // cmbColName
             // 
             this.cmbColName.FormattingEnabled = true;
-            this.cmbColName.Location = new System.Drawing.Point(1, 33);
+            this.cmbColName.Location = new System.Drawing.Point(35, 4);
+            this.cmbColName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbColName.Name = "cmbColName";
-            this.cmbColName.Size = new System.Drawing.Size(91, 20);
+            this.cmbColName.Size = new System.Drawing.Size(105, 25);
             this.cmbColName.TabIndex = 1;
             // 
             // cmbEndMark
             // 
             this.cmbEndMark.FormattingEnabled = true;
-            this.cmbEndMark.Location = new System.Drawing.Point(295, 0);
+            this.cmbEndMark.Location = new System.Drawing.Point(532, 4);
+            this.cmbEndMark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbEndMark.Name = "cmbEndMark";
-            this.cmbEndMark.Size = new System.Drawing.Size(52, 20);
+            this.cmbEndMark.Size = new System.Drawing.Size(38, 25);
             this.cmbEndMark.TabIndex = 5;
             // 
             // cmbStartMark
             // 
             this.cmbStartMark.FormattingEnabled = true;
-            this.cmbStartMark.Location = new System.Drawing.Point(1, 3);
+            this.cmbStartMark.Location = new System.Drawing.Point(1, 4);
+            this.cmbStartMark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbStartMark.Name = "cmbStartMark";
-            this.cmbStartMark.Size = new System.Drawing.Size(39, 20);
+            this.cmbStartMark.Size = new System.Drawing.Size(32, 25);
             this.cmbStartMark.TabIndex = 0;
             // 
             // btnRemove
             // 
             this.btnRemove.BackColor = System.Drawing.Color.Red;
             this.btnRemove.ForeColor = System.Drawing.Color.White;
-            this.btnRemove.Location = new System.Drawing.Point(411, 0);
+            this.btnRemove.Location = new System.Drawing.Point(620, -1);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(59, 23);
+            this.btnRemove.Size = new System.Drawing.Size(45, 33);
             this.btnRemove.TabIndex = 7;
-            this.btnRemove.Text = "remove";
+            this.btnRemove.Text = "del";
             this.btnRemove.UseVisualStyleBackColor = false;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
@@ -88,9 +93,10 @@ namespace MongoGUICtl
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(353, 0);
+            this.btnAdd.Location = new System.Drawing.Point(576, -1);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(56, 23);
+            this.btnAdd.Size = new System.Drawing.Size(42, 33);
             this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -98,14 +104,15 @@ namespace MongoGUICtl
             // 
             // ElBsonValue
             // 
-            this.ElBsonValue.Location = new System.Drawing.Point(158, 29);
+            this.ElBsonValue.Location = new System.Drawing.Point(196, -1);
+            this.ElBsonValue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ElBsonValue.Name = "ElBsonValue";
-            this.ElBsonValue.Size = new System.Drawing.Size(328, 27);
+            this.ElBsonValue.Size = new System.Drawing.Size(332, 38);
             this.ElBsonValue.TabIndex = 9;
             // 
             // CtlQueryCondition
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.ElBsonValue);
@@ -115,8 +122,10 @@ namespace MongoGUICtl
             this.Controls.Add(this.cmbEndMark);
             this.Controls.Add(this.cmbColName);
             this.Controls.Add(this.cmbCompareOpr);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CtlQueryCondition";
-            this.Size = new System.Drawing.Size(500, 54);
+            this.Size = new System.Drawing.Size(692, 33);
             this.ResumeLayout(false);
 
         }

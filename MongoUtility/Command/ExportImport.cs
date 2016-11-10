@@ -31,9 +31,9 @@ namespace MongoUtility.Command
             if (currentDataViewInfo != null && currentDataViewInfo.IsUseFilter)
             {
                 cursor = mongoCol.FindAs<BsonDocument>(
-                    QueryHelper.GetQuery(currentDataViewInfo.MDataFilter.QueryConditionList))
-                    .SetFields(QueryHelper.GetOutputFields(currentDataViewInfo.MDataFilter.QueryFieldList))
-                    .SetSortOrder(QueryHelper.GetSort(currentDataViewInfo.MDataFilter.QueryFieldList));
+                    QueryHelper.GetQuery(currentDataViewInfo.mDataFilter.QueryConditionList))
+                    .SetFields(QueryHelper.GetOutputFields(currentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetSortOrder(QueryHelper.GetSort(currentDataViewInfo.mDataFilter.QueryFieldList));
             }
             else
             {

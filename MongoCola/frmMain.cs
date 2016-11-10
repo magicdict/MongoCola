@@ -491,7 +491,7 @@ namespace MongoCola
                 strCollectionPath = RuntimeMongoDbContext.SelectObjectTag,
                 IsUseFilter = false,
                 IsReadOnly = RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly,
-                MDataFilter = new DataFilter()
+                mDataFilter = new DataFilter()
             };
 
             CtlDataView dataViewctl;

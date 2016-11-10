@@ -24,7 +24,7 @@ namespace Common
             {
                 combox.Items.Add(item.ToString());
             }
-            combox.SelectedIndex = 0;
+            if (combox.Items.Count != 0) combox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Common
             {
                 combox.Items.Add(item);
             }
-            combox.SelectedIndex = 0;
+            if (combox.Items.Count != 0) combox.SelectedIndex = 0;
         }
 
         /// <summary>

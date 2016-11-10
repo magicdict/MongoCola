@@ -46,7 +46,7 @@ namespace MongoGUIView
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(201, 158);
+            this.cmdCancel.Location = new System.Drawing.Point(165, 152);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(80, 37);
             this.cmdCancel.TabIndex = 8;
@@ -57,7 +57,7 @@ namespace MongoGUIView
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(103, 158);
+            this.cmdOK.Location = new System.Drawing.Point(67, 152);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(71, 37);
             this.cmdOK.TabIndex = 7;
@@ -99,7 +99,7 @@ namespace MongoGUIView
             // 
             this.txtElName.Location = new System.Drawing.Point(82, 12);
             this.txtElName.Name = "txtElName";
-            this.txtElName.Size = new System.Drawing.Size(257, 21);
+            this.txtElName.Size = new System.Drawing.Size(199, 23);
             this.txtElName.TabIndex = 12;
             // 
             // cmbDataType
@@ -107,27 +107,29 @@ namespace MongoGUIView
             this.cmbDataType.FormattingEnabled = true;
             this.cmbDataType.Location = new System.Drawing.Point(82, 40);
             this.cmbDataType.Name = "cmbDataType";
-            this.cmbDataType.Size = new System.Drawing.Size(257, 23);
+            this.cmbDataType.Size = new System.Drawing.Size(199, 23);
             this.cmbDataType.TabIndex = 13;
             this.cmbDataType.SelectedIndexChanged += new System.EventHandler(this.cmbDataType_SelectedIndexChanged);
             // 
             // ctlBsonValue1
             // 
-            this.ctlBsonValue1.Location = new System.Drawing.Point(82, 68);
+            this.ctlBsonValue1.BackColor = System.Drawing.Color.White;
+            this.ctlBsonValue1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ctlBsonValue1.Location = new System.Drawing.Point(78, 67);
             this.ctlBsonValue1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ctlBsonValue1.Name = "ctlBsonValue1";
-            this.ctlBsonValue1.Size = new System.Drawing.Size(257, 26);
+            this.ctlBsonValue1.Size = new System.Drawing.Size(199, 37);
             this.ctlBsonValue1.TabIndex = 14;
             // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(19, 112);
+            this.textBox1.Location = new System.Drawing.Point(12, 111);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(335, 38);
+            this.textBox1.Size = new System.Drawing.Size(300, 38);
             this.textBox1.TabIndex = 15;
             this.textBox1.Text = "BsonBinaryData:Please Input the data without encode.\r\nThe data will encode to bas" +
     "e64 by mongocola.";
@@ -137,7 +139,7 @@ namespace MongoGUIView
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(378, 207);
+            this.ClientSize = new System.Drawing.Size(315, 207);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ctlBsonValue1);
             this.Controls.Add(this.cmbDataType);
@@ -147,7 +149,7 @@ namespace MongoGUIView
             this.Controls.Add(this.lblElement);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

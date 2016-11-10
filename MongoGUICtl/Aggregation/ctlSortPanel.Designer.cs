@@ -34,6 +34,7 @@
             // 
             // cmdAdd
             // 
+            this.cmdAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdAdd.Location = new System.Drawing.Point(521, 1);
             this.cmdAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmdAdd.Name = "cmdAdd";
@@ -45,6 +46,7 @@
             // 
             // btnClearMatch
             // 
+            this.btnClearMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearMatch.Location = new System.Drawing.Point(616, 4);
             this.btnClearMatch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClearMatch.Name = "btnClearMatch";

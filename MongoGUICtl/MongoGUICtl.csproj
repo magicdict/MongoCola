@@ -164,10 +164,10 @@
     <Compile Include="ctlIndexCreate.Designer.cs">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlQueryCondition.cs">
+    <Compile Include="Aggregation\ctlQueryCondition.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctlQueryCondition.Designer.cs">
+    <Compile Include="Aggregation\ctlQueryCondition.Designer.cs">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
     <Compile Include="ctlJsCodeEditor.cs">
@@ -235,7 +235,7 @@
     <EmbeddedResource Include="ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctlQueryCondition.resx">
+    <EmbeddedResource Include="Aggregation\ctlQueryCondition.resx">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctlJsCodeEditor.resx">
