@@ -51,8 +51,6 @@ namespace MongoGUIView
             this.LastPageStripButton = new System.Windows.Forms.ToolStripButton();
             this.ExpandAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.CollapseAllStripButton = new System.Windows.Forms.ToolStripButton();
-            this.QueryStripButton = new System.Windows.Forms.ToolStripButton();
-            this.FilterStripButton = new System.Windows.Forms.ToolStripButton();
             this.DataNaviToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.txtSkip = new System.Windows.Forms.ToolStripTextBox();
             this.GotoStripButton = new System.Windows.Forms.ToolStripButton();
@@ -197,8 +195,6 @@ namespace MongoGUIView
             this.LastPageStripButton,
             this.ExpandAllStripButton,
             this.CollapseAllStripButton,
-            this.QueryStripButton,
-            this.FilterStripButton,
             this.DataNaviToolStripLabel,
             this.txtSkip,
             this.GotoStripButton,
@@ -209,7 +205,7 @@ namespace MongoGUIView
             this.CloseStripButton});
             this.ViewtoolStrip.Location = new System.Drawing.Point(3, 25);
             this.ViewtoolStrip.Name = "ViewtoolStrip";
-            this.ViewtoolStrip.Size = new System.Drawing.Size(574, 25);
+            this.ViewtoolStrip.Size = new System.Drawing.Size(528, 25);
             this.ViewtoolStrip.TabIndex = 2;
             this.ViewtoolStrip.Text = "Main";
             // 
@@ -278,28 +274,6 @@ namespace MongoGUIView
             this.CollapseAllStripButton.Tag = "Common_Collapse";
             this.CollapseAllStripButton.Text = "CollapseAll";
             this.CollapseAllStripButton.Click += new System.EventHandler(this.CollapseAll_Click);
-            // 
-            // QueryStripButton
-            // 
-            this.QueryStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.QueryStripButton.Image = ((System.Drawing.Image)(resources.GetObject("QueryStripButton.Image")));
-            this.QueryStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.QueryStripButton.Name = "QueryStripButton";
-            this.QueryStripButton.Size = new System.Drawing.Size(23, 22);
-            this.QueryStripButton.Tag = "Main_Menu_DataView_Query";
-            this.QueryStripButton.Text = "Query";
-            this.QueryStripButton.Click += new System.EventHandler(this.QueryStripButton_Click);
-            // 
-            // FilterStripButton
-            // 
-            this.FilterStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FilterStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FilterStripButton.Image")));
-            this.FilterStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FilterStripButton.Name = "FilterStripButton";
-            this.FilterStripButton.Size = new System.Drawing.Size(23, 22);
-            this.FilterStripButton.Tag = "Main_Menu_DataView_DataFilter";
-            this.FilterStripButton.Text = "Filter";
-            this.FilterStripButton.Click += new System.EventHandler(this.FilterStripButton_Click);
             // 
             // DataNaviToolStripLabel
             // 
@@ -450,8 +424,6 @@ namespace MongoGUIView
 
         private ToolStripButton CloseStripButton;
         private ToolStripButton RefreshStripButton;
-        private ToolStripButton QueryStripButton;
-        private ToolStripButton FilterStripButton;
         private ToolStripLabel DataNaviToolStripLabel;
 
         //Record

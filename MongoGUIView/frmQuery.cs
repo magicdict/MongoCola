@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace MongoGUIView
 {
+    [Obsolete("该窗体已经废止")]
     public partial class FrmQuery : Form
     {
         //Query 不支持$project操作和其他复杂操作！

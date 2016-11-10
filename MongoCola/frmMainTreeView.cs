@@ -537,10 +537,6 @@ namespace MongoCola
 
                     var aggregationMenu = AggregationToolStripMenuItem.Clone();
 
-                    var count = countToolStripMenuItem.Clone();
-                    count.Click += countToolStripMenuItem_Click;
-                    aggregationMenu.DropDownItems.Add(count);
-
                     var distinct = distinctToolStripMenuItem.Clone();
                     distinct.Click += distinctToolStripMenuItem_Click;
                     aggregationMenu.DropDownItems.Add(distinct);

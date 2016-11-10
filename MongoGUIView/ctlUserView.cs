@@ -14,7 +14,7 @@ namespace MongoGUIView
         {
             InitializeComponent();
             InitToolAndMenu();
-            MDataViewInfo = dataViewInfo;
+            mDataViewInfo = dataViewInfo;
             DataShower.Add(lstData);
         }
 
@@ -36,7 +36,7 @@ namespace MongoGUIView
 
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstData.SelectedItems.Count > 0 && !MDataViewInfo.IsReadOnly)
+            if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsReadOnly)
             {
                 AddUserToolStripMenuItem.Enabled = true;
                 AddUserStripButton.Enabled = true;
@@ -59,7 +59,7 @@ namespace MongoGUIView
 
         protected void lstData_MouseClick(object sender, MouseEventArgs e)
         {
-            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.strCollectionPath;
+            RuntimeMongoDbContext.SelectObjectTag = mDataViewInfo.strCollectionPath;
             if (lstData.SelectedItems.Count > 0)
             {
                 if (e.Button == MouseButtons.Right)
@@ -101,7 +101,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void RemoveUserStripButton_Click(object sender, EventArgs e)
         {
-            if (MDataViewInfo.IsAdminDb)
+            if (mDataViewInfo.IsAdminDb)
             {
                 RemoveUserFromAdmin();
             }

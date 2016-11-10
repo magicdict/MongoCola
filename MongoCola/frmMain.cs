@@ -513,7 +513,7 @@ namespace MongoCola
                     break;
             }
 
-            dataViewctl.MDataViewInfo = mDataViewInfo;
+            dataViewctl.mDataViewInfo = mDataViewInfo;
             dataViewctl.SelectObjectTag = RuntimeMongoDbContext.SelectObjectTag;
             dataViewctl.ParentMenu = CollectionToolStripMenuItem;
             MultiTabManger.AddView(dataViewctl, RuntimeMongoDbContext.GetCurrentCollectionName(), RuntimeMongoDbContext.SelectTagType);

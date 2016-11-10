@@ -15,7 +15,7 @@ namespace MongoGUIView
         {
             InitializeComponent();
             InitTool();
-            MDataViewInfo = dataViewInfo;
+            mDataViewInfo = dataViewInfo;
             DataShower.Add(lstData);
             if (!GuiConfig.IsUseDefaultLanguage)
             {
@@ -90,7 +90,7 @@ namespace MongoGUIView
                     OpenFileToolStripMenuItem.Enabled = true;
                     DownloadFileToolStripMenuItem.Enabled = true;
                     DownloadFileStripButton.Enabled = true;
-                    if (!MDataViewInfo.IsReadOnly)
+                    if (!mDataViewInfo.IsReadOnly)
                     {
                         DeleteFileStripButton.Enabled = true;
                         DeleteFileToolStripMenuItem.Enabled = true;
@@ -103,7 +103,7 @@ namespace MongoGUIView
 
                     DownloadFileToolStripMenuItem.Enabled = false;
                     DownloadFileStripButton.Enabled = false;
-                    if (!MDataViewInfo.IsReadOnly)
+                    if (!mDataViewInfo.IsReadOnly)
                     {
                         DeleteFileStripButton.Enabled = true;
                         DeleteFileToolStripMenuItem.Enabled = true;
@@ -171,7 +171,7 @@ namespace MongoGUIView
 
         protected void lstData_MouseClick(object sender, MouseEventArgs e)
         {
-            RuntimeMongoDbContext.SelectObjectTag = MDataViewInfo.strCollectionPath;
+            RuntimeMongoDbContext.SelectObjectTag = mDataViewInfo.strCollectionPath;
             if (lstData.SelectedItems.Count > 0)
             {
                 if (e.Button == MouseButtons.Right)

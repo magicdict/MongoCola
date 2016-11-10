@@ -1,11 +1,12 @@
 ﻿
-using System.Collections.Generic;
-using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.ToolKit;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MongoUtility.Aggregation
 {
@@ -52,6 +53,7 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     是否使用过滤器
         /// </summary>
+        [Obsolete("过滤器已经废止")]
         public bool IsUseFilter;
 
         /// <summary>
@@ -62,11 +64,13 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     数据过滤器
         /// </summary>
+        [Obsolete("过滤器已经废止")]
         public DataFilter MDataFilter;
 
         /// <summary>
         ///     聚合数组(使用聚合框架获取数据)
         /// </summary>
+        [Obsolete("过滤器已经废止")]
         private BsonArray stages = new BsonArray();
 
         /// <summary>

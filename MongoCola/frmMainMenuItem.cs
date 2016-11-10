@@ -964,16 +964,6 @@ namespace MongoCola
         #region"聚合"
 
         /// <summary>
-        ///     Count
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void countToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MyMessageBox.ShowEasyMessage("Count", "Count Result : " + QueryHelper.GetCurrentCollectionCount(null));
-        }
-
-        /// <summary>
         ///     Distinct
         /// </summary>
         /// <param name="sender"></param>
