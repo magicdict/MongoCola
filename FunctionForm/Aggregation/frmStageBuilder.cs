@@ -1,10 +1,13 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using Common;
+using FunctionForm.Operation;
 using MongoDB.Bson;
-using ResourceLib.UI;
-using MongoUtility.ToolKit;
+using MongoGUICtl.ClientTree;
 using MongoUtility.Core;
+using MongoUtility.ToolKit;
 using ResourceLib.Method;
+using ResourceLib.UI;
+using System;
+using System.Windows.Forms;
 
 namespace FunctionForm.Aggregation
 {
@@ -47,7 +50,6 @@ namespace FunctionForm.Aggregation
         private void frmAggregationCondition_Load(object sender, EventArgs e)
         {
             QueryFieldPicker.InitByCurrentCollection(true);
-            GroupFieldPicker.InitByCurrentCollection(false);
 
             if (!GuiConfig.IsUseDefaultLanguage)
             {
@@ -67,9 +69,16 @@ namespace FunctionForm.Aggregation
         {
             //Project
             var project = QueryFieldPicker.GetAggregation();
-            if (project[0].AsBsonDocument.ElementCount > 0)
+            var supressAggr = project[0];
+            var projectAggr = project[1];
+            if (supressAggr[0].AsBsonDocument.ElementCount > 0)
             {
-                Aggregation.Add(project);
+                Aggregation.Add(supressAggr);
+            }
+            //TODO:需要优化，全项目的时候，不用输出
+            if (projectAggr[0].AsBsonDocument.ElementCount > 0)
+            {
+                Aggregation.Add(projectAggr);
             }
 
             //match
@@ -87,15 +96,24 @@ namespace FunctionForm.Aggregation
             }
 
             //Group
-            var groupDetail = GroupFieldPicker.GetGroupId();
-            if (groupDetail.GetElement(0).Value.AsBsonDocument.ElementCount != 0)
+            if (chkIdNull.Checked)
             {
-                foreach (var item in groupPanelCreator.GetGroup())
-                {
-                    groupDetail.Add(item);
-                }
-                var group = new BsonDocument("$group", groupDetail);
+                var id = new BsonDocument();
+                id.Add(new BsonElement("_id", BsonNull.Value));
+                id.AddRange(FieldsElement.Value.AsBsonDocument.Elements);
+                var group = new BsonDocument("$group", id);
                 Aggregation.Add(group);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(GroupIdElement.Name))
+                {
+                    var id = new BsonDocument();
+                    id.Add(new BsonElement("_id", GroupIdElement.Value));
+                    id.AddRange(FieldsElement.Value.AsBsonDocument.Elements);
+                    var group = new BsonDocument("$group", id);
+                    Aggregation.Add(group);
+                }
             }
 
 
@@ -165,26 +183,31 @@ namespace FunctionForm.Aggregation
 
         #region"Group"
 
-        /// <summary>
-        ///     添加一个Group项目
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdAddGroupItem_Click(object sender, EventArgs e)
+        BsonElement GroupIdElement = new BsonElement();
+        private void cmdCreateGroupId_Click(object sender, EventArgs e)
         {
-            groupPanelCreator.AddGroupItem();
+            var frmInsertDoc = new frmCreateDocument();
+            Utility.OpenModalForm(frmInsertDoc, false, true);
+            if (frmInsertDoc.mBsonDocument != null)
+            {
+                GroupIdElement = new BsonElement("id", frmInsertDoc.mBsonDocument);
+                UiHelper.FillDataToTreeView("GroupId", TreeViewGroupId, frmInsertDoc.mBsonDocument);
+            }
         }
-
-        /// <summary>
-        ///     清除所有Group项目
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnClearGroupItem_Click(object sender, EventArgs e)
+        BsonElement FieldsElement = new BsonElement();
+        private void cmdCreateGroupFields_Click(object sender, EventArgs e)
         {
-            groupPanelCreator.Clear();
+            var frmInsertDoc = new frmCreateDocument();
+            Utility.OpenModalForm(frmInsertDoc, false, true);
+            if (frmInsertDoc.mBsonDocument != null)
+            {
+                FieldsElement = new BsonElement("fields", frmInsertDoc.mBsonDocument);
+                UiHelper.FillDataToTreeView("GroupId", TreeViewGroupFields, frmInsertDoc.mBsonDocument);
+            }
         }
 
         #endregion
+
+
     }
 }

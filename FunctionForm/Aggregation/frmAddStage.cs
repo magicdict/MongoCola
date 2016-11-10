@@ -1,4 +1,5 @@
 ﻿using Common;
+using ICSharpCode.TextEditor.Document;
 using MongoDB.Bson;
 using MongoGUICtl.ClientTree;
 using ResourceLib.Method;
@@ -16,7 +17,8 @@ namespace FunctionForm.Aggregation
             InitializeComponent();
         }
 
-        private List<BsonDocument> Parse(String text){
+        private List<BsonDocument> Parse(String text)
+        {
             var list = new List<BsonDocument>();
             //确实很丑陋，但BsonArray没有Parse方法，只能这么干了
             BsonDocument newDoc;
@@ -55,6 +57,7 @@ namespace FunctionForm.Aggregation
 
         private void frmAddStage_Load(object sender, EventArgs e)
         {
+            txtDocument.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
             GuiConfig.Translateform(this);
         }
 
@@ -69,7 +72,7 @@ namespace FunctionForm.Aggregation
             {
                 Utility.ExceptionDeal(ex);
             }
-            
+
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)

@@ -70,7 +70,7 @@ namespace FunctionForm.Operation
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(260, 400);
+            this.cmdOK.Location = new System.Drawing.Point(265, 420);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 27);
             this.cmdOK.TabIndex = 4;
@@ -80,7 +80,7 @@ namespace FunctionForm.Operation
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(372, 400);
+            this.cmdCancel.Location = new System.Drawing.Point(377, 420);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 27);
             this.cmdCancel.TabIndex = 5;
@@ -332,8 +332,7 @@ namespace FunctionForm.Operation
             // 
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(9, 14);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(718, 380);
@@ -382,7 +381,7 @@ namespace FunctionForm.Operation
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(718, 443);
+            this.ClientSize = new System.Drawing.Size(739, 473);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);

@@ -40,12 +40,11 @@ namespace FunctionForm.Aggregation
             this.tabSort = new System.Windows.Forms.TabPage();
             this.SortPanel = new MongoGUICtl.Aggregation.ctlSortPanel();
             this.tabGroup1 = new System.Windows.Forms.TabPage();
-            this.GroupFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
+            this.TreeViewGroupId = new MongoGUICtl.CtlTreeViewColumns();
+            this.cmdCreateGroupId = new System.Windows.Forms.Button();
+            this.chkIdNull = new System.Windows.Forms.CheckBox();
             this.lblID = new System.Windows.Forms.Label();
             this.tabGroup2 = new System.Windows.Forms.TabPage();
-            this.btnClearGroupItem = new System.Windows.Forms.Button();
-            this.cmdAddGroupItem = new System.Windows.Forms.Button();
-            this.groupPanelCreator = new MongoGUICtl.Aggregation.GroupPanel();
             this.tabMisc = new System.Windows.Forms.TabPage();
             this.chkPreserveNullAndEmptyArrays = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,6 +63,8 @@ namespace FunctionForm.Aggregation
             this.chkLimit = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.TreeViewGroupFields = new MongoGUICtl.CtlTreeViewColumns();
+            this.cmdCreateGroupFields = new System.Windows.Forms.Button();
             this.tabAggregation.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabMatch.SuspendLayout();
@@ -125,7 +126,9 @@ namespace FunctionForm.Aggregation
             // 
             this.MatchListPanel.AutoScroll = true;
             this.MatchListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MatchListPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MatchListPanel.Location = new System.Drawing.Point(3, 3);
+            this.MatchListPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MatchListPanel.Name = "MatchListPanel";
             this.MatchListPanel.Size = new System.Drawing.Size(598, 295);
             this.MatchListPanel.TabIndex = 2;
@@ -143,36 +146,58 @@ namespace FunctionForm.Aggregation
             // 
             // SortPanel
             // 
+            this.SortPanel.AutoScroll = true;
             this.SortPanel.CollectionPath = null;
             this.SortPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SortPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SortPanel.Location = new System.Drawing.Point(3, 3);
+            this.SortPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SortPanel.Name = "SortPanel";
             this.SortPanel.Size = new System.Drawing.Size(598, 295);
             this.SortPanel.TabIndex = 0;
             // 
             // tabGroup1
             // 
-            this.tabGroup1.Controls.Add(this.GroupFieldPicker);
+            this.tabGroup1.Controls.Add(this.TreeViewGroupId);
+            this.tabGroup1.Controls.Add(this.cmdCreateGroupId);
+            this.tabGroup1.Controls.Add(this.chkIdNull);
             this.tabGroup1.Controls.Add(this.lblID);
             this.tabGroup1.Location = new System.Drawing.Point(4, 22);
             this.tabGroup1.Name = "tabGroup1";
             this.tabGroup1.Padding = new System.Windows.Forms.Padding(3);
             this.tabGroup1.Size = new System.Drawing.Size(604, 301);
             this.tabGroup1.TabIndex = 3;
-            this.tabGroup1.Text = "$group1";
+            this.tabGroup1.Text = "$group(_id)";
             this.tabGroup1.UseVisualStyleBackColor = true;
             // 
-            // GroupFieldPicker
+            // TreeViewGroupId
             // 
-            this.GroupFieldPicker.AutoScroll = true;
-            this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
-            this.GroupFieldPicker.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GroupFieldPicker.FieldListMode = MongoGUICtl.Aggregation.CtlFieldInfo.FieldMode.Aggregation;
-            this.GroupFieldPicker.IsIdProtect = false;
-            this.GroupFieldPicker.Location = new System.Drawing.Point(3, 31);
-            this.GroupFieldPicker.Name = "GroupFieldPicker";
-            this.GroupFieldPicker.Size = new System.Drawing.Size(598, 267);
-            this.GroupFieldPicker.TabIndex = 3;
+            this.TreeViewGroupId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.TreeViewGroupId.Location = new System.Drawing.Point(26, 52);
+            this.TreeViewGroupId.Name = "TreeViewGroupId";
+            this.TreeViewGroupId.Padding = new System.Windows.Forms.Padding(1);
+            this.TreeViewGroupId.Size = new System.Drawing.Size(546, 228);
+            this.TreeViewGroupId.TabIndex = 6;
+            // 
+            // cmdCreateGroupId
+            // 
+            this.cmdCreateGroupId.Location = new System.Drawing.Point(327, 10);
+            this.cmdCreateGroupId.Name = "cmdCreateGroupId";
+            this.cmdCreateGroupId.Size = new System.Drawing.Size(207, 23);
+            this.cmdCreateGroupId.TabIndex = 5;
+            this.cmdCreateGroupId.Text = "Create GroupId Document";
+            this.cmdCreateGroupId.UseVisualStyleBackColor = true;
+            this.cmdCreateGroupId.Click += new System.EventHandler(this.cmdCreateGroupId_Click);
+            // 
+            // chkIdNull
+            // 
+            this.chkIdNull.AutoSize = true;
+            this.chkIdNull.Location = new System.Drawing.Point(233, 15);
+            this.chkIdNull.Name = "chkIdNull";
+            this.chkIdNull.Size = new System.Drawing.Size(72, 16);
+            this.chkIdNull.TabIndex = 4;
+            this.chkIdNull.Text = "_Id Null";
+            this.chkIdNull.UseVisualStyleBackColor = true;
             // 
             // lblID
             // 
@@ -185,45 +210,15 @@ namespace FunctionForm.Aggregation
             // 
             // tabGroup2
             // 
-            this.tabGroup2.Controls.Add(this.btnClearGroupItem);
-            this.tabGroup2.Controls.Add(this.cmdAddGroupItem);
-            this.tabGroup2.Controls.Add(this.groupPanelCreator);
+            this.tabGroup2.Controls.Add(this.TreeViewGroupFields);
+            this.tabGroup2.Controls.Add(this.cmdCreateGroupFields);
             this.tabGroup2.Location = new System.Drawing.Point(4, 22);
             this.tabGroup2.Name = "tabGroup2";
             this.tabGroup2.Padding = new System.Windows.Forms.Padding(3);
             this.tabGroup2.Size = new System.Drawing.Size(604, 301);
             this.tabGroup2.TabIndex = 4;
-            this.tabGroup2.Text = "$group2";
+            this.tabGroup2.Text = "$group(Fields)";
             this.tabGroup2.UseVisualStyleBackColor = true;
-            // 
-            // btnClearGroupItem
-            // 
-            this.btnClearGroupItem.Location = new System.Drawing.Point(451, 6);
-            this.btnClearGroupItem.Name = "btnClearGroupItem";
-            this.btnClearGroupItem.Size = new System.Drawing.Size(116, 32);
-            this.btnClearGroupItem.TabIndex = 7;
-            this.btnClearGroupItem.Text = "Clear";
-            this.btnClearGroupItem.UseVisualStyleBackColor = true;
-            this.btnClearGroupItem.Click += new System.EventHandler(this.btnClearGroupItem_Click);
-            // 
-            // cmdAddGroupItem
-            // 
-            this.cmdAddGroupItem.Location = new System.Drawing.Point(316, 6);
-            this.cmdAddGroupItem.Name = "cmdAddGroupItem";
-            this.cmdAddGroupItem.Size = new System.Drawing.Size(129, 32);
-            this.cmdAddGroupItem.TabIndex = 6;
-            this.cmdAddGroupItem.Text = "Add GroupItem";
-            this.cmdAddGroupItem.UseVisualStyleBackColor = true;
-            this.cmdAddGroupItem.Click += new System.EventHandler(this.cmdAddGroupItem_Click);
-            // 
-            // groupPanelCreator
-            // 
-            this.groupPanelCreator.AutoScroll = true;
-            this.groupPanelCreator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupPanelCreator.Location = new System.Drawing.Point(3, 44);
-            this.groupPanelCreator.Name = "groupPanelCreator";
-            this.groupPanelCreator.Size = new System.Drawing.Size(598, 254);
-            this.groupPanelCreator.TabIndex = 3;
             // 
             // tabMisc
             // 
@@ -408,6 +403,25 @@ namespace FunctionForm.Aggregation
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // ctlTreeViewColumns1
+            // 
+            this.TreeViewGroupFields.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.TreeViewGroupFields.Location = new System.Drawing.Point(29, 57);
+            this.TreeViewGroupFields.Name = "ctlTreeViewColumns1";
+            this.TreeViewGroupFields.Padding = new System.Windows.Forms.Padding(1);
+            this.TreeViewGroupFields.Size = new System.Drawing.Size(546, 228);
+            this.TreeViewGroupFields.TabIndex = 8;
+            // 
+            // cmdCreateGroupFields
+            // 
+            this.cmdCreateGroupFields.Location = new System.Drawing.Point(330, 15);
+            this.cmdCreateGroupFields.Name = "cmdCreateGroupFields";
+            this.cmdCreateGroupFields.Size = new System.Drawing.Size(207, 23);
+            this.cmdCreateGroupFields.TabIndex = 7;
+            this.cmdCreateGroupFields.Text = "Create Group Fields Document";
+            this.cmdCreateGroupFields.UseVisualStyleBackColor = true;
+            this.cmdCreateGroupFields.Click += new System.EventHandler(this.cmdCreateGroupFields_Click);
+            // 
             // FrmStageBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -447,13 +461,9 @@ namespace FunctionForm.Aggregation
         private TextBox txtLimit;
         private TabPage tabGroup1;
         private Label lblID;
-        private FieldPicker GroupFieldPicker;
         private ctlMatchPanel MatchListPanel;
         private Button btnCancel;
         private TabPage tabGroup2;
-        private Button btnClearGroupItem;
-        private Button cmdAddGroupItem;
-        private GroupPanel groupPanelCreator;
         private CheckBox chkIndexStats;
         private CheckBox chkSortByCount;
         private ComboBox cmbSortByCount;
@@ -467,5 +477,10 @@ namespace FunctionForm.Aggregation
         private TextBox txtincludeArrayIndex;
         private TabPage tabSort;
         private ctlSortPanel SortPanel;
+        private CheckBox chkIdNull;
+        private Button cmdCreateGroupId;
+        private MongoGUICtl.CtlTreeViewColumns TreeViewGroupId;
+        private MongoGUICtl.CtlTreeViewColumns TreeViewGroupFields;
+        private Button cmdCreateGroupFields;
     }
 }

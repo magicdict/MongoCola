@@ -28,11 +28,11 @@ namespace FunctionForm.Operation
         private void cmdOK_Click(object sender, EventArgs e)
         {
             BsonDocument newBsonDocument;
-            if (txtJsCode.Text != string.Empty)
+            if (txtDocument.Text != string.Empty)
             {
                 try
                 {
-                    newBsonDocument = BsonDocument.Parse(txtJsCode.Text);
+                    newBsonDocument = BsonDocument.Parse(txtDocument.Text);
                     mBsonDocument = newBsonDocument;
                     Close();
                 }
@@ -74,10 +74,10 @@ namespace FunctionForm.Operation
         {
             try
             {
-                BsonDocument newdoc = BsonDocument.Parse(txtJsCode.Text);
+                BsonDocument newdoc = BsonDocument.Parse(txtDocument.Text);
                 UiHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
-                txtJsCode.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
+                txtDocument.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
             }
             catch (Exception ex)
             {
@@ -92,9 +92,9 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void cmdSaveDocument_Click(object sender, EventArgs e)
         {
-            if (txtJsCode.Text != string.Empty)
+            if (txtDocument.Text != string.Empty)
             {
-                Utility.SaveTextFile(txtJsCode.Text, Utility.TxtFilter);
+                Utility.SaveTextFile(txtDocument.Text, Utility.TxtFilter);
             }
         }
 
@@ -105,7 +105,7 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
-            txtJsCode.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
+            txtDocument.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
             GuiConfig.Translateform(this);
         }
     }

@@ -38,12 +38,12 @@ namespace FunctionForm.Operation
             this.label1 = new System.Windows.Forms.Label();
             this.cmdPreview = new System.Windows.Forms.Button();
             this.cmdSaveAggregate = new System.Windows.Forms.Button();
-            this.txtJsCode = new ICSharpCode.TextEditor.TextEditorControl();
+            this.txtDocument = new ICSharpCode.TextEditor.TextEditorControl();
             this.SuspendLayout();
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(555, 259);
+            this.cmdOK.Location = new System.Drawing.Point(560, 343);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(72, 23);
             this.cmdOK.TabIndex = 5;
@@ -54,7 +54,7 @@ namespace FunctionForm.Operation
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(632, 259);
+            this.cmdClose.Location = new System.Drawing.Point(637, 343);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(72, 23);
             this.cmdClose.TabIndex = 6;
@@ -66,11 +66,11 @@ namespace FunctionForm.Operation
             // trvNewDocument
             // 
             this.trvNewDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvNewDocument.Location = new System.Drawing.Point(389, 12);
+            this.trvNewDocument.Location = new System.Drawing.Point(503, 12);
             this.trvNewDocument.Margin = new System.Windows.Forms.Padding(4);
             this.trvNewDocument.Name = "trvNewDocument";
             this.trvNewDocument.Padding = new System.Windows.Forms.Padding(1);
-            this.trvNewDocument.Size = new System.Drawing.Size(315, 222);
+            this.trvNewDocument.Size = new System.Drawing.Size(477, 298);
             this.trvNewDocument.TabIndex = 2;
             // 
             // label1
@@ -84,7 +84,7 @@ namespace FunctionForm.Operation
             // 
             // cmdPreview
             // 
-            this.cmdPreview.Location = new System.Drawing.Point(478, 259);
+            this.cmdPreview.Location = new System.Drawing.Point(483, 343);
             this.cmdPreview.Name = "cmdPreview";
             this.cmdPreview.Size = new System.Drawing.Size(72, 23);
             this.cmdPreview.TabIndex = 4;
@@ -96,7 +96,7 @@ namespace FunctionForm.Operation
             // cmdSaveAggregate
             // 
             this.cmdSaveAggregate.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveAggregate.Location = new System.Drawing.Point(401, 259);
+            this.cmdSaveAggregate.Location = new System.Drawing.Point(406, 343);
             this.cmdSaveAggregate.Name = "cmdSaveAggregate";
             this.cmdSaveAggregate.Size = new System.Drawing.Size(72, 23);
             this.cmdSaveAggregate.TabIndex = 3;
@@ -105,21 +105,22 @@ namespace FunctionForm.Operation
             this.cmdSaveAggregate.UseVisualStyleBackColor = false;
             this.cmdSaveAggregate.Click += new System.EventHandler(this.cmdSaveDocument_Click);
             // 
-            // txtJsCode
+            // txtDocument
             // 
-            this.txtJsCode.IsReadOnly = false;
-            this.txtJsCode.Location = new System.Drawing.Point(14, 42);
-            this.txtJsCode.Name = "txtJsCode";
-            this.txtJsCode.Size = new System.Drawing.Size(367, 192);
-            this.txtJsCode.TabIndex = 1;
+            this.txtDocument.AutoScroll = true;
+            this.txtDocument.IsReadOnly = false;
+            this.txtDocument.Location = new System.Drawing.Point(14, 42);
+            this.txtDocument.Name = "txtDocument";
+            this.txtDocument.Size = new System.Drawing.Size(464, 268);
+            this.txtDocument.TabIndex = 1;
             // 
             // frmCreateDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(715, 302);
-            this.Controls.Add(this.txtJsCode);
+            this.ClientSize = new System.Drawing.Size(1018, 378);
+            this.Controls.Add(this.txtDocument);
             this.Controls.Add(this.cmdSaveAggregate);
             this.Controls.Add(this.cmdPreview);
             this.Controls.Add(this.label1);
@@ -142,6 +143,6 @@ namespace FunctionForm.Operation
         private Label label1;
         private Button cmdPreview;
         private Button cmdSaveAggregate;
-        private ICSharpCode.TextEditor.TextEditorControl txtJsCode;
+        private ICSharpCode.TextEditor.TextEditorControl txtDocument;
     }
 }
