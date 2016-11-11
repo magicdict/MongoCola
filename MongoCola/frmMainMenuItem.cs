@@ -189,16 +189,20 @@ namespace MongoCola
             }
             trvsrvlst.EndUpdate();
         }
-
+        /// <summary>
+        ///     展开节点
+        /// </summary>
+        /// <param name="node"></param>
         private void ExpandNode(TreeNode node)
         {
             if (node.Tag == null) return;
             var strNodeType = TagInfo.GetTagType(node.Tag.ToString());
-            if (strNodeType != ConstMgr.CollectionTag && strNodeType != ConstMgr.GridFileSystemTag)
+            if (strNodeType != ConstMgr.CollectionTag &&
+                strNodeType != ConstMgr.GridFileSystemTag &&
+                strNodeType != ConstMgr.ViewTag)
             {
                 node.Expand();
-                if (node.Nodes.Count == 0)
-                    return;
+                if (node.Nodes.Count == 0) return;
                 foreach (TreeNode item in node.Nodes)
                 {
                     ExpandNode(item);
@@ -635,7 +639,7 @@ namespace MongoCola
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public  bool DropCollection(TreeNode node)
+        public bool DropCollection(TreeNode node)
         {
             var strTitle = GuiConfig.GetText("Drop Collection", TextType.DropCollection);
             var strMessage = GuiConfig.GetText("Are you sure to drop this Collection?", TextType.DropCollectionConfirm);
@@ -972,17 +976,6 @@ namespace MongoCola
         {
             var query = new DataFilter();
             Utility.OpenModalForm(new FrmDistinct(query, false), true, true);
-        }
-
-        /// <summary>
-        ///     Group
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void groupToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var query = new DataFilter();
-            Utility.OpenModalForm(new FrmGroup(query, false), true, true);
         }
 
         /// <summary>

@@ -28,6 +28,11 @@ namespace FunctionForm.Status
         public static int RefreshInterval { set; get; }
 
         /// <summary>
+        ///     自定义系统监视项目
+        /// </summary>
+        public static List<string> MonitorItems { get; set; }
+
+        /// <summary>
         ///     分类内部项目
         /// </summary>
         public static Dictionary<string, string> CatalogDetailDic = new Dictionary<string, string>();
@@ -40,7 +45,11 @@ namespace FunctionForm.Status
         private void frmServerMonitor_Load(object sender, EventArgs e)
         {
             //填充分组
+            GuiConfig.Translateform(this);
             Utility.FillComberWithArray(cmbCatalog, SystemStatus.GetCatalog().ToArray());
+            //自定义分组
+            cmbCatalog.Items.Add("Custom");
+
             cmbCatalog.SelectedIndex = 0;
             if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
             _mTime = new Timer { Interval = RefreshInterval * 1000 };
@@ -67,10 +76,32 @@ namespace FunctionForm.Status
                 MonitorGrap.Series[item.Split(".".ToCharArray())[1]].Points.Add(queryPoint);
             }
         }
-
+        /// <summary>
+        ///     Index变化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbCatalog_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CatalogDetailDic = SystemStatus.GetCatalogDic(cmbCatalog.Text);
+            if (cmbCatalog.SelectedIndex == cmbCatalog.Items.Count - 1)
+            {
+                CatalogDetailDic.Clear();
+                foreach (var item in MonitorItems)
+                {
+                    CatalogDetailDic.Add(item, item);
+                }
+            }
+            else
+            {
+                CatalogDetailDic = SystemStatus.GetCatalogDic(cmbCatalog.Text);
+            }
+            ResetMonitorItems();
+        }
+        /// <summary>
+        ///     重制监视项目
+        /// </summary>
+        private void ResetMonitorItems()
+        {
             MonitorGrap.Series.Clear();
             foreach (var item in CatalogDetailDic.Keys)
             {
@@ -83,6 +114,16 @@ namespace FunctionForm.Status
                 MonitorGrap.Series.Add(querySeries);
             }
         }
+
+        /// <summary>
+        ///     刷新时间变更的委托
+        /// </summary>
+        public static Action<int> FreshTimeChanged;
+        /// <summary>
+        ///     自定义监视项目
+        /// </summary>
+        public static Action<List<string>> MonitorItemsChanged;
+
         /// <summary>
         ///     时间变化
         /// </summary>
@@ -98,6 +139,19 @@ namespace FunctionForm.Status
             {
                 _mTime.Start();
                 _mTime.Interval = (int)NumTimeInterval.Value * 1000;
+                FreshTimeChanged((int)NumTimeInterval.Value);
+            }
+        }
+
+        private void cmdCustom_Click(object sender, EventArgs e)
+        {
+            var frm = new frmCustomMonitorItems();
+            Utility.OpenModalForm(frm, false, true);
+            if (frm.SelectedItems != null)
+            {
+                MonitorItemsChanged(frm.SelectedItems);
+                MonitorItems = frm.SelectedItems;
+                cmbCatalog.SelectedIndex = cmbCatalog.Items.Count - 1;
             }
         }
     }

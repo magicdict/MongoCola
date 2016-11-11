@@ -189,6 +189,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Status\frmCustomMonitorItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Status\frmCustomMonitorItems.Designer.cs">
+      <DependentUpon>frmCustomMonitorItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Status\frmDataView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -339,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCreateView.resx">
       <DependentUpon>frmCreateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Status\frmCustomMonitorItems.resx">
+      <DependentUpon>frmCustomMonitorItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Status\frmDataView.resx">
       <DependentUpon>frmDataView.cs</DependentUpon>

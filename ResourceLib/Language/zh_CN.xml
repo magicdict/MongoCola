@@ -29,7 +29,8 @@
   <Main_Menu_Operation_Server_SlaveResync>主从同步</Main_Menu_Operation_Server_SlaveResync>
   <Main_Menu_Operation_Server_CloseServer>关闭服务器</Main_Menu_Operation_Server_CloseServer>
   <Main_Menu_Operation_Server_Properties>服务器属性</Main_Menu_Operation_Server_Properties>
-
+  <Main_Menu_ServerMonitor>状态监视器</Main_Menu_ServerMonitor>
+  
   <Main_Menu_Operation_Database>数据库</Main_Menu_Operation_Database>
   <Main_Menu_Operation_Database_AddCollection>添加数据集</Main_Menu_Operation_Database_AddCollection>
   <Main_Menu_Operation_Database_AddView>添加视图</Main_Menu_Operation_Database_AddView>

@@ -6,7 +6,7 @@
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
 * 版本号：Ver 2.0.5
-* 文档最后更新时间：2016-11-08
+* 文档最后更新时间：2016-11-11
 
 ## 开发和测试环境
 ### 操作系统：
@@ -132,7 +132,11 @@ Mongo3.4新增概念：通过设定Collation可以指定字符串比较的时候
 
 你可以同时打开多个服务器监视窗体查看服务器的各种状态
 
-![](/FileSystem/Thumbnail?filename=00000001_20161107110554_Server Monitor.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161111095418_Server Monitor.png)
+
+你也可以自定义一系列监视项目，使之同时出现在同一个图表中。（请注意，如果监视项目数值相差太大，图标的表示将会出现一些问题）
+
+![](/FileSystem/Thumbnail?filename=00000001_20161111095615_CustomItems.png)
 
 ##索引管理
 ###索引一览和删除
@@ -199,21 +203,14 @@ Mongo3.4新增概念：通过设定Collation可以指定字符串比较的时候
 选择任意一个数据集之后在右键菜单中可以找到聚合命令的入口
 
 ###基本聚合
-- Count
-
-![](/FileSystem/Thumbnail?filename=00000001_20161102144713_COUNT.png)
+Count 由于功能过于简单没有单独做成窗体。
+Group功能按照MongoDB官方最新文档的指导,建议使用MapReduce或者Aggregate框架的Group功能实现
 
 - Distinct
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102144741_Distinct_FieldPick.PNG)
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102145040_Distinct_Result.PNG)
-
-- Group
-
-![](/FileSystem/Thumbnail?filename=00000001_20161102144844_Group_Init.PNG)
-
-![](/FileSystem/Thumbnail?filename=00000001_20161102144904_Group_Result.PNG)
 
 ###MapReduce
 
@@ -247,10 +244,28 @@ MapReduce的结果如图
 ![](/FileSystem/Thumbnail?filename=00000001_20161102131308_Aggregation.png)
 
 StageBuilder可以帮助你设定一些简单的Stage条件
+
+- project
+
+设定那些项目需要输出，也可以对项目改名或者进行函数计算
+注意：对项目进行抑制（不输出）和进行Project（改名和函数计算）操作是不能同时出现的，必须分开在两个Pipeline。
+
+![](/FileSystem/Thumbnail?filename=00000001_20161110103345_Project.png)
+
+- Match
+
+Match可以设定数据的过滤条件，支持OR和AND以及括号
+
+![](/FileSystem/Thumbnail?filename=00000001_20161111095919_MatchPanel.png)
+
+- group
+在设定 Id项目和其他项目之后，可以进行Group操作
+
+![](/FileSystem/Thumbnail?filename=00000001_20161110111433_group.png)
+
 - Sort :设定排序
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161109185102_Sort.png)
-
 
 - Misc
 
@@ -306,7 +321,8 @@ GeoNear用来检索地理位置：
 
 ###工具内置插件
 
-
+- Import To Excel
+- MachineLearning
 
 ## MongoDB3.4
 
@@ -331,13 +347,13 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 2. 树形数据展示控件，文档根字段表示优化
 3. 服务器属性菜单表示的内容合并到服务器状态中
 4. 启动后自动选中数据库结构的根对象
-5. 服务器监视功能的强化，允许同时打开多个监视窗体（改为非模态）
+5. 服务器监视功能的强化，允许同时打开多个监视窗体（改为非模态），自定义监视项目
 6. 连接管理，增加了对于连接名称的检查
 7. 连接字符串放在连接管理器的最外层，方便快速建立连接。
 8. 连接转连接字符串的最简单实现
 9. Javascript编辑器的优化
 10. JsonOutputMode 默认设定为Shell
-11. 聚合的Sort设定
+11. AggregateBuilder的全面优化和改进
 
 ##Ver 2.0.3 2016/11/03
 

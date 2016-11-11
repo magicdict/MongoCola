@@ -51,7 +51,8 @@ namespace MongoCola.Config
             if (SystemManager.SystemConfig.jsonMode == MongoDB.Bson.IO.JsonOutputMode.Strict)
             {
                 radJsonStrict.Checked = true;
-            }else
+            }
+            else
             {
                 radJsonShell.Checked = true;
             }
@@ -66,7 +67,7 @@ namespace MongoCola.Config
             }
             if (SystemManager.SystemConfig.RefreshStatusTimer == 0)
             {
-                SystemManager.SystemConfig.RefreshStatusTimer = SystemManager.SystemConfig.DefaultRefreshStatusTimer;
+                SystemManager.SystemConfig.RefreshStatusTimer = SystemConfig.DefaultRefreshStatusTimer;
             }
             intRefreshStatusTimer.Value = SystemManager.SystemConfig.RefreshStatusTimer;
             if (string.IsNullOrEmpty(SystemManager.SystemConfig.UiFontFamily))

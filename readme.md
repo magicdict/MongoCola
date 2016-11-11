@@ -61,6 +61,7 @@ C#的代码分为两个解决方案：
 6. SQL转AggregateFrame
 	原本不完整的SQL转AggregateFrame废止
 7. 服务器读写状态的实时报表：MongoStatus 和 MongoTop，需要进行强化
+	自定义监视组：改组图标的项目都是自定义的
 8. C#直接操作MongoShell
 
 ***

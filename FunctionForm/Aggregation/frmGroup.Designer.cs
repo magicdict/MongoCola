@@ -45,18 +45,16 @@ namespace FunctionForm.Aggregation
             this.cmdAddInitField = new System.Windows.Forms.Button();
             this.lblResult = new System.Windows.Forms.Label();
             this.tabGroup = new System.Windows.Forms.TabControl();
-            this.tabReduce = new System.Windows.Forms.TabPage();
-            this.tabFinalize = new System.Windows.Forms.TabPage();
+            this.tabJavascript = new System.Windows.Forms.TabPage();
+            this.ctlReduce = new MongoGUICtl.CtlTextMgr();
             this.tabGroupField = new System.Windows.Forms.TabPage();
             this.tabInitialize = new System.Windows.Forms.TabPage();
             this.tabResult = new System.Windows.Forms.TabPage();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmdQuery = new System.Windows.Forms.Button();
-            this.ctlReduce = new CtlTextMgr();
-            this.ctlFinalize = new CtlTextMgr();
+            this.ctlFinalize = new MongoGUICtl.CtlTextMgr();
             this.tabGroup.SuspendLayout();
-            this.tabReduce.SuspendLayout();
-            this.tabFinalize.SuspendLayout();
+            this.tabJavascript.SuspendLayout();
             this.tabGroupField.SuspendLayout();
             this.tabInitialize.SuspendLayout();
             this.tabResult.SuspendLayout();
@@ -66,7 +64,7 @@ namespace FunctionForm.Aggregation
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(389, 582);
+            this.cmdRun.Location = new System.Drawing.Point(207, 563);
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(117, 37);
             this.cmdRun.TabIndex = 2;
@@ -91,7 +89,7 @@ namespace FunctionForm.Aggregation
             this.panColumn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panColumn.Location = new System.Drawing.Point(23, 32);
             this.panColumn.Name = "panColumn";
-            this.panColumn.Size = new System.Drawing.Size(467, 478);
+            this.panColumn.Size = new System.Drawing.Size(316, 444);
             this.panColumn.TabIndex = 28;
             // 
             // txtResult
@@ -102,7 +100,7 @@ namespace FunctionForm.Aggregation
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResult.Size = new System.Drawing.Size(468, 233);
+            this.txtResult.Size = new System.Drawing.Size(343, 214);
             this.txtResult.TabIndex = 0;
             // 
             // lblAddInitField
@@ -121,7 +119,7 @@ namespace FunctionForm.Aggregation
             this.panBsonEl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panBsonEl.Location = new System.Drawing.Point(24, 50);
             this.panBsonEl.Name = "panBsonEl";
-            this.panBsonEl.Size = new System.Drawing.Size(466, 455);
+            this.panBsonEl.Size = new System.Drawing.Size(309, 418);
             this.panBsonEl.TabIndex = 29;
             // 
             // cmdAddInitField
@@ -147,38 +145,37 @@ namespace FunctionForm.Aggregation
             // 
             // tabGroup
             // 
-            this.tabGroup.Controls.Add(this.tabReduce);
-            this.tabGroup.Controls.Add(this.tabFinalize);
+            this.tabGroup.Controls.Add(this.tabJavascript);
             this.tabGroup.Controls.Add(this.tabGroupField);
             this.tabGroup.Controls.Add(this.tabInitialize);
             this.tabGroup.Controls.Add(this.tabResult);
             this.tabGroup.Location = new System.Drawing.Point(12, 12);
             this.tabGroup.Name = "tabGroup";
             this.tabGroup.SelectedIndex = 0;
-            this.tabGroup.Size = new System.Drawing.Size(518, 564);
+            this.tabGroup.Size = new System.Drawing.Size(388, 532);
             this.tabGroup.TabIndex = 0;
             // 
-            // tabReduce
+            // tabJavascript
             // 
-            this.tabReduce.Controls.Add(this.ctlReduce);
-            this.tabReduce.Location = new System.Drawing.Point(4, 24);
-            this.tabReduce.Name = "tabReduce";
-            this.tabReduce.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReduce.Size = new System.Drawing.Size(510, 536);
-            this.tabReduce.TabIndex = 0;
-            this.tabReduce.Text = "Reduce";
-            this.tabReduce.UseVisualStyleBackColor = true;
+            this.tabJavascript.Controls.Add(this.ctlFinalize);
+            this.tabJavascript.Controls.Add(this.ctlReduce);
+            this.tabJavascript.Location = new System.Drawing.Point(4, 24);
+            this.tabJavascript.Name = "tabJavascript";
+            this.tabJavascript.Padding = new System.Windows.Forms.Padding(3);
+            this.tabJavascript.Size = new System.Drawing.Size(380, 504);
+            this.tabJavascript.TabIndex = 0;
+            this.tabJavascript.Text = "Javascript";
+            this.tabJavascript.UseVisualStyleBackColor = true;
             // 
-            // tabFinalize
+            // ctlReduce
             // 
-            this.tabFinalize.Controls.Add(this.ctlFinalize);
-            this.tabFinalize.Location = new System.Drawing.Point(4, 24);
-            this.tabFinalize.Name = "tabFinalize";
-            this.tabFinalize.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFinalize.Size = new System.Drawing.Size(510, 536);
-            this.tabFinalize.TabIndex = 1;
-            this.tabFinalize.Text = "Finalize";
-            this.tabFinalize.UseVisualStyleBackColor = true;
+            this.ctlReduce.Context = "function(obj,prev){ prev.count++;}";
+            this.ctlReduce.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctlReduce.Location = new System.Drawing.Point(6, 6);
+            this.ctlReduce.Name = "ctlReduce";
+            this.ctlReduce.Size = new System.Drawing.Size(368, 220);
+            this.ctlReduce.TabIndex = 0;
+            this.ctlReduce.Title = "Reduce";
             // 
             // tabGroupField
             // 
@@ -187,7 +184,7 @@ namespace FunctionForm.Aggregation
             this.tabGroupField.Location = new System.Drawing.Point(4, 24);
             this.tabGroupField.Name = "tabGroupField";
             this.tabGroupField.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGroupField.Size = new System.Drawing.Size(510, 536);
+            this.tabGroupField.Size = new System.Drawing.Size(380, 504);
             this.tabGroupField.TabIndex = 2;
             this.tabGroupField.Text = "Group Fields";
             this.tabGroupField.UseVisualStyleBackColor = true;
@@ -200,7 +197,7 @@ namespace FunctionForm.Aggregation
             this.tabInitialize.Location = new System.Drawing.Point(4, 24);
             this.tabInitialize.Name = "tabInitialize";
             this.tabInitialize.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInitialize.Size = new System.Drawing.Size(510, 536);
+            this.tabInitialize.Size = new System.Drawing.Size(380, 504);
             this.tabInitialize.TabIndex = 3;
             this.tabInitialize.Text = "Init Fields";
             this.tabInitialize.UseVisualStyleBackColor = true;
@@ -213,7 +210,7 @@ namespace FunctionForm.Aggregation
             this.tabResult.Location = new System.Drawing.Point(4, 24);
             this.tabResult.Name = "tabResult";
             this.tabResult.Padding = new System.Windows.Forms.Padding(3);
-            this.tabResult.Size = new System.Drawing.Size(510, 536);
+            this.tabResult.Size = new System.Drawing.Size(380, 504);
             this.tabResult.TabIndex = 4;
             this.tabResult.Text = "Result";
             this.tabResult.UseVisualStyleBackColor = true;
@@ -224,20 +221,20 @@ namespace FunctionForm.Aggregation
             this.chartResult.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartResult.Legends.Add(legend1);
-            this.chartResult.Location = new System.Drawing.Point(22, 278);
+            this.chartResult.Location = new System.Drawing.Point(19, 264);
             this.chartResult.Name = "chartResult";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartResult.Series.Add(series1);
-            this.chartResult.Size = new System.Drawing.Size(469, 241);
+            this.chartResult.Size = new System.Drawing.Size(346, 243);
             this.chartResult.TabIndex = 28;
             this.chartResult.Text = "chartResult";
             // 
             // cmdQuery
             // 
             this.cmdQuery.BackColor = System.Drawing.Color.Transparent;
-            this.cmdQuery.Location = new System.Drawing.Point(253, 582);
+            this.cmdQuery.Location = new System.Drawing.Point(71, 563);
             this.cmdQuery.Name = "cmdQuery";
             this.cmdQuery.Size = new System.Drawing.Size(117, 37);
             this.cmdQuery.TabIndex = 1;
@@ -245,32 +242,22 @@ namespace FunctionForm.Aggregation
             this.cmdQuery.UseVisualStyleBackColor = false;
             this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
             // 
-            // ctlReduce
-            // 
-            this.ctlReduce.Context = "function(obj,prev){ prev.count++;}";
-            this.ctlReduce.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctlReduce.Location = new System.Drawing.Point(6, 24);
-            this.ctlReduce.Name = "ctlReduce";
-            this.ctlReduce.Size = new System.Drawing.Size(498, 506);
-            this.ctlReduce.TabIndex = 0;
-            this.ctlReduce.Title = "Reduce Js";
-            // 
             // ctlFinalize
             // 
             this.ctlFinalize.Context = "";
             this.ctlFinalize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctlFinalize.Location = new System.Drawing.Point(16, 6);
+            this.ctlFinalize.Location = new System.Drawing.Point(6, 232);
             this.ctlFinalize.Name = "ctlFinalize";
-            this.ctlFinalize.Size = new System.Drawing.Size(488, 524);
-            this.ctlFinalize.TabIndex = 0;
-            this.ctlFinalize.Title = "Title";
+            this.ctlFinalize.Size = new System.Drawing.Size(368, 222);
+            this.ctlFinalize.TabIndex = 1;
+            this.ctlFinalize.Title = "Finalize";
             // 
-            // frmGroup
+            // FrmGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(542, 631);
+            this.ClientSize = new System.Drawing.Size(411, 607);
             this.Controls.Add(this.tabGroup);
             this.Controls.Add(this.cmdRun);
             this.Controls.Add(this.cmdQuery);
@@ -281,8 +268,7 @@ namespace FunctionForm.Aggregation
             this.Text = "Group";
             this.Load += new System.EventHandler(this.frmGroup_Load);
             this.tabGroup.ResumeLayout(false);
-            this.tabReduce.ResumeLayout(false);
-            this.tabFinalize.ResumeLayout(false);
+            this.tabJavascript.ResumeLayout(false);
             this.tabGroupField.ResumeLayout(false);
             this.tabGroupField.PerformLayout();
             this.tabInitialize.ResumeLayout(false);
@@ -305,8 +291,7 @@ namespace FunctionForm.Aggregation
         private Button cmdAddInitField;
         private Label lblResult;
         private TabControl tabGroup;
-        private TabPage tabReduce;
-        private TabPage tabFinalize;
+        private TabPage tabJavascript;
         private TabPage tabGroupField;
         private TabPage tabInitialize;
         private TabPage tabResult;

@@ -95,7 +95,6 @@ namespace MongoCola
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.AggregationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.distinctToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggregateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -461,6 +460,7 @@ namespace MongoCola
             // 
             this.ServerMonitorToolStripMenuItem.Name = "ServerMonitorToolStripMenuItem";
             this.ServerMonitorToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.ServerMonitorToolStripMenuItem.Tag = "Main_Menu_ServerMonitor";
             this.ServerMonitorToolStripMenuItem.Text = "Server Monitor";
             this.ServerMonitorToolStripMenuItem.Click += new System.EventHandler(this.ServerMonitorToolStripMenuItem_Click);
             // 
@@ -665,7 +665,6 @@ namespace MongoCola
             // 
             this.AggregationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.distinctToolStripMenuItem,
-            this.groupToolStripMenuItem,
             this.mapReduceToolStripMenuItem,
             this.aggregateToolStripMenuItem,
             this.textSearchToolStripMenuItem,
@@ -678,42 +677,35 @@ namespace MongoCola
             // distinctToolStripMenuItem
             // 
             this.distinctToolStripMenuItem.Name = "distinctToolStripMenuItem";
-            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.distinctToolStripMenuItem.Text = "Distinct";
             this.distinctToolStripMenuItem.Click += new System.EventHandler(this.distinctToolStripMenuItem_Click);
-            // 
-            // groupToolStripMenuItem
-            // 
-            this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.groupToolStripMenuItem.Text = "Group";
-            this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
             // aggregateToolStripMenuItem
             // 
             this.aggregateToolStripMenuItem.Name = "aggregateToolStripMenuItem";
-            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aggregateToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aggregateToolStripMenuItem.Text = "Aggregate";
             this.aggregateToolStripMenuItem.Click += new System.EventHandler(this.aggregateToolStripMenuItem_Click);
             // 
             // textSearchToolStripMenuItem
             // 
             this.textSearchToolStripMenuItem.Name = "textSearchToolStripMenuItem";
-            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.textSearchToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.textSearchToolStripMenuItem.Text = "TextSearch";
             this.textSearchToolStripMenuItem.Click += new System.EventHandler(this.textSearchToolStripMenuItem_Click);
             // 
             // geoNearToolStripMenuItem
             // 
             this.geoNearToolStripMenuItem.Name = "geoNearToolStripMenuItem";
-            this.geoNearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.geoNearToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.geoNearToolStripMenuItem.Text = "GeoNear";
             this.geoNearToolStripMenuItem.Click += new System.EventHandler(this.geoNearToolStripMenuItem_Click);
             // 
@@ -1102,7 +1094,6 @@ namespace MongoCola
         private ToolStripMenuItem JavaScriptStripMenuItem;
         private ToolStripMenuItem AggregationToolStripMenuItem;
         private ToolStripMenuItem distinctToolStripMenuItem;
-        private ToolStripMenuItem groupToolStripMenuItem;
         private ToolStripMenuItem mapReduceToolStripMenuItem;
         private ToolStripMenuItem ViewDataToolStripMenuItem;
         private ToolStripMenuItem ProfillingLevelToolStripMenuItem;

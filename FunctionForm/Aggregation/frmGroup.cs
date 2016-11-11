@@ -15,6 +15,7 @@ using ResourceLib.Method;
 
 namespace FunctionForm.Aggregation
 {
+    [Obsolete("Deprecated since version 3.4: Mongodb 3.4 deprecates the group command. ")]
     public partial class FrmGroup : Form
     {
         /// <summary>

@@ -43,10 +43,10 @@ namespace MongoGUICtl
             // cmbCompareOpr
             // 
             this.cmbCompareOpr.FormattingEnabled = true;
-            this.cmbCompareOpr.Location = new System.Drawing.Point(148, 4);
+            this.cmbCompareOpr.Location = new System.Drawing.Point(155, 4);
             this.cmbCompareOpr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbCompareOpr.Name = "cmbCompareOpr";
-            this.cmbCompareOpr.Size = new System.Drawing.Size(42, 25);
+            this.cmbCompareOpr.Size = new System.Drawing.Size(53, 25);
             this.cmbCompareOpr.TabIndex = 2;
             // 
             // cmbColName
@@ -55,16 +55,16 @@ namespace MongoGUICtl
             this.cmbColName.Location = new System.Drawing.Point(35, 4);
             this.cmbColName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbColName.Name = "cmbColName";
-            this.cmbColName.Size = new System.Drawing.Size(105, 25);
+            this.cmbColName.Size = new System.Drawing.Size(114, 25);
             this.cmbColName.TabIndex = 1;
             // 
             // cmbEndMark
             // 
             this.cmbEndMark.FormattingEnabled = true;
-            this.cmbEndMark.Location = new System.Drawing.Point(532, 4);
+            this.cmbEndMark.Location = new System.Drawing.Point(540, 4);
             this.cmbEndMark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbEndMark.Name = "cmbEndMark";
-            this.cmbEndMark.Size = new System.Drawing.Size(38, 25);
+            this.cmbEndMark.Size = new System.Drawing.Size(59, 25);
             this.cmbEndMark.TabIndex = 5;
             // 
             // cmbStartMark
@@ -80,7 +80,7 @@ namespace MongoGUICtl
             // 
             this.btnRemove.BackColor = System.Drawing.Color.Red;
             this.btnRemove.ForeColor = System.Drawing.Color.White;
-            this.btnRemove.Location = new System.Drawing.Point(620, -1);
+            this.btnRemove.Location = new System.Drawing.Point(649, -1);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(45, 33);
@@ -93,7 +93,7 @@ namespace MongoGUICtl
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(576, -1);
+            this.btnAdd.Location = new System.Drawing.Point(605, -1);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(42, 33);
@@ -104,7 +104,8 @@ namespace MongoGUICtl
             // 
             // ElBsonValue
             // 
-            this.ElBsonValue.Location = new System.Drawing.Point(196, -1);
+            this.ElBsonValue.BackColor = System.Drawing.Color.Transparent;
+            this.ElBsonValue.Location = new System.Drawing.Point(220, -1);
             this.ElBsonValue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ElBsonValue.Name = "ElBsonValue";
             this.ElBsonValue.Size = new System.Drawing.Size(332, 38);
@@ -115,17 +116,17 @@ namespace MongoGUICtl
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.cmbEndMark);
             this.Controls.Add(this.ElBsonValue);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.cmbStartMark);
-            this.Controls.Add(this.cmbEndMark);
             this.Controls.Add(this.cmbColName);
             this.Controls.Add(this.cmbCompareOpr);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CtlQueryCondition";
-            this.Size = new System.Drawing.Size(692, 33);
+            this.Size = new System.Drawing.Size(709, 33);
             this.ResumeLayout(false);
 
         }

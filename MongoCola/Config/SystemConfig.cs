@@ -6,6 +6,7 @@ using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.ToolKit;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace MongoCola.Config
@@ -31,8 +32,7 @@ namespace MongoCola.Config
         /// <summary>
         ///     Config Format Version
         /// </summary>
-        public byte ConfigVer = 3;
-
+        public byte ConfigVer = 4;
 
         /// <summary>
         ///     MongoBin的路径，用于Dos命令
@@ -80,8 +80,11 @@ namespace MongoCola.Config
         /// </summary>
         public JsonOutputMode jsonMode { set; get; }
 
+        /// <summary>
+        ///     状态刷新间隔时间(初始化时候用)
+        /// </summary>
         [NonSerialized]
-        public int DefaultRefreshStatusTimer = 30;
+        public static int DefaultRefreshStatusTimer = 30;
 
         /// <summary>
         ///     状态刷新间隔时间
@@ -107,6 +110,11 @@ namespace MongoCola.Config
         /// </summary>
         /// <value>The user interface font.</value>
         public string UiFontFamily { get; set; }
+
+        /// <summary>
+        ///     自定义系统监视项目
+        /// </summary>
+        public List<string> MonitorItems { get; set; }
 
         /// <summary>
         ///     写入配置
@@ -149,6 +157,7 @@ namespace MongoCola.Config
             FrmServerMonitor.RefreshInterval = SystemManager.SystemConfig.RefreshStatusTimer;
             MongoDefaults.GuidRepresentation = (MongoDB.Bson.GuidRepresentation)SystemManager.SystemConfig.BsonGuidRepresentation;
             MongoHelper.JsonWriterSettings.OutputMode = SystemManager.SystemConfig.jsonMode;
+            FrmServerMonitor.MonitorItems = SystemManager.SystemConfig.MonitorItems;
         }
         #endregion
     }

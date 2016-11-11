@@ -541,11 +541,6 @@ namespace MongoCola
                     distinct.Click += distinctToolStripMenuItem_Click;
                     aggregationMenu.DropDownItems.Add(distinct);
 
-
-                    var group = groupToolStripMenuItem.Clone();
-                    group.Click += groupToolStripMenuItem_Click;
-                    aggregationMenu.DropDownItems.Add(group);
-
                     var mapReduce = mapReduceToolStripMenuItem.Clone();
                     mapReduce.Click += mapReduceToolStripMenuItem_Click;
                     aggregationMenu.DropDownItems.Add(mapReduce);

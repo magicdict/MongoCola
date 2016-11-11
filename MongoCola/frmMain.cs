@@ -1,6 +1,7 @@
 ﻿using Common;
 using FunctionForm.Connection;
 using FunctionForm.Operation;
+using FunctionForm.Status;
 using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
@@ -76,6 +77,17 @@ namespace MongoCola
                 var frmGeo = new frmCreateGeo();
                 Utility.OpenModalForm(frmGeo, false, true);
                 return frmGeo.mBsonArray;
+            };
+
+            FrmServerMonitor.FreshTimeChanged = (time) =>
+            {
+                SystemManager.SystemConfig.RefreshStatusTimer = time;
+                SystemManager.SystemConfig.SaveSystemConfig();
+            };
+            FrmServerMonitor.MonitorItemsChanged = (items) =>
+            {
+                SystemManager.SystemConfig.MonitorItems = items;
+                SystemManager.SystemConfig.SaveSystemConfig();
             };
         }
 
@@ -528,11 +540,6 @@ namespace MongoCola
         {
             MultiTabManger.RefreshSelectTab();
         }
-
-
-
-
-
         #endregion
     }
 }
