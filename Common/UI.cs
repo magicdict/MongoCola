@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace Common
 {

@@ -105,7 +105,7 @@ namespace MongoCola
             //Set Tool bar button enable
             SetToolBarEnabled();
             //Open ConnectionManagement Form
-            Utility.OpenModalForm(new FrmConnect(), true, true);
+            Utility.OpenModalForm(new frmConnect(), true, true);
 
             //多文档管理器的设定
             var parentMenuItems = new List<ToolStripMenuItem>();
@@ -115,9 +115,9 @@ namespace MongoCola
             //MultiTab固定项目的初始化
             var serverStatusCtl = new CtlServerStatus();
             serverStatusCtl.IsFixedItem = true;
-            serverStatusCtl.SelectObjectTag = "[ServerStatus]";
+            serverStatusCtl.SelectObjectTag = GuiConfig.IsUseDefaultLanguage ? "[ServerStatus]" : GuiConfig.GetText("ServiceStatus_Title");
             serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
-            MultiTabManger.AddView(serverStatusCtl, "Status", string.Empty);
+            MultiTabManger.AddView(serverStatusCtl, GuiConfig.IsUseDefaultLanguage ? "Status" : GuiConfig.GetText("MainMenuMangtStatus"), string.Empty);
 
             //刷新
             RefreshToolStripMenuItem_Click(sender, e);

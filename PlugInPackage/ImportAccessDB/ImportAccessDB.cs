@@ -58,6 +58,19 @@ namespace PlugInPackage.ImportAccessDB
 
         //GetOleDbSchemaTable Is Not Supported In MONO
         //https://support.microsoft.com/en-us/kb/320435
+        //ID:Integer
+        //备注:WChar
+        //货币:Currency
+        //日期时间:Date
+        //是否:Boolean
+        //数字（长整形）:Integer
+        //数字（单精度）:Single
+        //数字（双精度）:Double
+        //数字（同步复制ID）:Guid
+        //数字（小数）:Numeric
+        //数字（整型）:SmallInt
+        //数字（字节）:UnsignedTinyInt
+        //文本:WChar
 
         /// <summary>
         ///     获得数据类型
@@ -232,7 +245,8 @@ namespace PlugInPackage.ImportAccessDB
                     foreach (DataRow item in tblSchema.Rows)
                     {
                         long columnWidth;
-                        switch (item["COLUMN_FLAGS"])
+                        //VS15可以不用这个转换
+                        switch ((long)item["COLUMN_FLAGS"])
                         {
                             case 122:
                                 columnWidth = -1;

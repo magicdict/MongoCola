@@ -25,6 +25,7 @@
   <Main_Menu_Operation_Server_NewDB>新建数据库</Main_Menu_Operation_Server_NewDB>
   <Main_Menu_Operation_Server_UserInfo>用户信息</Main_Menu_Operation_Server_UserInfo>
   <Main_Menu_Operation_Server_AddUserToAdmin>添加管理员(Admin)用户</Main_Menu_Operation_Server_AddUserToAdmin>
+  <Main_Menu_Operation_Server_AddCustomRole>添加自定义角色</Main_Menu_Operation_Server_AddCustomRole>
   <Main_Menu_Operation_Server_DelFromAdmin>删除管理员(Admin)用户</Main_Menu_Operation_Server_DelFromAdmin>
   <Main_Menu_Operation_Server_SlaveResync>主从同步</Main_Menu_Operation_Server_SlaveResync>
   <Main_Menu_Operation_Server_CloseServer>关闭服务器</Main_Menu_Operation_Server_CloseServer>
@@ -164,7 +165,7 @@
   <DosCommand_Tab_Deploy_DBPath>数据库路径</DosCommand_Tab_Deploy_DBPath>
   <DosCommand_Tab_Deploy_LogPath>日志路径</DosCommand_Tab_Deploy_LogPath>
   <DosCommand_Tab_Deploy_Log>日志</DosCommand_Tab_Deploy_Log>
-  <DosCommand_Tab_Deploy_AppendMode>追加模式(默认为覆盖模式)</DosCommand_Tab_Deploy_AppendMode>
+  <DosCommand_Tab_Deploy_AppendMode>追加模式</DosCommand_Tab_Deploy_AppendMode>
 
   <DosCommand_Tab_Backup>备份和恢复(Mongodmp)</DosCommand_Tab_Backup>
   <DosCommand_Tab_Backup_Server>主机</DosCommand_Tab_Backup_Server>

@@ -424,6 +424,7 @@ namespace MongoCola
             // 
             this.AddAdminCustomeRoleStripMenuItem.Name = "AddAdminCustomeRoleStripMenuItem";
             this.AddAdminCustomeRoleStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.AddAdminCustomeRoleStripMenuItem.Tag = "Main_Menu_Operation_Server_AddCustomRole";
             this.AddAdminCustomeRoleStripMenuItem.Text = "Add Custom Role";
             this.AddAdminCustomeRoleStripMenuItem.Click += new System.EventHandler(this.AddCustomeRoleStripMenuItem_Click);
             // 
@@ -536,6 +537,7 @@ namespace MongoCola
             // 
             this.AddDBCustomeRoleStripMenuItem.Name = "AddDBCustomeRoleStripMenuItem";
             this.AddDBCustomeRoleStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.AddDBCustomeRoleStripMenuItem.Tag = "Main_Menu_Operation_Server_AddCustomRole";
             this.AddDBCustomeRoleStripMenuItem.Text = "Add Custom Role";
             this.AddDBCustomeRoleStripMenuItem.Click += new System.EventHandler(this.AddDBCustomeRoleStripMenuItem_Click);
             // 

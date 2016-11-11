@@ -8,15 +8,26 @@ namespace MongoUtility.Security
     {
         #region"用户角色"
 
+        //Database User Roles
         public const string UserRoleRead = "read";
         public const string UserRoleReadWrite = "readWrite";
+        //Database Administration Roles
         public const string UserRoleDbAdmin = "dbAdmin";
+        public const string UserRoleDbOwner = "dbOwner";
         public const string UserRoleUserAdmin = "userAdmin";
+
+
+        //Cluster Administration Roles
         public const string UserRoleClusterAdmin = "clusterAdmin";
+        
+        //All-Database Roles
         public const string UserRoleReadAnyDatabase = "readAnyDatabase";
         public const string UserRoleReadWriteAnyDatabase = "readWriteAnyDatabase";
         public const string UserRoleUserAdminAnyDatabase = "userAdminAnyDatabase";
         public const string UserRoleDbAdminAnyDatabase = "dbAdminAnyDatabase";
+
+        //Superuser Roles
+        public const string UserRoleRoot = "root";
 
         #endregion
 

@@ -5,7 +5,7 @@
 * 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
-* 版本号：Ver 2.0.5
+* 版本号：Ver 2.0.7
 * 文档最后更新时间：2016-11-11
 
 ## 开发和测试环境
@@ -16,7 +16,7 @@
 ### 运行时：
 * NET Framework 4.6.2
 * NET Core 1.1.10
-* MongoDB 3.4.0-rc2
+* MongoDB 3.4.0-rc3
 
 ### 驱动程序
 CSharp Mongo Driver 2.4.0-beta1
@@ -321,8 +321,28 @@ GeoNear用来检索地理位置：
 
 ###工具内置插件
 
-- Import To Excel
-- MachineLearning
+- 从Access导入
+支持MDB（Microsoft.Jet.OLEDB.4.0）和ACCDB（Microsoft.ACE.OLEDB.12.0）两种格式文件。
+可以选择某些表导入Mongo数据库中。
+
+```csharp
+        //ID:Integer
+        //备注:WChar
+        //货币:Currency
+        //日期时间:Date
+        //是否:Boolean
+        //数字（长整形）:Integer
+        //数字（单精度）:Single
+        //数字（双精度）:Double
+        //数字（同步复制ID）:Guid
+        //数字（小数）:Numeric
+        //数字（整型）:SmallInt
+        //数字（字节）:UnsignedTinyInt
+        //文本:WChar
+```
+
+![](/FileSystem/Thumbnail?filename=00000001_20161111151645_ImportAccess.png)
+
 
 ## MongoDB3.4
 
@@ -340,6 +360,12 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 
 
 ## 更新履历
+
+##Ver 2.0.7 2016/11/18
+
+###修改
+1. ImportAccess插件重制
+
 ##Ver 2.0.5 2016/11/11
 
 ###修改

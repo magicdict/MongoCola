@@ -18,7 +18,22 @@ namespace PlugInPackage.DosCommand
         public CtlMongod()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        ///     加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctlMongod_Load(object sender, EventArgs e)
+        {
             ctlFilePickerLogPath.FileFilter = Utility.LogFilter;
+            ctllogLvT.LoglvChanged += ctllogLvT_LoglvChanged;
+            ctlFilePickerLogPath.PathChanged += ctlFilePickerT_PathChanged;
+            ctlFilePickerDBPath.PathChanged += ctlFilePickerDBPath_PathChanged;
+
+            if (DesignMode) return;
+
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 lblPort.Text = GuiConfig.GetText(TextType.CommonPort);
@@ -43,18 +58,7 @@ namespace PlugInPackage.DosCommand
                 grpLog.Text =
                     GuiConfig.GetText(TextType.DosCommandTabDeployLog);
             }
-        }
 
-        /// <summary>
-        ///     加载
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ctlMongod_Load(object sender, EventArgs e)
-        {
-            ctllogLvT.LoglvChanged += ctllogLvT_LoglvChanged;
-            ctlFilePickerLogPath.PathChanged += ctlFilePickerT_PathChanged;
-            ctlFilePickerDBPath.PathChanged += ctlFilePickerDBPath_PathChanged;
         }
 
         protected virtual void OnCommandChange(TextChangeEventArgs e)

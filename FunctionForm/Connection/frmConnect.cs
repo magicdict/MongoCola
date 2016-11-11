@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Common;
+using MongoUtility.Core;
+using MongoUtility.ToolKit;
+using ResourceLib.Method;
+using ResourceLib.UI;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Common;
-using MongoUtility.Core;
-using ResourceLib.Method;
-using MongoUtility.ToolKit;
-using ResourceLib.UI;
 
 namespace FunctionForm.Connection
 {
-    public partial class FrmConnect : Form
+    public partial class frmConnect : Form
     {
-        public FrmConnect()
+        public frmConnect()
         {
             InitializeComponent();
         }
@@ -22,8 +22,8 @@ namespace FunctionForm.Connection
         /// <param name="e"></param>
         private void frmConnect_Load(object sender, EventArgs e)
         {
-            RefreshConnection();
             GuiConfig.Translateform(this);
+            RefreshConnection();
         }
 
         /// <summary>
@@ -171,7 +171,5 @@ namespace FunctionForm.Connection
         {
             Close();
         }
-
-
     }
 }

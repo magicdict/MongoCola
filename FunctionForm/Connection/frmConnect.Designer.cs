@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace FunctionForm.Connection
 {
-    partial class FrmConnect
+    partial class frmConnect
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace FunctionForm.Connection
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConnect));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConnect));
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.lstConnection = new System.Windows.Forms.ListView();

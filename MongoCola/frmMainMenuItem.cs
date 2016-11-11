@@ -79,7 +79,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void AddConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.OpenModalForm(new FrmConnect(), true, true);
+            Utility.OpenModalForm(new frmConnect(), true, true);
             RefreshToolStripMenuItem_Click(sender, e);
         }
 

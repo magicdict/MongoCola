@@ -51,6 +51,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <Prefer32Bit>false</Prefer32Bit>
+    <DefineConstants>NET462</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <Prefer32Bit>false</Prefer32Bit>
