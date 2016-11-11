@@ -23,7 +23,7 @@ namespace MachineLearning.MachineLearning
             var frm = new frmRegression();
             frm.mongoCol = _processCollection;
             frm.ShowDialog();
-            return 0;
+            return Success;
         }
     }
 }

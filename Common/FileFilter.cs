@@ -18,9 +18,9 @@
         public const string LogFilter = "Log File(*.log)|*.log|*.*(All Files)|*.*";
 
         /// <summary>
-        ///     MDB文件选择过滤器
+        ///     Access文件选择过滤器
         /// </summary>
-        public const string MdbFilter = "Access File(*.mdb)|*.mdb|*.*(All Files)|*.*";
+        public const string AccessDBFilter = "Access File(*.mdb,accdb)|*.mdb;*.accdb|*.*(All Files)|*.*";
 
         /// <summary>
         ///     Conf文件选择过滤器

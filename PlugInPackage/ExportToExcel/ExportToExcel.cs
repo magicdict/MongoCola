@@ -49,7 +49,7 @@ namespace PlugInPackage.ExportToExcel
                 Export(_processCollection.FindAllAs<BsonDocument>().ToList(), _processCollection.Name);
             }
             MessageBox.Show(_processCollection.Name);
-            return 0;
+            return Success;
         }
 
         /// <summary>

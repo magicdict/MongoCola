@@ -6,7 +6,7 @@
 * 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
-* 版本号：Ver 2.0.5
+* 版本号：Ver 2.0.7
  
 ***
 
@@ -20,7 +20,7 @@
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.1.10
-* MongoDB 3.4.0-rc2 
+* MongoDB 3.4.0-rc3 
 
 ***
 

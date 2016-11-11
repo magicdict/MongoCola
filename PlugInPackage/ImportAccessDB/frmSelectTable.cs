@@ -11,7 +11,7 @@ namespace PlugInPackage.ImportAccessDB
         /// <summary>
         ///     必须设定
         /// </summary>
-        public MongoServer MServer = null;
+        public MongoServer mServer = null;
 
         public FrmSelectTable()
         {
@@ -20,7 +20,7 @@ namespace PlugInPackage.ImportAccessDB
 
         private void SelectTable_Load(object sender, EventArgs e)
         {
-            AccessPicker.FileFilter = Utility.MdbFilter;
+            AccessPicker.FileFilter = Utility.AccessDBFilter;
         }
 
         private void btnGetTabelList_Click(object sender, EventArgs e)
@@ -42,7 +42,8 @@ namespace PlugInPackage.ImportAccessDB
             {
                 table.Add(item.ToString());
             }
-            ImportAccessDb.ImportAccessDataBase(AccessPicker.SelectedPathOrFileName, table, MServer);
+            ImportAccessDb.ImportAccessDataBase(AccessPicker.SelectedPathOrFileName, table, mServer);
+            MessageBox.Show("Completed");
         }
     }
 }

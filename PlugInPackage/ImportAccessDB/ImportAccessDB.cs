@@ -1,22 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.OleDb;
-using Common;
+﻿using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.EventArgs;
 using PlugInPrj;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 
 namespace PlugInPackage.ImportAccessDB
 {
     public class ImportAccessDb : PlugInBase
     {
         /// <summary>
-        ///     数据连接字符串
+        ///     数据连接字符串(MDB)
         /// </summary>
-        private const string AccessConnectionString =
-            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
+        private const string MDBConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
+
+        /// <summary>
+        ///     数据连接字符串(ACCDB)
+        /// </summary>
+        private const string ACCDBConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=@AccessPath;Persist Security Info=True";
 
         /// <summary>
         ///     通用的ActionDone事件
@@ -37,8 +41,10 @@ namespace PlugInPackage.ImportAccessDB
         /// <returns></returns>
         public override int Run()
         {
-            Utility.OpenModalForm(new FrmSelectTable(), true, true);
-            return 0;
+            var frm = new FrmSelectTable();
+            frm.mServer = (MongoServer)PlugObj;
+            Utility.OpenModalForm(frm, true, true);
+            return Success;
         }
 
         /// <summary>
@@ -51,6 +57,7 @@ namespace PlugInPackage.ImportAccessDB
         }
 
         //GetOleDbSchemaTable Is Not Supported In MONO
+        //https://support.microsoft.com/en-us/kb/320435
 
         /// <summary>
         ///     获得数据类型
@@ -60,14 +67,13 @@ namespace PlugInPackage.ImportAccessDB
         /// <param name="numericPrecision"></param>
         /// <param name="numericScale"></param>
         /// <returns></returns>
-        private static string GetDataType(int oleDataType, long columnSize, int numericPrecision, int numericScale)
+        private static string GetDataType(OleDbType oleDataType, long columnSize, int numericPrecision, int numericScale)
         {
             switch (oleDataType)
             {
-                case 2:
+                case OleDbType.SmallInt:
                     return "Integer";
-
-                case 3:
+                case OleDbType.Integer:
                     //Long
                     switch (columnSize)
                     {
@@ -79,92 +85,67 @@ namespace PlugInPackage.ImportAccessDB
                         default:
                             return "Long";
                     }
-                    //break;
-
-                case 4:
+                case OleDbType.Single:
                     return "Single";
-
-                case 5:
+                case OleDbType.Double:
                     return "Double";
-
-                case 6:
+                case OleDbType.Numeric:
+                    return "Numeric";
+                case OleDbType.UnsignedTinyInt:
+                    return "Byte";
+                case OleDbType.Currency:
                     //CURRECY
-                    return "Money";
-
-                case 7:
-                    return "DATETIME";
-
-                case 11:
+                    return "Currency";
+                case OleDbType.Date:
+                    return "Date";
+                case OleDbType.Boolean:
                     //Yes/No fields
-                    return "BIT";
-
-                case 17:
-                    return "BYTE";
-
-                case 72:
-                    return "MEMO";
-
-                case 130:
-                    if (columnSize == 0)
-                    {
-                        return "MEMO";
-                    }
-                    if (columnSize == -1)
-                    {
-                        return "MEMO";
-                    }
-                    return "VARCHAR";
-                //return "VARCHAR(" + ColumnSize + ")";
-                //break;
-
-                case 131:
+                    return "Boolean";
+                case OleDbType.Decimal:
                     //decimal
-                    return "decimal(" + numericPrecision + "," + numericScale + ")";
-
-                case 128:
-                    if (columnSize == -1)
-                    {
-                        return "MEMO";
-                    }
-                    if (columnSize == 0)
-                    {
-                        return "MENO";
-                        //OLE Object
-                    }
-                    return "VARCHAR";
-                //return "VARCHAR(" + ColumnSize + ")";
-                //break;
-
+                    return "Decimal";
+                case OleDbType.Guid:
+                    //同步复制ID
+                    return "Guid";
+                case OleDbType.WChar:
+                    return "Memo";
                 default:
-                    if (columnSize == -1)
-                    {
-                        return "MEMO";
-                    }
+                    if (columnSize == -1) return "Memo";
                     return "VARCHAR";
-                //return "VARCHAR(" + ColumnSize + ")";
-                //break;
             }
-            //return null;
         }
-
+        /// <summary>
+        ///     获得字段列表
+        /// </summary>
+        /// <param name="accessFileName"></param>
+        /// <returns></returns>
         public static List<string> GetTableList(string accessFileName)
         {
-            var conn = new OleDbConnection(AccessConnectionString.Replace("@AccessPath", accessFileName));
+            var connectionstring = string.Empty;
+            if (accessFileName.EndsWith("accdb"))
+            {
+                connectionstring = ACCDBConnectionString.Replace("@AccessPath", accessFileName);
+            }
+            else
+            {
+                connectionstring = MDBConnectionString.Replace("@AccessPath", accessFileName);
+            }
+            var conn = new OleDbConnection(connectionstring);
             var tableList = new List<string>();
             try
             {
                 conn.Open();
                 var tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
-                    new object[] {null, null, null, "Table"});
+                    new object[] { null, null, null, "Table" });
                 var strCreateTableInfo = string.Empty;
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
                     tableList.Add(recTable[2].ToString());
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Utility.ExceptionDeal(ex);
             }
             finally
             {
@@ -185,13 +166,22 @@ namespace PlugInPackage.ImportAccessDB
             var fileMain = fileName[fileName.Length - 1];
             var insertDbName = fileMain.Split(".".ToCharArray())[0];
             var mongoDb = mongoSvr.GetDatabase(insertDbName);
-            var conn = new OleDbConnection(AccessConnectionString.Replace("@AccessPath", accessFileName));
+            var connectionstring = string.Empty;
+            if (accessFileName.EndsWith("accdb"))
+            {
+                connectionstring = ACCDBConnectionString.Replace("@AccessPath", accessFileName);
+            }
+            else
+            {
+                connectionstring = MDBConnectionString.Replace("@AccessPath", accessFileName);
+            }
+            var conn = new OleDbConnection(connectionstring);
             try
             {
                 conn.Open();
                 var err = 0;
                 var tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
-                    new object[] {null, null, null, "Table"});
+                    new object[] { null, null, null, "Table" });
                 var strCreateTableInfo = string.Empty;
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
@@ -211,7 +201,14 @@ namespace PlugInPackage.ImportAccessDB
                             err++;
                             continue;
                         }
-                        mongoDb.CreateCollection(strTableName);
+                        if (mongoDb.CollectionExists(strTableName))
+                        {
+                            mongoDb.GetCollection(strTableName).RemoveAll();
+                        }
+                        else
+                        {
+                            mongoDb.CreateCollection(strTableName);
+                        }
                         strCreateTableInfo = strTableName + " Creating " + Environment.NewLine + strCreateTableInfo;
                         OnActionDone(new ActionDoneEventArgs(strTableName + " Creating "));
                     }
@@ -228,13 +225,14 @@ namespace PlugInPackage.ImportAccessDB
                     }
                     MongoCollection mongoCollection = mongoDb.GetCollection(strTableName);
                     var tblSchema = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns,
-                        new object[] {null, null, strTableName, null});
+                        new object[] { null, null, strTableName, null });
                     var colPro = new Dictionary<string, string>();
                     var colName = new List<string>();
+                    var Debug = string.Empty;
                     foreach (DataRow item in tblSchema.Rows)
                     {
                         long columnWidth;
-                        switch ((long) item["COLUMN_FLAGS"])
+                        switch (item["COLUMN_FLAGS"])
                         {
                             case 122:
                                 columnWidth = -1;
@@ -250,15 +248,18 @@ namespace PlugInPackage.ImportAccessDB
                                 }
                                 else
                                 {
-                                    columnWidth = (long) item["CHARACTER_MAXIMUM_LENGTH"];
+                                    columnWidth = (long)item["CHARACTER_MAXIMUM_LENGTH"];
                                 }
                                 break;
                         }
                         colName.Add(item["COLUMN_NAME"].ToString());
-                        colPro.Add(item["COLUMN_NAME"].ToString(), GetDataType((int) item["DATA_TYPE"], columnWidth,
-                            item["NUMERIC_PRECISION"] is DBNull ? 0 : (int) item["NUMERIC_PRECISION"],
-                            item["NUMERIC_SCALE"] is DBNull ? 0 : (int) item["NUMERIC_SCALE"]));
+                        colPro.Add(item["COLUMN_NAME"].ToString(), GetDataType((OleDbType)item["DATA_TYPE"], columnWidth,
+                            item["NUMERIC_PRECISION"] is DBNull ? 0 : (int)item["NUMERIC_PRECISION"],
+                            item["NUMERIC_SCALE"] is DBNull ? 0 : (short)item["NUMERIC_SCALE"]));
+
+                        Debug += item["COLUMN_NAME"].ToString() + ":" + ((OleDbType)item["DATA_TYPE"]).ToString() + System.Environment.NewLine;
                     }
+
                     var cmd = new OleDbCommand();
                     cmd.Connection = conn;
                     cmd.CommandText = "Select * from " + strTableName;
@@ -277,12 +278,11 @@ namespace PlugInPackage.ImportAccessDB
                                 switch (colPro[colName[i]])
                                 {
                                     case "VARCHAR":
+                                    case "Memo":
                                         insertDoc.Add(colName[i], new BsonString(itemRow[colName[i]].ToString()), true);
                                         break;
-                                    case "BIT":
-                                        //System.Boolean Can't Cast To BSonBoolean....
-                                        //O,My LadyGaga
-                                        if ((bool) itemRow[colName[i]])
+                                    case "Boolean":
+                                        if ((bool)itemRow[colName[i]])
                                         {
                                             insertDoc.Add(colName[i], BsonBoolean.True, true);
                                         }
@@ -291,20 +291,47 @@ namespace PlugInPackage.ImportAccessDB
                                             insertDoc.Add(colName[i], BsonBoolean.False, true);
                                         }
                                         break;
-                                    case "DATETIME":
-                                        //O,My LadyGaga
-                                        insertDoc.Add(colName[i], new BsonDateTime((DateTime) itemRow[colName[i]]), true);
+                                    case "Date":
+                                        insertDoc.Add(colName[i], new BsonDateTime((DateTime)itemRow[colName[i]]), true);
                                         break;
                                     case "Integer":
+                                    case "Guid":
                                         var i32 = Convert.ToInt32(itemRow[colName[i]]);
-                                        insertDoc.Add(colName[i], (BsonInt32) i32, true);
+                                        insertDoc.Add(colName[i], (BsonInt32)i32, true);
+                                        break;
+                                    case "Single":
+                                        var sgl = Convert.ToSingle(itemRow[colName[i]]);
+                                        insertDoc.Add(colName[i], sgl, true);
                                         break;
                                     case "Long":
-                                        //itemRow[ColName[i]] the default is Int32 without convert
                                         var lng = Convert.ToInt64(itemRow[colName[i]]);
-                                        insertDoc.Add(colName[i], (BsonInt64) lng, true);
+                                        insertDoc.Add(colName[i], (BsonInt64)lng, true);
+                                        break;
+                                    case "Decimal":
+                                        var dec = Convert.ToDecimal(itemRow[colName[i]]);
+                                        insertDoc.Add(colName[i], dec, true);
+                                        break;
+                                    case "Double":
+                                        var dou = Convert.ToDouble(itemRow[colName[i]]);
+                                        insertDoc.Add(colName[i], dou, true);
+                                        break;
+                                    case "Numeric":
+                                        var num = Convert.ToDouble(itemRow[colName[i]]);
+                                        insertDoc.Add(colName[i], num, true);
+                                        break;
+                                    case "Currency":
+                                        var cur = Convert.ToDouble(itemRow[colName[i]]);
+                                        insertDoc.Add(colName[i], cur, true);
+                                        break;
+                                    case "Byte":
+                                        var byt = Convert.ToByte(itemRow[colName[i]]);
+                                        insertDoc.Add(colName[i], byt, true);
                                         break;
                                 }
+                            }
+                            else
+                            {
+                                insertDoc.Add(colName[i], BsonNull.Value, true);
                             }
                         }
                         mongoCollection.Insert(insertDoc);
@@ -315,41 +342,6 @@ namespace PlugInPackage.ImportAccessDB
             {
                 conn.Close();
             }
-        }
-
-        /// <summary>
-        ///     列信息
-        /// </summary>
-        internal enum ColumnInfo
-        {
-            TableCatalog,
-            TableSchema,
-            TableName,
-            ColumnName,
-            ColumnGuid,
-            ColumnPropid,
-            OrdinalPosition,
-            ColumnHasdefault,
-            ColumnDefault,
-            ColumnFlags,
-            IsNullable,
-            DataType,
-            TypeGuid,
-            CharacterMaximumLength,
-            CharacterOctetLength,
-            NumericPrecision,
-            NumericScale,
-            DatetimePrecision,
-            CharacterSetCatalog,
-            CharacterSetSchema,
-            CharacterSetName,
-            CollationCatalog,
-            CollationSchema,
-            CollationName,
-            DomainCatalog,
-            DomainSchema,
-            DomainName,
-            Description
         }
     }
 }

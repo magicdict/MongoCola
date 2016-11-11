@@ -39,11 +39,12 @@ namespace ResourceLib.UI
             // 
             // cmdClear
             // 
-            this.cmdClear.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cmdClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdClear.BackColor = System.Drawing.Color.Transparent;
-            this.cmdClear.Location = new System.Drawing.Point(375, 7);
+            this.cmdClear.Location = new System.Drawing.Point(450, 4);
+            this.cmdClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmdClear.Name = "cmdClear";
-            this.cmdClear.Size = new System.Drawing.Size(75, 23);
+            this.cmdClear.Size = new System.Drawing.Size(87, 24);
             this.cmdClear.TabIndex = 10;
             this.cmdClear.Tag = "Common_Clear";
             this.cmdClear.Text = "Clear";
@@ -54,9 +55,9 @@ namespace ResourceLib.UI
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Location = new System.Drawing.Point(9, 12);
+            this.lblTitle.Location = new System.Drawing.Point(12, 8);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(35, 12);
+            this.lblTitle.Size = new System.Drawing.Size(32, 17);
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Title";
             this.lblTitle.Resize += new System.EventHandler(this.ResizeControl);
@@ -65,18 +66,20 @@ namespace ResourceLib.UI
             // 
             this.txtPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPathName.BackColor = System.Drawing.Color.White;
-            this.txtPathName.Location = new System.Drawing.Point(50, 8);
+            this.txtPathName.Location = new System.Drawing.Point(65, 5);
+            this.txtPathName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPathName.Name = "txtPathName";
-            this.txtPathName.Size = new System.Drawing.Size(238, 21);
+            this.txtPathName.Size = new System.Drawing.Size(277, 23);
             this.txtPathName.TabIndex = 8;
             // 
             // cmdBrowse
             // 
-            this.cmdBrowse.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cmdBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdBrowse.BackColor = System.Drawing.Color.Transparent;
-            this.cmdBrowse.Location = new System.Drawing.Point(294, 7);
+            this.cmdBrowse.Location = new System.Drawing.Point(357, 4);
+            this.cmdBrowse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmdBrowse.Name = "cmdBrowse";
-            this.cmdBrowse.Size = new System.Drawing.Size(75, 23);
+            this.cmdBrowse.Size = new System.Drawing.Size(87, 24);
             this.cmdBrowse.TabIndex = 7;
             this.cmdBrowse.Tag = "Common_Browse";
             this.cmdBrowse.Text = "Browse...";
@@ -85,7 +88,7 @@ namespace ResourceLib.UI
             // 
             // CtlFilePicker
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
@@ -93,8 +96,10 @@ namespace ResourceLib.UI
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtPathName);
             this.Controls.Add(this.cmdBrowse);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CtlFilePicker";
-            this.Size = new System.Drawing.Size(463, 49);
+            this.Size = new System.Drawing.Size(540, 32);
             this.Load += new System.EventHandler(this.ctlFilePicker_Load);
             this.Resize += new System.EventHandler(this.ResizeControl);
             this.ResumeLayout(false);

@@ -122,7 +122,7 @@ namespace ResourceLib.UI
             switch (_dialogType)
             {
                 case DialogType.OpenFile:
-                    var openFile = new OpenFileDialog {FileName = InitFileName};
+                    var openFile = new OpenFileDialog { FileName = InitFileName };
                     if (FileFilter != string.Empty)
                     {
                         openFile.Filter = FileFilter;
@@ -133,7 +133,7 @@ namespace ResourceLib.UI
                     }
                     break;
                 case DialogType.SaveFile:
-                    var saveFile = new SaveFileDialog {FileName = InitFileName};
+                    var saveFile = new SaveFileDialog { FileName = InitFileName };
                     if (FileFilter != string.Empty)
                     {
                         saveFile.Filter = FileFilter;

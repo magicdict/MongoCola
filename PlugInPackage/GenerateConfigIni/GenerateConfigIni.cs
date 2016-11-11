@@ -21,7 +21,7 @@ namespace PlugInPackage.GenerateConfigIni
         public override int Run()
         {
             Utility.OpenModalForm(new FrmGenerateConfigIni(), true, true);
-            return 0;
+            return Success;
         }
 
         #endregion
