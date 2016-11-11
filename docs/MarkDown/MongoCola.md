@@ -75,6 +75,7 @@ CSharp Mongo Driver 2.4.0-beta1
 注意：如果是ObjectId类型数据，系统将会展示ObjectId的详细信息：
 CreateionTime，Machine，Pid，Increment，TimeStamp
 但是这些信息字段实际上是不存在于数据库中的，是通过ObjectId计算出来的。
+
 ![](/FileSystem/Thumbnail?filename=00000001_20161102095610_TreeView.png)
 
 - 列表视图
@@ -343,6 +344,17 @@ GeoNear用来检索地理位置：
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161111151645_ImportAccess.png)
 
+- 导出到Excel
+
+将MongoDB的数据集导出到Excel文件
+
+MongoDB的数据：
+
+![](/FileSystem/Thumbnail?filename=00000001_20161111152910_ExportToExcel2.PNG)
+
+导出到Excel
+
+![](/FileSystem/Thumbnail?filename=00000001_20161111152818_ExportToExcel.PNG)
 
 ## MongoDB3.4
 
@@ -361,14 +373,15 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 
 ## 更新履历
 
-##Ver 2.0.7 2016/11/18
+###Ver 2.0.7 2016/11/18
 
-###修改
+####修改
 1. ImportAccess插件重制
+2. 修正了NET462编译条件缺失的问题
 
-##Ver 2.0.5 2016/11/11
+###Ver 2.0.5 2016/11/11
 
-###修改
+####修改
 1. 调整服务器监视功能的入口，移动到服务器顶层菜单
 2. 树形数据展示控件，文档根字段表示优化
 3. 服务器属性菜单表示的内容合并到服务器状态中
@@ -381,9 +394,15 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 10. JsonOutputMode 默认设定为Shell
 11. AggregateBuilder的全面优化和改进
 
-##Ver 2.0.3 2016/11/03
+####删除
+1. QueryFilter功能入口去除：由于聚合框架和视图功能的存在，原先的QueryFilter功能废止
+   同样的功能，建议使用聚合管理器，制作一个视图来替代该功能
+2. 数据集的聚合菜单下的Count功能，没有什么作用，Count结果已经在数据集名称旁边表示了
+3. 数据集的聚合菜单下的Group功能，按照MongoDB官方的处理意见，使用Group或者MapReduce功能进行代替。
 
-###新增
+###Ver 2.0.3 2016/11/03
+
+####新增
 1. 添加视图（From MongoDB 3.4）
 2. 视图的展示（From MongoDB 3.4）
 3. BsonInt64，BSonDecimal128 的对应
@@ -398,7 +417,7 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 12. MapReduce 扩展选项的对应
 13. Collation概念的引入
 
-###修改
+####修改
 1. 新建数据集的BUG修正，数据集验证的修复
 2. 新建文档时候出现的无法通过数据集验证的异常处理
 3. 数据库必须有一个数据集，如果没有数据集的话，则数据库会被回收掉,所以新建数据库的时候，可以指定初始数据集的名称
@@ -412,17 +431,17 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 11. ShardingRange设置BsonValue的优化
 12. GeoNear放入聚合菜单
  
-###移除(不成熟烂尾功能)
+####移除(不成熟烂尾功能)
 1. SQL转换功能
 2. 实时状态报表的移除
 
-###聚合
+####聚合
 1. $indexStats $stage，$sortByCount（From MongoDB3.4）, $sample, $unwind
 2. 聚合操作符的更新
 3. 优化聚合UI
 4. 聚合结果保存为视图
 
-###mongobooster功能的借鉴
+####mongobooster功能的借鉴
 1. 增加了MongoDB官方文档的链接
 2. BsonGuidRepresentation概念的引入
 3. BsonMaxKey,BsonMinKey概念的引入

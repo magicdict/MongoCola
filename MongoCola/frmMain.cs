@@ -115,7 +115,7 @@ namespace MongoCola
             //MultiTab固定项目的初始化
             var serverStatusCtl = new CtlServerStatus();
             serverStatusCtl.IsFixedItem = true;
-            serverStatusCtl.SelectObjectTag = GuiConfig.IsUseDefaultLanguage ? "[ServerStatus]" : GuiConfig.GetText("ServiceStatus_Title");
+            serverStatusCtl.SelectObjectTag = "[ServerStatus]";
             serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
             MultiTabManger.AddView(serverStatusCtl, GuiConfig.IsUseDefaultLanguage ? "Status" : GuiConfig.GetText("MainMenuMangtStatus"), string.Empty);
 
