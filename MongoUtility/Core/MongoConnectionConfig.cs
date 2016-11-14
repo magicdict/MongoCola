@@ -169,16 +169,6 @@ namespace MongoUtility.Core
             ///     副本服务器[Virtul]
             /// </summary>
             ReplsetSvr,
-
-            /// <summary>
-            ///     Master主服务器
-            /// </summary>
-            MasterSvr,
-
-            /// <summary>
-            ///     Slave从属服务器
-            /// </summary>
-            SlaveSvr
         }
 
         /// <summary>

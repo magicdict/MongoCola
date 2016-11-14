@@ -67,7 +67,6 @@ namespace MongoCola
             this.AddAdminCustomeRoleStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserInfoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServerStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServerMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -391,7 +390,6 @@ namespace MongoCola
             this.AddAdminCustomeRoleStripMenuItem,
             this.UserInfoStripMenuItem,
             this.toolStripMenuItem3,
-            this.slaveResyncToolStripMenuItem,
             this.ServerStatusToolStripMenuItem,
             this.ServerMonitorToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
@@ -440,14 +438,6 @@ namespace MongoCola
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(229, 6);
-            // 
-            // slaveResyncToolStripMenuItem
-            // 
-            this.slaveResyncToolStripMenuItem.Name = "slaveResyncToolStripMenuItem";
-            this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.slaveResyncToolStripMenuItem.Tag = "Main_Menu_Operation_Server_SlaveResync";
-            this.slaveResyncToolStripMenuItem.Text = "Slave Resync";
-            this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
             // 
             // ServerStatusToolStripMenuItem
             // 
@@ -1115,7 +1105,6 @@ namespace MongoCola
         private ToolStripSeparator toolStripMenuItem4;
         private ToolStripMenuItem AddUserToAdminToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem3;
-        private ToolStripMenuItem slaveResyncToolStripMenuItem;
         private ToolStripMenuItem ServerStatusToolStripMenuItem;
         //private ToolStripMenuItem ShutDownToolStripMenuItem;
         private ToolStripStatusLabel lblAction;

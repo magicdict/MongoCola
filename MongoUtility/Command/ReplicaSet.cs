@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,14 +11,13 @@ namespace MongoUtility.Command
 {
     public static partial class Operater
     {
-
         /// <summary>
         ///     初始化副本
         /// </summary>
         /// <param name="replSetName"></param>
         /// <param name="strMessage"></param>
         /// <returns></returns>
-        public static bool InitReplicaSet(string replSetName ,ref string strMessage)
+        public static bool InitReplicaSet(string replSetName, ref string strMessage)
         {
             //注意：这里的replSetName名称只是为了设定本工具用的MongoConfig信息，
             //实际的replSetName名称应该在启动命令中
@@ -63,8 +63,7 @@ namespace MongoUtility.Command
                 newConfig.ReplSetName = replSetName;
                 newConfig.ReplsetList = new List<string>
                 {
-                    newConfig.Host +
-                    (newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
+                    newConfig.Host + (newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
                 };
                 MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
                 MongoConnectionConfig.MongoConfig.SaveMongoConfig();
@@ -79,16 +78,15 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        ///     副本
+        ///     刷新配置文件副本状态
         /// </summary>
         /// <param name="newConfig"></param>
-        public static void ReplicaSet(MongoConnectionConfig newConfig)
+        public static void RefreshConnectionConfig(MongoConnectionConfig newConfig)
         {
             MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
             MongoConnectionConfig.MongoConfig.SaveMongoConfig();
             RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
-            RuntimeMongoDbContext.MongoConnSvrLst.Add(
-                RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
+            RuntimeMongoDbContext.MongoConnSvrLst.Add(RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
                 RuntimeMongoDbContext.CreateMongoServer(ref newConfig));
         }
 
@@ -113,6 +111,7 @@ namespace MongoUtility.Command
         /// <summary>
         ///     同步
         /// </summary>
+        [Obsolete("Deprecated since version 3.2: MongoDB 3.2 deprecates the use of master-slave replication for components of sharded clusters.")]
         public static void ResyncCommand()
         {
             CommandHelper.ExecuteMongoCommand(CommandHelper.ResyncCommand);

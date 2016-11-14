@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
+using System;
 
 namespace MongoUtility.Command
 {
@@ -162,9 +163,10 @@ namespace MongoUtility.Command
         public static MongoCommand ReplSetGetStatusCommand = new MongoCommand("replSetGetStatus", EnumMgr.PathLevel.Instance);
 
         /// <summary>
-        ///     Slave强制同步
+        ///     Slave强制同步（废止）
         ///     http://www.mongodb.org/display/DOCS/Master+Slave
         /// </summary>
+        [Obsolete("Deprecated since version 3.2: MongoDB 3.2 deprecates the use of master-slave replication for components of sharded clusters.")]
         public static MongoCommand ResyncCommand = new MongoCommand("resync", EnumMgr.PathLevel.Instance);
 
         /// <summary>

@@ -200,12 +200,6 @@ namespace MongoGUICtl.ClientTree
                         case MongoConnectionConfig.SvrRoleType.ReplsetSvr:
                             connectionNode.Text = "[Replset]  " + connectionNode.Text;
                             break;
-                        case MongoConnectionConfig.SvrRoleType.MasterSvr:
-                            connectionNode.Text = "[Master]  " + connectionNode.Text;
-                            break;
-                        case MongoConnectionConfig.SvrRoleType.SlaveSvr:
-                            connectionNode.Text = "[Slave]  " + connectionNode.Text;
-                            break;
                     }
                     connectionNodes.Add(connectionNode);
                 }

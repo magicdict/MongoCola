@@ -140,10 +140,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
-            Utility.OpenModalForm(new FrmReplsetMgr(ref newConfig), true, true);
-            Operater.ReplicaSet(newConfig);
-            MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
+            Utility.OpenModalForm(new FrmReplsetMgr(), true, true);
         }
 
         /// <summary>

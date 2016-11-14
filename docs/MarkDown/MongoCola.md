@@ -341,6 +341,13 @@ mongod --port 10001 --dbpath  C:\mongodb\Mongod1 --replSet set1 --rest --smallfi
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161114114604_EvalRsInit.png)
 
+###修改副本
+对于副本，可以使用修改副本的工具来进行副本中主机的添加和修改
+
+![](/FileSystem/Thumbnail?filename=00000001_20161114133620_ReplConf.png)
+
+注意：请注意你主机的名字，localhost的话，MongoDB可能会帮你改为主机名称。
+副本要求所有的主机是localhost或者全部不是localhost
 
 ##插件系统（C#语言）
 
@@ -405,6 +412,9 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 ####修改
 1. ImportAccess插件重制
 2. 修正了NET462编译条件缺失的问题
+3. 修改连接配置时候，按钮显示文字不正确的问题
+4. 副本功能（初始化副本，副本设定）的修复（原来使用MongoDatabase命令，现在用Shell命令）
+5. 让所有的数据库都可以执行Shell命令
 
 ###Ver 2.0.5 2016/11/11
 

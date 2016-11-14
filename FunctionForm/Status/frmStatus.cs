@@ -49,14 +49,19 @@ namespace FunctionForm.Status
                     if (RuntimeMongoDbContext.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         var StatusList = new List<BsonDocument>();
-                            
                         var Status =  CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
-                        var ServerDesripter = MongoUtility.ToolKit.MongoHelper.GetCurrentServerDescription();
                         StatusList.Add(Status);
-                        StatusList.Add(ServerDesripter);
+                        try
+                        {
+                            var ServerDesripter = MongoUtility.ToolKit.MongoHelper.GetCurrentServerDescription();
+                            StatusList.Add(ServerDesripter);
+                        }
+                        catch (Exception)
+                        {
+                            //Repl的时候，无法获得                            
+                        }
                         UiHelper.FillDataToTreeView(strType, trvStatus, StatusList, 0);
-
                         trvStatus.Height = trvStatus.Height * 2;
                         trvStatus.DatatreeView.Nodes[0].Expand();
                         trvStatus.DatatreeView.Nodes[1].Expand();

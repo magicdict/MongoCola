@@ -35,9 +35,7 @@ namespace MongoGUICtl.ClientTree
                         var adminDb = mongoClient.GetDatabase(ConstMgr.DatabaseNameAdmin);
                         //Can't Convert IMongoDB To MongoDB
                         var command = new CommandDocument { { CommandHelper.ServerStatusCommand.CommandString, 1 } };
-
-                        var serverStatusDoc =
-                            CommandHelper.ExecuteMongoDBCommand(command, adminDb).Response;
+                        var serverStatusDoc = CommandHelper.ExecuteMongoDBCommand(command, adminDb).Response;
                         srvDocList.Add(serverStatusDoc);
                     }
                 }

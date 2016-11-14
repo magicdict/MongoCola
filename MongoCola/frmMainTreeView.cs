@@ -129,14 +129,6 @@ namespace MongoCola
             {
                 CreateMongoDBToolStripMenuItem.Enabled = true;
                 AddUserToAdminToolStripMenuItem.Enabled = true;
-                if (RuntimeMongoDbContext.CurrentMongoConnectionconfig.ServerRole ==
-                    MongoConnectionConfig.SvrRoleType.MasterSvr ||
-                    RuntimeMongoDbContext.CurrentMongoConnectionconfig.ServerRole ==
-                    MongoConnectionConfig.SvrRoleType.SlaveSvr)
-                {
-                    //Master，Slave都可以执行
-                    slaveResyncToolStripMenuItem.Enabled = true;
-                }
             }
             UserInfoStripMenuItem.Enabled = true;
             ServerStatusToolStripMenuItem.Enabled = true;
@@ -160,10 +152,6 @@ namespace MongoCola
                     restoreMongo.Click += RestoreMongoToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(restoreMongo);
 
-                    var slaveResync = slaveResyncToolStripMenuItem.Clone();
-                    slaveResync.Click += slaveResyncToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(slaveResync);
-
                     var serverStatus = ServerStatusToolStripMenuItem.Clone();
                     serverStatus.Click += SvrStatusToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(serverStatus);
@@ -175,7 +163,6 @@ namespace MongoCola
                     contextMenuStripMain.Items.Add(AddAdminCustomeRoleStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(UserInfoStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(RestoreMongoToolStripMenuItem.Clone());
-                    contextMenuStripMain.Items.Add(slaveResyncToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ServerStatusToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ServerMonitorToolStripMenuItem.Clone());
 

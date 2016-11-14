@@ -96,6 +96,7 @@ namespace MongoUtility.ToolKit
         public static BsonDocument GetCurrentServerDescription()
         {
             var mongosvr = RuntimeMongoDbContext.GetCurrentServer();
+            //Repl的时候 mongosvr.Instance 无效
             var Description = mongosvr.Instance;
             var DescriptionDoc = new BsonDocument();
             DescriptionDoc.Add(new BsonElement(nameof(Description.IsArbiter), Description.IsArbiter));
