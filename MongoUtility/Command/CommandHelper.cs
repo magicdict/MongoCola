@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.ToolKit;
 
 namespace MongoUtility.Command
 {
@@ -404,8 +405,26 @@ namespace MongoUtility.Command
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
+
+        //https://docs.mongodb.com/master/reference/replication/
+        //Mongo Shell进行初始化副本
+
+
         /// <summary>
-        ///     初始化副本
+        ///     初始化副本（Mongo Shell）
+        /// </summary>
+        /// <returns></returns>
+        public static CommandResult InitReplicaSet()
+        {
+            //使用local数据库发送 rs.initiate() 指令
+            MongoDatabase mongoDb = RuntimeMongoDbContext.GetCurrentClient().GetServer().GetDatabase("local");
+            var args = new EvalArgs {  Code = "rs.initiate()" };
+            var result = mongoDb.Eval(args);
+            return new CommandResult(result.AsBsonDocument);
+        }
+
+        /// <summary>
+        ///     初始化副本（数据库版本 - 废止）
         /// </summary>
         /// <param name="replicaSetName">副本名称</param>
         /// <param name="hostList">从属服务器列表</param>

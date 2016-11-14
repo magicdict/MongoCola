@@ -140,7 +140,6 @@ namespace MongoCola
             }
             UserInfoStripMenuItem.Enabled = true;
             ServerStatusToolStripMenuItem.Enabled = true;
-            //ServePropertyToolStripMenuItem.Enabled = true;
             ServerMonitorToolStripMenuItem.Enabled = true;
 
             if (e.Button == MouseButtons.Right)
@@ -165,10 +164,6 @@ namespace MongoCola
                     slaveResync.Click += slaveResyncToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(slaveResync);
 
-                    //var serveProperty = ServePropertyToolStripMenuItem.Clone();
-                    //serveProperty.Click += ServePropertyToolStripMenuItem_Click;
-                    //contextMenuStripMain.Items.Add(serveProperty);
-
                     var serverStatus = ServerStatusToolStripMenuItem.Clone();
                     serverStatus.Click += SvrStatusToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(serverStatus);
@@ -181,7 +176,6 @@ namespace MongoCola
                     contextMenuStripMain.Items.Add(UserInfoStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(RestoreMongoToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(slaveResyncToolStripMenuItem.Clone());
-                    //contextMenuStripMain.Items.Add(ServePropertyToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ServerStatusToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ServerMonitorToolStripMenuItem.Clone());
 
@@ -281,19 +275,14 @@ namespace MongoCola
                     AddUserToolStripMenuItem.Enabled = true;
                     RepairDBToolStripMenuItem.Enabled = true;
                 }
-                if (roles.Count == 0)
-                {
-                    EvalJSToolStripMenuItem.Enabled = true;
-                }
-                else
-                {
-                    EvalJSToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
-                        MongoDbAction.ActionType.MiscEvalJs);
-                }
             }
 
+            //使用Shell:从实际情况来看，有一些Shell指令是不依赖与Admin数据库或者和数据库无关的
+            //所以这里暂时开放所有的Shell指令。
+            EvalJSToolStripMenuItem.Enabled = true;
             //备份数据库
             DumpDatabaseToolStripMenuItem.Enabled = true;
+            //Profilling
             ProfillingLevelToolStripMenuItem.Enabled = true;
             if (strNodeType == ConstMgr.SingleDatabaseTag)
             {

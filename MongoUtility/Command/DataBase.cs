@@ -107,6 +107,7 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static string CreateDataBaseWithInitCollection(string dbName, string CollectionName)
         {
+            //在副本的时候，会发生错误，副本无法简单创建数据集
             var mongoSvr = RuntimeMongoDbContext.GetCurrentServer();
             var rtnResult = string.Empty;
             if (mongoSvr == null) return rtnResult;

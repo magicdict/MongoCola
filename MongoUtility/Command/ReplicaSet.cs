@@ -1,21 +1,57 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.ToolKit;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MongoUtility.Command
 {
     public static partial class Operater
     {
+
         /// <summary>
         ///     初始化副本
         /// </summary>
         /// <param name="replSetName"></param>
         /// <param name="strMessage"></param>
         /// <returns></returns>
-        public static bool InitReplicaSet(string replSetName, ref string strMessage)
+        public static bool InitReplicaSet(string replSetName ,ref string strMessage)
+        {
+            //注意：这里的replSetName名称只是为了设定本工具用的MongoConfig信息，
+            //实际的replSetName名称应该在启动命令中
+            var result = CommandHelper.InitReplicaSet();
+            if (result.Ok)
+            {
+                //修改配置
+                var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
+                newConfig.ReplSetName = replSetName;
+                newConfig.ReplsetList = new List<string>
+                {
+                    newConfig.Host +
+                    (newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
+                };
+                MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
+                MongoConnectionConfig.MongoConfig.SaveMongoConfig();
+                RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
+                RuntimeMongoDbContext.MongoConnSvrLst.Add(
+                    RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
+                    RuntimeMongoDbContext.CreateMongoServer(ref newConfig));
+                strMessage = result.Response.ToJson(MongoHelper.JsonWriterSettings);
+                return true;
+            }
+            strMessage = result.ErrorMessage;
+            return false;
+        }
+
+        /// <summary>
+        ///     初始化副本
+        /// </summary>
+        /// <param name="replSetName"></param>
+        /// <param name="strMessage"></param>
+        /// <returns></returns>
+        public static bool InitReplicaSet_ViaDatabase(string replSetName, ref string strMessage)
         {
             var result = CommandHelper.InitReplicaSet(replSetName,
                 RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName,

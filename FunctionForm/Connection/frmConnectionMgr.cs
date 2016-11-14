@@ -82,6 +82,11 @@ namespace FunctionForm.Connection
             cmdAdd.BackColor = GuiConfig.SuccessColor;
             cmdCancel.BackColor = GuiConfig.FailColor;
             GuiConfig.Translateform(this);
+            //修改模式
+            if (!string.IsNullOrEmpty(OldConnectionName)) {
+                cmdAdd.Text = GuiConfig.IsUseDefaultLanguage ? "Modify" : GuiConfig.GetText(TextType.CommonModify);
+            }
+            //MonoUI兼容性对应
             GuiConfig.MonoCompactControl(Controls);
         }
 

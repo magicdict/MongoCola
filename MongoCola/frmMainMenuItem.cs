@@ -113,12 +113,24 @@ namespace MongoCola
             var result = string.Empty;
             if (Operater.InitReplicaSet(replSetName, ref result))
             {
-                MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
+                MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.", result);
             }
             else
             {
                 MyMessageBox.ShowMessage("ReplSetName", "Failed", result);
             }
+            //var replSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
+            //    GuiConfig.GetText("ReplSetName", TextType.ReplsetInitReplset));
+            //if (replSetName == string.Empty) return;
+            //var result = string.Empty;
+            //if (Operater.InitReplicaSet(replSetName, ref result))
+            //{
+            //    MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
+            //}
+            //else
+            //{
+            //    MyMessageBox.ShowMessage("ReplSetName", "Failed", result);
+            //}
         }
 
         /// <summary>
