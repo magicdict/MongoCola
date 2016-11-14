@@ -62,7 +62,7 @@ namespace FunctionForm.Connection
             this.lstHost = new System.Windows.Forms.ListBox();
             this.lblReplsetNameDescription = new System.Windows.Forms.Label();
             this.lblMainReplsetName = new System.Windows.Forms.Label();
-            this.txtReplsetName = new System.Windows.Forms.TextBox();
+            this.txtReplSetName = new System.Windows.Forms.TextBox();
             this.tabReadWrite = new System.Windows.Forms.TabPage();
             this.ConnectionReadWrite = new FunctionForm.Connection.CtlReadWriteConfig();
             this.tabOptional = new System.Windows.Forms.TabPage();
@@ -340,7 +340,7 @@ namespace FunctionForm.Connection
             this.tabReplicaSet.Controls.Add(this.lstHost);
             this.tabReplicaSet.Controls.Add(this.lblReplsetNameDescription);
             this.tabReplicaSet.Controls.Add(this.lblMainReplsetName);
-            this.tabReplicaSet.Controls.Add(this.txtReplsetName);
+            this.tabReplicaSet.Controls.Add(this.txtReplSetName);
             this.tabReplicaSet.Location = new System.Drawing.Point(4, 24);
             this.tabReplicaSet.Name = "tabReplicaSet";
             this.tabReplicaSet.Size = new System.Drawing.Size(665, 191);
@@ -442,12 +442,12 @@ namespace FunctionForm.Connection
             this.lblMainReplsetName.Tag = "AddConnection_MainReplsetName";
             this.lblMainReplsetName.Text = "ReplsetName";
             // 
-            // txtReplsetName
+            // txtReplSetName
             // 
-            this.txtReplsetName.Location = new System.Drawing.Point(122, 23);
-            this.txtReplsetName.Name = "txtReplsetName";
-            this.txtReplsetName.Size = new System.Drawing.Size(149, 23);
-            this.txtReplsetName.TabIndex = 0;
+            this.txtReplSetName.Location = new System.Drawing.Point(122, 23);
+            this.txtReplSetName.Name = "txtReplSetName";
+            this.txtReplSetName.Size = new System.Drawing.Size(149, 23);
+            this.txtReplSetName.TabIndex = 0;
             // 
             // tabReadWrite
             // 
@@ -757,7 +757,7 @@ namespace FunctionForm.Connection
         private TabPage tabConnString;
         private TabPage tabReplicaSet;
         private Label lblMainReplsetName;
-        private TextBox txtReplsetName;
+        private TextBox txtReplSetName;
         private Label lblReplsetNameDescription;
         private ListBox lstHost;
         private Button cmdAddHost;

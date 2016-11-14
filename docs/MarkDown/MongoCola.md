@@ -6,7 +6,7 @@
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
 * 版本号：Ver 2.0.7
-* 文档最后更新时间：2016-11-11
+* 文档最后更新时间：2016-11-14
 
 ## 开发和测试环境
 ### 操作系统：
@@ -314,6 +314,33 @@ GeoNear用来检索地理位置：
 - 跳过:不进行上传
 - 覆盖文件
 - 停止上传：已上传文件不删除
+
+##副本和分片
+###初始化副本
+
+这里使用以下数据库配置启动数据库（Bat中包括目录的建立）：
+副本名称为set1
+
+```bash
+del C:\mongodb\Mongod1\*.* 
+mkdir C:\mongodb\Mongod1
+cd C:\runmongo\bin
+mongod --port 10001 --dbpath  C:\mongodb\Mongod1 --replSet set1 --rest --smallfiles --oplogSize 128 
+
+```
+这时候查看Repl信息如下所示
+
+![](/FileSystem/Thumbnail?filename=00000001_20161114113814_BeforeInitRs.png)
+
+使用工具的初始化副本功能，正确的输入副本名称之后，再次查看Repl信息如下。
+同时树形目录会出现Admin数据库
+
+![](/FileSystem/Thumbnail?filename=00000001_20161114114501_AfterInitRs.png)
+
+当然，你也可以通过在local数据库中执行以下语句，手动初始化副本。
+
+![](/FileSystem/Thumbnail?filename=00000001_20161114114604_EvalRsInit.png)
+
 
 ##插件系统（C#语言）
 

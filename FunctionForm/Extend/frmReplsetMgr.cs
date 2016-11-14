@@ -31,11 +31,10 @@ namespace FunctionForm.Extend
             try
             {
                 var result = CommandHelper.AddToReplsetServer(RuntimeMongoDbContext.GetCurrentServer(),
-                    txtReplHost.Text + ":" + NumReplPort.Value, (int) NumPriority.Value, chkArbiterOnly.Checked);
+                    txtReplHost.Text + ":" + NumReplPort.Value, (int)NumPriority.Value, chkArbiterOnly.Checked);
                 if (CommandHelper.IsShellOk(result))
                 {
-                    RuntimeMongoDbContext.CurrentMongoConnectionconfig.ReplsetList.Add(txtReplHost.Text + ":" +
-                                                                                       NumReplPort.Value);
+                    RuntimeMongoDbContext.CurrentMongoConnectionconfig.ReplsetList.Add(txtReplHost.Text + ":" + NumReplPort.Value);
                     MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
                 }
                 else

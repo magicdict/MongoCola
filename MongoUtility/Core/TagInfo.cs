@@ -37,9 +37,19 @@ namespace MongoUtility.Core
         ///     CreateTagInfo
         /// </summary>
         /// <param name="connectionName"></param>
-        public static TagInfo CreateTagInfo(string connectionName)
+        public static TagInfo CreateTagInfo(MongoConnectionConfig config)
         {
-            var tagString = ConstMgr.ConnectionTag + ":" + connectionName;
+            var tagString = ConstMgr.ConnectionTag + ":" + config.ConnectionName;
+            switch (config.ServerRole)
+            {
+                case MongoConnectionConfig.SvrRoleType.ReplsetSvr:
+                    tagString = ConstMgr.ConnectionReplsetTag + ":" + config.ConnectionName;
+                    break;
+                default:
+                    tagString = ConstMgr.ConnectionTag + ":" + config.ConnectionName;
+                    break;
+            }
+
             return GetMongoObj(tagString);
         }
 

@@ -182,10 +182,8 @@ namespace MongoUtility.Command
             {
                 if (!isArb)
                 {
-                    mCommandResult =
-                        ExecuteJsShell(
-                            "rs.add({_id:" + mongoSvr.Instances.Length + 1 + ",host:'" + hostPort + "',priority:" +
-                            priority + "});", mongoSvr);
+                    var code = "rs.add({_id:" + (mongoSvr.Instances.Length + 1) + ",host:'" + hostPort + "',priority:" + priority + "});";
+                    mCommandResult = ExecuteJsShell(code, mongoSvr);
                 }
                 else
                 {
@@ -418,7 +416,7 @@ namespace MongoUtility.Command
         {
             //使用local数据库发送 rs.initiate() 指令
             MongoDatabase mongoDb = RuntimeMongoDbContext.GetCurrentClient().GetServer().GetDatabase("local");
-            var args = new EvalArgs {  Code = "rs.initiate()" };
+            var args = new EvalArgs { Code = "rs.initiate()" };
             var result = mongoDb.Eval(args);
             return new CommandResult(result.AsBsonDocument);
         }

@@ -60,7 +60,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     副本名称
         /// </summary>
-        public string ReplSetName;
+        public string ReplSetName { set; get; }
 
         /// <summary>
         ///     副本服务器列表
@@ -71,22 +71,22 @@ namespace MongoUtility.Core
         /// <summary>
         ///     连接字符串
         /// </summary>
-        public string ConnectionString;
+        public string ConnectionString { set; get; }
 
         /// <summary>
         ///     VerifySslCertificate
         /// </summary>
-        public bool VerifySslCertificate;
+        public bool VerifySslCertificate { set; get; }
 
         /// <summary>
         ///     connect TimeOut (Sec)
         /// </summary>
-        public double ConnectTimeoutMs;
+        public double ConnectTimeoutMs { set; get; }
 
         /// <summary>
         ///     Socket TimeOut (Sec)
         /// </summary>
-        public double SocketTimeoutMs;
+        public double SocketTimeoutMs { set; get; }
 
         /// <summary>
         ///     fsync
@@ -95,12 +95,12 @@ namespace MongoUtility.Core
         ///     true: the driver adds { fsync : true } to the getlasterror command. Implies safe=true.
         ///     false: the driver does not not add fsync to the getlasterror command.
         /// </remarks>
-        public bool Fsync;
+        public bool Fsync { set; get; }
 
         /// <summary>
         ///     journal
         /// </summary>
-        public bool Journal;
+        public bool Journal { set; get; }
 
         #endregion
 

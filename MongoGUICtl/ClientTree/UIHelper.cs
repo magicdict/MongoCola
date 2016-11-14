@@ -185,8 +185,7 @@ namespace MongoGUICtl.ClientTree
                     //形成树型菜单的方法
                     var singleConnection = GetInstanceNode(mongoConnKey, ref config, mongoClient);
                     connectionNode.Nodes.Add(singleConnection);
-                    config.ServerRole = MongoConnectionConfig.SvrRoleType.DataSvr;
-                    connectionNode.Tag = TagInfo.CreateTagInfo(config.ConnectionName);
+                    connectionNode.Tag = TagInfo.CreateTagInfo(config);
                     //设定是否可用
                     config.Health = true;
                     mongoConConfigLst[mongoConnKey] = config;
