@@ -388,10 +388,19 @@ namespace MongoGUICtl.ClientTree
                 var client = new MongoClient(setting);
                 //这里MongoServerInstanceType和SvrRoleType的概念有些重叠
                 client.GetServer().Connect();
-                if (client.GetServer().Instance.InstanceType == MongoServerInstanceType.ShardRouter)
+
+                if (!string.IsNullOrEmpty(client.GetServer().ReplicaSetName))
                 {
-                    //无法获得数据库列表
-                    config.ServerRole = MongoConnectionConfig.SvrRoleType.ShardSvr;
+                    //如果是副本的话Instance则无效，Instance(s)有效
+                    config.ServerRole = MongoConnectionConfig.SvrRoleType.ReplsetSvr;
+                }
+                else
+                {
+                    if (client.GetServer().Instance.InstanceType == MongoServerInstanceType.ShardRouter)
+                    {
+                        //无法获得数据库列表
+                        config.ServerRole = MongoConnectionConfig.SvrRoleType.ShardSvr;
+                    }
                 }
                 var databaseNameList = ConnectionInfo.GetDatabaseInfoList(client);
                 foreach (var strDbName in databaseNameList)

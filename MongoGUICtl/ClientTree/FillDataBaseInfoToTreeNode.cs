@@ -81,7 +81,7 @@ namespace MongoGUICtl.ClientTree
                 var strColName = colDoc.GetElement("name").Value.ToString();
                 switch (strColName)
                 {
-                    case ConstMgr.CollectionNameView:
+                    case ConstMgr.CollectionNameSystemView:
                         //视图
                         TreeNode mongoViewNode;
                         var ViewCol = ConnectionInfo.GetICollection(client, strDbName, strColName);

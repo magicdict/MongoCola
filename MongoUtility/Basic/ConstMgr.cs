@@ -186,6 +186,11 @@
         public const string CollectionNameReplsetMinvalid = "replset.minvalid";
 
         /// <summary>
+        ///     election数据集名称
+        /// </summary>
+        public const string CollectionNameReplsetElection = "replset.election";
+
+        /// <summary>
         ///     操作日志数据集名称
         /// </summary>
         public const string CollectionNameOperationLog = "oplog.rs";
@@ -218,7 +223,12 @@
         /// <summary>
         ///     视图数据集名称
         /// </summary>
-        public const string CollectionNameView = "system.views";
+        public const string CollectionNameSystemView = "system.views";
+
+        /// <summary>
+        ///     版本数据集名称
+        /// </summary>
+        public const string CollectionNameVersion = "system.version";
 
         #endregion
 

@@ -434,7 +434,7 @@ namespace MongoCola
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 trvsrvlst.Nodes.Clear();
                 trvsrvlst.Nodes.Add("丢失与数据库的连接！");

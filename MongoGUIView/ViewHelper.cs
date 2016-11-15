@@ -200,16 +200,16 @@ namespace MongoGUIView
                 {
                     BsonElement id;
                     docItem.TryGetElement(ConstMgr.KeyId, out id);
-                    if (!(id.Value is BsonNull))
+                    if ((id.Value is BsonNull) || (id.Value == null))
+                    {
+                        lstItem.Text = "[Empty]";
+                        lstItem.Tag = docItem.GetElement(0).Value;
+                    }
+                    else
                     {
                         lstItem.Text = docItem.GetValue(ConstMgr.KeyId).ToString();
                         //这里保存真实的主Key数据，删除的时候使用
                         lstItem.Tag = docItem.GetValue(ConstMgr.KeyId);
-                    }
-                    else
-                    {
-                        lstItem.Text = "[Empty]";
-                        lstItem.Tag = docItem.GetElement(0).Value;
                     }
                 }
                 else

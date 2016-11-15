@@ -303,16 +303,32 @@ namespace MongoGUICtl
                     return strColumnText;
                 }
                 //日期型处理
-                if (mElement.Value.IsValidDateTime)
+                if (mElement.Value.IsValidDateTime || mElement.Value.IsBsonTimestamp)
                 {
                     DateTime datetime;
-                    if (IsUtc)
+                    if (mElement.Value.IsBsonTimestamp)
                     {
-                        datetime = mElement.Value.AsBsonDateTime.ToUniversalTime();
+                        BsonTimestamp bsonTime = mElement.Value.AsBsonTimestamp;
+                        datetime = new DateTime(1970, 1, 1).AddSeconds(bsonTime.Timestamp);
+                        if (IsUtc)
+                        {
+                            datetime = datetime.ToUniversalTime();
+                        }
+                        else
+                        {
+                            datetime = datetime.ToLocalTime();
+                        }
                     }
                     else
                     {
-                        datetime = mElement.Value.AsBsonDateTime.ToLocalTime();
+                        if (IsUtc)
+                        {
+                            datetime = mElement.Value.AsBsonDateTime.ToUniversalTime();
+                        }
+                        else
+                        {
+                            datetime = mElement.Value.AsBsonDateTime.ToLocalTime();
+                        }
                     }
                     switch (DateTimeFormat)
                     {
@@ -333,6 +349,8 @@ namespace MongoGUICtl
                     }
                     return strColumnText;
                 }
+
+
                 //数字型处理
                 if (mElement.Value.IsNumeric)
                 {
@@ -366,7 +384,7 @@ namespace MongoGUICtl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 strColumnText = mElement.Value.ToString();
             }

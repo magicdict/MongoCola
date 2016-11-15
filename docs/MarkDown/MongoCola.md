@@ -6,20 +6,20 @@
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
 * 版本号：Ver 2.0.7
-* 文档最后更新时间：2016-11-14
+* 文档最后更新时间：2016-11-15
 
 ## 开发和测试环境
-### 操作系统：
+**操作系统：**
 * Windows 7
 * Mac OSX 10.12
 
-### 运行时：
+**运行时：**
 * NET Framework 4.6.2
 * NET Core 1.1.10
 * MongoDB 3.4.0-rc3
 
-### 驱动程序
-CSharp Mongo Driver 2.4.0-beta1
+**驱动程序：**
+* CSharp Mongo Driver 2.4.0-beta1
 
 ## 基本操作
 ### 第一次启动程序
@@ -88,12 +88,12 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102100423_TextView.png)
 
-###新建数据库
+###新建数据库/数据集/视图
 如果数据库里面没有任何数据集，则该数据库将自动被系统回收，所以，新建数据库的时候，会要求设定初始数据集。
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102143247_NewDatabase.png)
 
-###新建数据集
+
 软件使用了完全可视化的界面来帮助您新建一个数据集
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161104143101_CreateCollection.png)
@@ -106,8 +106,6 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161104143323_CreateCollection_Validation.png)
 
-
-###新建视图
 选中某个数据库，然后在右键菜单中选择“添加视图”即可打开视图创建窗体。
 你可以使用软件提供的StageBuilder来添加聚合管道条件。
 
@@ -349,6 +347,41 @@ mongod --port 10001 --dbpath  C:\mongodb\Mongod1 --replSet set1 --rest --smallfi
 注意：请注意你主机的名字，localhost的话，MongoDB可能会帮你改为主机名称。
 副本要求所有的主机是localhost或者全部不是localhost
 
+###创建最小分片系统
+
+注意：MongoDB 3.4的分片有一些变更，具体请参见：
+[Sharded Cluster](https://docs.mongodb.com/master/release-notes/3.4/#sharded-cluster "Sharded Cluster")
+
+这里我们创建一个最小的分片系统，这个分片系统包含2个副本（每个副本包含2台数据服务器），1个Config服务器，1个Route服务器(mongos)。
+注意：副本服务器由于会变成Shard，所以一定要加 --shardsvr 参数。
+下面是副本set1的第一台数据服务器的启动参数。其他3台根据需要进行修改即可。
+（ C:\runmongo\bin 是mongod.exe mongos.exe 的路径）
+
+```bash
+del C:\mongodb\Mongod1\*.* 
+mkdir C:\mongodb\Mongod1
+cd C:\runmongo\bin
+mongod --port 10001 --dbpath  C:\mongodb\Mongod1 --replSet set1 --rest --smallfiles --oplogSize 128 --shardsvr
+```
+
+下面是Config服务器
+注意：Config服务器需要是副本，启动之后，请将其初始化副本。这里的副本名称为"config"
+
+```bash
+cd C:\runmongo\bin
+mkdir C:\mongodb\config1
+mongod --configsvr --port 30001 --dbpath  C:\mongodb\config1 --rest -replSet config
+```
+
+最后是Route服务器（Mongos）
+--configdb 请设置为config副本的具体主机名称
+
+```bash
+cd C:\runmongo\bin
+mongos --configdb config/localhost:30001 --port 30002
+```
+
+
 ##插件系统（C#语言）
 
 本工具支持插件系统，任何人可以为这个软件制作插件
@@ -415,6 +448,7 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 3. 修改连接配置时候，按钮显示文字不正确的问题
 4. 副本功能（初始化副本，副本设定）的修复（原来使用MongoDatabase命令，现在用Shell命令）
 5. 让所有的数据库都可以执行Shell命令
+6. 分片功能的修复
 
 ###Ver 2.0.5 2016/11/11
 
