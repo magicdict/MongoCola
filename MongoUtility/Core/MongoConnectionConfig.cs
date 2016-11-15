@@ -13,7 +13,7 @@ namespace MongoUtility.Core
     {
         /// <summary>
         /// </summary>
-        public static MongoConfig MongoConfig = new MongoConfig();
+        public static MongoConnectionConfigManager MongoConfig = new MongoConnectionConfigManager();
 
         #region Basic
 
@@ -170,6 +170,12 @@ namespace MongoUtility.Core
             /// </summary>
             ReplsetSvr,
         }
+
+        /// <summary>
+        ///     服务器运行的进程名称：mongod/mongos
+        /// </summary>
+        [XmlIgnore]
+        public string ServerStatusProcess;
 
         /// <summary>
         ///     只读[这个属性是运行时决定的]

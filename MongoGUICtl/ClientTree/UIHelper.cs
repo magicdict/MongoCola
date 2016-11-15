@@ -386,6 +386,13 @@ namespace MongoGUICtl.ClientTree
             {
                 var setting = RuntimeMongoDbContext.CreateMongoClientSettingsByConfig(ref config);
                 var client = new MongoClient(setting);
+                //这里MongoServerInstanceType和SvrRoleType的概念有些重叠
+                client.GetServer().Connect();
+                if (client.GetServer().Instance.InstanceType == MongoServerInstanceType.ShardRouter)
+                {
+                    //无法获得数据库列表
+                    config.ServerRole = MongoConnectionConfig.SvrRoleType.ShardSvr;
+                }
                 var databaseNameList = ConnectionInfo.GetDatabaseInfoList(client);
                 foreach (var strDbName in databaseNameList)
                 {

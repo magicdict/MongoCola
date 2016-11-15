@@ -34,8 +34,8 @@ C#的代码分为两个解决方案：
 
 - MongoCola解决方案  
 * ExternalTools:外部工具   
-1. ConfigurationFile 配置文件编辑器
-2. MultiLanEditor 多语言文件编辑器
+1. ConfigurationFile 配置文件编辑器  
+2. MultiLanEditor 多语言文件编辑器  
 * Assistant:业务逻辑和辅助类  
 * Winform:窗体和控件  
 * PlugIn：插件  
@@ -44,7 +44,7 @@ C#的代码分为两个解决方案：
 1. MongoUtilityCore：MongoUtility的.Net Core编译配置  
 2. MongoColaWebAdmin:Asp.Net Core版的网页版程序  
 
-- Master Slave Replication的废除
+- Master Slave Replication的废除  
 从MongoDB 3.2开始，官方全面废除主从副本，所以所有主从副本的代码都停止维护，并且从代码中删除。
 Deprecated since version 3.2: MongoDB 3.2 deprecates the use of master-slave replication for components of sharded clusters.
 详细参见官网：https://docs.mongodb.com/manual/core/master-slave/

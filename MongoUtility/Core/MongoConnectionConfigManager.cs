@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace MongoUtility.Core
 {
-    public class MongoConfig
+    public class MongoConnectionConfigManager
     {
         /// <summary>
         ///     配置文件名称
@@ -84,7 +84,7 @@ namespace MongoUtility.Core
         /// </summary>
         public static void LoadFromConfigFile()
         {
-            MongoConnectionConfig.MongoConfig = LoadObjFromXml<MongoConfig>(AppPath + MongoConfigFilename);
+            MongoConnectionConfig.MongoConfig = LoadObjFromXml<MongoConnectionConfigManager>(AppPath + MongoConfigFilename);
             MongoConnectionConfig.MongoConfig.ConnectionList.Clear();
             foreach (var item in MongoConnectionConfig.MongoConfig.SerializableConnectionList)
             {

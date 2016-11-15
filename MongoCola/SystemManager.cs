@@ -71,7 +71,7 @@ namespace MongoCola
             Utility.ExceptionAppendInfo += "MongoDbDriverLegacyVersion:" + MongoHelper.MongoDbDriverLegacyVersion + Environment.NewLine;
             //config
             SystemConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
-            MongoConfig.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
+            MongoConnectionConfigManager.AppPath = Application.StartupPath + Path.DirectorySeparatorChar;
             var localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar +
                                   SystemConfig.SystemConfigFilename;
             if (File.Exists(localconfigfile))
@@ -90,10 +90,10 @@ namespace MongoCola
                 frmOption.ShowDialog();
                 SystemConfig.SaveSystemConfig();
             }
-            localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar + MongoConfig.MongoConfigFilename;
+            localconfigfile = Application.StartupPath + Path.DirectorySeparatorChar + MongoConnectionConfigManager.MongoConfigFilename;
             if (File.Exists(localconfigfile))
             {
-                MongoConfig.LoadFromConfigFile();
+                MongoConnectionConfigManager.LoadFromConfigFile();
                 RuntimeMongoDbContext.MongoConnectionConfigList = MongoConnectionConfig.MongoConfig.ConnectionList;
             }
             //服务器状态字典的初始化

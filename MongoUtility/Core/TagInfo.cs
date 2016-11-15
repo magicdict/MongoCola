@@ -45,6 +45,9 @@ namespace MongoUtility.Core
                 case MongoConnectionConfig.SvrRoleType.ReplsetSvr:
                     tagString = ConstMgr.ConnectionReplsetTag + ":" + config.ConnectionName;
                     break;
+                case MongoConnectionConfig.SvrRoleType.ShardSvr:
+                    tagString = ConstMgr.ConnectionClusterTag + ":" + config.ConnectionName;
+                    break;
                 default:
                     tagString = ConstMgr.ConnectionTag + ":" + config.ConnectionName;
                     break;
