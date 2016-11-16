@@ -1,5 +1,6 @@
 ﻿using Common;
 using ICSharpCode.TextEditor.Document;
+using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
@@ -103,7 +104,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void CtlTextMgr_Load(object sender, EventArgs e)
         {
-            txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
+            txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy(ConstMgr.CSharp);
         }
     }
 }

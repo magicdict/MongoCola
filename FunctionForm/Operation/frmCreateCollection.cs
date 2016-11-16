@@ -29,18 +29,7 @@ namespace FunctionForm.Operation
 
         private void frmCreateCollection_Load(object sender, EventArgs e)
         {
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                Text = GuiConfig.GetText(TextType.CreateNewCollection);
-                lblCollectionName.Text = GuiConfig.GetText(TextType.CollectionStatusCollectionName);
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
-                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
-                chkIsCapped.Text = GuiConfig.GetText(TextType.CollectionStatusIsCapped);
-                lblMaxDocument.Text = GuiConfig.GetText(TextType.CollectionStatusMaxDocuments);
-                lblMaxSize.Text = GuiConfig.GetText(TextType.CollectionStatusMaxSize);
-                chkIsAutoIndexId.Text = GuiConfig.GetText(TextType.CollectionStatusIsAutoIndexId);
-            }
-
+            GuiConfig.Translateform(this);
             //Difference between with long and decimal.....
             numMaxDocument.Maximum = decimal.MaxValue;
             numMaxSize.Maximum = decimal.MaxValue;
@@ -81,7 +70,8 @@ namespace FunctionForm.Operation
                 }
 
                 //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
-                option.SetAutoIndexId(chkIsAutoIndexId.Checked);
+                //Deprecated since version 3.2: The autoIndexId option will be removed in version 3.4.
+                //option.SetAutoIndexId(chkIsAutoIndexId.Checked);
 
                 if (chkValidation.Checked)
                 {

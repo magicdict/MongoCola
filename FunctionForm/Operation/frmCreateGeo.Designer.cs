@@ -76,6 +76,7 @@
             this.lblLatitude.Name = "lblLatitude";
             this.lblLatitude.Size = new System.Drawing.Size(59, 12);
             this.lblLatitude.TabIndex = 4;
+            this.lblLatitude.Tag = "Common_Latitude";
             this.lblLatitude.Text = "latitude ";
             // 
             // lblLongitude
@@ -85,6 +86,7 @@
             this.lblLongitude.Name = "lblLongitude";
             this.lblLongitude.Size = new System.Drawing.Size(59, 12);
             this.lblLongitude.TabIndex = 2;
+            this.lblLongitude.Tag = "Common_Longitude";
             this.lblLongitude.Text = "longitude";
             // 
             // rad2d
@@ -95,17 +97,19 @@
             this.rad2d.Size = new System.Drawing.Size(35, 16);
             this.rad2d.TabIndex = 0;
             this.rad2d.TabStop = true;
+            this.rad2d.Tag = "Common_2d";
             this.rad2d.Text = "2D";
             this.rad2d.UseVisualStyleBackColor = true;
             // 
             // rad2dSphere
             // 
             this.rad2dSphere.AutoSize = true;
-            this.rad2dSphere.Location = new System.Drawing.Point(70, 20);
+            this.rad2dSphere.Location = new System.Drawing.Point(129, 20);
             this.rad2dSphere.Name = "rad2dSphere";
             this.rad2dSphere.Size = new System.Drawing.Size(113, 16);
             this.rad2dSphere.TabIndex = 1;
             this.rad2dSphere.TabStop = true;
+            this.rad2dSphere.Tag = "Common_2dSphere";
             this.rad2dSphere.Text = "2dSphere(WGS84)";
             this.rad2dSphere.UseVisualStyleBackColor = true;
             // 

@@ -102,12 +102,23 @@ namespace MongoGUICtl.ClientTree
                 foreach (var strDbName in databaseNameList)
                 {
                     var mongoDb = mongoSvr.GetDatabase(strDbName);
+                    var viewlist = new List<string>();
+                    //获得View列表
+                    if (mongoDb.CollectionExists(ConstMgr.CollectionNameSystemView))
+                    {
+                        foreach (var viewdoc in mongoDb.GetCollection(ConstMgr.CollectionNameSystemView).FindAll())
+                        {
+                            viewlist.Add(viewdoc.GetElement(ConstMgr.KeyId).Value.AsString);
+
+                        }
+                    }
                     var colNameList = mongoDb.GetCollectionNames().ToList();
                     foreach (var strColName in colNameList)
                     {
+                        //过滤掉View，View无法读取状态
+                        if (viewlist.Contains(strDbName + "." + strColName)) continue;
                         try
                         {
-                            //过滤掉View
                             var collectionStatus = mongoDb.GetCollection(strColName).GetStats();
                             dbStatusList.Add(collectionStatus.Response);
                         }

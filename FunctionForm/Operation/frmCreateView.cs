@@ -20,17 +20,7 @@ namespace FunctionForm.Operation
 
         private void frmCreateView_Load(object sender, EventArgs e)
         {
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                Text = GuiConfig.GetText("Create View", "MainMenuOperationDatabaseAddView");
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
-                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
-                lblViewName.Text = GuiConfig.GetText("Common_ViewName");
-                lblViewOn.Text = GuiConfig.GetText("Common_ViewOn");
-                lblPipeline.Text = GuiConfig.GetText("Common_Pipeline");
-                lblCollation.Text = GuiConfig.GetText("Common_Collation");
-            }
-
+            GuiConfig.Translateform(this);
             cmbViewOn.Items.Clear();
             var ColList = RuntimeMongoDbContext.GetCurrentIMongoDataBase().ListCollections();
             var viewlist = RuntimeMongoDbContext.GetCurrentDBViewNameList();

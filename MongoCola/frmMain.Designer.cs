@@ -816,6 +816,7 @@ namespace MongoCola
             // 
             this.plugInToolStripMenuItem.Name = "plugInToolStripMenuItem";
             this.plugInToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.plugInToolStripMenuItem.Tag = "Common_PlugIn";
             this.plugInToolStripMenuItem.Text = "PlugIn";
             // 
             // ConfigfileMenuItem
@@ -922,6 +923,7 @@ namespace MongoCola
             // 
             this.CheckUpdatetoolStripMenuItem.Name = "CheckUpdatetoolStripMenuItem";
             this.CheckUpdatetoolStripMenuItem.Size = new System.Drawing.Size(361, 22);
+            this.CheckUpdatetoolStripMenuItem.Tag = "Main_Menu_Help_CheckUpdate";
             this.CheckUpdatetoolStripMenuItem.Text = "Check Update";
             this.CheckUpdatetoolStripMenuItem.Click += new System.EventHandler(this.CheckUpdatetoolStripMenuItem_Click);
             // 

@@ -234,6 +234,8 @@
 
         #region"其他"
 
+        public const string CSharp = "C#";
+
         /// <summary>
         ///     查询条件构成控件用常量
         /// </summary>

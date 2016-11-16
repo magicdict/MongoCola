@@ -78,7 +78,7 @@ namespace FunctionForm.Operation
                 comboBox.Invoke(new EventsHandlerComboxBind(ComboxBind), comboBox, data);
             else
             {
-                var bs = new BindingSource {DataSource = data};
+                var bs = new BindingSource { DataSource = data };
                 comboBox.DataSource = bs;
                 comboBox.DisplayMember = "Key";
                 comboBox.ValueMember = "Value";
@@ -175,7 +175,7 @@ namespace FunctionForm.Operation
                 cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
                 cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             }
-            new Thread(DataBind) {IsBackground = true}.Start();
+            new Thread(DataBind) { IsBackground = true }.Start();
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace FunctionForm.Operation
             var db = server.GetDatabase(comboBoxDataBase.Text);
             if (db == null) return;
             ThreadStart ts = () => Copy(db);
-            new Thread(ts) {IsBackground = true}.Start();
+            new Thread(ts) { IsBackground = true }.Start();
         }
 
         #endregion

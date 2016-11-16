@@ -19,13 +19,7 @@ namespace FunctionForm.Operation
 
         private void frmCreateGeo_Load(object sender, EventArgs e)
         {
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
-                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
-                lblLongitude.Text = GuiConfig.GetText("Common_Longitude");
-                lblLatitude.Text = GuiConfig.GetText("Common_Latitude");
-            }
+            GuiConfig.Translateform(this);
         }
 
         private void cmdOK_Click(object sender, EventArgs e)

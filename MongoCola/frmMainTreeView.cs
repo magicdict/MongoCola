@@ -358,7 +358,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ViewHandler(TreeNodeMouseClickEventArgs e)
         {
-            statusStripMain.Items[0].Text = "Selected View:" + e.Node.Text;
+            statusStripMain.Items[0].Text = GuiConfig.GetText("Selected View", "SelectedView") + ":" + e.Node.Text;
             DelMongoCollectionToolStripMenuItem.Enabled = true;
             if (e.Button == MouseButtons.Right)
             {
@@ -401,7 +401,7 @@ namespace MongoCola
         }
 
         /// <summary>
-        /// ViewLis右键事件
+        /// ViewList右键事件
         /// </summary>
         /// <param name="e"></param>
         private void ViewListHandler(TreeNodeMouseClickEventArgs e)

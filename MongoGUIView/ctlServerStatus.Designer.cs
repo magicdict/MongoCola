@@ -44,7 +44,6 @@ namespace MongoGUIView
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.ExpandAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.CollapseAllStripButton = new System.Windows.Forms.ToolStripButton();
-            this.btnSwitch = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabSvrStatus.SuspendLayout();
             this.tabSvrBasicInfo.SuspendLayout();
@@ -137,7 +136,6 @@ namespace MongoGUIView
             this.RefreshStripButton,
             this.ExpandAllStripButton,
             this.CollapseAllStripButton,
-            this.btnSwitch,
             this.CloseStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -175,17 +173,6 @@ namespace MongoGUIView
             this.CollapseAllStripButton.Size = new System.Drawing.Size(23, 22);
             this.CollapseAllStripButton.Text = "CollapseAll";
             this.CollapseAllStripButton.Click += new System.EventHandler(this.CollapseAllStripButton_Click);
-            // 
-            // btnSwitch
-            // 
-            this.btnSwitch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSwitch.Image = ((System.Drawing.Image)(resources.GetObject("btnSwitch.Image")));
-            this.btnSwitch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSwitch.Name = "btnSwitch";
-            this.btnSwitch.Size = new System.Drawing.Size(23, 22);
-            this.btnSwitch.Tag = "Collection_Resume_AutoRefresh";
-            this.btnSwitch.Text = "Switch";
-            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
             // CloseStripButton
             // 
@@ -227,7 +214,6 @@ namespace MongoGUIView
         private TabPage tabCollectionInfo;
         private ToolStrip toolStrip1;
         private ToolStripButton RefreshStripButton;
-        private ToolStripButton btnSwitch;
         private ToolStripButton CloseStripButton;
         private CtlTreeViewColumns trvSvrStatus;
         private ToolStripButton CollapseAllStripButton;

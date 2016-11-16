@@ -43,9 +43,9 @@ namespace FunctionForm.Operation
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(560, 343);
+            this.cmdOK.Location = new System.Drawing.Point(735, 333);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(72, 23);
+            this.cmdOK.Size = new System.Drawing.Size(96, 33);
             this.cmdOK.TabIndex = 5;
             this.cmdOK.Tag = "Common_OK";
             this.cmdOK.Text = "OK";
@@ -54,9 +54,9 @@ namespace FunctionForm.Operation
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(637, 343);
+            this.cmdClose.Location = new System.Drawing.Point(838, 333);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(72, 23);
+            this.cmdClose.Size = new System.Drawing.Size(96, 33);
             this.cmdClose.TabIndex = 6;
             this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
@@ -84,9 +84,9 @@ namespace FunctionForm.Operation
             // 
             // cmdPreview
             // 
-            this.cmdPreview.Location = new System.Drawing.Point(483, 343);
+            this.cmdPreview.Location = new System.Drawing.Point(634, 333);
             this.cmdPreview.Name = "cmdPreview";
-            this.cmdPreview.Size = new System.Drawing.Size(72, 23);
+            this.cmdPreview.Size = new System.Drawing.Size(96, 33);
             this.cmdPreview.TabIndex = 4;
             this.cmdPreview.Tag = "Common_Preview";
             this.cmdPreview.Text = "Preview";
@@ -96,9 +96,9 @@ namespace FunctionForm.Operation
             // cmdSaveAggregate
             // 
             this.cmdSaveAggregate.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveAggregate.Location = new System.Drawing.Point(406, 343);
+            this.cmdSaveAggregate.Location = new System.Drawing.Point(528, 333);
             this.cmdSaveAggregate.Name = "cmdSaveAggregate";
-            this.cmdSaveAggregate.Size = new System.Drawing.Size(72, 23);
+            this.cmdSaveAggregate.Size = new System.Drawing.Size(96, 33);
             this.cmdSaveAggregate.TabIndex = 3;
             this.cmdSaveAggregate.Tag = "Common_Save";
             this.cmdSaveAggregate.Text = "Save";
@@ -129,6 +129,7 @@ namespace FunctionForm.Operation
             this.Controls.Add(this.cmdOK);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmCreateDocument";
+            this.Tag = "Create_New_Document";
             this.Text = "New Document";
             this.Load += new System.EventHandler(this.frmNewDocument_Load);
             this.ResumeLayout(false);

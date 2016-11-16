@@ -11,6 +11,7 @@ using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ICSharpCode.TextEditor.Document;
+using MongoUtility.Basic;
 
 namespace MongoGUIView
 {
@@ -34,13 +35,18 @@ namespace MongoGUIView
         /// </summary>
         public string JsName { set; get; }
 
+        /// <summary>
+        ///     加载窗体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void JsEditor_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
             GuiConfig.Translateform(Controls);
             SaveStripButton.Image = Resources.save.ToBitmap();
-            this.txtEvalJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
-            this.txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
+            this.txtEvalJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy(ConstMgr.CSharp);
+            this.txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy(ConstMgr.CSharp);
 
             if (!string.IsNullOrEmpty(JsName))
             {
@@ -79,7 +85,7 @@ namespace MongoGUIView
                 var str = Operater.SaveEditorJavascript(JsName, txtEditJavaScript.Text,
                     RuntimeMongoDbContext.GetCurrentCollection());
                 if (string.IsNullOrEmpty(str))
-                    txtEvalJavaScript.Text = "保存成功\r\n";
+                    txtEvalJavaScript.Text = "保存成功" + System.Environment.NewLine;
             }
             else
             {
@@ -107,7 +113,7 @@ namespace MongoGUIView
                 try
                 {
                     mStreamWriter.Write(txtEditJavaScript.Text);
-                    txtEvalJavaScript.Text += "文件同步成功\r\n";
+                    txtEvalJavaScript.Text += "文件同步成功" + System.Environment.NewLine;
                 }
                 catch (Exception exception)
                 {
@@ -142,7 +148,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void butOpenFile_Click(object sender, EventArgs e)
         {
-            var open = new OpenFileDialog { Filter = "JavaScript文件(*.js)|*.js" };
+            var open = new OpenFileDialog { Filter = Common.Utility.JsFilter };
             if (open.ShowDialog() == DialogResult.OK)
             {
                 txtFile.Text = open.FileName;
@@ -178,6 +184,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void CtlJsEditor_KeyPress(object sender, KeyPressEventArgs e)
         {
+
         }
 
         /// <summary>

@@ -202,11 +202,11 @@ namespace MongoCola
                     MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey];
                 if (string.IsNullOrEmpty(RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName))
                 {
-                    lblUserInfo.Text = "UserInfo:Admin";
+                    lblUserInfo.Text = GuiConfig.GetText("UserInfo","UserInfo") + ":Admin";
                 }
                 else
                 {
-                    lblUserInfo.Text = "UserInfo:" + RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName;
+                    lblUserInfo.Text = GuiConfig.GetText("UserInfo", "UserInfo") + ":" + RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName;
                 }
                 if (RuntimeMongoDbContext.CurrentMongoConnectionconfig.AuthMode)
                 {
@@ -214,7 +214,7 @@ namespace MongoCola
                 }
                 if (RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
                 {
-                    lblUserInfo.Text += " [ReadOnly]";
+                    lblUserInfo.Text += " [" + GuiConfig.GetText("ReadOnly", "Common_ReadOnly") + "]";
                 }
                 if (!RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
                 {
@@ -248,18 +248,18 @@ namespace MongoCola
                         break;
                     case ConstMgr.SystemCollectionListTag:
                         RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "System Collection List ";
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("System Collection List ", "SystemCollectionList");
                         break;
                     case ConstMgr.CollectionListTag:
                         //添加数据集
                         CollectionListHandler(e);
                         RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "Collection List ";
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("Collection List ", "CollectionList");
                         break;
                     case ConstMgr.ViewListTag:
                         ViewListHandler(e);
                         RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "View List ";
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("List View ", "ViewList");
                         break;
                     case ConstMgr.CollectionTag:
                         CollectionHandler(e);
@@ -344,10 +344,10 @@ namespace MongoCola
                             e.Node.ContextMenuStrip = contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
-                        statusStripMain.Items[0].Text = "Selected collection Javascript";
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("Selected collection Javascript ", "JavascriptCollection");
                         break;
                     case ConstMgr.JavascriptDocTag:
-                        statusStripMain.Items[0].Text = "Selected JavaScript:" + RuntimeMongoDbContext.SelectTagData;
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("Selected JavaScript", "Selected_Javascript") + ":" + RuntimeMongoDbContext.SelectTagData;
                         ViewDataToolStripMenuItem.Enabled = true;
                         dropJavascriptToolStripMenuItem.Enabled = true;
 
@@ -420,7 +420,6 @@ namespace MongoCola
                         break;
                     case ConstMgr.JavascriptTag:
                         MongoHelper.InitJavascript();
-                        //ViewJavascriptName();
                         break;
                     case ConstMgr.JavascriptDocTag:
                         ViewJavascript();
@@ -436,8 +435,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                trvsrvlst.Nodes.Clear();
-                trvsrvlst.Nodes.Add("丢失与数据库的连接！");
+                Utility.ExceptionDeal(ex);
             }
         }
 

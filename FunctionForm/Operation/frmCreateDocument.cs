@@ -2,6 +2,7 @@
 using ICSharpCode.TextEditor.Document;
 using MongoDB.Bson;
 using MongoGUICtl.ClientTree;
+using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
@@ -105,7 +106,7 @@ namespace FunctionForm.Operation
         /// <param name="e"></param>
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
-            txtDocument.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
+            txtDocument.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy(ConstMgr.CSharp);
             GuiConfig.Translateform(this);
         }
     }
