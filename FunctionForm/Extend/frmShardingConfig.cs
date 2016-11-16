@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
@@ -10,6 +7,9 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace FunctionForm.Extend
 {
@@ -33,6 +33,7 @@ namespace FunctionForm.Extend
             InitializeComponent();
         }
 
+
         /// <summary>
         ///     加载
         /// </summary>
@@ -55,25 +56,24 @@ namespace FunctionForm.Extend
             foreach (var lst in Operater.GetShardInfo(_prmSvr, ConstMgr.KeyId))
             {
                 lstSharding.Items.Add(lst.Value);
+                cmbShard.Items.Add(lst.Value);
             }
-            mongoCol = mongoDb.GetCollection("shards");
-            cmbTagList.Items.Clear();
-            foreach (var mShard in mongoCol.FindAllAs<BsonDocument>())
-            {
-                if (mShard.Contains("tags"))
-                {
-                    foreach (var tag in mShard.GetElement("tags").Value.AsBsonArray)
-                    {
-                        //严格意义上说，不应该在同一个路由里面出现两个同名的标签。
-                        if (!_tagSet.ContainsKey(tag.ToString()))
-                        {
-                            _tagSet.Add(tag.ToString(), mShard.GetElement(ConstMgr.KeyId).Value.ToString());
-                            cmbTagList.Items.Add(mShard.GetElement(ConstMgr.KeyId).Value + "." + tag);
-                        }
-                    }
-                }
-            }
+            MongoCollection ColShards = mongoDb.GetCollection("shards");
+            RefreshShardingZone();
+            RefreshShardingRange();
         }
+
+        /// <summary>
+        ///     关闭窗体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        #region Basic
 
         /// <summary>
         ///     增加Shard的高级选项
@@ -151,6 +151,57 @@ namespace FunctionForm.Extend
         }
 
         /// <summary>
+        ///     移除Sharding
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdRemoveSharding_Click(object sender, EventArgs e)
+        {
+            foreach (string item in lstSharding.SelectedItems)
+            {
+                var resultlst = new List<CommandResult> { CommandHelper.RemoveSharding(_prmSvr, item) };
+                MyMessageBox.ShowMessage("Remove Sharding", "Result",
+                    MongoHelper.ConvertCommandResultlstToString(resultlst));
+            }
+            lstSharding.Items.Clear();
+            foreach (var lst in Operater.GetShardInfo(_prmSvr, "_id"))
+            {
+                lstSharding.Items.Add(lst.Value);
+            }
+        }
+
+        #endregion
+
+        #region Config
+
+        /// <summary>
+        ///     分片配置(数据库)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdEnableSharding_Click(object sender, EventArgs e)
+        {
+            var resultlst = new List<CommandResult> { CommandHelper.EnableSharding(_prmSvr, cmbDataBase.Text) };
+            MyMessageBox.ShowMessage("EnableSharding", "Result",
+                MongoHelper.ConvertCommandResultlstToString(resultlst));
+        }
+
+        /// <summary>
+        ///     分片配置(数据集)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdShardCollectionSharding_Click(object sender, EventArgs e)
+        {
+            var resultlst = new List<CommandResult>();
+            var result = _prmSvr.GetDatabase(cmbDataBase.Text).GetCollection(cmbCollection.Text).GetIndexes();
+            BsonDocument indexDoc = result[cmbIndexList.SelectedIndex].Key;
+            resultlst.Add(CommandHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, indexDoc));
+            MyMessageBox.ShowMessage("EnableSharding", "Result",
+                MongoHelper.ConvertCommandResultlstToString(resultlst));
+        }
+
+        /// <summary>
         ///     数据库切换
         /// </summary>
         /// <param name="sender"></param>
@@ -167,7 +218,7 @@ namespace FunctionForm.Extend
                     cmbCollection.Items.Add(item);
                 }
                 cmbIndexList.Items.Clear();
-                lstExistShardTag.Items.Clear();
+                lstExistShardRange.Items.Clear();
             }
             catch (Exception ex)
             {
@@ -175,27 +226,6 @@ namespace FunctionForm.Extend
             }
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmbShardKeyDB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var mongoDb = _prmSvr.GetDatabase(cmbShardKeyDB.Text);
-                cmbShardKeyCol.Items.Clear();
-                cmbShardKeyCol.Text = string.Empty;
-                foreach (var item in mongoDb.GetCollectionNames())
-                {
-                    cmbShardKeyCol.Items.Add(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                Utility.ExceptionDeal(ex);
-            }
-        }
         /// <summary>
         ///     数据集变换时，实时更新主键列表
         /// </summary>
@@ -217,11 +247,11 @@ namespace FunctionForm.Extend
                 //Tag和数据集绑定，从系统数据集tags里面读取tag的信息
                 var mongoDbConfig = _prmSvr.GetDatabase(ConstMgr.DatabaseNameConfig);
                 MongoCollection mongoCol = mongoDbConfig.GetCollection("tags");
-                lstExistShardTag.Items.Clear();
-                lstExistShardTag.Columns.Add("Tag");
-                lstExistShardTag.Columns.Add("NameSpace");
-                lstExistShardTag.Columns.Add("Min");
-                lstExistShardTag.Columns.Add("Max");
+                lstExistShardRange.Items.Clear();
+                lstExistShardRange.Columns.Add("Tag");
+                lstExistShardRange.Columns.Add("NameSpace");
+                lstExistShardRange.Columns.Add("Min");
+                lstExistShardRange.Columns.Add("Max");
                 foreach (var tags in mongoCol.FindAllAs<BsonDocument>())
                 {
                     if (tags.GetElement("ns").Value.ToString() != BsonUndefined.Value.ToString())
@@ -234,7 +264,7 @@ namespace FunctionForm.Extend
                             listItem.SubItems.Add(tags.GetElement("ns").Value.ToString());
                             listItem.SubItems.Add(tags.GetElement("min").Value.ToString());
                             listItem.SubItems.Add(tags.GetElement("max").Value.ToString());
-                            lstExistShardTag.Items.Add(listItem);
+                            lstExistShardRange.Items.Add(listItem);
                         }
                     }
                 }
@@ -246,58 +276,55 @@ namespace FunctionForm.Extend
         }
 
         /// <summary>
-        ///     分片配置(数据库)
+        ///     为Sharding增加Zone(Tag)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdEnableSharding_Click(object sender, EventArgs e)
+        private void btnAddShardZone_Click(object sender, EventArgs e)
         {
-            var resultlst = new List<CommandResult> { CommandHelper.EnableSharding(_prmSvr, cmbDataBase.Text) };
-            MyMessageBox.ShowMessage("EnableSharding", "Result",
-                MongoHelper.ConvertCommandResultlstToString(resultlst));
+            var resultlst = new List<CommandResult>
+            {
+                CommandHelper.AddShardToZone(_prmSvr, cmbShard.Text, txtShardZone.Text)
+            };
+            MyMessageBox.ShowMessage("Add Shard Zone", "Result", MongoHelper.ConvertCommandResultlstToString(resultlst));
+            RefreshShardingZone();
         }
 
+        #endregion
+
         /// <summary>
-        ///     分片配置(数据集)
+        ///     ShardKey数据库变换
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdEnableCollectionSharding_Click(object sender, EventArgs e)
+        private void cmbShardKeyDB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var resultlst = new List<CommandResult>();
-            var result =
-                _prmSvr.GetDatabase(cmbDataBase.Text).GetCollection(cmbCollection.Text).GetIndexes();
-            BsonDocument indexDoc = result[cmbIndexList.SelectedIndex].Key;
-            resultlst.Add(CommandHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, indexDoc));
-            MyMessageBox.ShowMessage("EnableSharding", "Result",
-                MongoHelper.ConvertCommandResultlstToString(resultlst));
+            try
+            {
+                var mongoDb = _prmSvr.GetDatabase(cmbShardKeyDB.Text);
+                cmbShardKeyCol.Items.Clear();
+                cmbShardKeyCol.Text = string.Empty;
+                foreach (var item in mongoDb.GetCollectionNames())
+                {
+                    cmbShardKeyCol.Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.ExceptionDeal(ex);
+            }
         }
 
         /// <summary>
-        ///     数据集变换时
+        ///     ShardKey数据集变换时
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmbShardKeyCol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var Col = _prmSvr.GetDatabase(cmbDataBase.Text).GetCollection(cmbCollection.Text);
+            var Col = _prmSvr.GetDatabase(cmbShardKeyDB.Text).GetCollection(cmbShardKeyCol.Text);
             var columnList = MongoHelper.GetCollectionSchame(Col);
             Utility.FillComberWithArray(cmbField, columnList.ToArray(), true);
-        }
-
-        /// <summary>
-        ///     为Sharding增加Tag
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAddShardTag_Click(object sender, EventArgs e)
-        {
-            var resultlst = new List<CommandResult>
-            {
-                CommandHelper.AddShardTag(_prmSvr, txtShardName.Text, txtTagShard.Text)
-            };
-            MyMessageBox.ShowMessage("Add Shard Tag", "Result",
-                MongoHelper.ConvertCommandResultlstToString(resultlst));
         }
 
         /// <summary>
@@ -309,43 +336,71 @@ namespace FunctionForm.Extend
         {
             var resultlst = new List<CommandResult>
             {
-                CommandHelper.AddTagRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,cmbField.Text, ctlBsonValueShardKeyFrom.GetValue(),
+                CommandHelper.updateZoneKeyRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,cmbField.Text, ctlBsonValueShardKeyFrom.GetValue(),
                                           ctlBsonValueShardKeyTo.GetValue(), cmbTagList.Text.Split(".".ToCharArray())[1])
             };
             MyMessageBox.ShowMessage("Add Shard Tag", "Result",
                 MongoHelper.ConvertCommandResultlstToString(resultlst));
-        }
-
-
-        /// <summary>
-        ///     移除Sharding
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdRemoveSharding_Click(object sender, EventArgs e)
-        {
-            foreach (string item in lstSharding.SelectedItems)
-            {
-                var resultlst = new List<CommandResult> { CommandHelper.RemoveSharding(_prmSvr, item) };
-                MyMessageBox.ShowMessage("Remove Sharding", "Result",
-                    MongoHelper.ConvertCommandResultlstToString(resultlst));
-            }
-            lstSharding.Items.Clear();
-            foreach (var lst in Operater.GetShardInfo(_prmSvr, "_id"))
-            {
-                lstSharding.Items.Add(lst.Value);
-            }
+            RefreshShardingRange();
         }
 
         /// <summary>
-        ///     关闭窗体
+        ///     刷新分片区域
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdClose_Click(object sender, EventArgs e)
+        private void RefreshShardingZone()
         {
-            Close();
+            var mongoDb = _prmSvr.GetDatabase(ConstMgr.DatabaseNameConfig);
+            MongoCollection ColShards = mongoDb.GetCollection("shards");
+            //现存Zone的列表
+            cmbTagList.Items.Clear();
+            lstExistShardZone.Columns.Clear();
+            lstExistShardZone.Columns.Add("Shard Name");
+            lstExistShardZone.Columns.Add("Zone Name");
+            lstExistShardZone.Items.Clear();
+            _tagSet.Clear();
+            foreach (var mShard in ColShards.FindAllAs<BsonDocument>())
+            {
+                if (mShard.Contains("tags"))
+                {
+                    foreach (var tag in mShard.GetElement("tags").Value.AsBsonArray)
+                    {
+                        //严格意义上说，不应该在同一个路由里面出现两个同名的标签。
+                        if (!_tagSet.ContainsKey(tag.ToString()))
+                        {
+                            _tagSet.Add(tag.ToString(), mShard.GetElement(ConstMgr.KeyId).Value.ToString());
+                            cmbTagList.Items.Add(mShard.GetElement(ConstMgr.KeyId).Value + "." + tag);
+                            var Item = new ListViewItem(mShard.GetElement(ConstMgr.KeyId).Value.AsString);
+                            Item.SubItems.Add(tag.AsString);
+                            lstExistShardZone.Items.Add(Item);
+                        }
+                    }
+                }
+            }
+            Utility.ListViewColumnResize(lstExistShardZone);
         }
 
+        /// <summary>
+        ///     刷新分片范围
+        /// </summary>
+        private void RefreshShardingRange()
+        {
+            var mongoDb = _prmSvr.GetDatabase(ConstMgr.DatabaseNameConfig);
+            MongoCollection ColTags = mongoDb.GetCollection("tags");
+            lstExistShardRange.Columns.Clear();
+            lstExistShardRange.Columns.Add("Tag");
+            lstExistShardRange.Columns.Add("Collection");
+            lstExistShardRange.Columns.Add("MinDoc");
+            lstExistShardRange.Columns.Add("MaxDoc");
+            lstExistShardRange.Items.Clear();
+            foreach (var mShard in ColTags.FindAllAs<BsonDocument>())
+            {
+                var Item = new ListViewItem(mShard.GetElement("tag").Value.AsString);
+                Item.SubItems.Add(mShard.GetElement(ConstMgr.KeyId).Value.AsBsonDocument.GetElement("ns").Value.ToString());
+                Item.SubItems.Add(mShard.GetElement("min").Value.ToString());
+                Item.SubItems.Add(mShard.GetElement("max").Value.ToString());
+                lstExistShardRange.Items.Add(Item);
+            }
+            Utility.ListViewColumnResize(lstExistShardRange);
+        }
     }
 }

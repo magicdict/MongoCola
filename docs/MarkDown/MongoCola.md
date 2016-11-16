@@ -6,7 +6,7 @@
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
 * 版本号：Ver 2.0.7
-* 文档最后更新时间：2016-11-15
+* 文档最后更新时间：2016-11-16
 
 ## 开发和测试环境
 **操作系统：**
@@ -381,6 +381,26 @@ cd C:\runmongo\bin
 mongos --configdb config/localhost:30001 --port 30002
 ```
 
+###分片的配置
+
+使用UI工具增加Sharding，这里需要指定副本名称和主机。
+
+![](/FileSystem/Thumbnail?filename=00000001_20161116105547_AddSharding.png)
+
+启用Sharding
+
+![](/FileSystem/Thumbnail?filename=00000001_20161116105649_EnableSharding.png)
+
+增加分片区域（ShardingZone）
+
+Sharding Zone 是 MongoDB3.4新增的概念，和以前的 Sharding Tag 类似
+
+![](/FileSystem/Thumbnail?filename=00000001_20161116105820_AddShardingZone.png)
+
+设置分片区域的范围
+
+![](/FileSystem/Thumbnail?filename=00000001_20161116105911_AddShardingZoneRange.png)
+
 
 ##插件系统（C#语言）
 
@@ -449,6 +469,11 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 4. 副本功能（初始化副本，副本设定）的修复（原来使用MongoDatabase命令，现在用Shell命令）
 5. 让所有的数据库都可以执行Shell命令
 6. 分片功能的修复
+7. BsonTimestamp的表示
+8. id缺失数据集的崩溃问题
+
+### 删除
+1. 主从同步功能：随着Master-Slaver机制的取消，主从同步功能也随之取消。其他所有主从副本相关的代码也会渐渐剔除。
 
 ###Ver 2.0.5 2016/11/11
 

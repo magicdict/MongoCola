@@ -131,7 +131,7 @@ namespace MongoUtility.Command
 
         #endregion
 
-        #region"Server Command"
+        #region"Replset Command"
 
         //Replica Set Commands
         //[OLD]http://www.mongodb.org/display/DOCS/Replica+Set+Commands
@@ -240,6 +240,10 @@ namespace MongoUtility.Command
             }
             return cmdRtn;
         }
+        #endregion
+
+        #region Sharding
+        //从MongoDB3.4开始，使用Zone来代替Tag了
 
         /// <summary>
         ///     增加数据分片
@@ -262,7 +266,7 @@ namespace MongoUtility.Command
             var mongoCmd = new CommandDocument { { "addshard", cmdPara } };
             if (maxSize != 0)
             {
-                mongoCmd.Add("maxSize", (BsonValue)maxSize);
+                mongoCmd.Add("maxSize", maxSize);
             }
             if (name != string.Empty)
             {
@@ -272,6 +276,7 @@ namespace MongoUtility.Command
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
+
         /// <summary>
         ///     增加分片Tag
         /// </summary>
@@ -279,6 +284,7 @@ namespace MongoUtility.Command
         /// <param name="shardName">Shard名称</param>
         /// <param name="tagName">Tag名称</param>
         /// <returns></returns>
+        [Obsolete("MongoDB 3.4 introduces Zones, which supersedes tag-aware sharding available in earlier versions.")]
         public static CommandResult AddShardTag(MongoServer routeSvr, string shardName, string tagName)
         {
             return ExecuteJsShell("sh.addShardTag('" + shardName + "', '" + tagName + "')", routeSvr);
@@ -293,34 +299,10 @@ namespace MongoUtility.Command
         /// <returns></returns>
         public static CommandResult AddShardToZone(MongoServer routeSvr, string shardName, string zone)
         {
-            return ExecuteJsShell("sh.addShardToZone('" + shardName + "', '" + zone + "')", routeSvr);
+            var mongoCmd = new CommandDocument { { "addShardToZone", shardName } };
+            mongoCmd.Add("zone", zone);
+            return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
-
-        //mongos> sh.addShardTag
-        //function (shard, tag) {
-        //    var config = db.getSisterDB("config");
-        //    if (config.shards.findOne({_id:shard}) == null) {
-        //        throw "can't find a shard with name: " + shard;
-        //    }
-        //    config.shards.update({_id:shard}, {$addToSet:{tags:tag}});
-        //    sh._checkLastError(config);
-        //}
-        //mongos> sh.addTagRange
-        //function (ns, min, max, tag) {
-        //    var config = db.getSisterDB("config");
-        //    config.tags.update(
-        //                       {_id:{ns:ns, min:min}},
-        //                       {
-        //                             _id:{ns:ns, min:min},
-        //                             ns:ns,
-        //                             min:min,
-        //                             max:max, 
-        //                             tag:tag
-        //                       }, 
-        //                       true
-        //                       );
-        //    sh._checkLastError(config);
-        //}
 
 
         /// <summary>
@@ -332,38 +314,13 @@ namespace MongoUtility.Command
         /// <param name="max">最大值</param>
         /// <param name="tag">标签</param>
         /// <returns></returns>
-        public static CommandResult AddTagRange(MongoServer routeSvr, string nameSpace, string FieldName, BsonValue min, BsonValue max, string tag)
+        public static CommandResult updateZoneKeyRange(MongoServer routeSvr, string nameSpace, string FieldName, BsonValue min, BsonValue max, string zone)
         {
-            var maxValue = string.Empty;
-            var minValue = string.Empty;
-            if (min.IsString)
-            {
-                minValue = "'" + min + "'";
-            }
-            if (max.IsString)
-            {
-                maxValue = "'" + max + "'";
-            }
-
-            if (min.IsNumeric)
-            {
-                minValue = min.ToString();
-            }
-            if (max.IsNumeric)
-            {
-                maxValue = max.ToString();
-            }
-
-            var MinDoc = new BsonDocument();
-            var MaxDoc = new BsonDocument();
-
-            var MinEl = new BsonElement(FieldName, min);
-            var MaxEl = new BsonElement(FieldName, max);
-
-            MinDoc.Add(MinEl);
-            MaxDoc.Add(MaxEl);
-
-            return ExecuteJsShell("sh.addTagRange('" + nameSpace + "'," + MinDoc.ToString() + "},{" + MaxDoc.ToString() + "},'" + tag + "')", routeSvr);
+            var mongoCmd = new CommandDocument { { "updateZoneKeyRange", nameSpace } };
+            mongoCmd.Add("min",new BsonDocument(FieldName, min));
+            mongoCmd.Add("max",new BsonDocument(FieldName, max));
+            mongoCmd.Add("zone", zone);
+            return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
 
         /// <summary>

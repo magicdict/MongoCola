@@ -38,8 +38,8 @@ namespace FunctionForm.Connection
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colHost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colReplsetMember = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.cmdAddCon = new System.Windows.Forms.ToolStripButton();
             this.cmdModifyCon = new System.Windows.Forms.ToolStripButton();
@@ -80,8 +80,8 @@ namespace FunctionForm.Connection
             this.colName,
             this.colHost,
             this.colPort,
-            this.colUser,
-            this.colReplsetMember});
+            this.colReplsetMember,
+            this.colUser});
             this.lstConnection.FullRowSelect = true;
             this.lstConnection.GridLines = true;
             this.lstConnection.Location = new System.Drawing.Point(0, 28);
@@ -109,17 +109,17 @@ namespace FunctionForm.Connection
             this.colPort.Text = "Port";
             this.colPort.Width = 93;
             // 
+            // colReplsetMember
+            // 
+            this.colReplsetMember.Tag = "Common_ReplsetMember";
+            this.colReplsetMember.Text = "ReplsetMember";
+            this.colReplsetMember.Width = 100;
+            // 
             // colUser
             // 
             this.colUser.Tag = "Common_User";
             this.colUser.Text = "User";
             this.colUser.Width = 71;
-            // 
-            // colReplsetMember
-            // 
-            this.colReplsetMember.Tag = "Common_ReplsetMember";
-            this.colReplsetMember.Text = "ReplsetMember";
-            this.colReplsetMember.Width = 249;
             // 
             // toolStrip1
             // 
@@ -188,7 +188,7 @@ namespace FunctionForm.Connection
             this.cmdFromUriString.Text = "FromUri";
             this.cmdFromUriString.Click += new System.EventHandler(this.cmdFromUriString_Click);
             // 
-            // FrmConnect
+            // frmConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -202,7 +202,7 @@ namespace FunctionForm.Connection
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmConnect";
+            this.Name = "frmConnect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "Connect_Title";
             this.Text = "Server Connection";

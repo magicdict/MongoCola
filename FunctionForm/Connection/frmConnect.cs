@@ -17,6 +17,7 @@ namespace FunctionForm.Connection
         }
 
         /// <summary>
+        ///     
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -34,11 +35,12 @@ namespace FunctionForm.Connection
             lstConnection.Items.Clear();
             foreach (var item in MongoConnectionConfig.MongoConfig.ConnectionList.Values)
             {
-                if (item.ReplSetName == string.Empty)
+                if (string.IsNullOrEmpty(item.ReplSetName))
                 {
                     var t = new ListViewItem(item.ConnectionName);
                     t.SubItems.Add(item.Host == string.Empty ? "localhost" : item.Host);
                     t.SubItems.Add(item.Port == 0 ? string.Empty : item.Port.ToString());
+                    t.SubItems.Add(string.Empty);
                     t.SubItems.Add(item.UserName);
                     lstConnection.Items.Add(t);
                 }
@@ -47,18 +49,18 @@ namespace FunctionForm.Connection
                     var t = new ListViewItem(item.ConnectionName);
                     t.SubItems.Add(item.Host == string.Empty ? "localhost" : item.Host);
                     t.SubItems.Add(item.Port == 0 ? string.Empty : item.Port.ToString());
-                    t.SubItems.Add(string.Empty);
                     var replArray = string.Empty;
                     foreach (var repl in item.ReplsetList)
                     {
                         replArray += repl + ";";
                     }
                     t.SubItems.Add(replArray);
+                    t.SubItems.Add((string.IsNullOrEmpty(item.UserName)) ? string.Empty : item.UserName);
                     lstConnection.Items.Add(t);
                 }
-                Utility.ListViewColumnResize(lstConnection);
             }
             lstConnection.Sort();
+            Utility.ListViewColumnResize(lstConnection);
             MongoConnectionConfig.MongoConfig.SaveMongoConfig();
         }
 
