@@ -229,7 +229,7 @@ namespace MongoGUIView
                 }
                 lstData.Items.Add(lstItem);
             }
-            Utility.ListViewColumnResize(lstData);
+            UIAssistant.ListViewColumnResize(lstData);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace MongoGUIView
                 lstItem.SubItems.Add(strReadOnly == null ? "N/A" : strReadOnly.ToString());
                 lstData.Items.Add(lstItem);
             }
-            Utility.ListViewColumnResize(lstData);
+            UIAssistant.ListViewColumnResize(lstData);
             //lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
@@ -351,7 +351,7 @@ namespace MongoGUIView
                 lstData.Items.Add(lstItem);
             }
             //自动调节列宽
-            Utility.ListViewColumnResize(lstData);
+            UIAssistant.ListViewColumnResize(lstData);
             // 用新的排序方法对ListView排序
             var lvwGfsColumnSorter = new LvwColumnSorter();
             lstData.ListViewItemSorter = lvwGfsColumnSorter;

@@ -11,11 +11,12 @@ using System.Windows.Forms;
 
 namespace MongoGUICtl.ClientTree
 {
-    public static class FillMongoDb
+    public static class FillMongoDB
     {
         #region"展示状态"
 
         /// <summary>
+        ///     Fill Client status to ListView
         /// </summary>
         /// <param name="trvSvrStatus"></param>
         /// <param name="mongoConnClientLst"></param>
@@ -25,6 +26,7 @@ namespace MongoGUICtl.ClientTree
             var srvDocList = new List<BsonDocument>();
             foreach (var mongoSvrKey in mongoConnClientLst.Keys)
             {
+                if (!MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey].Health) continue;
                 try
                 {
                     var mongoClient = mongoConnClientLst[mongoSvrKey];
@@ -63,13 +65,21 @@ namespace MongoGUICtl.ClientTree
             var dbStatusList = new List<BsonDocument>();
             foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
-                var mongoSvr = mongoConnSvrLst[mongoSvrKey];
-                var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                foreach (var strDbName in databaseNameList)
+                if (!MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey].Health) continue;
+                try
                 {
-                    var mongoDb = mongoSvr.GetDatabase(strDbName);
-                    var dbStatus = mongoDb.GetStats();
-                    dbStatusList.Add(dbStatus.Response);
+                    var mongoSvr = mongoConnSvrLst[mongoSvrKey];
+                    var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
+                    foreach (var strDbName in databaseNameList)
+                    {
+                        var mongoDb = mongoSvr.GetDatabase(strDbName);
+                        var dbStatus = mongoDb.GetStats();
+                        dbStatusList.Add(dbStatus.Response);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utility.ExceptionDeal(ex);
                 }
             }
             UiHelper.FillDataToTreeView("DataBase Status", lstSvr, dbStatusList, 0);
@@ -86,6 +96,7 @@ namespace MongoGUICtl.ClientTree
             var dbStatusList = new List<BsonDocument>();
             foreach (var mongoSvrKey in mongoConnSvrLst.Keys)
             {
+                if (!MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey].Health) continue;
                 var mongoSvr = mongoConnSvrLst[mongoSvrKey];
                 var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
                 foreach (var strDbName in databaseNameList)
@@ -100,9 +111,9 @@ namespace MongoGUICtl.ClientTree
                             var collectionStatus = mongoDb.GetCollection(strColName).GetStats();
                             dbStatusList.Add(collectionStatus.Response);
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            Utility.ExceptionDeal(ex);
                         }
                     }
                 }

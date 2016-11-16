@@ -56,7 +56,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void frmElement_Load(object sender, EventArgs e)
         {
-            Common.Utility.FillComberWithEnum(cmbDataType, typeof(BsonValueEx.BasicType), true);
+            Common.UIAssistant.FillComberWithEnum(cmbDataType, typeof(BsonValueEx.BasicType), true);
             if (_isUpdateMode)
             {
                 txtElName.Visible = true;

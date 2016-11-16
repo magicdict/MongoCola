@@ -60,7 +60,7 @@ namespace FunctionForm.Connection
                 }
             }
             lstConnection.Sort();
-            Utility.ListViewColumnResize(lstConnection);
+            UIAssistant.ListViewColumnResize(lstConnection);
             MongoConnectionConfig.MongoConfig.SaveMongoConfig();
         }
 
@@ -71,7 +71,7 @@ namespace FunctionForm.Connection
         /// <param name="e"></param>
         private void cmdAddCon_Click(object sender, EventArgs e)
         {
-            Utility.OpenModalForm(new FrmConnectionMgr(), true, true);
+            UIAssistant.OpenModalForm(new FrmConnectionMgr(), true, true);
             RefreshConnection();
         }
 
@@ -122,7 +122,7 @@ namespace FunctionForm.Connection
         {
             if (lstConnection.CheckedItems.Count != 1) return;
             var connectionName = lstConnection.CheckedItems[0].Text;
-            Utility.OpenModalForm(new FrmConnectionMgr(connectionName), true, true);
+            UIAssistant.OpenModalForm(new FrmConnectionMgr(connectionName), true, true);
             RefreshConnection();
         }
 

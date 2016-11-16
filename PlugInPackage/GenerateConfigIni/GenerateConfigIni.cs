@@ -20,7 +20,7 @@ namespace PlugInPackage.GenerateConfigIni
 
         public override int Run()
         {
-            Utility.OpenModalForm(new FrmGenerateConfigIni(), true, true);
+            UIAssistant.OpenModalForm(new FrmGenerateConfigIni(), true, true);
             return Success;
         }
 

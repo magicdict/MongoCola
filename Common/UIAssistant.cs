@@ -5,10 +5,8 @@ using System.Windows.Forms;
 
 namespace Common
 {
-    public static partial class Utility
+    public static class UIAssistant
     {
-        #region"UI"
-
         /// <summary>
         ///     枚举填充Combox
         /// </summary>
@@ -179,7 +177,6 @@ namespace Common
             return string.Empty;
         }
 
-
         /// <summary>
         ///     选择文件夹
         /// </summary>
@@ -193,7 +190,5 @@ namespace Common
             }
             return string.Empty;
         }
-
-        #endregion
     }
 }

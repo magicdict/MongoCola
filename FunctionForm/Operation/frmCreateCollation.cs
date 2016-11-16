@@ -32,10 +32,10 @@ namespace FunctionForm.Operation
 
         private void frmCreateCollation_Load(object sender, System.EventArgs e)
         {
-            Common.Utility.FillComberWithEnum(cmbStrength, typeof(CollationStrength));
-            Common.Utility.FillComberWithEnum(cmbMaxVariable, typeof(CollationMaxVariable));
-            Common.Utility.FillComberWithEnum(cmbAlternate, typeof(CollationAlternate));
-            Common.Utility.FillComberWithEnum(cmbCaseFirst, typeof(CollationCaseFirst));
+            Common.UIAssistant.FillComberWithEnum(cmbStrength, typeof(CollationStrength));
+            Common.UIAssistant.FillComberWithEnum(cmbMaxVariable, typeof(CollationMaxVariable));
+            Common.UIAssistant.FillComberWithEnum(cmbAlternate, typeof(CollationAlternate));
+            Common.UIAssistant.FillComberWithEnum(cmbCaseFirst, typeof(CollationCaseFirst));
 
             //Default 
             chkCaseLevel.Checked = false;

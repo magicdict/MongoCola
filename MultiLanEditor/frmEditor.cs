@@ -65,7 +65,7 @@ namespace MultiLanEditor
                 }
                 lstMultiLan.Items.Add(item);
             }
-            Utility.ListViewColumnResize(lstMultiLan);
+            UIAssistant.ListViewColumnResize(lstMultiLan);
         }
 
         List<string> uuiDs = new List<string>();

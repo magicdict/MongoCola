@@ -235,7 +235,7 @@
 
   <!--frmServiceStatus-->
   <ServiceStatus_Title>服务器状态</ServiceStatus_Title>
-  <ServiceStatus_ServerInfo>服务器信息[手动更新]</ServiceStatus_ServerInfo>
+  <ServiceStatus_ServerInfo>服务器信息</ServiceStatus_ServerInfo>
   <ServiceStatus_DataBaseInfo>数据库信息</ServiceStatus_DataBaseInfo>
   <ServiceStatus_CollectionInfo>数据集信息</ServiceStatus_CollectionInfo>
   <ServiceStatus_CurrentOperationInfo>当前操作</ServiceStatus_CurrentOperationInfo>
@@ -243,15 +243,12 @@
   <!--frmShardingConfig-->
   <ShardingConfig_Title>Sharding配置</ShardingConfig_Title>
   <ShardingConfig_AddSharding>添加Sharding</ShardingConfig_AddSharding>
+  <ShardingConfig_RemoveSharding>删除Sharding</ShardingConfig_RemoveSharding>
   <ShardingConfig_ReplsetName>副本名称</ShardingConfig_ReplsetName>
-
   <ShardingConfig_EnableSharding>启用Sharding</ShardingConfig_EnableSharding>
   <ShardingConfig_Action_DBSharding>启用数据库Sharding</ShardingConfig_Action_DBSharding>
   <ShardingConfig_Action_CollectionSharding>启用数据集Sharding</ShardingConfig_Action_CollectionSharding>
 
-  <ShardingConfig_DBName>数据库</ShardingConfig_DBName>
-  <ShardingConfig_CollectionName>数据集</ShardingConfig_CollectionName>
-  <ShardingConfig_FieldName>字段</ShardingConfig_FieldName>
 
   <!--ctlIndexCreate-->
   <ctlIndexCreate_Index>索引</ctlIndexCreate_Index>
@@ -335,6 +332,7 @@
   <Selected_Index>选中索引</Selected_Index>
   <Selected_GFS>选中文件系统</Selected_GFS>
   <Selected_UserList>选中用户列表</Selected_UserList>
+  
   <!--MongoUtility-->
   <Common_Username>用户名</Common_Username>
   <Common_Password>密码</Common_Password>
@@ -355,10 +353,11 @@
   <Common_Modify>修改</Common_Modify>
   <Common_Add>添加</Common_Add>
   <Common_OpCnt>操作计数器</Common_OpCnt>
+  <Common_Connect>连接</Common_Connect>
   <Common_Server>服务器</Common_Server>
   <Common_DataBase>数据库</Common_DataBase>
-  <Common_Connect>连接</Common_Connect>
   <Common_Collection>数据集</Common_Collection>
+  <Common_FieldName>字段名称</Common_FieldName>
   <Common_Host>主机</Common_Host>
   <Common_Port>端口</Common_Port>
   <Common_ReplsetMember>副本成员</Common_ReplsetMember>
@@ -408,14 +407,10 @@
   <Drop_Collection_Confirm>确定是否要删除数据集?</Drop_Collection_Confirm>
   <Rename_Collection>重命名数据集</Rename_Collection>
   <Rename_Collection_Input>请输入新数据集名称:</Rename_Collection_Input>
-
   <Drop_User>删除用户</Drop_User>
   <Drop_User_Confirm>确定是否要删除用户?</Drop_User_Confirm>
-
   <Drop_Data>删除数据</Drop_Data>
   <Drop_Data_Confirm>确定是否要删除选中数据?</Drop_Data_Confirm>
-
-
   <CopyIndex>复制索引</CopyIndex>
   
   <!-- 数据集名称的汉化 --> 

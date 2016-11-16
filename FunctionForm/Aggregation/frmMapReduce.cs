@@ -29,7 +29,7 @@ namespace FunctionForm.Aggregation
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
             GuiConfig.Translateform(this);
-            Utility.FillComberWithEnum(cmbOutputMode, typeof(MapReduceOutputMode));
+            UIAssistant.FillComberWithEnum(cmbOutputMode, typeof(MapReduceOutputMode));
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace FunctionForm.Aggregation
                 var frm = new frmDataView();
                 frm.ShowDocument = mMapReduceResult.Response;
                 frm.Title = "MapReduce Result";
-                Utility.OpenModalForm(frm, true, true);
+                UIAssistant.OpenModalForm(frm, true, true);
             }
             catch (Exception ex)
             {
@@ -84,7 +84,7 @@ namespace FunctionForm.Aggregation
         private void cmdCreateQueryDocument_Click(object sender, EventArgs e)
         {
             var frmInsertDoc = new frmCreateDocument();
-            Utility.OpenModalForm(frmInsertDoc, false, true);
+            UIAssistant.OpenModalForm(frmInsertDoc, false, true);
             QueryDoc = frmInsertDoc.mBsonDocument;
             UiHelper.FillDataToTreeView("Query", QueryTreeView, frmInsertDoc.mBsonDocument);
         }

@@ -51,31 +51,31 @@ namespace MongoCola
             CtlDocumentView._getDocument = () =>
             {
                 var frmInsertDoc = new frmCreateDocument();
-                Utility.OpenModalForm(frmInsertDoc, false, true);
+                UIAssistant.OpenModalForm(frmInsertDoc, false, true);
                 return frmInsertDoc.mBsonDocument;
             };
             ctlBsonValue.GetDocument = () =>
             {
                 var frmInsertDoc = new frmCreateDocument();
-                Utility.OpenModalForm(frmInsertDoc, false, true);
+                UIAssistant.OpenModalForm(frmInsertDoc, false, true);
                 return frmInsertDoc.mBsonDocument;
             };
             ctlBsonValue.GetArray = () =>
             {
                 var frmInsertArray = new frmArrayCreator();
-                Utility.OpenModalForm(frmInsertArray, false, true);
+                UIAssistant.OpenModalForm(frmInsertArray, false, true);
                 return frmInsertArray.mBsonArray;
             };
             ctlBsonValue.GetGeo = () =>
             {
                 var frmGeo = new frmCreateGeo();
-                Utility.OpenModalForm(frmGeo, false, true);
+                UIAssistant.OpenModalForm(frmGeo, false, true);
                 return frmGeo.mBsonArray;
             };
             CtlGeoNear.GetGeo = () =>
             {
                 var frmGeo = new frmCreateGeo();
-                Utility.OpenModalForm(frmGeo, false, true);
+                UIAssistant.OpenModalForm(frmGeo, false, true);
                 return frmGeo.mBsonArray;
             };
 
@@ -105,7 +105,7 @@ namespace MongoCola
             //Set Tool bar button enable
             SetToolBarEnabled();
             //Open ConnectionManagement Form
-            Utility.OpenModalForm(new frmConnect(), true, true);
+            UIAssistant.OpenModalForm(new frmConnect(), true, true);
 
             //多文档管理器的设定
             var parentMenuItems = new List<ToolStripMenuItem>();

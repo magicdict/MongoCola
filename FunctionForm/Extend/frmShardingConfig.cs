@@ -324,15 +324,15 @@ namespace FunctionForm.Extend
         {
             var Col = _prmSvr.GetDatabase(cmbShardKeyDB.Text).GetCollection(cmbShardKeyCol.Text);
             var columnList = MongoHelper.GetCollectionSchame(Col);
-            Utility.FillComberWithArray(cmbField, columnList.ToArray(), true);
+            UIAssistant.FillComberWithArray(cmbField, columnList.ToArray(), true);
         }
 
         /// <summary>
-        ///     Add Tag Range
+        ///     Add Zone Range
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdaddTagRange_Click(object sender, EventArgs e)
+        private void cmdaddZoneRange_Click(object sender, EventArgs e)
         {
             var resultlst = new List<CommandResult>
             {
@@ -376,7 +376,7 @@ namespace FunctionForm.Extend
                     }
                 }
             }
-            Utility.ListViewColumnResize(lstExistShardZone);
+            UIAssistant.ListViewColumnResize(lstExistShardZone);
         }
 
         /// <summary>
@@ -400,7 +400,7 @@ namespace FunctionForm.Extend
                 Item.SubItems.Add(mShard.GetElement("max").Value.ToString());
                 lstExistShardRange.Items.Add(Item);
             }
-            Utility.ListViewColumnResize(lstExistShardRange);
+            UIAssistant.ListViewColumnResize(lstExistShardRange);
         }
     }
 }

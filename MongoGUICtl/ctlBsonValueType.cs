@@ -16,7 +16,7 @@ namespace MongoGUICtl
         private void ctlBsonValue1_Load(object sender, System.EventArgs e)
         {
             //BsonValue基本属性
-            Common.Utility.FillComberWithEnum(cmbDataType, typeof(BsonValueEx.BasicType), true);
+            Common.UIAssistant.FillComberWithEnum(cmbDataType, typeof(BsonValueEx.BasicType), true);
             //类型变动委托
             cmbDataType.SelectedIndexChanged += (x, y) => { ctlBsonValue1.DataTypeChanged((BsonValueEx.BasicType)cmbDataType.SelectedIndex); };
         }

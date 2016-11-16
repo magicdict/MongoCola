@@ -29,9 +29,9 @@ namespace FunctionForm.Connection
             NumWTimeoutMS.GotFocus += (x, y) => NumWTimeoutMS.Select(0, 5);
             NumWaitQueueSize.GotFocus += (x, y) => NumWaitQueueSize.Select(0, 5);
 
-            Common.Utility.FillComberWithArray(cmbReadConcern, ReadWrite.ReadConcernList);
-            Common.Utility.FillComberWithArray(cmbReadPreference, ReadWrite.ReadPreferenceList);
-            Common.Utility.FillComberWithArray(cmbWriteConcern, ReadWrite.WriteConcernList);
+            Common.UIAssistant.FillComberWithArray(cmbReadConcern, ReadWrite.ReadConcernList);
+            Common.UIAssistant.FillComberWithArray(cmbReadPreference, ReadWrite.ReadPreferenceList);
+            Common.UIAssistant.FillComberWithArray(cmbWriteConcern, ReadWrite.WriteConcernList);
 
             //ReadPreference和WriteConern不是Connection的属性,
             //而是读写策略

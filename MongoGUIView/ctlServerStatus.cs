@@ -22,9 +22,9 @@ namespace MongoGUIView
         {
             try
             {
-                FillMongoDb.FillClientStatusToList(trvSvrStatus, RuntimeMongoDbContext.MongoConnClientLst);
-                FillMongoDb.FillDataBaseStatusToList(trvDBStatus, RuntimeMongoDbContext.MongoConnSvrLst);
-                FillMongoDb.FillCollectionStatusToList(trvColStatus, RuntimeMongoDbContext.MongoConnSvrLst);
+                FillMongoDB.FillClientStatusToList(trvSvrStatus, RuntimeMongoDbContext.MongoConnClientLst);
+                FillMongoDB.FillDataBaseStatusToList(trvDBStatus, RuntimeMongoDbContext.MongoConnSvrLst);
+                FillMongoDB.FillCollectionStatusToList(trvColStatus, RuntimeMongoDbContext.MongoConnSvrLst);
             }
             catch (Exception ex)
             {

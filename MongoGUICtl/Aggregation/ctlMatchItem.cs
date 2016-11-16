@@ -35,7 +35,7 @@ namespace MongoGUICtl.Aggregation
         /// <param name="e"></param>
         private void ctlMatchItem_Load(object sender, EventArgs e)
         {
-            Common.Utility.FillComberWithArray(cmbComparisonfunction, AggregationHelper.GetComparisonfunction(), true);
+            Common.UIAssistant.FillComberWithArray(cmbComparisonfunction, AggregationHelper.GetComparisonfunction(), true);
             if (RuntimeMongoDbContext.GetCurrentCollection() != null)
             {
                 foreach (var item in MongoHelper.GetCollectionSchame(RuntimeMongoDbContext.GetCurrentCollection()))

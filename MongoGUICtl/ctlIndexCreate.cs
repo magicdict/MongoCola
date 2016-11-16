@@ -22,7 +22,7 @@ namespace MongoGUICtl
                     cmbKeyName.Items.Add(fieldName);
                 }
             }
-            Common.Utility.FillComberWithEnum(cmbIndexKeyType, typeof(EnumMgr.IndexType), true);
+            Common.UIAssistant.FillComberWithEnum(cmbIndexKeyType, typeof(EnumMgr.IndexType), true);
         }
 
         public EnumMgr.IndexType IndexKeyType

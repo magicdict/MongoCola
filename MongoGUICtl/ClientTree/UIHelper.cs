@@ -172,11 +172,22 @@ namespace MongoGUICtl.ClientTree
             foreach (var mongoConnKey in mongoConnClientLst.Keys)
             {
                 var mongoClient = mongoConnClientLst[mongoConnKey];
+                try
+                {
+                    mongoClient.GetServer().Connect();
+                }
+                catch (TimeoutException ex)
+                {
+                    //TimeOut，则这个Health为False
+                    mongoConConfigLst[mongoConnKey].Health = false;
+                    connectionNodes.Add(new TreeNode(mongoConnKey + "[Error]"));
+                    continue;
+                }
                 var connectionNode = new TreeNode();
+                var config = mongoConConfigLst[mongoConnKey];
                 try
                 {
                     //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
-                    var config = mongoConConfigLst[mongoConnKey];
                     connectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     connectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
@@ -205,18 +216,22 @@ namespace MongoGUICtl.ClientTree
                 }
                 catch (MongoAuthenticationException ex)
                 {
+                    config.Health = false;
                     AuthenticationExceptionHandler(ex, connectionNodes, connectionNode, mongoConnKey);
                 }
                 catch (MongoCommandException ex)
                 {
+                    config.Health = false;
                     MongoCommandExceptionHandle(ex, connectionNodes, connectionNode, mongoConnKey);
                 }
                 catch (MongoConnectionException ex)
                 {
+                    config.Health = false;
                     MongoConnectionExceptionHandle(ex, connectionNodes, connectionNode, mongoConnKey);
                 }
                 catch (Exception ex)
                 {
+                    config.Health = false;
                     ExceptionHandle(ex, connectionNodes, connectionNode, mongoConnKey);
                 }
             }

@@ -62,9 +62,9 @@ namespace MongoGUICtl
             cmbEndMark.Items.Add(ConstMgr.EndMarkT);
             cmbEndMark.SelectedIndex = 0;
             //字段表的载入
-            Common.Utility.FillComberWithArray(cmbColName, columnList.ToArray(), true);
+            Common.UIAssistant.FillComberWithArray(cmbColName, columnList.ToArray(), true);
             //逻辑操作符号的载入
-            Common.Utility.FillComberWithEnum(cmbCompareOpr, typeof(DataFilter.CompareEnum), true);
+            Common.UIAssistant.FillComberWithEnum(cmbCompareOpr, typeof(DataFilter.CompareEnum), true);
         }
 
         public delegate void ItemChanged(object sender);

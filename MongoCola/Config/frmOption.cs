@@ -109,7 +109,7 @@ namespace MongoCola.Config
             }
 
             //GuidRepresentation
-            Common.Utility.FillComberWithEnum(cmbGuidRepresentation, typeof(SystemConfig.GuidRepresentation), true);
+            Common.UIAssistant.FillComberWithEnum(cmbGuidRepresentation, typeof(SystemConfig.GuidRepresentation), true);
             cmbGuidRepresentation.SelectedIndex = SystemManager.SystemConfig.BsonGuidRepresentation.GetHashCode();
 
             GuiConfig.Translateform(this);

@@ -80,7 +80,7 @@ namespace FunctionForm.Aggregation
             try
             {
                 var frmAddStage = new FrmAddStage();
-                Utility.OpenModalForm(frmAddStage, false, true);
+                UIAssistant.OpenModalForm(frmAddStage, false, true);
                 if (frmAddStage.DialogResult == DialogResult.OK) {
                     stages.AddRange(frmAddStage.BsonDocumentList);
                     FillStagesTreeview();
@@ -151,7 +151,7 @@ namespace FunctionForm.Aggregation
         private void btnAggrBuilder_Click(object sender, EventArgs e)
         {
             var frmAggregationBuilder = new FrmStageBuilder();
-            Utility.OpenModalForm(frmAggregationBuilder, false, true);
+            UIAssistant.OpenModalForm(frmAggregationBuilder, false, true);
             foreach (var item in frmAggregationBuilder.Aggregation)
             {
                 stages.Add(item);

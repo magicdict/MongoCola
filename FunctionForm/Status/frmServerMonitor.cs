@@ -46,7 +46,7 @@ namespace FunctionForm.Status
         {
             //填充分组
             GuiConfig.Translateform(this);
-            Utility.FillComberWithArray(cmbCatalog, SystemStatus.GetCatalog().ToArray());
+            UIAssistant.FillComberWithArray(cmbCatalog, SystemStatus.GetCatalog().ToArray());
             //自定义分组
             cmbCatalog.Items.Add("Custom");
 
@@ -146,7 +146,7 @@ namespace FunctionForm.Status
         private void cmdCustom_Click(object sender, EventArgs e)
         {
             var frm = new frmCustomMonitorItems();
-            Utility.OpenModalForm(frm, false, true);
+            UIAssistant.OpenModalForm(frm, false, true);
             if (frm.SelectedItems != null)
             {
                 MonitorItemsChanged(frm.SelectedItems);

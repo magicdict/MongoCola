@@ -152,8 +152,6 @@ namespace MongoUtility.Core
             return mongoClientSetting;
         }
 
-
-
         #endregion
 
         #region"系统状态"

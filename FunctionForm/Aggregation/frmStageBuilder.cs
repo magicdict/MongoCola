@@ -187,7 +187,7 @@ namespace FunctionForm.Aggregation
         private void cmdCreateGroupId_Click(object sender, EventArgs e)
         {
             var frmInsertDoc = new frmCreateDocument();
-            Utility.OpenModalForm(frmInsertDoc, false, true);
+            UIAssistant.OpenModalForm(frmInsertDoc, false, true);
             if (frmInsertDoc.mBsonDocument != null)
             {
                 GroupIdElement = new BsonElement("id", frmInsertDoc.mBsonDocument);
@@ -198,7 +198,7 @@ namespace FunctionForm.Aggregation
         private void cmdCreateGroupFields_Click(object sender, EventArgs e)
         {
             var frmInsertDoc = new frmCreateDocument();
-            Utility.OpenModalForm(frmInsertDoc, false, true);
+            UIAssistant.OpenModalForm(frmInsertDoc, false, true);
             if (frmInsertDoc.mBsonDocument != null)
             {
                 FieldsElement = new BsonElement("fields", frmInsertDoc.mBsonDocument);

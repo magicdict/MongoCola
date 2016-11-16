@@ -43,7 +43,7 @@ namespace PlugInPackage.ImportAccessDB
         {
             var frm = new FrmSelectTable();
             frm.mServer = (MongoServer)PlugObj;
-            Utility.OpenModalForm(frm, true, true);
+            UIAssistant.OpenModalForm(frm, true, true);
             return Success;
         }
 
