@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
-    partial class CtlTextMgr
+    partial class ctlJsCodeEditor
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -92,13 +92,16 @@ namespace MongoGUICtl
             // 
             // txtEditJavaScript
             // 
+            this.txtEditJavaScript.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEditJavaScript.IsReadOnly = false;
             this.txtEditJavaScript.Location = new System.Drawing.Point(9, 72);
             this.txtEditJavaScript.Name = "txtEditJavaScript";
-            this.txtEditJavaScript.Size = new System.Drawing.Size(353, 124);
+            this.txtEditJavaScript.Size = new System.Drawing.Size(353, 204);
             this.txtEditJavaScript.TabIndex = 25;
             // 
-            // CtlTextMgr
+            // ctlJsCodeEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,8 +112,8 @@ namespace MongoGUICtl
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "CtlTextMgr";
-            this.Size = new System.Drawing.Size(369, 211);
+            this.Name = "ctlJsCodeEditor";
+            this.Size = new System.Drawing.Size(369, 276);
             this.Load += new System.EventHandler(this.CtlTextMgr_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -51,7 +51,7 @@ namespace FunctionForm.User
             this.lstOtherRoles = new System.Windows.Forms.ListView();
             this.colDataBase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colRoles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.userRoles = new CtlUserRolesPanel();
+            this.userRoles = new MongoGUICtl.CtlUserRolesPanel();
             this.cmdDelRole = new System.Windows.Forms.Button();
             this.cmdModifyRole = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -63,6 +63,7 @@ namespace FunctionForm.User
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(96, 26);
             this.cmdOK.TabIndex = 4;
+            this.cmdOK.Tag = "Common_Ok";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -74,6 +75,7 @@ namespace FunctionForm.User
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(117, 26);
             this.cmdCancel.TabIndex = 5;
+            this.cmdCancel.Tag = "Common_Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
@@ -86,6 +88,7 @@ namespace FunctionForm.User
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(65, 15);
             this.lblUserName.TabIndex = 6;
+            this.lblUserName.Tag = "Common_Username";
             this.lblUserName.Text = "Username";
             // 
             // lblPassword
@@ -96,6 +99,7 @@ namespace FunctionForm.User
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(89, 15);
             this.lblPassword.TabIndex = 7;
+            this.lblPassword.Tag = "Common_Password";
             this.lblPassword.Text = "New Password";
             // 
             // txtUserName
@@ -120,6 +124,7 @@ namespace FunctionForm.User
             this.lblConfirmPsw.Name = "lblConfirmPsw";
             this.lblConfirmPsw.Size = new System.Drawing.Size(107, 15);
             this.lblConfirmPsw.TabIndex = 8;
+            this.lblConfirmPsw.Tag = "Common_ConfirmPassword";
             this.lblConfirmPsw.Text = "Confirm Password";
             // 
             // txtConfirmPsw
@@ -228,7 +233,7 @@ namespace FunctionForm.User
             this.cmdModifyRole.UseVisualStyleBackColor = true;
             this.cmdModifyRole.Click += new System.EventHandler(this.cmdModifyRole_Click);
             // 
-            // frmUser
+            // FrmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

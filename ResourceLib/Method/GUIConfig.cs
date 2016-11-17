@@ -191,9 +191,9 @@ namespace ResourceLib.Method
         public static void Translateform(Control.ControlCollection controls)
         {
             if (IsUseDefaultLanguage) return;
-            var display = string.Empty;
             foreach (Control ctrlItem in controls)
             {
+                var display = string.Empty;
                 if (IsMono) ctrlItem.Font = GetMonoFont(ctrlItem.Font);
                 //复合控件
                 if (ctrlItem.GetType().FullName == typeof(MenuStrip).FullName)

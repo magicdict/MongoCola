@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
-    public partial class CtlTextMgr : UserControl
+    public partial class ctlJsCodeEditor : UserControl
     {
-        public CtlTextMgr()
+        public ctlJsCodeEditor()
         {
             InitializeComponent();
             Load += (x, y) => Init();

@@ -57,6 +57,7 @@ namespace FunctionForm.Aggregation
             args.Verbose = chkverbose.Checked;
             args.BypassDocumentValidation = chkbypassDocumentValidation.Checked;
             if (QueryDoc != null) args.Query = new QueryDocument(QueryDoc);
+            if (mCollation != null) args.Collation = mCollation;
             try
             {
                 var mMapReduceResult = RuntimeMongoDbContext.GetCurrentCollection().MapReduce(args);
@@ -86,7 +87,7 @@ namespace FunctionForm.Aggregation
             var frmInsertDoc = new frmCreateDocument();
             UIAssistant.OpenModalForm(frmInsertDoc, false, true);
             QueryDoc = frmInsertDoc.mBsonDocument;
-            UiHelper.FillDataToTreeView("Query", QueryTreeView, frmInsertDoc.mBsonDocument);
+            if (QueryDoc != null) UiHelper.FillDataToTreeView("Query", QueryTreeView, frmInsertDoc.mBsonDocument);
         }
 
         /// <summary>
@@ -99,6 +100,37 @@ namespace FunctionForm.Aggregation
             QueryDoc = null;
             QueryTreeView.Clear();
         }
+
+        /// <summary>
+        ///     排序规则
+        /// </summary>
+        Collation mCollation = null;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCollation_Click(object sender, EventArgs e)
+        {
+            var frm = new frmCreateCollation();
+            UIAssistant.OpenModalForm(frm, false, true);
+            if (frm.mCollation != null)
+            {
+                mCollation = frm.mCollation;
+                UiHelper.FillDataToTreeView("Collation", trvCollation, mCollation.ToBsonDocument());
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClearCollation_Click(object sender, EventArgs e)
+        {
+            mCollation = null;
+            trvCollation.Clear();
+        }
+
         /// <summary>
         ///     关闭
         /// </summary>
@@ -108,5 +140,6 @@ namespace FunctionForm.Aggregation
         {
             Close();
         }
+
     }
 }

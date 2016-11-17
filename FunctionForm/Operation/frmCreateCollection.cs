@@ -45,8 +45,17 @@ namespace FunctionForm.Operation
             //不支持中文 JIRA ticket is created : SERVER-4412
             //SERVER-4412已经在2013/03解决了
             //collection names are limited to 121 bytes after converting to UTF-8. 
-            if (txtCollectionName.Text == string.Empty) return;
+            if (txtCollectionName.Text == string.Empty)
+            {
+                MyMessageBox.ShowMessage("Please Input CollectionName", "Please Input CollectionName");
+                return;
+            }
             CollectionName = txtCollectionName.Text.Trim();
+            if (string.IsNullOrEmpty(CollectionName))
+            {
+                MyMessageBox.ShowMessage("Please Input CollectionName", "Please Input CollectionName");
+                return;
+            }
             try
             {
                 string errMessage;
@@ -73,11 +82,10 @@ namespace FunctionForm.Operation
                 //Deprecated since version 3.2: The autoIndexId option will be removed in version 3.4.
                 //option.SetAutoIndexId(chkIsAutoIndexId.Checked);
 
-                if (chkValidation.Checked)
+                if (chkValidation.Checked && ValidationDoc != null)
                 {
                     //Start From MongoDB 3.2.0
-                    BsonDocument query = BsonSerializer.Deserialize<BsonDocument>(txtValidation.Text);
-                    QueryDocument queryDoc = new QueryDocument(query);
+                    QueryDocument queryDoc = new QueryDocument(ValidationDoc);
                     option.SetValidator(queryDoc);
                     //Validation Level
                     if (radLevel_off.Checked) option.SetValidationLevel(DocumentValidationLevel.Off);
@@ -101,39 +109,28 @@ namespace FunctionForm.Operation
         }
 
         /// <summary>
-        ///     Cancel
+        ///     验证表达式
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        BsonDocument ValidationDoc;
 
-        /// <summary>
-        ///     CappedCollections官方说明
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lnkCappedCollections_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://docs.mongodb.org/manual/core/capped-collections/");
-        }
-
-        private void cmdPreview_Click(object sender, EventArgs e)
+        private void cmdCreateValidation_Click(object sender, EventArgs e)
         {
             try
             {
-                BsonDocument newdoc;
-                newdoc = BsonDocument.Parse(txtValidation.Text);
-                UiHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
-                trvNewDocument.TreeView.ExpandAll();
-                txtValidation.Text = newdoc.ToJson(MongoHelper.JsonWriterSettings);
+                var frmInsertDoc = new frmCreateDocument();
+                UIAssistant.OpenModalForm(frmInsertDoc, false, true);
+                ValidationDoc = frmInsertDoc.mBsonDocument;
+                if (ValidationDoc != null) UiHelper.FillDataToTreeView("Validation", trvValidationDoc, frmInsertDoc.mBsonDocument);
             }
             catch (Exception ex)
             {
                 Utility.ExceptionDeal(ex);
             }
+        }
+        private void cmdClearValidation_Click(object sender, EventArgs e)
+        {
+            ValidationDoc = null;
+            trvValidationDoc.Clear();
         }
 
         /// <summary>
@@ -151,6 +148,31 @@ namespace FunctionForm.Operation
                 UiHelper.FillDataToTreeView("Collation", trvCollation, mCollation.ToBsonDocument());
 
             }
+        }
+        private void btnClearCollation_Click(object sender, EventArgs e)
+        {
+            mCollation = null;
+            trvCollation.Clear();
+        }
+
+        /// <summary>
+        ///     Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        /// <summary>
+        ///     CappedCollections官方说明
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lnkCappedCollections_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://docs.mongodb.org/manual/core/capped-collections/");
         }
     }
 }

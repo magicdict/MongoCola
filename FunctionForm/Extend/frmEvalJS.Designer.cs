@@ -37,7 +37,7 @@ namespace FunctionForm.Extend
             this.lblParm = new System.Windows.Forms.Label();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.lblResult = new System.Windows.Forms.Label();
-            this.ctlEval = new MongoGUICtl.CtlTextMgr();
+            this.ctlEval = new MongoGUICtl.ctlJsCodeEditor();
             this.SuspendLayout();
             // 
             // cmdEval
@@ -123,7 +123,7 @@ namespace FunctionForm.Extend
         private Button cmdEval;
         private Label lblParm;
         private TextBox txtParm;
-        private CtlTextMgr ctlEval;
+        private ctlJsCodeEditor ctlEval;
         private TextBox txtResult;
         private Label lblResult;
     }

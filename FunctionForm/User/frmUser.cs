@@ -37,7 +37,7 @@ namespace FunctionForm.User
             if (!isAdmin)
             {
                 //Admin以外的不能有otherDBRoles
-                Width = Width/2;
+                Width = Width / 2;
             }
             userRoles.IsAdmin = isAdmin;
         }
@@ -60,7 +60,7 @@ namespace FunctionForm.User
             if (!isAdmin)
             {
                 //Admin以外的不能有otherDBRoles
-                Width = Width/2;
+                Width = Width / 2;
             }
         }
 
@@ -136,32 +136,25 @@ namespace FunctionForm.User
                 }
                 RefreshOtherDbRoles();
             }
+
+            GuiConfig.Translateform(this);
+
             if (!GuiConfig.IsUseDefaultLanguage)
             {
+                colRoles.Text = GuiConfig.GetText(TextType.CommonRoles);
+                colDataBase.Text = GuiConfig.GetText(TextType.CommonDataBase);
                 if (_modifyName == string.Empty)
                 {
+                    if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                     Text = GuiConfig.GetText(_isAdmin
                         ? TextType.MainMenuOperationServerAddUserToAdmin
                         : TextType.MainMenuOperationDatabaseAddUser);
-                    if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else
                 {
                     if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
                     Text = GuiConfig.GetText(TextType.CommonChangePassword);
                 }
-                lblUserName.Text =
-                    GuiConfig.GetText(TextType.CommonUsername);
-                lblPassword.Text =
-                    GuiConfig.GetText(TextType.CommonPassword);
-                lblConfirmPsw.Text =
-                    GuiConfig.GetText(TextType.CommonConfirmPassword);
-                //chkReadOnly.Text = GUIConfig.GetText(MongoCola.Module.ResourceLib.MongoHelper.TextType.Common_ReadOnly);
-                colRoles.Text = GuiConfig.GetText(TextType.CommonRoles);
-                colDataBase.Text =
-                    GuiConfig.GetText(TextType.CommonDataBase);
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
-                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
             }
         }
 
@@ -173,7 +166,7 @@ namespace FunctionForm.User
             lstOtherRoles.Items.Clear();
             foreach (var item in _otherDbRolesDict.Keys)
             {
-                lstOtherRoles.Items.Add(new ListViewItem(new[] {item, _otherDbRolesDict[item].Value.ToString()}));
+                lstOtherRoles.Items.Add(new ListViewItem(new[] { item, _otherDbRolesDict[item].Value.ToString() }));
             }
         }
 

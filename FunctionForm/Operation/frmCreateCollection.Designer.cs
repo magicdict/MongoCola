@@ -40,7 +40,7 @@ namespace FunctionForm.Operation
             this.numMaxDocument = new System.Windows.Forms.NumericUpDown();
             this.lblMaxSize = new System.Windows.Forms.Label();
             this.lblMaxDocument = new System.Windows.Forms.Label();
-            this.cmdPreview = new System.Windows.Forms.Button();
+            this.cmdCreateValidation = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radAction_error = new System.Windows.Forms.RadioButton();
             this.radAction_warn = new System.Windows.Forms.RadioButton();
@@ -48,17 +48,19 @@ namespace FunctionForm.Operation
             this.radLevel_moderate = new System.Windows.Forms.RadioButton();
             this.radLevel_off = new System.Windows.Forms.RadioButton();
             this.radLevel_strict = new System.Windows.Forms.RadioButton();
-            this.txtValidation = new System.Windows.Forms.TextBox();
             this.chkValidation = new System.Windows.Forms.CheckBox();
             this.lnkCappedCollections = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCollation = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnClearCollation = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.trvCollation = new MongoGUICtl.CtlTreeViewColumns();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
-            this.trvCollation = new MongoGUICtl.CtlTreeViewColumns();
-            this.trvNewDocument = new MongoGUICtl.CtlTreeViewColumns();
+            this.cmdClearValidation = new System.Windows.Forms.Button();
+            this.trvValidationDoc = new MongoGUICtl.CtlTreeViewColumns();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -120,20 +122,20 @@ namespace FunctionForm.Operation
             // 
             // numMaxSize
             // 
-            this.numMaxSize.Location = new System.Drawing.Point(199, 74);
+            this.numMaxSize.Location = new System.Drawing.Point(178, 74);
             this.numMaxSize.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.numMaxSize.Name = "numMaxSize";
-            this.numMaxSize.Size = new System.Drawing.Size(140, 23);
+            this.numMaxSize.Size = new System.Drawing.Size(105, 23);
             this.numMaxSize.TabIndex = 3;
             this.numMaxSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // numMaxDocument
             // 
-            this.numMaxDocument.Location = new System.Drawing.Point(465, 75);
+            this.numMaxDocument.Location = new System.Drawing.Point(386, 75);
             this.numMaxDocument.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -147,7 +149,7 @@ namespace FunctionForm.Operation
             // lblMaxSize
             // 
             this.lblMaxSize.AutoSize = true;
-            this.lblMaxSize.Location = new System.Drawing.Point(138, 75);
+            this.lblMaxSize.Location = new System.Drawing.Point(117, 76);
             this.lblMaxSize.Name = "lblMaxSize";
             this.lblMaxSize.Size = new System.Drawing.Size(55, 15);
             this.lblMaxSize.TabIndex = 2;
@@ -157,23 +159,23 @@ namespace FunctionForm.Operation
             // lblMaxDocument
             // 
             this.lblMaxDocument.AutoSize = true;
-            this.lblMaxDocument.Location = new System.Drawing.Point(357, 77);
+            this.lblMaxDocument.Location = new System.Drawing.Point(289, 77);
             this.lblMaxDocument.Name = "lblMaxDocument";
             this.lblMaxDocument.Size = new System.Drawing.Size(91, 15);
             this.lblMaxDocument.TabIndex = 4;
             this.lblMaxDocument.Tag = "CollectionStatusMaxDocuments";
             this.lblMaxDocument.Text = "MaxDocument";
             // 
-            // cmdPreview
+            // cmdCreateValidation
             // 
-            this.cmdPreview.Location = new System.Drawing.Point(426, 303);
-            this.cmdPreview.Name = "cmdPreview";
-            this.cmdPreview.Size = new System.Drawing.Size(177, 34);
-            this.cmdPreview.TabIndex = 31;
-            this.cmdPreview.Tag = "Common_Preview";
-            this.cmdPreview.Text = "Preview";
-            this.cmdPreview.UseVisualStyleBackColor = true;
-            this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
+            this.cmdCreateValidation.Location = new System.Drawing.Point(150, 86);
+            this.cmdCreateValidation.Name = "cmdCreateValidation";
+            this.cmdCreateValidation.Size = new System.Drawing.Size(105, 25);
+            this.cmdCreateValidation.TabIndex = 31;
+            this.cmdCreateValidation.Tag = "Common_Create";
+            this.cmdCreateValidation.Text = "Create";
+            this.cmdCreateValidation.UseVisualStyleBackColor = true;
+            this.cmdCreateValidation.Click += new System.EventHandler(this.cmdCreateValidation_Click);
             // 
             // groupBox2
             // 
@@ -184,6 +186,7 @@ namespace FunctionForm.Operation
             this.groupBox2.Size = new System.Drawing.Size(181, 55);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Tag = "Common_Action";
             this.groupBox2.Text = "Action";
             // 
             // radAction_error
@@ -256,14 +259,6 @@ namespace FunctionForm.Operation
             this.radLevel_strict.Text = "strict";
             this.radLevel_strict.UseVisualStyleBackColor = true;
             // 
-            // txtValidation
-            // 
-            this.txtValidation.Location = new System.Drawing.Point(24, 115);
-            this.txtValidation.Multiline = true;
-            this.txtValidation.Name = "txtValidation";
-            this.txtValidation.Size = new System.Drawing.Size(310, 182);
-            this.txtValidation.TabIndex = 24;
-            // 
             // chkValidation
             // 
             this.chkValidation.AutoSize = true;
@@ -278,7 +273,7 @@ namespace FunctionForm.Operation
             // lnkCappedCollections
             // 
             this.lnkCappedCollections.AutoSize = true;
-            this.lnkCappedCollections.Location = new System.Drawing.Point(464, 115);
+            this.lnkCappedCollections.Location = new System.Drawing.Point(540, 79);
             this.lnkCappedCollections.Name = "lnkCappedCollections";
             this.lnkCappedCollections.Size = new System.Drawing.Size(153, 15);
             this.lnkCappedCollections.TabIndex = 6;
@@ -297,12 +292,12 @@ namespace FunctionForm.Operation
             // 
             // btnCollation
             // 
-            this.btnCollation.Location = new System.Drawing.Point(29, 107);
+            this.btnCollation.Location = new System.Drawing.Point(97, 109);
             this.btnCollation.Name = "btnCollation";
-            this.btnCollation.Size = new System.Drawing.Size(156, 31);
+            this.btnCollation.Size = new System.Drawing.Size(96, 27);
             this.btnCollation.TabIndex = 36;
-            this.btnCollation.Tag = "Common_CreateCollation";
-            this.btnCollation.Text = "Create Collation";
+            this.btnCollation.Tag = "Common_Create";
+            this.btnCollation.Text = "Create";
             this.btnCollation.UseVisualStyleBackColor = true;
             this.btnCollation.Click += new System.EventHandler(this.btnCollation_Click);
             // 
@@ -319,6 +314,8 @@ namespace FunctionForm.Operation
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnClearCollation);
+            this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.trvCollation);
             this.tabPage3.Controls.Add(this.lnkCappedCollections);
             this.tabPage3.Controls.Add(this.label1);
@@ -339,15 +336,46 @@ namespace FunctionForm.Operation
             this.tabPage3.Text = "Basic";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnClearCollation
+            // 
+            this.btnClearCollation.Location = new System.Drawing.Point(210, 111);
+            this.btnClearCollation.Name = "btnClearCollation";
+            this.btnClearCollation.Size = new System.Drawing.Size(105, 25);
+            this.btnClearCollation.TabIndex = 39;
+            this.btnClearCollation.Tag = "Common_Clear";
+            this.btnClearCollation.Text = "Clear";
+            this.btnClearCollation.UseVisualStyleBackColor = true;
+            this.btnClearCollation.Click += new System.EventHandler(this.btnClearCollation_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 115);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 15);
+            this.label3.TabIndex = 38;
+            this.label3.Tag = "Common_Collation";
+            this.label3.Text = "Collation";
+            // 
+            // trvCollation
+            // 
+            this.trvCollation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvCollation.Location = new System.Drawing.Point(29, 146);
+            this.trvCollation.Margin = new System.Windows.Forms.Padding(5);
+            this.trvCollation.Name = "trvCollation";
+            this.trvCollation.Padding = new System.Windows.Forms.Padding(1);
+            this.trvCollation.Size = new System.Drawing.Size(664, 178);
+            this.trvCollation.TabIndex = 37;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.txtValidation);
             this.tabPage2.Controls.Add(this.chkValidation);
             this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Controls.Add(this.cmdPreview);
+            this.tabPage2.Controls.Add(this.cmdClearValidation);
+            this.tabPage2.Controls.Add(this.cmdCreateValidation);
             this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Controls.Add(this.trvNewDocument);
+            this.tabPage2.Controls.Add(this.trvValidationDoc);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -360,32 +388,33 @@ namespace FunctionForm.Operation
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 85);
+            this.label2.Location = new System.Drawing.Point(21, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(114, 15);
             this.label2.TabIndex = 32;
             this.label2.Tag = "Common_ValidateExpress";
             this.label2.Text = "Validation Express";
             // 
-            // trvCollation
+            // cmdClearValidation
             // 
-            this.trvCollation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvCollation.Location = new System.Drawing.Point(29, 146);
-            this.trvCollation.Margin = new System.Windows.Forms.Padding(5);
-            this.trvCollation.Name = "trvCollation";
-            this.trvCollation.Padding = new System.Windows.Forms.Padding(1);
-            this.trvCollation.Size = new System.Drawing.Size(664, 178);
-            this.trvCollation.TabIndex = 37;
+            this.cmdClearValidation.Location = new System.Drawing.Point(264, 86);
+            this.cmdClearValidation.Name = "cmdClearValidation";
+            this.cmdClearValidation.Size = new System.Drawing.Size(105, 25);
+            this.cmdClearValidation.TabIndex = 31;
+            this.cmdClearValidation.Tag = "Common_Clear";
+            this.cmdClearValidation.Text = "Clear";
+            this.cmdClearValidation.UseVisualStyleBackColor = true;
+            this.cmdClearValidation.Click += new System.EventHandler(this.cmdClearValidation_Click);
             // 
-            // trvNewDocument
+            // trvValidationDoc
             // 
-            this.trvNewDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvNewDocument.Location = new System.Drawing.Point(342, 84);
-            this.trvNewDocument.Margin = new System.Windows.Forms.Padding(5);
-            this.trvNewDocument.Name = "trvNewDocument";
-            this.trvNewDocument.Padding = new System.Windows.Forms.Padding(1);
-            this.trvNewDocument.Size = new System.Drawing.Size(345, 211);
-            this.trvNewDocument.TabIndex = 30;
+            this.trvValidationDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvValidationDoc.Location = new System.Drawing.Point(24, 126);
+            this.trvValidationDoc.Margin = new System.Windows.Forms.Padding(5);
+            this.trvValidationDoc.Name = "trvValidationDoc";
+            this.trvValidationDoc.Padding = new System.Windows.Forms.Padding(1);
+            this.trvValidationDoc.Size = new System.Drawing.Size(651, 211);
+            this.trvValidationDoc.TabIndex = 30;
             // 
             // frmCreateCollection
             // 
@@ -430,7 +459,6 @@ namespace FunctionForm.Operation
         private Label lblMaxDocument;
         private LinkLabel lnkCappedCollections;
         private CheckBox chkValidation;
-        private TextBox txtValidation;
         private GroupBox groupBox1;
         private RadioButton radLevel_moderate;
         private RadioButton radLevel_off;
@@ -438,8 +466,8 @@ namespace FunctionForm.Operation
         private GroupBox groupBox2;
         private RadioButton radAction_error;
         private RadioButton radAction_warn;
-        private MongoGUICtl.CtlTreeViewColumns trvNewDocument;
-        private Button cmdPreview;
+        private MongoGUICtl.CtlTreeViewColumns trvValidationDoc;
+        private Button cmdCreateValidation;
         private Label label1;
         private MongoGUICtl.CtlTreeViewColumns trvCollation;
         private Button btnCollation;
@@ -447,5 +475,8 @@ namespace FunctionForm.Operation
         private TabPage tabPage3;
         private TabPage tabPage2;
         private Label label2;
+        private Label label3;
+        private Button cmdClearValidation;
+        private Button btnClearCollation;
     }
 }

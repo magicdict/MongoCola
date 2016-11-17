@@ -385,7 +385,8 @@
   <Common_ValidateExpress>验证表达式</Common_ValidateExpress>
   <Common_Search>检索</Common_Search>
   <Common_Level>等级</Common_Level>
-
+  <Common_Action>动作</Common_Action>
+  
   <Common_SelectAll>全选</Common_SelectAll>
   <Common_UnSelectAll>全不选</Common_UnSelectAll>
 
@@ -394,6 +395,7 @@
   <Common_Test>测试</Common_Test>
   <Common_Advance_Option>高级选项</Common_Advance_Option>
 
+  <Common_Create>新建</Common_Create>
   <Common_Preview>预览</Common_Preview>
   <Common_Run>运行</Common_Run>
   <Common_Result>结果</Common_Result>
@@ -409,7 +411,7 @@
   <Common_Pipeline>视图条件</Common_Pipeline>
   <Common_Collation>排序规则</Common_Collation>
   <Common_CreateCollation>创建排序规则</Common_CreateCollation>
-
+  
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
   <Create_New_DataBase_Input>请输入数据库名称:</Create_New_DataBase_Input>

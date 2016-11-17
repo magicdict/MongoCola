@@ -46,13 +46,13 @@ namespace FunctionForm.Aggregation
             this.lblResult = new System.Windows.Forms.Label();
             this.tabGroup = new System.Windows.Forms.TabControl();
             this.tabJavascript = new System.Windows.Forms.TabPage();
-            this.ctlReduce = new MongoGUICtl.CtlTextMgr();
+            this.ctlReduce = new MongoGUICtl.ctlJsCodeEditor();
             this.tabGroupField = new System.Windows.Forms.TabPage();
             this.tabInitialize = new System.Windows.Forms.TabPage();
             this.tabResult = new System.Windows.Forms.TabPage();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmdQuery = new System.Windows.Forms.Button();
-            this.ctlFinalize = new MongoGUICtl.CtlTextMgr();
+            this.ctlFinalize = new MongoGUICtl.ctlJsCodeEditor();
             this.tabGroup.SuspendLayout();
             this.tabJavascript.SuspendLayout();
             this.tabGroupField.SuspendLayout();
@@ -297,7 +297,7 @@ namespace FunctionForm.Aggregation
         private TabPage tabResult;
         private Button cmdQuery;
         private Chart chartResult;
-        private CtlTextMgr ctlReduce;
-        private CtlTextMgr ctlFinalize;
+        private ctlJsCodeEditor ctlReduce;
+        private ctlJsCodeEditor ctlFinalize;
     }
 }
