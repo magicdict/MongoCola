@@ -31,29 +31,19 @@ namespace FunctionForm.Aggregation
         /// </summary>
         private void InitializeComponent()
         {
-            this.panColumn = new System.Windows.Forms.Panel();
             this.cmdRun = new System.Windows.Forms.Button();
             this.lblSelectField = new System.Windows.Forms.Label();
-            this.cmdQuery = new System.Windows.Forms.Button();
+            this.cmbFields = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // panColumn
-            // 
-            this.panColumn.AutoScroll = true;
-            this.panColumn.BackColor = System.Drawing.Color.Transparent;
-            this.panColumn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panColumn.Location = new System.Drawing.Point(13, 50);
-            this.panColumn.Name = "panColumn";
-            this.panColumn.Size = new System.Drawing.Size(343, 346);
-            this.panColumn.TabIndex = 5;
             // 
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(196, 403);
+            this.cmdRun.Location = new System.Drawing.Point(99, 82);
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(117, 37);
             this.cmdRun.TabIndex = 0;
+            this.cmdRun.Tag = "Common_Run";
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdOK_Click);
@@ -66,29 +56,26 @@ namespace FunctionForm.Aggregation
             this.lblSelectField.Name = "lblSelectField";
             this.lblSelectField.Size = new System.Drawing.Size(109, 15);
             this.lblSelectField.TabIndex = 0;
+            this.lblSelectField.Tag = "DistinctSelectField";
             this.lblSelectField.Text = "Pick Distinct Fields";
             // 
-            // cmdQuery
+            // comboBox1
             // 
-            this.cmdQuery.BackColor = System.Drawing.Color.Transparent;
-            this.cmdQuery.Location = new System.Drawing.Point(72, 403);
-            this.cmdQuery.Name = "cmdQuery";
-            this.cmdQuery.Size = new System.Drawing.Size(117, 37);
-            this.cmdQuery.TabIndex = 6;
-            this.cmdQuery.Text = "Load Query";
-            this.cmdQuery.UseVisualStyleBackColor = false;
-            this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
+            this.cmbFields.FormattingEnabled = true;
+            this.cmbFields.Location = new System.Drawing.Point(16, 48);
+            this.cmbFields.Name = "comboBox1";
+            this.cmbFields.Size = new System.Drawing.Size(297, 23);
+            this.cmbFields.TabIndex = 1;
             // 
-            // frmDistinct
+            // FrmDistinct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(371, 456);
-            this.Controls.Add(this.cmdQuery);
+            this.ClientSize = new System.Drawing.Size(338, 131);
+            this.Controls.Add(this.cmbFields);
             this.Controls.Add(this.lblSelectField);
             this.Controls.Add(this.cmdRun);
-            this.Controls.Add(this.panColumn);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -105,8 +92,7 @@ namespace FunctionForm.Aggregation
         #endregion
 
         private Button cmdRun;
-        private Panel panColumn;
         private Label lblSelectField;
-        private Button cmdQuery;
+        private ComboBox cmbFields;
     }
 }

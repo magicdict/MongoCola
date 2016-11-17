@@ -25,7 +25,7 @@ namespace MongoGUICtl.Aggregation
 
         private void GroupItem_Load(object sender, EventArgs e)
         {
-            foreach (var item in AggregationHelper.GetGroupfunction())
+            foreach (var item in AggregationFunc.GetGroupfunction())
             {
                 cmbGroupFunction.Items.Add(item);
             }

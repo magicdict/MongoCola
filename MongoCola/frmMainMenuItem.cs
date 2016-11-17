@@ -970,8 +970,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void distinctToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var query = new DataFilter();
-            UIAssistant.OpenModalForm(new FrmDistinct(query, false), true, true);
+            UIAssistant.OpenModalForm(new FrmDistinct(), true, true);
         }
 
         /// <summary>
