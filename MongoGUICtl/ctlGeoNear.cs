@@ -22,7 +22,7 @@ namespace MongoGUICtl
 
         private void lnkGeoNear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://docs.mongodb.org/manual/reference/commands/#geoNear");
+            Process.Start("https://docs.mongodb.com/master/reference/command/nav-geospatial/");
         }
 
         private void cmdGeoNear_Click(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace MongoGUICtl
                     geoSearchOption.MaxDistance = double.Parse(NumMaxDistance.Text);
                     geoSearchOption.Limit = (int)NumResultCount.Value;
                     geoSearchOption.Near = point;
-                    //geoSearch
+                    // GeoHaystackSearch
                     mGeoNearAs = RuntimeMongoDbContext.GetCurrentCollection().GeoHaystackSearchAs<BsonDocument>(geoSearchOption).Response;
                 }
                 else
@@ -48,7 +48,7 @@ namespace MongoGUICtl
                     geoOption.Spherical = chkSpherical.Checked;
                     geoOption.Limit = (int)NumResultCount.Value;
                     geoOption.Near = point;
-                    //geoNear
+                    //GeoNearAs
                     mGeoNearAs = RuntimeMongoDbContext.GetCurrentCollection().GeoNearAs<BsonDocument>(geoOption).Response;
                 }
             }
@@ -63,28 +63,29 @@ namespace MongoGUICtl
         }
 
         /// <summary>
-        ///     设置公里
+        ///     设置弧度转公里
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnKM_Click(object sender, EventArgs e)
+        private void btnRadianToKM_Click(object sender, EventArgs e)
         {
-            NumDistanceMultiplier.Text = (1 / 6378.137).ToString();
+            NumDistanceMultiplier.Text = (6378.137).ToString();
         }
 
         /// <summary>
-        ///     设置英里
+        ///     设置弧度转英里
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnMile_Click(object sender, EventArgs e)
+        private void btnRadianToMile_Click(object sender, EventArgs e)
         {
-            NumDistanceMultiplier.Text = (1 / 3963.192).ToString();
+            NumDistanceMultiplier.Text = (3963.192).ToString();
         }
+
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            MyMessageBox.ShowMessage("Convert", "About Convert",
+            MyMessageBox.ShowMessage("DistanceMultiplier", "About DistanceMultiplier",
                 @"distance to radians: divide the distance by the radius of the sphere (e.g. the Earth) in the same units as the distance measurement.
 radians to distance: multiply the rad ian measure by the radius of the sphere (e.g. the Earth) in the units system that you want to convert the distance to.
 The radius of the Earth is approximately 3963.192 miles or 6378.137 kilometers.", true);
@@ -107,5 +108,7 @@ The radius of the Earth is approximately 3963.192 miles or 6378.137 kilometers."
                 lblPoint.Text = "[" + point.X.ToString() + "," + point.Y.ToString() + "]";
             }
         }
+
+
     }
 }

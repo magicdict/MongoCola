@@ -34,8 +34,8 @@ namespace MongoGUICtl
         private void InitializeComponent()
         {
             this.btnHelp = new System.Windows.Forms.Button();
-            this.btnMile = new System.Windows.Forms.Button();
-            this.btnKM = new System.Windows.Forms.Button();
+            this.btnRadianToMile = new System.Windows.Forms.Button();
+            this.btnRadianToKM = new System.Windows.Forms.Button();
             this.NumMaxDistance = new System.Windows.Forms.TextBox();
             this.NumDistanceMultiplier = new System.Windows.Forms.TextBox();
             this.lblMaxDistance = new System.Windows.Forms.Label();
@@ -47,15 +47,15 @@ namespace MongoGUICtl
             this.lblResultCount = new System.Windows.Forms.Label();
             this.lnkGeoNear = new System.Windows.Forms.LinkLabel();
             this.chkHaystack = new System.Windows.Forms.CheckBox();
-            this.trvGeoResult = new MongoGUICtl.CtlTreeViewColumns();
             this.cmdGeoJson = new System.Windows.Forms.Button();
             this.lblPoint = new System.Windows.Forms.Label();
+            this.trvGeoResult = new MongoGUICtl.CtlTreeViewColumns();
             ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).BeginInit();
             this.SuspendLayout();
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(352, 67);
+            this.btnHelp.Location = new System.Drawing.Point(494, 72);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(35, 21);
             this.btnHelp.TabIndex = 33;
@@ -63,29 +63,29 @@ namespace MongoGUICtl
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
-            // btnMile
+            // btnRadianToMile
             // 
-            this.btnMile.Location = new System.Drawing.Point(288, 67);
-            this.btnMile.Name = "btnMile";
-            this.btnMile.Size = new System.Drawing.Size(58, 21);
-            this.btnMile.TabIndex = 32;
-            this.btnMile.Text = "Mile";
-            this.btnMile.UseVisualStyleBackColor = true;
-            this.btnMile.Click += new System.EventHandler(this.btnMile_Click);
+            this.btnRadianToMile.Location = new System.Drawing.Point(365, 72);
+            this.btnRadianToMile.Name = "btnRadianToMile";
+            this.btnRadianToMile.Size = new System.Drawing.Size(123, 21);
+            this.btnRadianToMile.TabIndex = 32;
+            this.btnRadianToMile.Text = "Radian -> Mile";
+            this.btnRadianToMile.UseVisualStyleBackColor = true;
+            this.btnRadianToMile.Click += new System.EventHandler(this.btnRadianToMile_Click);
             // 
-            // btnKM
+            // btnRadianToKM
             // 
-            this.btnKM.Location = new System.Drawing.Point(230, 67);
-            this.btnKM.Name = "btnKM";
-            this.btnKM.Size = new System.Drawing.Size(52, 21);
-            this.btnKM.TabIndex = 31;
-            this.btnKM.Text = "KM";
-            this.btnKM.UseVisualStyleBackColor = true;
-            this.btnKM.Click += new System.EventHandler(this.btnKM_Click);
+            this.btnRadianToKM.Location = new System.Drawing.Point(263, 72);
+            this.btnRadianToKM.Name = "btnRadianToKM";
+            this.btnRadianToKM.Size = new System.Drawing.Size(96, 21);
+            this.btnRadianToKM.TabIndex = 31;
+            this.btnRadianToKM.Text = "Radian -> KM";
+            this.btnRadianToKM.UseVisualStyleBackColor = true;
+            this.btnRadianToKM.Click += new System.EventHandler(this.btnRadianToKM_Click);
             // 
             // NumMaxDistance
             // 
-            this.NumMaxDistance.Location = new System.Drawing.Point(95, 71);
+            this.NumMaxDistance.Location = new System.Drawing.Point(315, 46);
             this.NumMaxDistance.Name = "NumMaxDistance";
             this.NumMaxDistance.Size = new System.Drawing.Size(116, 21);
             this.NumMaxDistance.TabIndex = 29;
@@ -94,7 +94,7 @@ namespace MongoGUICtl
             // 
             // NumDistanceMultiplier
             // 
-            this.NumDistanceMultiplier.Location = new System.Drawing.Point(469, 44);
+            this.NumDistanceMultiplier.Location = new System.Drawing.Point(141, 72);
             this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
             this.NumDistanceMultiplier.Size = new System.Drawing.Size(116, 21);
             this.NumDistanceMultiplier.TabIndex = 30;
@@ -104,7 +104,7 @@ namespace MongoGUICtl
             // lblMaxDistance
             // 
             this.lblMaxDistance.AutoSize = true;
-            this.lblMaxDistance.Location = new System.Drawing.Point(12, 71);
+            this.lblMaxDistance.Location = new System.Drawing.Point(232, 49);
             this.lblMaxDistance.Name = "lblMaxDistance";
             this.lblMaxDistance.Size = new System.Drawing.Size(77, 12);
             this.lblMaxDistance.TabIndex = 26;
@@ -113,7 +113,7 @@ namespace MongoGUICtl
             // lblDistanceMultiplier
             // 
             this.lblDistanceMultiplier.AutoSize = true;
-            this.lblDistanceMultiplier.Location = new System.Drawing.Point(345, 46);
+            this.lblDistanceMultiplier.Location = new System.Drawing.Point(16, 75);
             this.lblDistanceMultiplier.Name = "lblDistanceMultiplier";
             this.lblDistanceMultiplier.Size = new System.Drawing.Size(119, 12);
             this.lblDistanceMultiplier.TabIndex = 25;
@@ -183,12 +183,12 @@ namespace MongoGUICtl
             // lnkGeoNear
             // 
             this.lnkGeoNear.AutoSize = true;
-            this.lnkGeoNear.Location = new System.Drawing.Point(13, 347);
+            this.lnkGeoNear.Location = new System.Drawing.Point(13, 366);
             this.lnkGeoNear.Name = "lnkGeoNear";
-            this.lnkGeoNear.Size = new System.Drawing.Size(353, 12);
+            this.lnkGeoNear.Size = new System.Drawing.Size(395, 12);
             this.lnkGeoNear.TabIndex = 18;
             this.lnkGeoNear.TabStop = true;
-            this.lnkGeoNear.Text = "http://docs.mongodb.org/manual/reference/commands/#geoNear";
+            this.lnkGeoNear.Text = "https://docs.mongodb.com/master/reference/command/nav-geospatial/";
             this.lnkGeoNear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkGeoNear_LinkClicked);
             // 
             // chkHaystack
@@ -200,15 +200,6 @@ namespace MongoGUICtl
             this.chkHaystack.TabIndex = 24;
             this.chkHaystack.Text = "GeoSpatialHaystack Index";
             this.chkHaystack.UseVisualStyleBackColor = true;
-            // 
-            // trvGeoResult
-            // 
-            this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvGeoResult.Location = new System.Drawing.Point(15, 94);
-            this.trvGeoResult.Name = "trvGeoResult";
-            this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvGeoResult.Size = new System.Drawing.Size(570, 235);
-            this.trvGeoResult.TabIndex = 21;
             // 
             // cmdGeoJson
             // 
@@ -229,6 +220,15 @@ namespace MongoGUICtl
             this.lblPoint.TabIndex = 35;
             this.lblPoint.Text = "Point";
             // 
+            // trvGeoResult
+            // 
+            this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvGeoResult.Location = new System.Drawing.Point(15, 99);
+            this.trvGeoResult.Name = "trvGeoResult";
+            this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
+            this.trvGeoResult.Size = new System.Drawing.Size(570, 264);
+            this.trvGeoResult.TabIndex = 21;
+            // 
             // CtlGeoNear
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -236,8 +236,8 @@ namespace MongoGUICtl
             this.Controls.Add(this.lblPoint);
             this.Controls.Add(this.cmdGeoJson);
             this.Controls.Add(this.btnHelp);
-            this.Controls.Add(this.btnMile);
-            this.Controls.Add(this.btnKM);
+            this.Controls.Add(this.btnRadianToMile);
+            this.Controls.Add(this.btnRadianToKM);
             this.Controls.Add(this.NumMaxDistance);
             this.Controls.Add(this.NumDistanceMultiplier);
             this.Controls.Add(this.lblMaxDistance);
@@ -261,8 +261,8 @@ namespace MongoGUICtl
         #endregion
 
         private Button btnHelp;
-        private Button btnMile;
-        private Button btnKM;
+        private Button btnRadianToMile;
+        private Button btnRadianToKM;
         private TextBox NumMaxDistance;
         private TextBox NumDistanceMultiplier;
         private Label lblMaxDistance;
