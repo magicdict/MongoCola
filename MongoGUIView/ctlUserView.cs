@@ -78,12 +78,12 @@ namespace MongoGUIView
         /// <summary>
         ///     打开新用户
         /// </summary>
-        public Action OpenAddNewUserForm;
+        public static Action OpenAddNewUserForm;
 
         /// <summary>
         ///     更改密码
         /// </summary>
-        public Action OpenChangePasswordForm;
+        public static Action OpenChangePasswordForm;
 
         /// <summary>
         /// </summary>

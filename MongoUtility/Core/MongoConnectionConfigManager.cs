@@ -75,6 +75,8 @@ namespace MongoUtility.Core
             MongoConnectionConfig.MongoConfig.SerializableConnectionList.Clear();
             foreach (var item in MongoConnectionConfig.MongoConfig.ConnectionList.Values)
             {
+                //每次保存时，确保密码没有被保存在文档中
+                if (item.InputPasswordOnConnect) item.Password = string.Empty;
                 MongoConnectionConfig.MongoConfig.SerializableConnectionList.Add(item);
             }
             SaveObjAsXml(AppPath + MongoConfigFilename, this);

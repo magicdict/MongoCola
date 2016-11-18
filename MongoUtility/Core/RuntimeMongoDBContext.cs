@@ -39,6 +39,11 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     获得密码的委托
+        /// </summary>
+        public static Func<string, string> GetPassword = null;
+
+        /// <summary>
         ///     根据config获得MongoClientSettings,同时更新一些运行时变量
         /// </summary>
         /// <param name="config"></param>
@@ -65,6 +70,12 @@ namespace MongoUtility.Core
                 }
                 //运行时LoginAsAdmin的设定
                 config.LoginAsAdmin = config.DataBaseName == string.Empty;
+
+                if (config.InputPasswordOnConnect && config.Password == string.Empty && GetPassword != null)
+                {
+                    config.Password = GetPassword(config.UserName);
+                }
+
                 if (!(string.IsNullOrEmpty(config.UserName) || string.IsNullOrEmpty(config.Password)))
                 {
                     //认证的设定:注意，这里的密码是明文
@@ -92,6 +103,7 @@ namespace MongoUtility.Core
                         }
                     }
                 }
+
                 //X509
                 if (!string.IsNullOrEmpty(config.UserName))
                 {

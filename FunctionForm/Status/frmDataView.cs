@@ -12,6 +12,7 @@ namespace FunctionForm.Status
         {
             InitializeComponent();
         }
+
         /// <summary>
         ///     待展示数据
         /// </summary>
@@ -32,6 +33,7 @@ namespace FunctionForm.Status
         ///     标题
         /// </summary>
         public string Title = string.Empty;
+
         /// <summary>
         ///     Load
         /// </summary>
@@ -39,6 +41,10 @@ namespace FunctionForm.Status
         /// <param name="e"></param>
         private void frmDataView_Load(object sender, System.EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Title))
+            {
+                Text = Title;
+            }
             UiHelper.FillDataToTreeView(Title, trvStatus, ShowData, 0);
             trvStatus.DatatreeView.Nodes[0].ExpandAll();
         }

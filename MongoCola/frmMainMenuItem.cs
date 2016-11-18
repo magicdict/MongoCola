@@ -161,7 +161,7 @@ namespace MongoCola
                 }
                 ExpandAllToolStripMenuItem_Click(sender, e);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 trvsrvlst.Nodes.Add("丢失与数据库的连接！");
             }
@@ -256,6 +256,10 @@ namespace MongoCola
                     MyMessageBox.ShowInput(
                         GuiConfig.GetText(TextType.CreateNewDataBaseInput),
                         GuiConfig.GetText(TextType.CreateNewDataBase));
+                if (string.IsNullOrEmpty(strDbName))
+                {
+                    return;
+                }
                 strInitColName =
                     MyMessageBox.ShowInput(
                         GuiConfig.GetText("Please Input Init CollectionName：", "CreateNewDataBaseInitCollection"),

@@ -2,6 +2,7 @@
 using FunctionForm.Connection;
 using FunctionForm.Operation;
 using FunctionForm.Status;
+using FunctionForm.User;
 using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
@@ -84,10 +85,26 @@ namespace MongoCola
                 SystemManager.SystemConfig.RefreshStatusTimer = time;
                 SystemManager.SystemConfig.SaveSystemConfig();
             };
+
             FrmServerMonitor.MonitorItemsChanged = (items) =>
             {
                 SystemManager.SystemConfig.MonitorItems = items;
                 SystemManager.SystemConfig.SaveSystemConfig();
+            };
+
+            RuntimeMongoDbContext.GetPassword = (username) =>
+            {
+                var Password = MyMessageBox.ShowPasswordInput("Please Input Password of " + username, "Password");
+                return Password;
+            };
+
+            CtlUserView.OpenAddNewUserForm = () =>
+            {
+                UIAssistant.OpenModalForm(new FrmUser(false), true, true);
+            };
+            CtlUserView.OpenChangePasswordForm = () =>
+            {
+                MessageBox.Show("Comming Soon");
             };
         }
 
@@ -201,7 +218,7 @@ namespace MongoCola
                     MongoConnectionConfig.MongoConfig.ConnectionList[mongoSvrKey];
                 if (string.IsNullOrEmpty(RuntimeMongoDbContext.CurrentMongoConnectionconfig.UserName))
                 {
-                    lblUserInfo.Text = GuiConfig.GetText("UserInfo","UserInfo") + ":Admin";
+                    lblUserInfo.Text = GuiConfig.GetText("UserInfo", "UserInfo") + ":Admin";
                 }
                 else
                 {

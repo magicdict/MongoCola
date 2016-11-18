@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -72,6 +73,12 @@
     </Compile>
     <Compile Include="UI\frmEasyMessage.Designer.cs">
       <DependentUpon>frmEasyMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmPasswordInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmPasswordInputBox.Designer.cs">
+      <DependentUpon>frmPasswordInputBox.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\frmInputBox.cs">
       <SubType>Form</SubType>
@@ -110,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmEasyMessage.resx">
       <DependentUpon>frmEasyMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmPasswordInputBox.resx">
+      <DependentUpon>frmPasswordInputBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmInputBox.resx">
       <DependentUpon>frmInputBox.cs</DependentUpon>

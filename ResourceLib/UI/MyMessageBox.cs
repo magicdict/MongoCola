@@ -26,8 +26,14 @@ namespace ResourceLib.UI
         /// </summary>
         private static readonly FrmInputBox FrmInputBox = new FrmInputBox();
 
+
         /// <summary>
-        ///     确认信息表示
+        ///     密码输入
+        /// </summary>
+        private static readonly frmPasswordInputBox FrmPasswordInputBox = new frmPasswordInputBox();
+
+        /// <summary>
+        ///     输入表示
         /// </summary>
         public static string ShowInput(string message, string title, string defaultValue = "")
         {
@@ -38,6 +44,20 @@ namespace ResourceLib.UI
                 FrmInputBox.ShowDialog();
             }
             return FrmInputBox.Result;
+        }
+
+        /// <summary>
+        ///     密码输入表示
+        /// </summary>
+        public static string ShowPasswordInput(string message, string title, string defaultValue = "")
+        {
+            FormatMsgbox(FrmPasswordInputBox, title);
+            FrmPasswordInputBox.SetMessage(message, defaultValue);
+            if (FrmPasswordInputBox.Visible == false)
+            {
+                FrmPasswordInputBox.ShowDialog();
+            }
+            return FrmPasswordInputBox.Result;
         }
 
         /// <summary>

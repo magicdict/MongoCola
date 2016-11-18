@@ -5,17 +5,17 @@
 * 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
-* 版本号：Ver 2.0.7
-* 文档最后更新时间：2016-11-16
+* 版本号：Ver 2.0.8
+* 文档最后更新时间：2016-11-18
 
 ## 开发和测试环境
 **操作系统：**
 * Windows 7
-* Mac OSX 10.12
+~~* Mac OSX 10.12~~
 
 **运行时：**
 * NET Framework 4.6.2
-* NET Core 1.1.10
+~~* NET Core 1.1.10~~
 * MongoDB 3.4.0-rc3
 
 **驱动程序：**
@@ -66,11 +66,12 @@ mongod --port 28030 --storageEngine wiredTiger --dbpath C:\mongodb\CodeSnippet\D
 ![](/FileSystem/Thumbnail?filename=00000001_20161117131413_MongoDos.png)
 
 我们尝试建立一个新的数据库连接，来管理在本地端口28030运行的数据库。我们只需要填写最基本的信息即可。
-**注意：如果你使用了用户，密码将使用明文保存在配置文件中。**
+**注意：如果你使用了用户，密码将使用明文保存在配置文件中。**当然，你也可以选择在连接时输入密码的选项，这样密码不会被保存在任何地方，在系统进行连接的时候才要求您输入密码。
+
 **注意：请不要在连接名称中放入 冒号： 字符**
 （注意：SSH，SSL，Auth等没有进行测试，暂时请不要使用。ReadWrite不是数据库连接属性，可以不用配置。）
 
-![](/FileSystem/Thumbnail?filename=00000001_20161108144631_NewConnection.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161118145656_ConnectionMgr.png)
 
 新建之后勾选数据连接之前的复选框，按下确定按钮即可。
 
@@ -100,7 +101,8 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 
 - 文本视图
 在文本视图中，可以看到数据的JSON格式文本。
-你可以通过JsonOutputMode来设定Json对象的表示形式（表示日期的时候，形式会不一样。）
+你可以通过JsonOutputMode来设定Json对象的表示形式，具体差异请参照：
+[MongoDB Extended JSON](https://docs.mongodb.com/master/reference/mongodb-extended-json/ "MongoDB Extended JSON")
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102100423_TextView.png)
 
@@ -134,9 +136,14 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 你也可以使用聚合功能来创建视图：参见[聚合管道命令]
 你也可以使用排序规则生成器来创建排序规则：参见[排序规则]
 
+在主界面，你可以选中一个视图，然后使用ViewInfo菜单来查看视图属性。
+
+![](/FileSystem/Thumbnail?filename=00000001_20161118145407_ViewInfo.png)
+
 ###复制数据库
 
-通过复制数据库命令，可以将数据库中的数据集复制到其他数据库中
+通过复制数据库命令，可以将数据库中的数据集复制到其他数据库中。
+注意：**复制索引**还没有开发完成
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102210138_CopyDataBase.png)
 
@@ -227,9 +234,8 @@ Group功能按照MongoDB官方最新文档的指导,建议使用MapReduce或者A
 
 - Distinct
 
-![](/FileSystem/Thumbnail?filename=00000001_20161102144741_Distinct_FieldPick.PNG)
-
-![](/FileSystem/Thumbnail?filename=00000001_20161102145040_Distinct_Result.PNG)
+可以针对某个字段进行Distinct操作
+![](/FileSystem/Thumbnail?filename=00000001_20161117160714_distinct.png)
 
 ###MapReduce
 
@@ -491,7 +497,11 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 
 ###Ver 2.0.7 2016/11/18
 
-####修改
+### 新增
+1. ConvertToCapped：将普通的数据集转换为Capped数据集
+2. 新增了连接时输入密码的连接选项
+
+### 修改
 1. ImportAccess插件重制
 2. 修正了NET462编译条件缺失的问题
 3. 修改连接配置时候，按钮显示文字不正确的问题
@@ -500,9 +510,13 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 6. 分片功能的修复
 7. BsonTimestamp的表示
 8. id缺失数据集的崩溃问题
+9. 优化了连接Timeout的处理，使用Health标志说明连接状态
+10. MapReduce的界面优化
 
 ### 删除
 1. 主从同步功能：随着Master-Slaver机制的取消，主从同步功能也随之取消。其他所有主从副本相关的代码也会渐渐剔除。
+2. CreateCollection: MongoDB3.4 AutoIndex 选项将被取消，UI随着也删除AutoIndex的复选框
+3. 服务器状态自动刷新的入口图标废止（本功能已经废止）
 
 ###Ver 2.0.5 2016/11/11
 
