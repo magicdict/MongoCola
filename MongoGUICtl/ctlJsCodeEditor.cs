@@ -102,7 +102,7 @@ namespace MongoGUICtl
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CtlTextMgr_Load(object sender, EventArgs e)
+        private void ctlJsCodeEditor_Load(object sender, EventArgs e)
         {
             txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy(ConstMgr.CSharp);
         }

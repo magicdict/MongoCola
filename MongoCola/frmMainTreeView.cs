@@ -443,6 +443,9 @@ namespace MongoCola
                     GuiConfig.GetText(TextType.SelectedCollection) + ":" +
                     RuntimeMongoDbContext.SelectTagData;
             }
+
+            var mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
+
             //解禁 删除数据集
             if (!Operater.IsSystemCollection())
             {
@@ -471,6 +474,12 @@ namespace MongoCola
             CollectionStatusToolStripMenuItem.Enabled = true;
             ValidateToolStripMenuItem.Enabled = true;
             ExportToFileToolStripMenuItem.Enabled = true;
+
+            if (!mongoCol.IsCapped())
+            {
+                ConvertToCappedtoolStripMenuItem.Enabled = true;
+            }
+
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStripMain = new ContextMenuStrip();
@@ -542,6 +551,7 @@ namespace MongoCola
                 {
                     contextMenuStripMain.Items.Add(DelMongoCollectionToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(RenameCollectionToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(ConvertToCappedtoolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(DumpCollectionToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(RestoreMongoToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ImportCollectionToolStripMenuItem.Clone());

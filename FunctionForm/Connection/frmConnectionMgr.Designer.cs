@@ -85,6 +85,7 @@ namespace FunctionForm.Connection
             this.radMONGODB_X509 = new System.Windows.Forms.RadioButton();
             this.radMONGODB_CR = new System.Windows.Forms.RadioButton();
             this.radSCRAM_SHA_1 = new System.Windows.Forms.RadioButton();
+            this.chkInputPasswordOnConnect = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.intPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -286,6 +287,7 @@ namespace FunctionForm.Connection
             // 
             // tabBasic
             // 
+            this.tabBasic.Controls.Add(this.chkInputPasswordOnConnect);
             this.tabBasic.Controls.Add(this.lblAttentionPassword);
             this.tabBasic.Controls.Add(this.intPort);
             this.tabBasic.Controls.Add(this.txtDataBaseName);
@@ -310,7 +312,7 @@ namespace FunctionForm.Connection
             this.lblAttentionPassword.AutoSize = true;
             this.lblAttentionPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttentionPassword.ForeColor = System.Drawing.Color.Red;
-            this.lblAttentionPassword.Location = new System.Drawing.Point(228, 107);
+            this.lblAttentionPassword.Location = new System.Drawing.Point(14, 157);
             this.lblAttentionPassword.Name = "lblAttentionPassword";
             this.lblAttentionPassword.Size = new System.Drawing.Size(295, 13);
             this.lblAttentionPassword.TabIndex = 47;
@@ -686,6 +688,17 @@ namespace FunctionForm.Connection
             this.radSCRAM_SHA_1.Text = "Default(SCRAM-SHA-1)";
             this.radSCRAM_SHA_1.UseVisualStyleBackColor = true;
             // 
+            // chkInputPasswordOnConnect
+            // 
+            this.chkInputPasswordOnConnect.AutoSize = true;
+            this.chkInputPasswordOnConnect.Location = new System.Drawing.Point(447, 65);
+            this.chkInputPasswordOnConnect.Name = "chkInputPasswordOnConnect";
+            this.chkInputPasswordOnConnect.Size = new System.Drawing.Size(188, 19);
+            this.chkInputPasswordOnConnect.TabIndex = 48;
+            this.chkInputPasswordOnConnect.Tag = "InputPasswordOnConnect";
+            this.chkInputPasswordOnConnect.Text = "Input Password On Connect";
+            this.chkInputPasswordOnConnect.UseVisualStyleBackColor = true;
+            // 
             // FrmConnectionMgr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -789,5 +802,6 @@ namespace FunctionForm.Connection
         private RadioButton radMONGODB_CR;
         private RadioButton radSCRAM_SHA_1;
         private RadioButton radMONGODB_X509;
+        private CheckBox chkInputPasswordOnConnect;
     }
 }

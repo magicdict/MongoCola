@@ -55,6 +55,7 @@
   <Main_Menu_Operation_DataCollection_DropJavaScript>删除Javascript</Main_Menu_Operation_DataCollection_DropJavaScript>
   <Main_Menu_Operation_DataCollection_View>查看数据</Main_Menu_Operation_DataCollection_View>
   <Main_Menu_Operation_DataCollection_ExportToFile>导出到文件</Main_Menu_Operation_DataCollection_ExportToFile>
+  <Main_Menu_Operation_DataCollection_convertToCapped>转换为Capped数据集</Main_Menu_Operation_DataCollection_convertToCapped>
 
 
   <Main_Menu_Operation_DataDocument>文档</Main_Menu_Operation_DataDocument>
@@ -136,7 +137,8 @@
   <AddConnection_ConnectionString>直接使用ConnectionString</AddConnection_ConnectionString>
   <AddConnection_Attention_Description>优先度为0的服务器不可能成为Master服务器</AddConnection_Attention_Description>
   <AddConnection_Password_Description>密码将于明文形式保存在Config文件中</AddConnection_Password_Description>
-
+  <InputPasswordOnConnect>在连接时输入密码</InputPasswordOnConnect>
+  
   <!--frmCollectionIndex-->
   <CollectionIndex_Title>索引管理器</CollectionIndex_Title>
   <CollectionIndex_Tab_Current>当前索引</CollectionIndex_Tab_Current>
@@ -373,7 +375,7 @@
   <Common_Port>端口</Common_Port>
   <Common_ReplsetMember>副本成员</Common_ReplsetMember>
   <Common_PlugIn>插件</Common_PlugIn>
-  
+
   <Common_Collapse>折叠</Common_Collapse>
   <Common_Expansion>展开</Common_Expansion>
   <Common_Name>名称</Common_Name>
@@ -386,7 +388,7 @@
   <Common_Search>检索</Common_Search>
   <Common_Level>等级</Common_Level>
   <Common_Action>动作</Common_Action>
-  
+
   <Common_SelectAll>全选</Common_SelectAll>
   <Common_UnSelectAll>全不选</Common_UnSelectAll>
 
@@ -400,7 +402,7 @@
   <Common_Run>运行</Common_Run>
   <Common_Result>结果</Common_Result>
   <Common_Basic>基本</Common_Basic>
-  
+
   <Common_Longitude>经度</Common_Longitude>
   <Common_Latitude>纬度</Common_Latitude>
   <Common_2d>二维(2d)</Common_2d>
@@ -411,7 +413,11 @@
   <Common_Pipeline>视图条件</Common_Pipeline>
   <Common_Collation>排序规则</Common_Collation>
   <Common_CreateCollation>创建排序规则</Common_CreateCollation>
-  
+
+
+  <MaxSize_Byte>最大尺寸(Byte)</MaxSize_Byte>
+  <MaxSize_MB>最大尺寸(MB)</MaxSize_MB>
+
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
   <Create_New_DataBase_Input>请输入数据库名称:</Create_New_DataBase_Input>

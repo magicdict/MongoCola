@@ -43,6 +43,11 @@ namespace MongoUtility.Core
         public string Password { set; get; }
 
         /// <summary>
+        ///     在连接时输入密码
+        /// </summary>
+        public bool InputPasswordOnConnect { set; get; }
+
+        /// <summary>
         ///     数据库名称
         /// </summary>
         public string DataBaseName { set; get; }

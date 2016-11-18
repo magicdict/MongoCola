@@ -88,6 +88,7 @@ namespace MongoCola
             this.DataCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RenameCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConvertToCappedtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReIndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CompactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -593,6 +594,7 @@ namespace MongoCola
             this.DataCollectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DelMongoCollectionToolStripMenuItem,
             this.RenameCollectionToolStripMenuItem,
+            this.ConvertToCappedtoolStripMenuItem,
             this.IndexManageToolStripMenuItem,
             this.ReIndexToolStripMenuItem,
             this.CompactToolStripMenuItem,
@@ -623,6 +625,14 @@ namespace MongoCola
             this.RenameCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_Rename";
             this.RenameCollectionToolStripMenuItem.Text = "Rename Collection";
             this.RenameCollectionToolStripMenuItem.Click += new System.EventHandler(this.RenameCollectionToolStripMenuItem_Click);
+            // 
+            // ConvertToCappedtoolStripMenuItem
+            // 
+            this.ConvertToCappedtoolStripMenuItem.Name = "ConvertToCappedtoolStripMenuItem";
+            this.ConvertToCappedtoolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.ConvertToCappedtoolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_convertToCapped";
+            this.ConvertToCappedtoolStripMenuItem.Text = "ConvertToCapped";
+            this.ConvertToCappedtoolStripMenuItem.Click += new System.EventHandler(this.ConvertToCappedtoolStripMenuItem_Click);
             // 
             // IndexManageToolStripMenuItem
             // 
@@ -1132,6 +1142,7 @@ namespace MongoCola
         private ToolStripMenuItem geoNearToolStripMenuItem;
         private ToolStripMenuItem ServerMonitorToolStripMenuItem;
         private ToolStripMenuItem CheckUpdatetoolStripMenuItem;
+        private ToolStripMenuItem ConvertToCappedtoolStripMenuItem;
     }
 }
 

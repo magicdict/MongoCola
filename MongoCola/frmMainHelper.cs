@@ -98,6 +98,7 @@ namespace MongoCola
             RepairDBToolStripMenuItem.Enabled = false;
             InitGFSToolStripMenuItem.Enabled = false;
             DBStatusToolStripMenuItem.Enabled = false;
+            ProfillingLevelToolStripMenuItem.Enabled = false;
 
             //管理-数据集
             IndexManageToolStripMenuItem.Enabled = false;
@@ -112,7 +113,7 @@ namespace MongoCola
             CollectionStatusToolStripMenuItem.Enabled = false;
             ValidateToolStripMenuItem.Enabled = false;
             ExportToFileToolStripMenuItem.Enabled = false;
-            ProfillingLevelToolStripMenuItem.Enabled = false;
+            ConvertToCappedtoolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
             DumpDatabaseToolStripMenuItem.Enabled = false;

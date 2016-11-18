@@ -122,7 +122,7 @@ namespace FunctionForm.Operation
             // 
             // numMaxSize
             // 
-            this.numMaxSize.Location = new System.Drawing.Point(178, 74);
+            this.numMaxSize.Location = new System.Drawing.Point(211, 72);
             this.numMaxSize.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -135,7 +135,7 @@ namespace FunctionForm.Operation
             // 
             // numMaxDocument
             // 
-            this.numMaxDocument.Location = new System.Drawing.Point(386, 75);
+            this.numMaxDocument.Location = new System.Drawing.Point(418, 72);
             this.numMaxDocument.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -151,15 +151,15 @@ namespace FunctionForm.Operation
             this.lblMaxSize.AutoSize = true;
             this.lblMaxSize.Location = new System.Drawing.Point(117, 76);
             this.lblMaxSize.Name = "lblMaxSize";
-            this.lblMaxSize.Size = new System.Drawing.Size(55, 15);
+            this.lblMaxSize.Size = new System.Drawing.Size(88, 15);
             this.lblMaxSize.TabIndex = 2;
-            this.lblMaxSize.Tag = "CollectionStatusMaxSize";
-            this.lblMaxSize.Text = "MaxSize";
+            this.lblMaxSize.Tag = "MaxSize_Byte";
+            this.lblMaxSize.Text = "MaxSize(Byte)";
             // 
             // lblMaxDocument
             // 
             this.lblMaxDocument.AutoSize = true;
-            this.lblMaxDocument.Location = new System.Drawing.Point(289, 77);
+            this.lblMaxDocument.Location = new System.Drawing.Point(321, 74);
             this.lblMaxDocument.Name = "lblMaxDocument";
             this.lblMaxDocument.Size = new System.Drawing.Size(91, 15);
             this.lblMaxDocument.TabIndex = 4;
@@ -273,7 +273,7 @@ namespace FunctionForm.Operation
             // lnkCappedCollections
             // 
             this.lnkCappedCollections.AutoSize = true;
-            this.lnkCappedCollections.Location = new System.Drawing.Point(540, 79);
+            this.lnkCappedCollections.Location = new System.Drawing.Point(493, 115);
             this.lnkCappedCollections.Name = "lnkCappedCollections";
             this.lnkCappedCollections.Size = new System.Drawing.Size(153, 15);
             this.lnkCappedCollections.TabIndex = 6;

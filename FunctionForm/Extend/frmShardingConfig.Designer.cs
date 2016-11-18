@@ -330,6 +330,7 @@ namespace FunctionForm.Extend
             this.lblMaxSize.Name = "lblMaxSize";
             this.lblMaxSize.Size = new System.Drawing.Size(82, 15);
             this.lblMaxSize.TabIndex = 2;
+            this.lblMaxSize.Tag = "MaxSize_MB";
             this.lblMaxSize.Text = "MaxSize(MB)";
             // 
             // cmdRemoveHost

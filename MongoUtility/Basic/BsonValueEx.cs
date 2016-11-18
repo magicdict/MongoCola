@@ -64,6 +64,10 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     基本类型枚举
         /// </summary>
+        /// <remarks>
+        ///     和MongoDB.Bson.BsonType不同,这里还会附带一些功能性的，包装的类型
+        ///     例如BsonGeo这样表示地理坐标的类型
+        /// </remarks>
         public enum BasicType : int
         {
             BsonString = 0,
@@ -102,8 +106,9 @@ namespace MongoUtility.Basic
             if (value.IsInt64)
             {
                 mBsonType = BasicType.BsonInt64;
-                mBSonDecimal128 = value.AsDecimal;
+                mBsonInt64 = value.AsInt64;
             }
+
             if (value.IsDecimal128)
             {
                 mBsonType = BasicType.BsonDecimal128;

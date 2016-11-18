@@ -348,7 +348,7 @@ namespace MongoUtility.Command
                 var result = toCollection.InsertBatch(fromCollection.FindAll()).ToList();
                 if (isIndex)
                 {
-                    //TODO:
+                    //TODO:复制索引
                 }
                 return result.Count > 0 && result[0].Response.Contains("ok") && result[0].Response["ok"] == 1;
             }

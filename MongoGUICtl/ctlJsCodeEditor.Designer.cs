@@ -114,7 +114,7 @@ namespace MongoGUICtl
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ctlJsCodeEditor";
             this.Size = new System.Drawing.Size(369, 276);
-            this.Load += new System.EventHandler(this.CtlTextMgr_Load);
+            this.Load += new System.EventHandler(this.ctlJsCodeEditor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

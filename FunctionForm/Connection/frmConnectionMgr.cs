@@ -31,7 +31,7 @@ namespace FunctionForm.Connection
         {
             InitializeComponent();
             intPort.Value = ConstMgr.MongodDefaultPort;
-            foreach (var item in Enum.GetValues(typeof (EnumMgr.StorageEngineType)))
+            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
             {
                 cmbStorageEngine.Items.Add(item);
                 cmbStorageEngine.SelectedIndex = 0;
@@ -45,7 +45,7 @@ namespace FunctionForm.Connection
         public FrmConnectionMgr(string connectionName)
         {
             InitializeComponent();
-            foreach (var item in Enum.GetValues(typeof (EnumMgr.StorageEngineType)))
+            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
             {
                 cmbStorageEngine.Items.Add(item);
                 cmbStorageEngine.SelectedIndex = 0;
@@ -83,7 +83,8 @@ namespace FunctionForm.Connection
             cmdCancel.BackColor = GuiConfig.FailColor;
             GuiConfig.Translateform(this);
             //修改模式
-            if (!string.IsNullOrEmpty(OldConnectionName)) {
+            if (!string.IsNullOrEmpty(OldConnectionName))
+            {
                 cmdAdd.Text = GuiConfig.IsUseDefaultLanguage ? "Modify" : GuiConfig.GetText(TextType.CommonModify);
             }
             //MonoUI兼容性对应
@@ -214,22 +215,25 @@ namespace FunctionForm.Connection
             }
             else
             {
-                //仅有用户名或密码
-                if (txtUsername.Text != string.Empty && txtPassword.Text == string.Empty)
+                if (!string.IsNullOrEmpty(txtUsername.Text) && string.IsNullOrEmpty(txtPassword.Text) && !chkInputPasswordOnConnect.Checked)
                 {
+                    //仅有用户名，没有密码，也没有设置为连接时输入
                     MessageBox.Show("Please Input Password");
                     return false;
                 }
-                if (txtUsername.Text == string.Empty && txtPassword.Text != string.Empty)
+                if (string.IsNullOrEmpty(txtUsername.Text) && !string.IsNullOrEmpty(txtPassword.Text))
                 {
+                    //仅有密码
                     MessageBox.Show("Please Input UserName");
                     return false;
                 }
+                //清空密码，不论是否输入
+                if (chkInputPasswordOnConnect.Checked) ModifyConn.Password = string.Empty;
                 //数据库名称存在，则必须输入用户名和密码
-                if (txtDataBaseName.Text != string.Empty)
+                if (!string.IsNullOrEmpty(txtDataBaseName.Text))
                 {
-                    //用户名或者密码为空
-                    if (txtUsername.Text == string.Empty || txtPassword.Text == string.Empty)
+                    //用户名为空或者（密码为空且不是连接时输入）
+                    if (string.IsNullOrEmpty(txtUsername.Text) || (string.IsNullOrEmpty(txtPassword.Text) && !chkInputPasswordOnConnect.Checked))
                     {
                         MessageBox.Show("Please Input UserName or Password");
                         return false;

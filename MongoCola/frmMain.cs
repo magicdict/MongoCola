@@ -539,5 +539,7 @@ namespace MongoCola
             MultiTabManger.RefreshSelectTab();
         }
         #endregion
+
+
     }
 }

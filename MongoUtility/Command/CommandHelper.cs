@@ -424,12 +424,28 @@ namespace MongoUtility.Command
 
         #region"DataBase Command"
 
-        /// 数据库命令 http://www.mongodb.org/display/DOCS/List+of+Database+Commands
+        // 数据库命令 http://www.mongodb.org/display/DOCS/List+of+Database+Commands
+        // 修复数据库 http://www.mongodb.org/display/DOCS/Durability+and+Repair
+        // convertToCapped https://docs.mongodb.com/master/reference/command/convertToCapped/
+
         /// <summary>
         ///     修复数据库
-        ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
         /// </summary>
         public static MongoCommand RepairDatabaseCommand = new MongoCommand("repairDatabase", EnumMgr.PathLevel.Database);
+
+
+        /// <summary>
+        ///     convertToCapped
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static CommandResult convertToCapped(string collectionName,long size,MongoDatabase db)
+        {
+            var mongoCmd = new CommandDocument { { "convertToCapped", collectionName } };
+            mongoCmd.Add("size", size);
+            return ExecuteMongoDBCommand(mongoCmd, db);
+        }
 
         #endregion
     }

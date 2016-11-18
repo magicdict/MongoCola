@@ -617,20 +617,6 @@ namespace MongoCola
         }
 
         /// <summary>
-        ///     显示这个Pipeline
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ViewPipelineToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var doc = RuntimeMongoDbContext.GetCurrentCollectionInfo();
-            var frm = new frmDataView();
-            var pipeline = doc.GetElement("options").Value.AsBsonDocument.GetElement("pipeline").Value.AsBsonArray.Select(x => x.AsBsonDocument).ToList();
-            frm.ShowData = pipeline;
-            frm.Title = "Pipeline";
-            UIAssistant.OpenModalForm(frm, true, true);
-        }
-        /// <summary>
         ///     删除
         /// </summary>
         /// <param name="node"></param>
@@ -666,8 +652,6 @@ namespace MongoCola
                                             RuntimeMongoDbContext.SelectTagData;
         }
 
-
-
         /// <summary>
         ///     重命名
         /// </summary>
@@ -686,6 +670,25 @@ namespace MongoCola
                 return strNewCollectionName;
             }
             return string.Empty;
+        }
+
+
+        private void ConvertToCappedtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var maxSize = MyMessageBox.ShowInput("Please Input MaxSize(Byte)", "MaxSize", "4096");
+            if (string.IsNullOrEmpty(maxSize)) return;
+            long lngMaxSize;
+            if (long.TryParse(maxSize, out lngMaxSize))
+            {
+                var colName = RuntimeMongoDbContext.GetCurrentCollectionName();
+                var db = RuntimeMongoDbContext.GetCurrentDataBase();
+                var result = CommandHelper.convertToCapped(colName, lngMaxSize, db);
+                MyMessageBox.ShowEasyMessage("ConvertToCapped", result.Response.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Please Input a Number");
+            }
         }
 
         /// <summary>
@@ -777,6 +780,22 @@ namespace MongoCola
         {
             var colPath = RuntimeMongoDbContext.SelectTagData;
             MessageBox.Show("Please Use Export To Excel PlugIn!");
+        }
+
+
+        /// <summary>
+        ///     显示这个Pipeline
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewPipelineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var doc = RuntimeMongoDbContext.GetCurrentCollectionInfo();
+            var frm = new frmDataView();
+            var pipeline = doc.GetElement("options").Value.AsBsonDocument.GetElement("pipeline").Value.AsBsonArray.Select(x => x.AsBsonDocument).ToList();
+            frm.ShowData = pipeline;
+            frm.Title = "Pipeline";
+            UIAssistant.OpenModalForm(frm, true, true);
         }
 
         #endregion
