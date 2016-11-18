@@ -61,12 +61,7 @@ namespace MongoGUICtl.ClientTree
             var databaseName = col.CollectionNamespace.DatabaseNamespace.DatabaseName;
             var strShowColName = GetShowName(databaseName, colName);
             //Collection件数的表示
-            long colCount = 0;
-            Expression<Func<BsonDocument, bool>> countfun = x => true;
-            var task = Task.Run(
-                async () => { colCount = await col.CountAsync(countfun); }
-                );
-            task.Wait();
+            long colCount = ConnectionInfo.GetCollectionCnt(col);
             strShowColName = strShowColName + "(" + colCount + ")";
             var mongoColNode = new TreeNode(strShowColName);
             switch (col.CollectionNamespace.CollectionName)
@@ -89,7 +84,7 @@ namespace MongoGUICtl.ClientTree
             {
                 //View 没有Index
                 IAsyncCursor<BsonDocument> indexCursor = null;
-                task = Task.Run(
+                var task = Task.Run(
                     async () => { indexCursor = await col.Indexes.ListAsync(); }
                     );
                 task.Wait();
@@ -133,7 +128,12 @@ namespace MongoGUICtl.ClientTree
             return mongoColNode;
         }
 
-
+        /// <summary>
+        ///     获得表示名称
+        /// </summary>
+        /// <param name="databaseName"></param>
+        /// <param name="CollectionName"></param>
+        /// <returns></returns>
         public static string GetShowName(string databaseName, string CollectionName)
         {
             var strShowColName = CollectionName;

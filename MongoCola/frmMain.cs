@@ -140,7 +140,6 @@ namespace MongoCola
                 lblAction.Text = y.Message;
                 Application.DoEvents();
             };
-
             trvsrvlst.SelectedNode = trvsrvlst.Nodes[0];
         }
 

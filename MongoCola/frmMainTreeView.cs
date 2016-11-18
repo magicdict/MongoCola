@@ -364,9 +364,9 @@ namespace MongoCola
             {
                 contextMenuStripMain = new ContextMenuStrip();
                 contextMenuStripMain.Items.Add(DelMongoCollectionToolStripMenuItem.Clone());
-                var ViewPipelineToolStripMenuItem = new ToolStripMenuItem("Pipeline");
-                ViewPipelineToolStripMenuItem.Click += ViewPipelineToolStripMenuItem_Click;
-                contextMenuStripMain.Items.Add(ViewPipelineToolStripMenuItem);
+                var ViewInfoToolStripMenuItem = new ToolStripMenuItem("ViewInfo");
+                ViewInfoToolStripMenuItem.Click += ViewInfoToolStripMenuItem_Click;
+                contextMenuStripMain.Items.Add(ViewInfoToolStripMenuItem);
                 e.Node.ContextMenuStrip = contextMenuStripMain;
                 contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
             }

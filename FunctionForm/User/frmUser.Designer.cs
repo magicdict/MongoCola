@@ -51,15 +51,15 @@ namespace FunctionForm.User
             this.lstOtherRoles = new System.Windows.Forms.ListView();
             this.colDataBase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colRoles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.userRoles = new MongoGUICtl.CtlUserRolesPanel();
             this.cmdDelRole = new System.Windows.Forms.Button();
             this.cmdModifyRole = new System.Windows.Forms.Button();
+            this.userRoles = new MongoGUICtl.CtlUserRolesPanel();
             this.SuspendLayout();
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(85, 363);
+            this.cmdOK.Location = new System.Drawing.Point(85, 474);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(96, 26);
             this.cmdOK.TabIndex = 4;
@@ -71,7 +71,7 @@ namespace FunctionForm.User
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(222, 363);
+            this.cmdCancel.Location = new System.Drawing.Point(222, 474);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(117, 26);
             this.cmdCancel.TabIndex = 5;
@@ -138,7 +138,7 @@ namespace FunctionForm.User
             // lbluserSource
             // 
             this.lbluserSource.AutoSize = true;
-            this.lbluserSource.Location = new System.Drawing.Point(28, 325);
+            this.lbluserSource.Location = new System.Drawing.Point(28, 436);
             this.lbluserSource.Name = "lbluserSource";
             this.lbluserSource.Size = new System.Drawing.Size(70, 15);
             this.lbluserSource.TabIndex = 10;
@@ -146,7 +146,7 @@ namespace FunctionForm.User
             // 
             // txtuserSource
             // 
-            this.txtuserSource.Location = new System.Drawing.Point(136, 319);
+            this.txtuserSource.Location = new System.Drawing.Point(136, 433);
             this.txtuserSource.Name = "txtuserSource";
             this.txtuserSource.Size = new System.Drawing.Size(170, 21);
             this.txtuserSource.TabIndex = 11;
@@ -154,7 +154,7 @@ namespace FunctionForm.User
             // lblotherDBRoles
             // 
             this.lblotherDBRoles.AutoSize = true;
-            this.lblotherDBRoles.Location = new System.Drawing.Point(433, 18);
+            this.lblotherDBRoles.Location = new System.Drawing.Point(576, 18);
             this.lblotherDBRoles.Name = "lblotherDBRoles";
             this.lblotherDBRoles.Size = new System.Drawing.Size(84, 15);
             this.lblotherDBRoles.TabIndex = 12;
@@ -164,14 +164,14 @@ namespace FunctionForm.User
             // 
             this.cmbDB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDB.FormattingEnabled = true;
-            this.cmbDB.Location = new System.Drawing.Point(470, 64);
+            this.cmbDB.Location = new System.Drawing.Point(613, 65);
             this.cmbDB.Name = "cmbDB";
             this.cmbDB.Size = new System.Drawing.Size(152, 23);
             this.cmbDB.TabIndex = 13;
             // 
             // cmdAddRole
             // 
-            this.cmdAddRole.Location = new System.Drawing.Point(628, 64);
+            this.cmdAddRole.Location = new System.Drawing.Point(771, 65);
             this.cmdAddRole.Name = "cmdAddRole";
             this.cmdAddRole.Size = new System.Drawing.Size(92, 24);
             this.cmdAddRole.TabIndex = 14;
@@ -189,7 +189,7 @@ namespace FunctionForm.User
             this.lstOtherRoles.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
-            this.lstOtherRoles.Location = new System.Drawing.Point(436, 108);
+            this.lstOtherRoles.Location = new System.Drawing.Point(579, 109);
             this.lstOtherRoles.Name = "lstOtherRoles";
             this.lstOtherRoles.Size = new System.Drawing.Size(426, 225);
             this.lstOtherRoles.TabIndex = 15;
@@ -206,16 +206,9 @@ namespace FunctionForm.User
             this.colRoles.Text = "Roles";
             this.colRoles.Width = 229;
             // 
-            // userRoles
-            // 
-            this.userRoles.Location = new System.Drawing.Point(12, 96);
-            this.userRoles.Name = "userRoles";
-            this.userRoles.Size = new System.Drawing.Size(418, 217);
-            this.userRoles.TabIndex = 9;
-            // 
             // cmdDelRole
             // 
-            this.cmdDelRole.Location = new System.Drawing.Point(611, 339);
+            this.cmdDelRole.Location = new System.Drawing.Point(754, 340);
             this.cmdDelRole.Name = "cmdDelRole";
             this.cmdDelRole.Size = new System.Drawing.Size(92, 24);
             this.cmdDelRole.TabIndex = 14;
@@ -225,7 +218,7 @@ namespace FunctionForm.User
             // 
             // cmdModifyRole
             // 
-            this.cmdModifyRole.Location = new System.Drawing.Point(709, 340);
+            this.cmdModifyRole.Location = new System.Drawing.Point(852, 341);
             this.cmdModifyRole.Name = "cmdModifyRole";
             this.cmdModifyRole.Size = new System.Drawing.Size(109, 23);
             this.cmdModifyRole.TabIndex = 16;
@@ -233,12 +226,19 @@ namespace FunctionForm.User
             this.cmdModifyRole.UseVisualStyleBackColor = true;
             this.cmdModifyRole.Click += new System.EventHandler(this.cmdModifyRole_Click);
             // 
+            // userRoles
+            // 
+            this.userRoles.Location = new System.Drawing.Point(12, 96);
+            this.userRoles.Name = "userRoles";
+            this.userRoles.Size = new System.Drawing.Size(505, 331);
+            this.userRoles.TabIndex = 9;
+            // 
             // FrmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(874, 405);
+            this.ClientSize = new System.Drawing.Size(1064, 516);
             this.Controls.Add(this.cmdModifyRole);
             this.Controls.Add(this.lstOtherRoles);
             this.Controls.Add(this.cmdDelRole);

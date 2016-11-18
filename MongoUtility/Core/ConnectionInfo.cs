@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoUtility.Basic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace MongoUtility.Core
 {
@@ -58,20 +61,19 @@ namespace MongoUtility.Core
         /// <param name="client"></param>
         /// <param name="dbName"></param>
         /// <returns></returns>
-        public static List<BsonDocument> GetViewInfoList(MongoClient client, string dbName)
+        public static List<string> GetViewInfoList(MongoClient client, string dbName)
         {
-            var db = client.GetDatabase(dbName);
-            IAsyncCursor<BsonDocument> collectionCursor = null;
-            var task = Task.Run(
-                async () => { collectionCursor = await db.ListCollectionsAsync(); }
-                );
-            task.Wait();
-            List<BsonDocument> collectionList = null;
-            task = Task.Run(
-                async () => { collectionList = await collectionCursor.ToListAsync(); }
-                );
-            task.Wait();
-            return collectionList;
+            var mongoDb = client.GetServer().GetDatabase(dbName);
+            var viewlist = new List<string>();
+            //获得View列表
+            if (mongoDb.CollectionExists(ConstMgr.CollectionNameSystemView))
+            {
+                foreach (var viewdoc in mongoDb.GetCollection(ConstMgr.CollectionNameSystemView).FindAll())
+                {
+                    viewlist.Add(viewdoc.GetElement(ConstMgr.KeyId).Value.AsString);
+                }
+            }
+            return viewlist;
         }
 
         /// <summary>
@@ -112,6 +114,16 @@ namespace MongoUtility.Core
             return collectionList.Where(x => x.GetElement("name").Value.ToString() == collectionName).First();
         }
 
+        public static long GetCollectionCnt(IMongoCollection<BsonDocument> col)
+        {
+            long colCount = 0;
+            Expression<Func<BsonDocument, bool>> countfun = x => true;
+            var task = Task.Run(
+                async () => { colCount = await col.CountAsync(countfun); }
+                );
+            task.Wait();
+            return colCount;
+        }
 
         /// <summary>
         ///     获得索引列表

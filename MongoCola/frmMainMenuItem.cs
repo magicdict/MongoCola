@@ -17,9 +17,9 @@ using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -168,6 +168,7 @@ namespace MongoCola
             RefreshToolStripMenuItem.Enabled = true;
             RefreshToolStripButton.Enabled = true;
             statusStripMain.Items[0].Text = GuiConfig.GetText("Ready", TextType.MainStatusBarTextReady);
+            trvsrvlst.SelectedNode = trvsrvlst.Nodes[0];
         }
 
         /// <summary>
@@ -672,7 +673,11 @@ namespace MongoCola
             return string.Empty;
         }
 
-
+        /// <summary>
+        ///     ConvertToCapped
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConvertToCappedtoolStripMenuItem_Click(object sender, EventArgs e)
         {
             var maxSize = MyMessageBox.ShowInput("Please Input MaxSize(Byte)", "MaxSize", "4096");
@@ -788,13 +793,13 @@ namespace MongoCola
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ViewPipelineToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ViewInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var doc = RuntimeMongoDbContext.GetCurrentCollectionInfo();
+            var pipeline = new List<BsonDocument>();
+            pipeline.Add(RuntimeMongoDbContext.GetCurrentCollectionInfo());
             var frm = new frmDataView();
-            var pipeline = doc.GetElement("options").Value.AsBsonDocument.GetElement("pipeline").Value.AsBsonArray.Select(x => x.AsBsonDocument).ToList();
             frm.ShowData = pipeline;
-            frm.Title = "Pipeline";
+            frm.Title = "ViewInfo";
             UIAssistant.OpenModalForm(frm, true, true);
         }
 

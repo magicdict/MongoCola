@@ -11,15 +11,22 @@ namespace MongoUtility.Security
         //Database User Roles
         public const string UserRoleRead = "read";
         public const string UserRoleReadWrite = "readWrite";
+
         //Database Administration Roles
         public const string UserRoleDbAdmin = "dbAdmin";
         public const string UserRoleDbOwner = "dbOwner";
         public const string UserRoleUserAdmin = "userAdmin";
 
-
         //Cluster Administration Roles
         public const string UserRoleClusterAdmin = "clusterAdmin";
-        
+        public const string UserRoleClusterManager = "clusterManager";
+        public const string UserRoleClusterMonitor = "clusterMonitor";
+        public const string UserRoleHostManager = "hostManager";
+
+        //Backup and Restoration Roles
+        public const string UserRoleBackup = "backup";
+        public const string UserRoleRestore = "restore";
+
         //All-Database Roles
         public const string UserRoleReadAnyDatabase = "readAnyDatabase";
         public const string UserRoleReadWriteAnyDatabase = "readWriteAnyDatabase";
@@ -28,6 +35,9 @@ namespace MongoUtility.Security
 
         //Superuser Roles
         public const string UserRoleRoot = "root";
+
+        //Internal Role
+        public const string UserRoleSystem = "__system";
 
         #endregion
 

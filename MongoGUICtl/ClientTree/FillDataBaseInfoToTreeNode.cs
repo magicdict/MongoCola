@@ -43,22 +43,37 @@ namespace MongoGUICtl.ClientTree
             var mongoDbNode = new TreeNode(strShowDbName);
             mongoDbNode.Tag = TagInfo.CreateTagInfo(mongoSvrKey, strDbName);
 
-            var userNode = new TreeNode("User", (int)GetSystemIcon.MainTreeImageType.UserIcon,
+            //User Node
+            var userNode = new TreeNode(GuiConfig.GetText("Users", TextType.CollectionNameUser), (int)GetSystemIcon.MainTreeImageType.UserIcon,
                 (int)GetSystemIcon.MainTreeImageType.UserIcon);
             userNode.Tag = ConstMgr.UserListTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
                            ConstMgr.CollectionNameUser;
+            if (client.GetServer().GetDatabase(strDbName).CollectionExists(ConstMgr.CollectionNameUser))
+            {
+                var usercol = ConnectionInfo.GetICollection(client, strDbName, ConstMgr.CollectionNameUser);
+                long colCount = ConnectionInfo.GetCollectionCnt(usercol);
+                userNode.Text += "(" + colCount + ")";
+            }
             mongoDbNode.Nodes.Add(userNode);
 
-            var jsNode = new TreeNode("JavaScript", (int)GetSystemIcon.MainTreeImageType.JavaScriptList,
+            //JsNode
+            var jsNode = new TreeNode(GuiConfig.GetText("Javascript", TextType.CollectionNameJavascript), (int)GetSystemIcon.MainTreeImageType.JavaScriptList,
                 (int)GetSystemIcon.MainTreeImageType.JavaScriptList);
             jsNode.Tag = ConstMgr.JavascriptTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
                          ConstMgr.CollectionNameJavascript;
             mongoDbNode.Nodes.Add(jsNode);
 
-            var gfsNode = new TreeNode("Grid File System", (int)GetSystemIcon.MainTreeImageType.Gfs,
+            //GFS Node
+            var gfsNode = new TreeNode(GuiConfig.GetText("Grid File System"), (int)GetSystemIcon.MainTreeImageType.Gfs,
                 (int)GetSystemIcon.MainTreeImageType.Gfs);
             gfsNode.Tag = ConstMgr.GridFileSystemTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
                           ConstMgr.CollectionNameGfsFiles;
+            if (client.GetServer().GetDatabase(strDbName).CollectionExists(ConstMgr.CollectionNameGfsFiles))
+            {
+                var gfscol = ConnectionInfo.GetICollection(client, strDbName, ConstMgr.CollectionNameGfsFiles);
+                long colCount = ConnectionInfo.GetCollectionCnt(gfscol);
+                gfsNode.Text += "(" + colCount + ")";
+            }
             mongoDbNode.Nodes.Add(gfsNode);
 
             var mongoSysColListNode = new TreeNode("Collections(System)",
@@ -76,9 +91,12 @@ namespace MongoGUICtl.ClientTree
             {
                 return x.GetElement("name").Value.ToString().CompareTo(y.GetElement("name").Value.ToString());
             });
+
+            var viewlist = ConnectionInfo.GetViewInfoList(client, strDbName);
             foreach (var colDoc in colNameList)
             {
                 var strColName = colDoc.GetElement("name").Value.ToString();
+                if (viewlist.Contains(strDbName + "." + strColName)) continue;
                 switch (strColName)
                 {
                     case ConstMgr.CollectionNameSystemView:
@@ -90,10 +108,14 @@ namespace MongoGUICtl.ClientTree
                         mongoDbNode.Nodes.Add(mongoViewNode);
                         break;
                     case ConstMgr.CollectionNameUser:
-                        //system.users,fs,system.js这几个系统级别的Collection不需要放入
                         break;
                     case ConstMgr.CollectionNameJavascript:
                         FillJavaScriptInfoToTreeNode(jsNode, ConnectionInfo.GetICollection(client, strDbName, strColName), mongoSvrKey, strDbName);
+                        break;
+                    case ConstMgr.CollectionNameGfsChunks:
+                    case ConstMgr.CollectionNameGfsFiles:
+                        var gfscol = ConnectionInfo.GetICollection(client, strDbName, strColName);
+                        gfsNode.Nodes.Add(FillCollectionInfoToTreeNode(gfscol, mongoSvrKey));
                         break;
                     default:
                         TreeNode mongoColNode;
@@ -101,7 +123,6 @@ namespace MongoGUICtl.ClientTree
                         {
                             var col = ConnectionInfo.GetICollection(client, strDbName, strColName);
                             mongoColNode = FillCollectionInfoToTreeNode(col, mongoSvrKey);
-                            if (mongoColNode == null) continue;
                         }
                         catch (Exception ex)
                         {
@@ -112,16 +133,7 @@ namespace MongoGUICtl.ClientTree
                         }
                         if (Operater.IsSystemCollection(strDbName, strColName))
                         {
-                            switch (strColName)
-                            {
-                                case ConstMgr.CollectionNameGfsChunks:
-                                case ConstMgr.CollectionNameGfsFiles:
-                                    gfsNode.Nodes.Add(mongoColNode);
-                                    break;
-                                default:
-                                    mongoSysColListNode.Nodes.Add(mongoColNode);
-                                    break;
-                            }
+                            mongoSysColListNode.Nodes.Add(mongoColNode);
                         }
                         else
                         {

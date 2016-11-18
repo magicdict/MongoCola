@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
@@ -9,6 +6,9 @@ using MongoUtility.Core;
 using ResourceLib.Method;
 using ResourceLib.Properties;
 using ResourceLib.UI;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace FunctionForm.User
 {
@@ -18,8 +18,13 @@ namespace FunctionForm.User
         ///     是否作为Admin
         /// </summary>
         private readonly bool _isAdmin;
-
+        /// <summary>
+        ///     修改用户名
+        /// </summary>
         private readonly string _modifyName = string.Empty;
+        /// <summary>
+        ///     自定义角色
+        /// </summary>
         private readonly Dictionary<string, BsonElement> _otherDbRolesDict = new Dictionary<string, BsonElement>();
 
         /// <summary>

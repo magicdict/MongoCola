@@ -19,7 +19,7 @@ namespace MongoColaWebAdmin
             Configuration = builder.Build();
 
             //Load MongoDB Connection List
-            MongoConfig.LoadFromConfigFile();
+            MongoConnectionConfigManager.LoadFromConfigFile();
         }
 
         public IConfigurationRoot Configuration { get; }

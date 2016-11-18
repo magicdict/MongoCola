@@ -109,7 +109,6 @@ namespace MongoGUICtl.ClientTree
                         foreach (var viewdoc in mongoDb.GetCollection(ConstMgr.CollectionNameSystemView).FindAll())
                         {
                             viewlist.Add(viewdoc.GetElement(ConstMgr.KeyId).Value.AsString);
-
                         }
                     }
                     var colNameList = mongoDb.GetCollectionNames().ToList();
