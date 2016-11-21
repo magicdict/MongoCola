@@ -34,8 +34,7 @@ namespace MongoGUICtl.ClientTree
         /// <param name="trvData"></param>
         /// <param name="dataList"></param>
         /// <param name="mSkip"></param>
-        public static void FillDataToTreeView(string collectionName, CtlTreeViewColumns trvData,
-            List<BsonDocument> dataList, int mSkip)
+        public static void FillDataToTreeView(string collectionName, CtlTreeViewColumns trvData, List<BsonDocument> dataList, int mSkip)
         {
             trvData.ContentData = dataList;
             trvData.DatatreeView.BeginUpdate();
@@ -45,18 +44,11 @@ namespace MongoGUICtl.ClientTree
             foreach (var item in dataList)
             {
                 var dataNode = new TreeNode(collectionName + "[" + (skipCnt + count) + "]");
-                //这里保存真实的主Key数据，删除的时候使用
-                switch (collectionName)
+                BsonElement id;
+                if (item.TryGetElement(ConstMgr.KeyId, out id))
                 {
-                    case ConstMgr.CollectionNameGfsFiles:
-                        dataNode.Tag = item.GetElement(1).Value;
-                        break;
-                    case ConstMgr.CollectionNameUser:
-                        dataNode.Tag = item.GetElement(1).Value;
-                        break;
-                    default:
-                        dataNode.Tag = item;
-                        break;
+                    //这里保存真实的主Key数据，修改和删除的时候使用
+                    dataNode.Tag = item.GetElement(ConstMgr.KeyId).Value;
                 }
                 AddBsonDocToTreeNode(dataNode, item);
                 trvData.DatatreeView.Nodes.Add(dataNode);

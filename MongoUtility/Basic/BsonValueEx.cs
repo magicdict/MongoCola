@@ -79,7 +79,14 @@ namespace MongoUtility.Basic
             BsonBoolean,
             BsonArray,
             BsonDocument,
-            BsonGeo,
+            /// <summary>
+            ///     XYPoint的坐标
+            /// </summary>
+            BsonLegacyPoint,
+            /// <summary>
+            ///     GeoJSON对象
+            /// </summary>
+            BsonGeoJSON,
             BsonMinKey,
             BsonMaxKey,
             BsonBinary,
@@ -147,7 +154,7 @@ namespace MongoUtility.Basic
             }
         }
 
-     
+
 
         /// <summary>
         ///     还原BsonValue
@@ -204,34 +211,38 @@ namespace MongoUtility.Basic
             switch (DataType)
             {
                 case BasicType.BsonString:
-                    InitValue = (new BsonString(string.Empty));
+                    InitValue = new BsonString(string.Empty);
                     break;
                 case BasicType.BsonInt32:
-                    InitValue = (new BsonInt32(0));
+                    InitValue = new BsonInt32(0);
                     break;
                 case BasicType.BsonInt64:
-                    InitValue = (new BsonInt64(0));
+                    InitValue = new BsonInt64(0);
                     break;
                 case BasicType.BsonDecimal128:
-                    InitValue = (new BsonDecimal128(0));
+                    InitValue = new BsonDecimal128(0);
                     break;
                 case BasicType.BsonDouble:
-                    InitValue = (new BsonDouble(0));
+                    InitValue = new BsonDouble(0);
                     break;
                 case BasicType.BsonDateTime:
-                    InitValue = (new BsonDateTime(DateTime.Now));
+                    InitValue = new BsonDateTime(DateTime.Now);
                     break;
                 case BasicType.BsonBoolean:
-                    InitValue = (BsonBoolean.False);
+                    InitValue = BsonBoolean.False;
                     break;
                 case BasicType.BsonArray:
-                    InitValue = (new BsonArray());
+                    InitValue = new BsonArray();
                     break;
                 case BasicType.BsonDocument:
-                    InitValue = (new BsonDocument());
+                    InitValue = new BsonDocument();
                     break;
-                case BasicType.BsonGeo:
-                    InitValue = (new BsonArray() { 0, 0 });
+                case BasicType.BsonLegacyPoint:
+                    InitValue = new BsonArray() { 0, 0 };
+                    break;
+                case BasicType.BsonGeoJSON:
+                    InitValue = new BsonDocument("type", "Point");
+                    InitValue.AsBsonDocument.Add("coordinates", new BsonArray() { 0, 0 });
                     break;
                 case BasicType.BsonMaxKey:
                     InitValue = BsonMaxKey.Value;
@@ -262,8 +273,9 @@ namespace MongoUtility.Basic
             if (value.IsDouble) return BasicType.BsonDouble;
             if (value.IsValidDateTime) return BasicType.BsonDateTime;
             if (value.IsBoolean) return BasicType.BsonBoolean;
-            //这里也可能是一个地理对象
+            //这里也可能是一个LegacyPoint
             if (value.IsBsonArray) return BasicType.BsonArray;
+            //这里也可能是一个GeoJson
             if (value.IsBsonDocument) return BasicType.BsonDocument;
 
             if (value.IsBsonMaxKey) return BasicType.BsonMaxKey;

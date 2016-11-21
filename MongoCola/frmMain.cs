@@ -1,4 +1,5 @@
 ﻿using Common;
+using FunctionForm.Aggregation;
 using FunctionForm.Connection;
 using FunctionForm.Operation;
 using FunctionForm.Status;
@@ -67,13 +68,13 @@ namespace MongoCola
                 UIAssistant.OpenModalForm(frmInsertArray, false, true);
                 return frmInsertArray.mBsonArray;
             };
-            ctlBsonValue.GetGeo = () =>
+            ctlBsonValue.GetGeoPoint = () =>
             {
                 var frmGeo = new frmCreateGeo();
                 UIAssistant.OpenModalForm(frmGeo, false, true);
                 return frmGeo.mBsonArray;
             };
-            CtlGeoNear.GetGeo = () =>
+            frmGeoNear.GetGeo = () =>
             {
                 var frmGeo = new frmCreateGeo();
                 UIAssistant.OpenModalForm(frmGeo, false, true);

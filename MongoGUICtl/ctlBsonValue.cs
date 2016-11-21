@@ -20,7 +20,7 @@ namespace MongoGUICtl
         /// <summary>
         ///     获得一个新BsonArray的委托
         /// </summary>
-        public static Func<BsonArray> GetGeo;
+        public static Func<BsonArray> GetGeoPoint;
 
         /// <summary>
         ///     文档
@@ -49,10 +49,10 @@ namespace MongoGUICtl
 
             dateTimePicker.Location = txtBsonValue.Location;
             dateTimePicker.Size = txtBsonValue.Size;
-            if (DateTimeFormat ==0)
+            if (DateTimeFormat == 0)
             {
                 //设计时出错的对应
-                DateTimeFormat =  DateTimePickerFormat.Long;
+                DateTimeFormat = DateTimePickerFormat.Long;
             }
 
             dateTimePicker.Format = DateTimeFormat;
@@ -106,9 +106,10 @@ namespace MongoGUICtl
                     mValue = radTrue.Checked ? BsonBoolean.True : BsonBoolean.False;
                     break;
                 case BsonValueEx.BasicType.BsonArray:
-                case BsonValueEx.BasicType.BsonGeo:
+                case BsonValueEx.BasicType.BsonLegacyPoint:
                     mValue = _mBsonArray;
                     break;
+                case BsonValueEx.BasicType.BsonGeoJSON:
                 case BsonValueEx.BasicType.BsonDocument:
                     mValue = _mBsonDocument;
                     break;
@@ -125,7 +126,7 @@ namespace MongoGUICtl
             return mValue;
         }
 
-        
+
 
         /// <summary>
         ///     使用属性会发生一些MONO上的移植问题
@@ -205,10 +206,10 @@ namespace MongoGUICtl
                     MessageBox.Show("GetArray委托不存在！");
                     return;
                 }
-                if (DataType == BsonValueEx.BasicType.BsonGeo)
+                if (DataType == BsonValueEx.BasicType.BsonLegacyPoint)
                 {
                     //地理
-                    var t = GetGeo();
+                    var t = GetGeoPoint();
                     if (t != null)
                     {
                         _mBsonArray = t;
@@ -238,13 +239,30 @@ namespace MongoGUICtl
                     MessageBox.Show("GetDocument委托不存在！");
                     return;
                 }
-                var t = GetDocument();
-                if (t != null)
+
+                if (DataType == BsonValueEx.BasicType.BsonGeoJSON)
                 {
-                    _mBsonDocument = t;
-                    txtBsonValue.Visible = true;
-                    txtBsonValue.Text = _mBsonDocument.ToString();
-                    txtBsonValue.ReadOnly = true;
+                    //地理
+                    var t = GetGeoPoint();
+                    if (t != null)
+                    {
+                        _mBsonDocument = new BsonDocument("type", "Point");
+                        _mBsonDocument.Add("coordinates", t);
+                        txtBsonValue.Visible = true;
+                        txtBsonValue.Text = _mBsonDocument.ToString();
+                        txtBsonValue.ReadOnly = true;
+                    }
+                }
+                else
+                {
+                    var t = GetDocument();
+                    if (t != null)
+                    {
+                        _mBsonDocument = t;
+                        txtBsonValue.Visible = true;
+                        txtBsonValue.Text = _mBsonDocument.ToString();
+                        txtBsonValue.ReadOnly = true;
+                    }
                 }
             }
             if (value.IsBsonBinaryData)

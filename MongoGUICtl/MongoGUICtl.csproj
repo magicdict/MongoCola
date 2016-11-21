@@ -152,12 +152,6 @@
     <Compile Include="ctlBsonValue.Designer.cs">
       <DependentUpon>ctlBsonValue.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlGeoNear.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctlGeoNear.Designer.cs">
-      <DependentUpon>ctlGeoNear.cs</DependentUpon>
-    </Compile>
     <Compile Include="ctlIndexCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -228,9 +222,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctlBsonValue.resx">
       <DependentUpon>ctlBsonValue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctlGeoNear.resx">
-      <DependentUpon>ctlGeoNear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
