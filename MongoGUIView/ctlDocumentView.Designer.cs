@@ -64,10 +64,12 @@ namespace MongoGUIView
             // tabTreeView
             // 
             this.tabTreeView.Size = new System.Drawing.Size(909, 340);
+            this.tabTreeView.Text = "Tree";
             // 
             // tabTableView
             // 
             this.tabTableView.Size = new System.Drawing.Size(909, 340);
+            this.tabTableView.Text = "Table";
             // 
             // trvData
             // 
@@ -81,6 +83,7 @@ namespace MongoGUIView
             // tabTextView
             // 
             this.tabTextView.Size = new System.Drawing.Size(909, 340);
+            this.tabTextView.Text = "JSON";
             // 
             // txtData
             // 

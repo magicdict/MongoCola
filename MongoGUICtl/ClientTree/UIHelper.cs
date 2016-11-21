@@ -378,11 +378,11 @@ namespace MongoGUICtl.ClientTree
             }
             //获取ReadOnly
             config.IsReadOnly = false;
-            if (!string.IsNullOrEmpty(config.DataBaseName))
+            if (!string.IsNullOrEmpty(config.DataBaseName) && (!config.DataBaseName.Equals(ConstMgr.DatabaseNameAdmin)))
             {
                 //单数据库模式
                 var mongoSingleDbNode = FillDataBaseInfoToTreeNode(config.DataBaseName,
-                    mongoConnKey + "/" + mongoConnKey, null);
+                    mongoConnKey + "/" + mongoConnKey, mongoClient);
                 mongoSingleDbNode.Tag = ConstMgr.SingleDatabaseTag + ":" + connSvrKey + "/" + config.DataBaseName;
                 mongoSingleDbNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                 mongoSingleDbNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
@@ -410,12 +410,12 @@ namespace MongoGUICtl.ClientTree
                     }
                 }
                 var databaseNameList = ConnectionInfo.GetDatabaseInfoList(client);
-                foreach (var strDbName in databaseNameList)
+                foreach (var DbPropertyDoc in databaseNameList)
                 {
                     TreeNode mongoDbNode;
                     try
                     {
-                        var dbName = strDbName.GetElement("name").Value.ToString();
+                        var dbName = DbPropertyDoc.GetElement("name").Value.ToString();
                         mongoDbNode = FillDataBaseInfoToTreeNode(dbName, connSvrKey, client);
                         mongoDbNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoDbNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
@@ -423,8 +423,8 @@ namespace MongoGUICtl.ClientTree
                     }
                     catch (Exception ex)
                     {
-                        Utility.ExceptionDeal(ex, strDbName + "Exception", strDbName + "Exception");
-                        mongoDbNode = new TreeNode(strDbName + " (Exception)")
+                        //Utility.ExceptionDeal(ex, strDbName + "Exception", strDbName + "Exception");
+                        mongoDbNode = new TreeNode(DbPropertyDoc.GetElement("name").Value.ToString() + "(Exception)")
                         {
                             ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database,
                             SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database

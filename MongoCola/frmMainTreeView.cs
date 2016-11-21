@@ -221,7 +221,7 @@ namespace MongoCola
         private void DataBaseHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
         {
             RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
-            var roles = User.GetCurrentDbRoles(RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
+            var roles = MongoUserEx.GetCurrentDbRoles(RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
                 RuntimeMongoDbContext.GetCurrentDataBaseName());
             if (GuiConfig.IsUseDefaultLanguage)
             {

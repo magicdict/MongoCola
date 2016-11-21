@@ -43,8 +43,6 @@ namespace FunctionForm.User
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblConfirmPsw = new System.Windows.Forms.Label();
             this.txtConfirmPsw = new System.Windows.Forms.TextBox();
-            this.lbluserSource = new System.Windows.Forms.Label();
-            this.txtuserSource = new System.Windows.Forms.TextBox();
             this.lblotherDBRoles = new System.Windows.Forms.Label();
             this.cmbDB = new System.Windows.Forms.ComboBox();
             this.cmdAddRole = new System.Windows.Forms.Button();
@@ -134,22 +132,6 @@ namespace FunctionForm.User
             this.txtConfirmPsw.Size = new System.Drawing.Size(170, 21);
             this.txtConfirmPsw.TabIndex = 2;
             this.txtConfirmPsw.UseSystemPasswordChar = true;
-            // 
-            // lbluserSource
-            // 
-            this.lbluserSource.AutoSize = true;
-            this.lbluserSource.Location = new System.Drawing.Point(28, 436);
-            this.lbluserSource.Name = "lbluserSource";
-            this.lbluserSource.Size = new System.Drawing.Size(70, 15);
-            this.lbluserSource.TabIndex = 10;
-            this.lbluserSource.Text = "userSource";
-            // 
-            // txtuserSource
-            // 
-            this.txtuserSource.Location = new System.Drawing.Point(136, 433);
-            this.txtuserSource.Name = "txtuserSource";
-            this.txtuserSource.Size = new System.Drawing.Size(170, 21);
-            this.txtuserSource.TabIndex = 11;
             // 
             // lblotherDBRoles
             // 
@@ -245,8 +227,6 @@ namespace FunctionForm.User
             this.Controls.Add(this.cmdAddRole);
             this.Controls.Add(this.cmbDB);
             this.Controls.Add(this.lblotherDBRoles);
-            this.Controls.Add(this.txtuserSource);
-            this.Controls.Add(this.lbluserSource);
             this.Controls.Add(this.userRoles);
             this.Controls.Add(this.txtConfirmPsw);
             this.Controls.Add(this.lblConfirmPsw);
@@ -281,8 +261,6 @@ namespace FunctionForm.User
         private Label lblConfirmPsw;
         private TextBox txtConfirmPsw;
         private CtlUserRolesPanel userRoles;
-        private Label lbluserSource;
-        private TextBox txtuserSource;
         private Label lblotherDBRoles;
         private ComboBox cmbDB;
         private Button cmdAddRole;

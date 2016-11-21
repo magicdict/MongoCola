@@ -6,7 +6,7 @@
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
 * 版本号：Ver 2.0.8
-* 文档最后更新时间：2016-11-18
+* 文档最后更新时间：2016-11-21
 
 ## 开发和测试环境
 **操作系统：**
@@ -16,7 +16,7 @@
 **运行时：**
 * NET Framework 4.6.2
 ~~* NET Core 1.1.10~~
-* MongoDB 3.4.0-rc3
+* MongoDB 3.4.0-rc4
 
 **驱动程序：**
 * CSharp Mongo Driver 2.4.0-beta1
@@ -301,7 +301,7 @@ Match可以设定数据的过滤条件，支持OR和AND以及括号
 当然您也可以通过AddStage将一个复杂的Stage的JSON定义加入到StagePipeline中。
 当您创建完成一个聚合管道命令时，你可以将这个聚合管道转换为一个视图（View）
 
-##文本检索
+###文本检索
 **[Text Search官方文档](https://docs.mongodb.com/master/text-search/ "Text Search")**
 注意：文本检索需要对数据集增加Text索引。非Enterprise版本不支持分词功能。
 
@@ -310,8 +310,10 @@ Match可以设定数据的过滤条件，支持OR和AND以及括号
 ###GeoNear
 GeoNear用来检索地理位置：
 给出指定坐标（经度和纬度），然后寻在指定范围里面的点的集合。
+**注意：GeoJSON返回的结果是meter，LegacyPoint返回的结果是弧度。Multiplier对于MaxDistance是不起作用的**
+以下例子表示查找距离指定坐标10000米之内的点，返回文档中的dis字段，用公里表示（米->公里，所以结果*0.001）。
 
-![](/FileSystem/Thumbnail?filename=00000001_20161104143522_GeoNear.png)
+![](/FileSystem/Thumbnail?filename=00000001_20161121104551_GeoNear.png)
 
 ##Grid File System
 **[Storage官方文档](https://docs.mongodb.com/master/storage/ "Storage官方文档")**
@@ -512,6 +514,7 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 8. id缺失数据集的崩溃问题
 9. 优化了连接Timeout的处理，使用Health标志说明连接状态
 10. MapReduce的界面优化
+11. GeoNear功能的强化，GeoJson和LegacyCoodinates的区分。
 
 ### 删除
 1. 主从同步功能：随着Master-Slaver机制的取消，主从同步功能也随之取消。其他所有主从副本相关的代码也会渐渐剔除。
@@ -537,7 +540,7 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 1. QueryFilter功能入口去除：由于聚合框架和视图功能的存在，原先的QueryFilter功能废止
    同样的功能，建议使用聚合管理器，制作一个视图来替代该功能
 2. 数据集的聚合菜单下的Count功能，没有什么作用，Count结果已经在数据集名称旁边表示了
-3. 数据集的聚合菜单下的Group功能，按照MongoDB官方的处理意见，使用Group或者MapReduce功能进行代替。
+3. 数据集的聚合菜单下的Group功能，按照MongoDB官方的处理意见，使用Aggregate的Group Pipeline或者MapReduce功能进行代替。
 
 ###Ver 2.0.3 2016/11/03
 

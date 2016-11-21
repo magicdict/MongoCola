@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using System;
+using MongoUtility.Security;
 
 namespace MongoUtility.Command
 {
@@ -316,8 +317,8 @@ namespace MongoUtility.Command
         public static CommandResult updateZoneKeyRange(MongoServer routeSvr, string nameSpace, string FieldName, BsonValue min, BsonValue max, string zone)
         {
             var mongoCmd = new CommandDocument { { "updateZoneKeyRange", nameSpace } };
-            mongoCmd.Add("min",new BsonDocument(FieldName, min));
-            mongoCmd.Add("max",new BsonDocument(FieldName, max));
+            mongoCmd.Add("min", new BsonDocument(FieldName, min));
+            mongoCmd.Add("max", new BsonDocument(FieldName, max));
             mongoCmd.Add("zone", zone);
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
@@ -440,10 +441,23 @@ namespace MongoUtility.Command
         /// <param name="collectionName"></param>
         /// <param name="size"></param>
         /// <returns></returns>
-        public static CommandResult convertToCapped(string collectionName,long size,MongoDatabase db)
+        public static CommandResult convertToCapped(string collectionName, long size, MongoDatabase db)
         {
             var mongoCmd = new CommandDocument { { "convertToCapped", collectionName } };
             mongoCmd.Add("size", size);
+            return ExecuteMongoDBCommand(mongoCmd, db);
+        }
+        /// <summary>
+        ///     createUser
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static CommandResult createUser(MongoUserEx user, MongoDatabase db)
+        {
+            var mongoCmd = new CommandDocument { { "createUser", user.Username } };
+            mongoCmd.Add("pwd", user.Password);
+            mongoCmd.Add("roles", user.Roles);
             return ExecuteMongoDBCommand(mongoCmd, db);
         }
 

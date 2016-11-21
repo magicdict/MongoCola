@@ -9,8 +9,8 @@ namespace MongoUtility.Security
 {
     public class EachDatabaseUser
     {
-        public Dictionary<string, User> UserList =
-            new Dictionary<string, User>();
+        public Dictionary<string, MongoUserEx> UserList =
+            new Dictionary<string, MongoUserEx>();
 
         /// <summary>
         ///     获得数据库角色
@@ -90,7 +90,7 @@ namespace MongoUtility.Security
                 db.GetCollection(ConstMgr.CollectionNameUser).FindOneAs<BsonDocument>(Query.EQ("user", username));
             if (userInfo != null)
             {
-                var user = new User();
+                var user = new MongoUserEx();
                 user.Roles = userInfo["roles"].AsBsonArray;
                 if (userInfo.Contains("otherDBRoles"))
                 {

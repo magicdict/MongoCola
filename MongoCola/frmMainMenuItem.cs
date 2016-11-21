@@ -168,7 +168,7 @@ namespace MongoCola
             RefreshToolStripMenuItem.Enabled = true;
             RefreshToolStripButton.Enabled = true;
             statusStripMain.Items[0].Text = GuiConfig.GetText("Ready", TextType.MainStatusBarTextReady);
-            trvsrvlst.SelectedNode = trvsrvlst.Nodes[0];
+            if (trvsrvlst.Nodes.Count > 0) trvsrvlst.SelectedNode = trvsrvlst.Nodes[0];
         }
 
         /// <summary>

@@ -42,23 +42,23 @@ namespace MongoGUIView
             var cp = collectionPath.Split("/".ToCharArray());
             foreach (var control in controls)
             {
-                if (control.GetType() == typeof (ListView))
+                if (control.GetType() == typeof(ListView))
                 {
                     if (
                         !(dataList.Count == 0 &&
                           currentDataViewInfo.strCollectionPath.Split(":".ToCharArray())[0] == ConstMgr.CollectionTag))
                     {
                         //只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
-                        FillDataToListView(cp[(int) EnumMgr.PathLevel.CollectionAndView], (ListView) control, dataList);
+                        FillDataToListView(cp[(int)EnumMgr.PathLevel.CollectionAndView], (ListView)control, dataList);
                     }
                 }
-                if (control.GetType() == typeof (TextBox))
+                if (control.GetType() == typeof(TextBox))
                 {
-                    FillJsonDataToTextBox((TextBox) control, dataList, currentDataViewInfo.SkipCnt);
+                    FillJsonDataToTextBox((TextBox)control, dataList, currentDataViewInfo.SkipCnt);
                 }
-                if (control.GetType() == typeof (CtlTreeViewColumns))
+                if (control.GetType() == typeof(CtlTreeViewColumns))
                 {
-                    UiHelper.FillDataToTreeView(cp[(int) EnumMgr.PathLevel.CollectionAndView], (CtlTreeViewColumns) control,
+                    UiHelper.FillDataToTreeView(cp[(int)EnumMgr.PathLevel.CollectionAndView], (CtlTreeViewColumns)control,
                         dataList,
                         currentDataViewInfo.SkipCnt);
                 }
@@ -246,25 +246,18 @@ namespace MongoGUIView
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("ID");
-                lstData.Columns.Add(
-                    GuiConfig.GetText(TextType.CommonUsername));
+                lstData.Columns.Add(GuiConfig.GetText(TextType.CommonUsername));
                 lstData.Columns.Add(GuiConfig.GetText(TextType.CommonRoles));
-                lstData.Columns.Add(
-                    GuiConfig.GetText(TextType.CommonPassword));
-                lstData.Columns.Add("userSource");
-                lstData.Columns.Add("otherDBRoles");
-                lstData.Columns.Add(
-                    GuiConfig.GetText(TextType.CommonReadOnly));
+                lstData.Columns.Add("credentials");
+                lstData.Columns.Add("customData");
             }
             else
             {
                 lstData.Columns.Add("ID");
                 lstData.Columns.Add("user");
                 lstData.Columns.Add("roles");
-                lstData.Columns.Add("password");
-                lstData.Columns.Add("userSource");
-                lstData.Columns.Add("otherDBRoles");
-                lstData.Columns.Add("readonly");
+                lstData.Columns.Add("credentials");
+                lstData.Columns.Add("customData");
             }
             foreach (var docFile in dataList)
             {
@@ -279,26 +272,16 @@ namespace MongoGUIView
                 lstItem.SubItems.Add(strRoles == null ? "N/A" : strRoles.ToString());
                 //密码是Hash表示的，这里没有安全隐患
                 //Password和userSource不能同时设置，所以password也可能不存在
-                BsonValue strPassword;
-                docFile.TryGetValue("pwd", out strPassword);
-                lstItem.SubItems.Add(strPassword == null ? "N/A" : strPassword.ToString());
-                //userSource
-                BsonValue strUserSource;
-                docFile.TryGetValue("userSource", out strUserSource);
-                lstItem.SubItems.Add(strUserSource == null ? "N/A" : strUserSource.ToString());
-                //OtherDBRoles
-                BsonValue strOtherDbRoles;
-                docFile.TryGetValue("otherDBRoles", out strOtherDbRoles);
-                lstItem.SubItems.Add(strOtherDbRoles == null ? "N/A" : strOtherDbRoles.ToString());
-                //ReadOnly
-                //20130802 roles列表示。ReadOnly可能不存在！
-                BsonValue strReadOnly;
-                docFile.TryGetValue("readOnly", out strReadOnly);
-                lstItem.SubItems.Add(strReadOnly == null ? "N/A" : strReadOnly.ToString());
+                BsonValue credentials;
+                docFile.TryGetValue("credentials", out credentials);
+                lstItem.SubItems.Add(credentials == null ? "N/A" : credentials.ToString());
+                //customData
+                BsonValue customData;
+                docFile.TryGetValue("customData", out customData);
+                lstItem.SubItems.Add(customData == null ? "N/A" : customData.ToString());
                 lstData.Items.Add(lstItem);
             }
             UIAssistant.ListViewColumnResize(lstData);
-            //lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         /// <summary>
@@ -430,7 +413,7 @@ namespace MongoGUIView
                     mDataViewInfo.SkipCnt = 0;
                     break;
                 case PageChangeOpr.LastPage:
-                    if (mDataViewInfo.CurrentCollectionTotalCnt%mDataViewInfo.LimitCnt == 0)
+                    if (mDataViewInfo.CurrentCollectionTotalCnt % mDataViewInfo.LimitCnt == 0)
                     {
                         //没有余数的时候，600 % 100 == 0  => Skip = 600-100 = 500
                         mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - mDataViewInfo.LimitCnt;
@@ -439,7 +422,7 @@ namespace MongoGUIView
                     {
                         // 630 % 100 == 30  => Skip = 630-30 = 600  
                         mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt -
-                                                mDataViewInfo.CurrentCollectionTotalCnt%mDataViewInfo.LimitCnt;
+                                                mDataViewInfo.CurrentCollectionTotalCnt % mDataViewInfo.LimitCnt;
                     }
                     break;
                 case PageChangeOpr.NextPage:

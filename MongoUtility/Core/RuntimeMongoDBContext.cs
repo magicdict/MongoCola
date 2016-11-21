@@ -112,6 +112,7 @@ namespace MongoUtility.Core
                         mongoClientSetting.Credentials = new[] { MongoCredential.CreateMongoX509Credential(config.UserName) };
                     }
                 }
+
                 //ReplSetName
                 if (!string.IsNullOrEmpty(config.ReplSetName))
                 {
@@ -631,21 +632,19 @@ namespace MongoUtility.Core
             for (var i = 0; i < configLst.Count; i++)
             {
                 var config = configLst[i];
-                //Legacy Server
-                if (MongoConnSvrLst.ContainsKey(config.ConnectionName))
-                {
-                    MongoConnSvrLst.Remove(config.ConnectionName);
-                }
-                MongoConnSvrLst.Add(config.ConnectionName, CreateMongoServer(ref config));
                 //Client
                 if (MongoConnClientLst.ContainsKey(config.ConnectionName))
                 {
                     MongoConnClientLst.Remove(config.ConnectionName);
                 }
-                MongoConnClientLst.Add(config.ConnectionName, CreateMongoClient(ref config));
-
-                //更新一些运行时的变量
-                //SystemConfig.config.ConnectionList[config.ConnectionName] = config;
+                var client = CreateMongoClient(ref config);
+                MongoConnClientLst.Add(config.ConnectionName, client);
+                //Legacy Server
+                if (MongoConnSvrLst.ContainsKey(config.ConnectionName))
+                {
+                    MongoConnSvrLst.Remove(config.ConnectionName);
+                }
+                MongoConnSvrLst.Add(config.ConnectionName, client.GetServer());
             }
         }
 

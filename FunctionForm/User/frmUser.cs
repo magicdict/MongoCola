@@ -17,15 +17,15 @@ namespace FunctionForm.User
         /// <summary>
         ///     是否作为Admin
         /// </summary>
-        private readonly bool _isAdmin;
+        private bool _isAdmin;
         /// <summary>
         ///     修改用户名
         /// </summary>
-        private readonly string _modifyName = string.Empty;
+        private string _modifyName = string.Empty;
         /// <summary>
         ///     自定义角色
         /// </summary>
-        private readonly Dictionary<string, BsonElement> _otherDbRolesDict = new Dictionary<string, BsonElement>();
+        private Dictionary<string, BsonElement> _otherDbRolesDict = new Dictionary<string, BsonElement>();
 
         /// <summary>
         ///     frmUser
@@ -82,7 +82,7 @@ namespace FunctionForm.User
                 return;
             }
             //MongoUser不能同时具备Password和userSource字段！
-            var user = new MongoUtility.Security.User
+            var user = new MongoUtility.Security.MongoUserEx
             {
                 Username = txtUserName.Text,
                 Password = txtUserName.Text,
@@ -94,18 +94,14 @@ namespace FunctionForm.User
                 otherDbRoles.Add(item);
             }
             user.OtherDbRoles = otherDbRoles;
-            user.UserSource = txtuserSource.Text;
             if (txtUserName.Text == string.Empty)
             {
                 MyMessageBox.ShowMessage("Error", "Please fill username!");
                 return;
             }
-            //2013/08/13 用户结构发生大的变化
-            //取消了ReadOnly字段，添加了Roles等字段
-            //简化逻辑，不论新建还是修改，AddUser都可以
             try
             {
-                MongoUtility.Security.User.AddUserToSystem(user, _isAdmin);
+                MongoUtility.Security.MongoUserEx.AddUser(user, _isAdmin);
             }
             catch (Exception ex)
             {

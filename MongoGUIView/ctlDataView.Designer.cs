@@ -96,7 +96,7 @@ namespace MongoGUIView
             this.tabTreeView.Size = new System.Drawing.Size(909, 365);
             this.tabTreeView.TabIndex = 0;
             this.tabTreeView.Tag = "Main_Tab_Tree";
-            this.tabTreeView.Text = "TreeView";
+            this.tabTreeView.Text = "Tree";
             this.tabTreeView.UseVisualStyleBackColor = true;
             // 
             // trvData
@@ -120,7 +120,7 @@ namespace MongoGUIView
             this.tabTableView.Size = new System.Drawing.Size(909, 365);
             this.tabTableView.TabIndex = 1;
             this.tabTableView.Tag = "Main_Tab_Table";
-            this.tabTableView.Text = "TableView";
+            this.tabTableView.Text = "Table";
             this.tabTableView.UseVisualStyleBackColor = true;
             // 
             // lstData
@@ -148,7 +148,7 @@ namespace MongoGUIView
             this.tabTextView.Size = new System.Drawing.Size(909, 365);
             this.tabTextView.TabIndex = 2;
             this.tabTextView.Tag = "Main_Tab_Text";
-            this.tabTextView.Text = "TextView";
+            this.tabTextView.Text = "JSON";
             this.tabTextView.UseVisualStyleBackColor = true;
             // 
             // txtData

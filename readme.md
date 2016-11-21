@@ -20,7 +20,7 @@
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.1.10
-* MongoDB 3.4.0-rc3 
+* MongoDB 3.4.0-rc4  
 
 ***
 
@@ -48,6 +48,9 @@ C#的代码分为两个解决方案：
 从MongoDB 3.2开始，官方全面废除主从副本，所以所有主从副本的代码都停止维护，并且从代码中删除。
 Deprecated since version 3.2: MongoDB 3.2 deprecates the use of master-slave replication for components of sharded clusters.
 详细参见官网：https://docs.mongodb.com/manual/core/master-slave/
+
+- Group功能的废除：
+按照MongoDB官方的处理意见，使用Aggregate的Group Pipeline或者MapReduce功能进行代替。
 
 # 计划
 0. Fix Bug  
