@@ -129,6 +129,7 @@ namespace MongoCola
             {
                 CreateMongoDBToolStripMenuItem.Enabled = true;
                 AddUserToAdminToolStripMenuItem.Enabled = true;
+                AddAdminCustomeRoleStripMenuItem.Enabled = true;
             }
             UserInfoStripMenuItem.Enabled = true;
             ServerStatusToolStripMenuItem.Enabled = true;
@@ -263,6 +264,8 @@ namespace MongoCola
                     RepairDBToolStripMenuItem.Enabled = true;
                 }
             }
+
+            AddDBCustomeRoleStripMenuItem.Enabled = true;
 
             //使用Shell:从实际情况来看，有一些Shell指令是不依赖与Admin数据库或者和数据库无关的
             //所以这里暂时开放所有的Shell指令。

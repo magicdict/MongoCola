@@ -83,6 +83,7 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     读取配置
         /// </summary>
         public static void LoadFromConfigFile()
         {
@@ -125,10 +126,11 @@ namespace MongoUtility.Core
             //这是对于XML中换行有效，
             //String的换行会变成Console的NewLine /n
             var xml = new XmlSerializer(typeof(T));
-            var fs = new FileStream(filename, FileMode.OpenOrCreate);
+            //这里必须使用Create，如果是CreateOrOpen的话，如果新的文件长度小于旧的，则会发生非完全覆盖的问题。
+            var fs = new FileStream(filename, FileMode.Create);
             var writer = XmlWriter.Create(fs, settings);
             var ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
+            ns.Add(string.Empty, string.Empty);
             xml.Serialize(writer, obj, ns);
 #if NET462
             fs.Close();

@@ -57,7 +57,7 @@ namespace FunctionForm.User
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(85, 474);
+            this.cmdOK.Location = new System.Drawing.Point(142, 460);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(96, 26);
             this.cmdOK.TabIndex = 4;
@@ -69,7 +69,7 @@ namespace FunctionForm.User
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(222, 474);
+            this.cmdCancel.Location = new System.Drawing.Point(279, 460);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(117, 26);
             this.cmdCancel.TabIndex = 5;

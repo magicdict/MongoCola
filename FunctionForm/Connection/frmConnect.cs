@@ -41,7 +41,7 @@ namespace FunctionForm.Connection
                     t.SubItems.Add(item.Host == string.Empty ? "localhost" : item.Host);
                     t.SubItems.Add(item.Port == 0 ? string.Empty : item.Port.ToString());
                     t.SubItems.Add(string.Empty);
-                    t.SubItems.Add(item.UserName);
+                    t.SubItems.Add((string.IsNullOrEmpty(item.UserName)) ? string.Empty : (item.UserName + "@" + item.DataBaseName));
                     lstConnection.Items.Add(t);
                 }
                 else
@@ -55,7 +55,7 @@ namespace FunctionForm.Connection
                         replArray += repl + ";";
                     }
                     t.SubItems.Add(replArray);
-                    t.SubItems.Add((string.IsNullOrEmpty(item.UserName)) ? string.Empty : item.UserName);
+                    t.SubItems.Add((string.IsNullOrEmpty(item.UserName)) ? string.Empty : (item.UserName + "@" + item.DataBaseName));
                     lstConnection.Items.Add(t);
                 }
             }
