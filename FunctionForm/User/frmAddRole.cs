@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using MongoGUIView;
+﻿using MongoGUIView;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Security;
 using ResourceLib.UI;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace FunctionForm.User
 {
@@ -31,7 +31,7 @@ namespace FunctionForm.User
         private void frmAddRole_Load(object sender, EventArgs e)
         {
             cmbResourceType.Items.Clear();
-            foreach (var item in Enum.GetNames(typeof (Resource.ResourceType)))
+            foreach (var item in Enum.GetNames(typeof(Resource.ResourceType)))
             {
                 cmbResourceType.Items.Add(item);
             }
@@ -40,7 +40,7 @@ namespace FunctionForm.User
             {
                 cmbDatabase.Items.Add(item);
             }
-            foreach (var item in Enum.GetValues(typeof (MongoDbAction.ActionGroup)))
+            foreach (var item in Enum.GetValues(typeof(MongoAction.ActionGroup)))
             {
                 cmbActionGroup.Items.Add(item.ToString().Replace("_", " "));
             }
@@ -53,7 +53,7 @@ namespace FunctionForm.User
         {
             var res = new Resource
             {
-                Type = (Resource.ResourceType) Enum.Parse(typeof (Resource.ResourceType), cmbResourceType.Text),
+                Type = (Resource.ResourceType)Enum.Parse(typeof(Resource.ResourceType), cmbResourceType.Text),
                 DataBaseName = cmbDatabase.Text,
                 CollectionName = cmbCollection.Text
             };
@@ -106,10 +106,14 @@ namespace FunctionForm.User
         {
             chklstAction.Items.Clear();
             var prifix = cmbActionGroup.Text.Replace(" ", string.Empty);
-            foreach (var item in Enum.GetValues(typeof (MongoDbAction.ActionType)))
+            foreach (var item in Enum.GetValues(typeof(MongoAction.ActionType)))
             {
                 if (item.ToString().StartsWith(prifix))
-                    chklstAction.Items.Add(item.ToString().Substring(prifix.Length + 1));
+                {
+                    var actionName = item.ToString().Substring(prifix.Length);
+                    actionName = actionName.Substring(0, 1).ToLower() + actionName.Substring(1);
+                    chklstAction.Items.Add(actionName);
+                }
             }
         }
 
@@ -119,10 +123,10 @@ namespace FunctionForm.User
         /// <param name="e"></param>
         private void btnAddPriviege_Click(object sender, EventArgs e)
         {
-            var actionlst = new MongoDbAction.ActionType[chklstAction.CheckedItems.Count];
+            var actionlst = new MongoAction.ActionType[chklstAction.CheckedItems.Count];
             for (var i = 0; i < chklstAction.CheckedItems.Count; i++)
             {
-                actionlst[i] = (MongoDbAction.ActionType) Enum.Parse(typeof (MongoDbAction.ActionType),
+                actionlst[i] = (MongoAction.ActionType)Enum.Parse(typeof(MongoAction.ActionType),
                     cmbActionGroup.Text.Replace(" ", string.Empty) + "_" + chklstAction.CheckedItems[i]);
             }
             _privilegeList.Add(new Role.Privilege
@@ -133,7 +137,7 @@ namespace FunctionForm.User
 
             var t = new ListViewItem();
             t.Text = GetRoleResource().GetJsCode();
-            t.SubItems.Add(MongoDbAction.GetActionListJs(actionlst));
+            t.SubItems.Add(MongoAction.GetActionListJs(actionlst));
             lstPriviege.Items.Add(t);
         }
 

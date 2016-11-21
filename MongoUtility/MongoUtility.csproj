@@ -114,7 +114,7 @@
     <Compile Include="EventArgs\SelectedIndexChangeEventArgs.cs" />
     <Compile Include="EventArgs\TextChangeEventArgs.cs" />
     <Compile Include="Core\GetConnectionInfo.cs" />
-    <Compile Include="Security\MongoDBAction.cs" />
+    <Compile Include="Security\MongoAction.cs" />
     <Compile Include="Security\Resource.cs" />
     <Compile Include="Security\MongoUserEx.cs" />
     <Compile Include="Security\Role.cs" />

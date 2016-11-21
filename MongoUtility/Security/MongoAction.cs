@@ -3,10 +3,14 @@
 namespace MongoUtility.Security
 {
     /// <summary>
+    ///     
     /// </summary>
-    public static class MongoDbAction
+    public static class MongoAction
     {
+        //http://docs.mongodb.org/master/reference/privilege-actions/#security-user-actions
+
         /// <summary>
+        ///     Action Group
         /// </summary>
         public enum ActionGroup
         {
@@ -20,21 +24,20 @@ namespace MongoUtility.Security
             InternalActions
         }
 
-        //http://docs.mongodb.org/master/reference/privilege-actions/#security-user-actions
-
         /// <summary>
         ///     Queryand Write Actions
         /// </summary>
         public enum ActionType
         {
             //Query
-            QueryandWriteActionsFind,
-            QueryandWriteActionsInsert,
-            QueryandWriteActionsRemove,
-            QueryandWriteActionsUpdate,
+            QueryAndWriteActionsFind = 0,
+            QueryAndWriteActionsInsert,
+            QueryAndWriteActionsRemove,
+            QueryAndWriteActionsUpdate,
+            QueryAndWriteActionsBypassDocumentValidation,
 
             //Database Management
-            DatabaseManagementActionsChangeCustomData,
+            DatabaseManagementActionsChangeCustomData = 100,
             DatabaseManagementActionsChangeOwnCustomData,
             DatabaseManagementActionsChangeOwnPassword,
             DatabaseManagementActionsChangePassword,
@@ -55,18 +58,18 @@ namespace MongoUtility.Security
             DatabaseManagementActionsViewUser,
 
             //Deployment Management
-            DeploymentManagementActionsStorageDetails,
-            DeploymentManagementActionsPlanCacheWrite,
-            DeploymentManagementActionsPlanCacheRead,
-            DeploymentManagementActionsKillop,
-            DeploymentManagementActionsInvalidateUserCache,
-            DeploymentManagementActionsInprog,
-            DeploymentManagementActionsCpuProfiler,
+            DeploymentManagementActionsAuthSchemaUpgrade = 200,
             DeploymentManagementActionsCleanupOrphaned,
-            DeploymentManagementActionsAuthSchemaUpgrade,
+            DeploymentManagementActionsCpuProfiler,
+            DeploymentManagementActionsInprog,
+            DeploymentManagementActionsInvalidateUserCache,
+            DeploymentManagementActionsKillop,
+            DeploymentManagementActionsPlanCacheRead,
+            DeploymentManagementActionsPlanCacheWrite,
+            DeploymentManagementActionsStorageDetails,
 
             //Replication
-            ReplicationActionsAppendOplogNote,
+            ReplicationActionsAppendOplogNote = 300,
             ReplicationActionsReplSetConfigure,
             ReplicationActionsReplSetGetStatus,
             ReplicationActionsReplSetHeartbeat,
@@ -74,7 +77,7 @@ namespace MongoUtility.Security
             ReplicationActionsResync,
 
             //Sharding
-            ShardingActionsAddShard,
+            ShardingActionsAddShard = 400,
             ShardingActionsEnableSharding,
             ShardingActionsFlushRouterConfig,
             ShardingActionsGetShardMap,
@@ -86,24 +89,8 @@ namespace MongoUtility.Security
             ShardingActionsSplitChunk,
             ShardingActionsSplitVector,
 
-            //Diagnostic
-            DiagnosticActionsCollStats,
-            DiagnosticActionsConnPoolStats,
-            DiagnosticActionsCursorInfo,
-            DiagnosticActionsDbHash,
-            DiagnosticActionsDbStats,
-            DiagnosticActionsDiagLogging,
-            DiagnosticActionsGetCmdLineOpts,
-            DiagnosticActionsGetLog,
-            DiagnosticActionsIndexStats,
-            DiagnosticActionsListDatabases,
-            DiagnosticActionsNetstat,
-            DiagnosticActionsServerStatus,
-            DiagnosticActionsTop,
-            DiagnosticActionsValidate,
-
             //Server Administration Actions
-            ServerAdministrationActionsApplicationMessage,
+            ServerAdministrationActionsApplicationMessage = 500,
             ServerAdministrationActionsCloseAllDatabases,
             ServerAdministrationActionsCollMod,
             ServerAdministrationActionsCompact,
@@ -122,13 +109,29 @@ namespace MongoUtility.Security
             ServerAdministrationActionsShutdown,
             ServerAdministrationActionsTouch,
 
+            //Diagnostic
+            DiagnosticActionsCollStats = 600,
+            DiagnosticActionsConnPoolStats,
+            DiagnosticActionsCursorInfo,
+            DiagnosticActionsDbHash,
+            DiagnosticActionsDbStats,
+            DiagnosticActionsDiagLogging,
+            DiagnosticActionsGetCmdLineOpts,
+            DiagnosticActionsGetLog,
+            DiagnosticActionsIndexStats,
+            DiagnosticActionsListDatabases,
+            DiagnosticActionsNetstat,
+            DiagnosticActionsServerStatus,
+            DiagnosticActionsTop,
+            DiagnosticActionsValidate,
+
             //Internal
-            InternalActionsAnyAction,
+            InternalActionsAnyAction = 700,
             InternalActionsInternal,
 
             //Tool Defined
-            MiscInitGfs,
-            MiscEvalJs
+            MiscActionsInitGfs = 900,
+            MiscActionsEvalJs
         }
 
         /// <summary>
@@ -167,7 +170,7 @@ namespace MongoUtility.Security
                         canDoIt = true;
                     }
                     break;
-                case ActionType.MiscEvalJs:
+                case ActionType.MiscActionsEvalJs:
                     //http://docs.mongodb.org/manual/reference/user-privileges/
                     //Combined Access
                     //Requires readWriteAnyDatabase, userAdminAnyDatabase, dbAdminAnyDatabase and clusterAdmin (on the admin database.)
@@ -180,7 +183,7 @@ namespace MongoUtility.Security
                     }
                     break;
                 case ActionType.DatabaseManagementActionsCreateCollection:
-                case ActionType.MiscInitGfs:
+                case ActionType.MiscActionsInitGfs:
                     if (roles.Contains(Role.UserRoleReadWrite) ||
                         roles.Contains(Role.UserRoleReadWriteAnyDatabase) ||
                         roles.Contains(Role.UserRoleDbAdmin))

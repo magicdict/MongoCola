@@ -1,4 +1,6 @@
-﻿namespace MongoUtility.Security
+﻿using MongoDB.Bson;
+
+namespace MongoUtility.Security
 {
     /// <summary>
     ///     资源
@@ -41,7 +43,33 @@
         /// </summary>
         public ResourceType Type;
 
+
         /// <summary>
+        ///     获得BsonDocument
+        /// </summary>
+        /// <returns></returns>
+        public BsonDocument GetBsonDoc()
+        {
+            BsonDocument ResourceContent = null;
+            switch (Type)
+            {
+                case ResourceType.DataBase:
+                    ResourceContent = new BsonDocument("db", DataBaseName);
+                    ResourceContent = new BsonDocument("collection", CollectionName);
+                    break;
+                case ResourceType.Cluster:
+                    ResourceContent = new BsonDocument("cluster", BsonBoolean.True);
+                    break;
+                case ResourceType.Any:
+                    ResourceContent = new BsonDocument("anyResource",BsonBoolean.True);
+                    break;
+            }
+            BsonDocument Resource = new BsonDocument("resource", ResourceContent);
+            return Resource;
+        }
+
+        /// <summary>
+        ///     获得资源的JsCode形式
         /// </summary>
         /// <returns></returns>
         public string GetJsCode()

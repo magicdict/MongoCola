@@ -72,7 +72,7 @@ namespace MongoUtility.Security
         {
             /// <summary>
             /// </summary>
-            public MongoDbAction.ActionType[] Actions;
+            public MongoAction.ActionType[] Actions;
 
             /// <summary>
             /// </summary>
@@ -90,7 +90,7 @@ namespace MongoUtility.Security
 
             /// <summary>
             /// </summary>
-            public string MRole;
+            public string Role;
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace MongoUtility.Security
             for (var i = 0; i < role.Roles.Length; i++)
             {
                 var singleroles = role.Roles[i];
-                roleCommand += "{ role: '" + singleroles.MRole + "', db: '" + singleroles.Db + "' }" +
+                roleCommand += "{ role: '" + singleroles.Role + "', db: '" + singleroles.Db + "' }" +
                                (i == role.Roles.Length - 1 ? "" : ",") + Environment.NewLine;
             }
             roleCommand += "     ],";
@@ -120,7 +120,7 @@ namespace MongoUtility.Security
             {
                 var singleprivileges = role.Privileges[i];
                 roleCommand += "{" + singleprivileges.Resource.GetJsCode() + "," +
-                               MongoDbAction.GetActionListJs(singleprivileges.Actions) + "}" +
+                               MongoAction.GetActionListJs(singleprivileges.Actions) + "}" +
                                (i == role.Privileges.Length - 1 ? "" : ",") + Environment.NewLine;
             }
             roleCommand += "     ],";

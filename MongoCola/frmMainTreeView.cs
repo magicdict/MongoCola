@@ -240,18 +240,18 @@ namespace MongoCola
                 if (RuntimeMongoDbContext.CurrentMongoConnectionconfig.AuthMode)
                 {
                     //根据Roles确定删除数据库/创建数据集等的权限
-                    DelMongoDBToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
-                        MongoDbAction.ActionType.ServerAdministrationActionsDropDatabase);
-                    CreateMongoCollectionToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
-                        MongoDbAction.ActionType.DatabaseManagementActionsCreateCollection);
+                    DelMongoDBToolStripMenuItem.Enabled = MongoAction.JudgeRightByBuildInRole(roles,
+                        MongoAction.ActionType.ServerAdministrationActionsDropDatabase);
+                    CreateMongoCollectionToolStripMenuItem.Enabled = MongoAction.JudgeRightByBuildInRole(roles,
+                        MongoAction.ActionType.DatabaseManagementActionsCreateCollection);
                     CopyDatabasetoolStripMenuItem.Enabled = true;
-                    InitGFSToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
-                        MongoDbAction.ActionType.MiscInitGfs);
-                    AddUserToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
-                        MongoDbAction.ActionType.DatabaseManagementActionsCreateUser);
+                    InitGFSToolStripMenuItem.Enabled = MongoAction.JudgeRightByBuildInRole(roles,
+                        MongoAction.ActionType.MiscActionsInitGfs);
+                    AddUserToolStripMenuItem.Enabled = MongoAction.JudgeRightByBuildInRole(roles,
+                        MongoAction.ActionType.DatabaseManagementActionsCreateUser);
                     //If a Slave server can repair database @ Master-Slave is not sure ??
-                    RepairDBToolStripMenuItem.Enabled = MongoDbAction.JudgeRightByBuildInRole(roles,
-                        MongoDbAction.ActionType.ServerAdministrationActionsRepairDatabase);
+                    RepairDBToolStripMenuItem.Enabled = MongoAction.JudgeRightByBuildInRole(roles,
+                        MongoAction.ActionType.ServerAdministrationActionsRepairDatabase);
                 }
                 else
                 {
