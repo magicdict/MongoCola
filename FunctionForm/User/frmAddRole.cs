@@ -1,5 +1,5 @@
-﻿using MongoGUIView;
-using MongoUtility.Basic;
+﻿using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.Security;
 using ResourceLib.UI;
@@ -12,12 +12,19 @@ namespace FunctionForm.User
     public partial class FrmAddRole : Form
     {
         /// <summary>
+        ///     Priviege List
         /// </summary>
         private readonly List<Role.Privilege> _privilegeList = new List<Role.Privilege>();
 
         /// <summary>
+        ///     Role List
         /// </summary>
         private readonly List<Role.GrantRole> _roleList = new List<Role.GrantRole>();
+
+        /// <summary>
+        ///     选中的Action
+        /// </summary>
+        private readonly List<string> PickedAction = new List<string>();
 
         public FrmAddRole()
         {
@@ -25,39 +32,136 @@ namespace FunctionForm.User
         }
 
         /// <summary>
+        ///     加载
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmAddRole_Load(object sender, EventArgs e)
         {
-            cmbResourceType.Items.Clear();
-            foreach (var item in Enum.GetNames(typeof(Resource.ResourceType)))
+            Common.UIAssistant.FillComberWithEnum(cmbResourceType, typeof(MongoResource.ResourceType));
+            var dbs = RuntimeMongoDbContext.GetCurrentServer().GetDatabaseNames();
+            Common.UIAssistant.FillComberWithArray(cmbDatabase, dbs, false);
+            Common.UIAssistant.FillComberWithArray(cmbRoleDB, dbs, false);
+            Common.UIAssistant.FillComberWithEnum(cmbActionGroup, typeof(MongoAction.ActionGroup));
+        }
+
+        #region Priviege
+        /// <summary>
+        ///     选择数据库变更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbDatabase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbCollection.Text = string.Empty;
+            cmbCollection.Items.Clear();
+            if (cmbDatabase.SelectedIndex == 0)
             {
-                cmbResourceType.Items.Add(item);
+                Common.UIAssistant.FillComberWithArray(cmbCollection, new List<string>(), false);
+                return;
             }
-            cmbDatabase.Items.Clear();
-            foreach (var item in RuntimeMongoDbContext.GetCurrentServer().GetDatabaseNames())
+            var cols = RuntimeMongoDbContext.GetCurrentServer().GetDatabase(cmbDatabase.Text).GetCollectionNames();
+            Common.UIAssistant.FillComberWithArray(cmbCollection, cols, false);
+        }
+
+        /// <summary>
+        ///     获得资源定义
+        /// </summary>
+        /// <returns></returns>
+        private MongoResource GetRoleResource()
+        {
+            var res = new MongoResource
             {
-                cmbDatabase.Items.Add(item);
-            }
-            foreach (var item in Enum.GetValues(typeof(MongoAction.ActionGroup)))
+                Type = (MongoResource.ResourceType)Enum.Parse(typeof(MongoResource.ResourceType), cmbResourceType.Text),
+                DataBaseName = cmbDatabase.SelectedIndex == 0 ? string.Empty : cmbDatabase.Text,
+                CollectionName = cmbCollection.SelectedIndex == 0 ? string.Empty : cmbCollection.Text
+            };
+            return res;
+        }
+
+        /// <summary>
+        ///     Action Group Changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbActionGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chklstAction.Items.Clear();
+            var prifix = cmbActionGroup.Text.Replace(" ", string.Empty);
+            foreach (var item in Enum.GetValues(typeof(MongoAction.ActionType)))
             {
-                cmbActionGroup.Items.Add(item.ToString().Replace("_", " "));
+                if (item.ToString().StartsWith(prifix))
+                {
+                    var actionName = item.ToString().Substring(prifix.Length);
+                    actionName = actionName.Substring(0, 1).ToLower() + actionName.Substring(1);
+                    chklstAction.Items.Add(actionName, PickedAction.Contains(actionName));
+                }
             }
         }
 
         /// <summary>
+        ///     选择或者放弃选择
         /// </summary>
-        /// <returns></returns>
-        private Resource GetRoleResource()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chklstAction_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            var res = new Resource
+            if (e.NewValue == CheckState.Checked)
             {
-                Type = (Resource.ResourceType)Enum.Parse(typeof(Resource.ResourceType), cmbResourceType.Text),
-                DataBaseName = cmbDatabase.Text,
-                CollectionName = cmbCollection.Text
-            };
-            return res;
+                //新的状态是选中，则添加
+                PickedAction.Add(((CheckedListBox)sender).Text);
+            }
+            else
+            {
+                //新的状态是不选中，则删除
+                PickedAction.Remove(((CheckedListBox)sender).Text);
+            }
+        }
+
+        /// <summary>
+        ///     添加权限
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddPriviege_Click(object sender, EventArgs e)
+        {
+            var res = GetRoleResource().GetBsonDoc();
+            var act = MongoAction.GetActionArray(PickedAction);
+            _privilegeList.Add(new Role.Privilege
+            {
+                Resource = res,
+                Actions = act
+            });
+
+            var t = new ListViewItem();
+            t.Text = res.ToString();
+            t.SubItems.Add(act.ToString());
+            lstPriviege.Items.Add(t);
+            PickedAction.Clear();
+            cmbActionGroup.SelectedIndex = 1;
+            cmbActionGroup.SelectedIndex = 0;
+        }
+        #endregion
+
+        private void btnAddRole_Click(object sender, EventArgs e)
+        {
+            var role = new Role.GrantRole();
+            if (cmbRoleDB.SelectedIndex != 0)
+            {
+                role.Db = cmbRoleDB.Text;
+            }
+            var roles = ctlUserRolesPanel1.GetRoles();
+            if (roles.Count != 1)
+            {
+                MessageBox.Show("Please Pick One Role");
+                return;
+            }
+            role.Role = roles[0].ToString();
+            var t = new ListViewItem();
+            t.Text = role.Role;
+            t.SubItems.Add(role.Db);
+            lstRole.Items.Add(t);
+            _roleList.Add(role);
         }
 
         /// <summary>
@@ -65,7 +169,7 @@ namespace FunctionForm.User
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddRole_Click(object sender, EventArgs e)
+        private void btnAddCustomRole_Click(object sender, EventArgs e)
         {
             var r = new Role();
             if (RuntimeMongoDbContext.GetCurrentDataBase() != null)
@@ -87,73 +191,18 @@ namespace FunctionForm.User
             {
                 r.Roles[i] = _roleList[i];
             }
-            var result = Role.AddRole(RuntimeMongoDbContext.GetCurrentDataBase(), r);
-            if (result.IsBsonDocument)
-            {
-                MyMessageBox.ShowMessage("Error", "Add Role Error", ViewHelper.ConvertToString(result));
-            }
-            else
+            //这个时候可能没有GetCurrentDataBase，如果是Admin
+            var result = CommandHelper.AddRole(RuntimeMongoDbContext.GetCurrentServer().GetDatabase(r.Database), r);
+            if (result.Ok)
             {
                 MyMessageBox.ShowEasyMessage("Succeed", "Add Role OK");
             }
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmbActionGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            chklstAction.Items.Clear();
-            var prifix = cmbActionGroup.Text.Replace(" ", string.Empty);
-            foreach (var item in Enum.GetValues(typeof(MongoAction.ActionType)))
+            else
             {
-                if (item.ToString().StartsWith(prifix))
-                {
-                    var actionName = item.ToString().Substring(prifix.Length);
-                    actionName = actionName.Substring(0, 1).ToLower() + actionName.Substring(1);
-                    chklstAction.Items.Add(actionName);
-                }
+                MyMessageBox.ShowMessage("Error", "Add Role Error", result.Response.ToString());
             }
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAddPriviege_Click(object sender, EventArgs e)
-        {
-            var actionlst = new MongoAction.ActionType[chklstAction.CheckedItems.Count];
-            for (var i = 0; i < chklstAction.CheckedItems.Count; i++)
-            {
-                actionlst[i] = (MongoAction.ActionType)Enum.Parse(typeof(MongoAction.ActionType),
-                    cmbActionGroup.Text.Replace(" ", string.Empty) + "_" + chklstAction.CheckedItems[i]);
-            }
-            _privilegeList.Add(new Role.Privilege
-            {
-                Resource = GetRoleResource(),
-                Actions = actionlst
-            });
 
-            var t = new ListViewItem();
-            t.Text = GetRoleResource().GetJsCode();
-            t.SubItems.Add(MongoAction.GetActionListJs(actionlst));
-            lstPriviege.Items.Add(t);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmbDatabase_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbCollection.Text = string.Empty;
-            cmbCollection.Items.Clear();
-            foreach (
-                var item in RuntimeMongoDbContext.GetCurrentServer().GetDatabase(cmbDatabase.Text).GetCollectionNames())
-            {
-                cmbCollection.Items.Add(item);
-            }
-        }
     }
 }

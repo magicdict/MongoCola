@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,12 +13,11 @@ namespace Common
         /// </summary>
         /// <param name="combox"></param>
         /// <param name="enumType"></param>
-        /// <param name="isEditMode"></param>
-        public static void FillComberWithEnum(ComboBox combox, Type enumType, bool isEditMode = true)
+        /// <param name="ExcludeAllItem"></param>
+        public static void FillComberWithEnum(ComboBox combox, Type enumType, bool ExcludeAllItem = true)
         {
             combox.Items.Clear();
-            if (!isEditMode)
-                combox.Items.Add("<All>");
+            if (!ExcludeAllItem) combox.Items.Add("<All>");
             foreach (var item in Enum.GetValues(enumType))
             {
                 combox.Items.Add(item.ToString());
@@ -30,18 +30,35 @@ namespace Common
         /// </summary>
         /// <param name="combox"></param>
         /// <param name="enumList"></param>
-        /// <param name="isEditMode"></param>
-        public static void FillComberWithArray(ComboBox combox, string[] enumList, bool isEditMode = true)
+        /// <param name="ExcludeAllItem"></param>
+        public static void FillComberWithArray(ComboBox combox, string[] enumList, bool ExcludeAllItem = true)
         {
             combox.Items.Clear();
-            if (!isEditMode)
-                combox.Items.Add("<All>");
+            if (!ExcludeAllItem) combox.Items.Add("<All>");
             foreach (var item in enumList)
             {
                 combox.Items.Add(item);
             }
             if (combox.Items.Count != 0) combox.SelectedIndex = 0;
         }
+
+        /// <summary>
+        ///     使用字符填充combox
+        /// </summary>
+        /// <param name="combox"></param>
+        /// <param name="enumList"></param>
+        /// <param name="ExcludeAllItem"></param>
+        public static void FillComberWithArray(ComboBox combox, IEnumerable<string> enumList, bool ExcludeAllItem = true)
+        {
+            combox.Items.Clear();
+            if (!ExcludeAllItem) combox.Items.Add("<All>");
+            foreach (var item in enumList)
+            {
+                combox.Items.Add(item);
+            }
+            if (combox.Items.Count != 0) combox.SelectedIndex = 0;
+        }
+
 
         /// <summary>
         ///     自动调整列宽度

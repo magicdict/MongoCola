@@ -1,6 +1,7 @@
 ﻿using System;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace MongoUtility.Security
 {
@@ -71,12 +72,24 @@ namespace MongoUtility.Security
         public struct Privilege
         {
             /// <summary>
+            ///     Actions
             /// </summary>
-            public MongoAction.ActionType[] Actions;
+            public BsonArray Actions;
 
             /// <summary>
+            ///     Resource
             /// </summary>
-            public Resource Resource;
+            public BsonElement Resource;
+            /// <summary>
+            ///     AsBsonDocument
+            /// </summary>
+            /// <returns></returns>
+            public BsonDocument AsBsonDocument()
+            {
+                BsonDocument privilege = new BsonDocument(Resource);
+                privilege.Add("actions", Actions);
+                return privilege;
+            }
         }
 
         /// <summary>
@@ -85,59 +98,30 @@ namespace MongoUtility.Security
         public struct GrantRole
         {
             /// <summary>
+            ///     数据库
             /// </summary>
             public string Db;
 
             /// <summary>
+            ///     角色
             /// </summary>
             public string Role;
-        }
-
-        /// <summary>
-        ///     添加一个用户自定义角色
-        /// </summary>
-        public static BsonValue AddRole(MongoDatabase mongoDb, Role role)
-        {
-            var roleCommand = string.Empty;
-            var doc = new EvalArgs();
-            roleCommand = "db.createRole(" + Environment.NewLine;
-            roleCommand += "{" + Environment.NewLine;
-            roleCommand += "    role: '" + role.Rolename + "'," + Environment.NewLine;
-            //Roles
-            roleCommand += "    roles:" + Environment.NewLine;
-            roleCommand += "    [";
-            for (var i = 0; i < role.Roles.Length; i++)
+            /// <summary>
+            ///     BsonValue
+            /// </summary>
+            /// <returns></returns>
+            public BsonValue AsBsonValue()
             {
-                var singleroles = role.Roles[i];
-                roleCommand += "{ role: '" + singleroles.Role + "', db: '" + singleroles.Db + "' }" +
-                               (i == role.Roles.Length - 1 ? "" : ",") + Environment.NewLine;
+                if (string.IsNullOrEmpty(Db))
+                {
+                    return Role;
+                }else
+                {
+                    var role = new BsonDocument("role", Role);
+                    role.Add("db", Db);
+                    return role;
+                }
             }
-            roleCommand += "     ],";
-            //privileges
-            roleCommand += "    privileges:" + Environment.NewLine;
-            roleCommand += "    [";
-            for (var i = 0; i < role.Privileges.Length; i++)
-            {
-                var singleprivileges = role.Privileges[i];
-                roleCommand += "{" + singleprivileges.Resource.GetJsCode() + "," +
-                               MongoAction.GetActionListJs(singleprivileges.Actions) + "}" +
-                               (i == role.Privileges.Length - 1 ? "" : ",") + Environment.NewLine;
-            }
-            roleCommand += "     ],";
-            //
-            roleCommand += "}" + Environment.NewLine;
-            roleCommand += ")";
-            doc.Code = roleCommand;
-            BsonValue result;
-            try
-            {
-                result = mongoDb.Eval(doc);
-            }
-            catch (MongoCommandException ex)
-            {
-                result = ex.Result;
-            }
-            return result;
         }
 
         /// <summary>

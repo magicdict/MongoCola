@@ -84,7 +84,7 @@ namespace FunctionForm.User
             this.lblUserName.BackColor = System.Drawing.Color.Transparent;
             this.lblUserName.Location = new System.Drawing.Point(28, 18);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(65, 15);
+            this.lblUserName.Size = new System.Drawing.Size(66, 15);
             this.lblUserName.TabIndex = 6;
             this.lblUserName.Tag = "Common_Username";
             this.lblUserName.Text = "Username";
@@ -95,23 +95,23 @@ namespace FunctionForm.User
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
             this.lblPassword.Location = new System.Drawing.Point(28, 46);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(89, 15);
+            this.lblPassword.Size = new System.Drawing.Size(93, 15);
             this.lblPassword.TabIndex = 7;
             this.lblPassword.Tag = "Common_Password";
             this.lblPassword.Text = "New Password";
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(136, 15);
+            this.txtUserName.Location = new System.Drawing.Point(145, 15);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(170, 21);
+            this.txtUserName.Size = new System.Drawing.Size(170, 23);
             this.txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(136, 43);
+            this.txtPassword.Location = new System.Drawing.Point(145, 43);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(170, 21);
+            this.txtPassword.Size = new System.Drawing.Size(170, 23);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -120,16 +120,16 @@ namespace FunctionForm.User
             this.lblConfirmPsw.AutoSize = true;
             this.lblConfirmPsw.Location = new System.Drawing.Point(28, 73);
             this.lblConfirmPsw.Name = "lblConfirmPsw";
-            this.lblConfirmPsw.Size = new System.Drawing.Size(107, 15);
+            this.lblConfirmPsw.Size = new System.Drawing.Size(113, 15);
             this.lblConfirmPsw.TabIndex = 8;
             this.lblConfirmPsw.Tag = "Common_ConfirmPassword";
             this.lblConfirmPsw.Text = "Confirm Password";
             // 
             // txtConfirmPsw
             // 
-            this.txtConfirmPsw.Location = new System.Drawing.Point(136, 69);
+            this.txtConfirmPsw.Location = new System.Drawing.Point(145, 69);
             this.txtConfirmPsw.Name = "txtConfirmPsw";
-            this.txtConfirmPsw.Size = new System.Drawing.Size(170, 21);
+            this.txtConfirmPsw.Size = new System.Drawing.Size(170, 23);
             this.txtConfirmPsw.TabIndex = 2;
             this.txtConfirmPsw.UseSystemPasswordChar = true;
             // 
@@ -138,7 +138,7 @@ namespace FunctionForm.User
             this.lblotherDBRoles.AutoSize = true;
             this.lblotherDBRoles.Location = new System.Drawing.Point(576, 18);
             this.lblotherDBRoles.Name = "lblotherDBRoles";
-            this.lblotherDBRoles.Size = new System.Drawing.Size(84, 15);
+            this.lblotherDBRoles.Size = new System.Drawing.Size(87, 15);
             this.lblotherDBRoles.TabIndex = 12;
             this.lblotherDBRoles.Text = "otherDBRoles";
             // 
@@ -146,16 +146,16 @@ namespace FunctionForm.User
             // 
             this.cmbDB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDB.FormattingEnabled = true;
-            this.cmbDB.Location = new System.Drawing.Point(613, 65);
+            this.cmbDB.Location = new System.Drawing.Point(623, 61);
             this.cmbDB.Name = "cmbDB";
             this.cmbDB.Size = new System.Drawing.Size(152, 23);
             this.cmbDB.TabIndex = 13;
             // 
             // cmdAddRole
             // 
-            this.cmdAddRole.Location = new System.Drawing.Point(771, 65);
+            this.cmdAddRole.Location = new System.Drawing.Point(781, 61);
             this.cmdAddRole.Name = "cmdAddRole";
-            this.cmdAddRole.Size = new System.Drawing.Size(92, 24);
+            this.cmdAddRole.Size = new System.Drawing.Size(92, 27);
             this.cmdAddRole.TabIndex = 14;
             this.cmdAddRole.Text = "Add Role";
             this.cmdAddRole.UseVisualStyleBackColor = true;
@@ -192,7 +192,7 @@ namespace FunctionForm.User
             // 
             this.cmdDelRole.Location = new System.Drawing.Point(754, 340);
             this.cmdDelRole.Name = "cmdDelRole";
-            this.cmdDelRole.Size = new System.Drawing.Size(92, 24);
+            this.cmdDelRole.Size = new System.Drawing.Size(92, 33);
             this.cmdDelRole.TabIndex = 14;
             this.cmdDelRole.Text = "Delete Role";
             this.cmdDelRole.UseVisualStyleBackColor = true;
@@ -202,7 +202,7 @@ namespace FunctionForm.User
             // 
             this.cmdModifyRole.Location = new System.Drawing.Point(852, 341);
             this.cmdModifyRole.Name = "cmdModifyRole";
-            this.cmdModifyRole.Size = new System.Drawing.Size(109, 23);
+            this.cmdModifyRole.Size = new System.Drawing.Size(109, 32);
             this.cmdModifyRole.TabIndex = 16;
             this.cmdModifyRole.Text = "Modify Role";
             this.cmdModifyRole.UseVisualStyleBackColor = true;
@@ -236,7 +236,7 @@ namespace FunctionForm.User
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

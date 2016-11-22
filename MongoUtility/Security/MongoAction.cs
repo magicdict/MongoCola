@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MongoDB.Bson;
+using System.Collections.Generic;
 
 namespace MongoUtility.Security
 {
@@ -135,20 +136,14 @@ namespace MongoUtility.Security
         }
 
         /// <summary>
-        ///     GetActionListJs
+        ///     GetActionArray
         /// </summary>
         /// <param name="actionList"></param>
         /// <returns></returns>
-        public static string GetActionListJs(ActionType[] actionList)
+        public static BsonArray GetActionArray(List<string> actionList)
         {
-            var result = string.Empty;
-            result = "actions: [ ";
-            for (var i = 0; i < actionList.Length; i++)
-            {
-                result += "'" + actionList[i].ToString().Substring(actionList[i].ToString().IndexOf("_") + 1) + "'" +
-                          (i == actionList.Length - 1 ? "" : ",");
-            }
-            result += " ]";
+            var result = new BsonArray();
+            result.AddRange(actionList);
             return result;
         }
 

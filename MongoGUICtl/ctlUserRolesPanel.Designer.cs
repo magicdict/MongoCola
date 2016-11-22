@@ -33,6 +33,12 @@ namespace MongoGUICtl
         private void InitializeComponent()
         {
             this.grpRoles = new System.Windows.Forms.GroupBox();
+            this.chkroot = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.chkrestore = new System.Windows.Forms.CheckBox();
+            this.chkbackup = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.chkdbOwner = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,20 +47,14 @@ namespace MongoGUICtl
             this.chkuserAdminAnyDatabase = new System.Windows.Forms.CheckBox();
             this.chkreadWriteAnyDatabase = new System.Windows.Forms.CheckBox();
             this.chkreadAnyDatabase = new System.Windows.Forms.CheckBox();
+            this.chkhostManager = new System.Windows.Forms.CheckBox();
+            this.chkclusterMonitor = new System.Windows.Forms.CheckBox();
+            this.chkclusterManager = new System.Windows.Forms.CheckBox();
             this.chkclusterAdmin = new System.Windows.Forms.CheckBox();
             this.chkuserAdmin = new System.Windows.Forms.CheckBox();
             this.chkdbAdmin = new System.Windows.Forms.CheckBox();
             this.chkreadWrite = new System.Windows.Forms.CheckBox();
             this.chkread = new System.Windows.Forms.CheckBox();
-            this.chkdbOwner = new System.Windows.Forms.CheckBox();
-            this.chkclusterManager = new System.Windows.Forms.CheckBox();
-            this.chkclusterMonitor = new System.Windows.Forms.CheckBox();
-            this.chkhostManager = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.chkrestore = new System.Windows.Forms.CheckBox();
-            this.chkbackup = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.chkroot = new System.Windows.Forms.CheckBox();
             this.grpRoles.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +89,64 @@ namespace MongoGUICtl
             this.grpRoles.TabIndex = 10;
             this.grpRoles.TabStop = false;
             this.grpRoles.Text = "Roles";
+            // 
+            // chkroot
+            // 
+            this.chkroot.AutoSize = true;
+            this.chkroot.Location = new System.Drawing.Point(35, 237);
+            this.chkroot.Name = "chkroot";
+            this.chkroot.Size = new System.Drawing.Size(48, 16);
+            this.chkroot.TabIndex = 21;
+            this.chkroot.Text = "root";
+            this.chkroot.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 213);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(95, 12);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Superuser Roles";
+            // 
+            // chkrestore
+            // 
+            this.chkrestore.AutoSize = true;
+            this.chkrestore.Location = new System.Drawing.Point(35, 180);
+            this.chkrestore.Name = "chkrestore";
+            this.chkrestore.Size = new System.Drawing.Size(66, 16);
+            this.chkrestore.TabIndex = 18;
+            this.chkrestore.Text = "restore";
+            this.chkrestore.UseVisualStyleBackColor = true;
+            // 
+            // chkbackup
+            // 
+            this.chkbackup.AutoSize = true;
+            this.chkbackup.Location = new System.Drawing.Point(35, 165);
+            this.chkbackup.Name = "chkbackup";
+            this.chkbackup.Size = new System.Drawing.Size(60, 16);
+            this.chkbackup.TabIndex = 19;
+            this.chkbackup.Text = "backup";
+            this.chkbackup.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 150);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(173, 12);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Backup and Restoration Roles";
+            // 
+            // chkdbOwner
+            // 
+            this.chkdbOwner.AutoSize = true;
+            this.chkdbOwner.Location = new System.Drawing.Point(35, 106);
+            this.chkdbOwner.Name = "chkdbOwner";
+            this.chkdbOwner.Size = new System.Drawing.Size(66, 16);
+            this.chkdbOwner.TabIndex = 16;
+            this.chkdbOwner.Text = "dbOwner";
+            this.chkdbOwner.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -166,6 +224,36 @@ namespace MongoGUICtl
             this.chkreadAnyDatabase.Text = "readAnyDatabase";
             this.chkreadAnyDatabase.UseVisualStyleBackColor = true;
             // 
+            // chkhostManager
+            // 
+            this.chkhostManager.AutoSize = true;
+            this.chkhostManager.Location = new System.Drawing.Point(239, 198);
+            this.chkhostManager.Name = "chkhostManager";
+            this.chkhostManager.Size = new System.Drawing.Size(90, 16);
+            this.chkhostManager.TabIndex = 10;
+            this.chkhostManager.Text = "hostManager";
+            this.chkhostManager.UseVisualStyleBackColor = true;
+            // 
+            // chkclusterMonitor
+            // 
+            this.chkclusterMonitor.AutoSize = true;
+            this.chkclusterMonitor.Location = new System.Drawing.Point(239, 180);
+            this.chkclusterMonitor.Name = "chkclusterMonitor";
+            this.chkclusterMonitor.Size = new System.Drawing.Size(108, 16);
+            this.chkclusterMonitor.TabIndex = 10;
+            this.chkclusterMonitor.Text = "clusterMonitor";
+            this.chkclusterMonitor.UseVisualStyleBackColor = true;
+            // 
+            // chkclusterManager
+            // 
+            this.chkclusterManager.AutoSize = true;
+            this.chkclusterManager.Location = new System.Drawing.Point(239, 159);
+            this.chkclusterManager.Name = "chkclusterManager";
+            this.chkclusterManager.Size = new System.Drawing.Size(108, 16);
+            this.chkclusterManager.TabIndex = 10;
+            this.chkclusterManager.Text = "clusterManager";
+            this.chkclusterManager.UseVisualStyleBackColor = true;
+            // 
             // chkclusterAdmin
             // 
             this.chkclusterAdmin.AutoSize = true;
@@ -216,94 +304,6 @@ namespace MongoGUICtl
             this.chkread.Text = "read";
             this.chkread.UseVisualStyleBackColor = true;
             // 
-            // chkdbOwner
-            // 
-            this.chkdbOwner.AutoSize = true;
-            this.chkdbOwner.Location = new System.Drawing.Point(35, 106);
-            this.chkdbOwner.Name = "chkdbOwner";
-            this.chkdbOwner.Size = new System.Drawing.Size(66, 16);
-            this.chkdbOwner.TabIndex = 16;
-            this.chkdbOwner.Text = "dbOwner";
-            this.chkdbOwner.UseVisualStyleBackColor = true;
-            // 
-            // chkclusterManager
-            // 
-            this.chkclusterManager.AutoSize = true;
-            this.chkclusterManager.Location = new System.Drawing.Point(239, 159);
-            this.chkclusterManager.Name = "chkclusterManager";
-            this.chkclusterManager.Size = new System.Drawing.Size(108, 16);
-            this.chkclusterManager.TabIndex = 10;
-            this.chkclusterManager.Text = "clusterManager";
-            this.chkclusterManager.UseVisualStyleBackColor = true;
-            // 
-            // chkclusterMonitor
-            // 
-            this.chkclusterMonitor.AutoSize = true;
-            this.chkclusterMonitor.Location = new System.Drawing.Point(239, 180);
-            this.chkclusterMonitor.Name = "chkclusterMonitor";
-            this.chkclusterMonitor.Size = new System.Drawing.Size(108, 16);
-            this.chkclusterMonitor.TabIndex = 10;
-            this.chkclusterMonitor.Text = "clusterMonitor";
-            this.chkclusterMonitor.UseVisualStyleBackColor = true;
-            // 
-            // chkhostManager
-            // 
-            this.chkhostManager.AutoSize = true;
-            this.chkhostManager.Location = new System.Drawing.Point(239, 198);
-            this.chkhostManager.Name = "chkhostManager";
-            this.chkhostManager.Size = new System.Drawing.Size(90, 16);
-            this.chkhostManager.TabIndex = 10;
-            this.chkhostManager.Text = "hostManager";
-            this.chkhostManager.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 150);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 12);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Backup and Restoration Roles";
-            // 
-            // chkrestore
-            // 
-            this.chkrestore.AutoSize = true;
-            this.chkrestore.Location = new System.Drawing.Point(35, 180);
-            this.chkrestore.Name = "chkrestore";
-            this.chkrestore.Size = new System.Drawing.Size(66, 16);
-            this.chkrestore.TabIndex = 18;
-            this.chkrestore.Text = "restore";
-            this.chkrestore.UseVisualStyleBackColor = true;
-            // 
-            // chkbackup
-            // 
-            this.chkbackup.AutoSize = true;
-            this.chkbackup.Location = new System.Drawing.Point(35, 165);
-            this.chkbackup.Name = "chkbackup";
-            this.chkbackup.Size = new System.Drawing.Size(60, 16);
-            this.chkbackup.TabIndex = 19;
-            this.chkbackup.Text = "backup";
-            this.chkbackup.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 213);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(95, 12);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Superuser Roles";
-            // 
-            // chkroot
-            // 
-            this.chkroot.AutoSize = true;
-            this.chkroot.Location = new System.Drawing.Point(35, 237);
-            this.chkroot.Name = "chkroot";
-            this.chkroot.Size = new System.Drawing.Size(48, 16);
-            this.chkroot.TabIndex = 21;
-            this.chkroot.Text = "root";
-            this.chkroot.UseVisualStyleBackColor = true;
-            // 
             // CtlUserRolesPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -311,6 +311,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.grpRoles);
             this.Name = "CtlUserRolesPanel";
             this.Size = new System.Drawing.Size(398, 265);
+            this.Load += new System.EventHandler(this.CtlUserRolesPanel_Load);
             this.grpRoles.ResumeLayout(false);
             this.grpRoles.PerformLayout();
             this.ResumeLayout(false);

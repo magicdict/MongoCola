@@ -1,6 +1,6 @@
-﻿using System.Windows.Forms;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using ResourceLib.Method;
+using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
@@ -9,10 +9,6 @@ namespace MongoGUICtl
         public CtlUserRolesPanel()
         {
             InitializeComponent();
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                grpRoles.Text = GuiConfig.GetText(TextType.CommonRoles);
-            }
         }
 
         public bool IsAdmin
@@ -42,7 +38,7 @@ namespace MongoGUICtl
             {
                 if (item.Name.StartsWith("chk"))
                 {
-                    if (((CheckBox) item).Checked)
+                    if (((CheckBox)item).Checked)
                     {
                         roles.Add(item.Name.Substring(3));
                     }
@@ -53,11 +49,17 @@ namespace MongoGUICtl
 
         public void SetRoles(BsonArray value)
         {
+            foreach (string item in value)
             {
-                foreach (string item in value)
-                {
-                    ((CheckBox) grpRoles.Controls.Find("chk" + item, true)[0]).Checked = true;
-                }
+                ((CheckBox)grpRoles.Controls.Find("chk" + item, true)[0]).Checked = true;
+            }
+        }
+
+        private void CtlUserRolesPanel_Load(object sender, System.EventArgs e)
+        {
+            if (!GuiConfig.IsUseDefaultLanguage)
+            {
+                grpRoles.Text = GuiConfig.GetText(TextType.CommonRoles);
             }
         }
     }

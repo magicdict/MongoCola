@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using System;
 using MongoUtility.Security;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace MongoUtility.Command
 {
@@ -459,6 +460,22 @@ namespace MongoUtility.Command
             mongoCmd.Add("pwd", user.Password);
             mongoCmd.Add("roles", user.Roles);
             return ExecuteMongoDBCommand(mongoCmd, db);
+        }
+
+
+        /// <summary>
+        ///     添加一个用户自定义角色
+        /// </summary>
+        public static CommandResult AddRole(MongoDatabase mongoDb, Role role)
+        {
+            var mongoCmd = new CommandDocument("createRole", role.Rolename);
+            var privileges = new BsonArray();
+            privileges.AddRange(role.Privileges.Select(x => x.AsBsonDocument()));
+            mongoCmd.Add("privileges", privileges);
+            var roles = new BsonArray();
+            roles.AddRange(role.Roles.Select(x => x.AsBsonValue()));
+            mongoCmd.Add("roles", roles);
+            return ExecuteMongoDBCommand(mongoCmd, mongoDb);
         }
 
         #endregion
