@@ -151,6 +151,8 @@ namespace MongoUtility.Command
             totalIndex += string.IsNullOrEmpty(KeyOptions.GeoSpatialHaystackKey) ? 0 : 1;
             totalIndex += string.IsNullOrEmpty(KeyOptions.GeoSpatialKey) ? 0 : 1;
             totalIndex += string.IsNullOrEmpty(KeyOptions.GeoSpatialSphericalKey) ? 0 : 1;
+            totalIndex += string.IsNullOrEmpty(KeyOptions.HashedKey) ? 0 : 1;
+
 
             if (string.IsNullOrEmpty(KeyOptions.IndexName) || totalIndex == 0 ||
                 RuntimeMongoDbContext.GetCurrentCollection().IndexExists(KeyOptions.IndexName))
@@ -190,6 +192,7 @@ namespace MongoUtility.Command
             if (!string.IsNullOrEmpty(IdxOpt.GeoSpatialHaystackKey)) indexkeys.GeoSpatialHaystack(IdxOpt.GeoSpatialHaystackKey);
             if (!string.IsNullOrEmpty(IdxOpt.GeoSpatialKey)) indexkeys.GeoSpatial(IdxOpt.GeoSpatialKey);
             if (!string.IsNullOrEmpty(IdxOpt.GeoSpatialSphericalKey)) indexkeys.GeoSpatialSpherical(IdxOpt.GeoSpatialSphericalKey);
+            if (!string.IsNullOrEmpty(IdxOpt.HashedKey)) indexkeys.Hashed(IdxOpt.HashedKey);
             indexkeys.Ascending(IdxOpt.AscendingKey.ToArray());
             indexkeys.Descending(IdxOpt.DescendingKey.ToArray());
             indexkeys.Text(IdxOpt.TextKey.ToArray());
