@@ -29,6 +29,17 @@ namespace MongoUtility.Core
                 async () => { databaseList = await databaseCursor.ToListAsync(); }
                 );
             task.Wait();
+            databaseList.Sort((x, y) =>
+            {
+                if (x.GetElement("name").Value.ToString() == ConstMgr.DatabaseNameAdmin)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return x.GetElement("name").Value.ToString().CompareTo(y.GetElement("name").Value.ToString());
+                }
+            });
             return databaseList;
         }
 

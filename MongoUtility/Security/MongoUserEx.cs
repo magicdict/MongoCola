@@ -23,23 +23,18 @@ namespace MongoUtility.Security
         public string Username;
 
         /// <summary>
-        ///     
+        ///     角色
         /// </summary>
-        public BsonDocument OtherDbRoles;
+        public List<Role.GrantRole> Roles;
 
         /// <summary>
-        ///     
-        /// </summary>
-        public BsonArray Roles;
-
-        /// <summary>
-        /// 
+        ///     自定义数据
         /// </summary>
         public BsonDocument customData;
 
 
         /// <summary>
-        /// 
+        ///     增加用户
         /// </summary>
         /// <param name="user"></param>
         public static void AddUser(MongoUserEx user, bool IsAdmin)
@@ -47,6 +42,17 @@ namespace MongoUtility.Security
             var result = Command.CommandHelper.createUser(user, IsAdmin ? RuntimeMongoDbContext.GetCurrentServer()
                     .GetDatabase(ConstMgr.DatabaseNameAdmin) : RuntimeMongoDbContext.GetCurrentDataBase());
             MyMessageBox.ShowConfirm("Create User", result.Response.ToString());
+        }
+
+        /// <summary>
+        ///     修改用户
+        /// </summary>
+        /// <param name="user"></param>
+        public static void UpdateUser(MongoUserEx user, bool IsAdmin)
+        {
+            var result = Command.CommandHelper.updateUser(user, IsAdmin ? RuntimeMongoDbContext.GetCurrentServer()
+                    .GetDatabase(ConstMgr.DatabaseNameAdmin) : RuntimeMongoDbContext.GetCurrentDataBase());
+            MyMessageBox.ShowConfirm("Update User", result.Response.ToString());
         }
 
         /// <summary>

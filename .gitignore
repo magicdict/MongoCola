@@ -85,3 +85,4 @@ Thumbs.db
 /packages/MongoDB.Driver.2.0.0/MongoDB.Driver.2.0.0.nupkg
 /packages
 /docs/MarkDown/images
+*.sqlite

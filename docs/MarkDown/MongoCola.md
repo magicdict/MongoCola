@@ -437,6 +437,23 @@ Sharding Zone 是 MongoDB3.4新增的概念，和以前的 Sharding Tag 类似
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161116105911_AddShardingZoneRange.png)
 
+##安全
+###新建用户
+使用本工具可以添加具有指定角色的用户
+
+![](/FileSystem/Thumbnail?filename=00000001_20161122161351_AddUser.png)
+
+在配置连接信息的时候，可以指定用户名和数据库：
+**从Mongo3.4开始，SCRAM-SHA-1作为默认认证机制**
+**由于Role-Base的认证机制比较复杂，请注意角色的分配和权限问题。有些角色不能列出数据库和数据集。**
+
+![](/FileSystem/Thumbnail?filename=00000001_20161121152105_ConnectionMgrAuth.png)
+
+###新建自定义角色
+除了MongoDB内置的角色外，您还可以新建自定义角色
+
+![](/FileSystem/Thumbnail?filename=00000001_20161122110741_AddCustomRole.png)
+
 
 ##插件系统（C#语言）
 
@@ -497,13 +514,24 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 
 ## 更新履历
 
+###Ver 2.0.1 2016/11/24
+#### 修改
+1. admin数据库在树形列表中置顶
+
+#### 新增
+1. 自定义角色
+2. 修改用户信息
+
+#### 删除
+1. 当前连接的用户信息的表示（不成熟的功能）
+
 ###Ver 2.0.7 2016/11/18
 
 ### 新增
 1. ConvertToCapped：将普通的数据集转换为Capped数据集
 2. 新增了连接时输入密码的连接选项
 
-### 修改
+#### 修改
 1. ImportAccess插件重制
 2. 修正了NET462编译条件缺失的问题
 3. 修改连接配置时候，按钮显示文字不正确的问题
@@ -515,8 +543,9 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 9. 优化了连接Timeout的处理，使用Health标志说明连接状态
 10. MapReduce的界面优化
 11. GeoNear功能的强化，GeoJson和LegacyCoodinates的区分。
+12. CreateUser命令的重写
 
-### 删除
+#### 删除
 1. 主从同步功能：随着Master-Slaver机制的取消，主从同步功能也随之取消。其他所有主从副本相关的代码也会渐渐剔除。
 2. CreateCollection: MongoDB3.4 AutoIndex 选项将被取消，UI随着也删除AutoIndex的复选框
 3. 服务器状态自动刷新的入口图标废止（本功能已经废止）

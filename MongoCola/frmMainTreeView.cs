@@ -131,7 +131,6 @@ namespace MongoCola
                 AddUserToAdminToolStripMenuItem.Enabled = true;
                 AddAdminCustomeRoleStripMenuItem.Enabled = true;
             }
-            UserInfoStripMenuItem.Enabled = true;
             ServerStatusToolStripMenuItem.Enabled = true;
             ServerMonitorToolStripMenuItem.Enabled = true;
 
@@ -162,7 +161,6 @@ namespace MongoCola
                     contextMenuStripMain.Items.Add(CreateMongoDBToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(AddUserToAdminToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(AddAdminCustomeRoleStripMenuItem.Clone());
-                    contextMenuStripMain.Items.Add(UserInfoStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(RestoreMongoToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ServerStatusToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ServerMonitorToolStripMenuItem.Clone());

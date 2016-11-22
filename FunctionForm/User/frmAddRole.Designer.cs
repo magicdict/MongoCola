@@ -31,6 +31,8 @@ namespace FunctionForm.User
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
             this.btnAddCustomRole = new System.Windows.Forms.Button();
             this.lblRoleName = new System.Windows.Forms.Label();
             this.txtRolename = new System.Windows.Forms.TextBox();
@@ -52,13 +54,11 @@ namespace FunctionForm.User
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnAddRole = new System.Windows.Forms.Button();
-            this.cmbRoleDB = new System.Windows.Forms.ComboBox();
+            this.lstRoles = new System.Windows.Forms.ListView();
+            this.colRoles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDataBase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
-            this.ctlUserRolesPanel1 = new MongoGUICtl.CtlUserRolesPanel();
-            this.lstRole = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnPickRole = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -66,7 +66,7 @@ namespace FunctionForm.User
             // 
             // btnAddCustomRole
             // 
-            this.btnAddCustomRole.Location = new System.Drawing.Point(339, 525);
+            this.btnAddCustomRole.Location = new System.Drawing.Point(332, 498);
             this.btnAddCustomRole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddCustomRole.Name = "btnAddCustomRole";
             this.btnAddCustomRole.Size = new System.Drawing.Size(151, 30);
@@ -78,7 +78,7 @@ namespace FunctionForm.User
             // lblRoleName
             // 
             this.lblRoleName.AutoSize = true;
-            this.lblRoleName.Location = new System.Drawing.Point(35, 532);
+            this.lblRoleName.Location = new System.Drawing.Point(28, 505);
             this.lblRoleName.Name = "lblRoleName";
             this.lblRoleName.Size = new System.Drawing.Size(73, 17);
             this.lblRoleName.TabIndex = 1;
@@ -86,7 +86,7 @@ namespace FunctionForm.User
             // 
             // txtRolename
             // 
-            this.txtRolename.Location = new System.Drawing.Point(120, 529);
+            this.txtRolename.Location = new System.Drawing.Point(113, 502);
             this.txtRolename.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRolename.Name = "txtRolename";
             this.txtRolename.Size = new System.Drawing.Size(189, 23);
@@ -212,7 +212,7 @@ namespace FunctionForm.User
             this.tabControl1.Location = new System.Drawing.Point(20, 9);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(477, 500);
+            this.tabControl1.Size = new System.Drawing.Size(477, 482);
             this.tabControl1.TabIndex = 10;
             // 
             // tabPage1
@@ -233,7 +233,7 @@ namespace FunctionForm.User
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(469, 470);
+            this.tabPage1.Size = new System.Drawing.Size(469, 452);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Add privilege";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -245,10 +245,10 @@ namespace FunctionForm.User
             this.columnHeader2});
             this.lstPriviege.FullRowSelect = true;
             this.lstPriviege.GridLines = true;
-            this.lstPriviege.Location = new System.Drawing.Point(25, 293);
+            this.lstPriviege.Location = new System.Drawing.Point(26, 293);
             this.lstPriviege.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstPriviege.Name = "lstPriviege";
-            this.lstPriviege.Size = new System.Drawing.Size(424, 170);
+            this.lstPriviege.Size = new System.Drawing.Size(424, 142);
             this.lstPriviege.TabIndex = 16;
             this.lstPriviege.UseCompatibleStateImageBehavior = false;
             this.lstPriviege.View = System.Windows.Forms.View.Details;
@@ -265,87 +265,70 @@ namespace FunctionForm.User
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.lstRole);
-            this.tabPage2.Controls.Add(this.btnAddRole);
-            this.tabPage2.Controls.Add(this.cmbRoleDB);
+            this.tabPage2.Controls.Add(this.lstRoles);
             this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.ctlUserRolesPanel1);
+            this.tabPage2.Controls.Add(this.btnPickRole);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(469, 470);
+            this.tabPage2.Size = new System.Drawing.Size(469, 452);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Roles";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnAddRole
+            // lstRoles
             // 
-            this.btnAddRole.Location = new System.Drawing.Point(315, 369);
-            this.btnAddRole.Name = "btnAddRole";
-            this.btnAddRole.Size = new System.Drawing.Size(128, 23);
-            this.btnAddRole.TabIndex = 12;
-            this.btnAddRole.Text = "AddRole";
-            this.btnAddRole.UseVisualStyleBackColor = true;
-            this.btnAddRole.Click += new System.EventHandler(this.btnAddRole_Click);
+            this.lstRoles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colRoles,
+            this.colDataBase});
+            this.lstRoles.FullRowSelect = true;
+            this.lstRoles.GridLines = true;
+            this.lstRoles.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem3,
+            listViewItem4});
+            this.lstRoles.Location = new System.Drawing.Point(26, 51);
+            this.lstRoles.Name = "lstRoles";
+            this.lstRoles.Size = new System.Drawing.Size(423, 251);
+            this.lstRoles.TabIndex = 31;
+            this.lstRoles.UseCompatibleStateImageBehavior = false;
+            this.lstRoles.View = System.Windows.Forms.View.Details;
             // 
-            // cmbRoleDB
+            // colRoles
             // 
-            this.cmbRoleDB.FormattingEnabled = true;
-            this.cmbRoleDB.Location = new System.Drawing.Point(80, 369);
-            this.cmbRoleDB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbRoleDB.Name = "cmbRoleDB";
-            this.cmbRoleDB.Size = new System.Drawing.Size(210, 25);
-            this.cmbRoleDB.TabIndex = 10;
+            this.colRoles.Text = "Roles";
+            this.colRoles.Width = 130;
+            // 
+            // colDataBase
+            // 
+            this.colDataBase.Text = "DataBase";
+            this.colDataBase.Width = 275;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 372);
+            this.label4.Location = new System.Drawing.Point(37, 25);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 17);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "DataBase";
+            this.label4.Size = new System.Drawing.Size(40, 17);
+            this.label4.TabIndex = 30;
+            this.label4.Tag = "Common_Roles";
+            this.label4.Text = "Roles";
             // 
-            // ctlUserRolesPanel1
+            // btnPickRole
             // 
-            this.ctlUserRolesPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlUserRolesPanel1.Location = new System.Drawing.Point(3, 3);
-            this.ctlUserRolesPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ctlUserRolesPanel1.Name = "ctlUserRolesPanel1";
-            this.ctlUserRolesPanel1.Size = new System.Drawing.Size(463, 359);
-            this.ctlUserRolesPanel1.TabIndex = 0;
-            // 
-            // lstRole
-            // 
-            this.lstRole.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader4});
-            this.lstRole.FullRowSelect = true;
-            this.lstRole.GridLines = true;
-            this.lstRole.Location = new System.Drawing.Point(14, 402);
-            this.lstRole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lstRole.Name = "lstRole";
-            this.lstRole.Size = new System.Drawing.Size(429, 56);
-            this.lstRole.TabIndex = 17;
-            this.lstRole.UseCompatibleStateImageBehavior = false;
-            this.lstRole.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Role";
-            this.columnHeader3.Width = 103;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Database";
-            this.columnHeader4.Width = 276;
+            this.btnPickRole.Location = new System.Drawing.Point(111, 18);
+            this.btnPickRole.Name = "btnPickRole";
+            this.btnPickRole.Size = new System.Drawing.Size(110, 30);
+            this.btnPickRole.TabIndex = 29;
+            this.btnPickRole.Text = "Pick Roles";
+            this.btnPickRole.UseVisualStyleBackColor = true;
+            this.btnPickRole.Click += new System.EventHandler(this.btnPickRole_Click);
             // 
             // FrmAddRole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(508, 562);
+            this.ClientSize = new System.Drawing.Size(512, 544);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.txtRolename);
             this.Controls.Add(this.lblRoleName);
@@ -392,12 +375,10 @@ namespace FunctionForm.User
         private ListView lstPriviege;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
-        private MongoGUICtl.CtlUserRolesPanel ctlUserRolesPanel1;
-        private ComboBox cmbRoleDB;
+        private ListView lstRoles;
+        private ColumnHeader colRoles;
+        private ColumnHeader colDataBase;
         private Label label4;
-        private Button btnAddRole;
-        private ListView lstRole;
-        private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
+        private Button btnPickRole;
     }
 }

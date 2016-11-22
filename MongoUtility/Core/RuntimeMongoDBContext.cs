@@ -2,7 +2,6 @@
 using MongoDB.Driver;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
-using MongoUtility.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -194,7 +193,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     用户列表
         /// </summary>
-        public static Dictionary<string, EachDatabaseUser> MongoUserLst = new Dictionary<string, EachDatabaseUser>();
+        //public static Dictionary<string, EachDatabaseUser> MongoUserLst = new Dictionary<string, EachDatabaseUser>();
 
         /// <summary>
         ///     数据过滤器

@@ -161,7 +161,7 @@ namespace MongoCola
                 }
                 ExpandAllToolStripMenuItem_Click(sender, e);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 trvsrvlst.Nodes.Add("丢失与数据库的连接！");
             }
@@ -304,29 +304,6 @@ namespace MongoCola
         }
 
         /// <summary>
-        ///     获得用户信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UserInfoStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //foreach (var item in MongoDBHelper._mongoUserLst.Keys)
-            //{
-            var connectionName = RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName;
-            var info = RuntimeMongoDbContext.MongoUserLst[connectionName].ToString();
-            if (!string.IsNullOrEmpty(info))
-            {
-                MyMessageBox.ShowMessage(
-                    GuiConfig.IsUseDefaultLanguage
-                        ? "UserInformation"
-                        : GuiConfig.GetText(TextType.MainMenuOperationServerUserInfo),
-                    "The User Information of：[" +
-                    MongoConnectionConfig.MongoConfig.ConnectionList[connectionName].UserName + "]", info, true);
-            }
-            //}
-        }
-
-        /// <summary>
         ///     Create User to Admin Group
         /// </summary>
         /// <param name="sender"></param>
@@ -346,15 +323,6 @@ namespace MongoCola
             UIAssistant.OpenModalForm(new FrmAddRole(), true, true);
         }
 
-        /// <summary>
-        ///     SlaveResync
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void slaveResyncToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Operater.ResyncCommand();
-        }
 
         /// <summary>
         ///     Status

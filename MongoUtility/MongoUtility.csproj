@@ -120,7 +120,6 @@
     <Compile Include="Security\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Basic\BsonValueEx.cs" />
-    <Compile Include="Security\EachDatabaseUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

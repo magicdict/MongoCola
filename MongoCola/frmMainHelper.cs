@@ -91,7 +91,6 @@ namespace MongoCola
             CreateViewtoolStripMenuItem.Enabled = false;
             CopyDatabasetoolStripMenuItem.Enabled = false;
             DelMongoDBToolStripMenuItem.Enabled = false;
-            UserInfoStripMenuItem.Enabled = false;
             AddUserToolStripMenuItem.Enabled = false;
             AddDBCustomeRoleStripMenuItem.Enabled = false;
             EvalJSToolStripMenuItem.Enabled = false;

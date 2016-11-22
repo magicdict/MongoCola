@@ -1,4 +1,5 @@
 ﻿using MongoUtility.Aggregation;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Security;
 using ResourceLib.Method;
@@ -78,12 +79,21 @@ namespace MongoGUIView
         /// <summary>
         ///     打开新用户
         /// </summary>
-        public static Action OpenAddNewUserForm;
+        public static Action<bool> OpenAddNewUserForm;
 
         /// <summary>
         ///     更改密码
         /// </summary>
-        public static Action OpenChangePasswordForm;
+        public static Action<bool, string> OpenChangePasswordForm;
+
+
+        public bool isAdmin
+        {
+            get
+            {
+                return RuntimeMongoDbContext.GetCurrentDataBaseName() == ConstMgr.DatabaseNameAdmin;
+            }
+        }
 
         /// <summary>
         /// </summary>
@@ -91,7 +101,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void AddUserStripButton_Click(object sender, EventArgs e)
         {
-            OpenAddNewUserForm();
+            OpenAddNewUserForm(isAdmin);
             RefreshGui();
         }
 
@@ -186,7 +196,8 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void ChangePasswordStripButton_Click(object sender, EventArgs e)
         {
-            OpenChangePasswordForm();
+            if (lstData.SelectedItems.Count != 1) return;
+            OpenChangePasswordForm(isAdmin, lstData.SelectedItems[0].SubItems[1].Text);
             RefreshGui();
         }
 

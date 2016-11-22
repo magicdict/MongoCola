@@ -448,8 +448,9 @@ namespace MongoUtility.Command
             mongoCmd.Add("size", size);
             return ExecuteMongoDBCommand(mongoCmd, db);
         }
+
         /// <summary>
-        ///     createUser
+        ///     新建用户
         /// </summary>
         /// <param name="user"></param>
         /// <param name="db"></param>
@@ -458,15 +459,40 @@ namespace MongoUtility.Command
         {
             var mongoCmd = new CommandDocument { { "createUser", user.Username } };
             mongoCmd.Add("pwd", user.Password);
-            mongoCmd.Add("roles", user.Roles);
+            var roles = new BsonArray();
+            roles.AddRange(user.Roles.Select(x => x.AsBsonValue()));
+            mongoCmd.Add("roles", roles);
+            if (user.customData != null)
+            {
+                mongoCmd.Add("customData", user.customData);
+            }
             return ExecuteMongoDBCommand(mongoCmd, db);
         }
 
+        /// <summary>
+        ///     修改用户（完全替换）
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static CommandResult updateUser(MongoUserEx user, MongoDatabase db)
+        {
+            var mongoCmd = new CommandDocument { { "updateUser", user.Username } };
+            mongoCmd.Add("pwd", user.Password);
+            var roles = new BsonArray();
+            roles.AddRange(user.Roles.Select(x => x.AsBsonValue()));
+            mongoCmd.Add("roles", roles);
+            if (user.customData != null)
+            {
+                mongoCmd.Add("customData", user.customData);
+            }
+            return ExecuteMongoDBCommand(mongoCmd, db);
+        }
 
         /// <summary>
-        ///     添加一个用户自定义角色
+        ///     添加自定义角色
         /// </summary>
-        public static CommandResult AddRole(MongoDatabase mongoDb, Role role)
+        public static CommandResult createRole(MongoDatabase mongoDb, Role role)
         {
             var mongoCmd = new CommandDocument("createRole", role.Rolename);
             var privileges = new BsonArray();

@@ -274,6 +274,16 @@
         /// </summary>
         public const string MONGODB_X509 = "MONGODB-X509";
 
+        /// <summary>
+        ///     LDAP
+        /// </summary>
+        public const string LDAP = "LDAP";
+
+        /// <summary>
+        ///     Kerberos
+        /// </summary>
+        public const string Kerberos = "Kerberos";
+
         #endregion
     }
 }

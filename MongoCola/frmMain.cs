@@ -99,13 +99,13 @@ namespace MongoCola
                 return Password;
             };
 
-            CtlUserView.OpenAddNewUserForm = () =>
+            CtlUserView.OpenAddNewUserForm = (isAdmin) =>
             {
-                UIAssistant.OpenModalForm(new FrmUser(false), true, true);
+                UIAssistant.OpenModalForm(new FrmUser(isAdmin), true, true);
             };
-            CtlUserView.OpenChangePasswordForm = () =>
+            CtlUserView.OpenChangePasswordForm = (isAdmin, name) =>
             {
-                MessageBox.Show("Comming Soon");
+                UIAssistant.OpenModalForm(new FrmUser(isAdmin, name), true, true);
             };
         }
 

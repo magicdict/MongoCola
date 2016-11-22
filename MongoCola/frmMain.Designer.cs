@@ -65,7 +65,6 @@ namespace MongoCola
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.AddUserToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddAdminCustomeRoleStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.UserInfoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.ServerStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServerMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -389,7 +388,6 @@ namespace MongoCola
             this.toolStripMenuItem4,
             this.AddUserToAdminToolStripMenuItem,
             this.AddAdminCustomeRoleStripMenuItem,
-            this.UserInfoStripMenuItem,
             this.toolStripMenuItem3,
             this.ServerStatusToolStripMenuItem,
             this.ServerMonitorToolStripMenuItem});
@@ -426,14 +424,6 @@ namespace MongoCola
             this.AddAdminCustomeRoleStripMenuItem.Tag = "Main_Menu_Operation_Server_AddCustomRole";
             this.AddAdminCustomeRoleStripMenuItem.Text = "Add Custom Role";
             this.AddAdminCustomeRoleStripMenuItem.Click += new System.EventHandler(this.AddCustomeRoleStripMenuItem_Click);
-            // 
-            // UserInfoStripMenuItem
-            // 
-            this.UserInfoStripMenuItem.Name = "UserInfoStripMenuItem";
-            this.UserInfoStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.UserInfoStripMenuItem.Tag = "Main_Menu_Operation_Server_UserInfo";
-            this.UserInfoStripMenuItem.Text = "User Information";
-            this.UserInfoStripMenuItem.Click += new System.EventHandler(this.UserInfoStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -1125,7 +1115,6 @@ namespace MongoCola
         private ToolStripMenuItem textSearchToolStripMenuItem;
         private ToolStripMenuItem ValidateToolStripMenuItem;
         private ToolStripMenuItem CopyDatabasetoolStripMenuItem;
-        private ToolStripMenuItem UserInfoStripMenuItem;
         private ToolStripMenuItem ExportToFileToolStripMenuItem;
         private ToolStripMenuItem plugInToolStripMenuItem;
         private ToolStripMenuItem AddAdminCustomeRoleStripMenuItem;

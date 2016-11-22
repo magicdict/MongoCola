@@ -35,30 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Accord">
-      <HintPath>..\packages\Accord.3.3.1-alpha\lib\net46\Accord.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Controls">
-      <HintPath>..\packages\Accord.Controls.3.3.1-alpha\lib\net46\Accord.Controls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.MachineLearning">
-      <HintPath>..\packages\Accord.MachineLearning.3.3.1-alpha\lib\net46\Accord.MachineLearning.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Math">
-      <HintPath>..\packages\Accord.Math.3.3.1-alpha\lib\net46\Accord.Math.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Math.Core">
-      <HintPath>..\packages\Accord.Math.3.3.1-alpha\lib\net46\Accord.Math.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Statistics">
-      <HintPath>..\packages\Accord.Statistics.3.3.1-alpha\lib\net46\Accord.Statistics.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
       <HintPath>..\packages\ICSharpCode.TextEditor.3.2.1.6466\lib\Net20\ICSharpCode.TextEditor.dll</HintPath>
       <Private>True</Private>
@@ -452,13 +428,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Accord.3.3.1-alpha\build\Accord.targets" Condition="Exists('..\packages\Accord.3.3.1-alpha\build\Accord.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Accord.3.3.1-alpha\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.3.1-alpha\build\Accord.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

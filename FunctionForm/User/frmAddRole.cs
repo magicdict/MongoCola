@@ -1,4 +1,5 @@
-﻿using MongoUtility.Basic;
+﻿using MongoDB.Bson;
+using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.Security;
@@ -14,17 +15,17 @@ namespace FunctionForm.User
         /// <summary>
         ///     Priviege List
         /// </summary>
-        private readonly List<Role.Privilege> _privilegeList = new List<Role.Privilege>();
+        private List<Role.Privilege> _privilegeList = new List<Role.Privilege>();
 
         /// <summary>
         ///     Role List
         /// </summary>
-        private readonly List<Role.GrantRole> _roleList = new List<Role.GrantRole>();
+        private List<Role.GrantRole> _roleList = new List<Role.GrantRole>();
 
         /// <summary>
         ///     选中的Action
         /// </summary>
-        private readonly List<string> PickedAction = new List<string>();
+        private List<string> PickedAction = new List<string>();
 
         public FrmAddRole()
         {
@@ -41,7 +42,6 @@ namespace FunctionForm.User
             Common.UIAssistant.FillComberWithEnum(cmbResourceType, typeof(MongoResource.ResourceType));
             var dbs = RuntimeMongoDbContext.GetCurrentServer().GetDatabaseNames();
             Common.UIAssistant.FillComberWithArray(cmbDatabase, dbs, false);
-            Common.UIAssistant.FillComberWithArray(cmbRoleDB, dbs, false);
             Common.UIAssistant.FillComberWithEnum(cmbActionGroup, typeof(MongoAction.ActionGroup));
         }
 
@@ -143,27 +143,6 @@ namespace FunctionForm.User
         }
         #endregion
 
-        private void btnAddRole_Click(object sender, EventArgs e)
-        {
-            var role = new Role.GrantRole();
-            if (cmbRoleDB.SelectedIndex != 0)
-            {
-                role.Db = cmbRoleDB.Text;
-            }
-            var roles = ctlUserRolesPanel1.GetRoles();
-            if (roles.Count != 1)
-            {
-                MessageBox.Show("Please Pick One Role");
-                return;
-            }
-            role.Role = roles[0].ToString();
-            var t = new ListViewItem();
-            t.Text = role.Role;
-            t.SubItems.Add(role.Db);
-            lstRole.Items.Add(t);
-            _roleList.Add(role);
-        }
-
         /// <summary>
         ///     Add A Custom User
         /// </summary>
@@ -192,7 +171,7 @@ namespace FunctionForm.User
                 r.Roles[i] = _roleList[i];
             }
             //这个时候可能没有GetCurrentDataBase，如果是Admin
-            var result = CommandHelper.AddRole(RuntimeMongoDbContext.GetCurrentServer().GetDatabase(r.Database), r);
+            var result = CommandHelper.createRole(RuntimeMongoDbContext.GetCurrentServer().GetDatabase(r.Database), r);
             if (result.Ok)
             {
                 MyMessageBox.ShowEasyMessage("Succeed", "Add Role OK");
@@ -204,5 +183,23 @@ namespace FunctionForm.User
         }
 
 
+        /// <summary>
+        ///     选择角色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPickRole_Click(object sender, EventArgs e)
+        {
+            var mUserRole = new FrmUserRole(_roleList, true);
+            mUserRole.ShowDialog();
+            _roleList = mUserRole.PickedRoles;
+            lstRoles.Items.Clear();
+            foreach (var role in _roleList)
+            {
+                var lst = new ListViewItem(role.Role);
+                lst.SubItems.Add(role.Db);
+                lstRoles.Items.Add(lst);
+            }
+        }
     }
 }

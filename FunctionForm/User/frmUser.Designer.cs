@@ -43,23 +43,22 @@ namespace FunctionForm.User
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblConfirmPsw = new System.Windows.Forms.Label();
             this.txtConfirmPsw = new System.Windows.Forms.TextBox();
-            this.lblotherDBRoles = new System.Windows.Forms.Label();
-            this.cmbDB = new System.Windows.Forms.ComboBox();
-            this.cmdAddRole = new System.Windows.Forms.Button();
-            this.lstOtherRoles = new System.Windows.Forms.ListView();
-            this.colDataBase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnPickRole = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnPickDoc = new System.Windows.Forms.Button();
+            this.lblcustomDocument = new System.Windows.Forms.Label();
+            this.lstRoles = new System.Windows.Forms.ListView();
             this.colRoles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cmdDelRole = new System.Windows.Forms.Button();
-            this.cmdModifyRole = new System.Windows.Forms.Button();
-            this.userRoles = new MongoGUICtl.CtlUserRolesPanel();
+            this.colDataBase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(142, 460);
+            this.cmdOK.Location = new System.Drawing.Point(81, 421);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(96, 26);
+            this.cmdOK.Size = new System.Drawing.Size(84, 26);
             this.cmdOK.TabIndex = 4;
             this.cmdOK.Tag = "Common_Ok";
             this.cmdOK.Text = "OK";
@@ -69,9 +68,9 @@ namespace FunctionForm.User
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(279, 460);
+            this.cmdCancel.Location = new System.Drawing.Point(183, 421);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(117, 26);
+            this.cmdCancel.Size = new System.Drawing.Size(84, 26);
             this.cmdCancel.TabIndex = 5;
             this.cmdCancel.Tag = "Common_Cancel";
             this.cmdCancel.Text = "Cancel";
@@ -133,101 +132,94 @@ namespace FunctionForm.User
             this.txtConfirmPsw.TabIndex = 2;
             this.txtConfirmPsw.UseSystemPasswordChar = true;
             // 
-            // lblotherDBRoles
+            // btnPickRole
             // 
-            this.lblotherDBRoles.AutoSize = true;
-            this.lblotherDBRoles.Location = new System.Drawing.Point(576, 18);
-            this.lblotherDBRoles.Name = "lblotherDBRoles";
-            this.lblotherDBRoles.Size = new System.Drawing.Size(87, 15);
-            this.lblotherDBRoles.TabIndex = 12;
-            this.lblotherDBRoles.Text = "otherDBRoles";
+            this.btnPickRole.Location = new System.Drawing.Point(145, 179);
+            this.btnPickRole.Name = "btnPickRole";
+            this.btnPickRole.Size = new System.Drawing.Size(110, 30);
+            this.btnPickRole.TabIndex = 9;
+            this.btnPickRole.Text = "Pick Roles";
+            this.btnPickRole.UseVisualStyleBackColor = true;
+            this.btnPickRole.Click += new System.EventHandler(this.btnPickRole_Click);
             // 
-            // cmbDB
+            // label1
             // 
-            this.cmbDB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDB.FormattingEnabled = true;
-            this.cmbDB.Location = new System.Drawing.Point(623, 61);
-            this.cmbDB.Name = "cmbDB";
-            this.cmbDB.Size = new System.Drawing.Size(152, 23);
-            this.cmbDB.TabIndex = 13;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 185);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 15);
+            this.label1.TabIndex = 10;
+            this.label1.Tag = "Common_Roles";
+            this.label1.Text = "Roles";
             // 
-            // cmdAddRole
+            // label2
             // 
-            this.cmdAddRole.Location = new System.Drawing.Point(781, 61);
-            this.cmdAddRole.Name = "cmdAddRole";
-            this.cmdAddRole.Size = new System.Drawing.Size(92, 27);
-            this.cmdAddRole.TabIndex = 14;
-            this.cmdAddRole.Text = "Add Role";
-            this.cmdAddRole.UseVisualStyleBackColor = true;
-            this.cmdAddRole.Click += new System.EventHandler(this.cmdAddRole_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 106);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 15);
+            this.label2.TabIndex = 10;
+            this.label2.Tag = "";
+            this.label2.Text = "customData";
             // 
-            // lstOtherRoles
+            // btnPickDoc
             // 
-            this.lstOtherRoles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colDataBase,
-            this.colRoles});
-            this.lstOtherRoles.FullRowSelect = true;
-            this.lstOtherRoles.GridLines = true;
-            this.lstOtherRoles.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            this.btnPickDoc.Location = new System.Drawing.Point(145, 98);
+            this.btnPickDoc.Name = "btnPickDoc";
+            this.btnPickDoc.Size = new System.Drawing.Size(110, 30);
+            this.btnPickDoc.TabIndex = 12;
+            this.btnPickDoc.Text = "Pick Document";
+            this.btnPickDoc.UseVisualStyleBackColor = true;
+            this.btnPickDoc.Click += new System.EventHandler(this.btnPickDoc_Click);
+            // 
+            // lblcustomDocument
+            // 
+            this.lblcustomDocument.AutoSize = true;
+            this.lblcustomDocument.Location = new System.Drawing.Point(28, 134);
+            this.lblcustomDocument.Name = "lblcustomDocument";
+            this.lblcustomDocument.Size = new System.Drawing.Size(120, 15);
+            this.lblcustomDocument.TabIndex = 11;
+            this.lblcustomDocument.Text = "customDocument：";
+            // 
+            // lstRoles
+            // 
+            this.lstRoles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colRoles,
+            this.colDataBase});
+            this.lstRoles.FullRowSelect = true;
+            this.lstRoles.GridLines = true;
+            this.lstRoles.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
-            this.lstOtherRoles.Location = new System.Drawing.Point(579, 109);
-            this.lstOtherRoles.Name = "lstOtherRoles";
-            this.lstOtherRoles.Size = new System.Drawing.Size(426, 225);
-            this.lstOtherRoles.TabIndex = 15;
-            this.lstOtherRoles.UseCompatibleStateImageBehavior = false;
-            this.lstOtherRoles.View = System.Windows.Forms.View.Details;
-            // 
-            // colDataBase
-            // 
-            this.colDataBase.Text = "DataBase";
-            this.colDataBase.Width = 105;
+            this.lstRoles.Location = new System.Drawing.Point(31, 215);
+            this.lstRoles.Name = "lstRoles";
+            this.lstRoles.Size = new System.Drawing.Size(327, 167);
+            this.lstRoles.TabIndex = 28;
+            this.lstRoles.UseCompatibleStateImageBehavior = false;
+            this.lstRoles.View = System.Windows.Forms.View.Details;
             // 
             // colRoles
             // 
             this.colRoles.Text = "Roles";
-            this.colRoles.Width = 229;
+            this.colRoles.Width = 130;
             // 
-            // cmdDelRole
+            // colDataBase
             // 
-            this.cmdDelRole.Location = new System.Drawing.Point(754, 340);
-            this.cmdDelRole.Name = "cmdDelRole";
-            this.cmdDelRole.Size = new System.Drawing.Size(92, 33);
-            this.cmdDelRole.TabIndex = 14;
-            this.cmdDelRole.Text = "Delete Role";
-            this.cmdDelRole.UseVisualStyleBackColor = true;
-            this.cmdDelRole.Click += new System.EventHandler(this.cmdDelRole_Click);
-            // 
-            // cmdModifyRole
-            // 
-            this.cmdModifyRole.Location = new System.Drawing.Point(852, 341);
-            this.cmdModifyRole.Name = "cmdModifyRole";
-            this.cmdModifyRole.Size = new System.Drawing.Size(109, 32);
-            this.cmdModifyRole.TabIndex = 16;
-            this.cmdModifyRole.Text = "Modify Role";
-            this.cmdModifyRole.UseVisualStyleBackColor = true;
-            this.cmdModifyRole.Click += new System.EventHandler(this.cmdModifyRole_Click);
-            // 
-            // userRoles
-            // 
-            this.userRoles.Location = new System.Drawing.Point(12, 96);
-            this.userRoles.Name = "userRoles";
-            this.userRoles.Size = new System.Drawing.Size(505, 331);
-            this.userRoles.TabIndex = 9;
+            this.colDataBase.Text = "DataBase";
+            this.colDataBase.Width = 275;
             // 
             // FrmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1064, 516);
-            this.Controls.Add(this.cmdModifyRole);
-            this.Controls.Add(this.lstOtherRoles);
-            this.Controls.Add(this.cmdDelRole);
-            this.Controls.Add(this.cmdAddRole);
-            this.Controls.Add(this.cmbDB);
-            this.Controls.Add(this.lblotherDBRoles);
-            this.Controls.Add(this.userRoles);
+            this.ClientSize = new System.Drawing.Size(374, 470);
+            this.Controls.Add(this.lstRoles);
+            this.Controls.Add(this.btnPickDoc);
+            this.Controls.Add(this.lblcustomDocument);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnPickRole);
             this.Controls.Add(this.txtConfirmPsw);
             this.Controls.Add(this.lblConfirmPsw);
             this.Controls.Add(this.txtPassword);
@@ -260,14 +252,13 @@ namespace FunctionForm.User
         private TextBox txtUserName;
         private Label lblConfirmPsw;
         private TextBox txtConfirmPsw;
-        private CtlUserRolesPanel userRoles;
-        private Label lblotherDBRoles;
-        private ComboBox cmbDB;
-        private Button cmdAddRole;
-        private ListView lstOtherRoles;
-        private ColumnHeader colDataBase;
+        private Button btnPickRole;
+        private Label label1;
+        private Label label2;
+        private Button btnPickDoc;
+        private Label lblcustomDocument;
+        private ListView lstRoles;
         private ColumnHeader colRoles;
-        private Button cmdDelRole;
-        private Button cmdModifyRole;
+        private ColumnHeader colDataBase;
     }
 }

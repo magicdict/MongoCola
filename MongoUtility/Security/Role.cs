@@ -1,7 +1,5 @@
-﻿using System;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Collections.Generic;
 
 namespace MongoUtility.Security
 {
@@ -43,11 +41,6 @@ namespace MongoUtility.Security
         #endregion
 
         #region"角色操作"
-
-        /// <summary>
-        ///     可以省略？？
-        /// </summary>
-        public string Id;
 
         /// <summary>
         ///     rolename
