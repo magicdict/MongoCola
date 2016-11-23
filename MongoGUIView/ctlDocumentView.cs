@@ -205,11 +205,11 @@ namespace MongoGUIView
             return ModifyElementToolStripMenuItem.Enabled;
         }
 
-        ///// <summary>
-        ///// 数据树形被选择后(TOP)
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
+        /// <summary>
+        /// 数据树形被选择后(TOP)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trvData_AfterSelect_Top(object sender, TreeViewEventArgs e)
         {
             //InitControlsEnable();
@@ -282,11 +282,11 @@ namespace MongoGUIView
             }
         }
 
-        //<summary>
-        //      数据列表选中索引变换
-        //</summary>
-        //<param name="sender"></param>
-        //<param name="e"></param>
+        ///<summary>
+        ///      数据列表选中索引变换
+        ///</summary>
+        ///<param name="sender"></param>
+        ///<param name="e"></param>
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsSystemCollection && !mDataViewInfo.IsReadOnly)

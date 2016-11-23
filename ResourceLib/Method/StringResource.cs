@@ -29,30 +29,43 @@ namespace ResourceLib.Method
         /// <param name="languageFileName">当前语言文件</param>
         public static void InitLanguage(string languageFileName)
         {
+            StringDic.Clear();
+
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(languageFileName);
+            var root = xmlDoc.DocumentElement;
+            LanguageType = root.GetAttribute("Type");
+
+            foreach (XmlNode item in root.ChildNodes)
+            {
+                if (item.NodeType == XmlNodeType.Element) SetItem(string.Empty, item);
+            }
+        }
+        /// <summary>
+        ///     递归遍历
+        /// </summary>
+        /// <param name="PreTag"></param>
+        /// <param name="node"></param>
+        public static void SetItem(string PreTag, XmlNode node)
+        {
             var tag = string.Empty;
             var text = string.Empty;
-            var reader = new XmlTextReader(languageFileName);
-            StringDic.Clear();
-            while (reader.Read())
+
+            if (node.ChildNodes.Count == 1 && node.ChildNodes[0].NodeType == XmlNodeType.Text)
             {
-                switch (reader.NodeType)
+                tag = PreTag + node.Name.Trim().Replace("_", "").ToUpper();
+                text = node.ChildNodes[0].InnerText;
+                if (!string.IsNullOrEmpty(tag) && !string.IsNullOrEmpty(text))
                 {
-                    case XmlNodeType.Element:
-                        // The node is an element.
-                        if (reader.Name == "Language")
-                        {
-                            LanguageType = reader.GetAttribute("Type");
-                            continue;
-                        }
-                        tag = reader.Name.Trim().Replace("_", "").ToUpper();
-                        text = reader.ReadInnerXml().Trim();
-                        if (!string.IsNullOrEmpty(tag) && !string.IsNullOrEmpty(text))
-                        {
-                            StringDic.Add(tag, text);
-                        }
-                        break;
-                    default:
-                        break;
+                    StringDic.Add(tag, text);
+                }
+            }
+            else
+            {
+                tag = node.Name.Trim().Replace("_", "").ToUpper() + ".";
+                foreach (XmlNode item in node.ChildNodes)
+                {
+                    if (item.NodeType == XmlNodeType.Element) SetItem(tag, item);
                 }
             }
         }

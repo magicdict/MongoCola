@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Common;
+using MongoUtility.Aggregation;
+using MongoUtility.Core;
+using ResourceLib.Method;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Common;
-using MongoUtility.Aggregation;
-using MongoUtility.Core;
-using ResourceLib.Method;
 
 namespace MongoGUIView
 {
@@ -164,26 +164,14 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void HelpStripButton_Click(object sender, EventArgs e)
         {
-            var strType = GetType().ToString();
-            strType = strType.Split(".".ToCharArray())[1];
-            var strUrl = @"UserGuide\index.htm";
-            switch (strType)
-            {
-                case "ctlDataView":
-                    strUrl = @"UserGuide\index.html";
-                    break;
-                case "ctlDocumentView":
-                    strUrl = @"UserGuide\DataView.html";
-                    break;
-                case "ctlGFSView":
-                    strUrl = @"UserGuide\GFS.html";
-                    break;
-                case "ctlUserView":
-                    strUrl = @"UserGuide\User.html";
-                    break;
-            }
             try
             {
+                var strType = GetType().FullName;
+                var strUrl = @"http://www.codesnippet.info/Article/Index?ArticleId=00000062";
+                if (strType == typeof(CtlDataView).FullName) strUrl = @"http://www.codesnippet.info/Article/Index?ArticleId=00000062";
+                if (strType == typeof(CtlDocumentView).FullName) strUrl = @"http://www.codesnippet.info/Article/Index?ArticleId=00000062";
+                if (strType == typeof(CtlGfsView).FullName) strUrl = @"http://www.codesnippet.info/Article/Index?ArticleId=00000062#Grid File System";
+                if (strType == typeof(CtlUserView).FullName) strUrl = @"http://www.codesnippet.info/Article/Index?ArticleId=00000062#安全";
                 Process.Start(strUrl);
             }
             catch (Exception)

@@ -85,6 +85,7 @@ namespace MongoCola
             ReplicaSetToolStripMenuItem.Enabled = false;
             ShardingConfigToolStripMenuItem.Enabled = false;
             DisconnectToolStripMenuItem.Enabled = false;
+            ServerMonitorToolStripMenuItem.Enabled = false;
 
             //管理-数据库
             CreateMongoCollectionToolStripMenuItem.Enabled = false;

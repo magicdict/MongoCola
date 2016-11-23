@@ -138,7 +138,7 @@
   <AddConnection_Attention_Description>优先度为0的服务器不可能成为Master服务器</AddConnection_Attention_Description>
   <AddConnection_Password_Description>密码将于明文形式保存在Config文件中</AddConnection_Password_Description>
   <InputPasswordOnConnect>在连接时输入密码</InputPasswordOnConnect>
-  
+
   <!--frmCollectionIndex-->
   <CollectionIndex_Title>索引管理器</CollectionIndex_Title>
   <CollectionIndex_Tab_Current>当前索引</CollectionIndex_Tab_Current>
@@ -469,5 +469,10 @@
   <version>版本</version>
   <election>选举权</election>
 
+  <DataBaseName>
+    <admin>管理员权限</admin>
+    <local>本地</local>
+    <config>配置</config>
+  </DataBaseName>
 
 </Language>

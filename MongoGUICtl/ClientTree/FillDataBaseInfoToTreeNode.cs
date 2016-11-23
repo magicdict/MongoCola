@@ -22,23 +22,17 @@ namespace MongoGUICtl.ClientTree
             MongoClient client = null)
         {
             var strShowDbName = strDbName;
-            if (!GuiConfig.IsUseDefaultLanguage)
+            switch (strDbName)
             {
-                if (StringResource.LanguageType == "Chinese")
-                {
-                    switch (strDbName)
-                    {
-                        case ConstMgr.DatabaseNameAdmin:
-                            strShowDbName = "管理员权限(admin)";
-                            break;
-                        case "local":
-                            strShowDbName = "本地(local)";
-                            break;
-                        case "config":
-                            strShowDbName = "配置(config)";
-                            break;
-                    }
-                }
+                case ConstMgr.DatabaseNameAdmin:
+                    strShowDbName = GuiConfig.GetText("admin", "databasename.admin") + "(" + strDbName + ")";
+                    break;
+                case "local":
+                    strShowDbName = GuiConfig.GetText("local", "databasename.local") + "(" + strDbName + ")";
+                    break;
+                case "config":
+                    strShowDbName = GuiConfig.GetText("config", "databasename.config") + "(" + strDbName + ")"; 
+                    break;
             }
             var mongoDbNode = new TreeNode(strShowDbName);
             mongoDbNode.Tag = TagInfo.CreateTagInfo(mongoSvrKey, strDbName);
