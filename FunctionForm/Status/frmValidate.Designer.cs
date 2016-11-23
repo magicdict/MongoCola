@@ -54,7 +54,7 @@ namespace FunctionForm.Status
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(114, 25);
             this.cmdClose.TabIndex = 1;
-            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Tag = "Common.Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -65,7 +65,7 @@ namespace FunctionForm.Status
             this.cmdValidate.Name = "cmdValidate";
             this.cmdValidate.Size = new System.Drawing.Size(75, 21);
             this.cmdValidate.TabIndex = 2;
-            this.cmdValidate.Tag = "Common_Validate";
+            this.cmdValidate.Tag = "Common.Validate";
             this.cmdValidate.Text = "Validate";
             this.cmdValidate.UseVisualStyleBackColor = true;
             this.cmdValidate.Click += new System.EventHandler(this.cmdValidate_Click);
@@ -77,7 +77,7 @@ namespace FunctionForm.Status
             this.chkFull.Name = "chkFull";
             this.chkFull.Size = new System.Drawing.Size(48, 16);
             this.chkFull.TabIndex = 3;
-            this.chkFull.Tag = "Common_Full";
+            this.chkFull.Tag = "Common.Full";
             this.chkFull.Text = "Full";
             this.chkFull.UseVisualStyleBackColor = true;
             // 
@@ -87,7 +87,7 @@ namespace FunctionForm.Status
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(105, 25);
             this.cmdSave.TabIndex = 4;
-            this.cmdSave.Tag = "Common_Save";
+            this.cmdSave.Tag = "Common.Save";
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
@@ -104,7 +104,7 @@ namespace FunctionForm.Status
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.trvResult);
             this.Name = "FrmValidate";
-            this.Tag = "Common_Validate";
+            this.Tag = "Common.Validate";
             this.Text = "Validate";
             this.ResumeLayout(false);
             this.PerformLayout();

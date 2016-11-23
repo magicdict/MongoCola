@@ -80,7 +80,7 @@ namespace FunctionForm.Connection
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(29, 12);
             this.lblPort.TabIndex = 8;
-            this.lblPort.Tag = "Common_Port";
+            this.lblPort.Tag = "Common.Port";
             this.lblPort.Text = "Port";
             // 
             // txtSshHost
@@ -98,7 +98,7 @@ namespace FunctionForm.Connection
             this.lblHost.Name = "lblHost";
             this.lblHost.Size = new System.Drawing.Size(29, 12);
             this.lblHost.TabIndex = 6;
-            this.lblHost.Tag = "Common_Host";
+            this.lblHost.Tag = "Common.Host";
             this.lblHost.Text = "Host";
             // 
             // lblUsername
@@ -109,7 +109,7 @@ namespace FunctionForm.Connection
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(53, 12);
             this.lblUsername.TabIndex = 11;
-            this.lblUsername.Tag = "Common_Username";
+            this.lblUsername.Tag = "Common.Username";
             this.lblUsername.Text = "UserName";
             // 
             // lblPassword
@@ -120,7 +120,7 @@ namespace FunctionForm.Connection
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(53, 12);
             this.lblPassword.TabIndex = 12;
-            this.lblPassword.Tag = "Common_Password";
+            this.lblPassword.Tag = "Common.Password";
             this.lblPassword.Text = "Password";
             // 
             // txtSshUser
@@ -168,7 +168,7 @@ namespace FunctionForm.Connection
             this.radPassword.Size = new System.Drawing.Size(71, 16);
             this.radPassword.TabIndex = 0;
             this.radPassword.TabStop = true;
-            this.radPassword.Tag = "Common_Password";
+            this.radPassword.Tag = "Common.Password";
             this.radPassword.Text = "Password";
             this.radPassword.UseVisualStyleBackColor = true;
             // 

@@ -31,8 +31,8 @@ namespace FunctionForm.User
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("");
             this.btnAddCustomRole = new System.Windows.Forms.Button();
             this.lblRoleName = new System.Windows.Forms.Label();
             this.txtRolename = new System.Windows.Forms.TextBox();
@@ -82,6 +82,7 @@ namespace FunctionForm.User
             this.lblRoleName.Name = "lblRoleName";
             this.lblRoleName.Size = new System.Drawing.Size(73, 17);
             this.lblRoleName.TabIndex = 1;
+            this.lblRoleName.Tag = "Common.Name";
             this.lblRoleName.Text = "Role Name";
             // 
             // txtRolename
@@ -99,6 +100,7 @@ namespace FunctionForm.User
             this.lblResource.Name = "lblResource";
             this.lblResource.Size = new System.Drawing.Size(62, 17);
             this.lblResource.TabIndex = 4;
+            this.lblResource.Tag = "Common.Resource";
             this.lblResource.Text = "Resource";
             // 
             // lblAction
@@ -108,6 +110,7 @@ namespace FunctionForm.User
             this.lblAction.Name = "lblAction";
             this.lblAction.Size = new System.Drawing.Size(44, 17);
             this.lblAction.TabIndex = 5;
+            this.lblAction.Tag = "Common.Action";
             this.lblAction.Text = "Action";
             // 
             // cmbDatabase
@@ -167,6 +170,7 @@ namespace FunctionForm.User
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 17);
             this.label2.TabIndex = 11;
+            this.label2.Tag = "Common.Collection";
             this.label2.Text = "Collection";
             // 
             // cmbCollection
@@ -185,6 +189,7 @@ namespace FunctionForm.User
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 9;
+            this.label1.Tag = "Common.DataBase";
             this.label1.Text = "DataBase";
             // 
             // cmbResourceType
@@ -203,6 +208,7 @@ namespace FunctionForm.User
             this.lblResourceType.Name = "lblResourceType";
             this.lblResourceType.Size = new System.Drawing.Size(36, 17);
             this.lblResourceType.TabIndex = 7;
+            this.lblResourceType.Tag = "Common.Type";
             this.lblResourceType.Text = "Type";
             // 
             // tabControl1
@@ -284,8 +290,8 @@ namespace FunctionForm.User
             this.lstRoles.FullRowSelect = true;
             this.lstRoles.GridLines = true;
             this.lstRoles.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem11,
+            listViewItem12});
             this.lstRoles.Location = new System.Drawing.Point(26, 51);
             this.lstRoles.Name = "lstRoles";
             this.lstRoles.Size = new System.Drawing.Size(423, 251);
@@ -310,7 +316,7 @@ namespace FunctionForm.User
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 17);
             this.label4.TabIndex = 30;
-            this.label4.Tag = "Common_Roles";
+            this.label4.Tag = "Common.Roles";
             this.label4.Text = "Roles";
             // 
             // btnPickRole

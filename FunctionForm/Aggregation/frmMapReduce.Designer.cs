@@ -76,7 +76,7 @@ namespace FunctionForm.Aggregation
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(103, 30);
             this.cmdRun.TabIndex = 7;
-            this.cmdRun.Tag = "Common_Run";
+            this.cmdRun.Tag = "Common.Run";
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
@@ -87,7 +87,7 @@ namespace FunctionForm.Aggregation
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(111, 30);
             this.cmdClose.TabIndex = 22;
-            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Tag = "Common.Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -185,7 +185,7 @@ namespace FunctionForm.Aggregation
             this.cmdClearQuery.Name = "cmdClearQuery";
             this.cmdClearQuery.Size = new System.Drawing.Size(97, 28);
             this.cmdClearQuery.TabIndex = 2;
-            this.cmdClearQuery.Tag = "Common_Clear";
+            this.cmdClearQuery.Tag = "Common.Clear";
             this.cmdClearQuery.Text = "Clear";
             this.cmdClearQuery.UseVisualStyleBackColor = true;
             this.cmdClearQuery.Click += new System.EventHandler(this.cmdClearQuery_Click);
@@ -206,7 +206,7 @@ namespace FunctionForm.Aggregation
             this.cmdCreateQueryDocument.Name = "cmdCreateQueryDocument";
             this.cmdCreateQueryDocument.Size = new System.Drawing.Size(97, 28);
             this.cmdCreateQueryDocument.TabIndex = 0;
-            this.cmdCreateQueryDocument.Tag = "Common_Create";
+            this.cmdCreateQueryDocument.Tag = "Common.Create";
             this.cmdCreateQueryDocument.Text = "Create";
             this.cmdCreateQueryDocument.UseVisualStyleBackColor = true;
             this.cmdCreateQueryDocument.Click += new System.EventHandler(this.cmdCreateQueryDocument_Click);
@@ -260,7 +260,7 @@ namespace FunctionForm.Aggregation
             this.btnCollation.Name = "btnCollation";
             this.btnCollation.Size = new System.Drawing.Size(96, 27);
             this.btnCollation.TabIndex = 39;
-            this.btnCollation.Tag = "Common_Create";
+            this.btnCollation.Tag = "Common.Create";
             this.btnCollation.Text = "Create";
             this.btnCollation.UseVisualStyleBackColor = true;
             this.btnCollation.Click += new System.EventHandler(this.btnCollation_Click);
@@ -344,7 +344,7 @@ namespace FunctionForm.Aggregation
             this.btnClearCollation.Name = "btnClearCollation";
             this.btnClearCollation.Size = new System.Drawing.Size(97, 28);
             this.btnClearCollation.TabIndex = 41;
-            this.btnClearCollation.Tag = "Common_Clear";
+            this.btnClearCollation.Tag = "Common.Clear";
             this.btnClearCollation.Text = "Clear";
             this.btnClearCollation.UseVisualStyleBackColor = true;
             this.btnClearCollation.Click += new System.EventHandler(this.btnClearCollation_Click);

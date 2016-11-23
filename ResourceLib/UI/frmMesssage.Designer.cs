@@ -74,7 +74,7 @@ namespace ResourceLib.UI
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(117, 37);
             this.cmdOK.TabIndex = 7;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -87,7 +87,7 @@ namespace ResourceLib.UI
             this.cmdDetails.Name = "cmdDetails";
             this.cmdDetails.Size = new System.Drawing.Size(117, 37);
             this.cmdDetails.TabIndex = 8;
-            this.cmdDetails.Tag = "Common_Detail";
+            this.cmdDetails.Tag = "Common.Detail";
             this.cmdDetails.Text = "details";
             this.cmdDetails.UseVisualStyleBackColor = false;
             this.cmdDetails.Click += new System.EventHandler(this.cmdDetails_Click);

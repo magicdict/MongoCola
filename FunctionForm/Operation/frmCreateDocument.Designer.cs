@@ -47,7 +47,7 @@ namespace FunctionForm.Operation
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(96, 33);
             this.cmdOK.TabIndex = 5;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -58,7 +58,7 @@ namespace FunctionForm.Operation
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(96, 33);
             this.cmdClose.TabIndex = 6;
-            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Tag = "Common.Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -88,7 +88,7 @@ namespace FunctionForm.Operation
             this.cmdPreview.Name = "cmdPreview";
             this.cmdPreview.Size = new System.Drawing.Size(96, 33);
             this.cmdPreview.TabIndex = 4;
-            this.cmdPreview.Tag = "Common_Preview";
+            this.cmdPreview.Tag = "Common.Preview";
             this.cmdPreview.Text = "Preview";
             this.cmdPreview.UseVisualStyleBackColor = true;
             this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
@@ -100,7 +100,7 @@ namespace FunctionForm.Operation
             this.cmdSaveAggregate.Name = "cmdSaveAggregate";
             this.cmdSaveAggregate.Size = new System.Drawing.Size(96, 33);
             this.cmdSaveAggregate.TabIndex = 3;
-            this.cmdSaveAggregate.Tag = "Common_Save";
+            this.cmdSaveAggregate.Tag = "Common.Save";
             this.cmdSaveAggregate.Text = "Save";
             this.cmdSaveAggregate.UseVisualStyleBackColor = false;
             this.cmdSaveAggregate.Click += new System.EventHandler(this.cmdSaveDocument_Click);

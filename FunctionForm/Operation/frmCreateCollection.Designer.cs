@@ -76,7 +76,7 @@ namespace FunctionForm.Operation
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 27);
             this.cmdOK.TabIndex = 4;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -87,7 +87,7 @@ namespace FunctionForm.Operation
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 27);
             this.cmdCancel.TabIndex = 5;
-            this.cmdCancel.Tag = "Common_Cancel";
+            this.cmdCancel.Tag = "Common.Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
@@ -106,7 +106,7 @@ namespace FunctionForm.Operation
             this.lblCollectionName.Name = "lblCollectionName";
             this.lblCollectionName.Size = new System.Drawing.Size(99, 15);
             this.lblCollectionName.TabIndex = 0;
-            this.lblCollectionName.Tag = "Common_CollectionName";
+            this.lblCollectionName.Tag = "Common.CollectionName";
             this.lblCollectionName.Text = "CollectionName";
             // 
             // chkIsCapped
@@ -172,7 +172,7 @@ namespace FunctionForm.Operation
             this.cmdCreateValidation.Name = "cmdCreateValidation";
             this.cmdCreateValidation.Size = new System.Drawing.Size(105, 25);
             this.cmdCreateValidation.TabIndex = 31;
-            this.cmdCreateValidation.Tag = "Common_Create";
+            this.cmdCreateValidation.Tag = "Common.Create";
             this.cmdCreateValidation.Text = "Create";
             this.cmdCreateValidation.UseVisualStyleBackColor = true;
             this.cmdCreateValidation.Click += new System.EventHandler(this.cmdCreateValidation_Click);
@@ -186,7 +186,7 @@ namespace FunctionForm.Operation
             this.groupBox2.Size = new System.Drawing.Size(181, 55);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Tag = "Common_Action";
+            this.groupBox2.Tag = "Common.Action";
             this.groupBox2.Text = "Action";
             // 
             // radAction_error
@@ -198,7 +198,7 @@ namespace FunctionForm.Operation
             this.radAction_error.Size = new System.Drawing.Size(55, 19);
             this.radAction_error.TabIndex = 27;
             this.radAction_error.TabStop = true;
-            this.radAction_error.Tag = "Common_Error";
+            this.radAction_error.Tag = "Common.Error";
             this.radAction_error.Text = "error";
             this.radAction_error.UseVisualStyleBackColor = true;
             // 
@@ -210,7 +210,7 @@ namespace FunctionForm.Operation
             this.radAction_warn.Size = new System.Drawing.Size(53, 19);
             this.radAction_warn.TabIndex = 28;
             this.radAction_warn.TabStop = true;
-            this.radAction_warn.Tag = "Common_Warning";
+            this.radAction_warn.Tag = "Common.Warning";
             this.radAction_warn.Text = "warn";
             this.radAction_warn.UseVisualStyleBackColor = true;
             // 
@@ -224,7 +224,7 @@ namespace FunctionForm.Operation
             this.groupBox1.Size = new System.Drawing.Size(246, 55);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Tag = "Common_Level";
+            this.groupBox1.Tag = "Common.Level";
             this.groupBox1.Text = "Level";
             // 
             // radLevel_moderate
@@ -266,7 +266,7 @@ namespace FunctionForm.Operation
             this.chkValidation.Name = "chkValidation";
             this.chkValidation.Size = new System.Drawing.Size(84, 19);
             this.chkValidation.TabIndex = 6;
-            this.chkValidation.Tag = "Common_Validate";
+            this.chkValidation.Tag = "Common.Validate";
             this.chkValidation.Text = "Validation";
             this.chkValidation.UseVisualStyleBackColor = true;
             // 
@@ -296,7 +296,7 @@ namespace FunctionForm.Operation
             this.btnCollation.Name = "btnCollation";
             this.btnCollation.Size = new System.Drawing.Size(96, 27);
             this.btnCollation.TabIndex = 36;
-            this.btnCollation.Tag = "Common_Create";
+            this.btnCollation.Tag = "Common.Create";
             this.btnCollation.Text = "Create";
             this.btnCollation.UseVisualStyleBackColor = true;
             this.btnCollation.Click += new System.EventHandler(this.btnCollation_Click);
@@ -310,7 +310,7 @@ namespace FunctionForm.Operation
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(718, 380);
             this.tabControl1.TabIndex = 38;
-            this.tabControl1.Tag = "Common_Basic";
+            this.tabControl1.Tag = "Common.Basic";
             // 
             // tabPage3
             // 
@@ -332,7 +332,7 @@ namespace FunctionForm.Operation
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(710, 352);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Tag = "Common_Basic";
+            this.tabPage3.Tag = "Common.Basic";
             this.tabPage3.Text = "Basic";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -342,7 +342,7 @@ namespace FunctionForm.Operation
             this.btnClearCollation.Name = "btnClearCollation";
             this.btnClearCollation.Size = new System.Drawing.Size(105, 25);
             this.btnClearCollation.TabIndex = 39;
-            this.btnClearCollation.Tag = "Common_Clear";
+            this.btnClearCollation.Tag = "Common.Clear";
             this.btnClearCollation.Text = "Clear";
             this.btnClearCollation.UseVisualStyleBackColor = true;
             this.btnClearCollation.Click += new System.EventHandler(this.btnClearCollation_Click);
@@ -354,7 +354,7 @@ namespace FunctionForm.Operation
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 38;
-            this.label3.Tag = "Common_Collation";
+            this.label3.Tag = "Common.Collation";
             this.label3.Text = "Collation";
             // 
             // trvCollation
@@ -381,7 +381,7 @@ namespace FunctionForm.Operation
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(710, 352);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Tag = "Common_Validate";
+            this.tabPage2.Tag = "Common.Validate";
             this.tabPage2.Text = "Validation";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -392,7 +392,7 @@ namespace FunctionForm.Operation
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(114, 15);
             this.label2.TabIndex = 32;
-            this.label2.Tag = "Common_ValidateExpress";
+            this.label2.Tag = "Common.ValidateExpress";
             this.label2.Text = "Validation Express";
             // 
             // cmdClearValidation
@@ -401,7 +401,7 @@ namespace FunctionForm.Operation
             this.cmdClearValidation.Name = "cmdClearValidation";
             this.cmdClearValidation.Size = new System.Drawing.Size(105, 25);
             this.cmdClearValidation.TabIndex = 31;
-            this.cmdClearValidation.Tag = "Common_Clear";
+            this.cmdClearValidation.Tag = "Common.Clear";
             this.cmdClearValidation.Text = "Clear";
             this.cmdClearValidation.UseVisualStyleBackColor = true;
             this.cmdClearValidation.Click += new System.EventHandler(this.cmdClearValidation_Click);

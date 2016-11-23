@@ -56,7 +56,7 @@ namespace FunctionForm.Connection
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(90, 36);
             this.cmdClose.TabIndex = 7;
-            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Tag = "Common.Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = false;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -68,7 +68,7 @@ namespace FunctionForm.Connection
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(90, 36);
             this.cmdOK.TabIndex = 6;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdConnect_Click);
@@ -93,31 +93,31 @@ namespace FunctionForm.Connection
             // 
             // colName
             // 
-            this.colName.Tag = "Common_Name";
+            this.colName.Tag = "Common.Name";
             this.colName.Text = "Name";
             this.colName.Width = 79;
             // 
             // colHost
             // 
-            this.colHost.Tag = "Common_Host";
+            this.colHost.Tag = "Common.Host";
             this.colHost.Text = "Host";
             this.colHost.Width = 132;
             // 
             // colPort
             // 
-            this.colPort.Tag = "Common_Port";
+            this.colPort.Tag = "Common.Port";
             this.colPort.Text = "Port";
             this.colPort.Width = 93;
             // 
             // colReplsetMember
             // 
-            this.colReplsetMember.Tag = "Common_ReplsetMember";
+            this.colReplsetMember.Tag = "Common.ReplsetMember";
             this.colReplsetMember.Text = "ReplsetMember";
             this.colReplsetMember.Width = 100;
             // 
             // colUser
             // 
-            this.colUser.Tag = "Common_User";
+            this.colUser.Tag = "Common.User";
             this.colUser.Text = "User";
             this.colUser.Width = 71;
             // 
@@ -142,7 +142,7 @@ namespace FunctionForm.Connection
             this.cmdAddCon.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdAddCon.Name = "cmdAddCon";
             this.cmdAddCon.Size = new System.Drawing.Size(23, 22);
-            this.cmdAddCon.Tag = "Common_Add";
+            this.cmdAddCon.Tag = "Common.Add";
             this.cmdAddCon.Text = "New";
             this.cmdAddCon.Click += new System.EventHandler(this.cmdAddCon_Click);
             // 
@@ -153,7 +153,7 @@ namespace FunctionForm.Connection
             this.cmdModifyCon.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdModifyCon.Name = "cmdModifyCon";
             this.cmdModifyCon.Size = new System.Drawing.Size(23, 22);
-            this.cmdModifyCon.Tag = "Common_Modify";
+            this.cmdModifyCon.Tag = "Common.Modify";
             this.cmdModifyCon.Text = "Modify";
             this.cmdModifyCon.Click += new System.EventHandler(this.cmdModifyCon_Click);
             // 

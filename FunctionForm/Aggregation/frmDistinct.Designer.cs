@@ -43,7 +43,7 @@ namespace FunctionForm.Aggregation
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(117, 37);
             this.cmdRun.TabIndex = 0;
-            this.cmdRun.Tag = "Common_Run";
+            this.cmdRun.Tag = "Common.Run";
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdOK_Click);

@@ -47,7 +47,7 @@ namespace FunctionForm.Aggregation
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(72, 23);
             this.cmdOK.TabIndex = 1;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -59,7 +59,7 @@ namespace FunctionForm.Aggregation
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(72, 23);
             this.cmdCancel.TabIndex = 2;
-            this.cmdCancel.Tag = "Common_Cancel";
+            this.cmdCancel.Tag = "Common.Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
@@ -89,7 +89,7 @@ namespace FunctionForm.Aggregation
             this.cmdPreview.Name = "cmdPreview";
             this.cmdPreview.Size = new System.Drawing.Size(72, 23);
             this.cmdPreview.TabIndex = 5;
-            this.cmdPreview.Tag = "Common_Preview";
+            this.cmdPreview.Tag = "Common.Preview";
             this.cmdPreview.Text = "Preview";
             this.cmdPreview.UseVisualStyleBackColor = true;
             this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);

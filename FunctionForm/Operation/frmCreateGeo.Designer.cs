@@ -76,7 +76,7 @@
             this.lblLatitude.Name = "lblLatitude";
             this.lblLatitude.Size = new System.Drawing.Size(59, 12);
             this.lblLatitude.TabIndex = 4;
-            this.lblLatitude.Tag = "Common_Latitude";
+            this.lblLatitude.Tag = "Common.Latitude";
             this.lblLatitude.Text = "latitude ";
             // 
             // lblLongitude
@@ -86,7 +86,7 @@
             this.lblLongitude.Name = "lblLongitude";
             this.lblLongitude.Size = new System.Drawing.Size(59, 12);
             this.lblLongitude.TabIndex = 2;
-            this.lblLongitude.Tag = "Common_Longitude";
+            this.lblLongitude.Tag = "Common.Longitude";
             this.lblLongitude.Text = "longitude";
             // 
             // rad2d
@@ -97,7 +97,7 @@
             this.rad2d.Size = new System.Drawing.Size(35, 16);
             this.rad2d.TabIndex = 0;
             this.rad2d.TabStop = true;
-            this.rad2d.Tag = "Common_2d";
+            this.rad2d.Tag = "Common.TwoD";
             this.rad2d.Text = "2D";
             this.rad2d.UseVisualStyleBackColor = true;
             // 
@@ -109,7 +109,7 @@
             this.rad2dSphere.Size = new System.Drawing.Size(113, 16);
             this.rad2dSphere.TabIndex = 1;
             this.rad2dSphere.TabStop = true;
-            this.rad2dSphere.Tag = "Common_2dSphere";
+            this.rad2dSphere.Tag = "Common.TwoDSphere";
             this.rad2dSphere.Text = "2dSphere(WGS84)";
             this.rad2dSphere.UseVisualStyleBackColor = true;
             // 
@@ -119,7 +119,7 @@
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(82, 25);
             this.cmdCancel.TabIndex = 2;
-            this.cmdCancel.Tag = "Common_Cancel";
+            this.cmdCancel.Tag = "Common.Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdClose_Click);
@@ -130,7 +130,7 @@
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(82, 25);
             this.cmdOK.TabIndex = 1;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);

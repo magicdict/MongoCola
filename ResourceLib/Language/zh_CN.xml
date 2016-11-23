@@ -351,80 +351,73 @@
   <JavascriptCollection>Javascript数据集</JavascriptCollection>
   <ViewList>视图列表</ViewList>
 
-  <!--MongoUtility-->
-  <Common_Username>用户名</Common_Username>
-  <Common_Password>密码</Common_Password>
-  <Common_ConfirmPassword>密码确认</Common_ConfirmPassword>
-  <Common_ChangePassword>密码变更</Common_ChangePassword>
-  <Common_ReadOnly>只读</Common_ReadOnly>
-  <Common_OK>确定</Common_OK>
-  <Common_Close>关闭</Common_Close>
-  <Common_Cancel>取消</Common_Cancel>
-  <Common_Refresh>刷新</Common_Refresh>
-  <Common_Yes>是</Common_Yes>
-  <Common_No>否</Common_No>
-  <Common_Error>错误</Common_Error>
-  <Common_Warning>警告</Common_Warning>
-  <Common_Detail>细节</Common_Detail>
-  <Common_Save>保存</Common_Save>
-  <Common_Load>加载</Common_Load>
-  <Common_Save_Local>本地保存</Common_Save_Local>
-  <Common_Edit>编辑</Common_Edit>
-  <Common_Modify>修改</Common_Modify>
-  <Common_Add>添加</Common_Add>
-  <Common_OpCnt>操作计数器</Common_OpCnt>
-  <Common_Connect>连接</Common_Connect>
-  <Common_Server>服务器</Common_Server>
-  <Common_DataBase>数据库</Common_DataBase>
-  <Common_Collection>数据集</Common_Collection>
-  <Common_CollectionName>数据集名称</Common_CollectionName>
-  <Common_FieldName>字段名称</Common_FieldName>
-  <Common_Host>主机</Common_Host>
-  <Common_Port>端口</Common_Port>
-  <Common_ReplsetMember>副本成员</Common_ReplsetMember>
-  <Common_PlugIn>插件</Common_PlugIn>
-
-  <Common_Collapse>折叠</Common_Collapse>
-  <Common_Expansion>展开</Common_Expansion>
-  <Common_Name>名称</Common_Name>
-  <Common_Value>值</Common_Value>
-  <Common_Type>类型</Common_Type>
-  <Common_User>用户</Common_User>
-  <Common_Roles>角色</Common_Roles>
-  <Common_Validate>验证</Common_Validate>
-  <Common_ValidateExpress>验证表达式</Common_ValidateExpress>
-  <Common_Search>检索</Common_Search>
-  <Common_Level>等级</Common_Level>
-  <Common_Action>动作</Common_Action>
-
-  <Common_SelectAll>全选</Common_SelectAll>
-  <Common_UnSelectAll>全不选</Common_UnSelectAll>
-
-  <Common_Browse>浏览</Common_Browse>
-  <Common_Clear>清除</Common_Clear>
-  <Common_Test>测试</Common_Test>
-  <Common_Advance_Option>高级选项</Common_Advance_Option>
-
-  <Common_Create>新建</Common_Create>
-  <Common_Preview>预览</Common_Preview>
-  <Common_Run>运行</Common_Run>
-  <Common_Result>结果</Common_Result>
-  <Common_Basic>基本</Common_Basic>
-
-  <Common_Longitude>经度</Common_Longitude>
-  <Common_Latitude>纬度</Common_Latitude>
-  <Common_2d>二维(2d)</Common_2d>
-  <Common_2dSphere>二维球形(2dSphere：WGS84)</Common_2dSphere>
-
-  <Common_ViewName>视图名称</Common_ViewName>
-  <Common_ViewOn>视图数据集</Common_ViewOn>
-  <Common_Pipeline>视图条件</Common_Pipeline>
-  <Common_Collation>排序规则</Common_Collation>
-  <Common_CreateCollation>创建排序规则</Common_CreateCollation>
-
-
-  <MaxSize_Byte>最大尺寸(Byte)</MaxSize_Byte>
-  <MaxSize_MB>最大尺寸(MB)</MaxSize_MB>
+  <Common>
+    <TwoD>二维(2d)</TwoD>
+    <TwoDSphere>二维球形(2dSphere：WGS84)</TwoDSphere>
+    <Action>动作</Action>
+    <Add>添加</Add>
+    <Advance_Option>高级选项</Advance_Option>
+    <Basic>基本</Basic>
+    <Browse>浏览</Browse>
+    <Cancel>取消</Cancel>
+    <ChangePassword>密码变更</ChangePassword>
+    <Clear>清除</Clear>
+    <Close>关闭</Close>
+    <Collapse>折叠</Collapse>
+    <Collation>排序规则</Collation>
+    <Collection>数据集</Collection>
+    <CollectionName>数据集名称</CollectionName>
+    <ConfirmPassword>密码确认</ConfirmPassword>
+    <Connect>连接</Connect>
+    <Create>新建</Create>
+    <CreateCollation>创建排序规则</CreateCollation>
+    <CustomData>自定义数据</CustomData>
+    <DataBase>数据库</DataBase>
+    <Detail>细节</Detail>
+    <Edit>编辑</Edit>
+    <Error>错误</Error>
+    <Expansion>展开</Expansion>
+    <FieldName>字段名称</FieldName>
+    <Host>主机</Host>
+    <Latitude>纬度</Latitude>
+    <Level>等级</Level>
+    <Load>加载</Load>
+    <Longitude>经度</Longitude>
+    <Modify>修改</Modify>
+    <Name>名称</Name>
+    <No>否</No>
+    <OK>确定</OK>
+    <OpCnt>操作计数器</OpCnt>
+    <Password>密码</Password>
+    <Pipeline>视图条件</Pipeline>
+    <PlugIn>插件</PlugIn>
+    <Port>端口</Port>
+    <Preview>预览</Preview>
+    <ReadOnly>只读</ReadOnly>
+    <Refresh>刷新</Refresh>
+    <ReplsetMember>副本成员</ReplsetMember>
+    <Resource>资源</Resource>
+    <Result>结果</Result>
+    <Roles>角色</Roles>
+    <Run>运行</Run>
+    <Save_Local>本地保存</Save_Local>
+    <Save>保存</Save>
+    <Search>检索</Search>
+    <SelectAll>全选</SelectAll>
+    <Server>服务器</Server>
+    <Test>测试</Test>
+    <Type>类型</Type>
+    <UnSelectAll>全不选</UnSelectAll>
+    <User>用户</User>
+    <Username>用户名</Username>
+    <Validate>验证</Validate>
+    <ValidateExpress>验证表达式</ValidateExpress>
+    <Value>值</Value>
+    <ViewName>视图名称</ViewName>
+    <ViewOn>视图数据集</ViewOn>
+    <Warning>警告</Warning>
+    <Yes>是</Yes>
+  </Common>
 
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
@@ -435,7 +428,8 @@
   <Restore_Connection_Confirm>确定是否要恢复数据库?</Restore_Connection_Confirm>
   <Create_New_Collection>新建数据集</Create_New_Collection>
   <Create_New_Document>新建文档</Create_New_Document>
-
+  <MaxSize_Byte>最大尺寸(Byte)</MaxSize_Byte>
+  <MaxSize_MB>最大尺寸(MB)</MaxSize_MB>
   <Drop_Collection>删除数据集</Drop_Collection>
   <Drop_Collection_Confirm>确定是否要删除数据集?</Drop_Collection_Confirm>
   <Rename_Collection>重命名数据集</Rename_Collection>

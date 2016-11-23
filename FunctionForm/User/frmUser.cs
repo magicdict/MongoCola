@@ -103,14 +103,12 @@ namespace FunctionForm.User
                 if (_modifyName == string.Empty)
                 {
                     if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
-                    Text = GuiConfig.GetText(_isAdmin
-                        ? TextType.MainMenuOperationServerAddUserToAdmin
-                        : TextType.MainMenuOperationDatabaseAddUser);
+                    Text = GuiConfig.GetText(_isAdmin ? "MainMenu.OperationServerAddUserToAdmin" : "MainMenu.OperationDatabaseAddUser");
                 }
                 else
                 {
                     if (!GuiConfig.IsMono) Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
-                    Text = GuiConfig.GetText(TextType.CommonChangePassword);
+                    Text = GuiConfig.GetText("CommonChangePassword");
                 }
             }
         }

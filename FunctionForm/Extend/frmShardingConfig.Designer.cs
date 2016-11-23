@@ -185,7 +185,7 @@ namespace FunctionForm.Extend
             this.lblCollection.Name = "lblCollection";
             this.lblCollection.Size = new System.Drawing.Size(95, 15);
             this.lblCollection.TabIndex = 3;
-            this.lblCollection.Tag = "Common_Collection";
+            this.lblCollection.Tag = "Common.Collection";
             this.lblCollection.Text = "CollectionName";
             // 
             // lblDBName
@@ -196,7 +196,7 @@ namespace FunctionForm.Extend
             this.lblDBName.Name = "lblDBName";
             this.lblDBName.Size = new System.Drawing.Size(95, 15);
             this.lblDBName.TabIndex = 0;
-            this.lblDBName.Tag = "Common_DataBase";
+            this.lblDBName.Tag = "Common.DataBase";
             this.lblDBName.Text = "DataBaseName";
             // 
             // tabSharding
@@ -274,7 +274,7 @@ namespace FunctionForm.Extend
             this.chkAdvance.Name = "chkAdvance";
             this.chkAdvance.Size = new System.Drawing.Size(118, 19);
             this.chkAdvance.TabIndex = 9;
-            this.chkAdvance.Tag = "Common_Advance_Option";
+            this.chkAdvance.Tag = "Common.Advance_Option";
             this.chkAdvance.Text = "Advanced Option";
             this.chkAdvance.UseVisualStyleBackColor = true;
             this.chkAdvance.CheckedChanged += new System.EventHandler(this.chkAdvance_CheckedChanged);
@@ -320,7 +320,7 @@ namespace FunctionForm.Extend
             this.lblShardingName.Name = "lblShardingName";
             this.lblShardingName.Size = new System.Drawing.Size(41, 15);
             this.lblShardingName.TabIndex = 1;
-            this.lblShardingName.Tag = "Common_Name";
+            this.lblShardingName.Tag = "Common.Name";
             this.lblShardingName.Text = "Name";
             // 
             // lblMaxSize
@@ -385,7 +385,7 @@ namespace FunctionForm.Extend
             this.lblReplPort.Name = "lblReplPort";
             this.lblReplPort.Size = new System.Drawing.Size(29, 15);
             this.lblReplPort.TabIndex = 4;
-            this.lblReplPort.Tag = "Common_Port";
+            this.lblReplPort.Tag = "Common.Port";
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
@@ -404,7 +404,7 @@ namespace FunctionForm.Extend
             this.lblReplHost.Name = "lblReplHost";
             this.lblReplHost.Size = new System.Drawing.Size(32, 15);
             this.lblReplHost.TabIndex = 2;
-            this.lblReplHost.Tag = "Common_Host";
+            this.lblReplHost.Tag = "Common.Host";
             this.lblReplHost.Text = "Host";
             // 
             // lblMainReplsetName
@@ -530,7 +530,7 @@ namespace FunctionForm.Extend
             this.btnAddShardZone.Name = "btnAddShardZone";
             this.btnAddShardZone.Size = new System.Drawing.Size(169, 33);
             this.btnAddShardZone.TabIndex = 39;
-            this.btnAddShardZone.Tag = "Common_Add";
+            this.btnAddShardZone.Tag = "Common.Add";
             this.btnAddShardZone.Text = "Add Shard Zone";
             this.btnAddShardZone.UseVisualStyleBackColor = true;
             this.btnAddShardZone.Click += new System.EventHandler(this.btnAddShardZone_Click);
@@ -603,7 +603,7 @@ namespace FunctionForm.Extend
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 15);
             this.label1.TabIndex = 23;
-            this.label1.Tag = "Common_DataBase";
+            this.label1.Tag = "Common.DataBase";
             this.label1.Text = "DataBaseName";
             // 
             // label2
@@ -614,7 +614,7 @@ namespace FunctionForm.Extend
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 15);
             this.label2.TabIndex = 25;
-            this.label2.Tag = "Common_Collection";
+            this.label2.Tag = "Common.Collection";
             this.label2.Text = "CollectionName";
             // 
             // cmbShardKeyDB
@@ -644,7 +644,7 @@ namespace FunctionForm.Extend
             this.lblFieldName.Name = "lblFieldName";
             this.lblFieldName.Size = new System.Drawing.Size(34, 15);
             this.lblFieldName.TabIndex = 22;
-            this.lblFieldName.Tag = "Common_FieldName";
+            this.lblFieldName.Tag = "Common.FieldName";
             this.lblFieldName.Text = "Field";
             // 
             // lblShardTag
@@ -699,7 +699,7 @@ namespace FunctionForm.Extend
             this.cmdaddZoneRange.Name = "cmdaddZoneRange";
             this.cmdaddZoneRange.Size = new System.Drawing.Size(123, 30);
             this.cmdaddZoneRange.TabIndex = 16;
-            this.cmdaddZoneRange.Tag = "Common_Add";
+            this.cmdaddZoneRange.Tag = "Common.Add";
             this.cmdaddZoneRange.Text = "Add Zone Range";
             this.cmdaddZoneRange.UseVisualStyleBackColor = false;
             this.cmdaddZoneRange.Click += new System.EventHandler(this.cmdaddZoneRange_Click);
@@ -728,7 +728,7 @@ namespace FunctionForm.Extend
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(121, 32);
             this.cmdClose.TabIndex = 0;
-            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Tag = "Common.Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);

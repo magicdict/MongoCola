@@ -67,7 +67,7 @@ namespace ResourceLib.UI
             this.cmdYes.Name = "cmdYes";
             this.cmdYes.Size = new System.Drawing.Size(79, 25);
             this.cmdYes.TabIndex = 0;
-            this.cmdYes.Tag = "Common_Yes";
+            this.cmdYes.Tag = "Common.Yes";
             this.cmdYes.Text = "Yes";
             this.cmdYes.UseVisualStyleBackColor = false;
             this.cmdYes.Click += new System.EventHandler(this.cmdYes_Click);
@@ -79,7 +79,7 @@ namespace ResourceLib.UI
             this.cmdNo.Name = "cmdNo";
             this.cmdNo.Size = new System.Drawing.Size(86, 25);
             this.cmdNo.TabIndex = 1;
-            this.cmdNo.Tag = "Common_No";
+            this.cmdNo.Tag = "Common.No";
             this.cmdNo.Text = "No";
             this.cmdNo.UseVisualStyleBackColor = false;
             this.cmdNo.Click += new System.EventHandler(this.cmdNo_Click);

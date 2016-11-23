@@ -150,7 +150,7 @@ namespace MongoGUIView
             this.RefreshStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshStripButton.Name = "RefreshStripButton";
             this.RefreshStripButton.Size = new System.Drawing.Size(23, 22);
-            this.RefreshStripButton.Tag = "Common_Refresh";
+            this.RefreshStripButton.Tag = "Common.Refresh";
             this.RefreshStripButton.Text = "Refresh";
             this.RefreshStripButton.Click += new System.EventHandler(this.RefreshStripButton_Click);
             // 
@@ -181,7 +181,7 @@ namespace MongoGUIView
             this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseStripButton.Name = "CloseStripButton";
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
-            this.CloseStripButton.Tag = "Common_Close";
+            this.CloseStripButton.Tag = "Common.Close";
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 

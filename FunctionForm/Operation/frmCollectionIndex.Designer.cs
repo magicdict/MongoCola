@@ -67,7 +67,7 @@ namespace FunctionForm.Operation
             this.cmdAddIndex.Name = "cmdAddIndex";
             this.cmdAddIndex.Size = new System.Drawing.Size(126, 23);
             this.cmdAddIndex.TabIndex = 8;
-            this.cmdAddIndex.Tag = "Common_Add";
+            this.cmdAddIndex.Tag = "Common.Add";
             this.cmdAddIndex.Text = "Create Index";
             this.cmdAddIndex.UseVisualStyleBackColor = false;
             this.cmdAddIndex.Click += new System.EventHandler(this.cmdAddIndex_Click);

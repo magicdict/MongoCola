@@ -6,6 +6,7 @@ using FunctionForm.Operation;
 using FunctionForm.Status;
 using FunctionForm.User;
 using MongoGUICtl;
+using MongoGUICtl.ClientTree;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
@@ -186,7 +187,7 @@ namespace MongoCola
                 lblAction.Text = y.Message;
                 Application.DoEvents();
             };
-            trvsrvlst.SelectedNode = trvsrvlst.Nodes[0];
+            if (trvsrvlst.Nodes.Count > 0) trvsrvlst.SelectedNode = trvsrvlst.Nodes[0];
         }
 
         /// <summary>
@@ -573,7 +574,8 @@ namespace MongoCola
             dataViewctl.mDataViewInfo = mDataViewInfo;
             dataViewctl.SelectObjectTag = RuntimeMongoDbContext.SelectObjectTag;
             dataViewctl.ParentMenu = CollectionToolStripMenuItem;
-            MultiTabManger.AddView(dataViewctl, RuntimeMongoDbContext.GetCurrentCollectionName(), RuntimeMongoDbContext.SelectTagType);
+            var TabTitle = UiHelper.GetShowName(RuntimeMongoDbContext.GetCurrentDataBaseName(),RuntimeMongoDbContext.GetCurrentCollectionName());
+            MultiTabManger.AddView(dataViewctl, TabTitle, RuntimeMongoDbContext.SelectTagType);
         }
 
         /// <summary>

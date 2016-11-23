@@ -108,7 +108,7 @@ namespace FunctionForm.Connection
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(98, 31);
             this.cmdCancel.TabIndex = 3;
-            this.cmdCancel.Tag = "Common_Cancel";
+            this.cmdCancel.Tag = "Common.Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             // 
@@ -119,7 +119,7 @@ namespace FunctionForm.Connection
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(98, 31);
             this.cmdAdd.TabIndex = 1;
-            this.cmdAdd.Tag = "Common_Add";
+            this.cmdAdd.Tag = "Common.Add";
             this.cmdAdd.Text = "Add";
             this.cmdAdd.UseVisualStyleBackColor = false;
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
@@ -132,7 +132,7 @@ namespace FunctionForm.Connection
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(63, 15);
             this.lblPassword.TabIndex = 8;
-            this.lblPassword.Tag = "Common_Password";
+            this.lblPassword.Tag = "Common.Password";
             this.lblPassword.Text = "Password";
             // 
             // lblUsername
@@ -143,7 +143,7 @@ namespace FunctionForm.Connection
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(69, 15);
             this.lblUsername.TabIndex = 6;
-            this.lblUsername.Tag = "Common_Username";
+            this.lblUsername.Tag = "Common.Username";
             this.lblUsername.Text = "UserName";
             // 
             // lblPort
@@ -154,7 +154,7 @@ namespace FunctionForm.Connection
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(31, 15);
             this.lblPort.TabIndex = 4;
-            this.lblPort.Tag = "Common_Port";
+            this.lblPort.Tag = "Common.Port";
             this.lblPort.Text = "Port";
             // 
             // lblConnectionName
@@ -176,7 +176,7 @@ namespace FunctionForm.Connection
             this.lblHost.Name = "lblHost";
             this.lblHost.Size = new System.Drawing.Size(34, 15);
             this.lblHost.TabIndex = 1;
-            this.lblHost.Tag = "Common_Host";
+            this.lblHost.Tag = "Common.Host";
             this.lblHost.Text = "Host";
             // 
             // txtConnectionName
@@ -264,7 +264,7 @@ namespace FunctionForm.Connection
             this.cmdTest.Name = "cmdTest";
             this.cmdTest.Size = new System.Drawing.Size(143, 31);
             this.cmdTest.TabIndex = 2;
-            this.cmdTest.Tag = "Common_Test";
+            this.cmdTest.Tag = "Common.Test";
             this.cmdTest.Text = "Test Connection";
             this.cmdTest.UseVisualStyleBackColor = true;
             this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
@@ -382,7 +382,7 @@ namespace FunctionForm.Connection
             this.lblReplPort.Name = "lblReplPort";
             this.lblReplPort.Size = new System.Drawing.Size(31, 15);
             this.lblReplPort.TabIndex = 35;
-            this.lblReplPort.Tag = "Common_Port";
+            this.lblReplPort.Tag = "Common.Port";
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
@@ -401,7 +401,7 @@ namespace FunctionForm.Connection
             this.lblReplHost.Name = "lblReplHost";
             this.lblReplHost.Size = new System.Drawing.Size(34, 15);
             this.lblReplHost.TabIndex = 33;
-            this.lblReplHost.Tag = "Common_Host";
+            this.lblReplHost.Tag = "Common.Host";
             this.lblReplHost.Text = "Host";
             // 
             // cmdAddHost

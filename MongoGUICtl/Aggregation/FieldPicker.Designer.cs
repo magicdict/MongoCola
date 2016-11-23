@@ -44,7 +44,7 @@ namespace MongoGUICtl.Aggregation
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(75, 25);
             this.btnSelectAll.TabIndex = 0;
-            this.btnSelectAll.Tag = "Common_SelectAll";
+            this.btnSelectAll.Tag = "Common.SelectAll";
             this.btnSelectAll.Text = "Select All";
             this.btnSelectAll.UseVisualStyleBackColor = true;
             this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
@@ -55,7 +55,7 @@ namespace MongoGUICtl.Aggregation
             this.btnUnSelectAll.Name = "btnUnSelectAll";
             this.btnUnSelectAll.Size = new System.Drawing.Size(75, 25);
             this.btnUnSelectAll.TabIndex = 1;
-            this.btnUnSelectAll.Tag = "Common_UnSelectAll";
+            this.btnUnSelectAll.Tag = "Common.UnSelectAll";
             this.btnUnSelectAll.Text = "UnSelect All";
             this.btnUnSelectAll.UseVisualStyleBackColor = true;
             this.btnUnSelectAll.Click += new System.EventHandler(this.btnUnSelectAll_Click);

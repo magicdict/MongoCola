@@ -75,7 +75,7 @@ namespace MongoGUIView
             this.EditDocStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EditDocStripButton.Name = "EditDocStripButton";
             this.EditDocStripButton.Size = new System.Drawing.Size(23, 22);
-            this.EditDocStripButton.Tag = "Common_Edit";
+            this.EditDocStripButton.Tag = "Common.Edit";
             this.EditDocStripButton.Text = "Editor";
             this.EditDocStripButton.Click += new System.EventHandler(this.EditDocStripButton_Click);
             // 
@@ -86,7 +86,7 @@ namespace MongoGUIView
             this.SaveStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveStripButton.Name = "SaveStripButton";
             this.SaveStripButton.Size = new System.Drawing.Size(23, 22);
-            this.SaveStripButton.Tag = "Common_Save";
+            this.SaveStripButton.Tag = "Common.Save";
             this.SaveStripButton.Text = "Save";
             this.SaveStripButton.Click += new System.EventHandler(this.SaveStripButton_Click);
             // 
@@ -97,7 +97,7 @@ namespace MongoGUIView
             this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseStripButton.Name = "CloseStripButton";
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
-            this.CloseStripButton.Tag = "Common_Close";
+            this.CloseStripButton.Tag = "Common.Close";
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 

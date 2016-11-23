@@ -48,7 +48,7 @@
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 31);
             this.cmdCancel.TabIndex = 7;
-            this.cmdCancel.Tag = "Common_Cancel";
+            this.cmdCancel.Tag = "Common.Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
@@ -59,7 +59,7 @@
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 31);
             this.cmdOK.TabIndex = 6;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -71,7 +71,7 @@
             this.lblViewName.Name = "lblViewName";
             this.lblViewName.Size = new System.Drawing.Size(53, 12);
             this.lblViewName.TabIndex = 8;
-            this.lblViewName.Tag = "Common_ViewName";
+            this.lblViewName.Tag = "Common.ViewName";
             this.lblViewName.Text = "ViewName";
             // 
             // lblViewOn
@@ -81,7 +81,7 @@
             this.lblViewOn.Name = "lblViewOn";
             this.lblViewOn.Size = new System.Drawing.Size(41, 12);
             this.lblViewOn.TabIndex = 9;
-            this.lblViewOn.Tag = "Common_ViewOn";
+            this.lblViewOn.Tag = "Common.ViewOn";
             this.lblViewOn.Text = "ViewOn";
             // 
             // lblPipeline
@@ -91,7 +91,7 @@
             this.lblPipeline.Name = "lblPipeline";
             this.lblPipeline.Size = new System.Drawing.Size(53, 12);
             this.lblPipeline.TabIndex = 10;
-            this.lblPipeline.Tag = "Common_Pipeline";
+            this.lblPipeline.Tag = "Common.Pipeline";
             this.lblPipeline.Text = "Pipeline";
             // 
             // txtViewName
@@ -126,7 +126,7 @@
             this.lblCollation.Name = "lblCollation";
             this.lblCollation.Size = new System.Drawing.Size(59, 12);
             this.lblCollation.TabIndex = 10;
-            this.lblCollation.Tag = "Common_Collation";
+            this.lblCollation.Tag = "Common.Collation";
             this.lblCollation.Text = "Collation";
             // 
             // btnCollation
@@ -135,7 +135,7 @@
             this.btnCollation.Name = "btnCollation";
             this.btnCollation.Size = new System.Drawing.Size(135, 31);
             this.btnCollation.TabIndex = 33;
-            this.btnCollation.Tag = "Common_CreateCollation";
+            this.btnCollation.Tag = "Common.CreateCollation";
             this.btnCollation.Text = "Create Collation";
             this.btnCollation.UseVisualStyleBackColor = true;
             this.btnCollation.Click += new System.EventHandler(this.btnCollation_Click);

@@ -56,11 +56,11 @@ namespace FunctionForm.User
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(81, 421);
+            this.cmdOK.Location = new System.Drawing.Point(74, 421);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(84, 26);
+            this.cmdOK.Size = new System.Drawing.Size(110, 30);
             this.cmdOK.TabIndex = 4;
-            this.cmdOK.Tag = "Common_Ok";
+            this.cmdOK.Tag = "Common.Ok";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -68,11 +68,11 @@ namespace FunctionForm.User
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(183, 421);
+            this.cmdCancel.Location = new System.Drawing.Point(190, 421);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(84, 26);
+            this.cmdCancel.Size = new System.Drawing.Size(110, 30);
             this.cmdCancel.TabIndex = 5;
-            this.cmdCancel.Tag = "Common_Cancel";
+            this.cmdCancel.Tag = "Common.Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
@@ -85,7 +85,7 @@ namespace FunctionForm.User
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(66, 15);
             this.lblUserName.TabIndex = 6;
-            this.lblUserName.Tag = "Common_Username";
+            this.lblUserName.Tag = "Common.Username";
             this.lblUserName.Text = "Username";
             // 
             // lblPassword
@@ -96,7 +96,7 @@ namespace FunctionForm.User
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(93, 15);
             this.lblPassword.TabIndex = 7;
-            this.lblPassword.Tag = "Common_Password";
+            this.lblPassword.Tag = "Common.Password";
             this.lblPassword.Text = "New Password";
             // 
             // txtUserName
@@ -121,7 +121,7 @@ namespace FunctionForm.User
             this.lblConfirmPsw.Name = "lblConfirmPsw";
             this.lblConfirmPsw.Size = new System.Drawing.Size(113, 15);
             this.lblConfirmPsw.TabIndex = 8;
-            this.lblConfirmPsw.Tag = "Common_ConfirmPassword";
+            this.lblConfirmPsw.Tag = "Common.ConfirmPassword";
             this.lblConfirmPsw.Text = "Confirm Password";
             // 
             // txtConfirmPsw
@@ -149,7 +149,7 @@ namespace FunctionForm.User
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 15);
             this.label1.TabIndex = 10;
-            this.label1.Tag = "Common_Roles";
+            this.label1.Tag = "Common.Roles";
             this.label1.Text = "Roles";
             // 
             // label2
@@ -159,7 +159,7 @@ namespace FunctionForm.User
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 15);
             this.label2.TabIndex = 10;
-            this.label2.Tag = "";
+            this.label2.Tag = "Common.CustomData";
             this.label2.Text = "customData";
             // 
             // btnPickDoc
@@ -235,6 +235,7 @@ namespace FunctionForm.User
             this.MinimizeBox = false;
             this.Name = "FrmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "Main_Menu.Operation_Database_AddUser";
             this.Text = "Add User";
             this.Load += new System.EventHandler(this.frmUser_Load);
             this.ResumeLayout(false);

@@ -50,14 +50,7 @@ namespace FunctionForm.Aggregation
         private void frmAggregationCondition_Load(object sender, EventArgs e)
         {
             QueryFieldPicker.InitByCurrentCollection(true);
-
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                Text = GuiConfig.GetText("Stage Builder", "StageBuilder");
-                btnOK.Text = GuiConfig.GetText(TextType.CommonOk);
-                btnCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
-            }
-
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>

@@ -81,7 +81,7 @@ namespace FunctionForm.Aggregation
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 27);
             this.btnSearch.TabIndex = 22;
-            this.btnSearch.Tag = "Common_Search";
+            this.btnSearch.Tag = "Common.Search";
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -162,7 +162,7 @@ namespace FunctionForm.Aggregation
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(105, 27);
             this.cmdSave.TabIndex = 29;
-            this.cmdSave.Tag = "Common_Save";
+            this.cmdSave.Tag = "Common.Save";
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
@@ -173,7 +173,7 @@ namespace FunctionForm.Aggregation
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(105, 27);
             this.cmdClose.TabIndex = 28;
-            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Tag = "Common.Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);

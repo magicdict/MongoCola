@@ -46,7 +46,7 @@ namespace ResourceLib.UI
             this.cmdClear.Name = "cmdClear";
             this.cmdClear.Size = new System.Drawing.Size(87, 24);
             this.cmdClear.TabIndex = 10;
-            this.cmdClear.Tag = "Common_Clear";
+            this.cmdClear.Tag = "Common.Clear";
             this.cmdClear.Text = "Clear";
             this.cmdClear.UseVisualStyleBackColor = false;
             this.cmdClear.Click += new System.EventHandler(this.cmdClearPath_Click);
@@ -81,7 +81,7 @@ namespace ResourceLib.UI
             this.cmdBrowse.Name = "cmdBrowse";
             this.cmdBrowse.Size = new System.Drawing.Size(87, 24);
             this.cmdBrowse.TabIndex = 7;
-            this.cmdBrowse.Tag = "Common_Browse";
+            this.cmdBrowse.Tag = "Common.Browse";
             this.cmdBrowse.Text = "Browse...";
             this.cmdBrowse.UseVisualStyleBackColor = false;
             this.cmdBrowse.Click += new System.EventHandler(this.cmdBrowse_Click);

@@ -238,7 +238,7 @@ namespace MongoCola
             // 
             this.ExpandAllConnectionToolStripMenuItem.Name = "ExpandAllConnectionToolStripMenuItem";
             this.ExpandAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.ExpandAllConnectionToolStripMenuItem.Tag = "Common_Expansion";
+            this.ExpandAllConnectionToolStripMenuItem.Tag = "Common.Expansion";
             this.ExpandAllConnectionToolStripMenuItem.Text = "Expansion";
             this.ExpandAllConnectionToolStripMenuItem.Click += new System.EventHandler(this.ExpandAllToolStripMenuItem_Click);
             // 
@@ -246,7 +246,7 @@ namespace MongoCola
             // 
             this.CollapseAllConnectionToolStripMenuItem.Name = "CollapseAllConnectionToolStripMenuItem";
             this.CollapseAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.CollapseAllConnectionToolStripMenuItem.Tag = "Common_Collapse";
+            this.CollapseAllConnectionToolStripMenuItem.Tag = "Common.Collapse";
             this.CollapseAllConnectionToolStripMenuItem.Text = "Collapse";
             this.CollapseAllConnectionToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllToolStripMenuItem_Click);
             // 
@@ -295,7 +295,7 @@ namespace MongoCola
             // 
             this.CollectionToolStripMenuItem.Name = "CollectionToolStripMenuItem";
             this.CollectionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.CollectionToolStripMenuItem.Tag = "Common_Collection";
+            this.CollectionToolStripMenuItem.Tag = "Common.Collection";
             this.CollectionToolStripMenuItem.Text = "Collection Data";
             // 
             // JavaScriptStripMenuItem
@@ -341,7 +341,7 @@ namespace MongoCola
             this.DisconnectToolStripMenuItem});
             this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
             this.connectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.connectionToolStripMenuItem.Tag = "Common_Connect";
+            this.connectionToolStripMenuItem.Tag = "Common.Connect";
             this.connectionToolStripMenuItem.Text = "Connection";
             // 
             // ReplicaSetToolStripMenuItem
@@ -728,7 +728,7 @@ namespace MongoCola
             // 
             this.ValidateToolStripMenuItem.Name = "ValidateToolStripMenuItem";
             this.ValidateToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.ValidateToolStripMenuItem.Tag = "Common_Validate";
+            this.ValidateToolStripMenuItem.Tag = "Common.Validate";
             this.ValidateToolStripMenuItem.Text = "Validate";
             this.ValidateToolStripMenuItem.Click += new System.EventHandler(this.validateToolStripMenuItem_Click);
             // 
@@ -816,7 +816,7 @@ namespace MongoCola
             // 
             this.plugInToolStripMenuItem.Name = "plugInToolStripMenuItem";
             this.plugInToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.plugInToolStripMenuItem.Tag = "Common_PlugIn";
+            this.plugInToolStripMenuItem.Tag = "Common.PlugIn";
             this.plugInToolStripMenuItem.Text = "PlugIn";
             // 
             // ConfigfileMenuItem

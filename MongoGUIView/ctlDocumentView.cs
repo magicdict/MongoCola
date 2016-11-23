@@ -36,6 +36,7 @@ namespace MongoGUIView
 
         private void ctlDocumentView_Load(object sender, EventArgs e)
         {
+            GuiConfig.Translateform(this.Controls);
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 NewDocumentToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataCollectionAddDocument");

@@ -36,6 +36,7 @@ namespace FunctionForm.Aggregation
             this.tabProject = new System.Windows.Forms.TabPage();
             this.QueryFieldPicker = new MongoGUICtl.Aggregation.FieldPicker();
             this.tabMatch = new System.Windows.Forms.TabPage();
+            this.ConditionPan = new MongoGUICtl.Aggregation.ConditionPanel();
             this.tabSort = new System.Windows.Forms.TabPage();
             this.SortPanel = new MongoGUICtl.Aggregation.ctlSortPanel();
             this.tabGroup1 = new System.Windows.Forms.TabPage();
@@ -64,7 +65,6 @@ namespace FunctionForm.Aggregation
             this.chkLimit = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.ConditionPan = new MongoGUICtl.Aggregation.ConditionPanel();
             this.tabAggregation.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabMatch.SuspendLayout();
@@ -121,6 +121,15 @@ namespace FunctionForm.Aggregation
             this.tabMatch.TabIndex = 2;
             this.tabMatch.Text = "$match";
             this.tabMatch.UseVisualStyleBackColor = true;
+            // 
+            // ConditionPan
+            // 
+            this.ConditionPan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConditionPan.Location = new System.Drawing.Point(3, 3);
+            this.ConditionPan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ConditionPan.Name = "ConditionPan";
+            this.ConditionPan.Size = new System.Drawing.Size(598, 295);
+            this.ConditionPan.TabIndex = 1;
             // 
             // tabSort
             // 
@@ -397,6 +406,7 @@ namespace FunctionForm.Aggregation
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(108, 35);
             this.btnOK.TabIndex = 1;
+            this.btnOK.Tag = "Common.OK";
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -407,18 +417,10 @@ namespace FunctionForm.Aggregation
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(108, 35);
             this.btnCancel.TabIndex = 1;
+            this.btnCancel.Tag = "Common.Cancel";
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // ConditionPan
-            // 
-            this.ConditionPan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConditionPan.Location = new System.Drawing.Point(3, 3);
-            this.ConditionPan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ConditionPan.Name = "ConditionPan";
-            this.ConditionPan.Size = new System.Drawing.Size(598, 295);
-            this.ConditionPan.TabIndex = 1;
             // 
             // FrmStageBuilder
             // 

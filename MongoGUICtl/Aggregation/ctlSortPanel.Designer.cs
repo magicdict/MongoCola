@@ -35,11 +35,12 @@
             // cmdAdd
             // 
             this.cmdAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdAdd.Location = new System.Drawing.Point(521, 1);
+            this.cmdAdd.Location = new System.Drawing.Point(521, 0);
             this.cmdAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(87, 33);
+            this.cmdAdd.Size = new System.Drawing.Size(87, 30);
             this.cmdAdd.TabIndex = 0;
+            this.cmdAdd.Tag = "Common.Add";
             this.cmdAdd.Text = "Add";
             this.cmdAdd.UseVisualStyleBackColor = true;
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
@@ -47,11 +48,12 @@
             // btnClearMatch
             // 
             this.btnClearMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClearMatch.Location = new System.Drawing.Point(616, 4);
+            this.btnClearMatch.Location = new System.Drawing.Point(616, 0);
             this.btnClearMatch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClearMatch.Name = "btnClearMatch";
             this.btnClearMatch.Size = new System.Drawing.Size(87, 30);
             this.btnClearMatch.TabIndex = 4;
+            this.btnClearMatch.Tag = "Common.Clear";
             this.btnClearMatch.Text = "Clear";
             this.btnClearMatch.UseVisualStyleBackColor = true;
             this.btnClearMatch.Click += new System.EventHandler(this.btnClearMatch_Click);
@@ -67,6 +69,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ctlSortPanel";
             this.Size = new System.Drawing.Size(703, 475);
+            this.Load += new System.EventHandler(this.ctlSortPanel_Load);
             this.ResumeLayout(false);
 
         }

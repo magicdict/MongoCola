@@ -63,7 +63,7 @@ namespace ResourceLib.UI
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(71, 25);
             this.cmdOK.TabIndex = 5;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
@@ -75,7 +75,7 @@ namespace ResourceLib.UI
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(86, 25);
             this.cmdCancel.TabIndex = 6;
-            this.cmdCancel.Tag = "Common_Cancel";
+            this.cmdCancel.Tag = "Common.Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);

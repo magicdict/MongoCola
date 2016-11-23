@@ -1,8 +1,8 @@
-﻿using MongoDB.Bson;
-using MongoUtility.Basic;
+﻿using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.Security;
+using ResourceLib.Method;
 using ResourceLib.UI;
 using System;
 using System.Collections.Generic;
@@ -43,6 +43,7 @@ namespace FunctionForm.User
             var dbs = RuntimeMongoDbContext.GetCurrentServer().GetDatabaseNames();
             Common.UIAssistant.FillComberWithArray(cmbDatabase, dbs, false);
             Common.UIAssistant.FillComberWithEnum(cmbActionGroup, typeof(MongoAction.ActionGroup));
+            GuiConfig.Translateform(this);
         }
 
         #region Priviege

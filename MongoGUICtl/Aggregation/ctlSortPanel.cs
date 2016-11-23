@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using ResourceLib.Method;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -21,6 +22,16 @@ namespace MongoGUICtl.Aggregation
         public ctlSortPanel()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        ///     加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctlSortPanel_Load(object sender, EventArgs e)
+        {
+            GuiConfig.Translateform(Controls);
         }
 
         /// <summary>
@@ -66,6 +77,7 @@ namespace MongoGUICtl.Aggregation
         {
             ItemRemoved(this);
         }
+
         /// <summary>
         /// 触发Add事件
         /// </summary>
@@ -75,6 +87,7 @@ namespace MongoGUICtl.Aggregation
         {
             ItemAdded(this);
         }
+
         /// <summary>
         /// 获得排序文档
         /// </summary>
@@ -101,12 +114,17 @@ namespace MongoGUICtl.Aggregation
             }
             return null;
         }
-
+        /// <summary>
+        ///     清除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClearMatch_Click(object sender, EventArgs e)
         {
             Controls.Clear();
             SortItemCount = 0;
             CurrentPos = new Point(10, 40);
         }
+
     }
 }

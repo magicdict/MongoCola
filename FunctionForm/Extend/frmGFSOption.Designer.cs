@@ -182,7 +182,7 @@ namespace MongoGUIView
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(89, 29);
             this.cmdOK.TabIndex = 2;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);

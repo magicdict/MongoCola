@@ -205,6 +205,13 @@ namespace ResourceLib.Method
                 {
                     if (((ToolStrip)ctrlItem).Items.Count > 0) Translateform(((ToolStrip)ctrlItem).Items);
                 }
+                if (ctrlItem.GetType().FullName == typeof(ToolStripContainer).FullName)
+                {
+                    var x = ((ToolStripContainer)ctrlItem);
+                    //上下左右应该都有，暂时加Top
+                    Translateform(x.TopToolStripPanel.Controls);
+                }
+
                 //Tab
                 if (ctrlItem.GetType().FullName == typeof(TabControl).FullName)
                 {

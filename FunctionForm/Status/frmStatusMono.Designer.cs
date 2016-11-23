@@ -42,7 +42,7 @@ namespace FunctionForm.Status
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(125, 28);
             this.cmdClose.TabIndex = 1;
-            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Tag = "Common.Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.btnClose_Click);

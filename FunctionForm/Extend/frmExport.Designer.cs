@@ -47,7 +47,7 @@ namespace FunctionForm.Extend
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 27);
             this.btnSave.TabIndex = 1;
-            this.btnSave.Tag = "Common_Save";
+            this.btnSave.Tag = "Common.Save";
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);

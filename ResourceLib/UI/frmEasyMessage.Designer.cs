@@ -52,7 +52,7 @@ namespace ResourceLib.UI
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 28);
             this.cmdOK.TabIndex = 1;
-            this.cmdOK.Tag = "Common_OK";
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);

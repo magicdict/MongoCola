@@ -73,7 +73,7 @@ namespace FunctionForm.Extend
             this.lblReplPort.Name = "lblReplPort";
             this.lblReplPort.Size = new System.Drawing.Size(29, 15);
             this.lblReplPort.TabIndex = 2;
-            this.lblReplPort.Tag = "Common_Port";
+            this.lblReplPort.Tag = "Common.Port";
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
@@ -94,7 +94,7 @@ namespace FunctionForm.Extend
             this.lblReplHost.Name = "lblReplHost";
             this.lblReplHost.Size = new System.Drawing.Size(32, 15);
             this.lblReplHost.TabIndex = 0;
-            this.lblReplHost.Tag = "Common_Host";
+            this.lblReplHost.Tag = "Common.Host";
             this.lblReplHost.Text = "Host";
             // 
             // cmdAddHost
@@ -174,7 +174,7 @@ namespace FunctionForm.Extend
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(108, 34);
             this.cmdClose.TabIndex = 2;
-            this.cmdClose.Tag = "Common_Close";
+            this.cmdClose.Tag = "Common.Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
