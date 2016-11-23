@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using Common;
+﻿using Common;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Command;
@@ -8,6 +6,8 @@ using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using ResourceLib.Method;
 using ResourceLib.UI;
+using System;
+using System.Windows.Forms;
 
 namespace FunctionForm.Extend
 {

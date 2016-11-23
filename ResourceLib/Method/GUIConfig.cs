@@ -264,13 +264,13 @@ namespace ResourceLib.Method
                 {
                     ((Button)ctrlItem).Text = GetText(((Button)ctrlItem).Text, ctrlItem.Tag.ToString());
                     if (IsMono) ctrlItem.Font = GetMonoFont(ctrlItem.Font);
-                    if (ctrlItem.Tag.ToString() == TextType.CommonOk.ToString())
+                    if (ctrlItem.Tag.ToString().ToUpper() == "Common.Ok".ToUpper())
                     {
                         ((Button)ctrlItem).BackColor = SuccessColor;
                     }
-                    if (ctrlItem.Tag.ToString() == TextType.CommonNo.ToString() ||
-                        ctrlItem.Tag.ToString() == TextType.CommonClose.ToString() ||
-                        ctrlItem.Tag.ToString() == TextType.CommonCancel.ToString())
+                    if (ctrlItem.Tag.ToString().ToUpper() == "Common.No".ToUpper() ||
+                        ctrlItem.Tag.ToString().ToUpper() == "Common.Close".ToUpper() ||
+                        ctrlItem.Tag.ToString().ToUpper() == "Common.Cancel".ToUpper())
                     {
                         ((Button)ctrlItem).BackColor = FailColor;
                     }

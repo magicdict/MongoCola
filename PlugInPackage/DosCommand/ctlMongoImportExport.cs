@@ -28,12 +28,12 @@ namespace PlugInPackage.DosCommand
                     GuiConfig.GetText(
                         TextType.CollectionStatusCollectionName);
                 lblDBName.Text =
-                    GuiConfig.GetText(TextType.AddConnectionDbName);
-                lblHost.Text = GuiConfig.GetText(TextType.CommonHost);
+                    GuiConfig.GetText("AddConnectionDbName");
+                lblHost.Text = GuiConfig.GetText("Common.Host");
                 lblFieldList.Text =
                     GuiConfig.GetText(
                         TextType.DosCommandTabExInColumnList);
-                lblPort.Text = GuiConfig.GetText(TextType.CommonPort);
+                lblPort.Text = GuiConfig.GetText("Common.Port");
                 grpDirect.Text =
                     GuiConfig.GetText(
                         TextType.DosCommandTabExInOperation);

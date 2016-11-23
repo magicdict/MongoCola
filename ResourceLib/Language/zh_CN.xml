@@ -197,11 +197,11 @@
   <DosCommand_Clean>清除</DosCommand_Clean>
   <DosCommand_LogLevel>日志等级</DosCommand_LogLevel>
 
-  <!--frmevalJS-->
-  <EvalJS_Title>实行Javascript</EvalJS_Title>
-  <EvalJS_Method>Js方法</EvalJS_Method>
-  <EvalJS_Run>运行</EvalJS_Run>
-  <EvalJS_Parameter>参数(用','分割)</EvalJS_Parameter>
+  <EvalJS>
+    <Title>实行Javascript</Title>
+    <Method>Js方法</Method>
+    <Parameter>参数(用','分割)</Parameter>
+  </EvalJS>
 
   <!--frmGroup-->
   <Group_Tab_Reduce>Reduce</Group_Tab_Reduce>
@@ -260,7 +260,6 @@
   <!--ctlIndexCreate-->
   <ctlIndexCreate_Index>索引</ctlIndexCreate_Index>
   <ctlIndexCreate_Description>Please input the column name here</ctlIndexCreate_Description>
-  <!--ctlFieldInfo-->
   <ctlFieldInfo_Show>显示</ctlFieldInfo_Show>
 
   <!--DataBase_Status-->
@@ -371,6 +370,7 @@
     <Connect>连接</Connect>
     <Create>新建</Create>
     <CreateCollation>创建排序规则</CreateCollation>
+    <Credentials>认证</Credentials>
     <CustomData>自定义数据</CustomData>
     <DataBase>数据库</DataBase>
     <Detail>细节</Detail>

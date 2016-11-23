@@ -108,7 +108,7 @@ namespace MongoCola
         private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var replSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
-                GuiConfig.GetText("ReplSetName", TextType.ReplsetInitReplset));
+                GuiConfig.GetText("ReplSetName", "Replset_InitReplset"));
             if (replSetName == string.Empty) return;
             var result = string.Empty;
             if (Operater.InitReplicaSet(replSetName, ref result))
@@ -814,7 +814,7 @@ namespace MongoCola
             var strMessage = "Are you sure to Restore?";
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                strTitle = GuiConfig.GetText(TextType.MainMenuOperationBackupAndRestoreRestore);
+                strTitle = GuiConfig.GetText("MainMenu.OperationBackupAndRestoreRestore");
                 strMessage = GuiConfig.GetText(TextType.RestoreConnectionConfirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))

@@ -36,7 +36,7 @@ namespace PlugInPackage.DosCommand
 
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                lblPort.Text = GuiConfig.GetText(TextType.CommonPort);
+                lblPort.Text = GuiConfig.GetText("Common.Port");
                 lblSource.Text =
                     GuiConfig.GetText(
                         TextType.DosCommandTabDeploySlaveSource);

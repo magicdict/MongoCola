@@ -50,6 +50,7 @@ namespace FunctionForm.Extend
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(80, 37);
             this.cmdCancel.TabIndex = 8;
+            this.cmdCancel.Tag = "Common.Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
@@ -61,6 +62,7 @@ namespace FunctionForm.Extend
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(71, 37);
             this.cmdOK.TabIndex = 7;
+            this.cmdOK.Tag = "Common.OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);

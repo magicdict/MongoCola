@@ -47,6 +47,7 @@ namespace FunctionForm.Extend
             this.cmdEval.Name = "cmdEval";
             this.cmdEval.Size = new System.Drawing.Size(93, 24);
             this.cmdEval.TabIndex = 2;
+            this.cmdEval.Tag = "Common.Run";
             this.cmdEval.Text = "Eval";
             this.cmdEval.UseVisualStyleBackColor = false;
             this.cmdEval.Click += new System.EventHandler(this.cmdEval_Click);
@@ -66,6 +67,7 @@ namespace FunctionForm.Extend
             this.lblParm.Name = "lblParm";
             this.lblParm.Size = new System.Drawing.Size(148, 15);
             this.lblParm.TabIndex = 23;
+            this.lblParm.Tag = "EvalJS.Parameter";
             this.lblParm.Text = "Parameter(seperate by \',\')";
             // 
             // txtResult
@@ -83,6 +85,7 @@ namespace FunctionForm.Extend
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(42, 15);
             this.lblResult.TabIndex = 26;
+            this.lblResult.Tag = "Common.Result";
             this.lblResult.Text = "Result";
             // 
             // ctlEval
@@ -93,6 +96,7 @@ namespace FunctionForm.Extend
             this.ctlEval.Name = "ctlEval";
             this.ctlEval.Size = new System.Drawing.Size(372, 209);
             this.ctlEval.TabIndex = 24;
+            this.ctlEval.Tag = "EvalJS_Method";
             this.ctlEval.Title = "Eval Js";
             // 
             // FrmEvalJs
@@ -111,6 +115,7 @@ namespace FunctionForm.Extend
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmEvalJs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "EvalJS.Title";
             this.Text = "Eval Javascript";
             this.Load += new System.EventHandler(this.frmevalJS_Load);
             this.ResumeLayout(false);

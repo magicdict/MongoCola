@@ -79,12 +79,7 @@ namespace FunctionForm.Extend
                 }
             }
             IsLoaded = true;
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
-                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
-            }
-
+            GuiConfig.Translateform(this);
         }
 
         /// <summary>

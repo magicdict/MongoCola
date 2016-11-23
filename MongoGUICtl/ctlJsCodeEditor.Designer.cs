@@ -47,6 +47,7 @@ namespace MongoGUICtl
             this.cmdSaveLocal.Name = "cmdSaveLocal";
             this.cmdSaveLocal.Size = new System.Drawing.Size(117, 27);
             this.cmdSaveLocal.TabIndex = 23;
+            this.cmdSaveLocal.Tag = "Common.SaveLocal";
             this.cmdSaveLocal.Text = "Save[Local] ";
             this.cmdSaveLocal.UseVisualStyleBackColor = true;
             this.cmdSaveLocal.Click += new System.EventHandler(this.cmdSaveLocal_Click);
@@ -66,6 +67,7 @@ namespace MongoGUICtl
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(117, 27);
             this.cmdSave.TabIndex = 20;
+            this.cmdSave.Tag = "Common.Save";
             this.cmdSave.Text = "Save[Remote]";
             this.cmdSave.UseVisualStyleBackColor = false;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
@@ -86,6 +88,7 @@ namespace MongoGUICtl
             this.cmdLoadLocal.Name = "cmdLoadLocal";
             this.cmdLoadLocal.Size = new System.Drawing.Size(117, 27);
             this.cmdLoadLocal.TabIndex = 24;
+            this.cmdLoadLocal.Tag = "Common.Load";
             this.cmdLoadLocal.Text = "Load[Local]";
             this.cmdLoadLocal.UseVisualStyleBackColor = true;
             this.cmdLoadLocal.Click += new System.EventHandler(this.cmdLoadLocal_Click);

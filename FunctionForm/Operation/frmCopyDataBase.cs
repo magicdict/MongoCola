@@ -172,8 +172,8 @@ namespace FunctionForm.Operation
                 gbSelectDestination.Text = GuiConfig.GetText(TextType.SelectedData);
                 chkCopyIndexes.Text = GuiConfig.GetText(TextType.CopyIndex);
 
-                cmdOK.Text = GuiConfig.GetText(TextType.CommonOk);
-                cmdCancel.Text = GuiConfig.GetText(TextType.CommonCancel);
+                cmdOK.Text = GuiConfig.GetText("Common.Ok");
+                cmdCancel.Text = GuiConfig.GetText("Common.Cancel");
             }
             new Thread(DataBind) { IsBackground = true }.Start();
         }

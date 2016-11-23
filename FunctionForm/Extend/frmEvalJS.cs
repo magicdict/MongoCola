@@ -24,14 +24,8 @@ namespace FunctionForm.Extend
         /// <param name="e"></param>
         private void frmevalJS_Load(object sender, EventArgs e)
         {
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                Text = GuiConfig.GetText(TextType.EvalJsTitle);
-                ctlEval.Title = GuiConfig.GetText(TextType.EvalJsMethod);
-                lblParm.Text = GuiConfig.GetText(TextType.EvalJsParameter);
-                cmdEval.Text = GuiConfig.GetText(TextType.EvalJsRun);
-                lblResult.Text = GuiConfig.GetText("Common_Result");
-            }
+            GuiConfig.Translateform(this);
+            ctlEval.Title = GuiConfig.GetText("Eval Js", "EvalJS.Method");
             ctlEval.Context = "function eval(){" + Environment.NewLine;
             ctlEval.Context += "    var i = 0;" + Environment.NewLine;
             ctlEval.Context += "    i++;" + Environment.NewLine;

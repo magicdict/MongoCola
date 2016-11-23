@@ -246,10 +246,10 @@ namespace MongoGUIView
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("ID");
-                lstData.Columns.Add(GuiConfig.GetText(TextType.CommonUsername));
-                lstData.Columns.Add(GuiConfig.GetText(TextType.CommonRoles));
-                lstData.Columns.Add("credentials");
-                lstData.Columns.Add("customData");
+                lstData.Columns.Add(GuiConfig.GetText("Common.Username"));
+                lstData.Columns.Add(GuiConfig.GetText("Common.Roles"));
+                lstData.Columns.Add(GuiConfig.GetText("Common.Credentials"));
+                lstData.Columns.Add(GuiConfig.GetText("Common.CustomData"));
             }
             else
             {

@@ -62,7 +62,7 @@ namespace FunctionForm.Connection
                 lstHost.Items.Add(item);
             }
             cmbStorageEngine.SelectedIndex = ModifyConn.StorageEngine == EnumMgr.StorageEngineType.MmaPv1 ? 0 : 1;
-            cmdAdd.Text = GuiConfig.IsUseDefaultLanguage ? "Modify" : GuiConfig.GetText(TextType.CommonModify);
+            cmdAdd.Text = GuiConfig.IsUseDefaultLanguage ? "Modify" : GuiConfig.GetText("Common.Modify");
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace FunctionForm.Connection
             //修改模式
             if (!string.IsNullOrEmpty(OldConnectionName))
             {
-                cmdAdd.Text = GuiConfig.IsUseDefaultLanguage ? "Modify" : GuiConfig.GetText(TextType.CommonModify);
+                cmdAdd.Text = GuiConfig.IsUseDefaultLanguage ? "Modify" : GuiConfig.GetText("Common.Modify");
             }
             //MonoUI兼容性对应
             GuiConfig.MonoCompactControl(Controls);

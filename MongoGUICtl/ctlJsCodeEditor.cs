@@ -16,7 +16,6 @@ namespace MongoGUICtl
         public ctlJsCodeEditor()
         {
             InitializeComponent();
-            Load += (x, y) => Init();
         }
 
         /// <summary>
@@ -35,31 +34,6 @@ namespace MongoGUICtl
         {
             set { txtEditJavaScript.Text = value; }
             get { return txtEditJavaScript.Text; }
-        }
-
-        public void Init()
-        {
-            if (!DesignMode)
-            {
-                foreach (var item in MongoHelper.GetJsNameList())
-                {
-                    cmbJsList.Items.Add(item);
-                }
-                cmbJsList.SelectedIndexChanged +=
-                    (x, y) =>
-                    {
-                        txtEditJavaScript.Text = Operater.LoadJavascript(cmbJsList.Text,
-                            RuntimeMongoDbContext.GetCurrentJavaScript());
-                    };
-                if (!GuiConfig.IsUseDefaultLanguage)
-                {
-                    cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
-                    cmdSaveLocal.Text =
-                        GuiConfig.GetText(TextType.CommonSaveLocal);
-                    cmdLoadLocal.Text =
-                        GuiConfig.GetText(TextType.QueryActionLoad);
-                }
-            }
         }
 
         /// <summary>
@@ -105,6 +79,17 @@ namespace MongoGUICtl
         private void ctlJsCodeEditor_Load(object sender, EventArgs e)
         {
             txtEditJavaScript.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy(ConstMgr.CSharp);
+            if (DesignMode) return;
+            foreach (var item in MongoHelper.GetJsNameList())
+            {
+                cmbJsList.Items.Add(item);
+            }
+            cmbJsList.SelectedIndexChanged += (x, y) =>
+            {
+                txtEditJavaScript.Text = Operater.LoadJavascript(cmbJsList.Text,
+                    RuntimeMongoDbContext.GetCurrentJavaScript());
+            };
+            GuiConfig.Translateform(Controls);
         }
     }
 }

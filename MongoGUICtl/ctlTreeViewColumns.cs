@@ -406,9 +406,9 @@ namespace MongoGUICtl
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                colName.Text = GuiConfig.GetText(TextType.CommonName);
-                colValue.Text = GuiConfig.GetText(TextType.CommonValue);
-                colType.Text = GuiConfig.GetText(TextType.CommonType);
+                colName.Text = GuiConfig.GetText("Common.Name");
+                colValue.Text = GuiConfig.GetText("Common.Value");
+                colType.Text = GuiConfig.GetText("Common.Type");
             }
         }
 

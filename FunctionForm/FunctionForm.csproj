@@ -94,12 +94,6 @@
     <Compile Include="Aggregation\frmDistinct.Designer.cs">
       <DependentUpon>frmDistinct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Aggregation\frmGroup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aggregation\frmGroup.Designer.cs">
-      <DependentUpon>frmGroup.cs</DependentUpon>
-    </Compile>
     <Compile Include="Aggregation\frmMapReduce.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,9 +294,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Aggregation\frmDistinct.resx">
       <DependentUpon>frmDistinct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Aggregation\frmGroup.resx">
-      <DependentUpon>frmGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Aggregation\frmMapReduce.resx">
       <DependentUpon>frmMapReduce.cs</DependentUpon>

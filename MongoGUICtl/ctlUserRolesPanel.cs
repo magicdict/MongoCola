@@ -59,7 +59,7 @@ namespace MongoGUICtl
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                grpRoles.Text = GuiConfig.GetText("Roles",TextType.CommonRoles);
+                grpRoles.Text = GuiConfig.GetText("Roles","Common.Roles");
             }
         }
     }

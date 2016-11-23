@@ -25,7 +25,7 @@ namespace PlugInPackage.DosCommand
             ctlMongoImportExportPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
             if (GuiConfig.IsUseDefaultLanguage)
                 return;
-            cmdSave.Text = GuiConfig.GetText(TextType.CommonSave);
+            cmdSave.Text = GuiConfig.GetText("Common.Save");
             cmdRunDos.Text = GuiConfig.GetText(TextType.DosCommandRun);
             tabMongod.Text = GuiConfig.GetText(TextType.DosCommandTabDeploy);
             tabMongoDump.Text = GuiConfig.GetText(TextType.DosCommandTabBackup);
