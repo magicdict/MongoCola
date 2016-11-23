@@ -5,21 +5,7 @@ namespace MongoUtility.Command
 {
     public static partial class Operater
     {
-        /// <summary>
-        ///     操作模式
-        /// </summary>
-        public enum Oprcode
-        {
-            /// <summary>
-            ///     删除
-            /// </summary>
-            Drop,
 
-            /// <summary>
-            ///     压缩
-            /// </summary>
-            Repair,
-        }
 
         /// <summary>
         ///     是否为合法的数据库名称
@@ -37,7 +23,7 @@ namespace MongoUtility.Command
         /// </summary>
         public static void RepairDb()
         {
-            CommandHelper.ExecuteMongoCommand(CommandHelper.RepairDatabaseCommand);
+            CommandExecute.ExecuteMongoCommand(DataBaseCommand.RepairDatabaseCommand);
         }
 
         /// <summary>
@@ -74,27 +60,16 @@ namespace MongoUtility.Command
         /// <param name="dbName"></param>
         /// <param name="func"></param>
         /// <returns></returns>
-        public static string DataBaseOpration(string strObjTag, string dbName, Oprcode func)
+        public static string DropDatabase(string strObjTag, string dbName)
         {
             var mongoSvr = RuntimeMongoDbContext.GetCurrentServer();
             var rtnResult = string.Empty;
             TagInfo.GetTagPath(strObjTag);
             if (mongoSvr == null) return rtnResult;
-            var db = mongoSvr.GetDatabase(dbName);
-            switch (func)
+            if (mongoSvr.DatabaseExists(dbName))
             {
-                case Oprcode.Drop:
-                    if (mongoSvr.DatabaseExists(dbName))
-                    {
-                        var result = mongoSvr.DropDatabase(dbName);
-                        return !result.Response.Contains("err") ? string.Empty : result.Response["err"].ToString();
-                    }
-                    break;
-                case Oprcode.Repair:
-                    //其实Repair的入口不在这个方法里面
-                    CommandHelper.ExecuteMongoDBCommand(CommandHelper.RepairDatabaseCommand,
-                        mongoSvr.GetDatabase(dbName));
-                    break;
+                var result = mongoSvr.DropDatabase(dbName);
+                return !result.Response.Contains("err") ? string.Empty : result.Response["err"].ToString();
             }
             return rtnResult;
         }

@@ -15,7 +15,6 @@ namespace FunctionForm.Extend
     {
         /// <summary>
         /// </summary>
-        /// <param name="config"></param>
         public FrmReplsetMgr()
         {
             InitializeComponent();
@@ -29,9 +28,9 @@ namespace FunctionForm.Extend
         {
             try
             {
-                var result = CommandHelper.AddToReplsetServer(RuntimeMongoDbContext.GetCurrentServer(),
+                var result = ShellMethod.AddToReplsetServer(RuntimeMongoDbContext.GetCurrentServer(),
                     txtReplHost.Text + ":" + NumReplPort.Value, (int)NumPriority.Value, chkArbiterOnly.Checked);
-                if (CommandHelper.IsShellOk(result))
+                if (CommandExecute.IsShellOk(result))
                 {
                     RuntimeMongoDbContext.CurrentMongoConnectionconfig.ReplsetList.Add(txtReplHost.Text + ":" + NumReplPort.Value);
                     Operater.RefreshConnectionConfig(RuntimeMongoDbContext.CurrentMongoConnectionconfig);
@@ -69,7 +68,7 @@ namespace FunctionForm.Extend
             }
             try
             {
-                CommandHelper.ReconfigReplsetServer(RuntimeMongoDbContext.GetCurrentServer(), replsetDoc);
+                DataBaseCommand.ReconfigReplsetServer(RuntimeMongoDbContext.GetCurrentServer(), replsetDoc);
                 //由于这个命令会触发异常，所以没有Result可以获得
                 RuntimeMongoDbContext.CurrentMongoConnectionconfig.ReplsetList.Remove(strHost);
                 lstHost.Items.Remove(lstHost.SelectedItem);

@@ -49,7 +49,7 @@ namespace FunctionForm.Status
                     if (RuntimeMongoDbContext.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         var StatusList = new List<BsonDocument>();
-                        var Status =  CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
+                        var Status =  CommandExecute.ExecuteMongoSvrCommand(DataBaseCommand.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
                         StatusList.Add(Status);
                         try
@@ -151,7 +151,7 @@ namespace FunctionForm.Status
                     if (RuntimeMongoDbContext.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         docStatus =
-                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
+                            CommandExecute.ExecuteMongoSvrCommand(DataBaseCommand.ServerStatusCommand,
                                 RuntimeMongoDbContext.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height * 2;
                     }

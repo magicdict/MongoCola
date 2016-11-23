@@ -39,7 +39,7 @@ namespace MongoUtility.Security
         /// <param name="user"></param>
         public static void AddUser(MongoUserEx user, bool IsAdmin)
         {
-            var result = Command.CommandHelper.createUser(user, IsAdmin ? RuntimeMongoDbContext.GetCurrentServer()
+            var result = Command.DataBaseCommand.createUser(user, IsAdmin ? RuntimeMongoDbContext.GetCurrentServer()
                     .GetDatabase(ConstMgr.DatabaseNameAdmin) : RuntimeMongoDbContext.GetCurrentDataBase());
             MyMessageBox.ShowConfirm("Create User", result.Response.ToString());
         }
@@ -50,7 +50,7 @@ namespace MongoUtility.Security
         /// <param name="user"></param>
         public static void UpdateUser(MongoUserEx user, bool IsAdmin)
         {
-            var result = Command.CommandHelper.updateUser(user, IsAdmin ? RuntimeMongoDbContext.GetCurrentServer()
+            var result = Command.DataBaseCommand.updateUser(user, IsAdmin ? RuntimeMongoDbContext.GetCurrentServer()
                     .GetDatabase(ConstMgr.DatabaseNameAdmin) : RuntimeMongoDbContext.GetCurrentDataBase());
             MyMessageBox.ShowConfirm("Update User", result.Response.ToString());
         }

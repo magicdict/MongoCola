@@ -171,7 +171,7 @@ namespace FunctionForm.User
                 r.Roles[i] = _roleList[i];
             }
             //这个时候可能没有GetCurrentDataBase，如果是Admin
-            var result = CommandHelper.createRole(RuntimeMongoDbContext.GetCurrentServer().GetDatabase(r.Database), r);
+            var result = DataBaseCommand.createRole(RuntimeMongoDbContext.GetCurrentServer().GetDatabase(r.Database), r);
             if (result.Ok)
             {
                 MyMessageBox.ShowEasyMessage("Succeed", "Add Role OK");

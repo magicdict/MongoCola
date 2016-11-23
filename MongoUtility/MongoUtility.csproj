@@ -82,6 +82,7 @@
     <Compile Include="Aggregation\DataFilter.cs" />
     <Compile Include="Aggregation\DataViewInfo.cs" />
     <Compile Include="Command\CommandExecute.cs" />
+    <Compile Include="Command\ShellMethod.cs" />
     <Compile Include="Command\SystemStatus.cs" />
     <Compile Include="Core\ConfigurationFileOption.cs" />
     <Compile Include="Core\ConnectionInfo.cs" />
@@ -100,7 +101,7 @@
     <Compile Include="ToolKit\MongoImportExportInfo.cs" />
     <Compile Include="ToolKit\MongoRestoreInfo.cs" />
     <Compile Include="Core\MongoConnectionConfigManager.cs" />
-    <Compile Include="Command\CommandHelper.cs" />
+    <Compile Include="Command\DataBaseCommand.cs" />
     <Compile Include="EventArgs\EventArgExtensions.cs" />
     <Compile Include="EventArgs\ActionDoneEventArgs.cs" />
     <Compile Include="Core\MongoConnectionConfig.cs" />

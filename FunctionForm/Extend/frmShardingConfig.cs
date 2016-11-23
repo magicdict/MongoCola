@@ -132,12 +132,12 @@ namespace FunctionForm.Extend
             CommandResult result;
             if (chkAdvance.Checked)
             {
-                result = CommandHelper.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, txtName.Text,
+                result = DataBaseCommand.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, txtName.Text,
                     NumMaxSize.Value);
             }
             else
             {
-                result = CommandHelper.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, string.Empty, 0);
+                result = DataBaseCommand.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, string.Empty, 0);
             }
             resultlst.Add(result);
             MyMessageBox.ShowMessage("Add Sharding", "Result:" + (result.Ok ? "OK" : "Fail"),
@@ -159,7 +159,7 @@ namespace FunctionForm.Extend
         {
             foreach (string item in lstSharding.SelectedItems)
             {
-                var resultlst = new List<CommandResult> { CommandHelper.RemoveSharding(_prmSvr, item) };
+                var resultlst = new List<CommandResult> { DataBaseCommand.RemoveSharding(_prmSvr, item) };
                 MyMessageBox.ShowMessage("Remove Sharding", "Result",
                     MongoHelper.ConvertCommandResultlstToString(resultlst));
             }
@@ -181,7 +181,7 @@ namespace FunctionForm.Extend
         /// <param name="e"></param>
         private void cmdEnableSharding_Click(object sender, EventArgs e)
         {
-            var resultlst = new List<CommandResult> { CommandHelper.EnableSharding(_prmSvr, cmbDataBase.Text) };
+            var resultlst = new List<CommandResult> { DataBaseCommand.EnableSharding(_prmSvr, cmbDataBase.Text) };
             MyMessageBox.ShowMessage("EnableSharding", "Result",
                 MongoHelper.ConvertCommandResultlstToString(resultlst));
         }
@@ -196,7 +196,7 @@ namespace FunctionForm.Extend
             var resultlst = new List<CommandResult>();
             var result = _prmSvr.GetDatabase(cmbDataBase.Text).GetCollection(cmbCollection.Text).GetIndexes();
             BsonDocument indexDoc = result[cmbIndexList.SelectedIndex].Key;
-            resultlst.Add(CommandHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, indexDoc));
+            resultlst.Add(DataBaseCommand.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, indexDoc));
             MyMessageBox.ShowMessage("EnableSharding", "Result",
                 MongoHelper.ConvertCommandResultlstToString(resultlst));
         }
@@ -284,7 +284,7 @@ namespace FunctionForm.Extend
         {
             var resultlst = new List<CommandResult>
             {
-                CommandHelper.AddShardToZone(_prmSvr, cmbShard.Text, txtShardZone.Text)
+                DataBaseCommand.AddShardToZone(_prmSvr, cmbShard.Text, txtShardZone.Text)
             };
             MyMessageBox.ShowMessage("Add Shard Zone", "Result", MongoHelper.ConvertCommandResultlstToString(resultlst));
             RefreshShardingZone();
@@ -336,7 +336,7 @@ namespace FunctionForm.Extend
         {
             var resultlst = new List<CommandResult>
             {
-                CommandHelper.updateZoneKeyRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,cmbField.Text, ctlBsonValueShardKeyFrom.GetValue(),
+                DataBaseCommand.updateZoneKeyRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,cmbField.Text, ctlBsonValueShardKeyFrom.GetValue(),
                                           ctlBsonValueShardKeyTo.GetValue(), cmbTagList.Text.Split(".".ToCharArray())[1])
             };
             MyMessageBox.ShowMessage("Add Shard Tag", "Result",

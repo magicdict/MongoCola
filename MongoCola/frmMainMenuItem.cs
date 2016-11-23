@@ -377,8 +377,7 @@ namespace MongoCola
             {
                 trvsrvlst.SelectedNode = null;
             }
-            var rtnResult = Operater.DataBaseOpration(RuntimeMongoDbContext.SelectObjectTag, strDbName,
-                Operater.Oprcode.Drop);
+            var rtnResult = Operater.DropDatabase(RuntimeMongoDbContext.SelectObjectTag, strDbName);
             if (string.IsNullOrEmpty(rtnResult))
             {
                 RefreshToolStripMenuItem_Click(sender, e);
@@ -659,7 +658,7 @@ namespace MongoCola
             {
                 var colName = RuntimeMongoDbContext.GetCurrentCollectionName();
                 var db = RuntimeMongoDbContext.GetCurrentDataBase();
-                var result = CommandHelper.convertToCapped(colName, lngMaxSize, db);
+                var result = DataBaseCommand.convertToCapped(colName, lngMaxSize, db);
                 MyMessageBox.ShowEasyMessage("ConvertToCapped", result.Response.ToString());
             }
             else

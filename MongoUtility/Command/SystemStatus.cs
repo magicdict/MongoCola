@@ -80,8 +80,5 @@ namespace MongoUtilityCore.Command
             }
             return lst;
         }
-
-
-
     }
 }

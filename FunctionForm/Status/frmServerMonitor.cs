@@ -67,7 +67,7 @@ namespace FunctionForm.Status
         /// <param name="e"></param>
         private void SetValue(object sender, EventArgs e)
         {
-            var docStatus = CommandHelper.ExecuteMongoSvrCommand(CommandHelper.ServerStatusCommand,
+            var docStatus = CommandExecute.ExecuteMongoSvrCommand(DataBaseCommand.ServerStatusCommand,
                     RuntimeMongoDbContext.GetCurrentServer()).Response;
             foreach (var item in CatalogDetailDic.Keys)
             {

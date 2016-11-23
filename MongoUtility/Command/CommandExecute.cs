@@ -13,7 +13,7 @@ namespace MongoUtility.Command
     /// 有些RepairDatabase 这样的函数可以简单的执行
     /// <summary>
     /// </summary>
-    public static partial class CommandHelper
+    public static class CommandExecute
     {
 
         /// <summary>
@@ -28,6 +28,40 @@ namespace MongoUtility.Command
         public static void OnCommandRunComplete(RunCommandEventArgs e)
         {
             e.Raise(null, ref RunCommandComplete);
+        }
+
+        /// 注意：有些命令可能只能用在mongos上面，例如addshard
+        /// <summary>
+        ///     使用Shell Helper命令
+        /// </summary>
+        /// <param name="jsShell"></param>
+        /// <param name="mongoSvr"></param>
+        /// <returns></returns>
+        public static CommandResult ExecuteJsShell(string jsShell, MongoServer mongoSvr)
+        {
+            var shellCmd = new BsonDocument
+            {
+                { "$eval", new BsonJavaScript(jsShell)},
+                { "nolock", true }
+            };
+            //必须nolock
+            var mongoCmd = new CommandDocument();
+            mongoCmd.AddRange(shellCmd);
+            return ExecuteMongoSvrCommand(mongoCmd, mongoSvr);
+        }
+
+        /// <summary>
+        ///     Js Shell 的结果判定
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static bool IsShellOk(CommandResult result)
+        {
+            if (!result.Response.ToBsonDocument().GetElement("retval").Value.IsBsonDocument)
+            {
+                return true;
+            }
+            return result.Response.ToBsonDocument().GetElement("retval").Value.AsBsonDocument.GetElement("ok").Value.ToString() == "1";
         }
 
         /// <summary>

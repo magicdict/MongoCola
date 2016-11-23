@@ -21,7 +21,7 @@ namespace MongoUtility.Command
         {
             //注意：这里的replSetName名称只是为了设定本工具用的MongoConfig信息，
             //实际的replSetName名称应该在启动命令中
-            var result = CommandHelper.InitReplicaSet();
+            var result = DataBaseCommand.InitReplicaSet();
             if (result.Ok)
             {
                 //修改配置
@@ -45,38 +45,7 @@ namespace MongoUtility.Command
             return false;
         }
 
-        /// <summary>
-        ///     初始化副本
-        /// </summary>
-        /// <param name="replSetName"></param>
-        /// <param name="strMessage"></param>
-        /// <returns></returns>
-        public static bool InitReplicaSet_ViaDatabase(string replSetName, ref string strMessage)
-        {
-            var result = CommandHelper.InitReplicaSet(replSetName,
-                RuntimeMongoDbContext.GetCurrentServerConfig().ConnectionName,
-                MongoConnectionConfig.MongoConfig.ConnectionList);
-            if (result.Ok)
-            {
-                //修改配置
-                var newConfig = RuntimeMongoDbContext.GetCurrentServerConfig();
-                newConfig.ReplSetName = replSetName;
-                newConfig.ReplsetList = new List<string>
-                {
-                    newConfig.Host + (newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
-                };
-                MongoConnectionConfig.MongoConfig.ConnectionList[newConfig.ConnectionName] = newConfig;
-                MongoConnectionConfig.MongoConfig.SaveMongoConfig();
-                RuntimeMongoDbContext.MongoConnSvrLst.Remove(newConfig.ConnectionName);
-                RuntimeMongoDbContext.MongoConnSvrLst.Add(
-                    RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
-                    RuntimeMongoDbContext.CreateMongoServer(ref newConfig));
-                return true;
-            }
-            strMessage = result.ErrorMessage;
-            return false;
-        }
-
+ 
         /// <summary>
         ///     刷新配置文件副本状态
         /// </summary>
@@ -109,20 +78,11 @@ namespace MongoUtility.Command
         }
 
         /// <summary>
-        ///     同步
-        /// </summary>
-        [Obsolete("Deprecated since version 3.2: MongoDB 3.2 deprecates the use of master-slave replication for components of sharded clusters.")]
-        public static void ResyncCommand()
-        {
-            CommandHelper.ExecuteMongoCommand(CommandHelper.ResyncCommand);
-        }
-
-        /// <summary>
         ///     压缩
         /// </summary>
         public static void Compact()
         {
-            CommandHelper.ExecuteMongoCommand(CommandHelper.CompactCommand);
+            CommandExecute.ExecuteMongoCommand(DataBaseCommand.CompactCommand);
         }
 
         /// <summary>
@@ -134,7 +94,7 @@ namespace MongoUtility.Command
         {
             BsonDocument result;
             var textSearchOption = new BsonDocument().Add(new BsonElement("full", isFull.ToString()));
-            var searchResult = CommandHelper.ExecuteMongoColCommand("validate",
+            var searchResult = CommandExecute.ExecuteMongoColCommand("validate",
                 RuntimeMongoDbContext.GetCurrentCollection(), textSearchOption);
             result = searchResult.Response;
             return result;

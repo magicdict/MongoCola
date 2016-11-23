@@ -35,7 +35,7 @@ namespace FunctionForm.Aggregation
         {
             if (stages.Count <= 0)
                 return;
-            var mCommandResult = CommandHelper.Aggregate(stages, RuntimeMongoDbContext.GetCurrentCollection().Name);
+            var mCommandResult = DataBaseCommand.Aggregate(stages, RuntimeMongoDbContext.GetCurrentCollection().Name);
             if (mCommandResult.Ok)
             {
                 trvResult.DatatreeView.BeginUpdate();
