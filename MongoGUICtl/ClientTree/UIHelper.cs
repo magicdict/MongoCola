@@ -168,7 +168,7 @@ namespace MongoGUICtl.ClientTree
                 {
                     mongoClient.GetServer().Connect();
                 }
-                catch (TimeoutException ex)
+                catch (TimeoutException)
                 {
                     //TimeOut，则这个Health为False
                     mongoConConfigLst[mongoConnKey].Health = false;
@@ -421,7 +421,7 @@ namespace MongoGUICtl.ClientTree
                         mongoDbNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         svrInstanceNode.Nodes.Add(mongoDbNode);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         //Utility.ExceptionDeal(ex, strDbName + "Exception", strDbName + "Exception");
                         mongoDbNode = new TreeNode(DbPropertyDoc.GetElement("name").Value.ToString() + "(Exception)")

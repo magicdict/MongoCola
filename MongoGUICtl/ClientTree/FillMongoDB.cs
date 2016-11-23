@@ -104,9 +104,9 @@ namespace MongoGUICtl.ClientTree
                     var mongoDb = mongoSvr.GetDatabase(strDbName);
                     var viewlist = new List<string>();
                     //获得View列表
-                    if (mongoDb.CollectionExists(ConstMgr.CollectionNameSystemView))
+                    if (mongoDb.CollectionExists(ConstMgr.CollectionNameSystemViews))
                     {
-                        foreach (var viewdoc in mongoDb.GetCollection(ConstMgr.CollectionNameSystemView).FindAll())
+                        foreach (var viewdoc in mongoDb.GetCollection(ConstMgr.CollectionNameSystemViews).FindAll())
                         {
                             viewlist.Add(viewdoc.GetElement(ConstMgr.KeyId).Value.AsString);
                         }

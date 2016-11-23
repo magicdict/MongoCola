@@ -59,7 +59,7 @@ namespace FunctionForm.User
                 Text = "Change User Config";
                 txtUserName.Enabled = false;
                 txtUserName.Text = _modifyName;
-                var userInfo = RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(ConstMgr.CollectionNameUser)
+                var userInfo = RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(ConstMgr.CollectionNameUsers)
                     .FindOneAs<BsonDocument>(Query.EQ("user", _modifyName));
 
                 BsonElement role;

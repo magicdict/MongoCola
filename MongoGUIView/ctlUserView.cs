@@ -23,11 +23,11 @@ namespace MongoGUIView
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                AddUserStripButton.Text = GuiConfig.GetText(TextType.MainMenuOperationDatabaseAddUser);
+                AddUserStripButton.Text = GuiConfig.GetText("MainMenu.OperationDatabaseAddUser");
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
-                ChangePasswordStripButton.Text = GuiConfig.GetText(TextType.CommonChangePassword);
+                ChangePasswordStripButton.Text = GuiConfig.GetText("Change Password","CommonChangePassword");
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
-                RemoveUserStripButton.Text = GuiConfig.GetText(TextType.MainMenuOperationDatabaseDelUser);
+                RemoveUserStripButton.Text = GuiConfig.GetText("MainMenu.OperationDatabaseDelUser");
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
             }
             AddUserStripButton.Enabled = true;
@@ -86,7 +86,9 @@ namespace MongoGUIView
         /// </summary>
         public static Action<bool, string> OpenChangePasswordForm;
 
-
+        /// <summary>
+        ///     是否为Admin
+        /// </summary>
         public bool isAdmin
         {
             get

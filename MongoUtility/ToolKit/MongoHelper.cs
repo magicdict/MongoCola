@@ -165,9 +165,9 @@ namespace MongoUtility.ToolKit
         public static void InitDbUser()
         {
             var mongDb = RuntimeMongoDbContext.GetCurrentDataBase();
-            if (!mongDb.CollectionExists(ConstMgr.CollectionNameUser))
+            if (!mongDb.CollectionExists(ConstMgr.CollectionNameUsers))
             {
-                mongDb.CreateCollection(ConstMgr.CollectionNameUser);
+                mongDb.CreateCollection(ConstMgr.CollectionNameUsers);
             }
         }
 

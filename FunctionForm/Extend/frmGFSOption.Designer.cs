@@ -59,7 +59,7 @@ namespace MongoGUIView
             this.grpFilename.Size = new System.Drawing.Size(278, 101);
             this.grpFilename.TabIndex = 0;
             this.grpFilename.TabStop = false;
-            this.grpFilename.Tag = "GFS_Insert_Option_RemoteFileName";
+            this.grpFilename.Tag = "GFS_Insert_Option.RemoteFileName";
             this.grpFilename.Text = "For MongoDB filename ,use";
             // 
             // txtSeperateChar
@@ -77,7 +77,7 @@ namespace MongoGUIView
             this.lblSeperateChar.Name = "lblSeperateChar";
             this.lblSeperateChar.Size = new System.Drawing.Size(83, 12);
             this.lblSeperateChar.TabIndex = 4;
-            this.lblSeperateChar.Tag = "GFS_Insert_Option_DirectorySeparatorChar";
+            this.lblSeperateChar.Tag = "GFS_Insert_Option.DirectorySeparatorChar";
             this.lblSeperateChar.Text = "SeperateChar:";
             // 
             // radFullPath
@@ -87,7 +87,7 @@ namespace MongoGUIView
             this.radFullPath.Name = "radFullPath";
             this.radFullPath.Size = new System.Drawing.Size(245, 16);
             this.radFullPath.TabIndex = 1;
-            this.radFullPath.Tag = "GFS_Insert_Option_FullPath";
+            this.radFullPath.Tag = "GFS_Insert_Option.FullPath";
             this.radFullPath.Text = "fullpath (eg.C:\\mongocola\\readme.txt)";
             this.radFullPath.UseVisualStyleBackColor = true;
             // 
@@ -100,7 +100,7 @@ namespace MongoGUIView
             this.radFilename.Size = new System.Drawing.Size(221, 16);
             this.radFilename.TabIndex = 0;
             this.radFilename.TabStop = true;
-            this.radFilename.Tag = "GFS_Insert_Option_OnlyFilename";
+            this.radFilename.Tag = "GFS_Insert_Option.OnlyFilename";
             this.radFilename.Text = "only the filename (eg.readme.txt)";
             this.radFilename.UseVisualStyleBackColor = true;
             // 
@@ -116,7 +116,7 @@ namespace MongoGUIView
             this.grpFileAlreadyExist.Size = new System.Drawing.Size(278, 135);
             this.grpFileAlreadyExist.TabIndex = 1;
             this.grpFileAlreadyExist.TabStop = false;
-            this.grpFileAlreadyExist.Tag = "GFS_Insert_Option_FileAlreadyExist";
+            this.grpFileAlreadyExist.Tag = "GFS_Insert_Option.FileAlreadyExist";
             this.grpFileAlreadyExist.Text = "if file already exist";
             // 
             // radStopIt
@@ -126,7 +126,7 @@ namespace MongoGUIView
             this.radStopIt.Name = "radStopIt";
             this.radStopIt.Size = new System.Drawing.Size(47, 16);
             this.radStopIt.TabIndex = 4;
-            this.radStopIt.Tag = "GFS_Insert_Option_Stop";
+            this.radStopIt.Tag = "GFS_Insert_Option.Stop";
             this.radStopIt.Text = "Stop";
             this.radStopIt.UseVisualStyleBackColor = true;
             // 
@@ -137,7 +137,7 @@ namespace MongoGUIView
             this.radOverwrite.Name = "radOverwrite";
             this.radOverwrite.Size = new System.Drawing.Size(95, 16);
             this.radOverwrite.TabIndex = 3;
-            this.radOverwrite.Tag = "GFS_Insert_Option_Overwrite";
+            this.radOverwrite.Tag = "GFS_Insert_Option.Overwrite";
             this.radOverwrite.Text = "OverWrite It";
             this.radOverwrite.UseVisualStyleBackColor = true;
             // 
@@ -148,7 +148,7 @@ namespace MongoGUIView
             this.radSkipIt.Name = "radSkipIt";
             this.radSkipIt.Size = new System.Drawing.Size(65, 16);
             this.radSkipIt.TabIndex = 2;
-            this.radSkipIt.Tag = "GFS_Insert_Option_SkipIt";
+            this.radSkipIt.Tag = "GFS_Insert_Option.SkipIt";
             this.radSkipIt.Text = "Skip It";
             this.radSkipIt.UseVisualStyleBackColor = true;
             // 
@@ -161,7 +161,7 @@ namespace MongoGUIView
             this.radAddIt.Size = new System.Drawing.Size(89, 16);
             this.radAddIt.TabIndex = 0;
             this.radAddIt.TabStop = true;
-            this.radAddIt.Tag = "GFS_Insert_Option_JustAddIt";
+            this.radAddIt.Tag = "GFS_Insert_Option.JustAddIt";
             this.radAddIt.Text = "Just Add It";
             this.radAddIt.UseVisualStyleBackColor = true;
             // 
@@ -172,7 +172,7 @@ namespace MongoGUIView
             this.radRenameIt.Name = "radRenameIt";
             this.radRenameIt.Size = new System.Drawing.Size(173, 16);
             this.radRenameIt.TabIndex = 1;
-            this.radRenameIt.Tag = "GFS_Insert_Option_Rename";
+            this.radRenameIt.Tag = "GFS_Insert_Option.Rename";
             this.radRenameIt.Text = "Rename It(eg.readme1.txt)";
             this.radRenameIt.UseVisualStyleBackColor = true;
             // 
@@ -193,7 +193,7 @@ namespace MongoGUIView
             this.chkIgnore.Name = "chkIgnore";
             this.chkIgnore.Size = new System.Drawing.Size(274, 43);
             this.chkIgnore.TabIndex = 3;
-            this.chkIgnore.Tag = "GFS_Insert_Option_IngoreSubFolder";
+            this.chkIgnore.Tag = "GFS_Insert_Option.IngoreSubFolder";
             this.chkIgnore.Text = "add files form selected folder only(ignore sub-folder)";
             this.chkIgnore.UseVisualStyleBackColor = true;
             // 
@@ -209,7 +209,7 @@ namespace MongoGUIView
             this.Controls.Add(this.grpFilename);
             this.Name = "FrmGfsOption";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Tag = "GFS_Insert_Option";
+            this.Tag = "GFS_Insert_Option.Title";
             this.Text = "GFS Insert Option";
             this.Load += new System.EventHandler(this.frmGFSOption_Load);
             this.grpFilename.ResumeLayout(false);

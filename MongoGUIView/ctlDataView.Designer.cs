@@ -216,7 +216,7 @@ namespace MongoGUIView
             this.FirstPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FirstPageStripButton.Name = "FirstPageStripButton";
             this.FirstPageStripButton.Size = new System.Drawing.Size(23, 22);
-            this.FirstPageStripButton.Tag = "Main_Menu_DataView_First";
+            this.FirstPageStripButton.Tag = "Main_Menu.DataView_First";
             this.FirstPageStripButton.Text = "First Page";
             this.FirstPageStripButton.Click += new System.EventHandler(this.FirstPage_Click);
             // 
@@ -227,7 +227,7 @@ namespace MongoGUIView
             this.PrePageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PrePageStripButton.Name = "PrePageStripButton";
             this.PrePageStripButton.Size = new System.Drawing.Size(23, 22);
-            this.PrePageStripButton.Tag = "Main_Menu_DataView_Previous";
+            this.PrePageStripButton.Tag = "Main_Menu.DataView_Previous";
             this.PrePageStripButton.Text = "Previous Page";
             this.PrePageStripButton.Click += new System.EventHandler(this.PrePage_Click);
             // 
@@ -238,7 +238,7 @@ namespace MongoGUIView
             this.NextPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextPageStripButton.Name = "NextPageStripButton";
             this.NextPageStripButton.Size = new System.Drawing.Size(23, 22);
-            this.NextPageStripButton.Tag = "Main_Menu_DataView_Next";
+            this.NextPageStripButton.Tag = "Main_Menu.DataView_Next";
             this.NextPageStripButton.Text = "Next Page";
             this.NextPageStripButton.Click += new System.EventHandler(this.NextPage_Click);
             // 
@@ -249,7 +249,7 @@ namespace MongoGUIView
             this.LastPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LastPageStripButton.Name = "LastPageStripButton";
             this.LastPageStripButton.Size = new System.Drawing.Size(23, 22);
-            this.LastPageStripButton.Tag = "Main_Menu_DataView_Last";
+            this.LastPageStripButton.Tag = "Main_Menu.DataView_Last";
             this.LastPageStripButton.Text = "Last Page";
             this.LastPageStripButton.Click += new System.EventHandler(this.LastPage_Click);
             // 

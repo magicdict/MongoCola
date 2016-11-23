@@ -7,7 +7,7 @@ using ResourceLib.UI;
 using System;
 using System.Windows.Forms;
 
-namespace MongoGUIView
+namespace FunctionForm.Extend
 {
     public partial class FrmElement : Form
     {

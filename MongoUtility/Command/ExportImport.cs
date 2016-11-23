@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MongoDB.Bson;
@@ -27,28 +26,14 @@ namespace MongoUtility.Command
             MongoCollection mongoCol)
         {
             MongoCursor<BsonDocument> cursor;
-            //Query condition:
-            if (currentDataViewInfo != null && currentDataViewInfo.IsUseFilter)
-            {
-                cursor = mongoCol.FindAs<BsonDocument>(
-                    QueryHelper.GetQuery(currentDataViewInfo.mDataFilter.QueryConditionList))
-                    .SetFields(QueryHelper.GetOutputFields(currentDataViewInfo.mDataFilter.QueryFieldList))
-                    .SetSortOrder(QueryHelper.GetSort(currentDataViewInfo.mDataFilter.QueryFieldList));
-            }
-            else
-            {
-                cursor = mongoCol.FindAllAs<BsonDocument>();
-            }
+            cursor = mongoCol.FindAllAs<BsonDocument>();
             var dataList = cursor.ToList();
             switch (exportType)
             {
-                case EnumMgr.ExportType.Excel:
-                    //ExportToExcel(dataList, ExcelFileName);
-                    GC.Collect();
-                    break;
                 case EnumMgr.ExportType.Text:
                     ExportToJson(dataList, excelFileName, MongoHelper.JsonWriterSettings);
                     break;
+                case EnumMgr.ExportType.Excel:
                 case EnumMgr.ExportType.Xml:
                     break;
             }

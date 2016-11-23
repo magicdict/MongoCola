@@ -158,7 +158,7 @@ namespace MongoGUIView
                 case ConstMgr.CollectionNameGfsFiles:
                     SetGridFileToListView(dataList, lstData);
                     break;
-                case ConstMgr.CollectionNameUser:
+                case ConstMgr.CollectionNameUsers:
                     SetUserListToListView(dataList, lstData);
                     break;
                 default:

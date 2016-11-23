@@ -79,24 +79,6 @@
     <Compile Include="ctlServerStatus.Designer.cs">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmElement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmElement.Designer.cs">
-      <DependentUpon>frmElement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmGFSOption.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGFSOption.Designer.cs">
-      <DependentUpon>frmGFSOption.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmQuery.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmQuery.Designer.cs">
-      <DependentUpon>frmQuery.cs</DependentUpon>
-    </Compile>
     <Compile Include="MultiTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,15 +128,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmElement.resx">
-      <DependentUpon>frmElement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmGFSOption.resx">
-      <DependentUpon>frmGFSOption.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmQuery.resx">
-      <DependentUpon>frmQuery.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

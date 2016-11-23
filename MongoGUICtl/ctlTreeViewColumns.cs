@@ -384,7 +384,7 @@ namespace MongoGUICtl
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 strColumnText = mElement.Value.ToString();
             }

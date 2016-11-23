@@ -2,106 +2,110 @@
 
 <Language Type="SimplifiedChinese">
   <!--frmMain-->
-  <Main_Menu_Mangt>管理(&amp;M)</Main_Menu_Mangt>
-  <Main_Menu_Mangt_AddConnection>添加连接(&amp;A)</Main_Menu_Mangt_AddConnection>
-  <Main_Menu_Mangt_Disconnect>切断连接</Main_Menu_Mangt_Disconnect>
-  <Main_Menu_Mangt_Status>状态</Main_Menu_Mangt_Status>
-  <Main_Menu_Mangt_Refresh>刷新</Main_Menu_Mangt_Refresh>
-  <Main_Menu_Mangt_Exit>退出</Main_Menu_Mangt_Exit>
+  <Main_Menu>
 
-  <Main_Menu_DataView>数据视图</Main_Menu_DataView>
-  <Main_Menu_DataView_Previous>上一页</Main_Menu_DataView_Previous>
-  <Main_Menu_DataView_Next>下一页</Main_Menu_DataView_Next>
-  <Main_Menu_DataView_First>第一页</Main_Menu_DataView_First>
-  <Main_Menu_DataView_Last>最后一页</Main_Menu_DataView_Last>
-  <Main_Menu_DataView_Query>查询</Main_Menu_DataView_Query>
-  <Main_Menu_DataView_ConvertSql>SQL转换</Main_Menu_DataView_ConvertSql>
-  <Main_Menu_DataView_Aggregation>聚合</Main_Menu_DataView_Aggregation>
-  <Main_Menu_DataView_DataFilter>数据过滤</Main_Menu_DataView_DataFilter>
+    <Mangt>管理(&amp;M)</Mangt>
+    <Mangt_AddConnection>添加连接(&amp;A)</Mangt_AddConnection>
+    <Mangt_Disconnect>切断连接</Mangt_Disconnect>
+    <Mangt_Status>状态</Mangt_Status>
+    <Mangt_Refresh>刷新</Mangt_Refresh>
+    <Mangt_Exit>退出</Mangt_Exit>
 
+    <DataView>数据视图</DataView>
+    <DataView_Previous>上一页</DataView_Previous>
+    <DataView_Next>下一页</DataView_Next>
+    <DataView_First>第一页</DataView_First>
+    <DataView_Last>最后一页</DataView_Last>
+    <DataView_Query>查询</DataView_Query>
+    <DataView_ConvertSql>SQL转换</DataView_ConvertSql>
+    <DataView_Aggregation>聚合</DataView_Aggregation>
+    <DataView_DataFilter>数据过滤</DataView_DataFilter>
 
-  <Main_Menu_Operation>操作</Main_Menu_Operation>
-  <Main_Menu_Operation_Server>服务器</Main_Menu_Operation_Server>
-  <Main_Menu_Operation_Server_NewDB>新建数据库</Main_Menu_Operation_Server_NewDB>
-  <Main_Menu_Operation_Server_UserInfo>用户信息</Main_Menu_Operation_Server_UserInfo>
-  <Main_Menu_Operation_Server_AddUserToAdmin>添加管理员(Admin)用户</Main_Menu_Operation_Server_AddUserToAdmin>
-  <Main_Menu_Operation_Server_AddCustomRole>添加自定义角色</Main_Menu_Operation_Server_AddCustomRole>
-  <Main_Menu_Operation_Server_DelFromAdmin>删除管理员(Admin)用户</Main_Menu_Operation_Server_DelFromAdmin>
-  <Main_Menu_Operation_Server_SlaveResync>主从同步</Main_Menu_Operation_Server_SlaveResync>
-  <Main_Menu_Operation_Server_CloseServer>关闭服务器</Main_Menu_Operation_Server_CloseServer>
-  <Main_Menu_Operation_Server_Properties>服务器属性</Main_Menu_Operation_Server_Properties>
-  <Main_Menu_ServerMonitor>状态监视器</Main_Menu_ServerMonitor>
+    <Operation>操作</Operation>
+    <Operation_Server>服务器</Operation_Server>
+    <Operation_Server_NewDB>新建数据库</Operation_Server_NewDB>
+    <Operation_Server_UserInfo>用户信息</Operation_Server_UserInfo>
+    <Operation_Server_AddUserToAdmin>添加管理员(Admin)用户</Operation_Server_AddUserToAdmin>
+    <Operation_Server_AddCustomRole>添加自定义角色</Operation_Server_AddCustomRole>
+    <Operation_Server_DelFromAdmin>删除管理员(Admin)用户</Operation_Server_DelFromAdmin>
+    <Operation_Server_SlaveResync>主从同步</Operation_Server_SlaveResync>
+    <Operation_Server_CloseServer>关闭服务器</Operation_Server_CloseServer>
+    <Operation_Server_Properties>服务器属性</Operation_Server_Properties>
+    <ServerMonitor>状态监视器</ServerMonitor>
 
-  <Main_Menu_Operation_Database>数据库</Main_Menu_Operation_Database>
-  <Main_Menu_Operation_Database_AddCollection>添加数据集</Main_Menu_Operation_Database_AddCollection>
-  <Main_Menu_Operation_Database_AddView>添加视图</Main_Menu_Operation_Database_AddView>
-  <Main_Menu_Operation_Database_CopyDB>复制数据库</Main_Menu_Operation_Database_CopyDB>
-  <Main_Menu_Operation_Database_DelDB>删除数据库</Main_Menu_Operation_Database_DelDB>
-  <Main_Menu_Operation_Database_AddUser>添加用户</Main_Menu_Operation_Database_AddUser>
-  <Main_Menu_Operation_Database_DelUser>删除用户</Main_Menu_Operation_Database_DelUser>
-  <Main_Menu_Operation_Database_EvalJs>执行JavaScript(Shell)</Main_Menu_Operation_Database_EvalJs>
-  <Main_Menu_Operation_Database_RepairDatabase>修复数据库</Main_Menu_Operation_Database_RepairDatabase>
-  <Main_Menu_Operation_ProfillingLevel>日志等级</Main_Menu_Operation_ProfillingLevel>
+    <Operation_Database>数据库</Operation_Database>
+    <Operation_Database_AddCollection>添加数据集</Operation_Database_AddCollection>
+    <Operation_Database_AddView>添加视图</Operation_Database_AddView>
+    <Operation_Database_CopyDB>复制数据库</Operation_Database_CopyDB>
+    <Operation_Database_DelDB>删除数据库</Operation_Database_DelDB>
+    <Operation_Database_AddUser>添加用户</Operation_Database_AddUser>
+    <Operation_Database_DelUser>删除用户</Operation_Database_DelUser>
+    <Operation_Database_EvalJs>执行JavaScript(Shell)</Operation_Database_EvalJs>
+    <Operation_Database_RepairDatabase>修复数据库</Operation_Database_RepairDatabase>
+    <Operation_ProfillingLevel>日志等级</Operation_ProfillingLevel>
 
-  <Main_Menu_Operation_DataCollection>数据集</Main_Menu_Operation_DataCollection>
-  <Main_Menu_Operation_DataCollection_DelDC>删除数据集</Main_Menu_Operation_DataCollection_DelDC>
-  <Main_Menu_Operation_DataCollection_ReIndex>重新索引</Main_Menu_Operation_DataCollection_ReIndex>
-  <Main_Menu_Operation_DataCollection_Index>索引管理</Main_Menu_Operation_DataCollection_Index>
-  <Main_Menu_Operation_DataCollection_AddDocument>添加空文档</Main_Menu_Operation_DataCollection_AddDocument>
-  <Main_Menu_Operation_DataCollection_DropDocument>删除选中文档</Main_Menu_Operation_DataCollection_DropDocument>
-  <Main_Menu_Operation_DataCollection_Rename>重命名</Main_Menu_Operation_DataCollection_Rename>
-  <Main_Menu_Operation_DataCollection_Compact>压缩</Main_Menu_Operation_DataCollection_Compact>
-  <Main_Menu_Operation_DataCollection_CreateJavaScript>新建Javascript</Main_Menu_Operation_DataCollection_CreateJavaScript>
-  <Main_Menu_Operation_DataCollection_DropJavaScript>删除Javascript</Main_Menu_Operation_DataCollection_DropJavaScript>
-  <Main_Menu_Operation_DataCollection_View>查看数据</Main_Menu_Operation_DataCollection_View>
-  <Main_Menu_Operation_DataCollection_ExportToFile>导出到文件</Main_Menu_Operation_DataCollection_ExportToFile>
-  <Main_Menu_Operation_DataCollection_convertToCapped>转换为Capped数据集</Main_Menu_Operation_DataCollection_convertToCapped>
-
-
-  <Main_Menu_Operation_DataDocument>文档</Main_Menu_Operation_DataDocument>
-  <Main_Menu_Operation_DataDocument_AddElement>添加元素</Main_Menu_Operation_DataDocument_AddElement>
-  <Main_Menu_Operation_DataDocument_DropElement>删除元素</Main_Menu_Operation_DataDocument_DropElement>
-  <Main_Menu_Operation_DataDocument_ModifyElement>修改元素</Main_Menu_Operation_DataDocument_ModifyElement>
-  <Main_Menu_Operation_DataDocument_CopyElement>复制元素</Main_Menu_Operation_DataDocument_CopyElement>
-  <Main_Menu_Operation_DataDocument_CutElement>剪切元素</Main_Menu_Operation_DataDocument_CutElement>
-  <Main_Menu_Operation_DataDocument_PasteElement>粘贴元素</Main_Menu_Operation_DataDocument_PasteElement>
+    <Operation_DataCollection>数据集</Operation_DataCollection>
+    <Operation_DataCollection_DelDC>删除数据集</Operation_DataCollection_DelDC>
+    <Operation_DataCollection_ReIndex>重新索引</Operation_DataCollection_ReIndex>
+    <Operation_DataCollection_Index>索引管理</Operation_DataCollection_Index>
+    <Operation_DataCollection_AddDocument>添加空文档</Operation_DataCollection_AddDocument>
+    <Operation_DataCollection_DropDocument>删除选中文档</Operation_DataCollection_DropDocument>
+    <Operation_DataCollection_Rename>重命名</Operation_DataCollection_Rename>
+    <Operation_DataCollection_Compact>压缩</Operation_DataCollection_Compact>
+    <Operation_DataCollection_CreateJavaScript>新建Javascript</Operation_DataCollection_CreateJavaScript>
+    <Operation_DataCollection_DropJavaScript>删除Javascript</Operation_DataCollection_DropJavaScript>
+    <Operation_DataCollection_View>查看数据</Operation_DataCollection_View>
+    <Operation_DataCollection_ExportToFile>导出到文件</Operation_DataCollection_ExportToFile>
+    <Operation_DataCollection_convertToCapped>转换为Capped数据集</Operation_DataCollection_convertToCapped>
 
 
-  <Main_Menu_Operation_FileSystem>文件系统</Main_Menu_Operation_FileSystem>
-  <Main_Menu_Operation_FileSystem_UploadFile>上传文件</Main_Menu_Operation_FileSystem_UploadFile>
-  <Main_Menu_Operation_FileSystem_UploadFolder>上传文件夹</Main_Menu_Operation_FileSystem_UploadFolder>
-  <Main_Menu_Operation_FileSystem_Download>下载文件</Main_Menu_Operation_FileSystem_Download>
-  <Main_Menu_Operation_FileSystem_OpenFile>打开文件</Main_Menu_Operation_FileSystem_OpenFile>
-  <Main_Menu_Operation_FileSystem_DelFile>删除文件</Main_Menu_Operation_FileSystem_DelFile>
-  <Main_Menu_Operation_FileSystem_InitGFS>初始化文件系统</Main_Menu_Operation_FileSystem_InitGFS>
+    <Operation_DataDocument>文档</Operation_DataDocument>
+    <Operation_DataDocument_AddElement>添加元素</Operation_DataDocument_AddElement>
+    <Operation_DataDocument_DropElement>删除元素</Operation_DataDocument_DropElement>
+    <Operation_DataDocument_ModifyElement>修改元素</Operation_DataDocument_ModifyElement>
+    <Operation_DataDocument_CopyElement>复制元素</Operation_DataDocument_CopyElement>
+    <Operation_DataDocument_CutElement>剪切元素</Operation_DataDocument_CutElement>
+    <Operation_DataDocument_PasteElement>粘贴元素</Operation_DataDocument_PasteElement>
 
 
-  <Main_Menu_Operation_BackupAndRestore>备份和恢复</Main_Menu_Operation_BackupAndRestore>
-  <Main_Menu_Operation_BackupAndRestore_Restore>恢复</Main_Menu_Operation_BackupAndRestore_Restore>
-  <Main_Menu_Operation_BackupAndRestore_BackupDB>备份数据库</Main_Menu_Operation_BackupAndRestore_BackupDB>
-  <Main_Menu_Operation_BackupAndRestore_BackupDC>备份数据集</Main_Menu_Operation_BackupAndRestore_BackupDC>
-  <Main_Menu_Operation_BackupAndRestore_Import>导入数据集</Main_Menu_Operation_BackupAndRestore_Import>
-  <Main_Menu_Operation_BackupAndRestore_Export>导出数据集</Main_Menu_Operation_BackupAndRestore_Export>
+    <Operation_FileSystem>文件系统</Operation_FileSystem>
+    <Operation_FileSystem_UploadFile>上传文件</Operation_FileSystem_UploadFile>
+    <Operation_FileSystem_UploadFolder>上传文件夹</Operation_FileSystem_UploadFolder>
+    <Operation_FileSystem_Download>下载文件</Operation_FileSystem_Download>
+    <Operation_FileSystem_OpenFile>打开文件</Operation_FileSystem_OpenFile>
+    <Operation_FileSystem_DelFile>删除文件</Operation_FileSystem_DelFile>
+    <Operation_FileSystem_InitGFS>初始化文件系统</Operation_FileSystem_InitGFS>
 
-  <Main_Menu_Tool>工具(&amp;T)</Main_Menu_Tool>
-  <Main_Menu_Tool_DOS>Dos命令</Main_Menu_Tool_DOS>
-  <Main_Menu_Tool_Access>导入Access数据库</Main_Menu_Tool_Access>
-  <Main_Menu_Tool_Setting>配置</Main_Menu_Tool_Setting>
 
-  <Main_Menu_Distributed>分布式</Main_Menu_Distributed>
-  <Main_Menu_Distributed_ReplicaSet>副本设定</Main_Menu_Distributed_ReplicaSet>
-  <Main_Menu_Distributed_ShardingConfig>Sharding设定</Main_Menu_Distributed_ShardingConfig>
+    <Operation_BackupAndRestore>备份和恢复</Operation_BackupAndRestore>
+    <Operation_BackupAndRestore_Restore>恢复</Operation_BackupAndRestore_Restore>
+    <Operation_BackupAndRestore_BackupDB>备份数据库</Operation_BackupAndRestore_BackupDB>
+    <Operation_BackupAndRestore_BackupDC>备份数据集</Operation_BackupAndRestore_BackupDC>
+    <Operation_BackupAndRestore_Import>导入数据集</Operation_BackupAndRestore_Import>
+    <Operation_BackupAndRestore_Export>导出数据集</Operation_BackupAndRestore_Export>
 
-  <Main_Menu_Help>帮助</Main_Menu_Help>
-  <Main_Menu_Help_About>关于</Main_Menu_Help_About>
-  <Main_Menu_Help_Thanks>感谢</Main_Menu_Help_Thanks>
-  <Main_Menu_Help_UserGuide>用户手册</Main_Menu_Help_UserGuide>
-  <Main_Menu_Help_CheckUpdate>检查更新</Main_Menu_Help_CheckUpdate>
+    <Tool>工具(&amp;T)</Tool>
+    <Tool_DOS>Dos命令</Tool_DOS>
+    <Tool_Access>导入Access数据库</Tool_Access>
+    <Tool_Setting>配置</Tool_Setting>
+
+    <Distributed>分布式</Distributed>
+    <Distributed_ReplicaSet>副本设定</Distributed_ReplicaSet>
+    <Distributed_ShardingConfig>Sharding设定</Distributed_ShardingConfig>
+
+    <Help>帮助</Help>
+    <Help_About>关于</Help_About>
+    <Help_Thanks>感谢</Help_Thanks>
+    <Help_UserGuide>用户手册</Help_UserGuide>
+    <Help_CheckUpdate>检查更新</Help_CheckUpdate>
+
+    <Operation_DataDocument_OpenInNativeEditor>在文本编辑器中打开</Operation_DataDocument_OpenInNativeEditor>
+
+  </Main_Menu>
 
   <Main_Tab_Tree>树形视图</Main_Tab_Tree>
   <Main_Tab_Table>表格视图</Main_Tab_Table>
   <Main_Tab_Text>文本视图</Main_Tab_Text>
-  <Main_Menu_Operation_DataDocument_OpenInNativeEditor>在文本编辑器中打开</Main_Menu_Operation_DataDocument_OpenInNativeEditor>
   <Main_StatusBar_Text_Ready>就绪</Main_StatusBar_Text_Ready>
 
   <!--frmAddConnection-->
@@ -282,7 +286,6 @@
   <Collection_Status_MaxSize>最大尺寸</Collection_Status_MaxSize>
   <Collection_Status_IsCapped>容量限制</Collection_Status_IsCapped>
   <Collection_Status_IsAutoIndexId>自动Id索引</Collection_Status_IsAutoIndexId>
-
   <Collection_Resume_AutoRefresh>启用自动刷新</Collection_Resume_AutoRefresh>
   <Collection_Stop_AutoRefresh>禁止自动刷新</Collection_Stop_AutoRefresh>
 
@@ -293,18 +296,21 @@
   <GFS_uploadDate>日期</GFS_uploadDate>
   <GFS_md5>MD5</GFS_md5>
 
-  <GFS_Insert_Option>文件上传选项</GFS_Insert_Option>
-  <GFS_Insert_Option_RemoteFileName>服务器端的文件名</GFS_Insert_Option_RemoteFileName>
-  <GFS_Insert_Option_OnlyFilename>仅文件名(例如，readme.txt)</GFS_Insert_Option_OnlyFilename>
-  <GFS_Insert_Option_FullPath>全路径(例如，C:\readme.txt)</GFS_Insert_Option_FullPath>
-  <GFS_Insert_Option_FileAlreadyExist>文件已经存在</GFS_Insert_Option_FileAlreadyExist>
-  <GFS_Insert_Option_JustAddIt>添加（系统允许出现同名文件）</GFS_Insert_Option_JustAddIt>
-  <GFS_Insert_Option_Rename>重命名(例如readme1.txt)</GFS_Insert_Option_Rename>
-  <GFS_Insert_Option_SkipIt>跳过</GFS_Insert_Option_SkipIt>
-  <GFS_Insert_Option_Overwrite>覆盖文件</GFS_Insert_Option_Overwrite>
-  <GFS_Insert_Option_Stop>停止上传</GFS_Insert_Option_Stop>
-  <GFS_Insert_Option_IngoreSubFolder>忽略子文件夹</GFS_Insert_Option_IngoreSubFolder>
-  <GFS_Insert_Option_DirectorySeparatorChar>路径分割符号</GFS_Insert_Option_DirectorySeparatorChar>
+  <GFS_Insert_Option>
+    <Title>文件上传选项</Title>
+    <RemoteFileName>服务器端的文件名</RemoteFileName>
+    <OnlyFilename>仅文件名(例如，readme.txt)</OnlyFilename>
+    <FullPath>全路径(例如，C:\readme.txt)</FullPath>
+    <FileAlreadyExist>文件已经存在</FileAlreadyExist>
+    <JustAddIt>添加（系统允许出现同名文件）</JustAddIt>
+    <Rename>重命名(例如readme1.txt)</Rename>
+    <SkipIt>跳过</SkipIt>
+    <Overwrite>覆盖文件</Overwrite>
+    <Stop>停止上传</Stop>
+    <IngoreSubFolder>忽略子文件夹</IngoreSubFolder>
+    <DirectorySeparatorChar>路径分割符号</DirectorySeparatorChar>
+  </GFS_Insert_Option>
+
 
   <!--Index-->
   <Index_Background>背景</Index_Background>
@@ -330,18 +336,20 @@
   <Selected_Server>选中服务器</Selected_Server>
   <Selected_DataBase>选中数据库</Selected_DataBase>
   <Selected_Collection>选中数据集</Selected_Collection>
-  <CollectionList>数据集列表</CollectionList>
-  <SystemCollectionList>系统数据集列表</SystemCollectionList>
-  <JavascriptCollection>Javascript数据集</JavascriptCollection>
   <Selected_Javascript>选中Javascript</Selected_Javascript>
   <Selected_View>选中视图</Selected_View>
-  <ViewList>视图列表</ViewList>
   <Selected_Data>选中文档</Selected_Data>
   <Selected_Indexes>选中索引</Selected_Indexes>
   <Selected_Index>选中索引</Selected_Index>
   <Selected_GFS>选中文件系统</Selected_GFS>
   <Selected_UserList>选中用户列表</Selected_UserList>
+  <Selected_RoleList>选中角色列表</Selected_RoleList>
+
   <UserInfo>用户信息</UserInfo>
+  <CollectionList>数据集列表</CollectionList>
+  <SystemCollectionList>系统数据集列表</SystemCollectionList>
+  <JavascriptCollection>Javascript数据集</JavascriptCollection>
+  <ViewList>视图列表</ViewList>
 
   <!--MongoUtility-->
   <Common_Username>用户名</Common_Username>
@@ -438,41 +446,52 @@
   <Drop_Data_Confirm>确定是否要删除选中数据?</Drop_Data_Confirm>
   <CopyIndex>复制索引</CopyIndex>
 
-  <!-- 数据集名称的汉化 -->
-  <SYSTEMC_COLNAME_chunks>数据块</SYSTEMC_COLNAME_chunks>
-  <SYSTEMC_COLNAME_collections>数据集</SYSTEMC_COLNAME_collections>
-  <SYSTEMC_COLNAME_changelog>变更日志</SYSTEMC_COLNAME_changelog>
-  <SYSTEMC_COLNAME_databases>数据库</SYSTEMC_COLNAME_databases>
-  <SYSTEMC_COLNAME_lockpings>数据锁</SYSTEMC_COLNAME_lockpings>
-  <SYSTEMC_COLNAME_locks>数据锁</SYSTEMC_COLNAME_locks>
-  <SYSTEMC_COLNAME_mongos>路由服务器</SYSTEMC_COLNAME_mongos>
-  <SYSTEMC_COLNAME_settings>配置</SYSTEMC_COLNAME_settings>
-  <SYSTEMC_COLNAME_shards>分片</SYSTEMC_COLNAME_shards>
-  <SYSTEMC_COLNAME_tags>标签</SYSTEMC_COLNAME_tags>
-  <SYSTEMC_COLNAME_version>版本</SYSTEMC_COLNAME_version>
-  <SYSTEMC_COLNAME_me>副本组[从属机信息]</SYSTEMC_COLNAME_me>
-  <SYSTEMC_COLNAME_sources>主机地址</SYSTEMC_COLNAME_sources>
-  <SYSTEMC_COLNAME_slaves>副本组[主机信息]</SYSTEMC_COLNAME_slaves>
-  <COLLECTION_NAME_GFS_CHUNKS>数据块</COLLECTION_NAME_GFS_CHUNKS>
-  <COLLECTION_NAME_GFS_FILES>文件系统</COLLECTION_NAME_GFS_FILES>
-  <COLLECTION_NAME_OPERATION_LOG>操作结果</COLLECTION_NAME_OPERATION_LOG>
-  <COLLECTION_NAME_SYSTEM_INDEXES>索引</COLLECTION_NAME_SYSTEM_INDEXES>
-  <COLLECTION_NAME_JAVASCRIPT>存储Javascript</COLLECTION_NAME_JAVASCRIPT>
-  <COLLECTION_NAME_SYSTEM_REPLSET>副本组</COLLECTION_NAME_SYSTEM_REPLSET>
-  <COLLECTION_NAME_REPLSET_MINVALID>初始化同步</COLLECTION_NAME_REPLSET_MINVALID>
-  <COLLECTION_NAME_USER>用户列表</COLLECTION_NAME_USER>
-  <COLLECTION_NAME_ROLE>角色</COLLECTION_NAME_ROLE>
-  <COLLECTION_NAME_SYSTEM_PROFILE>日志</COLLECTION_NAME_SYSTEM_PROFILE>
-  <actionlog>动作日志</actionlog>
-  <migrations>数据迁移</migrations>
-  <startup_log>启动日志</startup_log>
-  <version>版本</version>
-  <election>选举权</election>
+  <!-- 数据库/数据集名称的汉化 -->
 
   <DataBaseName>
     <admin>管理员权限</admin>
     <local>本地</local>
     <config>配置</config>
   </DataBaseName>
+
+  <CollectionName>
+    <system>
+      <actionlog>动作日志</actionlog>
+      <migrations>数据迁移</migrations>
+      <startup_log>启动日志</startup_log>
+      <version>版本</version>
+      <chunks>数据块</chunks>
+      <collections>数据集</collections>
+      <changelog>变更日志</changelog>
+      <databases>数据库</databases>
+      <lockpings>数据锁</lockpings>
+      <locks>数据锁</locks>
+      <mongos>路由服务器</mongos>
+      <settings>配置</settings>
+      <shards>分片</shards>
+      <tags>标签</tags>
+      <me>副本组[从属机信息]</me>
+      <sources>主机地址</sources>
+      <slaves>副本组[主机信息]</slaves>
+      <operationlog>操作结果</operationlog>
+      <indexes>索引</indexes>
+      <javascript>存储Javascript</javascript>
+      <replset>副本组</replset>
+      <users>用户列表</users>
+      <roles>角色</roles>
+      <profile>日志</profile>
+    </system>
+    <replset>
+      <election>选举权</election>
+      <minvalid>初始化同步</minvalid>
+    </replset>
+    <oplog>
+      <rs>rs</rs>
+    </oplog>
+    <fs>
+      <chunks>数据块</chunks>
+      <files>文件系统</files>
+    </fs>
+  </CollectionName>
 
 </Language>

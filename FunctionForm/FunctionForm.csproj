@@ -136,6 +136,18 @@
     <Compile Include="Connection\CtlReadWriteConfig.Designer.cs">
       <DependentUpon>CtlReadWriteConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extend\frmElement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extend\frmElement.Designer.cs">
+      <DependentUpon>frmElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extend\frmGFSOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extend\frmGFSOption.Designer.cs">
+      <DependentUpon>frmGFSOption.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operation\frmCopyDataBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +321,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Connection\frmConnect.resx">
       <DependentUpon>frmConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extend\frmElement.resx">
+      <DependentUpon>frmElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extend\frmGFSOption.resx">
+      <DependentUpon>frmGFSOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCopyDataBase.resx">
       <DependentUpon>frmCopyDataBase.cs</DependentUpon>

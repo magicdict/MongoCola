@@ -19,20 +19,20 @@ namespace MongoGUIView
             DataShower.Add(lstData);
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                DeleteFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.MainMenuOperationFileSystemDelFile);
+                DeleteFileToolStripMenuItem.Text = GuiConfig.GetText("MainMenu.OperationFileSystemDelFile");
                 DeleteFileStripButton.Text = DeleteFileToolStripMenuItem.Text;
 
-                UploadFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.MainMenuOperationFileSystemUploadFile);
+                UploadFileToolStripMenuItem.Text = GuiConfig.GetText("MainMenu.OperationFileSystemUploadFile");
                 UploadFileStripButton.Text = UploadFileToolStripMenuItem.Text;
 
                 UploadFolderToolStripMenuItem.Text =
-                    GuiConfig.GetText(TextType.MainMenuOperationFileSystemUploadFolder);
+                    GuiConfig.GetText("MainMenu.OperationFileSystemUploadFolder");
                 UpLoadFolderStripButton.Text = UploadFolderToolStripMenuItem.Text;
 
-                DownloadFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.MainMenuOperationFileSystemDownload);
+                DownloadFileToolStripMenuItem.Text = GuiConfig.GetText("MainMenu.OperationFileSystemDownload");
                 DownloadFileStripButton.Text = DownloadFileToolStripMenuItem.Text;
 
-                OpenFileToolStripMenuItem.Text = GuiConfig.GetText(TextType.MainMenuOperationFileSystemOpenFile);
+                OpenFileToolStripMenuItem.Text = GuiConfig.GetText("MainMenu.OperationFileSystemOpenFile");
                 OpenFileStripButton.Text = OpenFileToolStripMenuItem.Text;
             }
         }
@@ -122,6 +122,9 @@ namespace MongoGUIView
             OpenFileStripButton_Click(sender, e);
         }
 
+
+        public static Func<Gfs.UpLoadFileOption> GetUploadFileOption;
+
         /// <summary>
         ///     拖曳终止
         /// </summary>
@@ -131,13 +134,7 @@ namespace MongoGUIView
         {
             Array UploadfileList = (Array)e.Data.GetData(DataFormats.FileDrop);
             if (!MyMessageBox.ShowConfirm("UploadFile", "是否上传" + UploadfileList.Length + "个文件")) return;
-            var opt = new Gfs.UpLoadFileOption();
-            var frm = new FrmGfsOption();
-            frm.ShowDialog();
-            opt.AlreadyOpt = frm.Option;
-            opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
-            opt.FileNameOpt = frm.Filename;
-            opt.IgnoreSubFolder = frm.IgnoreSubFolder;
+            var opt = GetUploadFileOption();
             var count = 0;
             foreach (string UploadFilename in UploadfileList)
             {
@@ -197,13 +194,7 @@ namespace MongoGUIView
             var upfile = new OpenFileDialog();
             if (upfile.ShowDialog() == DialogResult.OK)
             {
-                var opt = new Gfs.UpLoadFileOption();
-                var frm = new FrmGfsOption();
-                frm.ShowDialog();
-                opt.AlreadyOpt = frm.Option;
-                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
-                opt.FileNameOpt = frm.Filename;
-                opt.IgnoreSubFolder = frm.IgnoreSubFolder;
+                var opt = GetUploadFileOption();
                 Gfs.UpLoadFile(upfile.FileName, opt, RuntimeMongoDbContext.GetCurrentDataBase());
                 RefreshGui();
             }
@@ -219,13 +210,7 @@ namespace MongoGUIView
             var upfolder = new FolderBrowserDialog();
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
-                var opt = new Gfs.UpLoadFileOption();
-                var frm = new FrmGfsOption();
-                frm.ShowDialog();
-                opt.AlreadyOpt = frm.Option;
-                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
-                opt.FileNameOpt = frm.Filename;
-                opt.IgnoreSubFolder = frm.IgnoreSubFolder;
+                var opt = GetUploadFileOption();
                 var uploadDir = new DirectoryInfo(upfolder.SelectedPath);
                 var count = 0;
                 UploadFolder(uploadDir, ref count, opt);

@@ -333,11 +333,7 @@ namespace MongoGUIView
             NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
             LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
-            var strTitle = "Records";
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                strTitle = GuiConfig.GetText(TextType.MainMenuDataView);
-            }
+            var strTitle = GuiConfig.GetText("DataView", "MainMenu.DataView");
             if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
             {
                 DataNaviToolStripLabel.Text = strTitle + "：0/0";

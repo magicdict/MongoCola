@@ -32,29 +32,25 @@ namespace MongoGUIView
         ///     增加或者删除元素
         ///     参数frmElement
         /// </summary>
-        public Action<bool, TreeNode, bool> ElementOp = (isUpdate, selectedNode, isElement) =>
-        {
-            var f = new FrmElement(isUpdate, selectedNode, isElement);
-            f.ShowDialog();
-        };
+        public static Action<bool, TreeNode, bool> ElementOp;
 
         private void ctlDocumentView_Load(object sender, EventArgs e)
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                NewDocumentToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataCollectionAddDocument");
-                DelSelectRecordToolToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataCollectionDropDocument");
-                AddElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentAddElement");
-                DropElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentDropElement");
-                ModifyElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentModifyElement");
+                NewDocumentToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataCollectionAddDocument");
+                DelSelectRecordToolToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataCollectionDropDocument");
+                AddElementToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataDocumentAddElement");
+                DropElementToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataDocumentDropElement");
+                ModifyElementToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataDocumentModifyElement");
                 NewDocumentStripButton.Text = NewDocumentToolStripMenuItem.Text;
-                OpenDocInEditorStripButton.Text = GuiConfig.GetText("MainMenuOperationDataDocumentOpenInNativeEditor");
+                OpenDocInEditorStripButton.Text = GuiConfig.GetText("Main_Menu.OperationDataDocumentOpenInNativeEditor");
                 DelSelectRecordToolStripButton.Text = DelSelectRecordToolToolStripMenuItem.Text;
-                CopyElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentCopyElement");
+                CopyElementToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataDocumentCopyElement");
                 CopyElementStripButton.Text = CopyElementToolStripMenuItem.Text;
-                CutElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentCutElement");
+                CutElementToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataDocumentCutElement");
                 CutElementStripButton.Text = CutElementToolStripMenuItem.Text;
-                PasteElementToolStripMenuItem.Text = GuiConfig.GetText("MainMenuOperationDataDocumentPasteElement");
+                PasteElementToolStripMenuItem.Text = GuiConfig.GetText("Main_Menu.OperationDataDocumentPasteElement");
                 PasteElementStripButton.Text = PasteElementToolStripMenuItem.Text;
             }
 

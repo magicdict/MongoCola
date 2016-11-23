@@ -1,6 +1,7 @@
 ﻿using Common;
 using FunctionForm.Aggregation;
 using FunctionForm.Connection;
+using FunctionForm.Extend;
 using FunctionForm.Operation;
 using FunctionForm.Status;
 using FunctionForm.User;
@@ -8,6 +9,7 @@ using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
+using MongoUtility.Command;
 using MongoUtility.Core;
 using MongoUtility.ToolKit;
 using PlugInPrj;
@@ -49,6 +51,15 @@ namespace MongoCola
             {
                 Text += " MONO";
             }
+            //获得数据对象方法的注入
+            GetInject();
+        }
+
+        /// <summary>
+        ///     获得数据对象方法的注入
+        /// </summary>
+        private static void GetInject()
+        {
             //新建文档的文档获得方法注入
             CtlDocumentView._getDocument = () =>
             {
@@ -107,6 +118,23 @@ namespace MongoCola
             {
                 UIAssistant.OpenModalForm(new FrmUser(isAdmin, name), true, true);
             };
+
+            CtlDocumentView.ElementOp = (isUpdate, selectedNode, isElement) =>
+            {
+                var f = new FrmElement(isUpdate, selectedNode, isElement);
+                f.ShowDialog();
+            };
+            CtlGfsView.GetUploadFileOption = () =>
+            {
+                var opt = new Gfs.UpLoadFileOption();
+                var frm = new FrmGfsOption();
+                frm.ShowDialog();
+                opt.AlreadyOpt = frm.Option;
+                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
+                opt.FileNameOpt = frm.Filename;
+                opt.IgnoreSubFolder = frm.IgnoreSubFolder;
+                return opt;
+            };
         }
 
         /// <summary>
@@ -135,7 +163,7 @@ namespace MongoCola
             serverStatusCtl.IsFixedItem = true;
             serverStatusCtl.SelectObjectTag = "[ServerStatus]";
             serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
-            MultiTabManger.AddView(serverStatusCtl, GuiConfig.IsUseDefaultLanguage ? "Status" : GuiConfig.GetText("MainMenuMangtStatus"), string.Empty);
+            MultiTabManger.AddView(serverStatusCtl, GuiConfig.IsUseDefaultLanguage ? "Status" : GuiConfig.GetText("MainMenu.MangtStatus"), string.Empty);
 
             //刷新
             RefreshToolStripMenuItem_Click(sender, e);
@@ -290,12 +318,12 @@ namespace MongoCola
                         break;
                     case ConstMgr.IndexesTag:
                         statusStripMain.Items[0].Text =
-                            GuiConfig.GetText("Selected Index:", TextType.SelectedIndexes) + ":" +
+                            GuiConfig.GetText("Selected Index", TextType.SelectedIndexes) + ":" +
                             RuntimeMongoDbContext.SelectTagData;
                         break;
                     case ConstMgr.UserListTag:
                         statusStripMain.Items[0].Text =
-                            GuiConfig.GetText("Selected UserList:", TextType.SelectedUserList) + ":" +
+                            GuiConfig.GetText("Selected UserList", TextType.SelectedUserList) + ":" +
                             RuntimeMongoDbContext.SelectTagData;
                         ViewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == MouseButtons.Right)
@@ -314,6 +342,10 @@ namespace MongoCola
                             e.Node.ContextMenuStrip = contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
+                        break;
+                    case ConstMgr.RoleListTag:
+                        statusStripMain.Items[0].Text =
+                            GuiConfig.GetText("Selected RoleList", "Selected_RoleList") + ":" + RuntimeMongoDbContext.SelectTagData;
                         break;
                     case ConstMgr.GridFileSystemTag:
                         //GridFileSystem
@@ -444,6 +476,7 @@ namespace MongoCola
                     case ConstMgr.CollectionTag:
                     case ConstMgr.DocumentTag:
                     case ConstMgr.ViewTag:
+                    case ConstMgr.RoleListTag:
                         ViewDataRecord();
                         break;
                     default:
@@ -496,7 +529,6 @@ namespace MongoCola
                 JavaScriptStripMenuItem.DropDownItems.Remove(dataMenuItem);
             };
             tabView.SelectTab(dataTab);
-            //}
         }
 
         /// <summary>
@@ -516,9 +548,7 @@ namespace MongoCola
             var mDataViewInfo = new DataViewInfo
             {
                 strCollectionPath = RuntimeMongoDbContext.SelectObjectTag,
-                IsUseFilter = false,
                 IsReadOnly = RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly,
-                mDataFilter = new DataFilter()
             };
 
             CtlDataView dataViewctl;

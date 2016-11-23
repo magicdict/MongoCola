@@ -347,9 +347,9 @@ namespace MongoUtility.Core
         {
             var Database = GetCurrentDataBase();
             var ViewList = new List<string>();
-            if (Database.CollectionExists(ConstMgr.CollectionNameSystemView))
+            if (Database.CollectionExists(ConstMgr.CollectionNameSystemViews))
             {
-                var Col = Database.GetCollection(ConstMgr.CollectionNameSystemView);
+                var Col = Database.GetCollection(ConstMgr.CollectionNameSystemViews);
                 ViewList = Col.FindAll().ToList().Select(x =>
                 {
                     var id = x.GetElement(ConstMgr.KeyId).Value.ToString();

@@ -38,20 +38,33 @@ namespace MongoGUICtl.ClientTree
             mongoDbNode.Tag = TagInfo.CreateTagInfo(mongoSvrKey, strDbName);
 
             //User Node
-            var userNode = new TreeNode(GuiConfig.GetText("Users", TextType.CollectionNameUser), (int)GetSystemIcon.MainTreeImageType.UserIcon,
+            var userNode = new TreeNode(GuiConfig.GetText("Users","collectionName.system.users"), (int)GetSystemIcon.MainTreeImageType.UserIcon,
                 (int)GetSystemIcon.MainTreeImageType.UserIcon);
             userNode.Tag = ConstMgr.UserListTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
-                           ConstMgr.CollectionNameUser;
-            if (client.GetServer().GetDatabase(strDbName).CollectionExists(ConstMgr.CollectionNameUser))
+                           ConstMgr.CollectionNameUsers;
+            if (client.GetServer().GetDatabase(strDbName).CollectionExists(ConstMgr.CollectionNameUsers))
             {
-                var usercol = ConnectionInfo.GetICollection(client, strDbName, ConstMgr.CollectionNameUser);
+                var usercol = ConnectionInfo.GetICollection(client, strDbName, ConstMgr.CollectionNameUsers);
                 long colCount = ConnectionInfo.GetCollectionCnt(usercol);
                 userNode.Text += "(" + colCount + ")";
             }
             mongoDbNode.Nodes.Add(userNode);
 
+            var roleNode = new TreeNode(GuiConfig.GetText("Roles", "collectionName.system.roles"), (int)GetSystemIcon.MainTreeImageType.UserIcon,
+                (int)GetSystemIcon.MainTreeImageType.UserIcon);
+            roleNode.Tag = ConstMgr.RoleListTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
+                           ConstMgr.CollectionNameRoles;
+            if (client.GetServer().GetDatabase(strDbName).CollectionExists(ConstMgr.CollectionNameRoles))
+            {
+                var rolescol = ConnectionInfo.GetICollection(client, strDbName, ConstMgr.CollectionNameRoles);
+                long colCount = ConnectionInfo.GetCollectionCnt(rolescol);
+                roleNode.Text += "(" + colCount + ")";
+            }
+            mongoDbNode.Nodes.Add(roleNode);
+
+
             //JsNode
-            var jsNode = new TreeNode(GuiConfig.GetText("Javascript", TextType.CollectionNameJavascript), (int)GetSystemIcon.MainTreeImageType.JavaScriptList,
+            var jsNode = new TreeNode(GuiConfig.GetText("Javascript","collectionName.system.Javascript"), (int)GetSystemIcon.MainTreeImageType.JavaScriptList,
                 (int)GetSystemIcon.MainTreeImageType.JavaScriptList);
             jsNode.Tag = ConstMgr.JavascriptTag + ":" + mongoSvrKey + "/" + strDbName + "/" +
                          ConstMgr.CollectionNameJavascript;
@@ -93,7 +106,7 @@ namespace MongoGUICtl.ClientTree
                 if (viewlist.Contains(strDbName + "." + strColName)) continue;
                 switch (strColName)
                 {
-                    case ConstMgr.CollectionNameSystemView:
+                    case ConstMgr.CollectionNameSystemViews:
                         //视图
                         TreeNode mongoViewNode;
                         var ViewCol = ConnectionInfo.GetICollection(client, strDbName, strColName);
@@ -101,7 +114,8 @@ namespace MongoGUICtl.ClientTree
                         mongoViewNode.Tag = ConstMgr.ViewListTag + ":" + mongoSvrKey + "/" + strDbName;
                         mongoDbNode.Nodes.Add(mongoViewNode);
                         break;
-                    case ConstMgr.CollectionNameUser:
+                    case ConstMgr.CollectionNameUsers:
+                    case ConstMgr.CollectionNameRoles:
                         break;
                     case ConstMgr.CollectionNameJavascript:
                         FillJavaScriptInfoToTreeNode(jsNode, ConnectionInfo.GetICollection(client, strDbName, strColName), mongoSvrKey, strDbName);

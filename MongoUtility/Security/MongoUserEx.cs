@@ -65,8 +65,8 @@ namespace MongoUtility.Security
             users = isAdmin
                 ? RuntimeMongoDbContext.GetCurrentServer()
                     .GetDatabase(ConstMgr.DatabaseNameAdmin)
-                    .GetCollection(ConstMgr.CollectionNameUser)
-                : RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(ConstMgr.CollectionNameUser);
+                    .GetCollection(ConstMgr.CollectionNameUsers)
+                : RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(ConstMgr.CollectionNameUsers);
             users.Remove(Query.EQ("user", strUser));
         }
 

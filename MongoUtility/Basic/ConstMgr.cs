@@ -100,6 +100,11 @@
         public const string UserListTag = "MongoUserList";
 
         /// <summary>
+        ///     角色列表
+        /// </summary>
+        public const string RoleListTag = "MongoRoleList";
+
+        /// <summary>
         ///     用户
         /// </summary>
         public const string UserTag = "MongoUser";
@@ -181,6 +186,32 @@
         public const string CollectionNameSystemProfile = "system.profile";
 
         /// <summary>
+        ///     用户数据集名称
+        /// </summary>
+        public const string CollectionNameUsers = "system.users";
+
+        /// <summary>
+        ///     角色数据集名称
+        /// </summary>
+        public const string CollectionNameRoles = "system.roles";
+
+        /// <summary>
+        ///     Js数据集名称
+        /// </summary>
+        public const string CollectionNameJavascript = "system.js";
+
+        /// <summary>
+        ///     视图数据集名称
+        /// </summary>
+        public const string CollectionNameSystemViews = "system.views";
+
+        /// <summary>
+        ///     版本数据集名称
+        /// </summary>
+        public const string CollectionNameVersion = "system.version";
+
+
+        /// <summary>
         ///     minvalid数据集名称
         /// </summary>
         public const string CollectionNameReplsetMinvalid = "replset.minvalid";
@@ -204,31 +235,6 @@
         ///     GFS数据集名称
         /// </summary>
         public const string CollectionNameGfsFiles = "fs.files";
-
-        /// <summary>
-        ///     用户数据集名称
-        /// </summary>
-        public const string CollectionNameUser = "system.users";
-
-        /// <summary>
-        ///     角色数据集名称
-        /// </summary>
-        public const string CollectionNameRole = "system.roles";
-
-        /// <summary>
-        ///     Js数据集名称
-        /// </summary>
-        public const string CollectionNameJavascript = "system.js";
-
-        /// <summary>
-        ///     视图数据集名称
-        /// </summary>
-        public const string CollectionNameSystemView = "system.views";
-
-        /// <summary>
-        ///     版本数据集名称
-        /// </summary>
-        public const string CollectionNameVersion = "system.version";
 
         #endregion
 

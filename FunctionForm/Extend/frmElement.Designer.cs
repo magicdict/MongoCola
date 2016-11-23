@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MongoGUICtl;
 
-namespace MongoGUIView
+namespace FunctionForm.Extend
 {
     partial class FrmElement
     {

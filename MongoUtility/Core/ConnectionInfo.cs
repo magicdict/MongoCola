@@ -77,9 +77,9 @@ namespace MongoUtility.Core
             var mongoDb = client.GetServer().GetDatabase(dbName);
             var viewlist = new List<string>();
             //获得View列表
-            if (mongoDb.CollectionExists(ConstMgr.CollectionNameSystemView))
+            if (mongoDb.CollectionExists(ConstMgr.CollectionNameSystemViews))
             {
-                foreach (var viewdoc in mongoDb.GetCollection(ConstMgr.CollectionNameSystemView).FindAll())
+                foreach (var viewdoc in mongoDb.GetCollection(ConstMgr.CollectionNameSystemViews).FindAll())
                 {
                     viewlist.Add(viewdoc.GetElement(ConstMgr.KeyId).Value.AsString);
                 }

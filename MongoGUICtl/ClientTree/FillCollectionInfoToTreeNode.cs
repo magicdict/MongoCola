@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MongoDB.Bson;
@@ -70,8 +69,8 @@ namespace MongoGUICtl.ClientTree
                     mongoColNode.Tag = ConstMgr.GridFileSystemTag + ":" + mongoConnSvrKey + "/" + databaseName + "/" +
                                        col.CollectionNamespace.CollectionName;
                     break;
-                case ConstMgr.CollectionNameUser:
-                    mongoColNode.Tag = ConstMgr.UserListTag + ":" + mongoConnSvrKey + "/" + databaseName + "/" +
+                case ConstMgr.CollectionNameGfsChunks:
+                    mongoColNode.Tag = ConstMgr.GridFileSystemTag + ":" + mongoConnSvrKey + "/" + databaseName + "/" +
                                        col.CollectionNamespace.CollectionName;
                     break;
                 default:
@@ -79,7 +78,6 @@ namespace MongoGUICtl.ClientTree
                         col.CollectionNamespace.CollectionName);
                     break;
             }
-
             try
             {
                 //View 没有Index
@@ -114,7 +112,7 @@ namespace MongoGUICtl.ClientTree
                 return null;
             }
 
-            if (col.CollectionNamespace.CollectionName == ConstMgr.CollectionNameUser)
+            if (col.CollectionNamespace.CollectionName == ConstMgr.CollectionNameUsers)
             {
                 mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.UserIcon;
                 mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.UserIcon;
@@ -145,43 +143,19 @@ namespace MongoGUICtl.ClientTree
                         switch (strShowColName)
                         {
                             case "actionlog":
-                                strShowColName = GuiConfig.GetText("actionlog") + "(" + strShowColName + ")";
-                                break;
                             case "chunks":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameChunks) + "(" + strShowColName + ")";
-                                break;
                             case "collections":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameCollections) + "(" + strShowColName + ")";
-                                break;
                             case "changelog":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameChangelog) + "(" + strShowColName + ")";
-                                break;
                             case "databases":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameDatabases) + "(" + strShowColName + ")";
-                                break;
                             case "lockpings":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameLockpings) + "(" + strShowColName + ")";
-                                break;
                             case "locks":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameLocks) + "(" + strShowColName + ")";
-                                break;
                             case "migrations":
-                                strShowColName = GuiConfig.GetText("migrations") + "(" + strShowColName + ")";
-                                break;
                             case "mongos":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameMongos) + "(" + strShowColName + ")";
-                                break;
                             case "settings":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameSettings) + "(" + strShowColName + ")";
-                                break;
                             case "shards":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameShards) + "(" + strShowColName + ")";
-                                break;
                             case "tags":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameTags) + "(" + strShowColName + ")";
-                                break;
                             case "version":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameVersion) + "(" + strShowColName + ")";
+                                strShowColName = GuiConfig.GetText("CollectionName." + strShowColName) + "(" + strShowColName + ")";
                                 break;
                             default:
                                 break;
@@ -191,16 +165,10 @@ namespace MongoGUICtl.ClientTree
                         switch (strShowColName)
                         {
                             case "me":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameMe) + "(" + strShowColName + ")";
-                                break;
                             case "sources":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameSources) + "(" + strShowColName + ")";
-                                break;
                             case "slaves":
-                                strShowColName = GuiConfig.GetText(TextType.SystemcColnameSlaves) + "(" + strShowColName + ")";
-                                break;
                             case "startup_log":
-                                strShowColName = GuiConfig.GetText("startup_log") + "(" + strShowColName + ")";
+                                strShowColName = GuiConfig.GetText("CollectionName." + strShowColName) + "(" + strShowColName + ")";
                                 break;
                             default:
                                 break;
@@ -214,72 +182,18 @@ namespace MongoGUICtl.ClientTree
             switch (strShowColName)
             {
                 case ConstMgr.CollectionNameOperationLog:
-                    strShowColName =
-                        GuiConfig.GetText(
-                            TextType.CollectionNameOperationLog) +
-                        "(" + strShowColName + ")";
-                    break;
                 case ConstMgr.CollectionNameGfsChunks:
-                    strShowColName =
-                        GuiConfig.GetText(
-                            TextType.CollectionNameGfsChunks) +
-                        "(" + strShowColName + ")";
-                    break;
                 case ConstMgr.CollectionNameGfsFiles:
-                    strShowColName =
-                        GuiConfig.GetText(
-                            TextType.CollectionNameGfsFiles) +
-                        "(" + strShowColName + ")";
-                    break;
                 case ConstMgr.CollectionNameSystemIndexes:
-                    strShowColName =
-                        GuiConfig.GetText(
-                            TextType.CollectionNameSystemIndexes) +
-                        "(" + strShowColName + ")";
-                    break;
                 case ConstMgr.CollectionNameJavascript:
-                    strShowColName =
-                        GuiConfig.GetText(
-                            TextType.CollectionNameJavascript) +
-                        "(" + strShowColName + ")";
-                    break;
                 case ConstMgr.CollectionNameSystemReplset:
-                    strShowColName =
-                        GuiConfig.GetText(
-                            TextType.CollectionNameSystemReplset) +
-                        "(" + strShowColName + ")";
-                    break;
                 case ConstMgr.CollectionNameReplsetMinvalid:
-                    strShowColName =
-                        GuiConfig.GetText(
-                            TextType.CollectionNameReplsetMinvalid) + "(" + strShowColName + ")";
-                    break;
-                case ConstMgr.CollectionNameUser:
-                    strShowColName =
-                        GuiConfig.GetText(TextType.CollectionNameUser) +
-                        "(" +
-                        strShowColName + ")";
-                    break;
-                case ConstMgr.CollectionNameRole:
-                    //New From 2.6 
-                    strShowColName =
-                        GuiConfig.GetText(TextType.CollectionNameRole) +
-                        "(" +
-                        strShowColName + ")";
-                    break;
+                case ConstMgr.CollectionNameUsers:
+                case ConstMgr.CollectionNameRoles:
                 case ConstMgr.CollectionNameSystemProfile:
-                    strShowColName =
-                        GuiConfig.GetText(
-                            TextType.CollectionNameSystemProfile) +
-                        "(" + strShowColName + ")";
-                    break;
                 case ConstMgr.CollectionNameVersion:
-                    strShowColName =
-                        GuiConfig.GetText("version") +
-                        "(" + strShowColName + ")";
-                    break;
                 case ConstMgr.CollectionNameReplsetElection:
-                    strShowColName = GuiConfig.GetText("election") + "(" + strShowColName + ")";
+                    strShowColName = GuiConfig.GetText("CollectionName." + strShowColName) + "(" + strShowColName + ")";
                     break;
                 default:
                     break;

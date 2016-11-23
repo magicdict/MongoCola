@@ -7,16 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using static MongoUtility.Aggregation.DataFilter;
 
 namespace MongoGUICtl.Aggregation
 {
     public partial class ConditionPanel : UserControl
     {
-        ///// <summary>
-        /////     条件输入器数量
-        ///// </summary>
-        //private byte _conditionCount;
 
         /// <summary>
         ///     条件输入器位置
@@ -69,23 +64,12 @@ namespace MongoGUICtl.Aggregation
         }
 
         /// <summary>
-        ///     设置DataFilter
+        ///     获得Match文档
         /// </summary>
-        public void SetCurrDataFilter(DataViewInfo currentDataViewInfo)
-        {
-            //过滤条件
-            foreach (CtlQueryCondition ctl in Controls)
-            {
-                if (ctl.IsSeted)
-                {
-                    currentDataViewInfo.mDataFilter.QueryConditionList.Add(ctl.ConditionItem);
-                }
-            }
-        }
-
+        /// <returns></returns>
         public BsonDocument GetMatchDocument()
         {
-            List<QueryConditionInputItem> QueryConditionList = new List<QueryConditionInputItem>();
+            List<DataFilter.QueryConditionInputItem> QueryConditionList = new List<DataFilter.QueryConditionInputItem>();
             foreach (CtlQueryCondition ctl in Controls)
             {
                 if (ctl.IsSeted)
@@ -156,7 +140,5 @@ namespace MongoGUICtl.Aggregation
                 MyMessageBox.ShowMessage("Load Exception", "A Exception is happened when loading", strErrMsg, true);
             }
         }
-
-
     }
 }

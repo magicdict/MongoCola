@@ -62,7 +62,7 @@ namespace ResourceLib.Method
             }
             else
             {
-                tag = node.Name.Trim().Replace("_", "").ToUpper() + ".";
+                tag = PreTag + node.Name.Trim().Replace("_", "").ToUpper() + ".";
                 foreach (XmlNode item in node.ChildNodes)
                 {
                     if (item.NodeType == XmlNodeType.Element) SetItem(tag, item);
