@@ -27,6 +27,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
     <Optimize>False</Optimize>
+    <DefineConstants>NET462</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <ErrorReport>prompt</ErrorReport>

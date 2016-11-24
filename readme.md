@@ -1,12 +1,12 @@
 #MongoCola
-       
-* 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/11/24 16:00
-* Net Core版本 Browse Base Client[需要 NET Core1.0.1] 更新时间:2016/11/24 16:00
+MongoCola是一款帮助你在图形界面下查看，操作MongoDB的工具类软件。  
+本工具的目标是尽量用图形界面来代替命令脚本帮您完成一些日常的MongoDB管理工作。  
+* 本软件是完全免费的软件，您可以无条件的使用本软件的任何功能。         
 * 下载地址:  <https://github.com/magicdict/MongoCola/releases>
 * 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
-* 版本号：Ver 2.0.7
+* 版本号：Ver 2.1.0
  
 ***
 
@@ -20,7 +20,7 @@
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.1.10
-* MongoDB 3.4.0-rc4  
+* MongoDB 3.4.0-rc5  
 
 ***
 
@@ -29,20 +29,30 @@ CSharp Mongo Driver 2.4.0-beta1
 
 ***
 
-# 项目说明
-C#的代码分为两个解决方案： 
+# 重要事项
 
-- MongoCola解决方案  
-* ExternalTools:外部工具   
-1. ConfigurationFile 配置文件编辑器  
-2. MultiLanEditor 多语言文件编辑器  
+MongoCola项目的App.config里面不要写任何东西。特别是私有路径，原因如下。  
+在Mongo Driver中会使用到System.Runtime.InteropServices.RuntimeInformation.dll这个动态连接库。  
+而如果你的插件项目也有需要RuntimeInformation这个库，请一定要保证设定私有路径，不然会参照MongoDriver的这个库。  
+但是，你只能在自己的项目里面设定，不能在MongoCola主项目里面设定。  
+同时MongoUtility项目，由于要和.Net Core共享代码，一定要注意编译条件是否设定，特别是VS版本更新的时候，可能造成编译条件的缺失。  
+
+# 项目说明
+C#的代码分为三个解决方案： 
+
+- MongoCola解决方案 
 * Assistant:业务逻辑和辅助类  
 * Winform:窗体和控件  
-* PlugIn：插件  
+* PlugIn：插件基类  
+ 
+- ExternalTools:解决方案     
+1. ConfigurationFile 配置文件编辑器  
+2. MultiLanEditor 多语言文件编辑器  
+3. 插件实现  
 
 - MongoCola.Core解决方案  
-1. MongoUtilityCore：MongoUtility的.Net Core编译配置  
-2. MongoColaWebAdmin:Asp.Net Core版的网页版程序  
+1. MongoUtilityCore：MongoUtility的.Net Core编译配置  （VS15构成OK）
+2. MongoColaWebAdmin:Asp.Net Core版的网页版程序  （VS15重新构成出错）
 
 - Master Slave Replication的废除  
 从MongoDB 3.2开始，官方全面废除主从副本，所以所有主从副本的代码都停止维护，并且从代码中删除。
