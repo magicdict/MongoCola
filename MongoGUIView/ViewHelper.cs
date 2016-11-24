@@ -292,28 +292,12 @@ namespace MongoGUIView
         private static void SetGridFileToListView(List<BsonDocument> dataList, ListView lstData)
         {
             lstData.Clear();
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                lstData.Columns.Add(GuiConfig.GetText(TextType.GfsFilename));
-                lstData.Columns.Add(GuiConfig.GetText(TextType.GfsLength));
-                lstData.Columns.Add(
-                    GuiConfig.GetText(TextType.GfsChunkSize));
-                lstData.Columns.Add(
-                    GuiConfig.GetText(TextType.GfsUploadDate));
-                lstData.Columns.Add(GuiConfig.GetText(TextType.GfsMd5));
-                //!MONO
-                lstData.Columns.Add("ContentType");
-            }
-            else
-            {
-                lstData.Columns.Add("filename");
-                lstData.Columns.Add("length");
-                lstData.Columns.Add("chunkSize");
-                lstData.Columns.Add("uploadDate");
-                lstData.Columns.Add("MD5");
-                //!MONO
-                lstData.Columns.Add("ContentType");
-            }
+            lstData.Columns.Add(GuiConfig.GetText("filename", "GFS.Filename"));
+            lstData.Columns.Add(GuiConfig.GetText("length", "GFS.length"));
+            lstData.Columns.Add(GuiConfig.GetText("chunkSize", "GFS.chunkSize"));
+            lstData.Columns.Add(GuiConfig.GetText("uploadDate", "GFS.uploadDate"));
+            lstData.Columns.Add("MD5");
+            lstData.Columns.Add(GuiConfig.GetText("ContentType","GFS.ContentType"));
             lstData.SmallImageList = GetSystemIcon.IconImagelist;
             lstData.LargeImageList = GetSystemIcon.IconImagelist;
             lstData.TileSize = new Size(200, 100);

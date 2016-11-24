@@ -158,11 +158,7 @@ namespace FunctionForm.Connection
                 //需要验证的数据服务器，没有Admin权限无法获得数据库列表
                 if (!GuiConfig.IsUseDefaultLanguage && !GuiConfig.IsMono)
                 {
-                    MyMessageBox.ShowMessage(
-                        GuiConfig.GetText(
-                            TextType.ExceptionAuthenticationException),
-                        GuiConfig.GetText(
-                            TextType.ExceptionAuthenticationExceptionNote), ex.ToString(), true);
+                    MyMessageBox.ShowMessage(GuiConfig.GetText("ExceptionAuthenticationException"), GuiConfig.GetText("ExceptionAuthenticationExceptionNote"), ex.ToString(), true);
                 }
                 else
                 {
@@ -178,11 +174,7 @@ namespace FunctionForm.Connection
                 //2.认证模式不正确
                 if (!GuiConfig.IsUseDefaultLanguage && !GuiConfig.IsMono)
                 {
-                    MyMessageBox.ShowMessage(
-                        GuiConfig.GetText(TextType.ExceptionNotConnected),
-                        GuiConfig.GetText(
-                            TextType.ExceptionNotConnectedNote),
-                        ex.ToString(), true);
+                    MyMessageBox.ShowMessage(GuiConfig.GetText("ExceptionNotConnected"), GuiConfig.GetText("ExceptionNotConnectedNote"), ex.ToString(), true);
                 }
                 else
                 {

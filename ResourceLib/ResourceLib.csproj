@@ -99,7 +99,6 @@
     <Compile Include="Method\GetResource_Icon.cs" />
     <Compile Include="Method\GetSystemIcon.cs" />
     <Compile Include="Method\StringResource.cs" />
-    <Compile Include="Method\TextType.cs" />
     <Compile Include="UI\NumberTextBox.cs" />
     <Compile Include="UI\UIBinding.cs" />
   </ItemGroup>

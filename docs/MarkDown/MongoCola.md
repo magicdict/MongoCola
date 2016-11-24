@@ -1,36 +1,44 @@
 # MongoCola工具
-* 可执行版本 Windows Client[需要 NET Framework 4.6.2] 更新时间:2016/11/24 16:00
-* Net Core版本 Browse Base Client[需要 NET Core1.0.1] 更新时间:2016/11/24 16:00
+
+MongoCola是一款帮助你在图形界面下查看，操作MongoDB的工具类软件。
+本工具的目标是尽量用图形界面来代替命令脚本帮您完成一些日常的MongoDB管理工作。
+
+* 本软件是**完全免费**的软件，您可以无条件的使用本软件的任何功能。
 * 下载地址:  <https://github.com/magicdict/MongoCola/releases>
 * 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
-* GitPage 官网 <http://magicdict.github.io/MongoCola/>
-* 版本号：Ver 2.0.8
-* 文档最后更新时间：2016-11-21
+* 版本号：Ver 2.1.0
+* 文档最后更新时间：2016-11-24
 
 ## 开发和测试环境
 **操作系统：**
 * Windows 7
-~~* Mac OSX 10.12~~
 
 **运行时：**
 * NET Framework 4.6.2
-~~* NET Core 1.1.10~~
 * MongoDB 3.4.0-rc4
 
 **驱动程序：**
 * CSharp Mongo Driver 2.4.0-beta1
 
+.Net Core的WebPage版本还在试水中。本软件虽然可以通过编译成Mono版本在MacOS和Linux中使用，但是用户体验不好，所以建议只在Windows中使用本软件。
+
 ## 基本操作
 ### 第一次启动程序/选项说明
+**本软件需要.Net Framework 4.6.2**
+[下载 .Net Framework4.6.2](https://blogs.msdn.microsoft.com/dotnet/2016/08/02/announcing-net-framework-4-6-2/ "下载 .Net Framework4.6.2")
+**注意：本软件针对MongoDB3.4重新开发，很多功能可能在低版本上会出现问题**
+**注意：MongoCola.exe和MongoCola.exe.config文件以及其他的DLL文件不能缺少**
+**注意：MultiLanguageEditor，ConfigurationFile这两个Exe暂时不在资源中**
+**注意：MachineLearning的插件只是实验性质，所以也不在资源中**
+
 第一次启动程序(MongoCola.exe)的时候，您可以选择语言：这里我们选择简体中文
+（由于语言文件没有准备妥当，下载包配置文件默认为简体中文）
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161101154414_Language.png)
 
-*语言配置文件放在 Language文件夹中，您可以自己修改翻译。部分翻译没有完成。
-- ja_JP.xml 日本语
+*语言配置文件放在 Language文件夹中，您可以自己修改翻译。
 - zh_CN.xml 简体中文
-- zh_TW.xml 繁体中文
 
 接下来你可以对系统进行一些设定：
 如果你有MongoDB的客户端工具，请在MongoBin中填写上工具的保存路径。
@@ -82,8 +90,8 @@ mongod --port 28030 --storageEngine wiredTiger --dbpath C:\mongodb\CodeSnippet\D
 
 
 主界面如图所示：左边是数据库结构展示区，右边是数据展示区：
-
-![](/FileSystem/Thumbnail?filename=00000001_20161117132205_MainGUI.png)
+（如果有admin数据库，将默认置顶）
+![](/FileSystem/Thumbnail?filename=00000001_20161123163948_MainGUI.png)
 
 
 - 树形视图（TreeView）
@@ -99,7 +107,7 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102100153_ListView.png)
 
-- 文本视图
+- JSON视图
 在文本视图中，可以看到数据的JSON格式文本。
 你可以通过JsonOutputMode来设定Json对象的表示形式，具体差异请参照：
 [MongoDB Extended JSON](https://docs.mongodb.com/master/reference/mongodb-extended-json/ "MongoDB Extended JSON")
@@ -119,6 +127,8 @@ CreateionTime，Machine，Pid，Increment，TimeStamp
 
 - 容量限制Capped
 **[Capped Collections](https://docs.mongodb.com/master/core/capped-collections/ "Capped Collections")**
+这里的最大尺寸单位是Byte
+
 - 排序规则：设置字符串排序规则
 **[Collation](https://docs.mongodb.com/master/reference/collation/ "Collation")**
 - 文档验证功能：可以设定文档验证表达式来验证文档。当文档被修改时候，可以产生错误或者警告信息。
@@ -202,11 +212,13 @@ Mongo3.4新增概念：通过设定Collation可以指定字符串比较的时候
 - BsonDateTime 日期可以选择，时间为当前时间
 - BsonArray 数组
 - BsonDocument 文档，具体参考【插入文档】
-- BsonGeo 地理数据
+- BsonGeoJSON 地理数据
+- LegacyPoint 地理数据
 
 ![](/FileSystem/Thumbnail?filename=00000001_20161102205658_GeoJSON.png)
 
 注意：半球坐标，使用WGS84坐标系 经度纬度的取值范围：经度 [-180,180] ,纬度[-90,90]
+**在NearAs函数中，GeoJson的Dis返回单位是meter（米），LegacyPoint返回的单位是radius（弧度）**
 
 - BsonMaxKey Sharding用最大值
 - BsonMinKey Sharding用最小值
@@ -234,7 +246,7 @@ Group功能按照MongoDB官方最新文档的指导,建议使用MapReduce或者A
 
 - Distinct
 
-可以针对某个字段进行Distinct操作
+可以针对某个字段进行Distinct操作（**如果字段是数组，则每个数组元素都是Distinct对象**）
 ![](/FileSystem/Thumbnail?filename=00000001_20161117160714_distinct.png)
 
 ###MapReduce
@@ -464,7 +476,7 @@ Sharding Zone 是 MongoDB3.4新增的概念，和以前的 Sharding Tag 类似
 
 - 从Access导入
 支持MDB（Microsoft.Jet.OLEDB.4.0）和ACCDB（Microsoft.ACE.OLEDB.12.0）两种格式文件。
-可以选择某些表导入Mongo数据库中。
+可以选择只将某些表导入Mongo数据库中。同时请保证Office正确安装，OLEDB驱动能够使用。
 
 ```csharp
         //ID:Integer
@@ -486,7 +498,7 @@ Sharding Zone 是 MongoDB3.4新增的概念，和以前的 Sharding Tag 类似
 
 - 导出到Excel
 
-将MongoDB的数据集导出到Excel文件
+将MongoDB的数据集导出到Excel文件（Excel2010下测试正常）
 
 MongoDB的数据：
 
@@ -514,15 +526,18 @@ MongoDB的视图是对某个数据集进行聚合操作生成的视图，暂时�
 
 ## 更新履历
 
-###Ver 2.0.1 2016/11/24
-#### 修改
+## Ver 2.1.0 2016/11/24
+代码重构，废除代码移除,作为MongoDB3.4正式发布之前最后的一个预览版本。
+
+### 修改
 1. admin数据库在树形列表中置顶
+2. 修正了Hash索引无法正确建立的错误
+3. 修改界面表示细节
 
-#### 新增
+### 新增
 1. 自定义角色
-2. 修改用户信息
 
-#### 删除
+### 删除
 1. 当前连接的用户信息的表示（不成熟的功能）
 
 ###Ver 2.0.7 2016/11/18

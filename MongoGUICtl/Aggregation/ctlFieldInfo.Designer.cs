@@ -46,6 +46,7 @@ namespace MongoGUICtl.Aggregation
             this.lblFieldName.Name = "lblFieldName";
             this.lblFieldName.Size = new System.Drawing.Size(59, 12);
             this.lblFieldName.TabIndex = 0;
+            this.lblFieldName.Tag = "CtlIndexCreateIndex";
             this.lblFieldName.Text = "FieldName";
             // 
             // chkIsShow
@@ -55,6 +56,7 @@ namespace MongoGUICtl.Aggregation
             this.chkIsShow.Name = "chkIsShow";
             this.chkIsShow.Size = new System.Drawing.Size(66, 16);
             this.chkIsShow.TabIndex = 1;
+            this.chkIsShow.Tag = "ctlFieldInfo_Show";
             this.chkIsShow.Text = "Display";
             this.chkIsShow.UseVisualStyleBackColor = true;
             // 
@@ -92,6 +94,7 @@ namespace MongoGUICtl.Aggregation
             this.Controls.Add(this.lblFieldName);
             this.Name = "CtlFieldInfo";
             this.Size = new System.Drawing.Size(451, 24);
+            this.Load += new System.EventHandler(this.CtlFieldInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NumIndexOrder)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

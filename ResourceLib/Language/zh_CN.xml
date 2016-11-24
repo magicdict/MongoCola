@@ -162,41 +162,44 @@
   <Distinct_SelectField>选择Distinct字段</Distinct_SelectField>
 
   <!--frmDosCommand-->
-  <DosCommand_Tab_Deploy>装配(Mongod)</DosCommand_Tab_Deploy>
-  <DosCommand_Tab_Deploy_Authentication>启用认证</DosCommand_Tab_Deploy_Authentication>
-  <DosCommand_Tab_Deploy_MasterAddress>主机</DosCommand_Tab_Deploy_MasterAddress>
-  <DosCommand_Tab_Deploy_Port>端口</DosCommand_Tab_Deploy_Port>
-  <DosCommand_Tab_Deploy_Master>Master</DosCommand_Tab_Deploy_Master>
-  <DosCommand_Tab_Deploy_Slave>Slave</DosCommand_Tab_Deploy_Slave>
-  <DosCommand_Tab_Deploy_SlaveSource>Slave源</DosCommand_Tab_Deploy_SlaveSource>
-  <DosCommand_Tab_Deploy_DBPath>数据库路径</DosCommand_Tab_Deploy_DBPath>
-  <DosCommand_Tab_Deploy_LogPath>日志路径</DosCommand_Tab_Deploy_LogPath>
-  <DosCommand_Tab_Deploy_Log>日志</DosCommand_Tab_Deploy_Log>
-  <DosCommand_Tab_Deploy_AppendMode>追加模式</DosCommand_Tab_Deploy_AppendMode>
+  <DosCommand>
+    <Mongod>
+      <Title>装配(Mongod)</Title>
+      <Tab_Deploy_Authentication>启用认证</Tab_Deploy_Authentication>
+      <Tab_Deploy_MasterAddress>主机</Tab_Deploy_MasterAddress>
+      <Tab_Deploy_Port>端口</Tab_Deploy_Port>
+      <Tab_Deploy_Master>Master</Tab_Deploy_Master>
+      <Tab_Deploy_Slave>Slave</Tab_Deploy_Slave>
+      <Tab_Deploy_SlaveSource>Slave源</Tab_Deploy_SlaveSource>
+      <Tab_Deploy_DBPath>数据库路径</Tab_Deploy_DBPath>
+      <Tab_Deploy_LogPath>日志路径</Tab_Deploy_LogPath>
+      <Tab_Deploy_Log>日志</Tab_Deploy_Log>
+      <Tab_Deploy_AppendMode>追加模式</Tab_Deploy_AppendMode>
+    </Mongod>
 
-  <DosCommand_Tab_Backup>备份和恢复(Mongodmp)</DosCommand_Tab_Backup>
-  <DosCommand_Tab_Backup_Server>主机</DosCommand_Tab_Backup_Server>
-  <DosCommand_Tab_Backup_Port>端口</DosCommand_Tab_Backup_Port>
-  <DosCommand_Tab_Backup_DBName>数据库名称</DosCommand_Tab_Backup_DBName>
-  <DosCommand_Tab_Backup_DCName>数据集名称</DosCommand_Tab_Backup_DCName>
-  <DosCommand_Tab_Backup_Path>备份路径</DosCommand_Tab_Backup_Path>
+    <Tab_Backup>备份和恢复(Mongodmp)</Tab_Backup>
+    <Tab_Backup_Server>主机</Tab_Backup_Server>
+    <Tab_Backup_Port>端口</Tab_Backup_Port>
+    <Tab_Backup_DBName>数据库名称</Tab_Backup_DBName>
+    <Tab_Backup_DCName>数据集名称</Tab_Backup_DCName>
+    <Tab_Backup_Path>备份路径</Tab_Backup_Path>
 
-  <DosCommand_Tab_ExIn>导入和导出(mongoImport/mongoExport)</DosCommand_Tab_ExIn>
-  <DosCommand_Tab_ExIn_Server>主机</DosCommand_Tab_ExIn_Server>
-  <DosCommand_Tab_ExIn_Port>端口</DosCommand_Tab_ExIn_Port>
-  <DosCommand_Tab_ExIn_DBName>数据库名称</DosCommand_Tab_ExIn_DBName>
-  <DosCommand_Tab_ExIn_DCName>数据集名称</DosCommand_Tab_ExIn_DCName>
-  <DosCommand_Tab_ExIn_ColumnList>字段列表</DosCommand_Tab_ExIn_ColumnList>
-  <DosCommand_Tab_ExIn_Workfile>临时文件</DosCommand_Tab_ExIn_Workfile>
-  <DosCommand_Tab_ExIn_Import>导入</DosCommand_Tab_ExIn_Import>
-  <DosCommand_Tab_ExIn_Export>导出</DosCommand_Tab_ExIn_Export>
-  <DosCommand_Tab_ExIn_Operation>操作</DosCommand_Tab_ExIn_Operation>
+    <Tab_ExIn>导入和导出(mongoImport/mongoExport)</Tab_ExIn>
+    <Tab_ExIn_Server>主机</Tab_ExIn_Server>
+    <Tab_ExIn_Port>端口</Tab_ExIn_Port>
+    <Tab_ExIn_DBName>数据库名称</Tab_ExIn_DBName>
+    <Tab_ExIn_DCName>数据集名称</Tab_ExIn_DCName>
+    <Tab_ExIn_ColumnList>字段列表</Tab_ExIn_ColumnList>
+    <Tab_ExIn_Workfile>临时文件</Tab_ExIn_Workfile>
+    <Tab_ExIn_Import>导入</Tab_ExIn_Import>
+    <Tab_ExIn_Export>导出</Tab_ExIn_Export>
+    <Tab_ExIn_Operation>操作</Tab_ExIn_Operation>
 
-  <DosCommand_Run>运行</DosCommand_Run>
-  <DosCommand_Browse>浏览</DosCommand_Browse>
-  <DosCommand_Clean>清除</DosCommand_Clean>
-  <DosCommand_LogLevel>日志等级</DosCommand_LogLevel>
-
+    <Run>运行</Run>
+    <Browse>浏览</Browse>
+    <Clean>清除</Clean>
+    <LogLevel>日志等级</LogLevel>
+  </DosCommand>
   <EvalJS>
     <Title>实行Javascript</Title>
     <Method>Js方法</Method>
@@ -257,43 +260,41 @@
   <ShardingConfig_Action_CollectionSharding>启用数据集Sharding</ShardingConfig_Action_CollectionSharding>
 
 
-  <!--ctlIndexCreate-->
-  <ctlIndexCreate_Index>索引</ctlIndexCreate_Index>
-  <ctlIndexCreate_Description>Please input the column name here</ctlIndexCreate_Description>
-  <ctlFieldInfo_Show>显示</ctlFieldInfo_Show>
-
-  <!--DataBase_Status-->
-  <DataBase_Status_DataBaseName>数据库名称</DataBase_Status_DataBaseName>
-  <DataBase_Status_CollectionCount>数据集计数</DataBase_Status_CollectionCount>
-  <DataBase_Status_DataSize>数据大小</DataBase_Status_DataSize>
-  <DataBase_Status_FileSize>文件大小</DataBase_Status_FileSize>
-  <DataBase_Status_IndexCount>索引计数</DataBase_Status_IndexCount>
-  <DataBase_Status_IndexSize>索引大小</DataBase_Status_IndexSize>
-  <DataBase_Status_ObjectCount>对象计数</DataBase_Status_ObjectCount>
-  <DataBase_Status_StorageSize>存储大小</DataBase_Status_StorageSize>
-
-  <!--Collection_Status-->
-  <Collection_Status_CollectionName>数据集名称</Collection_Status_CollectionName>
-  <Collection_Status_ObjectCount>对象计数</Collection_Status_ObjectCount>
-  <Collection_Status_DataSize>数据大小</Collection_Status_DataSize>
-  <Collection_Status_LastExtentSize>最后分配大小</Collection_Status_LastExtentSize>
-  <Collection_Status_StorageSize>存储大小</Collection_Status_StorageSize>
-  <Collection_Status_TotalIndexSize>总索引大小</Collection_Status_TotalIndexSize>
-  <Collection_Status_AverageObjectSize>对象平均大小</Collection_Status_AverageObjectSize>
-  <Collection_Status_PaddingFactor>填充因子</Collection_Status_PaddingFactor>
-  <Collection_Status_MaxDocuments>最大文档数</Collection_Status_MaxDocuments>
-  <Collection_Status_MaxSize>最大尺寸</Collection_Status_MaxSize>
-  <Collection_Status_IsCapped>容量限制</Collection_Status_IsCapped>
-  <Collection_Status_IsAutoIndexId>自动Id索引</Collection_Status_IsAutoIndexId>
-  <Collection_Resume_AutoRefresh>启用自动刷新</Collection_Resume_AutoRefresh>
-  <Collection_Stop_AutoRefresh>禁止自动刷新</Collection_Stop_AutoRefresh>
+  <status>
+    <Database>
+      <DataBaseName>数据库名称</DataBaseName>
+      <CollectionCount>数据集计数</CollectionCount>
+      <DataSize>数据大小</DataSize>
+      <FileSize>文件大小</FileSize>
+      <IndexCount>索引计数</IndexCount>
+      <IndexSize>索引大小</IndexSize>
+      <ObjectCount>对象计数</ObjectCount>
+      <StorageSize>存储大小</StorageSize>
+    </Database>
+    <Collection>
+      <CollectionName>数据集名称</CollectionName>
+      <ObjectCount>对象计数</ObjectCount>
+      <DataSize>数据大小</DataSize>
+      <LastExtentSize>最后分配大小</LastExtentSize>
+      <StorageSize>存储大小</StorageSize>
+      <TotalIndexSize>总索引大小</TotalIndexSize>
+      <AverageObjectSize>对象平均大小</AverageObjectSize>
+      <PaddingFactor>填充因子</PaddingFactor>
+      <MaxDocuments>最大文档数</MaxDocuments>
+      <MaxSize>最大尺寸</MaxSize>
+      <IsCapped>容量限制</IsCapped>
+      <IsAutoIndexId>自动Id索引</IsAutoIndexId>
+    </Collection>
+  </status>
 
   <!--GFS-->
-  <GFS_filename>文件名</GFS_filename>
-  <GFS_length>文件大小</GFS_length>
-  <GFS_chunkSize>存储空间</GFS_chunkSize>
-  <GFS_uploadDate>日期</GFS_uploadDate>
-  <GFS_md5>MD5</GFS_md5>
+  <GFS>
+    <filename>文件名</filename>
+    <length>文件大小</length>
+    <chunkSize>存储空间</chunkSize>
+    <uploadDate>日期</uploadDate>
+    <ContentType>内容类型</ContentType>
+  </GFS>
 
   <GFS_Insert_Option>
     <Title>文件上传选项</Title>
@@ -311,19 +312,20 @@
   </GFS_Insert_Option>
 
 
-  <!--Index-->
-  <Index_Background>背景</Index_Background>
-  <Index_RepeatDel>删除重复</Index_RepeatDel>
-  <Index_Sparse>稀疏</Index_Sparse>
-  <Index_Unify>唯一</Index_Unify>
-  <Index_Name>索引名称</Index_Name>
-  <Index_Keys>索引键</Index_Keys>
-  <Index_Version>版本</Index_Version>
-  <Index_ExpireData>过期时效(秒)</Index_ExpireData>
-  <Index_NameSpace>名字空间</Index_NameSpace>
-  <Index_Asce>升序</Index_Asce>
-  <Index_Desc>降序</Index_Desc>
-  <Index_NoSort>不排序</Index_NoSort>
+  <Index>
+    <Background>背景</Background>
+    <RepeatDel>删除重复</RepeatDel>
+    <Sparse>稀疏</Sparse>
+    <Unify>唯一</Unify>
+    <Name>索引名称</Name>
+    <Keys>索引键</Keys>
+    <Version>版本</Version>
+    <ExpireData>过期时效(秒)</ExpireData>
+    <NameSpace>名字空间</NameSpace>
+    <Asce>升序</Asce>
+    <Desc>降序</Desc>
+    <NoSort>不排序</NoSort>
+  </Index>
 
   <!--Exception-->
   <Exception_NotConnected>未连接</Exception_NotConnected>
@@ -378,6 +380,7 @@
     <Error>错误</Error>
     <Expansion>展开</Expansion>
     <FieldName>字段名称</FieldName>
+    <Go>转到</Go>
     <Host>主机</Host>
     <Latitude>纬度</Latitude>
     <Level>等级</Level>
@@ -439,7 +442,10 @@
   <Drop_Data>删除数据</Drop_Data>
   <Drop_Data_Confirm>确定是否要删除选中数据?</Drop_Data_Confirm>
   <CopyIndex>复制索引</CopyIndex>
-
+  <Collection_Resume_AutoRefresh>启用自动刷新</Collection_Resume_AutoRefresh>
+  <Collection_Stop_AutoRefresh>禁止自动刷新</Collection_Stop_AutoRefresh>
+  <ctlIndexCreate_Index>索引</ctlIndexCreate_Index>
+  <ctlFieldInfo_Show>显示</ctlFieldInfo_Show>
   <!-- 数据库/数据集名称的汉化 -->
 
   <DataBaseName>

@@ -28,15 +28,15 @@ namespace FunctionForm.Operation
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
             GuiConfig.Translateform(this);
-            lstIndex.Columns.Add(GuiConfig.GetText("Name", TextType.IndexName));
-            lstIndex.Columns.Add(GuiConfig.GetText("Version", TextType.IndexVersion));
-            lstIndex.Columns.Add(GuiConfig.GetText("IndexKey", TextType.IndexKeys));
-            lstIndex.Columns.Add(GuiConfig.GetText("NameSpace", TextType.IndexNameSpace));
-            lstIndex.Columns.Add(GuiConfig.GetText("BackGround", TextType.IndexBackground));
-            lstIndex.Columns.Add(GuiConfig.GetText("Sparse", TextType.IndexSparse));
-            lstIndex.Columns.Add(GuiConfig.GetText("Unify", TextType.IndexUnify));
-            lstIndex.Columns.Add(GuiConfig.GetText("DroppedDups", TextType.IndexRepeatDel));
-            lstIndex.Columns.Add(GuiConfig.GetText("Expire Data", TextType.IndexExpireData));
+            lstIndex.Columns.Add(GuiConfig.GetText("Name", "Index.Name"));
+            lstIndex.Columns.Add(GuiConfig.GetText("Version", "Index.Version"));
+            lstIndex.Columns.Add(GuiConfig.GetText("IndexKey", "Index.Keys"));
+            lstIndex.Columns.Add(GuiConfig.GetText("NameSpace", "Index.NameSpace"));
+            lstIndex.Columns.Add(GuiConfig.GetText("BackGround", "Index.Background"));
+            lstIndex.Columns.Add(GuiConfig.GetText("Sparse", "Index.Sparse"));
+            lstIndex.Columns.Add(GuiConfig.GetText("Unify", "Index.Unify"));
+            lstIndex.Columns.Add(GuiConfig.GetText("DroppedDups", "Index.RepeatDel"));
+            lstIndex.Columns.Add(GuiConfig.GetText("Expire Data", "Index.ExpireData"));
             //2.2.2 开始支持TTL索引
             if (RuntimeMongoDbContext.GetCurrentServer().BuildInfo.Version < new Version(2, 2, 2, 0))
             {

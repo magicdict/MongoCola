@@ -300,13 +300,8 @@ namespace MongoGUIView
         /// </summary>
         public void DeleteFileStripButton_Click(object sender, EventArgs e)
         {
-            var strTitle = "Delete Files";
-            var strMessage = "Are you sure to delete selected File(s)?";
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                strTitle = GuiConfig.GetText(TextType.DropData);
-                strMessage = GuiConfig.GetText(TextType.DropDataConfirm);
-            }
+            var strTitle = GuiConfig.GetText("Delete Files", "DropData");
+            var strMessage = GuiConfig.GetText("Are you sure to delete selected File(s)?", "DropDataConfirm");
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 foreach (ListViewItem item in lstData.SelectedItems)
@@ -316,7 +311,6 @@ namespace MongoGUIView
                 RefreshGui();
             }
         }
-
 
         #endregion
 

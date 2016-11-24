@@ -333,15 +333,14 @@ namespace MongoGUIView
             NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
             LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
-            var strTitle = GuiConfig.GetText("DataView", "MainMenu.DataView");
+            var strTitle = string.Empty;
             if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
             {
-                DataNaviToolStripLabel.Text = strTitle + "：0/0";
+                DataNaviToolStripLabel.Text = strTitle + "0/0";
             }
             else
             {
-                DataNaviToolStripLabel.Text = strTitle + "：" + (mDataViewInfo.SkipCnt + 1) + "/" +
-                                              mDataViewInfo.CurrentCollectionTotalCnt;
+                DataNaviToolStripLabel.Text = (mDataViewInfo.SkipCnt + 1) + "/" + mDataViewInfo.CurrentCollectionTotalCnt;
             }
             txtSkip.Text = (mDataViewInfo.SkipCnt + 1).ToString();
         }

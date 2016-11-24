@@ -348,13 +348,8 @@ namespace MongoGUIView
         /// </summary>
         private void DelSelectRecordToolStripButton_Click(object sender, EventArgs e)
         {
-            var strTitle = "Delete Document";
-            var strMessage = "Are you sure to delete selected document(s)?";
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                strTitle = GuiConfig.GetText(TextType.DropData);
-                strMessage = GuiConfig.GetText(TextType.DropDataConfirm);
-            }
+            var strTitle = GuiConfig.GetText("Delete Document", "DropData");
+            var strMessage = GuiConfig.GetText("Are you sure to delete selected document(s)?", "DropDataConfirm");
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 string strErrormsg;

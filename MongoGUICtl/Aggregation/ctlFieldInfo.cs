@@ -42,24 +42,6 @@ namespace MongoGUICtl.Aggregation
         public CtlFieldInfo()
         {
             InitializeComponent();
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                lblFieldName.Text =
-                    GuiConfig.GetText(TextType.CtlIndexCreateIndex);
-                cmbSort.Items.Clear();
-                cmbSort.Items.Add(GuiConfig.GetText(TextType.IndexNoSort));
-                cmbSort.Items.Add(GuiConfig.GetText(TextType.IndexAsce));
-                cmbSort.Items.Add(GuiConfig.GetText(TextType.IndexDesc));
-                chkIsShow.Text =
-                    GuiConfig.GetText(TextType.CtlFieldInfoShow);
-            }
-            else
-            {
-                cmbSort.Items.Clear();
-                cmbSort.Items.Add("None Sort");
-                cmbSort.Items.Add("Asce");
-                cmbSort.Items.Add("Desc");
-            }
         }
 
         /// <summary>
@@ -198,6 +180,14 @@ namespace MongoGUICtl.Aggregation
                 rtnQueryFieldItem.SortOrder = (int)NumIndexOrder.Value;
                 return rtnQueryFieldItem;
             }
+        }
+
+        private void CtlFieldInfo_Load(object sender, System.EventArgs e)
+        {
+            cmbSort.Items.Clear();
+            cmbSort.Items.Add(GuiConfig.GetText("None Sort", "Index.NoSort"));
+            cmbSort.Items.Add(GuiConfig.GetText("Asce", "Index.Asce"));
+            cmbSort.Items.Add(GuiConfig.GetText("Desc", "Index.Desc"));
         }
     }
 }

@@ -25,7 +25,7 @@ namespace MongoGUIView
             {
                 AddUserStripButton.Text = GuiConfig.GetText("MainMenu.OperationDatabaseAddUser");
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
-                ChangePasswordStripButton.Text = GuiConfig.GetText("Change Password","CommonChangePassword");
+                ChangePasswordStripButton.Text = GuiConfig.GetText("Change Password", "CommonChangePassword");
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
                 RemoveUserStripButton.Text = GuiConfig.GetText("MainMenu.OperationDatabaseDelUser");
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
@@ -129,13 +129,8 @@ namespace MongoGUIView
         /// </summary>
         private void RemoveUserFromAdmin()
         {
-            var strTitle = "Drop User";
-            var strMessage = "Are you sure to delete user(s) from Admin Group?";
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                strTitle = GuiConfig.GetText(TextType.DropUser);
-                strMessage = GuiConfig.GetText(TextType.DropUserConfirm);
-            }
+            var strTitle = GuiConfig.GetText("Drop User", "DropUser");
+            var strMessage = GuiConfig.GetText("Are you sure to delete user(s) from Admin Group?", "DropUserConfirm");
 
             //这里也可以使用普通的删除数据的方法来删除用户。
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
@@ -163,13 +158,8 @@ namespace MongoGUIView
         /// </summary>
         private void RemoveUser()
         {
-            var strTitle = "Drop User";
-            var strMessage = "Are you sure to delete user(s) from this database";
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                strTitle = GuiConfig.GetText(TextType.DropUser);
-                strMessage = GuiConfig.GetText(TextType.DropUserConfirm);
-            }
+            var strTitle = GuiConfig.GetText("Drop User", "DropUser");
+            var strMessage = GuiConfig.GetText("Are you sure to delete user(s) from this database", "DropUserConfirm");
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 if (tabDataShower.SelectedTab == tabTableView)

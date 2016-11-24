@@ -42,7 +42,7 @@ namespace MongoCola
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 //其他控件
-                statusStripMain.Items[0].Text = GuiConfig.GetText(TextType.MainStatusBarTextReady);
+                statusStripMain.Items[0].Text = GuiConfig.GetText("MainStatusBarTextReady");
             }
             //Init ToolBar
             InitToolBar();
@@ -314,17 +314,17 @@ namespace MongoCola
                         ViewHandler(e);
                         break;
                     case ConstMgr.IndexTag:
-                        statusStripMain.Items[0].Text = GuiConfig.GetText("Selected Index:", TextType.SelectedIndex) +
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("Selected Index:", "SelectedIndex") +
                                                         ":" + RuntimeMongoDbContext.SelectTagData;
                         break;
                     case ConstMgr.IndexesTag:
                         statusStripMain.Items[0].Text =
-                            GuiConfig.GetText("Selected Index", TextType.SelectedIndexes) + ":" +
+                            GuiConfig.GetText("Selected Index", "SelectedIndexes") + ":" +
                             RuntimeMongoDbContext.SelectTagData;
                         break;
                     case ConstMgr.UserListTag:
                         statusStripMain.Items[0].Text =
-                            GuiConfig.GetText("Selected UserList", TextType.SelectedUserList) + ":" +
+                            GuiConfig.GetText("Selected UserList", "SelectedUserList") + ":" +
                             RuntimeMongoDbContext.SelectTagData;
                         ViewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == MouseButtons.Right)
@@ -351,7 +351,7 @@ namespace MongoCola
                     case ConstMgr.GridFileSystemTag:
                         //GridFileSystem
                         RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = GuiConfig.GetText("Selected GFS", TextType.SelectedGfs) + ":" +
+                        statusStripMain.Items[0].Text = GuiConfig.GetText("Selected GFS", "SelectedGfs") + ":" +
                                                         RuntimeMongoDbContext.SelectTagData;
                         ViewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == MouseButtons.Right)

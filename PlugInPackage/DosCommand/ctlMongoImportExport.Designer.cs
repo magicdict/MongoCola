@@ -46,7 +46,7 @@ namespace PlugInPackage.DosCommand
             this.radExport = new System.Windows.Forms.RadioButton();
             this.radImport = new System.Windows.Forms.RadioButton();
             this.ctlFilePickerOutput = new ResourceLib.UI.CtlFilePicker();
-            this.ctllogLvT = new CtllogLv();
+            this.ctllogLvT = new PlugInPackage.DosCommand.CtllogLv();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.grpDirect.SuspendLayout();
             this.SuspendLayout();
@@ -54,32 +54,34 @@ namespace PlugInPackage.DosCommand
             // lblHost
             // 
             this.lblHost.AutoSize = true;
-            this.lblHost.Location = new System.Drawing.Point(37, 26);
+            this.lblHost.Location = new System.Drawing.Point(43, 37);
             this.lblHost.Name = "lblHost";
-            this.lblHost.Size = new System.Drawing.Size(29, 12);
+            this.lblHost.Size = new System.Drawing.Size(35, 17);
             this.lblHost.TabIndex = 2;
             this.lblHost.Text = "Host";
             // 
             // txtHostAddr
             // 
-            this.txtHostAddr.Location = new System.Drawing.Point(116, 23);
+            this.txtHostAddr.Location = new System.Drawing.Point(135, 33);
+            this.txtHostAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtHostAddr.Name = "txtHostAddr";
-            this.txtHostAddr.Size = new System.Drawing.Size(161, 21);
+            this.txtHostAddr.Size = new System.Drawing.Size(187, 23);
             this.txtHostAddr.TabIndex = 3;
             this.txtHostAddr.TextChanged += new System.EventHandler(this.txtHostAddr_TextChanged);
             // 
             // lblPort
             // 
             this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(304, 26);
+            this.lblPort.Location = new System.Drawing.Point(355, 37);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(29, 12);
+            this.lblPort.Size = new System.Drawing.Size(32, 17);
             this.lblPort.TabIndex = 4;
             this.lblPort.Text = "Port";
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(392, 24);
+            this.numPort.Location = new System.Drawing.Point(457, 34);
+            this.numPort.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.numPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -91,7 +93,7 @@ namespace PlugInPackage.DosCommand
             0,
             0});
             this.numPort.Name = "numPort";
-            this.numPort.Size = new System.Drawing.Size(67, 21);
+            this.numPort.Size = new System.Drawing.Size(78, 23);
             this.numPort.TabIndex = 9;
             this.numPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numPort.Value = new decimal(new int[] {
@@ -104,51 +106,54 @@ namespace PlugInPackage.DosCommand
             // lblDBName
             // 
             this.lblDBName.AutoSize = true;
-            this.lblDBName.Location = new System.Drawing.Point(37, 56);
+            this.lblDBName.Location = new System.Drawing.Point(43, 79);
             this.lblDBName.Name = "lblDBName";
-            this.lblDBName.Size = new System.Drawing.Size(53, 12);
+            this.lblDBName.Size = new System.Drawing.Size(63, 17);
             this.lblDBName.TabIndex = 10;
             this.lblDBName.Text = "DataBase";
             // 
             // txtDBName
             // 
-            this.txtDBName.Location = new System.Drawing.Point(116, 50);
+            this.txtDBName.Location = new System.Drawing.Point(135, 71);
+            this.txtDBName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDBName.Name = "txtDBName";
-            this.txtDBName.Size = new System.Drawing.Size(161, 21);
+            this.txtDBName.Size = new System.Drawing.Size(187, 23);
             this.txtDBName.TabIndex = 11;
             this.txtDBName.TextChanged += new System.EventHandler(this.txtDBName_TextChanged);
             // 
             // lblCollectionName
             // 
             this.lblCollectionName.AutoSize = true;
-            this.lblCollectionName.Location = new System.Drawing.Point(304, 53);
+            this.lblCollectionName.Location = new System.Drawing.Point(355, 75);
             this.lblCollectionName.Name = "lblCollectionName";
-            this.lblCollectionName.Size = new System.Drawing.Size(65, 12);
+            this.lblCollectionName.Size = new System.Drawing.Size(65, 17);
             this.lblCollectionName.TabIndex = 12;
             this.lblCollectionName.Text = "Collection";
             // 
             // txtCollectionName
             // 
-            this.txtCollectionName.Location = new System.Drawing.Point(392, 50);
+            this.txtCollectionName.Location = new System.Drawing.Point(457, 71);
+            this.txtCollectionName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCollectionName.Name = "txtCollectionName";
-            this.txtCollectionName.Size = new System.Drawing.Size(173, 21);
+            this.txtCollectionName.Size = new System.Drawing.Size(201, 23);
             this.txtCollectionName.TabIndex = 13;
             this.txtCollectionName.TextChanged += new System.EventHandler(this.txtCollectionName_TextChanged);
             // 
             // lblFieldList
             // 
             this.lblFieldList.AutoSize = true;
-            this.lblFieldList.Location = new System.Drawing.Point(37, 79);
+            this.lblFieldList.Location = new System.Drawing.Point(43, 112);
             this.lblFieldList.Name = "lblFieldList";
-            this.lblFieldList.Size = new System.Drawing.Size(59, 12);
+            this.lblFieldList.Size = new System.Drawing.Size(49, 17);
             this.lblFieldList.TabIndex = 14;
             this.lblFieldList.Text = "fieldlist";
             // 
             // txtFieldList
             // 
-            this.txtFieldList.Location = new System.Drawing.Point(116, 77);
+            this.txtFieldList.Location = new System.Drawing.Point(135, 109);
+            this.txtFieldList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFieldList.Name = "txtFieldList";
-            this.txtFieldList.Size = new System.Drawing.Size(449, 21);
+            this.txtFieldList.Size = new System.Drawing.Size(523, 23);
             this.txtFieldList.TabIndex = 15;
             this.txtFieldList.TextChanged += new System.EventHandler(this.txtFieldList_TextChanged);
             // 
@@ -156,9 +161,11 @@ namespace PlugInPackage.DosCommand
             // 
             this.grpDirect.Controls.Add(this.radExport);
             this.grpDirect.Controls.Add(this.radImport);
-            this.grpDirect.Location = new System.Drawing.Point(596, 50);
+            this.grpDirect.Location = new System.Drawing.Point(695, 71);
+            this.grpDirect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpDirect.Name = "grpDirect";
-            this.grpDirect.Size = new System.Drawing.Size(201, 38);
+            this.grpDirect.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpDirect.Size = new System.Drawing.Size(234, 54);
             this.grpDirect.TabIndex = 16;
             this.grpDirect.TabStop = false;
             this.grpDirect.Text = "Opration";
@@ -166,9 +173,10 @@ namespace PlugInPackage.DosCommand
             // radExport
             // 
             this.radExport.AutoSize = true;
-            this.radExport.Location = new System.Drawing.Point(90, 15);
+            this.radExport.Location = new System.Drawing.Point(105, 21);
+            this.radExport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radExport.Name = "radExport";
-            this.radExport.Size = new System.Drawing.Size(95, 16);
+            this.radExport.Size = new System.Drawing.Size(104, 21);
             this.radExport.TabIndex = 1;
             this.radExport.Text = "ExportImport";
             this.radExport.UseVisualStyleBackColor = true;
@@ -178,9 +186,10 @@ namespace PlugInPackage.DosCommand
             // 
             this.radImport.AutoSize = true;
             this.radImport.Checked = true;
-            this.radImport.Location = new System.Drawing.Point(26, 15);
+            this.radImport.Location = new System.Drawing.Point(30, 21);
+            this.radImport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radImport.Name = "radImport";
-            this.radImport.Size = new System.Drawing.Size(59, 16);
+            this.radImport.Size = new System.Drawing.Size(66, 21);
             this.radImport.TabIndex = 0;
             this.radImport.TabStop = true;
             this.radImport.Text = "Import";
@@ -191,27 +200,32 @@ namespace PlugInPackage.DosCommand
             // 
             this.ctlFilePickerOutput.AutoSize = true;
             this.ctlFilePickerOutput.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerOutput.Browse = "Browse...";
+            this.ctlFilePickerOutput.Clear = "Clear";
             this.ctlFilePickerOutput.FileFilter = "";
+            this.ctlFilePickerOutput.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ctlFilePickerOutput.InitFileName = "";
-            this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 99);
+            this.ctlFilePickerOutput.Location = new System.Drawing.Point(27, 142);
+            this.ctlFilePickerOutput.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerOutput.SelectedPathOrFileName = "";
-            this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 38);
+            this.ctlFilePickerOutput.Size = new System.Drawing.Size(862, 35);
             this.ctlFilePickerOutput.TabIndex = 1;
             this.ctlFilePickerOutput.Title = "FilePath：";
             // 
             // ctllogLvT
             // 
             this.ctllogLvT.BackColor = System.Drawing.Color.Transparent;
-            this.ctllogLvT.Location = new System.Drawing.Point(39, 142);
+            this.ctllogLvT.Location = new System.Drawing.Point(43, 201);
+            this.ctllogLvT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ctllogLvT.Name = "ctllogLvT";
-            this.ctllogLvT.Size = new System.Drawing.Size(214, 35);
+            this.ctllogLvT.Size = new System.Drawing.Size(250, 50);
             this.ctllogLvT.TabIndex = 0;
             // 
             // CtlMongoImportExport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.grpDirect);
@@ -227,8 +241,10 @@ namespace PlugInPackage.DosCommand
             this.Controls.Add(this.lblHost);
             this.Controls.Add(this.ctlFilePickerOutput);
             this.Controls.Add(this.ctllogLvT);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CtlMongoImportExport";
-            this.Size = new System.Drawing.Size(800, 180);
+            this.Size = new System.Drawing.Size(933, 255);
             this.Load += new System.EventHandler(this.ctlMongodump_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             this.grpDirect.ResumeLayout(false);

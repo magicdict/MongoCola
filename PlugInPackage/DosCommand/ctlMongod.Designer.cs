@@ -57,20 +57,22 @@ namespace PlugInPackage.DosCommand
             this.grpLog.Controls.Add(this.ctllogLvT);
             this.grpLog.Controls.Add(this.chkIsAppend);
             this.grpLog.Controls.Add(this.ctlFilePickerLogPath);
-            this.grpLog.Location = new System.Drawing.Point(19, 69);
+            this.grpLog.Location = new System.Drawing.Point(22, 98);
+            this.grpLog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpLog.Name = "grpLog";
-            this.grpLog.Size = new System.Drawing.Size(756, 88);
+            this.grpLog.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpLog.Size = new System.Drawing.Size(882, 125);
             this.grpLog.TabIndex = 0;
             this.grpLog.TabStop = false;
             this.grpLog.Text = "Log";
-            this.grpLog.Enter += new System.EventHandler(this.grpLog_Enter);
             // 
             // chkSmallfiles
             // 
             this.chkSmallfiles.AutoSize = true;
-            this.chkSmallfiles.Location = new System.Drawing.Point(163, 57);
+            this.chkSmallfiles.Location = new System.Drawing.Point(190, 81);
+            this.chkSmallfiles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkSmallfiles.Name = "chkSmallfiles";
-            this.chkSmallfiles.Size = new System.Drawing.Size(84, 16);
+            this.chkSmallfiles.Size = new System.Drawing.Size(81, 21);
             this.chkSmallfiles.TabIndex = 23;
             this.chkSmallfiles.Text = "Smallfiles";
             this.chkSmallfiles.UseVisualStyleBackColor = true;
@@ -78,17 +80,19 @@ namespace PlugInPackage.DosCommand
             // ctllogLvT
             // 
             this.ctllogLvT.BackColor = System.Drawing.Color.Transparent;
-            this.ctllogLvT.Location = new System.Drawing.Point(258, 55);
+            this.ctllogLvT.Location = new System.Drawing.Point(301, 78);
+            this.ctllogLvT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ctllogLvT.Name = "ctllogLvT";
-            this.ctllogLvT.Size = new System.Drawing.Size(199, 18);
+            this.ctllogLvT.Size = new System.Drawing.Size(232, 25);
             this.ctllogLvT.TabIndex = 14;
             // 
             // chkIsAppend
             // 
             this.chkIsAppend.AutoSize = true;
-            this.chkIsAppend.Location = new System.Drawing.Point(64, 57);
+            this.chkIsAppend.Location = new System.Drawing.Point(75, 81);
+            this.chkIsAppend.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkIsAppend.Name = "chkIsAppend";
-            this.chkIsAppend.Size = new System.Drawing.Size(90, 16);
+            this.chkIsAppend.Size = new System.Drawing.Size(112, 21);
             this.chkIsAppend.TabIndex = 0;
             this.chkIsAppend.Text = "Append Mode";
             this.chkIsAppend.UseVisualStyleBackColor = true;
@@ -101,27 +105,31 @@ namespace PlugInPackage.DosCommand
             this.ctlFilePickerLogPath.Browse = "Browse...";
             this.ctlFilePickerLogPath.Clear = "Clear";
             this.ctlFilePickerLogPath.FileFilter = "";
+            this.ctlFilePickerLogPath.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ctlFilePickerLogPath.InitFileName = "";
-            this.ctlFilePickerLogPath.Location = new System.Drawing.Point(7, 16);
+            this.ctlFilePickerLogPath.Location = new System.Drawing.Point(8, 23);
+            this.ctlFilePickerLogPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.ctlFilePickerLogPath.Name = "ctlFilePickerLogPath";
             this.ctlFilePickerLogPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerLogPath.SelectedPathOrFileName = "";
-            this.ctlFilePickerLogPath.Size = new System.Drawing.Size(739, 38);
+            this.ctlFilePickerLogPath.Size = new System.Drawing.Size(862, 54);
             this.ctlFilePickerLogPath.TabIndex = 14;
             this.ctlFilePickerLogPath.Title = "LogPath";
             // 
             // lblPort
             // 
             this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(36, 15);
+            this.lblPort.Location = new System.Drawing.Point(42, 21);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(41, 12);
+            this.lblPort.Size = new System.Drawing.Size(44, 17);
             this.lblPort.TabIndex = 7;
+            this.lblPort.Tag = "Common.Port";
             this.lblPort.Text = "Port：";
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(83, 12);
+            this.numPort.Location = new System.Drawing.Point(97, 17);
+            this.numPort.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.numPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -133,7 +141,7 @@ namespace PlugInPackage.DosCommand
             0,
             0});
             this.numPort.Name = "numPort";
-            this.numPort.Size = new System.Drawing.Size(67, 21);
+            this.numPort.Size = new System.Drawing.Size(78, 23);
             this.numPort.TabIndex = 8;
             this.numPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numPort.Value = new decimal(new int[] {
@@ -146,9 +154,10 @@ namespace PlugInPackage.DosCommand
             // chkAuth
             // 
             this.chkAuth.AutoSize = true;
-            this.chkAuth.Location = new System.Drawing.Point(593, 14);
+            this.chkAuth.Location = new System.Drawing.Point(692, 20);
+            this.chkAuth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkAuth.Name = "chkAuth";
-            this.chkAuth.Size = new System.Drawing.Size(78, 16);
+            this.chkAuth.Size = new System.Drawing.Size(92, 21);
             this.chkAuth.TabIndex = 16;
             this.chkAuth.Text = "Auth Mode";
             this.chkAuth.UseVisualStyleBackColor = true;
@@ -157,17 +166,19 @@ namespace PlugInPackage.DosCommand
             // lblSource
             // 
             this.lblSource.AutoSize = true;
-            this.lblSource.Location = new System.Drawing.Point(399, 14);
+            this.lblSource.Location = new System.Drawing.Point(465, 20);
             this.lblSource.Name = "lblSource";
-            this.lblSource.Size = new System.Drawing.Size(89, 12);
+            this.lblSource.Size = new System.Drawing.Size(94, 17);
             this.lblSource.TabIndex = 17;
+            this.lblSource.Tag = "DosCommand.TabDeploySlaveSource";
             this.lblSource.Text = "Slave Source：";
             // 
             // txtSource
             // 
-            this.txtSource.Location = new System.Drawing.Point(482, 12);
+            this.txtSource.Location = new System.Drawing.Point(562, 17);
+            this.txtSource.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSource.Name = "txtSource";
-            this.txtSource.Size = new System.Drawing.Size(105, 21);
+            this.txtSource.Size = new System.Drawing.Size(122, 23);
             this.txtSource.TabIndex = 18;
             this.txtSource.TextChanged += new System.EventHandler(this.txtSource_TextChanged);
             // 
@@ -175,9 +186,10 @@ namespace PlugInPackage.DosCommand
             // 
             this.radNormal.AutoSize = true;
             this.radNormal.Checked = true;
-            this.radNormal.Location = new System.Drawing.Point(163, 12);
+            this.radNormal.Location = new System.Drawing.Point(190, 17);
+            this.radNormal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radNormal.Name = "radNormal";
-            this.radNormal.Size = new System.Drawing.Size(59, 16);
+            this.radNormal.Size = new System.Drawing.Size(70, 21);
             this.radNormal.TabIndex = 19;
             this.radNormal.TabStop = true;
             this.radNormal.Text = "Normal";
@@ -187,9 +199,10 @@ namespace PlugInPackage.DosCommand
             // radMaster
             // 
             this.radMaster.AutoSize = true;
-            this.radMaster.Location = new System.Drawing.Point(228, 12);
+            this.radMaster.Location = new System.Drawing.Point(266, 17);
+            this.radMaster.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radMaster.Name = "radMaster";
-            this.radMaster.Size = new System.Drawing.Size(59, 16);
+            this.radMaster.Size = new System.Drawing.Size(67, 21);
             this.radMaster.TabIndex = 20;
             this.radMaster.Text = "Master";
             this.radMaster.UseVisualStyleBackColor = true;
@@ -198,9 +211,10 @@ namespace PlugInPackage.DosCommand
             // radSlave
             // 
             this.radSlave.AutoSize = true;
-            this.radSlave.Location = new System.Drawing.Point(305, 12);
+            this.radSlave.Location = new System.Drawing.Point(356, 17);
+            this.radSlave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radSlave.Name = "radSlave";
-            this.radSlave.Size = new System.Drawing.Size(53, 16);
+            this.radSlave.Size = new System.Drawing.Size(56, 21);
             this.radSlave.TabIndex = 21;
             this.radSlave.Text = "Slave";
             this.radSlave.UseVisualStyleBackColor = true;
@@ -209,9 +223,9 @@ namespace PlugInPackage.DosCommand
             // lblWarning
             // 
             this.lblWarning.ForeColor = System.Drawing.Color.Red;
-            this.lblWarning.Location = new System.Drawing.Point(16, 160);
+            this.lblWarning.Location = new System.Drawing.Point(19, 227);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(748, 30);
+            this.lblWarning.Size = new System.Drawing.Size(873, 42);
             this.lblWarning.TabIndex = 22;
             this.lblWarning.Text = "Deprecated since version 1.6: Replica sets replace master-slave replication. Use " +
     "replica sets rather than master-slave replication for all new production deploym" +
@@ -224,18 +238,20 @@ namespace PlugInPackage.DosCommand
             this.ctlFilePickerDBPath.Browse = "Browse...";
             this.ctlFilePickerDBPath.Clear = "Clear";
             this.ctlFilePickerDBPath.FileFilter = "";
+            this.ctlFilePickerDBPath.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ctlFilePickerDBPath.InitFileName = "";
-            this.ctlFilePickerDBPath.Location = new System.Drawing.Point(20, 30);
+            this.ctlFilePickerDBPath.Location = new System.Drawing.Point(23, 42);
+            this.ctlFilePickerDBPath.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.ctlFilePickerDBPath.Name = "ctlFilePickerDBPath";
             this.ctlFilePickerDBPath.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
             this.ctlFilePickerDBPath.SelectedPathOrFileName = "";
-            this.ctlFilePickerDBPath.Size = new System.Drawing.Size(739, 38);
+            this.ctlFilePickerDBPath.Size = new System.Drawing.Size(862, 54);
             this.ctlFilePickerDBPath.TabIndex = 15;
             this.ctlFilePickerDBPath.Title = "DataBase Path";
             // 
             // CtlMongod
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.lblWarning);
@@ -249,8 +265,10 @@ namespace PlugInPackage.DosCommand
             this.Controls.Add(this.numPort);
             this.Controls.Add(this.lblPort);
             this.Controls.Add(this.grpLog);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CtlMongod";
-            this.Size = new System.Drawing.Size(767, 193);
+            this.Size = new System.Drawing.Size(895, 273);
             this.Load += new System.EventHandler(this.ctlMongod_Load);
             this.grpLog.ResumeLayout(false);
             this.grpLog.PerformLayout();

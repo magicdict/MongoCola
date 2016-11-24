@@ -32,7 +32,7 @@ namespace PlugInPackage.DosCommand
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctllogLvT = new CtllogLv();
+            this.ctllogLvT = new PlugInPackage.DosCommand.CtllogLv();
             this.ctlFilePickerOutput = new ResourceLib.UI.CtlFilePicker();
             this.lblHostAddr = new System.Windows.Forms.Label();
             this.txtHostAddr = new System.Windows.Forms.TextBox();
@@ -51,9 +51,10 @@ namespace PlugInPackage.DosCommand
             // ctllogLvT
             // 
             this.ctllogLvT.BackColor = System.Drawing.Color.Transparent;
-            this.ctllogLvT.Location = new System.Drawing.Point(37, 134);
+            this.ctllogLvT.Location = new System.Drawing.Point(43, 161);
+            this.ctllogLvT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ctllogLvT.Name = "ctllogLvT";
-            this.ctllogLvT.Size = new System.Drawing.Size(312, 30);
+            this.ctllogLvT.Size = new System.Drawing.Size(237, 23);
             this.ctllogLvT.TabIndex = 0;
             // 
             // ctlFilePickerOutput
@@ -63,44 +64,48 @@ namespace PlugInPackage.DosCommand
             this.ctlFilePickerOutput.Browse = "Browse...";
             this.ctlFilePickerOutput.Clear = "Clear";
             this.ctlFilePickerOutput.FileFilter = "";
+            this.ctlFilePickerOutput.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ctlFilePickerOutput.InitFileName = "";
-            this.ctlFilePickerOutput.Location = new System.Drawing.Point(37, 83);
+            this.ctlFilePickerOutput.Location = new System.Drawing.Point(29, 116);
+            this.ctlFilePickerOutput.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickerType = ResourceLib.UI.CtlFilePicker.DialogType.Directory;
             this.ctlFilePickerOutput.SelectedPathOrFileName = "";
-            this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 38);
+            this.ctlFilePickerOutput.Size = new System.Drawing.Size(862, 35);
             this.ctlFilePickerOutput.TabIndex = 1;
             this.ctlFilePickerOutput.Title = "BackUpPath";
             // 
             // lblHostAddr
             // 
             this.lblHostAddr.AutoSize = true;
-            this.lblHostAddr.Location = new System.Drawing.Point(37, 26);
+            this.lblHostAddr.Location = new System.Drawing.Point(43, 37);
             this.lblHostAddr.Name = "lblHostAddr";
-            this.lblHostAddr.Size = new System.Drawing.Size(29, 12);
+            this.lblHostAddr.Size = new System.Drawing.Size(35, 17);
             this.lblHostAddr.TabIndex = 2;
             this.lblHostAddr.Text = "Host";
             // 
             // txtHostAddr
             // 
-            this.txtHostAddr.Location = new System.Drawing.Point(131, 23);
+            this.txtHostAddr.Location = new System.Drawing.Point(153, 33);
+            this.txtHostAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtHostAddr.Name = "txtHostAddr";
-            this.txtHostAddr.Size = new System.Drawing.Size(161, 21);
+            this.txtHostAddr.Size = new System.Drawing.Size(187, 23);
             this.txtHostAddr.TabIndex = 3;
             this.txtHostAddr.TextChanged += new System.EventHandler(this.txtHostAddr_TextChanged);
             // 
             // lblPort
             // 
             this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(304, 26);
+            this.lblPort.Location = new System.Drawing.Point(355, 37);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(29, 12);
+            this.lblPort.Size = new System.Drawing.Size(32, 17);
             this.lblPort.TabIndex = 4;
             this.lblPort.Text = "Port";
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(392, 24);
+            this.numPort.Location = new System.Drawing.Point(457, 34);
+            this.numPort.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.numPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -112,7 +117,7 @@ namespace PlugInPackage.DosCommand
             0,
             0});
             this.numPort.Name = "numPort";
-            this.numPort.Size = new System.Drawing.Size(67, 21);
+            this.numPort.Size = new System.Drawing.Size(78, 23);
             this.numPort.TabIndex = 9;
             this.numPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numPort.Value = new decimal(new int[] {
@@ -125,43 +130,46 @@ namespace PlugInPackage.DosCommand
             // lblDBName
             // 
             this.lblDBName.AutoSize = true;
-            this.lblDBName.Location = new System.Drawing.Point(37, 56);
+            this.lblDBName.Location = new System.Drawing.Point(43, 79);
             this.lblDBName.Name = "lblDBName";
-            this.lblDBName.Size = new System.Drawing.Size(77, 12);
+            this.lblDBName.Size = new System.Drawing.Size(98, 17);
             this.lblDBName.TabIndex = 10;
             this.lblDBName.Text = "DatabaseName";
             // 
             // txtDBName
             // 
-            this.txtDBName.Location = new System.Drawing.Point(131, 50);
+            this.txtDBName.Location = new System.Drawing.Point(153, 71);
+            this.txtDBName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDBName.Name = "txtDBName";
-            this.txtDBName.Size = new System.Drawing.Size(161, 21);
+            this.txtDBName.Size = new System.Drawing.Size(187, 23);
             this.txtDBName.TabIndex = 11;
             this.txtDBName.TextChanged += new System.EventHandler(this.txtDBName_TextChanged);
             // 
             // lblCollectionName
             // 
             this.lblCollectionName.AutoSize = true;
-            this.lblCollectionName.Location = new System.Drawing.Point(304, 53);
+            this.lblCollectionName.Location = new System.Drawing.Point(355, 75);
             this.lblCollectionName.Name = "lblCollectionName";
-            this.lblCollectionName.Size = new System.Drawing.Size(89, 12);
+            this.lblCollectionName.Size = new System.Drawing.Size(100, 17);
             this.lblCollectionName.TabIndex = 12;
             this.lblCollectionName.Text = "CollectionName";
             // 
             // txtCollectionName
             // 
-            this.txtCollectionName.Location = new System.Drawing.Point(392, 50);
+            this.txtCollectionName.Location = new System.Drawing.Point(457, 71);
+            this.txtCollectionName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCollectionName.Name = "txtCollectionName";
-            this.txtCollectionName.Size = new System.Drawing.Size(173, 21);
+            this.txtCollectionName.Size = new System.Drawing.Size(201, 23);
             this.txtCollectionName.TabIndex = 13;
             this.txtCollectionName.TextChanged += new System.EventHandler(this.txtCollectionName_TextChanged);
             // 
             // chkGZip
             // 
             this.chkGZip.AutoSize = true;
-            this.chkGZip.Location = new System.Drawing.Point(306, 134);
+            this.chkGZip.Location = new System.Drawing.Point(357, 161);
+            this.chkGZip.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkGZip.Name = "chkGZip";
-            this.chkGZip.Size = new System.Drawing.Size(48, 16);
+            this.chkGZip.Size = new System.Drawing.Size(54, 21);
             this.chkGZip.TabIndex = 14;
             this.chkGZip.Text = "GZIP";
             this.chkGZip.UseVisualStyleBackColor = true;
@@ -170,9 +178,10 @@ namespace PlugInPackage.DosCommand
             // chkArchive
             // 
             this.chkArchive.AutoSize = true;
-            this.chkArchive.Location = new System.Drawing.Point(381, 134);
+            this.chkArchive.Location = new System.Drawing.Point(444, 161);
+            this.chkArchive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkArchive.Name = "chkArchive";
-            this.chkArchive.Size = new System.Drawing.Size(66, 16);
+            this.chkArchive.Size = new System.Drawing.Size(69, 21);
             this.chkArchive.TabIndex = 15;
             this.chkArchive.Text = "Archive";
             this.chkArchive.UseVisualStyleBackColor = true;
@@ -180,15 +189,16 @@ namespace PlugInPackage.DosCommand
             // 
             // txtArchive
             // 
-            this.txtArchive.Location = new System.Drawing.Point(472, 134);
+            this.txtArchive.Location = new System.Drawing.Point(551, 161);
+            this.txtArchive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtArchive.Name = "txtArchive";
-            this.txtArchive.Size = new System.Drawing.Size(100, 21);
+            this.txtArchive.Size = new System.Drawing.Size(116, 23);
             this.txtArchive.TabIndex = 16;
             this.txtArchive.TextChanged += new System.EventHandler(this.txtArchive_TextChanged);
             // 
             // CtlMongodump
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.txtArchive);
@@ -204,8 +214,10 @@ namespace PlugInPackage.DosCommand
             this.Controls.Add(this.lblHostAddr);
             this.Controls.Add(this.ctlFilePickerOutput);
             this.Controls.Add(this.ctllogLvT);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CtlMongodump";
-            this.Size = new System.Drawing.Size(800, 185);
+            this.Size = new System.Drawing.Size(933, 262);
             this.Load += new System.EventHandler(this.ctlMongodump_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             this.ResumeLayout(false);

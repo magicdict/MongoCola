@@ -14,25 +14,13 @@ namespace PlugInPackage.DosCommand
         public CtlMongodump()
         {
             InitializeComponent();
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                lblCollectionName.Text =
-                    GuiConfig.GetText(TextType.DosCommandTabBackupDcName);
-                lblDBName.Text =
-                    GuiConfig.GetText(TextType.DosCommandTabBackupDbName);
-                lblHostAddr.Text =
-                    GuiConfig.GetText(TextType.DosCommandTabBackupServer);
-                lblPort.Text =
-                    GuiConfig.GetText(TextType.DosCommandTabBackupPort);
-                ctlFilePickerOutput.Title =
-                    GuiConfig.GetText(TextType.DosCommandTabBackupPath);
-            }
         }
 
         private void ctlMongodump_Load(object sender, EventArgs e)
         {
             ctllogLvT.LoglvChanged += ctllogLvT_LoglvChanged;
             ctlFilePickerOutput.PathChanged += ctlFilePickerOutput_PathChanged;
+            GuiConfig.Translateform(Controls);
         }
 
         protected virtual void OnCommandChange(TextChangeEventArgs e)

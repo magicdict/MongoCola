@@ -19,16 +19,9 @@ namespace MongoCola
         private void ConnectionHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
         {
             //普通连接
-            if (GuiConfig.IsUseDefaultLanguage)
-            {
-                statusStripMain.Items[0].Text = "Selected Connection:" + RuntimeMongoDbContext.SelectTagData;
-            }
-            else
-            {
-                statusStripMain.Items[0].Text =
-                    GuiConfig.GetText(TextType.SelectedServer) + ":" +
-                    RuntimeMongoDbContext.SelectTagData;
-            }
+            statusStripMain.Items[0].Text =
+                GuiConfig.GetText("Selected Connection", "SelectedServer") + ":" +
+                RuntimeMongoDbContext.SelectTagData;
 
             DisconnectToolStripMenuItem.Enabled = true;
 
@@ -114,16 +107,9 @@ namespace MongoCola
         private void ServerHandler(TreeNodeMouseClickEventArgs e)
         {
             RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
-            if (GuiConfig.IsUseDefaultLanguage)
-            {
-                statusStripMain.Items[0].Text = "Selected Server:" + RuntimeMongoDbContext.SelectTagData;
-            }
-            else
-            {
-                statusStripMain.Items[0].Text =
-                    GuiConfig.GetText(TextType.SelectedServer) + ":" +
-                    RuntimeMongoDbContext.SelectTagData;
-            }
+            statusStripMain.Items[0].Text =
+                GuiConfig.GetText("Selected Server", "SelectedServer") + ":" +
+                RuntimeMongoDbContext.SelectTagData;
             //解禁 创建数据库,关闭服务器
             if (!RuntimeMongoDbContext.CurrentMongoConnectionconfig.IsReadOnly)
             {
@@ -222,16 +208,9 @@ namespace MongoCola
             RuntimeMongoDbContext.SelectObjectTag = e.Node.Tag.ToString();
             var roles = MongoUserEx.GetCurrentDbRoles(RuntimeMongoDbContext.CurrentMongoConnectionconfig.ConnectionName,
                 RuntimeMongoDbContext.GetCurrentDataBaseName());
-            if (GuiConfig.IsUseDefaultLanguage)
-            {
-                statusStripMain.Items[0].Text = "Selected DataBase:" + RuntimeMongoDbContext.SelectTagData;
-            }
-            else
-            {
-                statusStripMain.Items[0].Text =
-                    GuiConfig.GetText(TextType.SelectedDataBase) + ":" +
-                    RuntimeMongoDbContext.SelectTagData;
-            }
+            statusStripMain.Items[0].Text =
+                GuiConfig.GetText("Selected DataBase", "SelectedDataBase") + ":" +
+                RuntimeMongoDbContext.SelectTagData;
             //系统库不允许修改
             if (!Operater.IsSystemDataBase(RuntimeMongoDbContext.GetCurrentDataBaseName()))
             {
@@ -434,16 +413,9 @@ namespace MongoCola
         /// <param name="e">E.</param>
         private void CollectionHandler(TreeNodeMouseClickEventArgs e)
         {
-            if (GuiConfig.IsUseDefaultLanguage)
-            {
-                statusStripMain.Items[0].Text = "Selected Collection:" + RuntimeMongoDbContext.SelectTagData;
-            }
-            else
-            {
-                statusStripMain.Items[0].Text =
-                    GuiConfig.GetText(TextType.SelectedCollection) + ":" +
-                    RuntimeMongoDbContext.SelectTagData;
-            }
+            statusStripMain.Items[0].Text =
+                GuiConfig.GetText("Selected Collection", "SelectedCollection") + ":" +
+                RuntimeMongoDbContext.SelectTagData;
 
             var mongoCol = RuntimeMongoDbContext.GetCurrentCollection();
 

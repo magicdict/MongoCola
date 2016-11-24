@@ -165,13 +165,12 @@ namespace FunctionForm.Operation
             if (!GuiConfig.IsUseDefaultLanguage)
             {
                 lblSelectServer.Text =
-                    GuiConfig.GetText(TextType.SelectedServer);
+                    GuiConfig.GetText("SelectedServer");
                 lblSelectDataBase.Text =
-                    GuiConfig.GetText(TextType.SelectedDataBase);
-                gbSelectCollections.Text = GuiConfig.GetText(TextType.SelectedCollection);
-                gbSelectDestination.Text = GuiConfig.GetText(TextType.SelectedData);
-                chkCopyIndexes.Text = GuiConfig.GetText(TextType.CopyIndex);
-
+                    GuiConfig.GetText("SelectedDataBase");
+                gbSelectCollections.Text = GuiConfig.GetText("SelectedCollection");
+                gbSelectDestination.Text = GuiConfig.GetText("SelectedData");
+                chkCopyIndexes.Text = GuiConfig.GetText("CopyIndex");
                 cmdOK.Text = GuiConfig.GetText("Common.Ok");
                 cmdCancel.Text = GuiConfig.GetText("Common.Cancel");
             }

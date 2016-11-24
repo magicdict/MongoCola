@@ -49,15 +49,7 @@ namespace ResourceLib.Method
         /// </summary>
         public static StringResource MStringResource = new StringResource();
 
-        /// <summary>
-        ///     获得文字
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public static string GetText(TextType tag)
-        {
-            return GetText(tag.ToString());
-        }
+
 
         /// <summary>
         ///     获得文字
@@ -67,17 +59,6 @@ namespace ResourceLib.Method
         public static string GetText(string tag)
         {
             return GetText(tag, tag);
-        }
-
-        /// <summary>
-        ///     获得文字
-        /// </summary>
-        /// <param name="defaultText"></param>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public static string GetText(string defaultText, TextType tag)
-        {
-            return GetText(defaultText, tag.ToString());
         }
 
         /// <summary>

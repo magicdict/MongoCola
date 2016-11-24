@@ -238,14 +238,8 @@ namespace MongoGUICtl.ClientTree
             //需要验证的数据服务器，没有Admin权限无法获得数据库列表
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                connectionNode.Text += "[" +
-                                       GuiConfig.GetText(
-                                           TextType.ExceptionAuthenticationException) + "]";
-                Utility.ExceptionDeal(ex,
-                    GuiConfig.GetText(
-                        TextType.ExceptionAuthenticationException),
-                    GuiConfig.GetText(
-                        TextType.ExceptionAuthenticationExceptionNote));
+                connectionNode.Text += "[" + GuiConfig.GetText("ExceptionAuthenticationException") + "]";
+                Utility.ExceptionDeal(ex, GuiConfig.GetText("ExceptionAuthenticationException"), GuiConfig.GetText("ExceptionAuthenticationExceptionNote"));
             }
             else
             {
@@ -266,14 +260,8 @@ namespace MongoGUICtl.ClientTree
             {
                 if (!GuiConfig.IsUseDefaultLanguage)
                 {
-                    connectionNode.Text += "[" +
-                                           GuiConfig.GetText(
-                                               TextType.ExceptionAuthenticationException) + "]";
-                    Utility.ExceptionDeal(ex,
-                        GuiConfig.GetText(
-                            TextType.ExceptionAuthenticationException),
-                        GuiConfig.GetText(
-                            TextType.ExceptionAuthenticationExceptionNote));
+                    connectionNode.Text += "[" + GuiConfig.GetText("ExceptionAuthenticationException") + "]";
+                    Utility.ExceptionDeal(ex, GuiConfig.GetText("ExceptionAuthenticationException"), GuiConfig.GetText("ExceptionAuthenticationExceptionNote"));
                 }
                 else
                 {
@@ -285,12 +273,8 @@ namespace MongoGUICtl.ClientTree
             {
                 if (!GuiConfig.IsUseDefaultLanguage)
                 {
-                    connectionNode.Text += "[" +
-                                           GuiConfig.GetText(
-                                               TextType.ExceptionNotConnected) + "]";
-                    Utility.ExceptionDeal(ex,
-                        GuiConfig.GetText(TextType.ExceptionNotConnected),
-                        "Unknown Exception");
+                    connectionNode.Text += "[" + GuiConfig.GetText("ExceptionNotConnected") + "]";
+                    Utility.ExceptionDeal(ex, GuiConfig.GetText("ExceptionNotConnected"), "Unknown Exception");
                 }
                 else
                 {
@@ -313,12 +297,8 @@ namespace MongoGUICtl.ClientTree
             //2.认证模式不正确
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                connectionNode.Text += "[" +
-                                       GuiConfig.GetText(
-                                           TextType.ExceptionNotConnected) + "]";
-                Utility.ExceptionDeal(ex,
-                    GuiConfig.GetText(TextType.ExceptionNotConnected),
-                    GuiConfig.GetText(TextType.ExceptionNotConnectedNote));
+                connectionNode.Text += "[" + GuiConfig.GetText("ExceptionNotConnected") + "]";
+                Utility.ExceptionDeal(ex, GuiConfig.GetText("ExceptionNotConnected"), GuiConfig.GetText("ExceptionNotConnectedNote"));
             }
             else
             {
@@ -336,12 +316,8 @@ namespace MongoGUICtl.ClientTree
         {
             if (!GuiConfig.IsUseDefaultLanguage)
             {
-                connectionNode.Text += "[" +
-                                       GuiConfig.GetText(
-                                           TextType.ExceptionNotConnected) + "]";
-                Utility.ExceptionDeal(ex,
-                    GuiConfig.GetText(TextType.ExceptionNotConnected),
-                    "Unknown Exception");
+                connectionNode.Text += "[" + GuiConfig.GetText("ExceptionNotConnected") + "]";
+                Utility.ExceptionDeal(ex, GuiConfig.GetText("ExceptionNotConnected"), "Unknown Exception");
             }
             else
             {

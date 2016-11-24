@@ -36,7 +36,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ConfigfileMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("ConfigurationFile.exe");
+            if (File.Exists("ConfigurationFile.exe")) Process.Start("ConfigurationFile.exe");
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void MultiLanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("MultiLanEditor.exe");
+            if (File.Exists("MultiLanEditor.exe")) Process.Start("MultiLanEditor.exe");
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace MongoCola
             }
             RefreshToolStripMenuItem.Enabled = true;
             RefreshToolStripButton.Enabled = true;
-            statusStripMain.Items[0].Text = GuiConfig.GetText("Ready", TextType.MainStatusBarTextReady);
+            statusStripMain.Items[0].Text = GuiConfig.GetText("Ready", "MainStatusBarTextReady");
             if (trvsrvlst.Nodes.Count > 0) trvsrvlst.SelectedNode = trvsrvlst.Nodes[0];
         }
 
@@ -241,32 +241,13 @@ namespace MongoCola
         private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //新版本如果数据库没有数据集，则数据库将被回收？
-
-            string strDbName;
-            string strInitColName;
-
-            if (GuiConfig.IsUseDefaultLanguage)
-            {
-                strDbName = MyMessageBox.ShowInput("Please Input DataBaseName：", "Create Database");
-                strInitColName = MyMessageBox.ShowInput("Please Input Init CollectionName：", "Create Database");
-            }
-            else
-            {
-                strDbName =
-                    MyMessageBox.ShowInput(
-                        GuiConfig.GetText(TextType.CreateNewDataBaseInput),
-                        GuiConfig.GetText(TextType.CreateNewDataBase));
-                if (string.IsNullOrEmpty(strDbName))
-                {
-                    return;
-                }
-                strInitColName =
-                    MyMessageBox.ShowInput(
+            string strDbName = MyMessageBox.ShowInput(
+                        GuiConfig.GetText("Please Input DataBaseName：", "CreateNewDataBaseInput"),
+                        GuiConfig.GetText("Create Database", "CreateNewDataBase"));
+            if (string.IsNullOrEmpty(strDbName)) return;
+            string strInitColName = MyMessageBox.ShowInput(
                         GuiConfig.GetText("Please Input Init CollectionName：", "CreateNewDataBaseInitCollection"),
-                        GuiConfig.GetText(TextType.CreateNewDataBase));
-
-            }
-
+                        GuiConfig.GetText("Create Database", "CreateNewDataBase"));
             string errMessage;
             if (Operater.IsDatabaseNameValid(strDbName, out errMessage))
             {
@@ -362,14 +343,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void DelMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var strTitle = "Drop Database";
-            var strMessage = "Are you really want to Drop current Database?";
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                strTitle = GuiConfig.GetText(TextType.DropDataBase);
-                strMessage =
-                    GuiConfig.GetText(TextType.DropDataBaseConfirm);
-            }
+            var strTitle = GuiConfig.GetText("Drop Database", "DropDataBase");
+            var strMessage = GuiConfig.GetText("Are you really want to Drop current Database?", "DropDataBaseConfirm");
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             var strTagPrefix = TagInfo.GetTagPath(ConstMgr.CollectionTag + ":" + RuntimeMongoDbContext.SelectTagData);
             var strDbName = strTagPrefix.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.Database];
@@ -595,8 +570,8 @@ namespace MongoCola
         /// <returns></returns>
         public bool DropCollection(TreeNode node)
         {
-            var strTitle = GuiConfig.GetText("Drop Collection", TextType.DropCollection);
-            var strMessage = GuiConfig.GetText("Are you sure to drop this Collection?", TextType.DropCollectionConfirm);
+            var strTitle = GuiConfig.GetText("Drop Collection", "DropCollection");
+            var strMessage = GuiConfig.GetText("Are you sure to drop this Collection?", "DropCollectionConfirm");
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return false;
             var strPath = RuntimeMongoDbContext.SelectTagData;
             var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.CollectionAndView];
@@ -620,7 +595,7 @@ namespace MongoCola
             trvsrvlst.SelectedNode.Tag = strNewNodeTag;
             trvsrvlst.SelectedNode.ToolTipText = strNewCollectionName + Environment.NewLine;
             trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" + RuntimeMongoDbContext.GetCurrentCollectionIsCapped();
-            statusStripMain.Items[0].Text = GuiConfig.GetText("selected Collection", TextType.SelectedCollection) + ":" +
+            statusStripMain.Items[0].Text = GuiConfig.GetText("selected Collection", "SelectedCollection") + ":" +
                                             RuntimeMongoDbContext.SelectTagData;
         }
 
@@ -634,8 +609,8 @@ namespace MongoCola
             var strPath = RuntimeMongoDbContext.SelectTagData;
             var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLevel.CollectionAndView];
             var strNewCollectionName = MyMessageBox.ShowInput(
-                GuiConfig.GetText("Please input new collection name：", TextType.RenameCollectionInput),
-                GuiConfig.GetText("Rename collection", TextType.RenameCollection), strCollection);
+                GuiConfig.GetText("Please input new collection name：", "RenameCollectionInput"),
+                GuiConfig.GetText("Rename collection", "RenameCollection"), strCollection);
             if (string.IsNullOrEmpty(strNewCollectionName)) return string.Empty;
             if (Operater.RenameCollection(strCollection, strNewCollectionName))
             {
@@ -810,13 +785,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void RestoreMongoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var strTitle = "Restore";
-            var strMessage = "Are you sure to Restore?";
-            if (!GuiConfig.IsUseDefaultLanguage)
-            {
-                strTitle = GuiConfig.GetText("MainMenu.OperationBackupAndRestoreRestore");
-                strMessage = GuiConfig.GetText(TextType.RestoreConnectionConfirm);
-            }
+            var strTitle = GuiConfig.GetText("Restore", "MainMenu.OperationBackupAndRestoreRestore");
+            var strMessage = GuiConfig.GetText("Are you sure to Restore?", "RestoreConnectionConfirm");
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
             if (!MongoPathCheck())

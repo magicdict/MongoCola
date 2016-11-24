@@ -293,6 +293,7 @@ namespace MongoGUIView
             this.GotoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GotoStripButton.Name = "GotoStripButton";
             this.GotoStripButton.Size = new System.Drawing.Size(23, 22);
+            this.GotoStripButton.Tag = "Common.Go";
             this.GotoStripButton.Text = "Go";
             this.GotoStripButton.Click += new System.EventHandler(this.GotoStripButton_Click);
             // 

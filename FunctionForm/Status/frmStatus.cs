@@ -198,9 +198,6 @@ namespace FunctionForm.Status
                         colPoint = new DataPoint(0,
                             RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().ExtentCount);
                         break;
-                    //case "Flags":
-                    //    ColPoint = new DataPoint(0, MongoHelper.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().Flags);
-                    //    break;
                     case "IndexCount":
                         colPoint = new DataPoint(0,
                             RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(colName).GetStats().IndexCount);
