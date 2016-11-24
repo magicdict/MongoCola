@@ -47,7 +47,7 @@ namespace ResourceLib.Method
         /// <summary>
         ///     字符串
         /// </summary>
-        public static StringResource MStringResource = new StringResource();
+        public static StringResource mStringResource = new StringResource();
 
 
 

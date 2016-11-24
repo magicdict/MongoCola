@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.25920.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoUtilityCore", "MongoUtilityCore\MongoUtilityCore.csproj", "{395FC850-77F6-4820-B797-A323453382C5}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MongoUtilityCore", "MongoUtilityCore\MongoUtilityCore.xproj", "{395FC850-77F6-4820-B797-A323453382C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoColaWebAdmin", "MongoColaWebAdmin\MongoColaWebAdmin.xproj", "{C0F8015A-FA24-4DDD-8A79-99524196B81E}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MongoColaWebAdmin", "MongoColaWebAdmin\MongoColaWebAdmin.xproj", "{C0F8015A-FA24-4DDD-8A79-99524196B81E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

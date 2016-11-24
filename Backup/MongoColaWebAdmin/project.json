@@ -1,0 +1,63 @@
+{
+  "dependencies": {
+    "MongoUtilityCore": "1.0.0-*",
+    "BundlerMinifier.Core": "2.2.301",
+    "Microsoft.AspNetCore.Diagnostics": "1.1.0-preview1-final",
+    "Microsoft.AspNetCore.Mvc": "1.1.0-preview1-final",
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview3-final",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0-preview1-final",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0-preview1-final",
+    "Microsoft.AspNetCore.StaticFiles": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Logging": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Logging.Console": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Logging.Debug": "1.1.0-preview1-final",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0-preview1-final",
+    "Microsoft.NETCore.App": "1.1.0-preview1-001100-00",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0-preview1-final",
+    "Newtonsoft.Json": "9.0.2-beta1"
+  },
+
+  "tools": {
+  },
+
+  "runtimes": {
+    "win7-x64": {} 
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "Views",
+      "Areas/**/Views",
+      "appsettings.json",
+      "web.config"
+    ]
+  },
+
+  "scripts": {
+    "prepublish": [ "bower install", "dotnet bundle" ],
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  }
+}

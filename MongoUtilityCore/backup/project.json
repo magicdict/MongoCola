@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "compile": {
+      "include": [ "../MongoUtility/**/*.cs" ]
+    },
+    "warningsAsErrors": false,
+    "outputName": "MongoUtilityCore",
+    "xmlDoc": false
+  },
+  "configurations": {
+    "Debug": {
+      "buildOptions": {
+        "define": [ "DEBUG", "TRACE" ]
+      }
+    },
+    "Release": {
+      "buildOptions": {
+        "define": [ "TRACE" ],
+        "optimize": true
+      }
+    }
+  },
+
+  "dependencies": {
+    "mongocsharpdriver": "2.4.0-beta1",
+    "MongoDB.Driver": "2.4.0-beta1"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "netcoreapp1.0",
+      "dependencies": {
+        "System.Runtime.Serialization.Formatters": "4.3.0-preview1-24530-04",
+        "System.Xml.XmlSerializer": "4.3.0-preview1-24530-04"
+      }
+    },
+    "net462": {
+      "dependencies": {
+        "System.Runtime": "4.3.0-preview1-24530-04",
+        "System.Runtime.InteropServices.RuntimeInformation": "4.3.0-preview1-24530-04"
+      },
+      "frameworkAssemblies": {
+        "System.Xml": "4.0.0.0",
+        "System.Xml.XmlSerializer": "4.0.10"
+      }
+    }
+  }
+}
