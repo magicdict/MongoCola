@@ -124,16 +124,6 @@
     <Compile Include="Basic\BsonValueEx.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{40495682-C452-41C4-B2AE-8C60D7743BC9}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
-      <Project>{5AC3B529-8E37-4D99-99E9-729603E3BB5E}</Project>
-      <Name>ResourceLib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

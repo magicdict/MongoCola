@@ -1,6 +1,7 @@
 ﻿using Common;
 using FunctionForm.Operation;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Core;
@@ -183,14 +184,16 @@ namespace FunctionForm.User
             }
             try
             {
+                CommandResult result = null;
                 if (txtUserName.Enabled)
                 {
-                    MongoUserEx.AddUser(user, _isAdmin);
+                    result = MongoUserEx.AddUser(user, _isAdmin);
                 }
                 else
                 {
-                    MongoUserEx.UpdateUser(user, _isAdmin);
+                    result = MongoUserEx.UpdateUser(user, _isAdmin);
                 }
+                MyMessageBox.ShowMessage("Result:", result.Response.ToString());
             }
             catch (Exception ex)
             {
