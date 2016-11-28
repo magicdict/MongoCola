@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(NuGetPackageRoot)' == ''">
+    <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+  </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)nuget.build.tasks.pack\4.0.0-rc-2048\build\NuGet.Build.Tasks.Pack.targets" Condition="Exists('$(NuGetPackageRoot)nuget.build.tasks.pack\4.0.0-rc-2048\build\NuGet.Build.Tasks.Pack.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.net.sdk\1.0.0-alpha-20161104-2\build\Microsoft.NET.Sdk.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.sdk\1.0.0-alpha-20161104-2\build\Microsoft.NET.Sdk.targets')" />
+  </ImportGroup>
+</Project>

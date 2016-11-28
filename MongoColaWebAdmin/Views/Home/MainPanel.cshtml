@@ -1,8 +1,10 @@
 ﻿@using MongoUtility.Core;
 @using System.Linq.Expressions;
 @using MongoDB.Bson;
-@using System.Linq;
+@using System.Collections.Generic;
+
 @{
+    var x = new Dictionary<string, string>();
     ViewData["Title"] = "Home Page";
 
     var ConnectionName = ViewData["ConnectionName"];
