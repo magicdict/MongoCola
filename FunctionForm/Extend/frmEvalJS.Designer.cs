@@ -43,7 +43,7 @@ namespace FunctionForm.Extend
             // cmdEval
             // 
             this.cmdEval.BackColor = System.Drawing.Color.Transparent;
-            this.cmdEval.Location = new System.Drawing.Point(266, 262);
+            this.cmdEval.Location = new System.Drawing.Point(386, 285);
             this.cmdEval.Name = "cmdEval";
             this.cmdEval.Size = new System.Drawing.Size(93, 24);
             this.cmdEval.TabIndex = 2;
@@ -54,7 +54,7 @@ namespace FunctionForm.Extend
             // 
             // txtParm
             // 
-            this.txtParm.Location = new System.Drawing.Point(17, 235);
+            this.txtParm.Location = new System.Drawing.Point(21, 285);
             this.txtParm.Name = "txtParm";
             this.txtParm.Size = new System.Drawing.Size(342, 21);
             this.txtParm.TabIndex = 4;
@@ -63,7 +63,7 @@ namespace FunctionForm.Extend
             // 
             this.lblParm.AutoSize = true;
             this.lblParm.BackColor = System.Drawing.Color.Transparent;
-            this.lblParm.Location = new System.Drawing.Point(22, 217);
+            this.lblParm.Location = new System.Drawing.Point(26, 267);
             this.lblParm.Name = "lblParm";
             this.lblParm.Size = new System.Drawing.Size(148, 15);
             this.lblParm.TabIndex = 23;
@@ -72,16 +72,17 @@ namespace FunctionForm.Extend
             // 
             // txtResult
             // 
-            this.txtResult.Location = new System.Drawing.Point(17, 295);
+            this.txtResult.Location = new System.Drawing.Point(21, 345);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(342, 106);
+            this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtResult.Size = new System.Drawing.Size(472, 170);
             this.txtResult.TabIndex = 25;
             // 
             // lblResult
             // 
             this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(22, 271);
+            this.lblResult.Location = new System.Drawing.Point(26, 321);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(42, 15);
             this.lblResult.TabIndex = 26;
@@ -92,9 +93,9 @@ namespace FunctionForm.Extend
             // 
             this.ctlEval.Context = "";
             this.ctlEval.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctlEval.Location = new System.Drawing.Point(6, 0);
+            this.ctlEval.Location = new System.Drawing.Point(12, 0);
             this.ctlEval.Name = "ctlEval";
-            this.ctlEval.Size = new System.Drawing.Size(372, 209);
+            this.ctlEval.Size = new System.Drawing.Size(497, 264);
             this.ctlEval.TabIndex = 24;
             this.ctlEval.Tag = "EvalJS_Method";
             this.ctlEval.Title = "Eval Js";
@@ -104,7 +105,7 @@ namespace FunctionForm.Extend
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(386, 417);
+            this.ClientSize = new System.Drawing.Size(515, 527);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.ctlEval);
@@ -113,6 +114,8 @@ namespace FunctionForm.Extend
             this.Controls.Add(this.txtParm);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmEvalJs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "EvalJS.Title";

@@ -155,7 +155,7 @@ namespace MongoGUICtl.ClientTree
                             case "shards":
                             case "tags":
                             case "version":
-                                strShowColName = GuiConfig.GetText("CollectionName." + strShowColName) + "(" + strShowColName + ")";
+                                strShowColName = GuiConfig.GetText("CollectionName.system." + strShowColName) + "(" + strShowColName + ")";
                                 break;
                             default:
                                 break;
@@ -168,7 +168,7 @@ namespace MongoGUICtl.ClientTree
                             case "sources":
                             case "slaves":
                             case "startup_log":
-                                strShowColName = GuiConfig.GetText("CollectionName." + strShowColName) + "(" + strShowColName + ")";
+                                strShowColName = GuiConfig.GetText("CollectionName.system." + strShowColName) + "(" + strShowColName + ")";
                                 break;
                             default:
                                 break;

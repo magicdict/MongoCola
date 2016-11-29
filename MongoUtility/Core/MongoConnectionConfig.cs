@@ -122,32 +122,37 @@ namespace MongoUtility.Core
         public string SslCertificateFile;
 
         /// <summary>
+        ///     是否使用SSH
         /// </summary>
         public bool UseSsh { set; get; }
 
         /// <summary>
+        ///     这里的SSH主机就应该是MongoDB的主机？
         /// </summary>
         public string SshHost { set; get; }
 
         /// <summary>
+        ///     这里的SSH主机就应该是MongoDB的主机？
         /// </summary>
         public int SshPort { set; get; }
 
         /// <summary>
+        ///     SSH用户
         /// </summary>
         public string SshUser { set; get; }
 
         /// <summary>
+        ///     SSH密码
         /// </summary>
         public string SshPassword { set; get; }
 
         /// <summary>
-        /// 
+        ///     SSH私有钥匙文件
         /// </summary>
         public string SshPrivateKeyFile;
 
         /// <summary>
-        /// 验证机制
+        ///     验证机制
         /// </summary>
         public string AuthMechanism;
 

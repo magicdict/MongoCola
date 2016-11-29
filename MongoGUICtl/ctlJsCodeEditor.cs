@@ -45,7 +45,7 @@ namespace MongoGUICtl
         {
             if (txtEditJavaScript.Text != string.Empty)
             {
-                var strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]",
+                var strJsName = MyMessageBox.ShowInput("Please input Javascript name：[Save at system.js]",
                     "Save Javascript");
                 Operater.CreateNewJavascript(strJsName, txtEditJavaScript.Text);
             }
