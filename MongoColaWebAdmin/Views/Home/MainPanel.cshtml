@@ -4,9 +4,6 @@
 @using System.Collections.Generic;
 
 @{
-    var x = new Dictionary<string, string>();
-    ViewData["Title"] = "Home Page";
-
     var ConnectionName = ViewData["ConnectionName"];
     var config = MongoConnectionConfig.MongoConfig.ConnectionList[ConnectionName.ToString()];
     var mongoClient = RuntimeMongoDbContext.CreateMongoClient(ref config);
@@ -47,7 +44,7 @@
                                 (@ColInfo.Count(countfun).ToString())
                                 <ul>
                                     @{
-                                        var Indexes = GetConnectionInfo.GetColIndexInfo(mongoClient, db.GetElement("name").Value.ToString(), col.GetElement("name").Value.ToString());
+                                        var Indexes = ConnectionInfo.GetColIndexInfo(mongoClient, db.GetElement("name").Value.ToString(), col.GetElement("name").Value.ToString());
                                         foreach (var Index in Indexes)
                                         {
                                             <li>
