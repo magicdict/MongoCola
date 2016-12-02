@@ -109,6 +109,9 @@
       <HintPath>..\packages\mongocsharpdriver.2.4.0-beta1\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MongoUtilityStandard">
+      <HintPath>..\MongoUtilityStandard\bin\Debug\netstandard1.6\MongoUtilityStandard.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -178,10 +181,6 @@
     <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
       <Project>{E71AF267-0DFD-4E71-94A7-48F40793CEEF}</Project>
       <Name>MongoGUIView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
-      <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
-      <Name>MongoUtility</Name>
     </ProjectReference>
     <ProjectReference Include="..\PlugInPrj\PlugInPrj.csproj">
       <Project>{7a3ea89c-f84e-446c-892a-690fa28bebca}</Project>

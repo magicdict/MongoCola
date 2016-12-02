@@ -5,43 +5,96 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\MongoUtility\Aggregation\*.cs" />
-    <Compile Include="..\MongoUtility\Basic\*.cs" />
-    <Compile Include="..\MongoUtility\Command\*.cs" />
-    <Compile Include="..\MongoUtility\Core\*.cs" />
-    <Compile Include="..\MongoUtility\EventArgs\*.cs" />
-    <Compile Include="..\MongoUtility\Security\*.cs" />
-    <Compile Include="..\MongoUtility\ToolKit\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aggregation\AggregationHelper.cs" />
+    <Compile Include="Aggregation\DataFilter.cs" />
+    <Compile Include="Aggregation\DataViewInfo.cs" />
+    <Compile Include="Aggregation\QueryHelper.cs" />
+    <Compile Include="Aggregation\SqlHelper.cs" />
+    <Compile Include="Basic\BsonValueEx.cs" />
+    <Compile Include="Basic\ConstMgr.cs" />
+    <Compile Include="Basic\EnumMgr.cs" />
+    <Compile Include="Command\Collection.cs" />
+    <Compile Include="Command\CommandExecute.cs" />
+    <Compile Include="Command\DataBase.cs" />
+    <Compile Include="Command\DataBaseCommand.cs" />
+    <Compile Include="Command\Document.cs" />
+    <Compile Include="Command\ElementHelper.cs" />
+    <Compile Include="Command\ExportImport.cs" />
+    <Compile Include="Command\GFS.cs" />
+    <Compile Include="Command\ReplicaSet.cs" />
+    <Compile Include="Command\ShellMethod.cs" />
+    <Compile Include="Command\SystemStatus.cs" />
+    <Compile Include="Core\ConfigurationFileOption.cs" />
+    <Compile Include="Core\ConnectionInfo.cs" />
+    <Compile Include="Core\GetConnectionInfo.cs" />
+    <Compile Include="Core\MongoConnectionConfig.cs" />
+    <Compile Include="Core\MongoConnectionConfigManager.cs" />
+    <Compile Include="Core\ReadWrite.cs" />
+    <Compile Include="Core\RuntimeMongoDBContext.cs" />
+    <Compile Include="Core\TagInfo.cs" />
+    <Compile Include="EventArgs\ActionDoneEventArgs.cs" />
+    <Compile Include="EventArgs\EventArgExtensions.cs" />
+    <Compile Include="EventArgs\RunCommandEventArgs.cs" />
+    <Compile Include="EventArgs\SelectedIndexChangeEventArgs.cs" />
+    <Compile Include="EventArgs\TextChangeEventArgs.cs" />
+    <Compile Include="Security\MongoAction.cs" />
+    <Compile Include="Security\MongoResource.cs" />
+    <Compile Include="Security\MongoUserEx.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="ToolKit\MongodbDosCommand.cs" />
+    <Compile Include="ToolKit\MongodConfig.cs" />
+    <Compile Include="ToolKit\MongoDumpInfo.cs" />
+    <Compile Include="ToolKit\MongoHelper.cs" />
+    <Compile Include="ToolKit\MongoImportExportInfo.cs" />
+    <Compile Include="ToolKit\MongoRestoreInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="mongocsharpdriver">
-      <Version>2.4.0-beta1</Version>
+      <Version>2.4.0</Version>
     </PackageReference>
     <PackageReference Include="MongoDB.Bson">
-      <Version>2.4.0-beta1</Version>
+      <Version>2.4.0</Version>
     </PackageReference>
     <PackageReference Include="MongoDB.Driver">
-      <Version>2.4.0-beta1</Version>
+      <Version>2.4.0</Version>
     </PackageReference>
     <PackageReference Include="MongoDB.Driver.Core">
-      <Version>2.4.0-beta1</Version>
+      <Version>2.4.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+    <PackageReference Include="Microsoft.CSharp">
+      <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="NETStandard.Library">
       <Version>1.6.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Linq.Extensions" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
+    <PackageReference Include="System.Xml.XmlSerializer">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Serialization.Formatters">
+      <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Sdk">
       <Version>1.0.0-alpha-20161104-2</Version>
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="System.Runtime.Serialization.Formatters">
-      <Version>4.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Xml.XmlSerializer">
-      <Version>4.3.0</Version>
-    </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

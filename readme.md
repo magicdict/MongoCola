@@ -20,12 +20,12 @@ MongoCola是一款帮助你在图形界面下查看，操作MongoDB的工具类�
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.1.10
-* MongoDB 3.4.0-rc5  
+* MongoDB 3.4.0
 
 ***
 
 ## 驱动程序
-CSharp Mongo Driver 2.4.0-beta1
+CSharp Mongo Driver 2.4.0
 
 ***
 
@@ -36,6 +36,23 @@ MongoCola项目的App.config里面不要写任何东西。特别是私有路径�
 而如果你的插件项目也有需要RuntimeInformation这个库，请一定要保证设定私有路径，不然会参照MongoDriver的这个库。  
 但是，你只能在自己的项目里面设定，不能在MongoCola主项目里面设定。  
 同时MongoUtility项目，由于要和.Net Core共享代码，一定要注意编译条件是否设定，特别是VS版本更新的时候，可能造成编译条件的缺失。  
+
+由于该软件的核心动态链接库需要在WebPage和Winform中使用，在当前阶段的开发者，请一定注意以下几点：
+
+使用Nuget包的net463版本的DLL(Nuget包版本是4.1.0，注意，是一个0！！！)
+
+- System.Linq.dll (4.1.0.0)
+- System.Linq.Expressions.dll (4.1.0.0)
+
+需要加入Nuget包
+
+- System.Runtime.dll （4.1.0.0）
+- System.Runtime.Extensions.dll 4.1.0.0）
+- System.Runtime.InteropServices.RuntimeInformation.dll （4.0.0.0）
+- System.Xml.ReaderWriter.dll (4.1.0.0)
+
+MongoUtilityStandard正式取代MongoUtility使用在项目里面。
+由于二义性问题，只能做两份代码了。MongoUtility作为备份只是放着，但是不进行编辑了。
 
 # 项目说明
 C#的代码分为三个解决方案： 
