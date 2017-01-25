@@ -42,6 +42,7 @@ namespace MongoGUICtl.Aggregation
         public CtlFieldInfo()
         {
             InitializeComponent();
+            Common.UIAssistant.FillComberWithEnum(cmbSort, typeof(DataFilter.SortType));
         }
 
         /// <summary>

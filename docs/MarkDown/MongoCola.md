@@ -19,7 +19,7 @@ MongoCola是一款帮助你在图形界面下查看，操作MongoDB的工具类�
 * MongoDB 3.4.0
 
 **驱动程序：**
-* CSharp Mongo Driver 2.4.0
+* CSharp Mongo Driver 2.4.1
 
 .Net Core的WebPage版本还在试水中。本软件虽然可以通过编译成Mono版本在MacOS和Linux中使用，但是用户体验不好，所以建议只在Windows中使用本软件。
 

@@ -65,6 +65,7 @@ namespace MongoGUICtl
             Common.UIAssistant.FillComberWithArray(cmbColName, columnList.ToArray(), true);
             //逻辑操作符号的载入
             Common.UIAssistant.FillComberWithEnum(cmbCompareOpr, typeof(DataFilter.CompareEnum), true);
+            cmbCompareOpr.SelectedIndex = -1;
         }
 
         public delegate void ItemChanged(object sender);

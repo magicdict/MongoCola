@@ -193,19 +193,27 @@ namespace MongoGUICtl.Aggregation
             Controls.Add(lblSortOrder);
             foreach (var queryFieldItem in _mQueryFieldList.OrderBy(info => info.ColName))
             {
-                //动态加载控件
-                var ctrItem = new CtlFieldInfo
+                try
                 {
-                    Mode = FieldListMode,
-                    Name = queryFieldItem.ColName,
-                    Location = conditionPos,
-                    IsIdProtect = IsIdProtect,
-                    QueryFieldItem = queryFieldItem,
-                    Width = 450
-                };
-                Controls.Add(ctrItem);
-                //纵向位置的累加
-                conditionPos.Y += ctrItem.Height;
+                    //动态加载控件
+                    var ctrItem = new CtlFieldInfo
+                    {
+                        Mode = FieldListMode,
+                        Name = queryFieldItem.ColName,
+                        Location = conditionPos,
+                        IsIdProtect = IsIdProtect,
+                        QueryFieldItem = queryFieldItem,
+                        Width = 450
+                    };
+                    Controls.Add(ctrItem);
+                    //纵向位置的累加
+                    conditionPos.Y += ctrItem.Height;
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+
             }
         }
 
