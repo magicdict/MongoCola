@@ -6,26 +6,26 @@ MongoCola是一款帮助你在图形界面下查看，操作MongoDB的工具类�
 * 用户手册： <http://www.codesnippet.info/Article/Index?ArticleId=00000062>
 * GitHub 项目地址 <https://github.com/magicdict/MongoCola/>
 * GitPage 官网 <http://magicdict.github.io/MongoCola/>
-* 版本号：Ver 2.1.0
+* 版本号：Ver 2.1.1
  
 ***
 
 # 开发和测试环境
 ## 操作系统：
 * Windows 7
-* Mac OSX 10.12
+* Mac OSX 10.12(UI效果不是很好)
 
 ***
 
 ## 运行时：
 * NET Framework 4.6.2
 * NET Core 1.1.10
-* MongoDB 3.4.0
+* MongoDB 3.4.2
 
 ***
 
 ## 驱动程序
-CSharp Mongo Driver 2.4.0
+CSharp Mongo Driver 2.4.2
 
 ***
 
@@ -68,7 +68,7 @@ C#的代码分为三个解决方案：
 3. 插件实现  
 
 - MongoCola.Core解决方案  
-1. MongoUtilityCore：MongoUtility的.Net Core编译配置  （VS15构成OK）
+1. MongoUtilityStandard：MongoUtility的.Net Core编译配置  （VS15构成OK）
 2. MongoColaWebAdmin:Asp.Net Core版的网页版程序  （VS15重新构成出错）
 
 - Master Slave Replication的废除  

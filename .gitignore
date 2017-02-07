@@ -18,6 +18,8 @@
 *.scc
 *.bk
 *.bak
+*.sqlite-journal
+*.sqlite
 /MongoCola/.localhistory
 /MongoCola/MongoCola.sln.ide
 /MongoGUICtl/bin
@@ -62,6 +64,16 @@
 /MachineLearning/bin
 /MachineLearning/obj
 /UserGuide
+/.vs/MongoCola/v14/vbcs.cache
+/packages/mongocsharpdriver.2.0.0
+/packages/MongoDB.Bson.2.0.0
+/packages/MongoDB.Driver.2.0.0/lib/net45
+/packages/MongoDB.Driver.Core.2.0.0
+/packages/MongoDB.Driver.2.0.0/MongoDB.Driver.2.0.0.nupkg
+/packages
+/docs/MarkDown/images
+/.vs
+Thumbs.db
 !readme.txt
 !app.config
 !Release Note.txt
@@ -76,15 +88,3 @@
 !zh_CN.xml
 !zh_TW.xml
 !ja_JP.xml
-Thumbs.db
-/.vs/MongoCola/v14/vbcs.cache
-/packages/mongocsharpdriver.2.0.0
-/packages/MongoDB.Bson.2.0.0
-/packages/MongoDB.Driver.2.0.0/lib/net45
-/packages/MongoDB.Driver.Core.2.0.0
-/packages/MongoDB.Driver.2.0.0/MongoDB.Driver.2.0.0.nupkg
-/packages
-/docs/MarkDown/images
-*.sqlite
-/.vs
-*.sqlite-journal
