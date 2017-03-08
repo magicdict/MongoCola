@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assistant", "Assistant", "{C2CB64A9-4560-43A1-AAB3-B61451A6551B}"
 EndProject
@@ -30,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlugInPrj", "PlugInPrj\PlugInPrj.csproj", "{7A3EA89C-F84E-446C-892A-690FA28BEBCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoUtilityStandard", "MongoUtilityStandard\MongoUtilityStandard.csproj", "{4AA019DC-4F42-423B-890F-93C412F53EC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoUtility", "MongoUtility\MongoUtility.csproj", "{69DBEC7C-A524-415E-9145-E6B32B76B2D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -132,20 +132,22 @@ Global
 		{7A3EA89C-F84E-446C-892A-690FA28BEBCA}.Release|x64.ActiveCfg = Release|Any CPU
 		{7A3EA89C-F84E-446C-892A-690FA28BEBCA}.Release|x86.ActiveCfg = Release|Any CPU
 		{7A3EA89C-F84E-446C-892A-690FA28BEBCA}.Release|x86.Build.0 = Release|Any CPU
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Debug|x64.ActiveCfg = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Debug|x86.ActiveCfg = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Debug|x86.Build.0 = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Release|Any CPU.ActiveCfg = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Release|Any CPU.Build.0 = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Release|Mixed Platforms.ActiveCfg = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Release|Mixed Platforms.Build.0 = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Release|x64.ActiveCfg = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Release|x64.Build.0 = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Release|x86.ActiveCfg = Debug|x86
-		{4AA019DC-4F42-423B-890F-93C412F53EC7}.Release|x86.Build.0 = Debug|x86
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Debug|x64.Build.0 = Debug|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Debug|x86.Build.0 = Debug|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|x64.ActiveCfg = Release|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|x64.Build.0 = Release|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|x86.ActiveCfg = Release|Any CPU
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,7 +160,7 @@ Global
 		{E71AF267-0DFD-4E71-94A7-48F40793CEEF} = {EB6F6C93-B2FA-451B-9799-10C6B15FD053}
 		{564926F7-427A-412C-8DE0-967E9D082A84} = {EB6F6C93-B2FA-451B-9799-10C6B15FD053}
 		{7A3EA89C-F84E-446C-892A-690FA28BEBCA} = {C2CB64A9-4560-43A1-AAB3-B61451A6551B}
-		{4AA019DC-4F42-423B-890F-93C412F53EC7} = {C2CB64A9-4560-43A1-AAB3-B61451A6551B}
+		{69DBEC7C-A524-415E-9145-E6B32B76B2D3} = {C2CB64A9-4560-43A1-AAB3-B61451A6551B}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

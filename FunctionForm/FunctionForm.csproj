@@ -51,14 +51,10 @@
     <Reference Include="MongoDB.Driver.Legacy, Version=2.4.2.27, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\mongocsharpdriver.2.4.2\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="MongoUtilityStandard">
-      <HintPath>..\MongoUtilityStandard\bin\Debug\netstandard1.6\MongoUtilityStandard.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Drawing" />
@@ -428,6 +424,10 @@
     <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
       <Project>{E71AF267-0DFD-4E71-94A7-48F40793CEEF}</Project>
       <Name>MongoGUIView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
+      <Project>{69dbec7c-a524-415e-9145-e6b32b76b2d3}</Project>
+      <Name>MongoUtility</Name>
     </ProjectReference>
     <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
       <Project>{5AC3B529-8E37-4D99-99E9-729603E3BB5E}</Project>

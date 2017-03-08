@@ -63,8 +63,8 @@ namespace MongoGUICtl
             radFalse.Top = txtBsonValue.Top;
             NumberPick.Location = txtBsonValue.Location;
             NumberPick.Size = txtBsonValue.Size;
-            NumberPick.Minimum = int.MinValue;
-            NumberPick.Maximum = int.MaxValue;
+            NumberPick.Minimum = decimal.MinValue;
+            NumberPick.Maximum = decimal.MaxValue;
 
             txtBsonValue.Visible = true;
             txtBsonValue.Text = string.Empty;
