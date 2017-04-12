@@ -29,12 +29,14 @@ namespace MongoGUICtl
             {
                 if (cmbCompareOpr.SelectedIndex != -1)
                 {
-                    var rtn = new DataFilter.QueryConditionInputItem();
-                    rtn.Compare = (DataFilter.CompareEnum)cmbCompareOpr.SelectedIndex;
-                    rtn.Value = new BsonValueEx(ElBsonValue.GetValue());
-                    rtn.StartMark = cmbStartMark.Text;
-                    rtn.EndMark = cmbEndMark.Text;
-                    rtn.ColName = cmbColName.Text;
+                    var rtn = new DataFilter.QueryConditionInputItem()
+                    {
+                        Compare = (DataFilter.CompareEnum)cmbCompareOpr.SelectedIndex,
+                        Value = new BsonValueEx(ElBsonValue.GetValue()),
+                        StartMark = cmbStartMark.Text,
+                        EndMark = cmbEndMark.Text,
+                        ColName = cmbColName.Text
+                    };
                     return rtn;
                 }
                 return new DataFilter.QueryConditionInputItem();

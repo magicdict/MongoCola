@@ -98,12 +98,14 @@ namespace MongoUtility.ToolKit
             var mongosvr = RuntimeMongoDbContext.GetCurrentServer();
             //Repl的时候 mongosvr.Instance 无效
             var Description = mongosvr.Instance;
-            var DescriptionDoc = new BsonDocument();
-            DescriptionDoc.Add(new BsonElement(nameof(Description.IsArbiter), Description.IsArbiter));
-            DescriptionDoc.Add(new BsonElement(nameof(Description.IsPrimary), Description.IsPrimary));
-            DescriptionDoc.Add(new BsonElement(nameof(Description.IsSecondary), Description.IsSecondary));
-            DescriptionDoc.Add(new BsonElement(nameof(Description.Address), Description.Address.ToString()));
-            DescriptionDoc.Add(new BsonElement(nameof(Description.BuildInfo.VersionString), Description.BuildInfo.VersionString));
+            var DescriptionDoc = new BsonDocument
+            {
+                new BsonElement(nameof(Description.IsArbiter), Description.IsArbiter),
+                new BsonElement(nameof(Description.IsPrimary), Description.IsPrimary),
+                new BsonElement(nameof(Description.IsSecondary), Description.IsSecondary),
+                new BsonElement(nameof(Description.Address), Description.Address.ToString()),
+                new BsonElement(nameof(Description.BuildInfo.VersionString), Description.BuildInfo.VersionString)
+            };
             return DescriptionDoc;
         }
 

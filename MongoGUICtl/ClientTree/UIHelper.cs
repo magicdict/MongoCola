@@ -22,8 +22,10 @@ namespace MongoGUICtl.ClientTree
         /// <param name="dataList"></param>
         public static void FillDataToTreeView(string collectionName, CtlTreeViewColumns trvData, BsonDocument dataList)
         {
-            var docList = new List<BsonDocument>();
-            docList.Add(dataList);
+            var docList = new List<BsonDocument>
+            {
+                dataList
+            };
             FillDataToTreeView(collectionName, trvData, docList, 0);
         }
 
@@ -44,8 +46,7 @@ namespace MongoGUICtl.ClientTree
             foreach (var item in dataList)
             {
                 var dataNode = new TreeNode(collectionName + "[" + (skipCnt + count) + "]");
-                BsonElement id;
-                if (item.TryGetElement(ConstMgr.KeyId, out id))
+                if (item.TryGetElement(ConstMgr.KeyId, out BsonElement id))
                 {
                     //这里保存真实的主Key数据，修改和删除的时候使用
                     dataNode.Tag = item.GetElement(ConstMgr.KeyId).Value;
@@ -86,24 +87,35 @@ namespace MongoGUICtl.ClientTree
                     }
                     else
                     {
-                        var elementNode = new TreeNode(item.Name);
-                        elementNode.Tag = item;
+                        var elementNode = new TreeNode(item.Name)
+                        {
+                            Tag = item
+                        };
                         treeNode.Nodes.Add(elementNode);
                         if (item.Value.IsObjectId)
                         {
                             //objId的展开
                             ObjectId oid = item.Value.AsObjectId;
-                            var oidCreateTime = new TreeNode("CreationTime");
-                            oidCreateTime.Tag = BsonDateTime.Create(oid.CreationTime);
-                            var oidMachine = new TreeNode("Machine");
-                            oidMachine.Tag = BsonInt32.Create(oid.Machine);
-                            var oidPid = new TreeNode("Pid");
-                            oidPid.Tag = BsonInt32.Create(oid.Pid);
-                            var oidIncrement = new TreeNode("Increment");
-                            oidIncrement.Tag = BsonInt32.Create(oid.Increment);
-                            var oidTimestamp = new TreeNode("Timestamp");
-                            oidTimestamp.Tag = BsonInt32.Create(oid.Timestamp);
-
+                            var oidCreateTime = new TreeNode("CreationTime")
+                            {
+                                Tag = BsonDateTime.Create(oid.CreationTime)
+                            };
+                            var oidMachine = new TreeNode("Machine")
+                            {
+                                Tag = BsonInt32.Create(oid.Machine)
+                            };
+                            var oidPid = new TreeNode("Pid")
+                            {
+                                Tag = BsonInt32.Create(oid.Pid)
+                            };
+                            var oidIncrement = new TreeNode("Increment")
+                            {
+                                Tag = BsonInt32.Create(oid.Increment)
+                            };
+                            var oidTimestamp = new TreeNode("Timestamp")
+                            {
+                                Tag = BsonInt32.Create(oid.Timestamp)
+                            };
                             elementNode.Nodes.Add(oidCreateTime);
                             elementNode.Nodes.Add(oidMachine);
                             elementNode.Nodes.Add(oidPid);

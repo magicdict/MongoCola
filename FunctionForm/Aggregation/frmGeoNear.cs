@@ -34,20 +34,24 @@ namespace FunctionForm.Aggregation
             {
                 if (IsHaystack)
                 {
-                    var geoSearchOption = new GeoHaystackSearchArgs();
-                    geoSearchOption.MaxDistance = double.Parse(NumMaxDistance.Text);
-                    geoSearchOption.Limit = (int)NumResultCount.Value;
-                    geoSearchOption.Near = point;
+                    var geoSearchOption = new GeoHaystackSearchArgs()
+                    {
+                        MaxDistance = double.Parse(NumMaxDistance.Text),
+                        Limit = (int)NumResultCount.Value,
+                        Near = point
+                    };
                     // GeoHaystackSearch
                     mGeoNearAs = RuntimeMongoDbContext.GetCurrentCollection().GeoHaystackSearchAs<BsonDocument>(geoSearchOption).Response;
                 }
                 else
                 {
-                    var geoOption = new GeoNearArgs();
-                    geoOption.DistanceMultiplier = double.Parse(NumDistanceMultiplier.Text);
-                    geoOption.MaxDistance = double.Parse(NumMaxDistance.Text);
-                    geoOption.Spherical = chkSpherical.Checked;
-                    geoOption.Limit = (int)NumResultCount.Value;
+                    var geoOption = new GeoNearArgs()
+                    {
+                        DistanceMultiplier = double.Parse(NumDistanceMultiplier.Text),
+                        MaxDistance = double.Parse(NumMaxDistance.Text),
+                        Spherical = chkSpherical.Checked,
+                        Limit = (int)NumResultCount.Value
+                    };
                     if (radGeoJSON.Checked)
                     {
                         geoOption.Near = new GeoJsonPoint<GeoJson2DCoordinates>(new GeoJson2DCoordinates(point.X, point.Y));

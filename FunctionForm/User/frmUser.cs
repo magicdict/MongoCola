@@ -63,8 +63,7 @@ namespace FunctionForm.User
                 var userInfo = RuntimeMongoDbContext.GetCurrentDataBase().GetCollection(ConstMgr.CollectionNameUsers)
                     .FindOneAs<BsonDocument>(Query.EQ("user", _modifyName));
 
-                BsonElement role;
-                if (userInfo.TryGetElement("roles", out role))
+                if (userInfo.TryGetElement("roles", out BsonElement role))
                 {
                     var roles = role.Value.AsBsonArray;
                     foreach (var _role in roles)
@@ -88,8 +87,7 @@ namespace FunctionForm.User
                 }
                 RefreshRoles();
 
-                BsonElement custom;
-                if (userInfo.TryGetElement("customData", out custom))
+                if (userInfo.TryGetElement("customData", out BsonElement custom))
                 {
                     customData = custom.Value.AsBsonDocument;
                     lblcustomDocument.Text = "Custom Document:" + customData.ToString();

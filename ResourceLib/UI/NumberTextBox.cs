@@ -16,11 +16,9 @@ namespace ResourceLib.UI
             if (e.KeyChar != 46) return;
             if (((TextBox)sender).Text.Length > 0)
             {
-                float f;
-                float oldf;
                 bool b1, b2;
-                b1 = float.TryParse(((TextBox)sender).Text, out oldf);
-                b2 = float.TryParse(((TextBox)sender).Text + e.KeyChar, out f);
+                b1 = float.TryParse(((TextBox)sender).Text, out float oldf);
+                b2 = float.TryParse(((TextBox)sender).Text + e.KeyChar, out float f);
                 if (b2 == false)
                 {
                     e.Handled = b1;

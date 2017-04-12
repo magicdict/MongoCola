@@ -155,15 +155,19 @@ namespace MongoCola
             UIAssistant.OpenModalForm(new frmConnect(), true, true);
 
             //多文档管理器的设定
-            var parentMenuItems = new List<ToolStripMenuItem>();
-            parentMenuItems.Add(CollectionToolStripMenuItem);
-            parentMenuItems.Add(JavaScriptStripMenuItem);
+            var parentMenuItems = new List<ToolStripMenuItem>
+            {
+                CollectionToolStripMenuItem,
+                JavaScriptStripMenuItem
+            };
             MultiTabManger.Init(tabView, parentMenuItems);
             //MultiTab固定项目的初始化
-            var serverStatusCtl = new CtlServerStatus();
-            serverStatusCtl.IsFixedItem = true;
-            serverStatusCtl.SelectObjectTag = "[ServerStatus]";
-            serverStatusCtl.BindingMenu = StatusToolStripMenuItem;
+            var serverStatusCtl = new CtlServerStatus()
+            {
+                IsFixedItem = true,
+                SelectObjectTag = "[ServerStatus]",
+                BindingMenu = StatusToolStripMenuItem
+            };
             MultiTabManger.AddView(serverStatusCtl, GuiConfig.IsUseDefaultLanguage ? "Status" : GuiConfig.GetText("MainMenu.MangtStatus"), string.Empty);
 
             //刷新
@@ -556,8 +560,10 @@ namespace MongoCola
             switch (RuntimeMongoDbContext.SelectTagType)
             {
                 case ConstMgr.GridFileSystemTag:
-                    dataViewctl = new CtlGfsView(mDataViewInfo);
-                    dataViewctl.AllowDrop = true;
+                    dataViewctl = new CtlGfsView(mDataViewInfo)
+                    {
+                        AllowDrop = true
+                    };
                     break;
                 case ConstMgr.UserListTag:
                     dataViewctl = new CtlUserView(mDataViewInfo);

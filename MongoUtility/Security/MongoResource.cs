@@ -54,8 +54,10 @@ namespace MongoUtility.Security
             switch (Type)
             {
                 case ResourceType.DataBase:
-                    ResourceContent = new BsonDocument("db", DataBaseName);
-                    ResourceContent.Add("collection", CollectionName);
+                    ResourceContent = new BsonDocument("db", DataBaseName)
+                    {
+                        { "collection", CollectionName }
+                    };
                     break;
                 case ResourceType.Cluster:
                     ResourceContent = new BsonDocument("cluster", BsonBoolean.True);

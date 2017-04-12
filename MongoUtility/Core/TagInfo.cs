@@ -36,7 +36,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     CreateTagInfo
         /// </summary>
-        /// <param name="connectionName"></param>
+        /// <param name="config"></param>
         public static TagInfo CreateTagInfo(MongoConnectionConfig config)
         {
             var tagString = ConstMgr.ConnectionTag + ":" + config.ConnectionName;
@@ -162,7 +162,7 @@ namespace MongoUtility.Core
         public static string GetNameFromTag(string strTag)
         {
             var arr = strTag.Split("/".ToCharArray());
-            return arr[arr.Length - 1];
+            return arr[arr.Length - 1]; 
         }
 
         /// <summary>

@@ -130,8 +130,7 @@ namespace MongoUtility.Command
                     result = new CommandResult(ex.Result);
                 }
             }
-            BsonElement err;
-            return !result.Response.TryGetElement("err", out err) ? string.Empty : err.ToString();
+            return !result.Response.TryGetElement("err", out BsonElement err) ? string.Empty : err.ToString();
         }
 
         /// <summary>
@@ -147,8 +146,7 @@ namespace MongoUtility.Command
             {
                 //有时候在序列化的过程中，objectId是由某个字段带上[id]特性客串的，所以无法转换为ObjectId对象
                 //这里先尝试转换，如果可以转换，则转换
-                ObjectId seekId;
-                if (ObjectId.TryParse(objectId, out seekId))
+                if (ObjectId.TryParse(objectId, out ObjectId seekId))
                 {
                     //如果可以转换，则转换
                     result =
@@ -169,8 +167,7 @@ namespace MongoUtility.Command
             {
                 result = new CommandResult(ex.Result);
             }
-            BsonElement err;
-            return !result.Response.TryGetElement("err", out err) ? string.Empty : err.ToString();
+            return !result.Response.TryGetElement("err", out BsonElement err) ? string.Empty : err.ToString();
         }
 
         /// <summary>

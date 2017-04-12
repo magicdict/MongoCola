@@ -502,8 +502,10 @@ namespace MongoGUIView
             if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(ConstMgr.ArrayMark))
             {
                 ElementHelper.PasteValue(trvData.DatatreeView.SelectedNode.FullPath, null, null);
-                var newValue = new TreeNode(ViewHelper.ConvertToString((BsonValue)ElementHelper.ClipElement));
-                newValue.Tag = ElementHelper.ClipElement;
+                var newValue = new TreeNode(ViewHelper.ConvertToString((BsonValue)ElementHelper.ClipElement))
+                {
+                    Tag = ElementHelper.ClipElement
+                };
                 trvData.DatatreeView.SelectedNode.Nodes.Add(newValue);
             }
             else

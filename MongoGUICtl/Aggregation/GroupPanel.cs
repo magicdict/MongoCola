@@ -32,9 +32,11 @@ namespace MongoGUICtl.Aggregation
         public void AddGroupItem()
         {
             _conditionCount++;
-            var newGroupItem = new GroupItem();
-            newGroupItem.Location = _conditionPos;
-            newGroupItem.Name = "GroupItem" + _conditionCount;
+            var newGroupItem = new GroupItem()
+            {
+                Location = _conditionPos,
+                Name = "GroupItem" + _conditionCount
+            };
             Controls.Add(newGroupItem);
             _conditionPos.Y += newGroupItem.Height;
         }

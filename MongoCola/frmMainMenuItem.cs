@@ -248,8 +248,7 @@ namespace MongoCola
             string strInitColName = MyMessageBox.ShowInput(
                         GuiConfig.GetText("Please Input Init CollectionName：", "CreateNewDataBaseInitCollection"),
                         GuiConfig.GetText("Create Database", "CreateNewDataBase"));
-            string errMessage;
-            if (Operater.IsDatabaseNameValid(strDbName, out errMessage))
+            if (Operater.IsDatabaseNameValid(strDbName, out string errMessage))
             {
                 try
                 {
@@ -628,8 +627,7 @@ namespace MongoCola
         {
             var maxSize = MyMessageBox.ShowInput("Please Input MaxSize(Byte)", "MaxSize", "4096");
             if (string.IsNullOrEmpty(maxSize)) return;
-            long lngMaxSize;
-            if (long.TryParse(maxSize, out lngMaxSize))
+            if (long.TryParse(maxSize, out long lngMaxSize))
             {
                 var colName = RuntimeMongoDbContext.GetCurrentCollectionName();
                 var db = RuntimeMongoDbContext.GetCurrentDataBase();
@@ -741,11 +739,15 @@ namespace MongoCola
         /// <param name="e"></param>
         private void ViewInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var pipeline = new List<BsonDocument>();
-            pipeline.Add(RuntimeMongoDbContext.GetCurrentCollectionInfo());
-            var frm = new frmDataView();
-            frm.ShowData = pipeline;
-            frm.Title = "ViewInfo";
+            var pipeline = new List<BsonDocument>
+            {
+                RuntimeMongoDbContext.GetCurrentCollectionInfo()
+            };
+            var frm = new frmDataView()
+            {
+                ShowData = pipeline,
+                Title = "ViewInfo"
+            };
             UIAssistant.OpenModalForm(frm, true, true);
         }
 

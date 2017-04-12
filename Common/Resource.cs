@@ -128,8 +128,10 @@ namespace Common
         /// <param name="filter"></param>
         public static void SaveTextFile(string result, string filter)
         {
-            var dialog = new SaveFileDialog();
-            dialog.Filter = filter;
+            var dialog = new SaveFileDialog()
+            {
+                Filter = filter
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var writer = new StreamWriter(dialog.FileName, false);
@@ -145,8 +147,7 @@ namespace Common
         /// <returns></returns>
         public static int GetExcelIntValue(dynamic cell)
         {
-            int t;
-            int.TryParse(cell.Text, out t);
+            int.TryParse(cell.Text, out int t);
             return t;
         }
 

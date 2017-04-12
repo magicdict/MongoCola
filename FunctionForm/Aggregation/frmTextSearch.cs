@@ -81,8 +81,10 @@ namespace FunctionForm.Aggregation
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var dialog = new SaveFileDialog();
-            dialog.Filter = Utility.XmlFilter;
+            var dialog = new SaveFileDialog()
+            {
+                Filter = Utility.XmlFilter
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 trvResult.Save(dialog.FileName);

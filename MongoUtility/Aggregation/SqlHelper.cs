@@ -177,7 +177,7 @@ namespace MongoUtility.Aggregation
                     {
                         if (sqlContent[i].ToString() == " ")
                         {
-                            //权宜之计，如果真的有&nbsp;。。。
+                            //权宜之计，如果真的有&nbsp;
                             lowerSql += "&nbsp;";
                         }
                         else

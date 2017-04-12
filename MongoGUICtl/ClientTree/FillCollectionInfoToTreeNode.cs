@@ -20,27 +20,35 @@ namespace MongoGUICtl.ClientTree
         /// <returns></returns>
         public static TreeNode FillViewInfoToTreeNode(IMongoCollection<BsonDocument> col, string TagPrefix)
         {
-            var mongoColNode = new TreeNode("Views(" + col.Count(x => true).ToString() + ")");
-            mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.CollectionList;
-            mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.CollectionList;
+            var mongoColNode = new TreeNode("Views(" + col.Count(x => true).ToString() + ")")
+            {
+                ImageIndex = (int)GetSystemIcon.MainTreeImageType.CollectionList,
+                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.CollectionList
+            };
             var r = col.Find(x => true);
 
             foreach (var viewDoc in r.ToList())
             {
                 var id = viewDoc.GetElement(ConstMgr.KeyId).ToString();
-                var viewNode = new TreeNode(id.Substring(id.IndexOf(".") + 1));
-                viewNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
-                viewNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+                var viewNode = new TreeNode(id.Substring(id.IndexOf(".") + 1))
+                {
+                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection,
+                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection
+                };
 
                 //ViewOn
-                var viewOnNode = new TreeNode("ViewOn:" + viewDoc.GetElement("viewOn").Value.ToString());
-                viewOnNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
-                viewOnNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
+                var viewOnNode = new TreeNode("ViewOn:" + viewDoc.GetElement("viewOn").Value.ToString())
+                {
+                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo,
+                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo
+                };
                 viewNode.Nodes.Add(viewOnNode);
                 //Pipeline
-                var pipelineNode = new TreeNode("pipeline:" + viewDoc.GetElement("pipeline").Value.ToString());
-                pipelineNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
-                pipelineNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo;
+                var pipelineNode = new TreeNode("pipeline:" + viewDoc.GetElement("pipeline").Value.ToString())
+                {
+                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo,
+                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.KeyInfo
+                };
                 viewNode.Nodes.Add(pipelineNode);
                 viewNode.Tag = TagPrefix + viewNode.Text;
                 mongoColNode.Nodes.Add(viewNode);

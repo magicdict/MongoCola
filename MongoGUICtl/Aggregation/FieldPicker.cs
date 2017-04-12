@@ -81,10 +81,12 @@ namespace MongoGUICtl.Aggregation
             foreach (var item in columnList)
             {
                 //输出配置的初始化
-                var queryFieldItem = new DataFilter.QueryFieldItem();
-                queryFieldItem.ColName = item;
-                queryFieldItem.IsShow = mIsShow;
-                queryFieldItem.SortType = DataFilter.SortType.NoSort;
+                var queryFieldItem = new DataFilter.QueryFieldItem()
+                {
+                    ColName = item,
+                    IsShow = mIsShow,
+                    SortType = DataFilter.SortType.NoSort
+                };
                 if (queryFieldItem.ColName == ConstMgr.KeyId)
                 {
                     queryFieldItem.IsShow = true;
@@ -176,7 +178,7 @@ namespace MongoGUICtl.Aggregation
                         : new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
                 }
             }
-            aggregation.Add("_id", project);
+            aggregation.Add(ConstMgr.KeyId, project);
             return aggregation;
         }
 
@@ -209,7 +211,7 @@ namespace MongoGUICtl.Aggregation
                     //纵向位置的累加
                     conditionPos.Y += ctrItem.Height;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }
@@ -255,14 +257,14 @@ namespace MongoGUICtl.Aggregation
             foreach (var item in _mQueryFieldList)
             {
                 var ctl = ((CtlFieldInfo)Controls.Find(item.ColName, true)[0]).QueryFieldItem;
-                if (ctl.IsShow && ctl.ColName != "_id")
+                if (ctl.IsShow && ctl.ColName != ConstMgr.KeyId)
                 {
                     member.Add(string.IsNullOrEmpty(ctl.ProjectName)
                         ? new BsonElement(ctl.ColName, "$" + ctl.ColName)
                         : new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
                 }
             }
-            id.Add("_id", member);
+            id.Add(ConstMgr.KeyId, member);
             return id;
         }
     }

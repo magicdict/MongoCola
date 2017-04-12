@@ -56,8 +56,7 @@ namespace FunctionForm.Operation
             }
             try
             {
-                string errMessage;
-                RuntimeMongoDbContext.GetCurrentDataBase().IsCollectionNameValid(txtCollectionName.Text, out errMessage);
+                RuntimeMongoDbContext.GetCurrentDataBase().IsCollectionNameValid(txtCollectionName.Text, out string errMessage);
                 if (errMessage != null)
                 {
                     MyMessageBox.ShowMessage("Create Collection", "Argument Exception", errMessage, true);

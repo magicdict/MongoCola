@@ -205,9 +205,11 @@ namespace MongoUtility.Aggregation
             //    }
             //}
             //检索关键字
-            var textSearchOption = new TextSearchOptions();
-            textSearchOption.CaseSensitive = caseSensitive;
-            textSearchOption.DiacriticSensitive = diacriticSensitive;
+            var textSearchOption = new TextSearchOptions()
+            {
+                CaseSensitive = caseSensitive,
+                DiacriticSensitive = diacriticSensitive
+            };
             //语言
             if (string.IsNullOrEmpty(language))
             {

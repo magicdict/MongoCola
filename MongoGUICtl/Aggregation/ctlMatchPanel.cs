@@ -63,9 +63,11 @@ namespace MongoGUICtl.Aggregation
         private void btnAddMatch_Click(object sender, EventArgs e)
         {
             MatchItemCount++;
-            var newMatchItem = new CtlMatchItem();
-            newMatchItem.Location = CurrentPos;
-            newMatchItem.Name = "MatchItem" + MatchItemCount;
+            var newMatchItem = new CtlMatchItem()
+            {
+                Location = CurrentPos,
+                Name = "MatchItem" + MatchItemCount
+            };
             Controls.Add(newMatchItem);
             CurrentPos.Y += newMatchItem.Height;
         }

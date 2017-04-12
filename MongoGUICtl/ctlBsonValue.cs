@@ -246,8 +246,10 @@ namespace MongoGUICtl
                     var t = GetGeoPoint();
                     if (t != null)
                     {
-                        _mBsonDocument = new BsonDocument("type", "Point");
-                        _mBsonDocument.Add("coordinates", t);
+                        _mBsonDocument = new BsonDocument("type", "Point")
+                        {
+                            { "coordinates", t }
+                        };
                         txtBsonValue.Visible = true;
                         txtBsonValue.Text = _mBsonDocument.ToString();
                         txtBsonValue.ReadOnly = true;

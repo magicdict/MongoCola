@@ -198,8 +198,7 @@ namespace MongoGUIView
                 //Key:_id
                 if (!isSystem)
                 {
-                    BsonElement id;
-                    docItem.TryGetElement(ConstMgr.KeyId, out id);
+                    docItem.TryGetElement(ConstMgr.KeyId, out BsonElement id);
                     if ((id.Value is BsonNull) || (id.Value == null))
                     {
                         lstItem.Text = "[Empty]";
@@ -223,8 +222,7 @@ namespace MongoGUIView
                     {
                         continue;
                     }
-                    BsonValue val;
-                    docItem.TryGetValue(columnlist[i], out val);
+                    docItem.TryGetValue(columnlist[i], out BsonValue val);
                     lstItem.SubItems.Add(val == null ? "" : ConvertToString(val));
                 }
                 lstData.Items.Add(lstItem);
@@ -261,23 +259,22 @@ namespace MongoGUIView
             }
             foreach (var docFile in dataList)
             {
-                var lstItem = new ListViewItem();
-                //ID
-                lstItem.Text = docFile.GetValue(ConstMgr.KeyId).ToString();
+                var lstItem = new ListViewItem()
+                {
+                    //ID
+                    Text = docFile.GetValue(ConstMgr.KeyId).ToString()
+                };
                 //User
                 lstItem.SubItems.Add(docFile.GetValue("user").ToString());
                 //roles
-                BsonValue strRoles;
-                docFile.TryGetValue("roles", out strRoles);
+                docFile.TryGetValue("roles", out BsonValue strRoles);
                 lstItem.SubItems.Add(strRoles == null ? "N/A" : strRoles.ToString());
                 //密码是Hash表示的，这里没有安全隐患
                 //Password和userSource不能同时设置，所以password也可能不存在
-                BsonValue credentials;
-                docFile.TryGetValue("credentials", out credentials);
+                docFile.TryGetValue("credentials", out BsonValue credentials);
                 lstItem.SubItems.Add(credentials == null ? "N/A" : credentials.ToString());
                 //customData
-                BsonValue customData;
-                docFile.TryGetValue("customData", out customData);
+                docFile.TryGetValue("customData", out BsonValue customData);
                 lstItem.SubItems.Add(customData == null ? "N/A" : customData.ToString());
                 lstData.Items.Add(lstItem);
             }
@@ -305,10 +302,12 @@ namespace MongoGUIView
             foreach (var docFile in dataList)
             {
                 var filename = docFile.GetValue("filename").ToString();
-                var lstItem = new ListViewItem();
-                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(filename, false);
-                lstItem.Text = filename;
-                lstItem.ToolTipText = filename;
+                var lstItem = new ListViewItem()
+                {
+                    ImageIndex = GetSystemIcon.GetIconIndexByFileName(filename, false),
+                    Text = filename,
+                    ToolTipText = filename
+                };
                 lstItem.SubItems.Add(MongoHelper.GetBsonSize(docFile.GetValue("length")));
                 lstItem.SubItems.Add(MongoHelper.GetBsonSize(docFile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));

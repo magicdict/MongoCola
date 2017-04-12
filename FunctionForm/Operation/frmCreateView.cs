@@ -47,8 +47,10 @@ namespace FunctionForm.Operation
                 CreateViewOptions<BsonDocument> OptionalDoc = null;
                 if (mCollation != null)
                 {
-                    OptionalDoc = new CreateViewOptions<BsonDocument>();
-                    OptionalDoc.Collation = mCollation;
+                    OptionalDoc = new CreateViewOptions<BsonDocument>()
+                    {
+                        Collation = mCollation
+                    };
                 }
                 RuntimeMongoDbContext.GetCurrentIMongoDataBase().CreateView(txtViewName.Text, cmbViewOn.Text, pipeline, OptionalDoc);
             }

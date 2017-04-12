@@ -134,8 +134,10 @@ namespace FunctionForm.User
                 Actions = act
             });
 
-            var t = new ListViewItem();
-            t.Text = res.ToString();
+            var t = new ListViewItem()
+            {
+                Text = res.ToString()
+            };
             t.SubItems.Add(act.ToString());
             lstPriviege.Items.Add(t);
             PickedAction.Clear();

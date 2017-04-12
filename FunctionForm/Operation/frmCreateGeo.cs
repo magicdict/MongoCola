@@ -25,14 +25,12 @@ namespace FunctionForm.Operation
         private void cmdOK_Click(object sender, EventArgs e)
         {
             //Always list coordinates in longitude, latitude order.
-            double longitude;
-            if (!double.TryParse(txtLongitude.Text, out longitude))
+            if (!double.TryParse(txtLongitude.Text, out double longitude))
             {
                 MessageBox.Show("Longitude is not a double");
                 return;
             }
-            double latitude;
-            if (!double.TryParse(txtLatitude.Text, out latitude))
+            if (!double.TryParse(txtLatitude.Text, out double latitude))
             {
                 MessageBox.Show("Latitude is not a double");
                 return;
@@ -53,9 +51,11 @@ namespace FunctionForm.Operation
                     return;
                 }
             }
-            mBsonArray = new BsonArray();
-            mBsonArray.Add(longitude);
-            mBsonArray.Add(latitude);
+            mBsonArray = new BsonArray
+            {
+                longitude,
+                latitude
+            };
             Close();
         }
 

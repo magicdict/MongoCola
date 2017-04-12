@@ -74,11 +74,12 @@ namespace FunctionForm.Operation
         private void cmdAddIndex_Click(object sender, EventArgs e)
         {
             //Index UIOption
-            var uiOption = new Operater.IndexOption();
-            uiOption.AscendingKey = new List<string>();
-            uiOption.DescendingKey = new List<string>();
-            uiOption.TextKey = new List<string>();
-
+            var uiOption = new Operater.IndexOption()
+            {
+                AscendingKey = new List<string>(),
+                DescendingKey = new List<string>(),
+                TextKey = new List<string>()
+            };
             var firstKey = string.Empty;
             for (var i = 0; i < 5; i++)
             {

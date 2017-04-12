@@ -91,8 +91,10 @@ namespace FunctionForm.Aggregation
             //Group
             if (chkIdNull.Checked)
             {
-                var id = new BsonDocument();
-                id.Add(new BsonElement("_id", BsonNull.Value));
+                var id = new BsonDocument
+                {
+                    new BsonElement("_id", BsonNull.Value)
+                };
                 id.AddRange(FieldsElement.Value.AsBsonDocument.Elements);
                 var group = new BsonDocument("$group", id);
                 Aggregation.Add(group);
@@ -101,8 +103,10 @@ namespace FunctionForm.Aggregation
             {
                 if (!string.IsNullOrEmpty(GroupIdElement.Name))
                 {
-                    var id = new BsonDocument();
-                    id.Add(new BsonElement("_id", GroupIdElement.Value));
+                    var id = new BsonDocument
+                    {
+                        new BsonElement("_id", GroupIdElement.Value)
+                    };
                     id.AddRange(FieldsElement.Value.AsBsonDocument.Elements);
                     var group = new BsonDocument("$group", id);
                     Aggregation.Add(group);

@@ -79,8 +79,10 @@ namespace MongoUtility.Security
             /// <returns></returns>
             public BsonDocument AsBsonDocument()
             {
-                BsonDocument privilege = new BsonDocument(Resource);
-                privilege.Add("actions", Actions);
+                BsonDocument privilege = new BsonDocument(Resource)
+                {
+                    { "actions", Actions }
+                };
                 return privilege;
             }
         }
@@ -110,8 +112,10 @@ namespace MongoUtility.Security
                     return Role;
                 }else
                 {
-                    var role = new BsonDocument("role", Role);
-                    role.Add("db", Db);
+                    var role = new BsonDocument("role", Role)
+                    {
+                        { "db", Db }
+                    };
                     return role;
                 }
             }
@@ -125,8 +129,10 @@ namespace MongoUtility.Security
         /// <returns></returns>
         public static BsonDocument GetRole(MongoDatabase mongoDb, string roleName)
         {
-            var doc = new EvalArgs();
-            doc.Code = "db.getRole('" + roleName + "',{showPrivileges:true})";
+            var doc = new EvalArgs()
+            {
+                Code = "db.getRole('" + roleName + "',{showPrivileges:true})"
+            };
             return mongoDb.Eval(doc).AsBsonDocument;
         }
 

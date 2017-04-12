@@ -85,8 +85,10 @@ namespace Common
                 var hitNode = searchNode.IsChildContains(pathArray[i]);
                 if (hitNode == null)
                 {
-                    var newChild = new CTreeNode(newPath);
-                    newChild.Parent = searchNode;
+                    var newChild = new CTreeNode(newPath)
+                    {
+                        Parent = searchNode
+                    };
                     searchNode.Children.Add(newChild);
                     searchNode = newChild;
                 }

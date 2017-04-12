@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using System.Collections.Generic;
 
-namespace MongoUtilityCore.Command
+namespace MongoUtility.Command
 {
     public static class SystemStatus
     {

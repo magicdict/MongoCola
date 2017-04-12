@@ -47,9 +47,11 @@ namespace MongoGUICtl.Aggregation
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             SortItemCount++;
-            var newSortItem = new ctlSortItem();
-            newSortItem.Location = CurrentPos;
-            newSortItem.Name = "SortItem" + SortItemCount;
+            var newSortItem = new ctlSortItem()
+            {
+                Location = CurrentPos,
+                Name = "SortItem" + SortItemCount
+            };
             Controls.Add(newSortItem);
             CurrentPos.Y += newSortItem.Height;
         }

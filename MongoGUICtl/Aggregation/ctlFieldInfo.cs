@@ -162,10 +162,12 @@ namespace MongoGUICtl.Aggregation
             }
             get
             {
-                var rtnQueryFieldItem = new DataFilter.QueryFieldItem();
-                rtnQueryFieldItem.IsShow = chkIsShow.Checked;
-                rtnQueryFieldItem.ColName = lblFieldName.Text;
-                rtnQueryFieldItem.ProjectName = txtProject.Text;
+                var rtnQueryFieldItem = new DataFilter.QueryFieldItem()
+                {
+                    IsShow = chkIsShow.Checked,
+                    ColName = lblFieldName.Text,
+                    ProjectName = txtProject.Text
+                };
                 if (cmbSort.SelectedIndex == 0)
                 {
                     rtnQueryFieldItem.SortType = DataFilter.SortType.NoSort;

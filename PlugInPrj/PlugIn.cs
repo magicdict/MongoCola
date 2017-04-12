@@ -106,9 +106,11 @@ namespace PlugInPrj
                             plugInType = "[Misc]";
                             break;
                     }
-                    ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName + plugInType);
-                    menu.ToolTipText = plugin.Value.PlugFunction;
-                    menu.Tag = plugin.Key;
+                    ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName + plugInType)
+                    {
+                        ToolTipText = plugin.Value.PlugFunction,
+                        Tag = plugin.Key
+                    };
                     menu.Click += (x, y) => RunPlugIn(plugin.Key);
                     plugInToolStripMenuItem.DropDownItems.Add(menu);
                 }

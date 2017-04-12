@@ -150,8 +150,10 @@ namespace FunctionForm.Connection
         private void cmdFromUriString_Click(object sender, EventArgs e)
         {
             var uri = MyMessageBox.ShowInput("MongoConnectionUri", "Uri");
-            MongoConnectionConfig ModifyConn = new MongoConnectionConfig();
-            ModifyConn.ConnectionString = uri;
+            MongoConnectionConfig ModifyConn = new MongoConnectionConfig()
+            {
+                ConnectionString = uri
+            };
             var strException = MongoHelper.FillConfigWithConnectionString(ref ModifyConn);
             if (strException != string.Empty)
             {

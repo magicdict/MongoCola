@@ -40,6 +40,10 @@ namespace MongoUtility.ToolKit
             return dosCommand;
         }
 
+        /// <summary>
+        ///     
+        /// </summary>
+        /// <returns></returns>
         public static MongoRestoreInfo GetMongoRestoreInfo()
         {
             var mongoRestore = new MongoRestoreInfo();

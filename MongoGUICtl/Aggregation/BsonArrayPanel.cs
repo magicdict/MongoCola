@@ -42,9 +42,11 @@ namespace MongoGUICtl.Aggregation
         public void AddBsonValueItem()
         {
             _conditionCount++;
-            var newBsonValueItem = new ctlBsonValueType();
-            newBsonValueItem.Location = _conditionPos;
-            newBsonValueItem.Name = "BsonValueItem" + _conditionCount;
+            var newBsonValueItem = new ctlBsonValueType()
+            {
+                Location = _conditionPos,
+                Name = "BsonValueItem" + _conditionCount
+            };
             Controls.Add(newBsonValueItem);
             _conditionPos.Y += newBsonValueItem.Height;
         }

@@ -45,8 +45,10 @@ namespace FunctionForm.Status
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var dialog = new SaveFileDialog();
-            dialog.Filter = Utility.JsFilter;
+            var dialog = new SaveFileDialog()
+            {
+                Filter = Utility.JsFilter
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 MongoHelper.SaveResultToJSonFile(Operater.Validate(chkFull.Checked), dialog.FileName);

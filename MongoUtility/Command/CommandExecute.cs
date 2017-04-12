@@ -311,8 +311,10 @@ namespace MongoUtility.Command
                 else
                 {
                     //Replset的时候，没有Admin数据库
-                    BsonDocument AdminDatabaseNotFound = new BsonDocument();
-                    AdminDatabaseNotFound.Add("errmsg", "Admin Database Not Found");
+                    BsonDocument AdminDatabaseNotFound = new BsonDocument
+                    {
+                        { "errmsg", "Admin Database Not Found" }
+                    };
                     mCommandResult = new CommandResult(AdminDatabaseNotFound);
                 }
             }
@@ -322,8 +324,10 @@ namespace MongoUtility.Command
             }
             catch (TimeoutException)
             {
-                BsonDocument TimeOutDocument = new BsonDocument();
-                TimeOutDocument.Add("errmsg", "TimeoutException");
+                BsonDocument TimeOutDocument = new BsonDocument
+                {
+                    { "errmsg", "TimeoutException" }
+                };
                 mCommandResult = new CommandResult(TimeOutDocument);
             }
             var e = new RunCommandEventArgs
@@ -355,8 +359,10 @@ namespace MongoUtility.Command
                 else
                 {
                     //Replset的时候，没有Admin数据库
-                    BsonDocument AdminDatabaseNotFound = new BsonDocument();
-                    AdminDatabaseNotFound.Add("errmsg", "Admin Database Not Found");
+                    BsonDocument AdminDatabaseNotFound = new BsonDocument
+                    {
+                        { "errmsg", "Admin Database Not Found" }
+                    };
                     mCommandResult = new CommandResult(AdminDatabaseNotFound);
                 }
             }
@@ -366,8 +372,10 @@ namespace MongoUtility.Command
             }
             catch (TimeoutException)
             {
-                BsonDocument TimeOutDocument = new BsonDocument();
-                TimeOutDocument.Add("errmsg", "TimeoutException");
+                BsonDocument TimeOutDocument = new BsonDocument
+                {
+                    { "errmsg", "TimeoutException" }
+                };
                 mCommandResult = new CommandResult(TimeOutDocument);
             }
             var e = new RunCommandEventArgs

@@ -43,9 +43,11 @@ namespace FunctionForm.Aggregation
             var reduce = new BsonJavaScript(ctlReduceFunction.Context);
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
-            var args = new MapReduceArgs();
-            args.MapFunction = map;
-            args.ReduceFunction = reduce;
+            var args = new MapReduceArgs()
+            {
+                MapFunction = map,
+                ReduceFunction = reduce
+            };
             if (!string.IsNullOrEmpty(ctlFinalizeFunction.Context))
             {
                 args.FinalizeFunction = new BsonJavaScript(ctlFinalizeFunction.Context);
@@ -61,9 +63,11 @@ namespace FunctionForm.Aggregation
             try
             {
                 var mMapReduceResult = RuntimeMongoDbContext.GetCurrentCollection().MapReduce(args);
-                var frm = new frmDataView();
-                frm.ShowDocument = mMapReduceResult.Response;
-                frm.Title = "MapReduce Result";
+                var frm = new frmDataView()
+                {
+                    ShowDocument = mMapReduceResult.Response,
+                    Title = "MapReduce Result"
+                };
                 UIAssistant.OpenModalForm(frm, true, true);
             }
             catch (Exception ex)
