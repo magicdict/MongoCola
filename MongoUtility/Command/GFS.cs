@@ -87,7 +87,7 @@ namespace MongoUtility.Command
             var file = new FileStream(localFileName, FileMode.Create);
             var t = new StreamWriter(file);
             t.Write(strJson);
-            t.Flush();
+            t.Close();
             Process.Start(localFileName);
         }
 
