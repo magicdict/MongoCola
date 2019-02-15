@@ -31,7 +31,6 @@ namespace ResourceLib.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMesssage));
             this.txtException = new System.Windows.Forms.TextBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -105,7 +104,7 @@ namespace ResourceLib.UI
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.Image = ((System.Drawing.Image)(resources.GetObject("picImage.Image")));
+            this.picImage.Image = global::ResourceLib.Properties.Resources.Info;
             this.picImage.Location = new System.Drawing.Point(13, 23);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(32, 32);
@@ -113,7 +112,7 @@ namespace ResourceLib.UI
             this.picImage.TabIndex = 5;
             this.picImage.TabStop = false;
             // 
-            // FrmMesssage
+            // frmMesssage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -127,7 +126,7 @@ namespace ResourceLib.UI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmMesssage";
+            this.Name = "frmMesssage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Result";
             this.panForBgcolor.ResumeLayout(false);

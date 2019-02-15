@@ -31,7 +31,6 @@ namespace ResourceLib.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPasswordInputBox));
             this.lblMessage = new System.Windows.Forms.Label();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
@@ -86,7 +85,7 @@ namespace ResourceLib.UI
             // imgInfo
             // 
             this.imgInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.imgInfo.Image = ((System.Drawing.Image)(resources.GetObject("imgInfo.Image")));
+            this.imgInfo.Image = global::ResourceLib.Properties.Resources.Input;
             this.imgInfo.Location = new System.Drawing.Point(35, 20);
             this.imgInfo.Name = "imgInfo";
             this.imgInfo.Size = new System.Drawing.Size(32, 32);

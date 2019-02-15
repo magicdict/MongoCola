@@ -31,7 +31,6 @@ namespace ResourceLib.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConfirm));
             this.lblMessage = new System.Windows.Forms.Label();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.cmdYes = new System.Windows.Forms.Button();
@@ -52,7 +51,7 @@ namespace ResourceLib.UI
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.Image = ((System.Drawing.Image)(resources.GetObject("picImage.Image")));
+            this.picImage.Image = global::ResourceLib.Properties.Resources.QuestionMark;
             this.picImage.Location = new System.Drawing.Point(29, 30);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(32, 32);
@@ -84,7 +83,7 @@ namespace ResourceLib.UI
             this.cmdNo.UseVisualStyleBackColor = false;
             this.cmdNo.Click += new System.EventHandler(this.cmdNo_Click);
             // 
-            // frmConfirm
+            // FrmConfirm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
