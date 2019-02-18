@@ -133,7 +133,7 @@ namespace MongoGUIView
         private void lstData_DragDrop(object sender, DragEventArgs e)
         {
             Array UploadfileList = (Array)e.Data.GetData(DataFormats.FileDrop);
-            if (!MyMessageBox.ShowConfirm("UploadFile", "是否上传" + UploadfileList.Length + "个文件")) return;
+            if (!MyMessageBox.ShowConfirm("UploadFile", "是否上传" + UploadfileList.Length + "个文件(夹)")) return;
             var opt = GetUploadFileOption();
             var count = 0;
             foreach (string UploadFilename in UploadfileList)
@@ -220,6 +220,7 @@ namespace MongoGUIView
         }
 
         /// <summary>
+        /// 上传文件夹
         /// </summary>
         /// <param name="uploadDir"></param>
         /// <param name="fileCount"></param>

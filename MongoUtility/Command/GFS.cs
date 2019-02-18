@@ -69,7 +69,13 @@ namespace MongoUtility.Command
         /// </summary>
         public enum EnumGfsFileName
         {
+            /// <summary>
+            /// 文件名
+            /// </summary>
             Filename,
+            /// <summary>
+            /// 全路径
+            /// </summary>
             Path
         }
 
@@ -147,6 +153,13 @@ namespace MongoUtility.Command
                     ? strFileName.Replace(Path.DirectorySeparatorChar, option.DirectorySeparatorChar)
                     : strFileName;
             }
+            if (!string.IsNullOrEmpty(option.TrimStart))
+            {
+                if (remoteName.StartsWith(option.TrimStart))
+                {
+                    remoteName = remoteName.Substring(option.TrimStart.Length);
+                }
+            }
             MongoHelper.OnActionDone(new ActionDoneEventArgs(remoteName + " Uploading "));
             if (!gfs.Exists(remoteName))
             {
@@ -200,6 +213,7 @@ namespace MongoUtility.Command
             public char DirectorySeparatorChar;
             public EnumGfsFileName FileNameOpt;
             public bool IgnoreSubFolder;
+            public string TrimStart;
         }
 
         #endregion

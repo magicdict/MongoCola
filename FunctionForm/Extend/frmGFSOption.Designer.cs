@@ -44,19 +44,23 @@ namespace MongoGUIView
             this.radRenameIt = new System.Windows.Forms.RadioButton();
             this.cmdOK = new System.Windows.Forms.Button();
             this.chkIgnore = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTrimStart = new System.Windows.Forms.TextBox();
             this.grpFilename.SuspendLayout();
             this.grpFileAlreadyExist.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpFilename
             // 
+            this.grpFilename.Controls.Add(this.txtTrimStart);
+            this.grpFilename.Controls.Add(this.label1);
             this.grpFilename.Controls.Add(this.txtSeperateChar);
             this.grpFilename.Controls.Add(this.lblSeperateChar);
             this.grpFilename.Controls.Add(this.radFullPath);
             this.grpFilename.Controls.Add(this.radFilename);
             this.grpFilename.Location = new System.Drawing.Point(12, 11);
             this.grpFilename.Name = "grpFilename";
-            this.grpFilename.Size = new System.Drawing.Size(278, 101);
+            this.grpFilename.Size = new System.Drawing.Size(278, 132);
             this.grpFilename.TabIndex = 0;
             this.grpFilename.TabStop = false;
             this.grpFilename.Tag = "GFS_Insert_Option.RemoteFileName";
@@ -66,7 +70,7 @@ namespace MongoGUIView
             // 
             this.txtSeperateChar.Location = new System.Drawing.Point(106, 73);
             this.txtSeperateChar.Name = "txtSeperateChar";
-            this.txtSeperateChar.Size = new System.Drawing.Size(57, 21);
+            this.txtSeperateChar.Size = new System.Drawing.Size(26, 21);
             this.txtSeperateChar.TabIndex = 5;
             this.txtSeperateChar.Text = "\\";
             // 
@@ -111,7 +115,7 @@ namespace MongoGUIView
             this.grpFileAlreadyExist.Controls.Add(this.radSkipIt);
             this.grpFileAlreadyExist.Controls.Add(this.radAddIt);
             this.grpFileAlreadyExist.Controls.Add(this.radRenameIt);
-            this.grpFileAlreadyExist.Location = new System.Drawing.Point(12, 118);
+            this.grpFileAlreadyExist.Location = new System.Drawing.Point(12, 149);
             this.grpFileAlreadyExist.Name = "grpFileAlreadyExist";
             this.grpFileAlreadyExist.Size = new System.Drawing.Size(278, 135);
             this.grpFileAlreadyExist.TabIndex = 1;
@@ -178,7 +182,7 @@ namespace MongoGUIView
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(104, 328);
+            this.cmdOK.Location = new System.Drawing.Point(104, 335);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(89, 29);
             this.cmdOK.TabIndex = 2;
@@ -189,13 +193,29 @@ namespace MongoGUIView
             // 
             // chkIgnore
             // 
-            this.chkIgnore.Location = new System.Drawing.Point(16, 265);
+            this.chkIgnore.Location = new System.Drawing.Point(16, 288);
             this.chkIgnore.Name = "chkIgnore";
             this.chkIgnore.Size = new System.Drawing.Size(274, 43);
             this.chkIgnore.TabIndex = 3;
             this.chkIgnore.Tag = "GFS_Insert_Option.IngoreSubFolder";
             this.chkIgnore.Text = "add files form selected folder only(ignore sub-folder)";
             this.chkIgnore.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 102);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Trim Start";
+            // 
+            // txtTrimStart
+            // 
+            this.txtTrimStart.Location = new System.Drawing.Point(106, 99);
+            this.txtTrimStart.Name = "txtTrimStart";
+            this.txtTrimStart.Size = new System.Drawing.Size(161, 21);
+            this.txtTrimStart.TabIndex = 4;
             // 
             // FrmGfsOption
             // 
@@ -235,5 +255,7 @@ namespace MongoGUIView
         private CheckBox chkIgnore;
         private TextBox txtSeperateChar;
         private Label lblSeperateChar;
+        private TextBox txtTrimStart;
+        private Label label1;
     }
 }

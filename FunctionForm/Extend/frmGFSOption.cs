@@ -8,9 +8,10 @@ namespace MongoGUIView
 {
     public partial class FrmGfsOption : Form
     {
-        public char DirectorySeparatorChar = Path.PathSeparator;
-        public Gfs.EnumGfsFileName Filename;
         public bool IgnoreSubFolder;
+        public char DirectorySeparatorChar = Path.PathSeparator;
+        public string TrimStart;
+        public Gfs.EnumGfsFileName Filename;
         public Gfs.EnumGfsAlready Option;
 
         public FrmGfsOption()
@@ -51,7 +52,17 @@ namespace MongoGUIView
                 DirectorySeparatorChar = txtSeperateChar.Text.ToCharArray()[0];
             }
             IgnoreSubFolder = chkIgnore.Checked;
+            TrimStart = txtTrimStart.Text;
             Close();
+        }
+
+        public void FillOpt(ref Gfs.UpLoadFileOption opt)
+        {
+            opt.AlreadyOpt = Option;
+            opt.DirectorySeparatorChar = DirectorySeparatorChar;
+            opt.FileNameOpt = Filename;
+            opt.IgnoreSubFolder = IgnoreSubFolder;
+            opt.TrimStart = TrimStart;
         }
 
         /// <summary>

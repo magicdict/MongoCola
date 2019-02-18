@@ -130,10 +130,7 @@ namespace MongoCola
                 var opt = new Gfs.UpLoadFileOption();
                 var frm = new FrmGfsOption();
                 frm.ShowDialog();
-                opt.AlreadyOpt = frm.Option;
-                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
-                opt.FileNameOpt = frm.Filename;
-                opt.IgnoreSubFolder = frm.IgnoreSubFolder;
+                frm.FillOpt(ref opt);
                 return opt;
             };
         }
