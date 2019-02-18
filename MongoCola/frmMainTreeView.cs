@@ -350,6 +350,14 @@ namespace MongoCola
                 e.Node.ContextMenuStrip = contextMenuStripMain;
                 contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
             }
+            //PlugIn
+            foreach (ToolStripMenuItem item in plugInToolStripMenuItem.DropDownItems)
+            {
+                if (PlugIn.PlugInList[item.Tag.ToString()].RunLv == PlugInBase.PathLv.CollectionLv)
+                {
+                    item.Enabled = true;
+                }
+            }
         }
 
         /// <summary>

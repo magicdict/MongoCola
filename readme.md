@@ -13,14 +13,12 @@ MongoCola是一款帮助你在图形界面下查看，操作MongoDB的工具类�
 # 开发和测试环境
 ## 操作系统：
 * Windows 7
-* Mac OSX 10.12(UI效果不是很好)
 
 ***
 
 ## 运行时：
-* NET Framework 4.6.2
-* NET Core 1.1.10
-* MongoDB 3.4.2
+* NET Framework 4.7.2
+* MongoDB 4.0.1
 
 ***
 
