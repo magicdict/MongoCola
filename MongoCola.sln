@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assistant", "Assistant", "{C2CB64A9-4560-43A1-AAB3-B61451A6551B}"
 EndProject
@@ -31,6 +31,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlugInPrj", "PlugInPrj\PlugInPrj.csproj", "{7A3EA89C-F84E-446C-892A-690FA28BEBCA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoUtility", "MongoUtility\MongoUtility.csproj", "{69DBEC7C-A524-415E-9145-E6B32B76B2D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlugInPackage", "PlugInPackage\PlugInPackage.csproj", "{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -148,6 +150,22 @@ Global
 		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|x64.Build.0 = Release|Any CPU
 		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|x86.ActiveCfg = Release|Any CPU
 		{69DBEC7C-A524-415E-9145-E6B32B76B2D3}.Release|x86.Build.0 = Release|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Debug|x64.Build.0 = Debug|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Debug|x86.ActiveCfg = Debug|x86
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Debug|x86.Build.0 = Debug|x86
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Release|x64.ActiveCfg = Release|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Release|x64.Build.0 = Release|Any CPU
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Release|x86.ActiveCfg = Release|x86
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +179,10 @@ Global
 		{564926F7-427A-412C-8DE0-967E9D082A84} = {EB6F6C93-B2FA-451B-9799-10C6B15FD053}
 		{7A3EA89C-F84E-446C-892A-690FA28BEBCA} = {C2CB64A9-4560-43A1-AAB3-B61451A6551B}
 		{69DBEC7C-A524-415E-9145-E6B32B76B2D3} = {C2CB64A9-4560-43A1-AAB3-B61451A6551B}
+		{0D765082-CFF4-4BDC-8106-9281DA9D0BB4} = {DCF84DFC-72F4-4A63-9CF1-80E764305390}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5853504-A34F-4AA5-998E-FB92225E058C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

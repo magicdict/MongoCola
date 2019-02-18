@@ -291,7 +291,7 @@
   <GFS>
     <filename>文件名</filename>
     <length>文件大小</length>
-    <chunkSize>存储空间</chunkSize>
+    <chunkSize>区块大小</chunkSize>
     <uploadDate>日期</uploadDate>
     <ContentType>内容类型</ContentType>
   </GFS>

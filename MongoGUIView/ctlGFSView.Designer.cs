@@ -95,6 +95,7 @@ namespace MongoGUIView
             // 
             // cmbListViewStyle
             // 
+            this.cmbListViewStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbListViewStyle.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbListViewStyle.Items.AddRange(new object[] {
             "LagreIcon",
@@ -154,6 +155,7 @@ namespace MongoGUIView
             this.DeleteFileStripButton.Name = "DeleteFileStripButton";
             this.DeleteFileStripButton.Size = new System.Drawing.Size(23, 22);
             this.DeleteFileStripButton.Text = "Delete File";
+            this.DeleteFileStripButton.Click += new System.EventHandler(this.DeleteFileStripButton_Click);
             // 
             // DownloadFileStripButton
             // 
@@ -247,6 +249,5 @@ namespace MongoGUIView
         private ToolStripButton UpLoadFolderStripButton;
         private ToolStripButton DownloadFileStripButton;
         private ToolStripButton DeleteFileStripButton;
-
     }
 }

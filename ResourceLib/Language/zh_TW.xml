@@ -285,7 +285,7 @@
   <!--GFS-->
   <GFS_filename>檔案名</GFS_filename>
   <GFS_length>檔案大小</GFS_length>
-  <GFS_chunkSize>存儲空間</GFS_chunkSize>
+  <GFS_chunkSize>区块大小</GFS_chunkSize>
   <GFS_uploadDate>日期</GFS_uploadDate>
   <GFS_md5>md5</GFS_md5>
 

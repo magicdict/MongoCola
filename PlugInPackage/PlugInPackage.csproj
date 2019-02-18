@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PlugInPackage</RootNamespace>
     <AssemblyName>PlugInPackage</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
@@ -91,28 +91,27 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="MongoDB.Bson, Version=2.4.0.41, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Bson.2.4.0-beta1\lib\net45\MongoDB.Bson.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MongoDB.Bson, Version=2.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.7.3\lib\net45\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=2.4.0.41, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.2.4.0-beta1\lib\net45\MongoDB.Driver.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MongoDB.Driver, Version=2.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.7.3\lib\net45\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver.Core, Version=2.4.0.41, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.Core.2.4.0-beta1\lib\net45\MongoDB.Driver.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MongoDB.Driver.Core, Version=2.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.7.3\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver.Legacy, Version=2.4.0.41, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mongocsharpdriver.2.4.0-beta1\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MongoUtilityStandard">
-      <HintPath>..\MongoUtilityStandard\bin\Debug\netstandard1.6\MongoUtilityStandard.dll</HintPath>
+    <Reference Include="MongoDB.Driver.Legacy, Version=2.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.2.7.3\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.3.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -170,28 +169,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{40495682-C452-41C4-B2AE-8C60D7743BC9}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MongoGUICtl\MongoGUICtl.csproj">
-      <Project>{EC2826B3-7033-4F9B-B52A-BD1CA85F583B}</Project>
-      <Name>MongoGUICtl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
-      <Project>{E71AF267-0DFD-4E71-94A7-48F40793CEEF}</Project>
-      <Name>MongoGUIView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PlugInPrj\PlugInPrj.csproj">
-      <Project>{7a3ea89c-f84e-446c-892a-690fa28bebca}</Project>
-      <Name>PlugInPrj</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
-      <Project>{5AC3B529-8E37-4D99-99E9-729603E3BB5E}</Project>
-      <Name>ResourceLib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="DosCommand\ctllogLv.resx">
       <DependentUpon>ctllogLv.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,6 +207,35 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{40495682-c452-41c4-b2ae-8c60d7743bc9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoGUICtl\MongoGUICtl.csproj">
+      <Project>{ec2826b3-7033-4f9b-b52a-bd1ca85f583b}</Project>
+      <Name>MongoGUICtl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
+      <Project>{e71af267-0dfd-4e71-94a7-48f40793ceef}</Project>
+      <Name>MongoGUIView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
+      <Project>{69dbec7c-a524-415e-9145-e6b32b76b2d3}</Project>
+      <Name>MongoUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlugInPrj\PlugInPrj.csproj">
+      <Project>{7a3ea89c-f84e-446c-892a-690fa28bebca}</Project>
+      <Name>PlugInPrj</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
+      <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
+      <Name>ResourceLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
